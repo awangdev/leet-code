@@ -22,7 +22,7 @@ public class GenerateCodeTable {
 		int count = 0;
 		for (File file : listOfFiles) {
 			if (file.getName().contains(".java")) {
-				outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/shawnfan/LintCode/blob/master/Java"+ file.getName() +")| |" + "Java|\n";
+				outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/shawnfan/LintCode/blob/master/Java/"+ file.getName() +")| |" + "Java|\n";
 				count++;			
 			}
 		}	
