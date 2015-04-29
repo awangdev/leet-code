@@ -40,7 +40,7 @@ public class Solution {
             if (i < numbers.length - 1 && numbers[i] == numbers[i + 1]) {
                 continue;//The case of numbers[i + 1] should have already covered all possibilities of the case numbers[i], so safe to skip
             }
-            ArrayList<ArrayList<Integer>> twoSum = calTwoSum(numbers, i - 1, 0 - numbers[i]);
+            ArrayList<ArrayList<Integer>> twoSum = calTwoSum(numbers, i - 1, 0 - numbers[i]);//Pick the 3rd element numbers[i]
             for (int j = 0; j < twoSum.size(); j++) {//Find two sum of rest-front elements. Cross add them with numbers[i]
                 twoSum.get(j).add(numbers[i]);
             }
