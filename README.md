@@ -3,6 +3,8 @@
 To host Java Solutions to problems from LintCode(http://LintCode.com).
 I Will try to revise the solutions once new problem or new testing case occurs.
 
+The GenerateCodeTable.java is used to auto-generate the following table whenever new solutions is added.
+
 | Squence | Problem       | Level			| Language  |
 |:-------:|:--------------|:---------------|:---------:|
 |0|[2 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/2 Sum.java)| |Java|
