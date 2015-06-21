@@ -58,7 +58,7 @@ public class Solution {
             }
             list.add(num[i]);
             sum += num[i];
-            helper(rst, list, num, target, sum, i);
+            helper(rst, list, num, target, sum, i + 1);
             //Back track:
             sum -= num[i];
             list.remove(list.size() - 1);
