@@ -55,3 +55,45 @@ public class Solution {
     }
 }
 
+
+
+/*
+10.19.2015
+Thougths:
+1. sort
+2. use a 'count' and 'max' to keep track of consecutive elements
+3. one-pass
+
+Note:
+Take care of equal numbers: skip/continue those
+
+*/
+
+public class Solution {
+    /**
+     * @param nums: A list of integers
+     * @return an integer
+     */
+    public int longestConsecutive(int[] num) {
+        if (num == null || num.length == 0) {
+            return 0;
+        }
+        if (num.length == 1) {
+            return 1;
+        }
+        int count = 1;
+        int max = 1;
+        Arrays.sort(num);
+        for (int i = 1; i < num.length; i++) {
+            if (num[i - 1] == num[i]) {
+                   continue;
+            } else if (num[i - 1] + 1 == num[i]) {
+                count++;
+                max = Math.max(count, max);
+            } else {
+                count = 1;
+            }
+        }
+        return max;
+    }
+}
