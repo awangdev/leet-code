@@ -50,8 +50,6 @@ Queue methods: offer(E e), add(E e), poll()
 ArrayList method: add(E e), isEmpty(),  remove(object o)
 
  */
-
-
 /**
  * Definition for Undirected graph.
  * class UndirectedGraphNode {
@@ -60,6 +58,63 @@ ArrayList method: add(E e), isEmpty(),  remove(object o)
  *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
  * };
  */
+
+/*
+OPTS: 11.07.2015
+Try to use ae map<Integer, false> to mark the nodes. Then do a BFS with queue
+1. Mark each node in map.
+2. BFS each node
+3. Whenver one node is checked, mark it check
+*/
+
+public class Solution {
+    /**
+     * @param nodes a array of Undirected graph node
+     * @return a connected set of a Undirected graph
+     */
+    public List<List<Integer>> connectedSet(ArrayList<UndirectedGraphNode> nodes) {
+        List<List<Integer>> rst = new ArrayList<List<Integer>>();
+        if (nodes == null || nodes.size() == 0) {
+            return rst;
+        }
+
+        HashMap<Integer, Boolean> map = new HashMap<Integer, Boolean>();
+        for (UndirectedGraphNode node : nodes) {
+            map.put(node.label, false);
+        }
+
+        for (UndirectedGraphNode node : nodes) { 
+            if (!map.get(node.label)) {
+                bfs(rst, node, map);
+            }
+        }
+        return rst;
+    }
+
+    public void bfs(List<List<Integer>> rst, UndirectedGraphNode node, HashMap<Integer, Boolean> map) {
+        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
+        List<Integer> list = new ArrayList<Integer>();
+        queue.add(node);
+        map.put(node.label, true);
+        UndirectedGraphNode temp;
+        while (!queue.isEmpty()) {
+             temp = queue.poll();
+             list.add(temp.label);
+             for (UndirectedGraphNode neighbor : temp.neighbors) {
+                if (!map.get(neighbor.label)) {
+                    queue.offer(neighbor);
+                    map.put(neighbor.label, true);
+                }
+             }
+        }
+        Collections.sort(list);
+        rst.add(list);
+    }
+}
+
+
+
+
 public class Solution {
     /**
      * @param nodes a array of Undirected graph node
