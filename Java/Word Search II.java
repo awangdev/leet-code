@@ -40,6 +40,8 @@ LintCode Copyright Trie
 
 
 */
+//Well, the attempt2 uses Trie, but didn't really use find(). It just uses insert() to create Trie, and mainly
+//used the end point where string is finished.
 
 /*
 Attemp2: Trie solution.
