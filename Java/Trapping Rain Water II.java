@@ -40,14 +40,12 @@ Step:
 
 */
 
-
-//NOT TEST YET
 public class Solution {
-	Class Block {
+	class Cell {
 		int x;
 		int y;
 		int h;
-		public Block(int x, int y, int height) {
+		public Cell(int x, int y, int height) {
 			this.x = x;
 			this.y = y;
 			this.h = height;
@@ -64,7 +62,7 @@ public class Solution {
 
     	PriorityQueue<Cell> queue = new PriorityQueue<Cell>(1, new Comparator<Cell>(){
     		public int compare(Cell A, Cell B) {
-    			return A.h - B.h;
+    		    return A.h - B.h;
     		}
     	});
     	int n = heights.length;
@@ -91,16 +89,12 @@ public class Solution {
     	int sum = 0;
     	while (!queue.isEmpty()) {
     		Cell cell = queue.poll();
-    		visited[cell.x][cell.y] = true;
     		for (int i = 0; i < 4; i++) {
     			int nx = cell.x + xs[i];
-    			int ny = cell.y + xs[i];
+    			int ny = cell.y + ys[i];
     			if (nx >= 0 && nx < n && ny >= 0 && ny < m && !visited[nx][ny]) {
     				visited[nx][ny] = true;
-    				if (cell.h > heights[nx][ny]) {
-    					sum+= (cell.h - heights[nx][ny]);
-    				}
-    				//OR sum += Math.max(0, cell.h - heights[nx][ny])
+    				sum += Math.max(0, cell.h - heights[nx][ny]);
     				queue.offer(new Cell(nx, ny, Math.max(heights[nx][ny], cell.h)));
     			}
     		}
