@@ -1,3 +1,6 @@
+小的放前。每次比head大小。
+while过后，把没完的list一口气接上。
+```
 /*
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 
@@ -57,3 +60,5 @@ public class Solution {
     }
 }
 
+
+```

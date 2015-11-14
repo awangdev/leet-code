@@ -1,44 +1,60 @@
 /*
-Given two sorted integer arrays A and B, merge B into A as one sorted array.
-
-Note
-You may assume that A has enough space (size that is greater or equal to m + n) to hold additional elements from B. The number of elements initialized in A and B are mand n respectively.
+33% Accepted
+Merge two given sorted integer array A and B into a new sorted integer array.
 
 Example
-A = [1, 2, 3, empty, empty] B = [4,5]
+A=[1,2,3,4]
 
-After merge, A will be filled as [1,2,3,4,5]
+B=[2,4,5,6]
+
+return [1,2,2,3,4,4,5,6]
+
+Challenge
+How can you optimize your algorithm if one array is very large and the other is very small?
 
 Tags Expand 
 Array Sorted Array
 
-Thinking process:
-1. start from the end, track back. End index = m + n;
-2. when ever check a position, need to do index-1, because index=m+n is the size of array.
-3. Make sure to clean up the second array B.
 */
 
+
+/*
+Attemp1: Regular O(m+n) approach
+*/
 class Solution {
     /**
-     * @param A: sorted integer array A which has m elements, 
-     *           but size of A is m+n
-     * @param B: sorted integer array B which has n elements
-     * @return: void
+     * @param A and B: sorted integer array A and B.
+     * @return: A new sorted integer array
      */
-    public void mergeSortedArray(int[] A, int m, int[] B, int n) {
-        // write your code here
-        int index = m + n;
-        while (m > 0 && n > 0) {
-            if (A[m - 1] > B[n - 1]) {
-                A[--index] = A[--m];
+    public ArrayList<Integer> mergeSortedArray(ArrayList<Integer> A, ArrayList<Integer> B) {
+        if (A == null || A.size() == 0) {
+            return B;
+        } else if (B == null || B.size() == 0) {
+            return A;
+        }
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        int i = 0;
+        int j = 0;
+        while (i + j < A.size() + B.size()) {
+            if (i == A.size()) {
+                result.add(B.get(j));
+                j++;
+            } else if (j == B.size()){
+                result.add(A.get(i));
+                i++;
             } else {
-                A[--index] = B[--n];
+                if (A.get(i) <= B.get(j)) {
+                    result.add(A.get(i));
+                    i++;
+                } else {
+                    result.add(B.get(j));
+                    j++;
+                }
             }
         }//While
         
-        while (n > 0) {
-            A[--index] = B[--n];
-        }
+        return result;
     }
 }
+
 
