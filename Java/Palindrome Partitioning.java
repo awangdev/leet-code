@@ -1,26 +1,28 @@
+很清楚的DFS Backtracking.
+在遍历str的时候，考虑从每个curr spot 到 str 结尾，是能有多少种palindorme? 那就从curr spot当个字符开始算，开始back tracing.
+如果所选不是palindrome， 那move on.
+若所选的确是palindrome,　加到path里面，DFS去下个level，等遍历到了结尾，这就产生了一种分割成palindrome的串。
+每次DFS结尾，要把这一层加的所选palindrome删掉，backtracking嘛。
+```
 /*
 Given a string s, partition s such that every substring of the partition is a palindrome.
-
 Return all possible palindrome partitioning of s.
-
 Example
 given s = "aab",
 Return
-
   [
     ["aa","b"],
     ["a","a","b"]
   ]
 Tags Expand 
 Backtracking
-
 Thinking process:
 1. Know how to write isPalindrome
 2. Back tracking:
-	check partial string
-	add it
-	recursive call
-	remove it.
+    check partial string
+    add it
+    recursive call
+    remove it.
 */
 
 public class Solution {
@@ -68,3 +70,4 @@ public class Solution {
         }    
     }
 }
+```
