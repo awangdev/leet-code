@@ -1,3 +1,10 @@
+两次卖出机会。那反正就是：找峰头；然后往下再找一个峰头。
+怎么样在才能Optimize呢。
+从两边同时开始找Max.
+leftProfit是从左往右，每个i点上的最大Profit。
+rightProfit是从i点开始到结尾，每个点上的最大profit.
+那么把左右两边在i上，两边相加的最大值找到就可以了。
+```
 /*
 Say you have an array for which the ith element is the price of a given stock on day i.
 
@@ -46,3 +53,15 @@ class Solution {
     }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+```

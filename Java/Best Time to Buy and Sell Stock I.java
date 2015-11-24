@@ -1,3 +1,7 @@
+n天就买卖一次。
+每天都算算目前最小值Min是多少。O(n)
+每天都算算和当下的Min买卖，profit最大多少。
+```
 /*
 Say you have an array for which the ith element is the price of a given stock on day i.
 
@@ -34,3 +38,5 @@ public class Solution {
     }
 }
 
+
+```
