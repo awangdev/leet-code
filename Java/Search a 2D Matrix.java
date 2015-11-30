@@ -1,3 +1,6 @@
+2D转1D。
+Binary Search
+```
 /*
 Write an efficient algorithm that searches for a value in an m x n matrix.
 
@@ -26,15 +29,63 @@ Challenge
 O(log(n) + log(m)) time
 
 Tags Expand 
-Binary Search
+Binary Search Matrix
 
+
+*/
+
+/*
+    Thoughts: 11.29.2015
+    The problem is updated on LintCode. Practice again.
+    Convert into 1D array. Binary Search
+*/
+public class Solution {
+    /**
+     * @param matrix, a list of lists of integers
+     * @param target, an integer
+     * @return a boolean, indicate whether matrix contains target
+     */
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int start = 0;
+        int end = row * col - 1;
+        int mid;
+
+        while (start + 1 < end) {
+            mid = start + (end - start)/2;
+            int num = matrix[mid/col][mid%col];
+            if (target == num) {
+                return true;
+            } else if (num < target) {
+                start = mid;
+            } else {
+                end = mid;
+            }
+        }
+
+        return (matrix[start/col][start%col] == target || matrix[end/col][end%col] == target);
+    }
+}
+
+
+
+
+
+
+
+
+/*
 Thinking process:
 0. The elements are unique, no duplicates
 Treat it as a 1-D array
 Do binary search
-	1. check head element
-	2. find the element until only start & end element left
-	3. Deal with start and end
+    1. check head element
+    2. find the element until only start & end element left
+    3. Deal with start and end
 */
 
 public class Solution {
@@ -79,3 +130,5 @@ public class Solution {
     }
 }
 
+
+```
