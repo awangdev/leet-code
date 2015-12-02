@@ -1,0 +1,44 @@
+//https://github.com/shawnfan/LintCode/blob/master/Java/
+/*
+//Format:
+"name" : {
+	"nickname": "",
+	"property" : [
+		"x",
+	],
+	"problems" : [
+		"x",
+	]
+}
+
+*/
+{
+	"dp" : {
+		"nickname":"Dynamic Programming, DP, 动态规划",
+		"property" : [
+			"state,function,init,return",
+		],
+		"problems:" : [
+			"Backpack",
+			"BackPack II"
+
+		]
+	},
+	"union-find" : {
+		"nickname": "Disjoint Set, 并查集",
+		"property" : [],
+		"problems" : [
+
+		]
+	},
+		"binary tree" : {
+		"nickname": "二叉树",
+		"property" : [
+			"recursive, left, right"
+		],
+		"problems" : [
+			"Binary Tree Paths",
+		]
+	}
+		
+}
