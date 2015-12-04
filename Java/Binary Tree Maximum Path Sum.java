@@ -1,26 +1,25 @@
+有点难理解.
+复杂原因是：因为可能有负值啊。不能乱assume正数。
+single path max 的计算是为了给后面的comboMax用的。
+如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
+combo的三种情况：(root可能小于0)1. 只有left, 2。 只有右边。 3. root大于0，那么就left,right,curr全部加起来。
+	情况1和情况2去一个最大值，
+	然后和情况三比较。
+	做了两个Math.max(). 然后就有了这一层的comboMax
+```
 /*
 23% Accepted
 Given a binary tree, find the maximum path sum.
-
 The path may start and end at any node in the tree.
-
 Example
 Given the below binary tree,
-
        1
       / \
      2   3
 Return 6.
-
 Tags Expand 
 Dynamic Programming Tree Depth First Search
 
-Thinking process
-Two steps of picking nodes: 1. Single Path (left or right)has a maximum.   2. Combine them into a final result: combinedPathMax
-1. singlePathMax, 2 results: either pick left+root or right+root.
-2. combinedPathMax: take left-max as a whole, take right-max as a whole. 
-	3 possible results: left-max without parent, right-max without parent, left-max + right-max + parent.
-3. Use a special container to store current node's singlePathMax and combinedPathMax. 
 */
 
 /**
@@ -34,6 +33,24 @@ Two steps of picking nodes: 1. Single Path (left or right)has a maximum.   2. Co
  *     }
  * }
  */
+
+
+
+/*
+Thoughts:
+Don't assume positive integers .
+
+Two steps of picking nodes: 1. Single Path (left or right)has a maximum.   2. Combine them into a final result: combinedPathMax
+1. singlePathMax, 2 results: either pick left+root or right+root.
+2. combinedPathMax: take left-max as a whole, take right-max as a whole. 
+	3 possible results: left-max without parent(like...when parent<0), right-max without parent(like...when parent<0), left-max + right-max + parent.
+3. Use a special container to store current node's singlePathMax and combinedPathMax. 
+
+Note:12.03.2015
+It's complex, because we could have nagative number.
+
+Combo is compared through: just left, just right, or combo of all.
+*/
 public class Solution {
     private class PathSumType {
         int singlePathMax;
@@ -72,3 +89,4 @@ public class Solution {
     
 }
 
+```
