@@ -1,0 +1,28 @@
+public class Solution {
+    /**
+     * @param n n pairs
+     * @return All combinations of well-formed parentheses
+     */
+    ArrayList<String> rst = new ArrayList<String>();
+    public ArrayList<String> generateParenthesis(int n) {
+    	if (n <= 0) {
+    		return rst;
+    	} 
+    	helper("", n , 0);
+    	return rst;
+    }
+
+    public void helper(String str, int n, int count) {
+    	if (n == 0) {
+    	    if (int i = 0; i < count; i++){
+    			str += ")";
+    		}
+    		rst.add(str);
+    		return;
+    	}
+    	if (count > 0) {
+    		helper(str + ")", n - 1, count - 1);
+    	}
+    	helper(str + "(", n - 1, count + 1);
+    }
+}

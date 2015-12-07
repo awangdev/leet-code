@@ -13,6 +13,34 @@
 
 */
 {
+	"int" : {
+		"nickname": "整数",
+		"property" : [
+			"Integer.parseInt(), INT_MAX, INT_MIN",
+		],
+		"problems" : [
+			"",
+		]
+	},
+	"String" : {
+		"nickname": "",
+		"property" : [
+			"toCharArry, charAt(), StringBuffer",
+		],
+		"problems" : [
+			"",
+		]
+	},
+	"Recursive" : {
+		"nickname": "递归",
+		"property" : [
+			"找所有方案，搜索",
+		],
+		"problems" : [
+			"Generate Parentheses",
+			"Subsets"
+		]
+	},
 	"dp" : {
 		"nickname":"Dynamic Programming, DP, 动态规划",
 		"property" : [
@@ -28,10 +56,12 @@
 		"nickname": "Disjoint Set, 并查集",
 		"property" : [],
 		"problems" : [
+			"Find the Weak Connected Component in the Directed Graph",
+			"Graph Valid Tree",
 
 		]
 	},
-		"binary tree" : {
+	"binary tree" : {
 		"nickname": "二叉树",
 		"property" : [
 			"recursive, left, right"
@@ -39,6 +69,41 @@
 		"problems" : [
 			"Binary Tree Paths",
 		]
+	},
+	"Trie" : {
+		"nickname": "Just a Tree",
+		"property" : [
+			"HashMap, store word, search word"
+		],
+		"problems" : [
+			"Implement Trie",
+			"Add and Search Word",
+			"Word Search II",
+
+		]
+	},
+	"Toposort" : {
+		"nickname": "Topological Sort",
+		"property" : [
+			"NO CYCLE: Only possible if the graph has no directed cycle.",
+			"Must have a Sink vertex, the most outgoing vertex, where it all ends",
+			"via DFS (around 11:40 mins:): https://class.coursera.org/algo-003/lecture/52",
+			"Mark node visited, global current-label to mark the sequence from n to 1"
+		],
+		"problems" : [
+			"Course Schedule",
+		]
+	},
+	"KMP" : {
+		"nickname": "String Seaching Algorithm",
+		"property" : [
+			"May or may not be testing this on strstr. Unlikely. https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm",
+		],
+		"problems" : [
+			"StrStr",
+		]
 	}
 		
 }
+
+
