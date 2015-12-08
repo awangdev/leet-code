@@ -38,7 +38,20 @@
 		],
 		"problems" : [
 			"Generate Parentheses",
-			"Subsets"
+			"Subsets",
+			"Permudation"
+		]
+	},
+	"Iterative" : {
+		"nickname": "迭代",
+		"property" : [
+			"能递归，常常就能Iterative",
+			"Queue",
+			"Unique Permudation mark visited",
+		],
+		"problems" : [
+			"Subsets",
+			"Permudation",
 		]
 	},
 	"dp" : {

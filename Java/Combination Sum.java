@@ -1,3 +1,6 @@
+递归，backtracking. 非常normal。
+记得求sum时候也pass 一个sum进去，backtracking一下sum也，这样就不必每次都sum the list了。
+```
 /*
 Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
 
@@ -70,3 +73,5 @@ public class Solution {
     }
 }
 
+
+```

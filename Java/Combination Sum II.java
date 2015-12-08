@@ -1,5 +1,9 @@
+确保Helper是用i+1，下一层的数字。
+
+```
 /*
-Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+Given a collection of candidate numbers (C) and a target number (T), 
+find all unique combinations in C where the candidate numbers sums to T.
 
 Each number in C may only be used once in the combination.
 
@@ -24,16 +28,16 @@ Tags Expand
 Backtracking Array
 
 Thinking process:
-Exact same idea as in Combination Sum I. The difference is, cannot reuse the current index in nums. Instead, in helper() function, use index of i + 1
+Exact same idea as in Combination Sum I. The difference is, 
+cannot reuse the current index in nums. Instead, in helper() function, use index of i + 1
 */
-
 public class Solution {
     /**
-     * @param candidates: A list of integers
-     * @param target:An integer
-     * @return: A list of lists of integers
+     * @param num: Given the candidate numbers
+     * @param target: Given the target number
+     * @return: All the combinations that sum to target
      */
-    public List<List<Integer>> combinationSum(int[] num, int target) {
+    public List<List<Integer>> combinationSum2(int[] num, int target) {
         List<List<Integer>> rst = new ArrayList<List<Integer>>();
         List<Integer> list = new ArrayList<Integer>();
         if (num == null || num.length == 0 || target < 0) {
@@ -68,3 +72,5 @@ public class Solution {
     }
 }
 
+
+```
