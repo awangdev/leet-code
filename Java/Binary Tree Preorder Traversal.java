@@ -1,3 +1,5 @@
+Preorder 写写， stack
+```
 /*
 Given a binary tree, return the preorder traversal of its nodes' values.
 
@@ -22,6 +24,62 @@ Tree Binary Tree
 //Recommend way: using a stack
 //Recursive way can be seen here: http://www.ninechapter.com/solutions/binary-tree-preorder-traversal/
 
+*/
+
+/*
+
+    Recap: 12.08.2015
+    Draw a few nodes and will realize to use stakc or queue.
+        Cannot use queue, because whatever added on it first, will first process. 
+        That means if we add curr,left,right; they will be processed first... but we want to traverse all left nodes first.
+*/
+
+//Itereative
+public class Solution {
+   
+    public ArrayList<Integer> preorderTraversal(TreeNode root) {
+        ArrayList<Integer> rst = new ArrayList<Integer>();
+        if (root == null) {
+            return rst;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if (node != null) {
+                rst.add(node.val);
+                stack.push(node.right);
+                stack.push(node.left);
+            }
+        }
+        return rst;
+    }
+}
+
+//recursive
+public class Solution {
+    public ArrayList<Integer> preorderTraversal(TreeNode root) {
+        ArrayList<Integer> rst = new ArrayList<Integer>();
+        if (root == null) {
+            return rst;
+        }   
+        helper(rst, root);
+        return rst;
+    }
+
+    public void helper(ArrayList<Integer>rst, TreeNode node){
+        if (node != null) {
+            rst.add(node.val);
+            helper(rst, node.left);
+            helper(rst, node.right);
+        }
+    }
+}
+
+
+
+
+/*
 Thinking process:
 Check if root is null
 use a container to save results
@@ -30,8 +88,8 @@ use current node
 put right on stack
 put left on stack
 4. In next run, the ‘left’ will be on top of stack, and will be taken first. So the order becomes: parent -> left -> right
-*/
 
+*/
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -103,3 +161,5 @@ add right nodes.
         return result;
     }
 
+
+```

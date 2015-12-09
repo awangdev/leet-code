@@ -39,7 +39,8 @@
 		"problems" : [
 			"Generate Parentheses",
 			"Subsets",
-			"Permudation"
+			"Permudation",
+			"NQueen"
 		]
 	},
 	"Iterative" : {
@@ -74,15 +75,47 @@
 
 		]
 	},
-	"binary tree" : {
+	"Binary tree" : {
 		"nickname": "二叉树",
 		"property" : [
 			"recursive, left, right"
 		],
 		"problems" : [
 			"Binary Tree Paths",
+			"Binary Tree Preorder Traversal",
+			
 		]
 	},
+	"Binary Search" : {
+		"nickname": "",
+		"property" : [
+			"start + 1 < end",
+			"mid = start + (end - start)",
+			"不同的题目，match的condition可能会不太一样"
+		],
+		"problems" : [
+			"Search for a Range",
+			"Search Insert Position",
+			"Search in Rotated Sorted Array",
+			"Search a 2D Matrix",
+			"First Bad Version",
+			"Find Peak Element",
+			""
+		]
+	},
+	"Rotate" : {
+		"nickname": "翻转",
+		"property" : [
+			"中间截开一段，放在前面",
+			"常常需要分段翻转几回，做一个reverse function"
+		],
+		"problems" : [
+			"Reverse Words in a string",
+			"Rotated String",
+			"Recover Sorted Array"
+		]
+	},
+
 	"Trie" : {
 		"nickname": "Just a Tree",
 		"property" : [

@@ -1,4 +1,5 @@
 根据给定的性质，找个点（left-bottom）：每次有任何情况，只能往一个方向运行。
+每次删掉一行，或者一列
 ```
 /*
 Write an efficient algorithm that searches for a value in an m x n matrix, return the occurrence of it.
@@ -36,8 +37,11 @@ O(m+n) time and O(1) extra space
     Understand that:
     1. Each row has exactly 1 instance of that integer, no duplicates.
     2. Each row begins with smallest number. So, if matrix[x][y] < target, first thing to do is x++.
-    3. Each col ends with largest number. So if matrix[x][y] > target, (no need to care x++ since it's alreay too large for this row), then simply just y--.
-    4. If match, next step will be x--,y++. x-- because it has to change a row; y++ because [x-1, y] can't be the target since no duplicate in column
+    3. Each col ends with largest number. So if matrix[x][y] > target, 
+        (no need to care x++ since it's alreay too large for this row), then simply just y--.
+    4. If match, next step will be x--,y++. 
+        x-- because it has to change a row; 
+        y++ because [x-1, y] can't be the target since no duplicate in column
     Beneftis of going from bottown-left: No matter which condition, always have 1 possible way to move.
 */
 

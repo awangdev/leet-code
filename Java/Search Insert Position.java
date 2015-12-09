@@ -1,6 +1,10 @@
+一般的binary search.
+在结尾判断该return 哪个position。
+```
 /*
 28% Accepted
-Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+Given a sorted array and a target value, return the index if the target is found. 
+If not, return the index where it would be if it were inserted in order.
 
 You may assume no duplicates in the array.
 
@@ -14,6 +18,48 @@ Tags Expand
 Binary Search Array Sorted Array
 */
 
+/*
+    Recap 12.08.2015
+    Find the occurance of the target, return it.
+    If not found, at the point, start + 1 = end
+        return the insert position at start + 1
+*/
+
+public class Solution {
+    
+    public int searchInsert(int[] A, int target) {
+        if (A == null || A.length == 0) {//Insert at 0 position
+            return 0;
+        }
+        int start = 0;
+        int end = A.length - 1;
+        int mid = start + (end - start)/2;
+
+        while (start + 1 < end) {
+            mid = start + (end - start)/2;
+            if (A[mid] == target) {
+                return mid;
+            } else if (A[mid] > target) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        
+        if (A[start] >= target) {
+            return start;
+        } else if (A[start] < target && target <= A[end]) {
+            return end;
+        } else {
+            return end + 1;
+        }
+    }
+}
+
+
+
+
+//older version
 public class Solution {
     /** 
      * param A : an integer sorted array
@@ -54,3 +100,5 @@ public class Solution {
     }
 }
 
+
+```

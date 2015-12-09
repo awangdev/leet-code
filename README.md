@@ -24,16 +24,16 @@ I Will try to revise the solutions once new problem or new testing case occurs.
 |16|[Binary Representation.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Representation.java)| |Java|
 |17|[Binary Search Tree Iterator.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Search Tree Iterator.java)| |Java|
 |18|[Binary Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Search.java)| |Java|
-|19|[Binary Tree Level Order Traversal II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Level Order Traversal II.java)| |Java|
-|20|[Binary Tree Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Level Order Traversal.java)| |Java|
-|21|[Binary Tree Maximum Path Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum II.java)| |Java|
-|22|[Binary Tree Maximum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum.java)| |Java|
-|23|[Binary Tree Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Path Sum.java)| |Java|
-|24|[Binary Tree Paths.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Paths.java)| |Java|
-|25|[Binary Tree Preorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Preorder Traversal.java)| |Java|
-|26|[Binary Tree Zigzag Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Zigzag Level Order Traversal.java)| |Java|
-|27|[BinaryTreeInorderTraversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/BinaryTreeInorderTraversal.java)| |Java|
-|28|[BinaryTreePostorderTraversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/BinaryTreePostorderTraversal.java)| |Java|
+|19|[Binary Tree Inorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Inorder Traversal.java)| |Java|
+|20|[Binary Tree Level Order Traversal II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Level Order Traversal II.java)| |Java|
+|21|[Binary Tree Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Level Order Traversal.java)| |Java|
+|22|[Binary Tree Maximum Path Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum II.java)| |Java|
+|23|[Binary Tree Maximum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum.java)| |Java|
+|24|[Binary Tree Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Path Sum.java)| |Java|
+|25|[Binary Tree Paths.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Paths.java)| |Java|
+|26|[Binary Tree Postorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Postorder Traversal.java)| |Java|
+|27|[Binary Tree Preorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Preorder Traversal.java)| |Java|
+|28|[Binary Tree Zigzag Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Zigzag Level Order Traversal.java)| |Java|
 |29|[Building Outline.java](https://github.com/shawnfan/LintCode/blob/master/Java/Building Outline.java)| |Java|
 |30|[Classical Binary Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Classical Binary Search.java)| |Java|
 |31|[Climbing Stairs.java](https://github.com/shawnfan/LintCode/blob/master/Java/Climbing Stairs.java)| |Java|
@@ -69,173 +69,175 @@ I Will try to revise the solutions once new problem or new testing case occurs.
 |61|[Expression Tree Build.java](https://github.com/shawnfan/LintCode/blob/master/Java/Expression Tree Build.java)| |Java|
 |62|[Fast Power.java](https://github.com/shawnfan/LintCode/blob/master/Java/Fast Power.java)| |Java|
 |63|[Fibonacci.java](https://github.com/shawnfan/LintCode/blob/master/Java/Fibonacci.java)| |Java|
-|64|[Find a Peak.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find a Peak.java)| |Java|
-|65|[Find Minimum in Rotated Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Minimum in Rotated Sorted Array II.java)| |Java|
-|66|[Find Minimum in Rotated Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Minimum in Rotated Sorted Array.java)| |Java|
-|67|[Find the Connected Component in the Undirected Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Connected Component in the Undirected Graph.java)| |Java|
-|68|[Find the Weak Connected Component in the Directed Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Weak Connected Component in the Directed Graph.java)| |Java|
-|69|[First Bad Version.java](https://github.com/shawnfan/LintCode/blob/master/Java/First Bad Version.java)| |Java|
-|70|[First Missing Positive.java](https://github.com/shawnfan/LintCode/blob/master/Java/First Missing Positive.java)| |Java|
-|71|[Flatten Binary Tree to Linked List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Flatten Binary Tree to Linked List.java)| |Java|
-|72|[Gas Station.java](https://github.com/shawnfan/LintCode/blob/master/Java/Gas Station.java)| |Java|
-|73|[Generate Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Generate Parentheses.java)| |Java|
-|74|[Graph Valid Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Graph Valid Tree.java)| |Java|
-|75|[Hash Function.java](https://github.com/shawnfan/LintCode/blob/master/Java/Hash Function.java)| |Java|
-|76|[Heapify.java](https://github.com/shawnfan/LintCode/blob/master/Java/Heapify.java)| |Java|
-|77|[House Robber.java](https://github.com/shawnfan/LintCode/blob/master/Java/House Robber.java)| |Java|
-|78|[Identical Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Identical Binary Tree.java)| |Java|
-|79|[Implement Queue by Two Stacks.java](https://github.com/shawnfan/LintCode/blob/master/Java/Implement Queue by Two Stacks.java)| |Java|
-|80|[Implement Trie.java](https://github.com/shawnfan/LintCode/blob/master/Java/Implement Trie.java)| |Java|
-|81|[Insert Interval.java](https://github.com/shawnfan/LintCode/blob/master/Java/Insert Interval.java)| |Java|
-|82|[Insert Node in a Binary Search Tree .java](https://github.com/shawnfan/LintCode/blob/master/Java/Insert Node in a Binary Search Tree .java)| |Java|
-|83|[Insertion Sort List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Insertion Sort List.java)| |Java|
-|84|[Interleaving Positive and Negative Numbers.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interleaving Positive and Negative Numbers.java)| |Java|
-|85|[Interleaving String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interleaving String.java)| |Java|
-|86|[Intersection of Two Linked Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Intersection of Two Linked Lists.java)| |Java|
-|87|[Interval Minimum Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Minimum Number.java)| |Java|
-|88|[Interval Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum II.java)| |Java|
-|89|[Interval Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum.java)| |Java|
-|90|[Invert Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Invert Binary Tree.java)| |Java|
-|91|[Jump Game II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game II.java)| |Java|
-|92|[Jump Game.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game.java)| |Java|
-|93|[Kth Largest Element.java](https://github.com/shawnfan/LintCode/blob/master/Java/Kth Largest Element.java)| |Java|
-|94|[Kth Smallest Sum In Two Sorted Arrays.java](https://github.com/shawnfan/LintCode/blob/master/Java/Kth Smallest Sum In Two Sorted Arrays.java)| |Java|
-|95|[Largest Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Largest Number.java)| |Java|
-|96|[Largest Rectangle in Histogram.java](https://github.com/shawnfan/LintCode/blob/master/Java/Largest Rectangle in Histogram.java)| |Java|
-|97|[Last Position of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Last Position of Target.java)| |Java|
-|98|[Length of Last Word.java](https://github.com/shawnfan/LintCode/blob/master/Java/Length of Last Word.java)| |Java|
-|99|[Letter Combinations of a Phone Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Letter Combinations of a Phone Number.java)| |Java|
-|100|[Linked List Cycle.java](https://github.com/shawnfan/LintCode/blob/master/Java/Linked List Cycle.java)| |Java|
-|101|[Longest Common Prefix.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Common Prefix.java)| |Java|
-|102|[Longest Common Subsequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Common Subsequence.java)| |Java|
-|103|[Longest Common Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Common Substring.java)| |Java|
-|104|[Longest Consecutive Sequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Consecutive Sequence.java)| |Java|
-|105|[Longest Increasing Continuous subsequence II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Increasing Continuous subsequence II.java)| |Java|
-|106|[Longest Increasing Continuous subsequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Increasing Continuous subsequence.java)| |Java|
-|107|[Longest Increasing Subsequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Increasing Subsequence.java)| |Java|
-|108|[Longest Palindromic Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Palindromic Substring.java)| |Java|
-|109|[Longest Substring with At Most K Distinct Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring with At Most K Distinct Characters.java)| |Java|
-|110|[Longest Substring Without Repeating Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring Without Repeating Characters.java)| |Java|
-|111|[Longest Words.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Words.java)| |Java|
-|112|[Lowest Common Ancestor II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor II.java)| |Java|
-|113|[Lowest Common Ancestor.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor.java)| |Java|
-|114|[Majority Number II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number II.java)| |Java|
-|115|[Majority Number III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number III.java)| |Java|
-|116|[Majority Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number.java)| |Java|
-|117|[Matrix Zigzag Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Matrix Zigzag Traversal.java)| |Java|
-|118|[Max Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Max Tree.java)| |Java|
-|119|[Maximal Square.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximal Square.java)| |Java|
-|120|[Maximum Depth of Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximum Depth of Binary Tree.java)| |Java|
-|121|[Maximum Product Subarray.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximum Product Subarray.java)| |Java|
-|122|[Maximum Subarray III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximum Subarray III.java)| |Java|
-|123|[MaximumSubarray.java](https://github.com/shawnfan/LintCode/blob/master/Java/MaximumSubarray.java)| |Java|
-|124|[MaximumSubarrayII.java](https://github.com/shawnfan/LintCode/blob/master/Java/MaximumSubarrayII.java)| |Java|
-|125|[Median.java](https://github.com/shawnfan/LintCode/blob/master/Java/Median.java)| |Java|
-|126|[Merge Intervals.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Intervals.java)| |Java|
-|127|[Merge k Sorted Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge k Sorted Lists.java)| |Java|
-|128|[Merge Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Sorted Array II.java)| |Java|
-|129|[Merge Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Sorted Array.java)| |Java|
-|130|[Merge Two Sorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Two Sorted List.java)| |Java|
-|131|[Min Stack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Min Stack.java)| |Java|
-|132|[Minimum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Path Sum.java)| |Java|
-|133|[Minimum Size Subarray Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Size Subarray Sum.java)| |Java|
-|134|[Minimum Subarray.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Subarray.java)| |Java|
-|135|[Minimum Window Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Window Substring.java)| |Java|
-|136|[MinimumDepthOfBinaryTree.java](https://github.com/shawnfan/LintCode/blob/master/Java/MinimumDepthOfBinaryTree.java)| |Java|
-|137|[Next Permutation.java](https://github.com/shawnfan/LintCode/blob/master/Java/Next Permutation.java)| |Java|
-|138|[NQueens.java](https://github.com/shawnfan/LintCode/blob/master/Java/NQueens.java)| |Java|
-|139|[NQueensII.java](https://github.com/shawnfan/LintCode/blob/master/Java/NQueensII.java)| |Java|
-|140|[Nth to Last Node in List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Nth to Last Node in List.java)| |Java|
-|141|[Number of Airplane in the sky.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Airplane in the sky.java)| |Java|
-|142|[Number of Islands II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands II.java)| |Java|
-|143|[Number of Islands.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands.java)| |Java|
-|144|[Number Triangles.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number Triangles.java)| |Java|
-|145|[O(1) Check Power of 2.java](https://github.com/shawnfan/LintCode/blob/master/Java/O(1) Check Power of 2.java)| |Java|
-|146|[Palindrome Partitioning II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Palindrome Partitioning II.java)| |Java|
-|147|[Palindrome Partitioning.java](https://github.com/shawnfan/LintCode/blob/master/Java/Palindrome Partitioning.java)| |Java|
-|148|[Partition Array by Odd and Even.java](https://github.com/shawnfan/LintCode/blob/master/Java/Partition Array by Odd and Even.java)| |Java|
-|149|[Partition Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Partition Array.java)| |Java|
-|150|[Partition List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Partition List.java)| |Java|
-|151|[Permutation Index.java](https://github.com/shawnfan/LintCode/blob/master/Java/Permutation Index.java)| |Java|
-|152|[Permutations II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Permutations II.java)| |Java|
-|153|[Permutations.java](https://github.com/shawnfan/LintCode/blob/master/Java/Permutations.java)| |Java|
-|154|[Plus One.java](https://github.com/shawnfan/LintCode/blob/master/Java/Plus One.java)| |Java|
-|155|[Pow(x,n).java](https://github.com/shawnfan/LintCode/blob/master/Java/Pow(x,n).java)| |Java|
-|156|[Product of Array Exclude Itself.java](https://github.com/shawnfan/LintCode/blob/master/Java/Product of Array Exclude Itself.java)| |Java|
-|157|[Recover rotated array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Recover rotated array.java)| |Java|
-|158|[Rehashing.java](https://github.com/shawnfan/LintCode/blob/master/Java/Rehashing.java)| |Java|
-|159|[Remove Duplicates from Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Sorted Array.java)| |Java|
-|160|[Remove Duplicates from Sorted List II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Sorted List II.java)| |Java|
-|161|[Remove Duplicates from Sorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Sorted List.java)| |Java|
-|162|[Remove Duplicates from Unsorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Unsorted List.java)| |Java|
-|163|[Remove Linked List Elements.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Linked List Elements.java)| |Java|
-|164|[Remove Node in Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Node in Binary Search Tree.java)| |Java|
-|165|[Remove Nth Node From End of List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Nth Node From End of List.java)| |Java|
-|166|[Reorder List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reorder List.java)| |Java|
-|167|[Reverse Integer.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Integer.java)| |Java|
-|168|[Reverse Linked List II .java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Linked List II .java)| |Java|
-|169|[Reverse Words in a String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Words in a String.java)| |Java|
-|170|[Rotate List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Rotate List.java)| |Java|
-|171|[Rotate String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Rotate String.java)| |Java|
-|172|[Search a 2D Matrix II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search a 2D Matrix II.java)| |Java|
-|173|[Search a 2D Matrix.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search a 2D Matrix.java)| |Java|
-|174|[Search for a Range.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search for a Range.java)| |Java|
-|175|[Search Insert Position.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Insert Position.java)| |Java|
-|176|[Search Range in Binary Search Tree .java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Range in Binary Search Tree .java)| |Java|
-|177|[Search Rotated Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Rotated Sorted Array II.java)| |Java|
-|178|[Search Rotated Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Rotated Sorted Array.java)| |Java|
-|179|[Segment Tree Build II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build II.java)| |Java|
-|180|[Segment Tree Build.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build.java)| |Java|
-|181|[Segment Tree Modify.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Modify.java)| |Java|
-|182|[Segment Tree Query II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query II.java)| |Java|
-|183|[Segment Tree Query.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query.java)| |Java|
-|184|[Serilization and Deserialization Of Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Serilization and Deserialization Of Binary Tree.java)| |Java|
-|185|[Single Number II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Single Number II.java)| |Java|
-|186|[Single Number III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Single Number III.java)| |Java|
-|187|[Single Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Single Number.java)| |Java|
-|188|[Singleton.java](https://github.com/shawnfan/LintCode/blob/master/Java/Singleton.java)| |Java|
-|189|[Sliding Window Maximum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sliding Window Maximum.java)| |Java|
-|190|[Sliding Window Median.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sliding Window Median.java)| |Java|
-|191|[Sort Color.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort Color.java)| |Java|
-|192|[Sort Colors II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort Colors II.java)| |Java|
-|193|[Sort Letters by Case.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort Letters by Case.java)| |Java|
-|194|[Sort List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort List.java)| |Java|
-|195|[Space Replacement.java](https://github.com/shawnfan/LintCode/blob/master/Java/Space Replacement.java)| |Java|
-|196|[Sqrt(x).java](https://github.com/shawnfan/LintCode/blob/master/Java/Sqrt(x).java)| |Java|
-|197|[Stone Game.java](https://github.com/shawnfan/LintCode/blob/master/Java/Stone Game.java)| |Java|
-|198|[String to Integer(atoi).java](https://github.com/shawnfan/LintCode/blob/master/Java/String to Integer(atoi).java)| |Java|
-|199|[StrStr.java](https://github.com/shawnfan/LintCode/blob/master/Java/StrStr.java)| |Java|
-|200|[Subarray Sum Closest.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subarray Sum Closest.java)| |Java|
-|201|[Subarray Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subarray Sum.java)| |Java|
-|202|[Subset.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subset.java)| |Java|
-|203|[Subsets II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subsets II.java)| |Java|
-|204|[Subtree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subtree.java)| |Java|
-|205|[Swap Nodes in Pairs.java](https://github.com/shawnfan/LintCode/blob/master/Java/Swap Nodes in Pairs.java)| |Java|
-|206|[Symmetric Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Symmetric Binary Tree.java)| |Java|
-|207|[The Smallest Difference.java](https://github.com/shawnfan/LintCode/blob/master/Java/The Smallest Difference.java)| |Java|
-|208|[Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)| |Java|
-|209|[Total Occurrence of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Total Occurrence of Target.java)| |Java|
-|210|[Trailing Zeros.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trailing Zeros.java)| |Java|
-|211|[Trapping Rain Water II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water II.java)| |Java|
-|212|[Trapping Rain Water.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water.java)| |Java|
-|213|[Triangle Count.java](https://github.com/shawnfan/LintCode/blob/master/Java/Triangle Count.java)| |Java|
-|214|[Two Lists Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Lists Sum.java)| |Java|
-|215|[Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)| |Java|
-|216|[Two Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Sum II.java)| |Java|
-|217|[Ugly Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Ugly Number.java)| |Java|
-|218|[Unique Binary Search Tree II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree II.java)| |Java|
-|219|[Unique Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree.java)| |Java|
-|220|[Unique Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Characters.java)| |Java|
-|221|[Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)| |Java|
-|222|[Unique Paths II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Paths II.java)| |Java|
-|223|[Update Bits.java](https://github.com/shawnfan/LintCode/blob/master/Java/Update Bits.java)| |Java|
-|224|[Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)| |Java|
-|225|[Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)| |Java|
-|226|[Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)| |Java|
-|227|[Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)| |Java|
-|228|[Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)| |Java|
-|229|[Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)| |Java|
-|230|[Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)| |Java|
-|231|[Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)| |Java|
-|232|[Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)| |Java|
-|233|[Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)| |Java|
+|64|[Find Minimum in Rotated Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Minimum in Rotated Sorted Array II.java)| |Java|
+|65|[Find Minimum in Rotated Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Minimum in Rotated Sorted Array.java)| |Java|
+|66|[Find Peak Element II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Peak Element II.java)| |Java|
+|67|[Find Peak Element.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Peak Element.java)| |Java|
+|68|[Find the Connected Component in the Undirected Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Connected Component in the Undirected Graph.java)| |Java|
+|69|[Find the Weak Connected Component in the Directed Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Weak Connected Component in the Directed Graph.java)| |Java|
+|70|[First Bad Version.java](https://github.com/shawnfan/LintCode/blob/master/Java/First Bad Version.java)| |Java|
+|71|[First Missing Positive.java](https://github.com/shawnfan/LintCode/blob/master/Java/First Missing Positive.java)| |Java|
+|72|[Flatten Binary Tree to Linked List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Flatten Binary Tree to Linked List.java)| |Java|
+|73|[Gas Station.java](https://github.com/shawnfan/LintCode/blob/master/Java/Gas Station.java)| |Java|
+|74|[Generate Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Generate Parentheses.java)| |Java|
+|75|[Graph Valid Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Graph Valid Tree.java)| |Java|
+|76|[Hash Function.java](https://github.com/shawnfan/LintCode/blob/master/Java/Hash Function.java)| |Java|
+|77|[Heapify.java](https://github.com/shawnfan/LintCode/blob/master/Java/Heapify.java)| |Java|
+|78|[House Robber.java](https://github.com/shawnfan/LintCode/blob/master/Java/House Robber.java)| |Java|
+|79|[Identical Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Identical Binary Tree.java)| |Java|
+|80|[Implement Queue by Two Stacks.java](https://github.com/shawnfan/LintCode/blob/master/Java/Implement Queue by Two Stacks.java)| |Java|
+|81|[Implement Trie.java](https://github.com/shawnfan/LintCode/blob/master/Java/Implement Trie.java)| |Java|
+|82|[Insert Interval.java](https://github.com/shawnfan/LintCode/blob/master/Java/Insert Interval.java)| |Java|
+|83|[Insert Node in a Binary Search Tree .java](https://github.com/shawnfan/LintCode/blob/master/Java/Insert Node in a Binary Search Tree .java)| |Java|
+|84|[Insertion Sort List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Insertion Sort List.java)| |Java|
+|85|[Interleaving Positive and Negative Numbers.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interleaving Positive and Negative Numbers.java)| |Java|
+|86|[Interleaving String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interleaving String.java)| |Java|
+|87|[Intersection of Two Linked Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Intersection of Two Linked Lists.java)| |Java|
+|88|[Interval Minimum Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Minimum Number.java)| |Java|
+|89|[Interval Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum II.java)| |Java|
+|90|[Interval Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum.java)| |Java|
+|91|[Invert Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Invert Binary Tree.java)| |Java|
+|92|[Jump Game II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game II.java)| |Java|
+|93|[Jump Game.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game.java)| |Java|
+|94|[Kth Largest Element.java](https://github.com/shawnfan/LintCode/blob/master/Java/Kth Largest Element.java)| |Java|
+|95|[Kth Smallest Sum In Two Sorted Arrays.java](https://github.com/shawnfan/LintCode/blob/master/Java/Kth Smallest Sum In Two Sorted Arrays.java)| |Java|
+|96|[Largest Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Largest Number.java)| |Java|
+|97|[Largest Rectangle in Histogram.java](https://github.com/shawnfan/LintCode/blob/master/Java/Largest Rectangle in Histogram.java)| |Java|
+|98|[Last Position of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Last Position of Target.java)| |Java|
+|99|[Length of Last Word.java](https://github.com/shawnfan/LintCode/blob/master/Java/Length of Last Word.java)| |Java|
+|100|[Letter Combinations of a Phone Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Letter Combinations of a Phone Number.java)| |Java|
+|101|[Linked List Cycle.java](https://github.com/shawnfan/LintCode/blob/master/Java/Linked List Cycle.java)| |Java|
+|102|[Longest Common Prefix.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Common Prefix.java)| |Java|
+|103|[Longest Common Subsequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Common Subsequence.java)| |Java|
+|104|[Longest Common Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Common Substring.java)| |Java|
+|105|[Longest Consecutive Sequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Consecutive Sequence.java)| |Java|
+|106|[Longest Increasing Continuous subsequence II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Increasing Continuous subsequence II.java)| |Java|
+|107|[Longest Increasing Continuous subsequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Increasing Continuous subsequence.java)| |Java|
+|108|[Longest Increasing Subsequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Increasing Subsequence.java)| |Java|
+|109|[Longest Palindromic Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Palindromic Substring.java)| |Java|
+|110|[Longest Substring with At Most K Distinct Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring with At Most K Distinct Characters.java)| |Java|
+|111|[Longest Substring Without Repeating Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring Without Repeating Characters.java)| |Java|
+|112|[Longest Words.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Words.java)| |Java|
+|113|[Lowest Common Ancestor II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor II.java)| |Java|
+|114|[Lowest Common Ancestor.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor.java)| |Java|
+|115|[Majority Number II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number II.java)| |Java|
+|116|[Majority Number III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number III.java)| |Java|
+|117|[Majority Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number.java)| |Java|
+|118|[Matrix Zigzag Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Matrix Zigzag Traversal.java)| |Java|
+|119|[Max Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Max Tree.java)| |Java|
+|120|[Maximal Square.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximal Square.java)| |Java|
+|121|[Maximum Depth of Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximum Depth of Binary Tree.java)| |Java|
+|122|[Maximum Product Subarray.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximum Product Subarray.java)| |Java|
+|123|[Maximum Subarray III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Maximum Subarray III.java)| |Java|
+|124|[MaximumSubarray.java](https://github.com/shawnfan/LintCode/blob/master/Java/MaximumSubarray.java)| |Java|
+|125|[MaximumSubarrayII.java](https://github.com/shawnfan/LintCode/blob/master/Java/MaximumSubarrayII.java)| |Java|
+|126|[Median of two Sorted Arrays.java](https://github.com/shawnfan/LintCode/blob/master/Java/Median of two Sorted Arrays.java)| |Java|
+|127|[Median.java](https://github.com/shawnfan/LintCode/blob/master/Java/Median.java)| |Java|
+|128|[Merge Intervals.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Intervals.java)| |Java|
+|129|[Merge k Sorted Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge k Sorted Lists.java)| |Java|
+|130|[Merge Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Sorted Array II.java)| |Java|
+|131|[Merge Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Sorted Array.java)| |Java|
+|132|[Merge Two Sorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Two Sorted List.java)| |Java|
+|133|[Min Stack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Min Stack.java)| |Java|
+|134|[Minimum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Path Sum.java)| |Java|
+|135|[Minimum Size Subarray Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Size Subarray Sum.java)| |Java|
+|136|[Minimum Subarray.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Subarray.java)| |Java|
+|137|[Minimum Window Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Window Substring.java)| |Java|
+|138|[MinimumDepthOfBinaryTree.java](https://github.com/shawnfan/LintCode/blob/master/Java/MinimumDepthOfBinaryTree.java)| |Java|
+|139|[Next Permutation.java](https://github.com/shawnfan/LintCode/blob/master/Java/Next Permutation.java)| |Java|
+|140|[NQueens.java](https://github.com/shawnfan/LintCode/blob/master/Java/NQueens.java)| |Java|
+|141|[NQueensII.java](https://github.com/shawnfan/LintCode/blob/master/Java/NQueensII.java)| |Java|
+|142|[Nth to Last Node in List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Nth to Last Node in List.java)| |Java|
+|143|[Number of Airplane in the sky.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Airplane in the sky.java)| |Java|
+|144|[Number of Islands II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands II.java)| |Java|
+|145|[Number of Islands.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands.java)| |Java|
+|146|[Number Triangles.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number Triangles.java)| |Java|
+|147|[O(1) Check Power of 2.java](https://github.com/shawnfan/LintCode/blob/master/Java/O(1) Check Power of 2.java)| |Java|
+|148|[Palindrome Partitioning II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Palindrome Partitioning II.java)| |Java|
+|149|[Palindrome Partitioning.java](https://github.com/shawnfan/LintCode/blob/master/Java/Palindrome Partitioning.java)| |Java|
+|150|[Partition Array by Odd and Even.java](https://github.com/shawnfan/LintCode/blob/master/Java/Partition Array by Odd and Even.java)| |Java|
+|151|[Partition Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Partition Array.java)| |Java|
+|152|[Partition List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Partition List.java)| |Java|
+|153|[Permutation Index.java](https://github.com/shawnfan/LintCode/blob/master/Java/Permutation Index.java)| |Java|
+|154|[Permutations II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Permutations II.java)| |Java|
+|155|[Permutations.java](https://github.com/shawnfan/LintCode/blob/master/Java/Permutations.java)| |Java|
+|156|[Plus One.java](https://github.com/shawnfan/LintCode/blob/master/Java/Plus One.java)| |Java|
+|157|[Pow(x,n).java](https://github.com/shawnfan/LintCode/blob/master/Java/Pow(x,n).java)| |Java|
+|158|[Product of Array Exclude Itself.java](https://github.com/shawnfan/LintCode/blob/master/Java/Product of Array Exclude Itself.java)| |Java|
+|159|[Recover Rotated Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Recover Rotated Sorted Array.java)| |Java|
+|160|[Rehashing.java](https://github.com/shawnfan/LintCode/blob/master/Java/Rehashing.java)| |Java|
+|161|[Remove Duplicates from Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Sorted Array.java)| |Java|
+|162|[Remove Duplicates from Sorted List II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Sorted List II.java)| |Java|
+|163|[Remove Duplicates from Sorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Sorted List.java)| |Java|
+|164|[Remove Duplicates from Unsorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Duplicates from Unsorted List.java)| |Java|
+|165|[Remove Linked List Elements.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Linked List Elements.java)| |Java|
+|166|[Remove Node in Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Node in Binary Search Tree.java)| |Java|
+|167|[Remove Nth Node From End of List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Remove Nth Node From End of List.java)| |Java|
+|168|[Reorder List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reorder List.java)| |Java|
+|169|[Reverse Integer.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Integer.java)| |Java|
+|170|[Reverse Linked List II .java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Linked List II .java)| |Java|
+|171|[Reverse Words in a String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Words in a String.java)| |Java|
+|172|[Rotate List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Rotate List.java)| |Java|
+|173|[Rotate String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Rotate String.java)| |Java|
+|174|[Search a 2D Matrix II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search a 2D Matrix II.java)| |Java|
+|175|[Search a 2D Matrix.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search a 2D Matrix.java)| |Java|
+|176|[Search for a Range.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search for a Range.java)| |Java|
+|177|[Search Insert Position.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Insert Position.java)| |Java|
+|178|[Search Range in Binary Search Tree .java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Range in Binary Search Tree .java)| |Java|
+|179|[Search Rotated in Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Rotated in Sorted Array II.java)| |Java|
+|180|[Search Rotated in Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Rotated in Sorted Array.java)| |Java|
+|181|[Segment Tree Build II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build II.java)| |Java|
+|182|[Segment Tree Build.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build.java)| |Java|
+|183|[Segment Tree Modify.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Modify.java)| |Java|
+|184|[Segment Tree Query II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query II.java)| |Java|
+|185|[Segment Tree Query.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query.java)| |Java|
+|186|[Serilization and Deserialization Of Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Serilization and Deserialization Of Binary Tree.java)| |Java|
+|187|[Single Number II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Single Number II.java)| |Java|
+|188|[Single Number III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Single Number III.java)| |Java|
+|189|[Single Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Single Number.java)| |Java|
+|190|[Singleton.java](https://github.com/shawnfan/LintCode/blob/master/Java/Singleton.java)| |Java|
+|191|[Sliding Window Maximum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sliding Window Maximum.java)| |Java|
+|192|[Sliding Window Median.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sliding Window Median.java)| |Java|
+|193|[Sort Color.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort Color.java)| |Java|
+|194|[Sort Colors II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort Colors II.java)| |Java|
+|195|[Sort Letters by Case.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort Letters by Case.java)| |Java|
+|196|[Sort List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Sort List.java)| |Java|
+|197|[Space Replacement.java](https://github.com/shawnfan/LintCode/blob/master/Java/Space Replacement.java)| |Java|
+|198|[Sqrt(x).java](https://github.com/shawnfan/LintCode/blob/master/Java/Sqrt(x).java)| |Java|
+|199|[Stone Game.java](https://github.com/shawnfan/LintCode/blob/master/Java/Stone Game.java)| |Java|
+|200|[String to Integer(atoi).java](https://github.com/shawnfan/LintCode/blob/master/Java/String to Integer(atoi).java)| |Java|
+|201|[StrStr.java](https://github.com/shawnfan/LintCode/blob/master/Java/StrStr.java)| |Java|
+|202|[Subarray Sum Closest.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subarray Sum Closest.java)| |Java|
+|203|[Subarray Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subarray Sum.java)| |Java|
+|204|[Subset.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subset.java)| |Java|
+|205|[Subsets II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subsets II.java)| |Java|
+|206|[Subtree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Subtree.java)| |Java|
+|207|[Swap Nodes in Pairs.java](https://github.com/shawnfan/LintCode/blob/master/Java/Swap Nodes in Pairs.java)| |Java|
+|208|[Symmetric Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Symmetric Binary Tree.java)| |Java|
+|209|[The Smallest Difference.java](https://github.com/shawnfan/LintCode/blob/master/Java/The Smallest Difference.java)| |Java|
+|210|[Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)| |Java|
+|211|[Total Occurrence of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Total Occurrence of Target.java)| |Java|
+|212|[Trailing Zeros.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trailing Zeros.java)| |Java|
+|213|[Trapping Rain Water II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water II.java)| |Java|
+|214|[Trapping Rain Water.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water.java)| |Java|
+|215|[Triangle Count.java](https://github.com/shawnfan/LintCode/blob/master/Java/Triangle Count.java)| |Java|
+|216|[Two Lists Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Lists Sum.java)| |Java|
+|217|[Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)| |Java|
+|218|[Two Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Sum II.java)| |Java|
+|219|[Ugly Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Ugly Number.java)| |Java|
+|220|[Unique Binary Search Tree II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree II.java)| |Java|
+|221|[Unique Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree.java)| |Java|
+|222|[Unique Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Characters.java)| |Java|
+|223|[Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)| |Java|
+|224|[Unique Paths II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Paths II.java)| |Java|
+|225|[Update Bits.java](https://github.com/shawnfan/LintCode/blob/master/Java/Update Bits.java)| |Java|
+|226|[Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)| |Java|
+|227|[Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)| |Java|
+|228|[Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)| |Java|
+|229|[Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)| |Java|
+|230|[Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)| |Java|
+|231|[Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)| |Java|
+|232|[Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)| |Java|
+|233|[Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)| |Java|
+|234|[Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)| |Java|
+|235|[Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)| |Java|

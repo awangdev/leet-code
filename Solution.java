@@ -1,30 +1,51 @@
 import java.util.*;
 public class Solution {
-	    public static ArrayList<String> letterCombinations(String digits) {
-        ArrayList<String> rst = new ArrayList<String>();
-        if (digits == null || digits.length() == 0) {
-            return rst;
+    public static String reverseWords(String s) {
+        if (s == null || s.length() == 0 || s.indexOf(" ") == -1) {
+            return s;
         }
-        ArrayList<String[]> map = new ArrayList<String[]>();
-        map.add(new String[]{});
-        map.add(new String[]{"a","b","c"});
-        map.add(new String[]{"d","e","f"});
-        map.add(new String[]{"g","h","i"});
-        map.add(new String[]{"j","k","l"});
-        map.add(new String[]{"m","n","o"});
-        map.add(new String[]{"p","q","r","s"});
-        map.add(new String[]{"t","u","v"});
-        map.add(new String[]{"w","x","y","z"});
+        s = s.trim();//no head && tail " "
+        if (s.length() == 0) {
+            return s;
+        }
 
+        StringBuffer sb = new StringBuffer();
+        for (String str : s.split(" ")) {
+            if (str.trim().length() != 0) {
+                sb.append(str + " ");
+            }
+        }
 
+        reverse(sb, 0, sb.length() - 1);
+        int start = 1;
+        int end = start + sb.substring(start).indexOf(" ");
+        System.out.println(sb.toString());
+        //Process all words separate by space
+        while (end != -1 && start < end) {
+            reverse(sb, start, end - 1);
+            start = end + 1;
+            end = start + (sb.substring(start)).indexOf(" ");
+        }
 
-
+        return sb.toString().trim();
     }
+
+    //Reverse the contents of the string buffer
+    public static void reverse(StringBuffer sb, int start, int end) {
+        for (int i = start, j = end; i < j; i++,j--) {
+            char temp = sb.charAt(i);
+            sb.setCharAt(i, sb.charAt(j));
+            sb.setCharAt(j, temp);
+        }
+    }
+
+
 
     public static void main(String[] args){
     	System.out.println("START");
-    	letterCombinations("2");
-    	System.out.println("END ");
+    	
+        String rst = reverseWords("How are you?");
+    	System.out.println("END " + rst);
     }
 }
 

@@ -1,3 +1,9 @@
+Allow duplicates之后：
+因为最终binary search的结果也是O(n)
+所以这道题要记得： 既然是O(n), 那来个简单的for loop 也就好了。
+
+当然，要跟面试官提起来原因。别一上来就只有for。。。
+```
 /*
 Follow up for "Search in Rotated Sorted Array":
 What if duplicates are allowed?
@@ -55,3 +61,5 @@ public class Solution {
 }
 
 
+
+```
