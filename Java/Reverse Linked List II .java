@@ -1,3 +1,9 @@
+遍历到M前，
+存一下那个点，
+从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
+
+
+```
 /*
 28% Accepted
 Reverse a linked list from position m to n.
@@ -20,9 +26,9 @@ Thinking process:
 2. Reverse from mNode to nNode
 3. Link front, middle, end nodes together
 Note, when doing reverse, always:
-	- reversedList = 1st item
-	- postNode = 2nd item	
-	- store 3rd item in temp: temp = postNode.next
+    - reversedList = 1st item
+    - postNode = 2nd item   
+    - store 3rd item in temp: temp = postNode.next
 */
 
 /**
@@ -47,34 +53,36 @@ public class Solution {
             return head;
         }
 
-    	ListNode dummyNode = new ListNode(0);
-    	dummyNode.next = head;
-    	head = dummyNode;
-    	ListNode nodeFront = null;
+        ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+        head = dummyNode;
+        ListNode nodeFront = null;
     
-    	
-    	for (int countM = 1; countM < m; countM++) {
-    	    if (head == null) {
-    	        return head;
-    	    }
+        
+        for (int countM = 1; countM < m; countM++) {
+            if (head == null) {
+                return head;
+            }
             head = head.next;
-    	}
-    	nodeFront = head;
-    	ListNode mNode = head.next; //Head is Mth node. Reserve it
-    	ListNode reversedList = mNode;
-    	ListNode postNode = mNode.next;
-    	for (int countN = m; countN < n; countN++) {
+        }
+        nodeFront = head;
+        ListNode mNode = head.next; //Head is Mth node. Reserve it
+        ListNode reversedList = mNode;
+        ListNode postNode = mNode.next;
+        for (int countN = m; countN < n; countN++) {
             ListNode temp = postNode.next;
             postNode.next = reversedList;
             reversedList = postNode;
             postNode = temp;
-    	}
-    	//List front, middle and end section
-    	nodeFront.next = reversedList;
-    	mNode.next = postNode;
-    	
-    	return dummyNode.next;
+        }
+        //List front, middle and end section
+        nodeFront.next = reversedList;
+        mNode.next = postNode;
+        
+        return dummyNode.next;
     }
 }
 
 
+
+```

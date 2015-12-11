@@ -2,6 +2,7 @@
 stack1和stack2合作。
 记得这个做法。。。挺神奇的。
 
+Divide and Conquer 的方法也非常明了！
 
 
 ```
@@ -29,6 +30,37 @@ Binary Tree
 
 */
 
+/*
+
+Thinking process:
+1. Resursive: （divide and conquer）
+    rec on left node
+    rec on right node
+    rst.addAll(left)
+    rst.addAll(right)
+    rst.add(curr)
+
+*/
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: Postorder in ArrayList which contains node values.
+     */
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> rst = new ArrayList<Integer>();
+        if (root == null) {
+            return rst;
+        }
+        //Recursive:
+        ArrayList<Integer> right = postorderTraversal(root.right);
+        ArrayList<Integer> left = postorderTraversal(root.left);
+        rst.addAll(left);
+        rst.addAll(right);
+        rst.add(root.val);  
+        return rst;
+    }
+}
+
 
 /*
     2. Non-recursive, interative
@@ -46,14 +78,6 @@ public class Solution {
         if (root == null) {
             return rst;
         }
-        //Recursive:
-        /*
-        ArrayList<Integer> right = postorderTraversal(root.right);
-        ArrayList<Integer> left = postorderTraversal(root.left);
-        rst.addAll(left);
-        rst.addAll(right);
-        rst.add(root.val);
-        */
         //Non-recursive:
         Stack<TreeNode> s1 = new Stack<TreeNode>();
         Stack<TreeNode> s2 = new Stack<TreeNode>();
@@ -109,36 +133,6 @@ public class Solution {
 
 
 
-/*
-
-Thinking process:
-1. Resursive: （divide and conquer）
-    rec on left node
-    rec on right node
-    rst.addAll(left)
-    rst.addAll(right)
-    rst.add(curr)
-
-*/
-public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: Postorder in ArrayList which contains node values.
-     */
-    public ArrayList<Integer> postorderTraversal(TreeNode root) {
-        ArrayList<Integer> rst = new ArrayList<Integer>();
-        if (root == null) {
-            return rst;
-        }
-        //Recursive:
-        ArrayList<Integer> right = postorderTraversal(root.right);
-        ArrayList<Integer> left = postorderTraversal(root.left);
-        rst.addAll(left);
-        rst.addAll(right);
-        rst.add(root.val);  
-        return rst;
-    }
-}
 
 
 

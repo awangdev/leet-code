@@ -1,3 +1,5 @@
+一旦node.next 和node是重复，跳
+```
 /*
 40% 通过
 Given a sorted linked list, delete all duplicates such that each element appear only once.
@@ -57,3 +59,5 @@ Use two pointers:
 http://gongxuns.blogspot.com/2012/12/leetcode-remove-duplicates-from-sorted_11.html
 */
 
+
+```

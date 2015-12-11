@@ -1,3 +1,6 @@
+DFS
+Divide and conquer
+```
 /*
 71% Accepted
 Given a binary tree, find its maximum depth.
@@ -56,3 +59,5 @@ public class Solution {
     }
 }
 
+
+```

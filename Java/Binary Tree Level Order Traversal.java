@@ -1,3 +1,7 @@
+1. 最普通,Non-recursive: bfs, queue
+2. Recursive with dfs: use a level to track. Add curr into corresponding level; each level > rst.size(), add a new [].
+    Note: rst is a ArrayList<ArrayList<String>>, where each level is a arraylist; that is why we can add [] into rst to represent a level.
+```
 /*
 34% Accepted
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
@@ -99,3 +103,5 @@ public class Solution {
     }
 }
 
+
+```

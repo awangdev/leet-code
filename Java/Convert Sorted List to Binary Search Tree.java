@@ -1,3 +1,16 @@
+Divide and Conquer
+
+找到mid。
+然后把root = mid.next 
+
+然后开始sortedListToBST(mid.next.next); //后半段
+mid.next = null;//非常重要，要把后面拍过序的断掉
+sortedListToBST(head); //从头开始的前半段
+
+
+最后root.left, root.right merge一下。
+
+```
 /*
 Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 
@@ -67,3 +80,5 @@ public class Solution {
 }
 
 
+
+```

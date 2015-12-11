@@ -16,6 +16,14 @@ O(n) time.
 Tags Expand 
 LintCode Copyright Quick Sort Array
 
+
+*/
+/*
+    Recap 12.09.2015.
+    O(n) means just run through it. It's similar to Partition array: it tries to split the list into 2 parts, and find the pivot.
+*/
+
+/*
 Thoughts:
 Use standard quick sort, but the goal is to look for the middle point. 
 1. Get middle point: remember to -1 because we are looking for position, rather than length.
@@ -24,9 +32,8 @@ Use standard quick sort, but the goal is to look for the middle point.
 4. Swap the low and high: this set the first value greather than pivot to the right, and first avlue less than pivot to the left.
 5. after low and high pointer meets, swap low with the piviot: simply because pivot should be the break point of low and high
 6. at the end, the low sould be the middle point, which is the point we are looking for. return corresponding recursive helper.
+
 */
-
-
 public class Solution {
     /**
      * @param nums: A list of integers.

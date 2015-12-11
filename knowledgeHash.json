@@ -28,7 +28,7 @@
 			"toCharArry, charAt(), StringBuffer",
 		],
 		"problems" : [
-			"",
+			"Multiply Strings",
 		]
 	},
 	"Recursive" : {
@@ -75,15 +75,48 @@
 
 		]
 	},
+	"Graph" : {
+		"nickname": "",
+		"property" : [
+			"x",
+		],
+		"problems" : [
+			"x",
+		]
+	},
 	"Binary tree" : {
 		"nickname": "二叉树",
 		"property" : [
-			"recursive, left, right"
+			"recursive, left, right",
+			"Binary Tree pre,in,post Traversal 都用到： DFS, Stack; divide && conquer（注意里面是return rst, 要懂得addAll）; recursive with helper"
+			"Preorder Traversal: 1. Divide and conquer; 2. 1 stack: streo curr.val; push right, push left; 3. recursive with helper",
+			"Postorder Traversal: 1. Divide left&&right, conquer (add left, right, curr) 2. Two Stack(巧妙的s1,s2关系)，最后output s2. 3. recursive with helper function",
+			"Inorder Traversal: 1. Divide and conquer; 2. 1 Stack: move all the way to left-down; add curr; move to right and push right; 3. Recursive with helper",
+			"Level Order Traversal: 1. Use queue, do bfs.  2. dfs: track with level number: each level add a new [] list in rst"
 		],
 		"problems" : [
 			"Binary Tree Paths",
 			"Binary Tree Preorder Traversal",
-			
+			"Binary Tree Postorder Traversal",
+			"Binary Tree Inorder Traversal",
+			"Maximum Depth of Binary Tree",
+			"Convert Binary Search Tree to Doubly Linked List"
+
+
+		]
+	},
+	"Linked List" : {
+		"nickname": "",
+		"property" : [
+			"Singly linked list",
+			"slow/fast快慢指针"
+		],
+		"problems" : [
+			"Reverse LinkedList",
+			"Nth to last Node in List",
+			"Convert Sorted List to Binary Search Tree",
+			"Copy List with Random Pointer",
+			"Linked List Cycle"
 		]
 	},
 	"Binary Search" : {
@@ -138,6 +171,81 @@
 		],
 		"problems" : [
 			"Course Schedule",
+		]
+	},
+	"Merge Sort" : {
+		"nickname": "",
+		"property" : [
+			"Find Middle (快慢pointer), merge（给元素按大小顺序排列，return list），recursively call sort() itself",
+		],
+		"problems" : [
+			"Sort List",
+			"Remove Duplicates from Uncorted List"
+		]
+	},
+	"Quick Sort" : {
+		"nickname": "快排, 排序界第一大算法",
+		"property" : [
+			"",
+		],
+		"problems" : [
+			"Partition Array",
+		]
+	},
+	"Insertion Sort" : {
+		"nickname": "",
+		"property" : [
+			"",
+		],
+		"problems" : [
+			"Insertion Sort List",
+		]
+	},
+	"Merge" : {
+		"nickname": "",
+		"property" : [
+			"",
+		],
+		"problems" : [
+			"Merge Sorted Array",
+			"Merge Sorted Array II",
+			"Merge k Sorted Arrays",
+			"Merge Intervals",
+			"Merge k sorted Lists",
+			"Merge Two Sorted Lists",
+		]
+	},
+	"Partition" : {
+		"nickname": "",
+		"property" : [
+			"如果是可以双向遍历，从两边开始遍历，找到满足条件可以swap的，swap",
+			"如果是list, 做个pre,post两个list, 把相应内容填充进去，然后把两个list链接起来不就好了"
+		],
+		"problems" : [
+			"Partition Array",
+			"Partition List",
+			"Partition Array by Odd and Even"
+		]
+	},
+	"Greedy Algorithm" : {
+		"nickname": "贪心",
+		"property" : [
+			"",
+		],
+		"problems" : [
+			"",
+		]
+	},
+	"Math" : {
+		"nickname": "数学",
+		"property" : [
+			"记得一些数学计算原理",
+			"Add 2 numbers: 用carrier = (sum / 10), rst = (sum % 10)",
+			"Binary: Integer part: bit = value %2; decimal part: bit = 1 if (num* 2 - 1) >= 0"
+		],
+		"problems" : [
+			"Add Two Numbers",
+			"Binary Representation"
 		]
 	},
 	"KMP" : {

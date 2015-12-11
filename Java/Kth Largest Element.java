@@ -16,8 +16,8 @@ Tags Expand
 Quick Sort Sort
 
 Thoughts:
-Almost the same as the Median problem: the only difference is, this one is not looking for the middle point, but for
-the last kth element. 
+Almost the same as the Median problem: 
+the only difference is, this one is not looking for the middle point, but for the last kth element. 
 Using the same quick sort code with minor modifications, and we can solve this problem.
 */
 

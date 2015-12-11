@@ -1,3 +1,10 @@
+Partition Array根据pivot把array分成两半。
+从array两边开始缩进。while loop到便利完。非常直白的implement。
+注意low/high,或者叫start/end不要越边界
+O(n)
+
+Merge sort的基础。
+```
 /*
 Given an array nums of integers and an int k, partition the array (i.e move the elements in "nums") such that:
 
@@ -73,3 +80,5 @@ public class Solution {
 
 
 
+
+```

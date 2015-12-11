@@ -1,51 +1,44 @@
 import java.util.*;
 public class Solution {
-    public static String reverseWords(String s) {
-        if (s == null || s.length() == 0 || s.indexOf(" ") == -1) {
-            return s;
-        }
-        s = s.trim();//no head && tail " "
-        if (s.length() == 0) {
-            return s;
-        }
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) {
+          this.val = val;
+          this.next = null;
+      }
+  }
 
-        StringBuffer sb = new StringBuffer();
-        for (String str : s.split(" ")) {
-            if (str.trim().length() != 0) {
-                sb.append(str + " ");
+    public static boolean hasCycle(ListNode head) {  
+        if (head == null) {
+            return false;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            if (slow.val == fast.val) {
+                return true;
             }
+            slow = slow.next;
+            fast = fast.next.next;
         }
-
-        reverse(sb, 0, sb.length() - 1);
-        int start = 1;
-        int end = start + sb.substring(start).indexOf(" ");
-        System.out.println(sb.toString());
-        //Process all words separate by space
-        while (end != -1 && start < end) {
-            reverse(sb, start, end - 1);
-            start = end + 1;
-            end = start + (sb.substring(start)).indexOf(" ");
-        }
-
-        return sb.toString().trim();
+        return false;
     }
-
-    //Reverse the contents of the string buffer
-    public static void reverse(StringBuffer sb, int start, int end) {
-        for (int i = start, j = end; i < j; i++,j--) {
-            char temp = sb.charAt(i);
-            sb.setCharAt(i, sb.charAt(j));
-            sb.setCharAt(j, temp);
-        }
-    }
-
-
 
     public static void main(String[] args){
     	System.out.println("START");
-    	
-        String rst = reverseWords("How are you?");
-    	System.out.println("END " + rst);
+        ListNode dummy = new ListNode(-1);
+    	ListNode node = new ListNode(0);
+        dummy.next = node;
+        node.next = new ListNode(0);
+        node = node.next;
+        node.next = new ListNode(2);
+        node = node.next;
+        node.next = new ListNode(0);
+        node = node.next;
+        node.next = null;
+        boolean rst = hasCycle(dummy.next);
+        System.out.println("END " + rst);
     }
 }
 
