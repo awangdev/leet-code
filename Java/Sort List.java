@@ -4,6 +4,14 @@ Merge sort:
     3. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段。
         然后mege.
         要recursively call itself.
+
+Quick sort:
+想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
+
+但是quick sort不建议用在list上面。
+
+排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
+
 ```
 /*
 28% Accepted
@@ -30,21 +38,6 @@ Linked List
  * }
  */ 
 
-/*
-    12.09.2015:  http://www.jiuzhang.com/solutions/sort-list/
-    Quick sort. 
-*/
-
-public class Solution {
-    /*
-     * @param head: The head of linked list.
-     * @return: You should return the head of the sorted linked list,
-                    using constant space complexity.
-     */
-    public ListNode sortList(ListNode head) {  
-        // write your code here
-    }
-}
 
 
 
@@ -113,5 +106,30 @@ public class Solution {
 
 }
 
+
+/*
+    12.09.2015:  http://www.jiuzhang.com/solutions/sort-list/
+    Quick sort. 
+
+    Didn't do this myself yet. This is because Quick sort in general is not so good for list.
+    Quick sort requires a lot random access to elements, which turns into worst case O(n) time to access a element 
+    in list. So it can be worse to o(n^2).
+    So here Merge sort is prefered.
+
+    Quick sort is prefered for array sort, partition.
+
+    Merge sort is prefered for list sort
+*/
+
+public class Solution {
+    /*
+     * @param head: The head of linked list.
+     * @return: You should return the head of the sorted linked list,
+                    using constant space complexity.
+     */
+    public ListNode sortList(ListNode head) {  
+        // write your code here
+    }
+}
 
 ```

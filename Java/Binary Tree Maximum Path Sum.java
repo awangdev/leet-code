@@ -6,6 +6,19 @@ combo的三种情况：(root可能小于0)1. 只有left, 2。 只有右边。 3.
 	情况1和情况2去一个最大值，
 	然后和情况三比较。
 	做了两个Math.max(). 然后就有了这一层的comboMax
+
+
+12.11.2015 recap:
+    So totally, 5 conditions:
+    (save in single:)
+        left + curr.val
+        right + curr.val
+    (save in combo:)
+        left,
+        right,
+        left + curr.val + right
+
+
 ```
 /*
 23% Accepted
@@ -40,8 +53,9 @@ Dynamic Programming Tree Depth First Search
 Thoughts:
 Don't assume positive integers .
 
-Two steps of picking nodes: 1. Single Path (left or right)has a maximum.   2. Combine them into a final result: combinedPathMax
-1. singlePathMax, 2 results: either pick left+root or right+root.
+Two ways of picking nodes: 1. Single Path (left or right)has a maximum.   2. Combine them into a final result: combinedPathMax
+
+1. singlePathMax, two results: either pick left+root or right+root.
 2. combinedPathMax: take left-max as a whole, take right-max as a whole. 
 	3 possible results: left-max without parent(like...when parent<0), right-max without parent(like...when parent<0), left-max + right-max + parent.
 3. Use a special container to store current node's singlePathMax and combinedPathMax. 
@@ -81,6 +95,7 @@ public class Solution {
         int singlePathMax = Math.max(left.singlePathMax, right.singlePathMax) + root.val;
         singlePathMax = Math.max(singlePathMax, 0);//If less than 0, no need to keep, because it only decrease parent-level max.
         
+        //first comparison: does not include curr node at all(this would be applicable when curr.val < 0, so we take this condition into account)
         int combinedPathMax = Math.max(left.combinedPathMax, right.combinedPathMax);
         combinedPathMax = Math.max(combinedPathMax, left.singlePathMax + right.singlePathMax + root.val);
         
@@ -88,5 +103,7 @@ public class Solution {
     }
     
 }
+
+
 
 ```

@@ -1,3 +1,12 @@
+1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
+    一旦有-1， 就全部返回。
+    最后比较返回结果是不是-1. 是-1，那就false
+
+2. 从基本的题目理解考虑，想到leaf node的情况。如果判断了leaf node, 那其他node应该就是可以recursive。
+    直接在isBalanced上面recursive.
+    然后这个可能是个小小的优化，因为不需要计算所有的depth.一旦发现一个false,其他的就不需要计算，直接返回了。
+
+```
 /*
 46% Accepted
 Given a binary tree, determine if it is height-balanced.
@@ -17,12 +26,6 @@ The binary tree A is a height-balanced binary tree, but B is not.
 Tags Expand 
 Tree Depth First Search
 
-Thinking process:
-making use depth first search.
-same process as maxDepth() method.
-after recursive call, check if Math.abs(left - right) > 1. If so, return -1.
-If any case return -1, they all return -1.
-at the top return, check if -1.
 */
 
 /**
@@ -36,6 +39,61 @@ at the top return, check if -1.
  *     }
  * }
  */
+
+
+/*
+    12.11.2015
+    Recap: 
+    The original way of marking depth and -1 is good. However, that has to traverse entire tree.
+
+    Today, let's think about the leaf case, and see if we can directly recurse on isBalanced itself.
+    leaf case:
+    root == null, return true;
+    left = root.left; right = root.right;
+    left == null && right == null : true;
+
+    left == null && right != null && (right.left != null || right.right != null) {
+        false;
+    }
+    
+    need to isBalance(left) && isBalance(right).
+*/
+
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: True if this Binary tree is Balanced, or false.
+     */
+    public boolean isBalanced(TreeNode root) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return true;
+        }
+
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        //One of left or right is null.
+        if (left == null && (right.left != null || right.right != null)) {
+            return false;
+        } 
+        if (right == null && (left.left != null || left.right != null)) {
+            return false;
+        }
+        //none of left or right is null
+        return isBalanced(left) && isBalanced(right);
+    }
+}
+
+
+/*
+
+Thinking process:
+making use depth first search.
+same process as maxDepth() method.
+after recursive call, check if Math.abs(left - right) > 1. If so, return -1.
+If any case return -1, they all return -1.
+at the top return, check if -1.
+
+*/
 public class Solution {
     /**
      * @param root: The root of binary tree.
@@ -62,3 +120,5 @@ public class Solution {
 }
 
 
+
+```

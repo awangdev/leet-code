@@ -177,6 +177,9 @@
 		"nickname": "",
 		"property" : [
 			"Find Middle (快慢pointer), merge（给元素按大小顺序排列，return list），recursively call sort() itself",
+			"Both average and worst case is nlogn",
+			"Merge sort is preffered on list: http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/",
+			"Merge sort array, it's slow than quick sort,  due to O(N) space usage"
 		],
 		"problems" : [
 			"Sort List",
@@ -186,7 +189,10 @@
 	"Quick Sort" : {
 		"nickname": "快排, 排序界第一大算法",
 		"property" : [
-			"",
+			"Average time nlogn, however worst case is n^2",
+			"Quick sort is preferred on arrays: http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/",
+			"Generally in-place sort array, without no extra space",
+			"Require random access to element, so it's not good for linked list, which could be worse O(n) time to access an element"
 		],
 		"problems" : [
 			"Partition Array",
@@ -195,7 +201,7 @@
 	"Insertion Sort" : {
 		"nickname": "",
 		"property" : [
-			"",
+			"It's compared with Bubble sort, so I guess this is bad as well",
 		],
 		"problems" : [
 			"Insertion Sort List",
@@ -255,6 +261,24 @@
 		],
 		"problems" : [
 			"StrStr",
+		]
+	},
+	"System Design" : {
+		"nickname": "系统设计",
+		"property" : [
+			"读一些paper. 比如google的四篇文章",
+			"了解一些概念，去仔细理解一下: 什么CAP，SOA系统架构，Web常用的一些框架（什么NODE.JS等等），",
+			"对做网站等等的一些工具可以了解, 比如一个monitor系统: traffice, cpu, memory, harddrive, attack, serverice availability, 支付统计"
+			"dancres.github.io/Pages/ : 关于分布式系统",
+			"Google File System",
+			"Big Table",
+			"Map Reduce ： 虽然Google已经不用了",
+			"Chubby",
+			"DynamoDB - Amazon: ",
+			"Akamai: * Global Distributed Content [CDN]"
+		],
+		"problems" : [
+			"",
 		]
 	}
 		
