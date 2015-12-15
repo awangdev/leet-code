@@ -1,7 +1,23 @@
-/*
-Find the number Weak Connected Component in the directed graph. Each node in the graph contains a label and a list of its neighbors. (a connected set of a directed graph is a subgraph in which any two vertices are connected by direct edge path.)
+Identify这是个union-find问题还挺巧妙。
+看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。
 
-Have you met this question in a real interview? Yes
+为何不能从一个点出发，比如A，直接print它所有的neighbors呢？
+	不行，如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。
+
+所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.
+
+最后output的想法：
+做一个 map <parent ID, list>。
+之前我们不是给每个num都存好了parent了嘛。
+每个num都有个parent, 然后不同的parent就创造一个不同的list。
+最后，把Map里面所有的list拿出来就好了。
+```
+/*
+Find the number Weak Connected Component in the directed graph. 
+Each node in the graph contains a label and a list of its neighbors. 
+(a connected set of a directed graph is a subgraph in which 
+	any two vertices are connected by direct edge path.)
+
 Example
 Given graph:
 
@@ -88,13 +104,14 @@ public class Solution {
 		}
 	}
 	public List<List<Integer>> generateRst (List<List<Integer>> rst, UnionFind uf, HashSet<Integer> set) {
-       
+       	
     	HashMap<Integer, List<Integer>> listMap = new HashMap<Integer, List<Integer>>();
     	for (int num : set) {
     		int rootParent = uf.find(num);//uf.map.get(num);
     		if (!listMap.containsKey(rootParent)) {
     			listMap.put(rootParent, new ArrayList<Integer>());
     		} 
+    		//Add num into its correct set (meaning its root ancestor)
     		listMap.get(rootParent).add(num);
     	}
 
@@ -141,5 +158,25 @@ public class Solution {
 
 
 
+/*
+	Can we do the following for find() ? Inspired by the union-find implemented with int[]
+	Sort of recurisvely trying to  get the parent orign, instead of using a while loop?
+	I guess it's doable.
+*/
+//Root parent should have itself as child in map<child,parent>
+int find(int x) {
+	int parent = map.get(x);
+	if (parent != map.get(parent)) {
+		parent = map.get(parent);
+		map.put(x, parent);
+	}
+	return parent;
+}
 
 
+
+
+
+
+
+```

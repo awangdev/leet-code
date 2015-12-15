@@ -26,7 +26,8 @@ Greedy Dynamic Programming Array Game Theory
 
 /*
 Thoughts:
-Clarify: '1st play will win' means: if play properly, 1st play will surely have a way to win that 2nd play can't beat.
+Clarify: '1st play will win' means: if play properly, 
+1st play will surely have a way to win that 2nd play can't beat.
 Make dp[i]: the result when n = i.
 fn:
 Think back a step, state-1:

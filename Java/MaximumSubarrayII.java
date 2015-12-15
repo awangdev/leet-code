@@ -1,5 +1,6 @@
 新的解法还是用到了prefix sum.
-注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。我们需要的那部分prefix sum，其实就是一段数字的总和。
+注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
+我们需要的那部分prefix sum，其实就是一段数字的总和。
 所以从右边累计上来的。也是一样可以的。
 ```
 /*

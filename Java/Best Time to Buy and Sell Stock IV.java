@@ -12,7 +12,8 @@ Example
 Given prices = [4,4,6,1,1,4,2,5], and k = 2, return 6.
 
 Note
-You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
+You may not engage in multiple transactions at the same time 
+(i.e., you must sell the stock before you buy again).
 
 Challenge
 O(nk) time.

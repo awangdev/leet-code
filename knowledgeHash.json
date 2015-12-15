@@ -161,6 +161,26 @@
 
 		]
 	},
+	"Segment Tree" : {
+		"nickname": "线段树",
+		"property" : [
+			"Split by (start + end)/2. Make left,right child, then bind back to root",
+			"which of these intervals contain a given point",
+			"which of these points are in a given interval"
+		],
+		"problems" : [
+			"",
+		]
+	},
+	"Expression Tree" : {
+		"nickname": "",
+		"property" : [
+			"Need to remember how to build the tree just like Max-tree using stack. 'while'  add stack.pop() to node.left; if stack !empty, stack.peek().right = node; add node into stack",
+		],
+		"problems" : [
+			"Expression Evaludation",
+		]
+	},
 	"Toposort" : {
 		"nickname": "Topological Sort",
 		"property" : [

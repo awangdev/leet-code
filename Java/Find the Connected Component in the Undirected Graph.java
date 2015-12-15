@@ -1,6 +1,18 @@
+BFS遍历，把每个node的neighbor都加进来。
+
+一定注意要把visit过的node Mark一下。因为curr node也会是别人的neighbor，会无限循环。
+
+Component的定义：所有Component内的node必须被串联起来via path (反正这里是undirected, 只要链接上就好)
+
+这道题：其实component在input里面都已经给好了，所有能一口气visit到的，全部加进queue里面，他们就是一个component里面的了。
+
+而我们这里不需要判断他们是不是Component。
+```
  /*
-Find the number connected component in the undirected graph. Each node in the graph contains a label and a list of its neighbors. 
-(a connected component (or just component) of an undirected graph is a subgraph in which any two vertices are connected to each other by paths, 
+Find the number connected component in the undirected graph. 
+Each node in the graph contains a label and a list of its neighbors. 
+(a connected component (or just component) of an undirected graph is a subgraph in which 
+    any two vertices are connected to each other by paths, 
 and which is connected to no additional vertices in the supergraph.)
 
 Example
@@ -127,32 +139,32 @@ public class Solution {
     public List<List<Integer>> connectedSet(ArrayList<UndirectedGraphNode> nodes) {
         List<List<Integer>> rst = new ArrayList<>();
         if (nodes == null || nodes.size() == 0) {
-        	return rst;
+            return rst;
         }
         //Init:
- 		Set<UndirectedGraphNode> checked = new HashSet();
+        Set<UndirectedGraphNode> checked = new HashSet();
         Queue<UndirectedGraphNode> queue = new LinkedList();
         ArrayList<Integer> component = new ArrayList<Integer>();
         
         queue.offer(nodes.get(0));
 
         while (!nodes.isEmpty()) {
-        	if (queue.isEmpty()) {
-        	    Collections.sort(component);
-        		rst.add(component);
-        		queue.offer(nodes.get(0));
-        		component = new ArrayList<Integer>();
-        	} else {
-        		UndirectedGraphNode curr = queue.poll();
-        		if (!checked.contains(curr)) {
-        			checked.add(curr);
-        			component.add(curr.label);
-        			nodes.remove(curr);
-        			for (UndirectedGraphNode node : curr.neighbors) {
-        					queue.add(node);	
-        			}
-        		}
-        	}
+            if (queue.isEmpty()) {
+                Collections.sort(component);
+                rst.add(component);
+                queue.offer(nodes.get(0));
+                component = new ArrayList<Integer>();
+            } else {
+                UndirectedGraphNode curr = queue.poll();
+                if (!checked.contains(curr)) {
+                    checked.add(curr);
+                    component.add(curr.label);
+                    nodes.remove(curr);
+                    for (UndirectedGraphNode node : curr.neighbors) {
+                            queue.add(node);    
+                    }
+                }
+            }
         }
         if (!component.isEmpty()) {
             rst.add(component);
@@ -160,3 +172,5 @@ public class Solution {
         return rst;
     }
 }
+
+```

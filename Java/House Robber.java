@@ -4,9 +4,14 @@
 滚动数组的优化，就是确定了是这类“只和前一两个位子“相关的Fn而推出的。
 ```
 /*
-You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+You are a professional robber planning to rob houses along a street. 
+Each house has a certain amount of money stashed, 
+the only constraint stopping you from robbing each of them is that 
+adjacent houses have security system connected and it will automatically 
+contact the police if two adjacent houses were broken into on the same night.
 
-Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
+Given a list of non-negative integers representing the amount of money of each house, 
+determine the maximum amount of money you can rob tonight without alerting the police.
 
 Have you met this question in a real interview? Yes
 Example

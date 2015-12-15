@@ -19,7 +19,8 @@ dp[i][j]有这么i-1个item, 用他们可否组成size为j的背包？true/false
 O(m)的做法，注意j是倒序的啊！
 ```
 /*
-Given n items with size Ai, an integer m denotes the size of a backpack. How full you can fill this backpack?
+Given n items with size Ai, an integer m denotes the size of a backpack. 
+How full you can fill this backpack?
 
 Example
 If we have 4 items with size [2, 3, 5, 7], the backpack size is 11, we can select [2, 3, 5], so that the max size we can fill this backpack is 10. If the backpack size is 12. we can select [2, 3, 7] so that we can fulfill the backpack.

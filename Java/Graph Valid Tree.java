@@ -67,15 +67,24 @@ public class Solution {
 
     /*
 		Not only find parent, also update the spot parents[node] with parent node, recursively.
+
+        *** The fact is, at all levels, if any curr != its parent, it'll trigger the find() method,
+            Then it makes sure parent node will be assigned to this curr node index.
+
+        Goal: Mark curr node: who is your ancestor parent; and that indicates if other nodes are 
+            in the same union as curr.
     */
     public int find(int node) {
-    	if (parents[node] == node) {
+    	if (parents[node] == node) {//If curr node == its parent,  return curr node.
     		return node;
     	}
+        //If curr node != its parent, we will attempt to find its grandparents, and assign to curr node.
     	parents[node] = find(parents[node]);
     	return parents[node];
     }
-
+    /*
+        Either union x into y, or the other way
+    */
     public void union(int x, int y) {
     	int findX = parents[x];
     	int findY = parents[y];

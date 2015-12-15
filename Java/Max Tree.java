@@ -61,6 +61,18 @@ These behavior keeps larger value on upper level of the tree
  *     }
  * }
  */
+/*
+
+Given [2, 5, 6, 0, 3, 1], the max tree constructed by this array is:
+
+    6
+   / \
+  5   3
+ /   / \
+2   0   1
+Challenge
+
+*/
 public class Solution {
     /**
      * @param A: Given an integer array with no duplicates.

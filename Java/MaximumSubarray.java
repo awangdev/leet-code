@@ -61,7 +61,8 @@ public class Solution {
 
 /*
     Thoughts: 11.23.2015
-    Originally, the method is:When sum[i-1], it actaully starts from nums.get(i) again. Calculate the max
+    Originally, the method is:When sum[i-1], it actaully starts from nums.get(i) again. 
+    Calculate the max
     New way of using preSum.
     sum[i ~ j] = preSum[j] - preSum[i - 1];
     Calculate the max
