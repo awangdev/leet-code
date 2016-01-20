@@ -179,7 +179,7 @@ public class GenerateCodeTable {
 				} catch (Exception e) {
 					System.err.format("IOException: %s%n", e);
 				}//end of one file
-				outputContent += "\n\n";
+				outputContent += "\n\n---";
 				count++;			
 			}
 		}	
