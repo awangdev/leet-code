@@ -1,5 +1,6 @@
 /*
-Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? 
+Find all unique triplets in the array which gives the sum of zero.
 
 Note
 Elements in a triplet (a,b,c) must be in non-descending order. (ie, a = b = c)
@@ -16,14 +17,18 @@ For example, given array S = {-1 0 1 2 -1 -4}, A solution set is:
 Tags Expand 
 Two Pointers Sort Array
 
-Thinking process:
-Cannot use HashMap for this problem because of the duplicates. See the bottom of this file for the failed version.
-Remember to check for null and edge-soluton.
-Before everything, Arrays.sort() the given array, in order to effectively handle the duplicates.
-At 3SUM level, takes 1 element out and do 2SUM on the rest of the front elements of the array. Note, 2SUM has multitple solutions (need to handle duplicates)
-Cross-match the 2SUM solution with the selected element from 3SUM level.
+
 */
 
+/*
+Thoughts:
+    Cannot use HashMap for this problem because of the duplicates. See the bottom of this file for the failed version.
+    Remember to check for null and edge-soluton.
+    Before everything, Arrays.sort() the given array, in order to effectively handle the duplicates.
+    At 3SUM level, takes 1 element out and do 2SUM on the rest of the front elements of the array. Note, 2SUM has multitple solutions (need to handle duplicates)
+    Cross-match the 2SUM solution with the selected element from 3SUM level.
+
+*/
 
 public class Solution {
     /**
