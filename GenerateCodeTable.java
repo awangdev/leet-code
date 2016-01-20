@@ -135,7 +135,7 @@ public class GenerateCodeTable {
 		//Assemble output
 		String outputContent = "# Review Page\n\n" + 
 			"This page summarize the solutions of all problems. For thoughts,ideas written in English, refer to deach individual solution. \n" + 
-			"New problems will be automatically updated once added.\n\n";
+			"New problems will be automatically updated once added.\n---\n";
 			
 		int count = 0;
 		for (File file : listOfFiles) {
@@ -179,7 +179,7 @@ public class GenerateCodeTable {
 				} catch (Exception e) {
 					System.err.format("IOException: %s%n", e);
 				}//end of one file
-				outputContent += "\n\n---";
+				outputContent += "\n---\n";
 				count++;			
 			}
 		}	
