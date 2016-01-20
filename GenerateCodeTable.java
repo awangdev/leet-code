@@ -147,7 +147,7 @@ public class GenerateCodeTable {
 					int countLine = 0;
 					while ((line = reader.readLine()) != null && !line.equals("```")) {
 						if (line.equals("")) {
-							continue;
+						//	continue;
 						}
 						if (countLine == 0) {
 							String level = line.substring(0).toUpperCase();
