@@ -2,280 +2,61 @@
 
 This page summarize the solutions of all problems. For thoughts,ideas written in English, refer to deach individual solution. 
 New problems will be automatically updated once added.
----
+
 **0. [2 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/2 Sum.java)**		Level: Medium
 
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
 
-解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn). 
-    1. 第一步 two pointer 找 value.
-    2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)
+解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).   
+    1. 第一步 two pointer 找 value.    
+    2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)    
     O(n) space, O(nlogn) time.
 
 
 
 ---
-**1. [3 Sum Closest.java](https://github.com/shawnfan/LintCode/blob/master/Java/3 Sum Closest.java)**Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. 
+**1. [3 Sum Closest.java](https://github.com/shawnfan/LintCode/blob/master/Java/3 Sum Closest.java)**		Level: Medium
 
-Note
-You may assume that each input would have exactly one solution.
+3Sum 的一种简单形式, 并且都没有找index, value, 而只是找个sum罢了.
 
-Example
-For example, given array S = {-1 2 1 -4}, and target = 1. The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 
-Tags Expand 
-Two Pointers Sort Array
-
-Thinking process:
-Similar to 3 SUM.
-Starting from the left-element, assume it's the solution. Move the 2 pointers in the right-side-array.
-Using the two pointers, trying to find ele1 + ele2 + ele3 = closest number to target.
-Note: for comparing closet, use initial value Integer.MAX_VALUE. Be aware of the overflow of integer, use long to handle.
-*/
-
-public class Solution {
-    /**
-     * @param numbers: Give an array numbers of n integer
-     * @param target : An integer
-     * @return : return the sum of the three integers, the sum closest target.
-     */
-    public int threeSumClosest(int[] num, int target) {
-        if (num == null || num.length < 3) {
-            return Integer.MAX_VALUE;
-        }
-        Arrays.sort(num);
-        long closest = (long) Integer.MAX_VALUE;
-        for (int i = 0; i < num.length - 2; i++) {
-            int left = i + 1;
-            int right = num.length - 1;
-            while (left < right) {
-                int sum = num[i] + num[left] + num[right];
-                if (sum == target) {
-                    return sum;
-                } else if (sum < target) {
-                    left++;
-                } else {
-                    right--;
-                }
-                closest = Math.abs(sum - target) < Math.abs(closest - target) 
-                            ? (long) sum : closest;
-            }//while
-        }//for
-        return (int) closest;
-    }
-}
+注意：check closest时候用long, 以免int不够用
 
 
 ---
-**2. [3 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/3 Sum.java)**Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? 
-Find all unique triplets in the array which gives the sum of zero.
+**2. [3 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/3 Sum.java)**		Level: Medium
 
-Note
-Elements in a triplet (a,b,c) must be in non-descending order. (ie, a = b = c)
+用个for loop 加上 2sum 的土办法。
 
-The solution set must not contain duplicate triplets.
+注意:   
+   1. 找 value triplets, 多个结果。注意，并非找index。    
+   2. 要升序, 第一层for loop 从最后一个元素挑起, 保证了顺序。    
+   3. 去掉duplicate: check用过的同样的数字，都跳掉。不需要用同样的数字再计算一边已有结果。
 
-Example
-For example, given array S = {-1 0 1 2 -1 -4}, A solution set is:
+步骤:   
+   1. For loop 挑个数字A.    
+   2. 2Sum 出一堆2个数字的结果    
+   3. Cross match 步骤1里面的A.   
 
-(-1, 0, 1)
-
-(-1, -1, 2)
-
-Tags Expand 
-Two Pointers Sort Array
+时间 O(n^2), 两个nested loop
 
 
-*/
-
-/*
-Thoughts:
-    Cannot use HashMap for this problem because of the duplicates. See the bottom of this file for the failed version.
-    Remember to check for null and edge-soluton.
-    Before everything, Arrays.sort() the given array, in order to effectively handle the duplicates.
-    At 3SUM level, takes 1 element out and do 2SUM on the rest of the front elements of the array. Note, 2SUM has multitple solutions (need to handle duplicates)
-    Cross-match the 2SUM solution with the selected element from 3SUM level.
-
-*/
-
-public class Solution {
-    /**
-     * @param numbers : Give an array numbers of n integer
-     * @return : Find all unique triplets in the array which gives the sum of zero.
-     */
-    public ArrayList<ArrayList<Integer>> threeSum(int[] numbers) {
-        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
-        if (numbers == null && numbers.length <= 2) {// Length at least >= 3
-            return rst;
-        }
-        Arrays.sort(numbers);//Sort in order to handle duplicates
-        for (int i = numbers.length - 1; i >= 2; i--) {// i >=2 because at least 3 element in result.
-            if (i < numbers.length - 1 && numbers[i] == numbers[i + 1]) {
-                continue;//The case of numbers[i + 1] should have already covered all possibilities of the case numbers[i], so safe to skip
-            }
-            ArrayList<ArrayList<Integer>> twoSum = calTwoSum(numbers, i - 1, 0 - numbers[i]);//Pick the 3rd element numbers[i]
-            for (int j = 0; j < twoSum.size(); j++) {//Find two sum of rest-front elements. Cross add them with numbers[i]
-                twoSum.get(j).add(numbers[i]);
-            }
-            rst.addAll(twoSum);
-        }
-        return rst;
-    }
-    //Two Sum. Multiple answer
-    public ArrayList<ArrayList<Integer>> calTwoSum(int[] num, int end, int target) {
-        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
-        if (num == null || num.length <= 1) {//Length at least >= 2
-            return rst;
-        }
-        int left = 0;
-        int right = end;
-        while (left < right) {
-            if (num[left] + num[right] == target) {
-                ArrayList<Integer> match = new ArrayList<Integer>();
-                match.add(num[left]);
-                match.add(num[right]);
-                rst.add(match);
-                left++;
-                right--;
-                //For unique number A, there is only 1 unique number B such that A + B == target.
-                //Therefore, once found the match, erase all numbers that's equal to A or equal to B
-                while (left < right && num[left] == num[left - 1]) {
-                    left++;
-                }
-                while (left < right && num[right] == num[right + 1]) {
-                    right--;
-                }
-            } else if (num[left] + num[right] < target) {//Since int[] num is sorted: move L to right-side to get larger value.
-                left++;
-            } else {
-                right--;
-            }
-        }
-        return rst;
-    }
-}
+另外, 还是可以用HashMap来做2Sum。稍微短点。还是要注意handle duplicates.
 
 
-
-
-
-
-
-/*
-The following is a exceeding time version.
-I believe the concept is clear, but it does not handle duplicates well. So we can't use this version.
-
-
-public class Solution {
-    public ArrayList<ArrayList<Integer>> threeSum(int[] numbers) {
-        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
-        if (numbers.length <= 2) {
-            return rst;
-        }
-        Arrays.sort(numbers);
-        for (int i = 0; i < numbers.length; i++){
-            HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-            for (int j = i; j < numbers.length; j++) {
-                int remain = 0 - numbers[i] - numbers[j];
-                if (map.containsKey(remain) && map.get(remain) != i) {
-                    ArrayList<Integer> list = new ArrayList<Integer>();
-                    list.add(numbers[i]);
-                    list.add(remain);
-                    list.add(numbers[j]);
-                    if (!rst.contains(list)){
-                        rst.add(list);                        
-                    }
-                } else {
-                    map.put(numbers[j], j);
-                }
-            }
-        }
-        return rst;
-    }
-}
-
-*/
 
 ---
-**3. [4 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/4 Sum.java)**Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+**3. [4 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/4 Sum.java)**		Level: Medium
 
-Example
-For example, given array S = {1 0 -1 0 -2 2}, and target = 0. A solution set is:
+方法1： 3Sum外面再加一层. 参考3Sum. 时间O(n^3)。 但此方法在k-sum时候，无疑过于费时间. O(n^k)
 
-(-1, 0, 0, 1)
+方法2： 参见 http://lifexplorer.me/leetcode-3sum-4sum-and-k-sum/      
+   1. 利用2Sum的原理，把4Sum分为连个2Sum。左一个pair,右一个pair，每个pair里面放2个数字。   
+   2. 以一个点，i，作为分界口，也要列举出所有i之前的pair,作为基础。   
+   3. 再尝试从所有i+1后面,找合适的2nd pair。   
 
-(-2, -1, 1, 2)
-
-(-2, 0, 0, 2)
-
-Note
-Elements in a quadruplet (a,b,c,d) must be in non-descending order. (ie, a ≤ b ≤ c ≤ d)
-
-The solution set must not contain duplicate quadruplets.
-
-Tags Expand 
-Two Pointers Sort Hash Table Array
-
-Thinking process:
-Perform another layer outsideo of 3SUM.
-
-Note: If try to divide and perform two 2SUM, it will be a bit difficult. Refer to http://blog.csdn.net/linhuanmars/article/details/24826871
-*/
-
-public class Solution {
-    /**
-     * @param numbers : Give an array numbersbers of n integer
-     * @param target : you need to find four elements that's sum of target
-     * @return : Find all unique quadruplets in the array which gives the sum of
-     *           zero.
-     */
-    public ArrayList<ArrayList<Integer>> fourSum(int[] numbers, int target) {     
-    	ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
-    	if(numbers == null || numbers.length < 4) {
-    		return rst;
-    	}
-    	Arrays.sort(numbers);
-    	//Pick 1st element
-   		for (int i = 0; i < numbers.length - 3; i++) {
-   			if (i != 0 && numbers[i] == numbers[i - 1]) {//Check for duplicate of 1st element
-   				continue;
-   			}
-   			//Pick 2nd element
-   			for (int j = i + 1; j < numbers.length - 2; j++) {
-   				if (j != i + 1 && numbers[j] == numbers[j - 1]) {//Check for duplicate of 2nd element
-   					continue;
-   				}
-   				//Pick 3rd and 4th element
-   				int third = j + 1;
-   				int fourth = numbers.length - 1;
-   				while (third < fourth) {
-	   				int sum = numbers[i] + numbers[j] + numbers[third] + numbers[fourth];
-	   				if (sum < target) {
-	   					third++;
-	   				} else if (sum > target) {
-	   					fourth--;
-	   				} else {//sum == target
-	   					ArrayList<Integer> list = new ArrayList<Integer>();
-	   					list.add(numbers[i]);
-	   					list.add(numbers[j]);
-	   					list.add(numbers[third]);
-	   					list.add(numbers[fourth]);
-	   					rst.add(list);
-	   					third++;
-	   					fourth--;
-	   					while (third < fourth && numbers[third] == numbers[third - 1]) {
-	   						third++;
-		   				}
-		   				while (third < fourth && numbers[fourth] == numbers[fourth + 1]){
-		   					fourth--;
-		   				}
-	   				}
-   				}
-   			}
-   		}
-   		return rst;
-    }
-}
+   注意：在造class Pair时候，要做@override的function: hashCode(), equals(Object d). 平时不太想得起来用。
 
 
 ---

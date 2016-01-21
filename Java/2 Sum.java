@@ -2,9 +2,9 @@ M
 
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
 
-解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn). 
-    1. 第一步 two pointer 找 value.
-    2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)
+解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).   
+    1. 第一步 two pointer 找 value.    
+    2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)    
     O(n) space, O(nlogn) time.
 
 
@@ -12,21 +12,15 @@ M
 
 /*
 Given an array of integers, find two numbers such that they add up to a specific target number.
-
 The function twoSum should return indices of the two numbers such that they add up to the target, 
 where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are NOT zero-based.
-
 Example
 numbers=[2, 7, 11, 15], target=9
-
 return [1, 2]
-
 Note
 You may assume that each input would have exactly one solution
-
 Challenge
 Either of the following solutions are acceptable:
-
 O(n) Space, O(nlogn) Time
 O(n) Space, O(n) Time
 Tags Expand 
