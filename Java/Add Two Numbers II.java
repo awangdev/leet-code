@@ -1,9 +1,13 @@
-方向相反。巧用stack.
+M
 
-做加法都一样：
-1. carrier
-2. carrier = (rst + carrier) / 10
-3. rst = (rst + carrier) % 10
+LinkedList并没有反过来，那么自己反：   
+   方向相反。巧用stack.
+
+做加法都一样：   
+   1. carrier
+   2. carrier = (rst + carrier) / 10
+   3. rst = (rst + carrier) % 10
+
 ```
 /*
 You have two numbers represented by a linked list, where each node contains a single digit. 

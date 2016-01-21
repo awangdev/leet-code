@@ -1,39 +1,35 @@
+M
+
 Trie结构, prefix tree.
 节点里面有char, isEnd, HashMap<Character, TrieNode>
-记得怎么造trie：无增有移，没node就加，有Node就移动。
-寻找word也一样，无错有移。
+记得怎么造trie：无增有移，没node就加，有node就移动。
+寻找word也一样逻辑：无错有移。
+
+
 ```
 /*
-Design a data structure that supports the following two operations:
+Design a data structure that supports the following two operations: addWord(word) and search(word)
 
-void addWord(word)
+search(word) can search a literal word or a regular expression string containing only letters a-z or ..
 
-bool search(word)
-
-search(word) can search a literal word or a regular expression string containing only letters a-z or .. 
 A . means it can represent any one letter.
 
 Example
 addWord("bad")
-
 addWord("dad")
-
 addWord("mad")
-
-search("pad") -> false
-
-search("bad") -> true
-
-search(".ad") -> true
-
-search("b..") -> true
-
+search("pad")  // return false
+search("bad")  // return true
+search(".ad")  // return true
+search("b..")  // return true
 Note
 You may assume that all words are consist of lowercase letters a-z.
 
-Tags:
-Backtracking
+Tags Expand 
+Trie
 */
+
+
 /*
 Build the WordDictionary like a TrieTree.
 Note: the '.' indicates any letter, which means we'd have to traverse through all possible letters in current level. 
@@ -42,8 +38,6 @@ Only one of the returning search results needs to be true
 Note:
 TrieNode contains that char, boolean, and HashMap of children
 */
-
-//NOT DONE YET: http://www.lintcode.com/en/problem/add-and-search-word/#
 
 public class WordDictionary {
     class TrieNode{
@@ -106,19 +100,6 @@ public class WordDictionary {
 // WordDictionary wordDictionary = new WordDictionary();
 // wordDictionary.addWord("word");
 // wordDictionary.search("pattern");
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ```
