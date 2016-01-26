@@ -113,24 +113,28 @@ LinkedList都已经反转好了，直接做。
 
 
 ---
-**9. [Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Anagrams.java)**toCharArray
-Arrays.sort
-Stirng.valueOf(char[])
+**9. [Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Anagrams.java)**		Level: Medium
+
+HashMap 的做法. sort每个string, 存进HashMap, 重复的就是anagrams,最后输出。   
+   toCharArray
+   Arrays.sort
+   Stirng.valueOf(char[])
+
+时间n*L*O(logL),L是最长string的长度。
 
 
 
-http://www.jiuzhang.com/solutions/anagrams/
-做法不太一样 lOl
-1. take each string, count the occurrance of the 26 letters. save in int[]count.
-2. hash the int[] count and output a unique hash value.
-    hash = hash * a + num
-    a = a * b.
-3. save to hashmap in the same way as we do. 
+另一种做法：http://www.jiuzhang.com/solutions/anagrams/   
+   1. take each string, count the occurrance of the 26 letters. save in int[]count.   
+   2. hash the int[] count and output a unique hash value.   
+      hash = hash * a + num   
+      a = a * b.   
+   3. save to hashmap in the same way as we do. 
 
-这一步把for s: strs 
-里面的时间复杂度降到了O(L). L = s.length()
+这一步把for s: strs 里面的时间复杂度降到了O(L). L = s.length().   
+Need to work on the getHash() function.
 
-而普通的，for 里面的时间复杂度是 Llog(L)
+时间变成n*O(L). Better.
 
 
 
