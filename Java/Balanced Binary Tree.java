@@ -1,17 +1,23 @@
+M
+
 1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
-    一旦有-1， 就全部返回。
-    最后比较返回结果是不是-1. 是-1，那就false
+   一旦有-1， 就全部返回。
+   最后比较返回结果是不是-1. 是-1，那就false.
+   Traverse 整个tree, O(n)
 
 2. 从基本的题目理解考虑，想到leaf node的情况。如果判断了leaf node, 那其他node应该就是可以recursive。
-    直接在isBalanced上面recursive.
-    然后这个可能是个小小的优化，因为不需要计算所有的depth.一旦发现一个false,其他的就不需要计算，直接返回了。
+   直接在isBalanced上面recursive.
+   关键return false的判断情况：如果有个node是null, 那么同一行相邻的那个，一旦有了children,那么就说明两个分支的depth已经是>=2了，那么就return false.
+   
+   然后这个可能是个小小的优化，因为不需要计算所有的depth.一旦发现一个false,其他的就不需要计算，直接返回了。
+
 
 ```
 /*
-46% Accepted
 Given a binary tree, determine if it is height-balanced.
 
-For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
+For this problem, a height-balanced binary tree is defined as a binary tree,  
+in which the depth of the two subtrees of every node never differ by more than 1.
 
 Example
 Given binary tree A={3,9,20,#,#,15,7}, B={3,#,20,15,7}
@@ -24,7 +30,7 @@ A)  3            B)    3
 The binary tree A is a height-balanced binary tree, but B is not.
 
 Tags Expand 
-Tree Depth First Search
+Binary Search Divide and Conquer Recursion
 
 */
 

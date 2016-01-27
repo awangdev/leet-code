@@ -139,54 +139,103 @@ Need to work on the getHash() function.
 
 
 ---
-**10. [Backpack II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Backpack II.java)**想法还是，选了A[i-1] 或者没选A[i].
-一路往前跑不回头。就出来了。
+**10. [Backpack II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Backpack II.java)**		Level: Medium
 
-O(m)的做法。想想，的确我们只care 最后一行，所以一个存value的就够了。 注意：和bakcpackI的 O(m)一样的，j是倒序的。如果没有更好的j，就不要更新。就是这个道理。
+做了Backpack I, 这个就如出一辙。   
+想法还是，选了A[i-1] 或者没选A[i].   
+一路往前跑不回头。就出来了。   
+其实这个Backpack II 还更容易看懂代码。
+
+O(m)的做法:   
+想想，的确我们只care 最后一行，所以一个存value的就够了。    
+注意：和bakcpackI的 O(m)一样的，j是倒序的。如果没有更好的j，就不要更新。就是这个道理。   
+
 
 
 ---
-**11. [Backpack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Backpack.java)**row是item大小: 0, A[0], A[1] ... A[A.length -1]
-col是背包累积的size: 0, 1, 2, ... m.
+**11. [Backpack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Backpack.java)**
+DP。   
+   row是item大小: 0, A[0], A[1] ... A[A.length -1]
+   col是背包累积的size: 0, 1, 2, ... m.
 
-想法是这样：
-dp[i][j]有这么i-1个item, 用他们可否组成size为j的背包？true/false.  （反过来考虑了，不是想是否超过size j， 而是考虑是否能拼出exact size == j）。
-注意注意：虽然dp里面一直存在i的位置，实际上考虑的是在i位置的时候，看前i-1个item. 
+想法：
+   dp[i][j]有这么i-1个item, 用他们可否组成size为j的背包？true/false.  （反过来考虑了，不是想是否超过size j， 而是考虑是否能拼出exact size == j）。   
+   注意注意：虽然dp里面一直存在i的位置，实际上考虑的是在i位置的时候，看前i-1个item.    
+
 看一遍code，会发现：
-    1. picked A[i-1] 如果上一个item, A[i-1]被加了上来, 用j-A[i-1]看看，是否这再前一步也true. true就好啦！
-    2. did not pick A[i-1]. 那就是说，不加上A[i-1], 上一行d[i-1][j]还是需要是true。
+   1. picked A[i-1]: 如果上一个item, A[i-1],被加了上来, 用j-A[i-1]看看，是否这再前一步也true. true就好啦。   
+   2. did not pick A[i-1]: 那就是说，不加上A[i-1], 上一行d[i-1][j]还是需要是true。   
 
-最后：
-跑一边dp 最下面一个row.  从末尾开始找，最末尾的一个j (能让dp[i][j] == true)的，就是最多能装的大小 :)
+最后：   
+   跑一边dp 最下面一个row.  从末尾开始找，最末尾的一个j (能让dp[i][j] == true)的，就是最多能装的大小 :)   
+
+时间，空间都是：O(mn)
 
 
 
+再有：     
+O(m)时间的做法，具体看solution. 注意j是倒序的啊！   
+依然是O(mn)的空间
 
-再有：
-O(m)的做法，注意j是倒序的啊！
+
 
 ---
-**12. [Balanced Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Balanced Binary Tree.java)**    一旦有-1， 就全部返回。
-    最后比较返回结果是不是-1. 是-1，那就false
+**12. [Balanced Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Balanced Binary Tree.java)**		Level: Medium
+
+1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
+   一旦有-1， 就全部返回。
+   最后比较返回结果是不是-1. 是-1，那就false.
+   Traverse 整个tree, O(n)
 
 2. 从基本的题目理解考虑，想到leaf node的情况。如果判断了leaf node, 那其他node应该就是可以recursive。
-    直接在isBalanced上面recursive.
-    然后这个可能是个小小的优化，因为不需要计算所有的depth.一旦发现一个false,其他的就不需要计算，直接返回了。
+   直接在isBalanced上面recursive.
+   关键return false的判断情况：如果有个node是null, 那么同一行相邻的那个，一旦有了children,那么就说明两个分支的depth已经是>=2了，那么就return false.
+   
+   然后这个可能是个小小的优化，因为不需要计算所有的depth.一旦发现一个false,其他的就不需要计算，直接返回了。
+
+
+
+---
+**13. [Best Time to Buy and Sell Stock I.java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock I.java)**		Level: Medium
+
+理解意思是关键：   
+   每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出。
+   记录每天最小值Min是多少。O(n)
+   每天都算和当下的Min买卖，profit最大多少。
+
 
 
 ---
-**13. [Best Time to Buy and Sell Stock I.java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock I.java)**每天都算算目前最小值Min是多少。O(n)
-每天都算算和当下的Min买卖，profit最大多少。
+**14. [Best Time to Buy and Sell Stock II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock II.java)**		Level: Medium
+
+和Stock I 的区别：可以买卖多次，求总和的最大盈利。
+
+找涨幅最大的区间，买卖：
+找到低谷，买进:peek = start + 1 时候，就是每次往前走一步;若没有上涨趋势，继续往低谷前进。
+涨到峰顶，卖出:一旦有上涨趋势，进一个while loop，涨到底, 再加个profit.
+
+中间的：
+   profit += prices[peek - 1] - prices[start]; 听特别的。
+   当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
+
+O(n)
+
 
 ---
-**14. [Best Time to Buy and Sell Stock II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock II.java)**飞似得涨，到峰顶，就卖。
+**15. [Best Time to Buy and Sell Stock III .java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock III .java)**		Level: Medium
 
----
-**15. [Best Time to Buy and Sell Stock III .java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock III .java)**怎么样在才能Optimize呢。
-从两边同时开始找Max.
-leftProfit是从左往右，每个i点上的最大Profit。
-rightProfit是从i点开始到结尾，每个点上的最大profit.
-那么把左右两边在i上，两边相加的最大值找到就可以了。
+比stock II 多了一个限制：只有2次卖出机会。也就是：找峰头；然后往下再找一个峰头。
+
+怎么样在才能Optimize两次巅峰呢？
+
+从两边同时开始找Max！（棒棒的想法）
+
+   leftProfit是从左往右，每个i点上的最大Profit。
+   rightProfit是从i点开始到结尾，每个点上的最大profit.
+   那么在i点上，就是leftProfit，和右边rightProfit的分割点。在i点，leftProfit+rightProfit相加，找最大值。
+
+三个O(n),还是O(n)
+
 
 ---
 **16. [Best Time to Buy and Sell Stock IV.java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock IV.java)**best time to buy and sell stock: 为什么 i-1天的卖了又买，可以和第 i 天的卖合成一次交易？

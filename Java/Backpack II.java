@@ -1,16 +1,24 @@
-做了backpack I, 这个就如出一辙。
-想法还是，选了A[i-1] 或者没选A[i].
-一路往前跑不回头。就出来了。
+M
 
-O(m)的做法。想想，的确我们只care 最后一行，所以一个存value的就够了。 注意：和bakcpackI的 O(m)一样的，j是倒序的。如果没有更好的j，就不要更新。就是这个道理。
+做了Backpack I, 这个就如出一辙。   
+想法还是，选了A[i-1] 或者没选A[i].   
+一路往前跑不回头。就出来了。   
+其实这个Backpack II 还更容易看懂代码。
+
+O(m)的做法:   
+想想，的确我们只care 最后一行，所以一个存value的就够了。    
+注意：和bakcpackI的 O(m)一样的，j是倒序的。如果没有更好的j，就不要更新。就是这个道理。   
+
 
 ```
 /*
-Given n items with size Ai and value Vi, and a backpack with size m. What's the maximum value can you put into the backpack?
+Given n items with size Ai and value Vi, and a backpack with size m. 
+What's the maximum value can you put into the backpack?
 
 
 Example
-Given 4 items with size [2, 3, 5, 7] and value [1, 5, 2, 4], and a backpack with size 10. The maximum value is 9.
+Given 4 items with size [2, 3, 5, 7] and value [1, 5, 2, 4], and a backpack with size 10. 
+The maximum value is 9.
 
 Note
 You cannot divide item into small pieces and the total size of items you choose should smaller or equal to m.
@@ -79,11 +87,12 @@ public class Solution {
 
 /*
 	To use just O(m) sapce.
-	Just like in Backpack I, at the end, we only care about the last row. Why not just maintain a row, always keep the max value.
+	Just like in Backpack I, at the end, we only care about the last row. 
+    Why not just maintain a row, always keep the max value.
 
 	Note: Only update dp[j] if adding A[i-1] would be greater than current dp[j]
 
-	It's a bit hard to come up with this... but it's good exercise to build brain a bit.
+	It's a bit hard to come up with this... but it's good exercise.
 */
 
 public class Solution {
@@ -106,8 +115,6 @@ public class Solution {
     	return dp[m];
     }
 }
-
-
 
 
 
