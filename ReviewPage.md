@@ -153,7 +153,8 @@ O(m)的做法:
 
 
 ---
-**11. [Backpack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Backpack.java)**
+**11. [Backpack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Backpack.java)**		Level: Medium
+
 DP。   
    row是item大小: 0, A[0], A[1] ... A[A.length -1]
    col是背包累积的size: 0, 1, 2, ... m.
