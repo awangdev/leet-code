@@ -1,5 +1,13 @@
+M
+
+普通BFS，用一个queue，加上一个queue.size()来交替换行.
+
+
+```
+
 /*
-Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. 
+(ie, from left to right, level by level from leaf to root).
 
 Example
 Given binary tree {3,9,20,#,#,15,7},
@@ -19,15 +27,7 @@ return its bottom-up level order traversal as:
   [3]
 ]
 Tags Expand 
-Tree Search Breadth First Search Queue Binary Tree
-
-
-Thinking Process:
-1. Non-recursive
-similar to Binary Tree Level Order Traversal I, just when adding into the final result, add to the top all the time. Then the first added will be at the bottom: result.add(0, list)
-2. Recursive:
-	Similar to Level Traversal I, do a dfs. The difference is: everytime, we use ArrayList<ArrayList<>> like a stack by doing add(0, newList);
-	when populating the levelArrayList, make sure to address the correct corresponding level.
+Queue Binary Tree Binary Tree Traversal Breadth First Search
 */
 
 /**
@@ -43,6 +43,18 @@ similar to Binary Tree Level Order Traversal I, just when adding into the final 
  */
  
  
+ /*
+
+Thoughts:
+1. Non-recursive
+similar to Binary Tree Level Order Traversal I, just when adding into the final result,
+add to the top all the time. Then the first added will be at the bottom: result.add(0, list)
+2. Recursive:
+    Similar to Level Traversal I, do a dfs. The difference is: everytime, we use ArrayList<ArrayList<>> like a stack by doing add(0, newList);
+    when populating the levelArrayList, make sure to address the correct corresponding level.
+
+ */
+
 public class Solution {
     /**
      * @param root: The root of binary tree.
@@ -89,3 +101,4 @@ public class Solution {
     }
 }
 
+```

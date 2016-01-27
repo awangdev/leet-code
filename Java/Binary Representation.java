@@ -1,19 +1,23 @@
-主要就是要分两半。
+H
 
-Integer那一半好弄，Loop里面 num%2, num/2就好。
-Decimal那边复杂点，bit == 1的数学条件是：
-当下num * 2 - 1 >= 0...
-然后循环时候还要  num * 2 - 1, 或者 num * 2
+首先要分两半解决，断点是'.': str.split("\\.");
 
-因为num是 double, 小于0的小数，所以其实这样做下去很可能无限循环。
+Integer那一半好弄，whie loop里： num%2, num/2。
 
-所以题目也才有了32BIT的要求！
+Decimal那边复杂点.
+   bit == 1的数学条件：当下num * 2 >= 1。 更新: num = num * 2 - 1;
+   bit == 0的数学条件： num * 2 < 1. 更新: num = num * 2
+
+注意：num是 double, 小数在 （num = num * 2 -1）的公式下可能无限循环. 因此check: num重复性，以及binary code < 32 bit.
+
+(所以题目也才有了32BIT的要求！)
 
 ```
 /*
-Given a (decimal - e.g. 3.72) number that is passed in as a string, return the binary representation that is passed in as a string. If the fractional part of the number can not be represented accurately in binary with at most 32 characters, return ERROR.
+Given a (decimal - e.g. 3.72) number that is passed in as a string, 
+return the binary representation that is passed in as a string. 
+If the fractional part of the number can not be represented accurately in binary with at most 32 characters, return ERROR.
 
-Have you met this question in a real interview? Yes
 Example
 For n = "3.72", return "ERROR".
 
@@ -44,10 +48,6 @@ for example: 2x - 1 = x -> x = 1. that will cause infinite loop.
 
 */
 public class Solution {
-    /**
-     *@param n: Given a decimal number that is passed in as a string
-     *@return: A string
-     */
     public String binaryRepresentation(String n) {
         if (n.length() == 0 || n.equals("0")) {
             return "0";

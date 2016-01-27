@@ -1,9 +1,13 @@
-1. 最普通,Non-recursive: bfs, queue
+M
+
+1. 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。
+
 2. Recursive with dfs: use a level to track. Add curr into corresponding level; each level > rst.size(), add a new [].
-    Note: rst is a ArrayList<ArrayList<String>>, where each level is a arraylist; that is why we can add [] into rst to represent a level.
+   Note: rst is a ArrayList<ArrayList<String>>, where each level is a arraylist; that is why we can add [] into rst to represent a level.
+
+
 ```
 /*
-34% Accepted
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
 Example
@@ -24,21 +28,13 @@ return its level order traversal as:
   [15,7]
 ]
 Challenge
-Using only 1 queue to implement it.
+Challenge 1: Using only 1 queue to implement it.
+
+Challenge 2: Use DFS algorithm to do it.
 
 Tags Expand 
-Tree Search Breadth First Search Queue Binary Tree
+Queue Binary Tree Breadth First Search Binary Tree Traversal Uber LinkedIn Facebook
 
-Thinking process:
-1. Non-recursive
-Use queue to withhold the parent.
-Poll one parent, add this parent’s value to arrayList
-Add the children into Arraylist
-jump to next level
-2. Recursive
-use a integer to track levels.
-If at a new level, then create a new ArrayList.
-At each node, add the node to corresponding level-ArrayList
 */
 
 /**
@@ -53,6 +49,18 @@ At each node, add the node to corresponding level-ArrayList
  * }
  */
   
+/*
+Thoughts:
+1. Non-recursive
+Use queue to withhold the parent.
+Poll one parent, add this parent’s value to arrayList
+Add the children into Arraylist
+jump to next level
+2. Recursive
+use a integer to track levels.
+If at a new level, then create a new ArrayList.
+At each node, add the node to corresponding level-ArrayList
+*/
 public class Solution {
     /**
      * @param root: The root of binary tree.

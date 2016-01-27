@@ -1,6 +1,25 @@
-有问题。还不是非常理解：
-best time to buy and sell stock: 为什么 i-1天的卖了又买，可以和第 i 天的卖合成一次交易？
-因为每天交易的price是定的。所以卖了又买，等于没卖！这就是可以合并的原因。要对价格敏感啊少年。
+H
+
+记得要理解： 为什么 i-1天的卖了又买，可以和第 i 天的卖合成一次交易？
+   因为每天交易的price是定的。所以卖了又买，等于没卖！这就是可以合并的原因。要对价格敏感啊少年。
+
+Inspired from here:
+http://liangjiabin.com/blog/2015/04/leetcode-best-time-to-buy-and-sell-stock.html
+
+局部最优解 vs. 全局最优解：   
+   local[i][j] = max(global[i – 1][j – 1] + diff, local[i – 1][j] + diff)
+   global[i][j] = max(global[i – 1][j], local[i][j])
+
+local[i][j]和global[i][j]的区别是：local[i][j]意味着在第i天一定有交易（卖出）发生。
+   当第i天的价格高于第i-1天（即diff > 0）时，那么可以把这次交易（第i-1天买入第i天卖出）跟第i-1天的交易（卖出）合并为一次交易，即local[i][j]=local[i-1][j]+diff；
+   当第i天的价格不高于第i-1天（即diff<=0）时，那么local[i][j]=global[i-1][j-1]+diff，而由于diff<=0，所以可写成local[i][j]=global[i-1][j-1]。
+   (Note:在我下面这个solution里面没有省去 +diff）
+
+global[i][j]就是我们所求的前i天最多进行k次交易的最大收益，可分为两种情况：
+   如果第i天没有交易（卖出），那么global[i][j]=global[i-1][j]；
+   如果第i天有交易（卖出），那么global[i][j]=local[i][j]。
+
+
 
 ```
 /*
@@ -29,11 +48,6 @@ Dynamic Programming
 	
 */
 class Solution {
-    /**
-     * @param k: An integer
-     * @param prices: Given an integer array
-     * @return: Maximum profit
-     */
     public int maxProfit(int k, int[] prices) {
     	if (prices == null || prices.length < 2 || k <= 0) {
     		return 0;

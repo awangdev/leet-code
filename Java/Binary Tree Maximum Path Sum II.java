@@ -1,7 +1,12 @@
+M
+
 比Binary Tree Maximum Path Sum I 简单许多.
+
 因为条件给的更多：at least 1 node + have to start from root => have to have root.
-Single path: either left or right.
-If the path sum < 0, just skip it.
+
+Single path: either left or right.   
+If the path sum < 0, just skip it.   
+
 ```
 /*
 Binary Tree Maximum Path Sum II

@@ -1,17 +1,39 @@
-理解binary search tree inorder traversal的规律。
-都是先找left.left.left ....left. 为top。
-然后再找parent,然后再right.
+M
 
-这个题目里面找到rst之后，首先考虑这个rst.right
-	其实rst在这里虽然是most left node, 但对于rst.right来说，其实它也是parent.
-所以每次把left全部弄一边的时候，parent node其实也都是顾及到了的。
+用O(h)空间的做法：
+
+理解binary search tree inorder traversal的规律：
+   先找left.left.left ....left 到底，这里是加进stack.
+   然后考虑parent,然后再right.
+
+例如这题：
+   stack里面top，也就是tree最左下角的node先考虑,取名rst.
+   其实这个rst拿出来以后, 它也同时是最底层left null的parent，算考虑过了最底层的parent。
+   最后就考虑最底层的parent.right, 也就是rst.right.
+
+注意:
+   next()其实有个while loop, 很可能是O(h).题目要求average O(1),所以也是okay的.
+
+
+用O(1)空间的做法：不存stack, 时刻update current为最小值。
+
+找下一个最小值：   
+   如果current有right child,那么再找一遍current.right的left-most child,就是最小值了。
+   如果current没有right child,那么就要找current node的右上parent.
+
+注意：
+   一定要确保找到的parent满足parent.left == current.
+   反而言之，如果current是parent的 right child, 那么下一轮就会重新process parent。
+   但是有错:binary search tree里面parent是小于right child的，也就是在之前一步肯定visit过，如此便会死循环。
+
+
 ```
 /*
 Design an iterator over a binary search tree with the following rules:
 
 Elements are visited in ascending order (i.e. an in-order traversal)
 next() and hasNext() queries run in O(1) time in average.
-Have you met this question in a real interview? Yes
+
 Example
 For the following binary search tree, in-order traversal by using iterator is [1, 6, 10, 11, 12]
 
@@ -29,14 +51,7 @@ Tags Expand
 Binary Tree LintCode Copyright Non Recursion Binary Search Tree Google LinkedIn Facebook
 */
 
-/*
-	Thoughts://http://blog.csdn.net/u014748614/article/details/46800891
-	Put all left nodes into stack. Then top of stack must be the first element in in-order-traversal.
-	We never add right node into stack directly, but ever time before returnning the rst node, we take care of rst.right right away.
-		That is, find next() when rst.right as root.
-	very smart use of a 'currnt' node.
-	It's like a pointer on the tree, but only operates when that current node is not null, and under condition of having left child.
-*/
+
 
 /**
  * Definition of TreeNode:
@@ -55,6 +70,16 @@ Binary Tree LintCode Copyright Non Recursion Binary Search Tree Google LinkedIn 
  *    do something for node
  * } 
  */
+/*
+    Thoughts:http://blog.csdn.net/u014748614/article/details/46800891
+    Put all left nodes into stack. Then top of stack must be the first element in in-order-traversal.
+    We never add right node into stack directly, but ever time before returnning the rst node, we take care of rst.right right away.
+        That is, find next() when rst.right as root.
+    very smart use of a 'currnt' node.
+    It's like a pointer on the tree, but only operates when that current node is not null, and under condition of having left child.
+
+*/
+
 public class BSTIterator {
 	public Stack<TreeNode> stack = new Stack<TreeNode>();
 	public TreeNode current;
@@ -80,13 +105,95 @@ public class BSTIterator {
     }
 }
 
+/*
+    Use O(1) space, which means we will not use O(h) stack.
+
+    To begin:
+    1. hasNext()? current.val <= endNode.val to check if the tree is fully traversed.
+
+    2. Find min via left-most: We can alwasy look for left-most to find next minimum value.
+    
+    3. Once left-most min is checked (name it `current`). Next min will be 2 cases:
+        If current.right != null, we can keep looking for current.right's left-most child, as next min.
+        Or, we need to look backwards for parent. Use binary search tree to find current's parent node.
+
+    Note: when doing binary search for parent, make sure it satisfies parent.left = current.
+    
+    Because:If parent.right == current, that parent must has been visited before. In binary search tree,
+    we know that parent.val < parent.right.val. We need to skip this special case, since it leads
+    to ifinite loop.
+
+*/
 
 
+public class BSTIterator {
+    public TreeNode root;
+    public TreeNode current;
+    public TreeNode endNode;
+    //@param root: The root of binary tree.
+    public BSTIterator(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        this.root = root;
+        this.current = root;
+        this.endNode = root;
+        
+        while (endNode != null && endNode.right != null) {
+            endNode = endNode.right;
+        }
+        while (current != null && current.left != null) {
+            current = current.left;
+        }
+    }
 
+    //@return: True if there has next node, or false
+    public boolean hasNext() {
+        return current != null && current.val <= endNode.val;
+    }
+    
+    //@return: return next node
+    public TreeNode next() {
+        TreeNode rst = current;
+        //current node has right child
+        if (current.right != null) {
+            current = current.right;
+            while (current.left != null) {
+                current = current.left;
+            }
+        } else {//Current node does not have right child.
+            current = findParent();
+        }
+        return rst;
+    }
 
-
-
-
+    //Find current's parent, where parent.left == current.
+    public TreeNode findParent(){
+        TreeNode node = root;
+        TreeNode parent = null;
+        int val = current.val;
+        if (val == endNode.val) {
+            return null;
+        }
+        while (node != null) {
+            if (val < node.val) {
+                parent = node;
+                node = node.left;
+            } else if (val > node.val) {
+                node = node.right;
+            } else {//node.val == current.val
+                break;
+            }
+        }
+        return parent;
+    }
+}
 
 
 ```
+
+
+
+
+
+

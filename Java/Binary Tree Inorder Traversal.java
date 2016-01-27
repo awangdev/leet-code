@@ -1,19 +1,22 @@
-1. Recursive: Divide and Conquer
-2. Stack: add left nodes all the way; then print curr; move to right, add right if possible.
-3. Recursive with helper method
+E
 
+法一:      
+Recursive: Divide and Conquer, with helper method
 
-注意inorder traversal在check right node的事后，
-不论right == null or != null, 每次都要强行move to right.
+法二:   
+Stack: 
+Add left nodes all the way   
+Print curr   
+Move to right, add right if possible.   
+  
+注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
 
-如果不node = node.right,
-很可能发生窘境：
-node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。
+若不右移，很可能发生窘境：    
+curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
 
 
 ```
 /*
-Binary Tree Inorder Traversal
 Given a binary tree, return the inorder traversal of its nodes' values.
 
 Example
@@ -32,12 +35,12 @@ Challenge
 Can you do it without recursion?
 
 Tags Expand 
-Binary Tree
+Recursion Binary Tree Binary Tree Traversal
 
 */
 
 /*
-    3. Use a helper method, recursively add to rst
+    1. Use a helper method, recursively add to rst
 */
 
 public class Solution {
@@ -99,7 +102,7 @@ public class Solution {
             //Pop the top node: the curr node
             curr = stack.pop();
             rst.add(curr.val);
-            //Move to right node, and push to satck if needed
+            //Move to right node, and push to stack if needed
             curr = curr.right;
             if (curr!= null) {
                 stack.push(curr);
@@ -109,67 +112,6 @@ public class Solution {
     }    
 }
 
-
-/*
-Thinking process:
-1. Use recursive function: divide and conquer
-    recursive on left
-    result.add( current.val)
-    recursive on right
-2. Use Stack to do traversal
-    while stack not empty {
-        stack all left childs 
-        result.(current.val)
-        stack 1 right child
-    }
-*/
-public class Solution {
-    
-        //Recursive - Divide and Conquer
-    public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer> rst =  new ArrayList<Integer>();
-        if (root == null) {
-            return rst;
-        }
-        inorderRec(rst, root);
-        return rst;
-    }
-    public void inorderRec(ArrayList<Integer> rst, TreeNode root) {
-        if (root == null) {
-            return;
-        }
-        inorderRec(rst, root.left);
-        rst.add(root.val);
-        inorderRec(rst, root.right);
-    }
-
-    //Traversal using Stack
-    public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer> rst = new ArrayList<Integer>();
-        if (root == null) {
-            return rst;
-        }
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        TreeNode curr = root;
-        stack.push(curr);
-        while (!stack.empty()) {
-            while (curr != null && curr.left != null) {
-                curr = curr.left;
-                stack.push(curr);
-            }
-            curr = stack.pop();
-            rst.add(curr.val);
-            curr = curr.right;
-            if (curr != null) {
-                stack.push(curr);
-            }
-        }
-        return rst;    
-    }
-    
-    
-    
-}
 
 
 ```
