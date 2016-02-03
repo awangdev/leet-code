@@ -358,48 +358,68 @@ If the path sum < 0, just skip it.
 
 
 ---
-**23. [Binary Tree Maximum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum.java)**复杂原因是：因为可能有负值啊。不能乱assume正数。
-single path max 的计算是为了给后面的comboMax用的。
-如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
-combo的三种情况：(root可能小于0)1. 只有left, 2。 只有右边。 3. root大于0，那么就left,right,curr全部加起来。
-	情况1和情况2去一个最大值，
-	然后和情况三比较。
-	做了两个Math.max(). 然后就有了这一层的comboMax
+**23. [Binary Tree Maximum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum.java)**
+第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
+   single path max 的计算是为了给后面的comboMax用的。
+   如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
+
+combo的三种情况：(root可能小于0)   
+   1. 只有left    
+   2。 只有右边   
+   3. root大于0，那么就left,right,curr全部加起来。
+
+情况1和情况2去一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
 
 
-12.11.2015 recap:
-    So totally, 5 conditions:
-    (save in single:)
-        left + curr.val
-        right + curr.val
-    (save in combo:)
-        left,
-        right,
-        left + curr.val + right
+12.11.2015 recap:   
+   So totally, 5 conditions:   
+   (save in single)    
+        left + curr.val OR right + curr.val   
+   (save in combo:)    
+   left, right, OR left + curr.val + right   
 
-
-
----
-**24. [Binary Tree Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Path Sum.java)**遍历到底，比较sum vs. target。
-注意divde的情况。起码要把遍历的例子写写。
-
----
-**25. [Binary Tree Paths.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Paths.java)**
-非递归练习了一下
-因为要每次切短list, 所以再加了一个Stack 来存level
-
----
-**26. [Binary Tree Postorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Postorder Traversal.java)**stack1和stack2合作。
-记得这个做法。。。挺神奇的。
-
-Divide and Conquer 的方法也非常明了！
 
 
 
 ---
-**27. [Binary Tree Preorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Preorder Traversal.java)**1. Divide and conquer
-2. Stack(NON-recursive) push curr, push right, push left.
-3. recursive with helper method
+**24. [Binary Tree Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Path Sum.java)**		Level: Easy
+
+Binary Tree的一个基本题。   
+遍历到底，比较sum vs. target。   
+注意divde的情况。要把遍历的例子写写。   
+
+
+---
+**25. [Binary Tree Paths.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Paths.java)**		Level: Easy
+
+方法1：   
+Recursive:分叉。Helper。
+
+方法2，Iterative:    
+   非递归练习了一下   
+   因为要每次切短list, 所以再加了一个Stack 来存level   
+
+
+
+---
+**26. [Binary Tree Postorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Postorder Traversal.java)**		Level: Easy
+
+最prefer 2 stack的做法：   
+   stack1和stack2合作。倒水。记这个做法。。。挺神奇的。
+
+Divide and Conquer 的recursive方法也非常明了！
+
+注意，这些binary tree traversal的题目，常常有多个做法:recursive or iterative
+
+
+---
+**27. [Binary Tree Preorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Preorder Traversal.java)**		Level: Easy
+
+Preorder 写写， stack   
+1. Divide and conquer   
+2. Stack(NON-recursive) push curr, push right, push left.   
+3. recursive with helper method   
+
 
 ---
 **28. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Zigzag Level Order Traversal.java)**Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).

@@ -1,6 +1,9 @@
-Binary Tree的一个基本题。
-遍历到底，比较sum vs. target。
-注意divde的情况。起码要把遍历的例子写写。
+E
+
+Binary Tree的一个基本题。   
+遍历到底，比较sum vs. target。   
+注意divde的情况。要把遍历的例子写写。   
+
 ```
 /*
 Given a binary tree, find all paths that sum of the nodes in the path equals to a given number target.

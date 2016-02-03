@@ -1,7 +1,10 @@
-Preorder 写写， stack
-1. Divide and conquer
-2. Stack(NON-recursive) push curr, push right, push left.
-3. recursive with helper method
+E
+
+Preorder 写写， stack   
+1. Divide and conquer   
+2. Stack(NON-recursive) push curr, push right, push left.   
+3. recursive with helper method   
+
 ```
 /*
 Given a binary tree, return the preorder traversal of its nodes' values.

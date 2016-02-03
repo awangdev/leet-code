@@ -1,7 +1,13 @@
+E
+
+方法1：   
 Recursive:分叉。Helper。
 
-非递归练习了一下
-因为要每次切短list, 所以再加了一个Stack 来存level
+方法2，Iterative:    
+   非递归练习了一下   
+   因为要每次切短list, 所以再加了一个Stack 来存level   
+
+
 ```
 /*
 Binary Tree Paths
@@ -127,10 +133,6 @@ public class Solution {
     	return rst;
     }
 }
-
-
-
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {

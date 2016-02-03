@@ -1,37 +1,43 @@
-有点难理解.
-复杂原因是：因为可能有负值啊。不能乱assume正数。
-single path max 的计算是为了给后面的comboMax用的。
-如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
-combo的三种情况：(root可能小于0)1. 只有left, 2。 只有右边。 3. root大于0，那么就left,right,curr全部加起来。
-	情况1和情况2去一个最大值，
-	然后和情况三比较。
-	做了两个Math.max(). 然后就有了这一层的comboMax
+M 
+
+第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
+   single path max 的计算是为了给后面的comboMax用的。
+   如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
+
+combo的三种情况：(root可能小于0)   
+   1. 只有left    
+   2。 只有右边   
+   3. root大于0，那么就left,right,curr全部加起来。
+
+情况1和情况2去一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
 
 
-12.11.2015 recap:
-    So totally, 5 conditions:
-    (save in single:)
-        left + curr.val
-        right + curr.val
-    (save in combo:)
-        left,
-        right,
-        left + curr.val + right
+12.11.2015 recap:   
+   So totally, 5 conditions:   
+   (save in single)    
+        left + curr.val OR right + curr.val   
+   (save in combo:)    
+   left, right, OR left + curr.val + right   
+
 
 
 ```
 /*
-23% Accepted
 Given a binary tree, find the maximum path sum.
+
 The path may start and end at any node in the tree.
+
+
 Example
-Given the below binary tree,
-       1
-      / \
-     2   3
-Return 6.
+Given the below binary tree:
+
+  1
+ / \
+2   3
+return 6.
+
 Tags Expand 
-Dynamic Programming Tree Depth First Search
+Divide and Conquer Dynamic Programming Recursion
 
 */
 
@@ -95,8 +101,9 @@ public class Solution {
         int singlePathMax = Math.max(left.singlePathMax, right.singlePathMax) + root.val;
         singlePathMax = Math.max(singlePathMax, 0);//If less than 0, no need to keep, because it only decrease parent-level max.
         
-        //first comparison: does not include curr node at all(this would be applicable when curr.val < 0, so we take this condition into account)
+        //first comparison: does not include root node at all(this would be applicable when curr.val < 0, so we take this condition into account)
         int combinedPathMax = Math.max(left.combinedPathMax, right.combinedPathMax);
+        //second comparison: 
         combinedPathMax = Math.max(combinedPathMax, left.singlePathMax + right.singlePathMax + root.val);
         
         return new PathSumType(singlePathMax, combinedPathMax);

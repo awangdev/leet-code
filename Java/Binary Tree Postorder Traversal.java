@@ -1,9 +1,11 @@
-最prefer 2 stack的做法。特别清楚。
-stack1和stack2合作。
-记得这个做法。。。挺神奇的。
+E
 
-Divide and Conquer 的方法也非常明了！
+最prefer 2 stack的做法：   
+   stack1和stack2合作。倒水。记这个做法。。。挺神奇的。
 
+Divide and Conquer 的recursive方法也非常明了！
+
+注意，这些binary tree traversal的题目，常常有多个做法:recursive or iterative
 
 ```
 /*
@@ -63,7 +65,7 @@ public class Solution {
 
 
 /*
-    2. Non-recursive, interative
+    2. Non-recursive, iterative
     use 2 stacks: pull water from s1 into s2
     in s2, we want: at each level, parentNode at bottom, then rightNode, then leftNode
     loop through s2, then we print out leftNode, rightNode, parentNode ... in postOrder.
@@ -130,13 +132,6 @@ public class Solution {
         rst.add(node.val);
     }
 }
-
-
-
-
-
-
-
 
 
 ```
