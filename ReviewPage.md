@@ -339,10 +339,13 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 ---
 **21. [Binary Tree Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Level Order Traversal.java)**		Level: Medium
 
-1. 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。
+方法1. 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
+   或者用两个queue. 当常规queue empty，把backup queue贴上去。
 
-2. Recursive with dfs: use a level to track. Add curr into corresponding level; each level > rst.size(), add a new [].
-   Note: rst is a ArrayList<ArrayList<String>>, where each level is a arraylist; that is why we can add [] into rst to represent a level.
+方法2. Recursive with dfs:   
+   每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
+   如果没有，就加上一层。    
+   之后每次都通过DFS在相应的level上面加数字。
 
 
 
@@ -358,7 +361,8 @@ If the path sum < 0, just skip it.
 
 
 ---
-**23. [Binary Tree Maximum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum.java)**
+**23. [Binary Tree Maximum Path Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum.java)**		Level: Medium
+
 第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
    single path max 的计算是为了给后面的comboMax用的。
    如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
@@ -4075,7 +4079,22 @@ public class Solution {
 简直就是要消灭伏地魔的7个魂器。
 
 ---
-**117. [Longest Substring Without Repeating Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring Without Repeating Characters.java)**
+**117. [Longest Substring Without Repeating Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring Without Repeating Characters.java)**		Level: Medium
+
+方法1：只要有non-existing char就count++. 一旦有重复char:   
+   i = 新出现重复Char的位置.
+   重新init HashMap, count.
+
+这个方法每次都把map打碎重来, 是可以的，也没什么不好。就是在for里面改i，自己觉得不太顺.方法二可能顺一点。
+
+方法2:用两个pointer, head和i.    
+   head从index 0 开始。若没有重复char, 每次只有for loop的i++。每次取substring[head,i]作为最新的string.
+   一旦有重复，那么意味着，从重复的老的那个index要往后加一格开始。所以head = map.get(i) +１.
+
+注意：head很可能被退回到很早的地方，比如abbbbbba,当遇到第二个a，head竟然变成了 head = 0+1 = 1. 当然这是不对的，所以head要确保一直增长，不回溯。
+   
+
+
 ---
 **118. [Longest Words.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Words.java)**Given a dictionary, find all of the longest words in the dictionary.
 
@@ -4154,140 +4173,19 @@ class Solution {
 2. 正常做法：2 lists
 
 ---
-**120. [Lowest Common Ancestor.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor.java)**33% Accepted
-Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
+**120. [Lowest Common Ancestor.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor.java)**		Level: Easy
 
-The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
+方法1：O(n) space O(h) time。把两条线binary search出来。找第一个不同的parent. 代码长。 Iterative
 
-Example
-        4
+方法2：O(1) sapce O(h). Recursive. 循环的截点是：   
+当root == null或者 A B 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.   
 
-    /     \
-
-  3         7
-
-          /     \
-
-        5         6
-
-For 3 and 5, the LCA is 4.
-
-For 5 and 6, the LCA is 7.
-
-For 6 and 7, the LCA is 7.
-
-Tags Expand 
-Binary Tree LintCode Copyright
+三种情况：   
+1. A,B都找到，那么这个level的node就是其中一层的parent。其实，最先recursively return到的那个，就是最底的LCA parent.   
+2. A 或者 B 找到，那就还没有公共parent,return 非null得那个。   
+3. A B 都null, 那就找错了没有呗, return null
 
 
-*/
-
-/*
-  Thoughts:
-  Revisit this on 12.11.2015.
-  To correctly understand this approach when there is not 'parent' atribute available in node.
-
-  We divide and coquer (in this case DFS) into 2 branches, and we are actually asking each node to check:
-    Do I have a leaf child of nodeA (could be futher down in the tree)?
-    Do I have a leaf child of nodeB (could be futher down in the tree)?
-  1. If I have leaf child of A && B, then i'm the deepest parent! Return.
-  2. If I only have A, or B: mark myself as an ancestor of A or B.
-  3. If I don't have leaf child of A nor B, I'm not an ancestor, failed, return null.
-
-  After the common ancestor is found at any deep level, and returned itself to parent level,
-    we can assume other branches must be null (because they are not ancestor, since we are),
-    then the this common ancestor node will be passed to highest level.
-
-  However, with one problem:
-  When review the problem, calling the recursive functions of the 'lowestCommonAncestor' is just 
-  confusing. It's not easy to see the relationship between leef child and ancestor candidates.
-  
- 
-*/
-public class Solution {
-    /**
-     * @param root: The root of the binary search tree.
-     * @param A and B: two nodes in a Binary.
-     * @return: Return the least common ancestor(LCA) of the two nodes.
-     */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode A, TreeNode B) {
-      if (root == null || root == A || root == B) {
-        return root;
-      }
-      TreeNode left = lowestCommonAncestor(root.left, A, B);
-      TreeNode right = lowestCommonAncestor(root.right, A, B);
-
-      if (left != null && right != null) {//Found both A leaf and B leaf 
-        return root;
-      } else if (left != null || right != null) {
-        return left != null ? left : right;
-      } else {
-        return null;
-      }
-    }
-}
-
-/*
-//Another way using regular way: see solution: 
-This is for the case that each node can reach its higher level parent....
-Basically put all parents into a list, 
-[root, next level, next level... parent, nodeA]
-[root, next level, next level... parent, nodeB]
-compare these 2 lists see when to have a different node. that node.parent is the parent
-
-Or, if the list is identical, then their parent might just be same right-above-level parent.
-
-http://www.ninechapter.com/solutions/lowest-common-ancestor/
-*/
-
-
-/*
-Older same version
-Think process:
-Divide and conquer:
-start from root, divide into 2 ways …
-At the bottom, if it’s node1 or node2, send back.
-1. If any line that’s not having node1 or node2 as leaf, they will become null.
-2. At the ancestor spot: because node1!=null and node2!=null, the ancestor return itself. 
-3. From this point, any level higher, it will return the ancestor because the other child-line has been null at the time.
-When it returns to the top, return solution : ancestor
-
-*/
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
-public class Solution {
-    /**
-     * @param root: The root of the binary search tree.
-     * @param A and B: two nodes in a Binary.
-     * @return: Return the least common ancestor(LCA) of the two nodes.
-     */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode A, TreeNode B) {
-        if (root == null || root == A || root == B) {
-            return root;
-        }
-        TreeNode left = lowestCommonAncestor(root.left, A, B);
-        TreeNode right = lowestCommonAncestor(root.right, A, B);
-        
-        if (left == null && right == null) {
-            return null;
-        } else if (left == null) {
-            return right;
-        } else if (right == null) {
-            return left;
-        } else {
-            return root;
-        }
-    }
-}
 
 ---
 **121. [Majority Number II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number II.java)**Given an array of integers, the majority number is the number that occurs more than 1/3 of the size of the array.
@@ -4904,9 +4802,13 @@ PriorityQueue: logk
 **138. [Merge Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Sorted Array.java)**注意，从尾部，是大数字优先的。
 
 ---
-**139. [Merge Two Sorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Two Sorted List.java)**while过后，把没完的list一口气接上。
+**139. [Merge Two Sorted List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Two Sorted List.java)**		Level: Easy
+
+小的放前。每次比head大小。   
+while过后，把没完的list一口气接上。   
 
 一开始建一个node用来跑路, 每次都存node.next = xxx。存一个dummy。用来return dummy.next.
+
 
 ---
 **140. [Middle of Linked List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Middle of Linked List.java)**
@@ -4917,57 +4819,10 @@ PriorityQueue: logk
 return slow
 
 ---
-**141. [Min Stack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Min Stack.java)**Implement a stack with min() function, which will return the smallest number in the stack.
+**141. [Min Stack.java](https://github.com/shawnfan/LintCode/blob/master/Java/Min Stack.java)**		Level: Easy
 
-It should support push, pop and min operation all in O(1) cost.
+双Stack：一个正常stack，另一个minStack存当下level最小值. 注意维护minStack的变化
 
-Example
-push(1)
-pop()   // return 1
-push(2)
-push(3)
-min()   // return 2
-push(1)
-min()   // return 1
-Note
-min operation will never be called if there is no number in the stack.
-
-Tags Expand 
-Stack
-
-Thoughts:
-using 2 stacks: one regular, the other one trackes min element
-MinStack (0 ~ i): for i elements in regular stack, at each ith, the min element is stored at MinStack(i). This means, there can be duplicated mins for different ith.
-
-Note: remember to check if minStack isEmpty(), empty stack does not have peek()
-*/
-
-public class MinStack {
-    private Stack<Integer> stack;
-    private Stack<Integer> minStack;
-    public MinStack() {
-    	stack = new Stack<Integer>();
-      	minStack = new Stack<Integer>();
-    }
-
-    public void push(int number) {
-    	stack.push(number);
-    	if (minStack.isEmpty()) {
-    		minStack.push(number);
-    	} else {
-    		minStack.push(minStack.peek() >= number ? number : minStack.peek());
-    	}
-    }
-
-    public int pop() {
-    	minStack.pop();
-    	return stack.pop();
-    }
-
-    public int min() {
-    	return minStack.peek();
-    }
-}
 
 
 ---
@@ -7863,7 +7718,18 @@ public class Solution {
 
 
 ---
-**222. [Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)**Given an directed graph, a topological order of the graph nodes is defined as follow:
+**222. [Top K Frequent Words.java](https://github.com/shawnfan/LintCode/blob/master/Java/Top K Frequent Words.java)**		Level: Medium
+
+方法1：Brutle force用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+   注意排序时Collection.sort()的cost是O(nLogk)
+
+
+方法2: Trie && MinHeap屌炸天   
+   http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+
+---
+**223. [Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)**Given an directed graph, a topological order of the graph nodes is defined as follow:
 
 For each directed edge A -> B in graph, A must before B in the order list.
 The first node in the order can be any node in the graph with no nodes direct to it.
@@ -7954,10 +7820,10 @@ public class Solution {
 }
 
 ---
-**223. [Total Occurrence of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Total Occurrence of Target.java)**找total number of occurance. 首先找first occurance, 再找last occurance.
+**224. [Total Occurrence of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Total Occurrence of Target.java)**找total number of occurance. 首先找first occurance, 再找last occurance.
 
 ---
-**224. [Trailing Zeros.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trailing Zeros.java)**Write an algorithm which computes the number of trailing zeros in n factorial.
+**225. [Trailing Zeros.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trailing Zeros.java)**Write an algorithm which computes the number of trailing zeros in n factorial.
 
 Example
 11! = 39916800, so the out should be 2
@@ -8052,7 +7918,7 @@ class Solution {
 */
 
 ---
-**225. [Trapping Rain Water II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water II.java)**Trapping Rain Water II
+**226. [Trapping Rain Water II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water II.java)**Trapping Rain Water II
 Given n x m non-negative integers representing an elevation map 2d where the area of each cell is 1 x 1, compute how much water it is able to trap after raining.
 
 
@@ -8172,11 +8038,11 @@ public class Solution {
 
 
 ---
-**226. [Trapping Rain Water.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water.java)**双面夹击：找中间最大bar，两面往中心扫
+**227. [Trapping Rain Water.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water.java)**双面夹击：找中间最大bar，两面往中心扫
 
 
 ---
-**227. [Triangle Count.java](https://github.com/shawnfan/LintCode/blob/master/Java/Triangle Count.java)**Given an array of integers, how many three numbers can be found in the array, so that we can build an triangle whose three edges length is the three numbers that we find?
+**228. [Triangle Count.java](https://github.com/shawnfan/LintCode/blob/master/Java/Triangle Count.java)**Given an array of integers, how many three numbers can be found in the array, so that we can build an triangle whose three edges length is the three numbers that we find?
 
 Example
 Given array S = [3,4,6,7], return 3. They are:
@@ -8239,7 +8105,7 @@ public class Solution {
 
 
 ---
-**228. [Tweaked Identical Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Tweaked Identical Binary Tree.java)**Check two given binary trees are identical or not. Assuming any number of tweaks are allowed. A tweak is defined as a swap of the children of one node in the tree.
+**229. [Tweaked Identical Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Tweaked Identical Binary Tree.java)**Check two given binary trees are identical or not. Assuming any number of tweaks are allowed. A tweak is defined as a swap of the children of one node in the tree.
 
 Have you met this question in a real interview? Yes
 Example
@@ -8308,7 +8174,7 @@ public class Solution {
 
 
 ---
-**229. [Two Lists Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Lists Sum.java)**You have two numbers represented by a linked list, where each node contains a single digit.The digits are stored in reverse order, such that the 1’s digit is at the head of the list.Write a function that adds the two numbers and returns the sum as a linked list.
+**230. [Two Lists Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Lists Sum.java)**You have two numbers represented by a linked list, where each node contains a single digit.The digits are stored in reverse order, such that the 1’s digit is at the head of the list.Write a function that adds the two numbers and returns the sum as a linked list.
 
 Example
 Given two lists, 3->1->5->null and 5->9->2->null, return 8->0->8->null
@@ -8367,10 +8233,10 @@ public class Solution {
 
 
 ---
-**230. [Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)**坑：不要想象这个是个26letter lowercase. may not be true.
+**231. [Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)**坑：不要想象这个是个26letter lowercase. may not be true.
 
 ---
-**231. [Two Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Sum II.java)**Given an array of integers, find how many pairs in the array such that their sum is bigger than a specific target number. Please return the number of pairs.
+**232. [Two Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Sum II.java)**Given an array of integers, find how many pairs in the array such that their sum is bigger than a specific target number. Please return the number of pairs.
 Example
 numbers=[2, 7, 11, 15], target=24
 
@@ -8481,7 +8347,7 @@ public class Solution {
 }
 
 ---
-**232. [Ugly Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Ugly Number.java)**Ugly number is a number that only have factors 3, 5 and 7.
+**233. [Ugly Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Ugly Number.java)**Ugly number is a number that only have factors 3, 5 and 7.
 
 Design an algorithm to find the Kth ugly number. The first 5 ugly numbers are 3, 5, 7, 9, 15 ...
 
@@ -8545,7 +8411,7 @@ Can use DP as well:http://blog.welkinlan.com/2015/07/28/ugly-number-lintcode-jav
 */
 
 ---
-**233. [Unique Binary Search Tree II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree II.java)**Given n, generate all structurally unique BST's (binary search trees) that store values 1...n.
+**234. [Unique Binary Search Tree II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree II.java)**Given n, generate all structurally unique BST's (binary search trees) that store values 1...n.
 
 Example
 Given n = 3, your program should return all 5 unique BST's shown below.
@@ -8607,7 +8473,7 @@ public class Solution {
 
 
 ---
-**234. [Unique Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree.java)**Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
+**235. [Unique Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree.java)**Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
 
 
 
@@ -8650,10 +8516,10 @@ public class Solution {
 }
 
 ---
-**235. [Unique Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Characters.java)**用hashSet, space O(n), time O(n)
+**236. [Unique Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Characters.java)**用hashSet, space O(n), time O(n)
 
 ---
-**236. [Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)**A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+**237. [Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)**A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 
@@ -8760,7 +8626,7 @@ public class Solution {
 
 
 ---
-**237. [Unique Paths II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Paths II.java)**Follow up for "Unique Paths":
+**238. [Unique Paths II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Paths II.java)**Follow up for "Unique Paths":
 
 Now consider if some obstacles are added to the grids. How many unique paths would there be?
 
@@ -8831,7 +8697,7 @@ public class Solution {
 
 
 ---
-**238. [Update Bits.java](https://github.com/shawnfan/LintCode/blob/master/Java/Update Bits.java)**Given two 32-bit numbers, N and M, and two bit positions, i and j. Write a method to set all bits between i and j in N equal to M (e g , M becomes a substring of N located at i and starting at j)   
+**239. [Update Bits.java](https://github.com/shawnfan/LintCode/blob/master/Java/Update Bits.java)**Given two 32-bit numbers, N and M, and two bit positions, i and j. Write a method to set all bits between i and j in N equal to M (e g , M becomes a substring of N located at i and starting at j)   
 
 
 
@@ -8873,16 +8739,22 @@ class Solution {
 
 
 ---
-**239. [Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)**
+**240. [Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)**
 ---
-**240. [Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)**左边的外皮在stack底部。
-右边的外皮应该和最顶上的左外皮一一对应。
+**241. [Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)**		Level: Easy
+
+剥皮过程。解铃还须系铃人   
+左边的外皮'{['在stack底部   
+右边的外皮应该和stack顶上的左外皮一一对应 
+
+
+
 
 ---
-**241. [Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)**validate block的时候虽然看到了4层for.其实也就是n^2.
+**242. [Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)**validate block的时候虽然看到了4层for.其实也就是n^2.
 
 ---
-**242. [Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)**29% Accepted
+**243. [Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)**29% Accepted
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
 Assume a BST is defined as follows:
@@ -8947,7 +8819,7 @@ public class Solution {
 
 
 ---
-**243. [Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)**Given n pieces of wood with length L[i] (integer array). Cut them into small pieces to guarantee you could have equal or more than k pieces with the same length. What is the longest length you can get from the n pieces of wood? Given L & k, return the maximum length of the small pieces.
+**244. [Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)**Given n pieces of wood with length L[i] (integer array). Cut them into small pieces to guarantee you could have equal or more than k pieces with the same length. What is the longest length you can get from the n pieces of wood? Given L & k, return the maximum length of the small pieces.
 
 Note
 You couldn't cut wood into float length.
@@ -9019,7 +8891,7 @@ public class Solution {
 
 
 ---
-**244. [Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)**Given a string s and a dictionary of words dict, determine if s can be break into a space-separated sequence of one or more dictionary words.
+**245. [Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)**Given a string s and a dictionary of words dict, determine if s can be break into a space-separated sequence of one or more dictionary words.
 
 Example
 Given s = "lintcode", dict = ["lint", "code"].
@@ -9114,7 +8986,7 @@ However, this seems confusing and over-complex. We only have 1 set of variables:
 */
 
 ---
-**245. [Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)**Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
+**246. [Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)**Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
 
 Only one letter can be changed at a time
 Each intermediate word must exist in the dictionary
@@ -9395,7 +9267,7 @@ public class Solution {
 */
 
 ---
-**246. [Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)**Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
+**247. [Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)**Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
 
 Only one letter can be changed at a time
 Each intermediate word must exist in the dictionary
@@ -9522,7 +9394,7 @@ public class Solution {
 }
 
 ---
-**247. [Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)**Given a matrix of lower alphabets and a dictionary. Find all words in the dictionary that can be found in the matrix. A word can start from any position in the matrix and go left/right/up/down to the adjacent position. 
+**248. [Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)**Given a matrix of lower alphabets and a dictionary. Find all words in the dictionary that can be found in the matrix. A word can start from any position in the matrix and go left/right/up/down to the adjacent position. 
 
 Example
 Given matrix:
@@ -9733,7 +9605,7 @@ public class Solution {
 }
 
 ---
-**248. [Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)**Given a 2D board and a word, find if the word exists in the grid.
+**249. [Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)**Given a 2D board and a word, find if the word exists in the grid.
 
 The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
 

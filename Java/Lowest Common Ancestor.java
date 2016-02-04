@@ -1,3 +1,18 @@
+E
+
+方法1：O(n) space O(h) time。把两条线binary search出来。找第一个不同的parent. 代码长。 Iterative
+
+方法2：O(1) sapce O(h). Recursive. 循环的截点是：   
+当root == null或者 A B 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.   
+
+三种情况：   
+1. A,B都找到，那么这个level的node就是其中一层的parent。其实，最先recursively return到的那个，就是最底的LCA parent.   
+2. A 或者 B 找到，那就还没有公共parent,return 非null得那个。   
+3. A B 都null, 那就找错了没有呗, return null
+
+
+```
+
 /*
 33% Accepted
 Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
@@ -35,7 +50,7 @@ Binary Tree LintCode Copyright
   We divide and coquer (in this case DFS) into 2 branches, and we are actually asking each node to check:
     Do I have a leaf child of nodeA (could be futher down in the tree)?
     Do I have a leaf child of nodeB (could be futher down in the tree)?
-  1. If I have leaf child of A && B, then i'm the deepest parent! Return.
+  1. If I have leaf child of A && B, then i'm the deepest parent in line! Return.
   2. If I only have A, or B: mark myself as an ancestor of A or B.
   3. If I don't have leaf child of A nor B, I'm not an ancestor, failed, return null.
 
@@ -133,3 +148,52 @@ public class Solution {
         }
     }
 }
+
+
+//Extra storage, not a good method:
+
+ //Find two lists of nodes
+ //First non-common's previous one from two lists, or the end of one list, is the LCA
+public class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == null || q == null) {
+            return root;
+        }
+        ArrayList<TreeNode> list1 = new ArrayList<TreeNode>();
+        ArrayList<TreeNode> list2 = new ArrayList<TreeNode>();
+        TreeNode node = root;
+        list1.add(node);
+        while (node.val != p.val) {
+            if (p.val < node.val) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+            list1.add(node);
+        }
+        node = root;
+        list2.add(node);
+        while (node.val != q.val) {
+            if (q.val < node.val) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+            list2.add(node);
+        }
+        
+        int size = list1.size() < list2.size() ? list1.size() : list2.size();
+        node = root;
+        for (int i = 0; i < size; i++) {
+            if (list1.get(i) != list2.get(i)) {
+                break;
+            }
+            node = list1.get(i);
+        }
+        
+        return node;   
+    }
+}
+
+
+```

@@ -227,30 +227,31 @@ I Will try to revise the solutions once new problem or new testing case occurs.
 |219|[Swap Nodes in Pairs.java](https://github.com/shawnfan/LintCode/blob/master/Java/Swap Nodes in Pairs.java)| |Java|
 |220|[Symmetric Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Symmetric Binary Tree.java)| |Java|
 |221|[The Smallest Difference.java](https://github.com/shawnfan/LintCode/blob/master/Java/The Smallest Difference.java)| |Java|
-|222|[Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)| |Java|
-|223|[Total Occurrence of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Total Occurrence of Target.java)| |Java|
-|224|[Trailing Zeros.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trailing Zeros.java)| |Java|
-|225|[Trapping Rain Water II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water II.java)| |Java|
-|226|[Trapping Rain Water.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water.java)| |Java|
-|227|[Triangle Count.java](https://github.com/shawnfan/LintCode/blob/master/Java/Triangle Count.java)| |Java|
-|228|[Tweaked Identical Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Tweaked Identical Binary Tree.java)| |Java|
-|229|[Two Lists Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Lists Sum.java)| |Java|
-|230|[Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)| |Java|
-|231|[Two Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Sum II.java)| |Java|
-|232|[Ugly Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Ugly Number.java)| |Java|
-|233|[Unique Binary Search Tree II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree II.java)| |Java|
-|234|[Unique Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree.java)| |Java|
-|235|[Unique Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Characters.java)| |Java|
-|236|[Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)| |Java|
-|237|[Unique Paths II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Paths II.java)| |Java|
-|238|[Update Bits.java](https://github.com/shawnfan/LintCode/blob/master/Java/Update Bits.java)| |Java|
-|239|[Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)| |Java|
-|240|[Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)| |Java|
-|241|[Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)| |Java|
-|242|[Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)| |Java|
-|243|[Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)| |Java|
-|244|[Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)| |Java|
-|245|[Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)| |Java|
-|246|[Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)| |Java|
-|247|[Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)| |Java|
-|248|[Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)| |Java|
+|222|[Top K Frequent Words.java](https://github.com/shawnfan/LintCode/blob/master/Java/Top K Frequent Words.java)| |Java|
+|223|[Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)| |Java|
+|224|[Total Occurrence of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Total Occurrence of Target.java)| |Java|
+|225|[Trailing Zeros.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trailing Zeros.java)| |Java|
+|226|[Trapping Rain Water II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water II.java)| |Java|
+|227|[Trapping Rain Water.java](https://github.com/shawnfan/LintCode/blob/master/Java/Trapping Rain Water.java)| |Java|
+|228|[Triangle Count.java](https://github.com/shawnfan/LintCode/blob/master/Java/Triangle Count.java)| |Java|
+|229|[Tweaked Identical Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Tweaked Identical Binary Tree.java)| |Java|
+|230|[Two Lists Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Lists Sum.java)| |Java|
+|231|[Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)| |Java|
+|232|[Two Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Sum II.java)| |Java|
+|233|[Ugly Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Ugly Number.java)| |Java|
+|234|[Unique Binary Search Tree II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree II.java)| |Java|
+|235|[Unique Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Binary Search Tree.java)| |Java|
+|236|[Unique Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Characters.java)| |Java|
+|237|[Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)| |Java|
+|238|[Unique Paths II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Paths II.java)| |Java|
+|239|[Update Bits.java](https://github.com/shawnfan/LintCode/blob/master/Java/Update Bits.java)| |Java|
+|240|[Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)| |Java|
+|241|[Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)| |Java|
+|242|[Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)| |Java|
+|243|[Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)| |Java|
+|244|[Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)| |Java|
+|245|[Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)| |Java|
+|246|[Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)| |Java|
+|247|[Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)| |Java|
+|248|[Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)| |Java|
+|249|[Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)| |Java|

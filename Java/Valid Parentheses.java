@@ -1,6 +1,11 @@
-剥皮形态。
-左边的外皮在stack底部。
-右边的外皮应该和最顶上的左外皮一一对应。
+E
+
+剥皮过程。解铃还须系铃人   
+左边的外皮'{['在stack底部   
+右边的外皮应该和stack顶上的左外皮一一对应 
+
+
+
 ```
 /*
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
@@ -11,6 +16,47 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
 Tags Expand 
 Stack
 */
+
+//02.04.2015 Recap
+//lock will be unlocked by the same key
+//put in stack. when '),],}' appears, check stack.top() to make sure they are good match
+public class Solution {
+    public boolean isValid(String s) {
+        if (s == null || s.length() == 0) {
+            return true;
+        }
+        if (s.length() % 2 != 0) {
+            return false;
+        }
+        Stack<Character> stack = new Stack<Character>();
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c);
+            } else if (c ==')' || c == ']' || c == '}') {
+                if (stack.isEmpty()) {
+                    return false;
+                }   
+                char front = stack.pop();
+                if (c == ')' && front != '(') {
+                    return false;
+                }
+                if (c == ']' && front != '[') {
+                    return false;
+                }
+                if (c == '}' && front != '{') {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        
+        return stack.isEmpty();
+    }
+}
+
 
 /*
 	Thoughts:

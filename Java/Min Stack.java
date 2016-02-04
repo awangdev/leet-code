@@ -1,3 +1,9 @@
+E
+
+双Stack：一个正常stack，另一个minStack存当下level最小值. 注意维护minStack的变化
+
+
+```
 /*
 Implement a stack with min() function, which will return the smallest number in the stack.
 
@@ -28,26 +34,28 @@ public class MinStack {
     private Stack<Integer> stack;
     private Stack<Integer> minStack;
     public MinStack() {
-    	stack = new Stack<Integer>();
-      	minStack = new Stack<Integer>();
+        stack = new Stack<Integer>();
+        minStack = new Stack<Integer>();
     }
 
     public void push(int number) {
-    	stack.push(number);
-    	if (minStack.isEmpty()) {
-    		minStack.push(number);
-    	} else {
-    		minStack.push(minStack.peek() >= number ? number : minStack.peek());
-    	}
+        stack.push(number);
+        if (minStack.isEmpty()) {
+            minStack.push(number);
+        } else {
+            minStack.push(minStack.peek() >= number ? number : minStack.peek());
+        }
     }
 
     public int pop() {
-    	minStack.pop();
-    	return stack.pop();
+        minStack.pop();
+        return stack.pop();
     }
 
     public int min() {
-    	return minStack.peek();
+        return minStack.peek();
     }
 }
 
+
+```

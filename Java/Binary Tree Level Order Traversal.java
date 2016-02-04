@@ -1,9 +1,12 @@
 M
 
-1. 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。
+方法1. 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
+   或者用两个queue. 当常规queue empty，把backup queue贴上去。
 
-2. Recursive with dfs: use a level to track. Add curr into corresponding level; each level > rst.size(), add a new [].
-   Note: rst is a ArrayList<ArrayList<String>>, where each level is a arraylist; that is why we can add [] into rst to represent a level.
+方法2. Recursive with dfs:   
+   每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
+   如果没有，就加上一层。    
+   之后每次都通过DFS在相应的level上面加数字。
 
 
 ```
@@ -61,6 +64,9 @@ use a integer to track levels.
 If at a new level, then create a new ArrayList.
 At each node, add the node to corresponding level-ArrayList
 */
+
+//Non-recurive Iterative way:
+//Even with while + for nested loop, it's just O(n)
 public class Solution {
     /**
      * @param root: The root of binary tree.
@@ -71,7 +77,7 @@ public class Solution {
         if (root == null) {
             return result;
         }
-        /* //Non-recurive Iterative way:
+        
         //Use a queue to list elements: each row
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.offer(root);
@@ -91,9 +97,58 @@ public class Solution {
             }
             result.add(list);
         }//while
-        */
+        
+        return result;    
+    }
+}
 
-        //Recursive:
+//Another Iterative way: using 2 Queues
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> rst = new ArrayList<List<Integer>>();
+        if (root == null) {
+           return rst; 
+        }  
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> backQueue = new LinkedList<TreeNode>();
+        queue.offer(root);
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node.left != null) {
+                backQueue.offer(node.left);
+            }
+            if (node.right != null) {
+                backQueue.offer(node.right);
+            }
+            list.add(node.val);
+            
+            if (queue.isEmpty()) {
+                rst.add(new ArrayList<Integer>(list));
+                list = new ArrayList<Integer>();
+                queue = backQueue;
+                backQueue = new LinkedList<TreeNode>();
+            }
+        
+        }
+        return rst;
+    }
+}
+
+
+
+//Recursive:
+//Recursive with dfs: use a level to track. Add curr into corresponding level; each level > rst.size(), add a new [].
+//Note: rst is a ArrayList<ArrayList<Integer>>, where each level is a arraylist; that is why we can add [] into rst to represent a level.
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        if (root == null) {
+            return result;
+        }
+
         dfs(root, 0, result);
         return result;    
     }

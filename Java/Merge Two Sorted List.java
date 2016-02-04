@@ -1,7 +1,10 @@
-小的放前。每次比head大小。
-while过后，把没完的list一口气接上。
+E
+
+小的放前。每次比head大小。   
+while过后，把没完的list一口气接上。   
 
 一开始建一个node用来跑路, 每次都存node.next = xxx。存一个dummy。用来return dummy.next.
+
 ```
 /*
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
