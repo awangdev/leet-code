@@ -1,3 +1,9 @@
+E
+
+建立新list。每次把newList append 在current node的后面。   
+用head来循环所有node。
+
+```
 /*
 Reverse a linked list.
 
@@ -12,49 +18,21 @@ Tags Expand
 Linked List Facebook Uber
 */
 
+//Use empty node, add to tail, append empty node to next node. keep going like that
 public class Solution {
-    /**
-     * @param head: The head of linked list.
-     * @return: The new head of reversed linked list.
-     */
-    public ListNode reverse(ListNode head) {
+    public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        
-        ListNode dummy = new ListNode(0);
-        
-        while (head != null) {
-            //Take head out
-            ListNode temp = head;
-            //Head moves on
-            head = head.next;
-            //Cut the dummy list, insert temp in front
-            temp.next = dummy.next;
-            dummy.next = temp;
-        }
-        
-        return dummy.next;
-    }
-}
+        ListNode newList = null;
 
-//This is a more easy to 'apply and go' version.
-public class Solution {
-    /**
-     * @param head: The head of linked list.
-     * @return: The new head of reversed linked list.
-     */
-    public ListNode reverse(ListNode head) {
-        if (head == null) {
-            return head;
-        }
-        ListNode reversedList = null;
         while (head != null) {
-            ListNode cutOffPart = head.next;
-            head.next = reversedList;
-            reversedList = head;
-            head = cutOffPart;
+            ListNode temp = head.next;
+            head.next = newList;
+            newList = head;
+            head = temp;
         }
-        return reversedList;
+        return newList;
     }
 }
+```

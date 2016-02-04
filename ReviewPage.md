@@ -3083,7 +3083,12 @@ public class Solution {
 }
 
 ---
-**92. [Intersection of Two Linked Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Intersection of Two Linked Lists.java)**长度不同的话，切掉长的那个的extra length。 那么起点一样后，重合点就会同时到达。
+**92. [Intersection of Two Linked Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Intersection of Two Linked Lists.java)**		Level: Easy
+
+长短list，找重合点。
+长度不同的话，切掉长的list那个的extra length。 那么起点一样后，重合点就会同时到达。
+
+
 
 ---
 **93. [Interval Minimum Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Minimum Number.java)**把min number存在区间里面。
@@ -6336,65 +6341,11 @@ public class Solution {
 
 
 ---
-**182. [Reverse Linked List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Linked List.java)**Reverse a linked list.
+**182. [Reverse Linked List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Linked List.java)**		Level: Easy
 
-Have you met this question in a real interview? Yes
-Example
-For linked list 1->2->3, the reversed linked list is 3->2->1
+建立新list。每次把newList append 在current node的后面。   
+用head来循环所有node。
 
-Challenge
-Reverse it in-place and in one-pass
-
-Tags Expand 
-Linked List Facebook Uber
-*/
-
-public class Solution {
-    /**
-     * @param head: The head of linked list.
-     * @return: The new head of reversed linked list.
-     */
-    public ListNode reverse(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        
-        ListNode dummy = new ListNode(0);
-        
-        while (head != null) {
-            //Take head out
-            ListNode temp = head;
-            //Head moves on
-            head = head.next;
-            //Cut the dummy list, insert temp in front
-            temp.next = dummy.next;
-            dummy.next = temp;
-        }
-        
-        return dummy.next;
-    }
-}
-
-//This is a more easy to 'apply and go' version.
-public class Solution {
-    /**
-     * @param head: The head of linked list.
-     * @return: The new head of reversed linked list.
-     */
-    public ListNode reverse(ListNode head) {
-        if (head == null) {
-            return head;
-        }
-        ListNode reversedList = null;
-        while (head != null) {
-            ListNode cutOffPart = head.next;
-            head.next = reversedList;
-            reversedList = head;
-            head = cutOffPart;
-        }
-        return reversedList;
-    }
-}
 
 ---
 **183. [Reverse Words in a String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Words in a String.java)**坑： 1. 结尾不能有空格。 2. 注意，如果Input是 ‘ ’的话，split以后就啥也没有了。check split以后 length == 0
@@ -7232,63 +7183,12 @@ class Solution {
 **211. [Stone Game.java](https://github.com/shawnfan/LintCode/blob/master/Java/Stone Game.java)**NOT DONE YET
 
 ---
-**212. [String to Integer(atoi).java](https://github.com/shawnfan/LintCode/blob/master/Java/String to Integer(atoi).java)**Implement function atoi to convert a string to an integer.
+**212. [String to Integer(atoi).java](https://github.com/shawnfan/LintCode/blob/master/Java/String to Integer(atoi).java)**		Level: Easy
 
-If no valid conversion could be performed, a zero value is returned.
+方法1: 问清情况，一点一点把case都涉及到。
 
-If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
+方法2: 用regular expression。if (!str.matches("[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)")).  猛了一点
 
-Example
-"10" => 10
-
-"-1" => -1
-
-"123123123123123" => 2147483647
-
-"1.0" => 1
-
-Tags Expand 
-Basic Implementation String
-
-Thoughts:
-First idea: why not using Integer.parseInt(str)? Maybe that's too costly, and maybe it does not over all possible integers?
-Can we just use a Long.parseLong(str) ?
-
-Issues to check:
-Long is not enough, because we might be getting decimal point. So we can use Double here.
-String might have space: remove all " "
-String might have char of other kind: check each individual char if isNaN()
-
-It looks like somewhere we'd need to use regular exp to search for pattern, and remove space.
-
-Note: need to ask if things like '21lintcode' can be considered as partial-integer and return 21. This is a more complex case, even after reg exp.
-
-*/
-
-
-public class Solution {
-    /**
-     * @param str: A string
-     * @return An integer
-     */
-    public int atoi(String str) {
-        if (str == null || str.length() == 0) {
-        	return 0;
-        }
-        str = str.replaceAll("\\s","");
-        if (!str.matches("[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)")) {
-        	return 0;
-        }
-        double rst = Double.parseDouble(str);
-        if (rst > Integer.MAX_VALUE) {
-        	return Integer.MAX_VALUE;
-        } else if (rst < Integer.MIN_VALUE) {
-        	return Integer.MIN_VALUE;
-        } else {
-        	return (int)rst;
-        }
-    }
-}
 
 ---
 **213. [StrStr.java](https://github.com/shawnfan/LintCode/blob/master/Java/StrStr.java)**StrStr:
@@ -8233,7 +8133,14 @@ public class Solution {
 
 
 ---
-**231. [Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)**坑：不要想象这个是个26letter lowercase. may not be true.
+**231. [Two Strings Are Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Strings Are Anagrams.java)**		Level: Easy
+
+方法1:char ascii 用count[256]   
+坑：不要想象这个是个26letter lowercase. may not be true.
+
+方法2: 若是其他字符encoding, 而不只是utf16-encoding (java char)?   
+那么就继续用string去做
+
 
 ---
 **232. [Two Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Two Sum II.java)**Given an array of integers, find how many pairs in the array such that their sum is bigger than a specific target number. Please return the number of pairs.

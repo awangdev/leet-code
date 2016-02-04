@@ -1,5 +1,9 @@
+E
+
 长短list，找重合点。
-长度不同的话，切掉长的那个的extra length。 那么起点一样后，重合点就会同时到达。
+长度不同的话，切掉长的list那个的extra length。 那么起点一样后，重合点就会同时到达。
+
+
 ```
 /*
 Write a program to find the node at which the intersection of two singly linked lists begins.

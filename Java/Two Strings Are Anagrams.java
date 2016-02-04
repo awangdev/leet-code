@@ -1,5 +1,11 @@
-Anagrams。 用count[256]
+E
+
+方法1:char ascii 用count[256]   
 坑：不要想象这个是个26letter lowercase. may not be true.
+
+方法2: 若是其他字符encoding, 而不只是utf16-encoding (java char)?   
+那么就继续用string去做
+
 ```
 /*
 Write a method anagram(s,t) to decide if two strings are anagrams or not.
@@ -55,49 +61,43 @@ public class Solution {
 };
 
 
-
-
-
 /*
-Older version:
-Thoughts:
-1. s.charAt(i) is in t.
-2. remove that char in t and s.
-3. if at then all both are empty, return true.
-NOTE: cannot use chararray to sort, because that takes O(n) space
-BUG solved: when editing string, be careful with index. Index builds on original string length, 
-but string length changes over time. Solution: extra care on index, extra care on loop length change.
+What if it's not just ascii code, maybe uni-code? 
+Then the character (utf16-encoding) may not be enough. So we use String here.
 */
+
+//check length. compare 
 public class Solution {
-    public boolean anagram(String s, String t) {
-        if (s == null || t == null || s.length() == 0 || t.length() == 0 || s.length() != t.length()) {
+    public boolean isAnagram(String s, String t) {
+        if (s == null || t == null || s.length() != t.length()) {
             return false;
         }
         if (s.equals(t)) {
             return true;
         }
-        int length = s.length();
-        for (int i = 0; i < length; i++) {
-            int j = t.indexOf(s.charAt(0));
-            if (j == -1)  {
-                return false;
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        for (int i = 0; i < s.length(); i++) {
+            String ss = s.substring(i, i + 1);
+            String tt = t.substring(i, i + 1);
+            if (!map.containsKey(ss)) {
+                map.put(ss, 0);
+            } 
+            map.put(ss, map.get(ss) + 1);
+            if (!map.containsKey(tt)) {
+                map.put(tt, 0);
             }
-            if (s.charAt(0) == t.charAt(j)) {
-                s = s.substring(1);
-                if (j == t.length() - 1) {
-                    t = t.substring(0, j);
-                } else {
-                    t = t.substring(0, j) + t.substring(j + 1);
-                }
-            } else {
+            map.put(tt, map.get(tt) - 1);
+        }
+        
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() != 0) {
                 return false;
             }
         }
-        if (s.length() == 0 && t.length() == 0) {
-            return true;
-        } 
-        return false;
+        
+        return true;
     }
-};
+}
+
 
 ```
