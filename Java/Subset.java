@@ -1,8 +1,14 @@
-最基本的递归题目。
+M
+
+最基本的递归题目。   
 坑：记得一开头sort一下 nums。 因为要升序。
 
-点：
-用level来track到哪一步。最后一level就add into rst
+注意：用level/index来track到哪一步。最后一level就add into rst
+
+方法1: subset的概念，取或者不取,backtracking. 当level/index到底，return 一个list.
+
+方法2: 用for loop backtracking. 记得：每个dfs recursive call是一种独特可能，先加进rst。
+
 ```
 /*
 Given a set of distinct integers, return all possible subsets.
@@ -31,15 +37,13 @@ Recursion Facebook Uber
 */
 
 /*
-    12.06.2015 recap:
+    12.06.2015 recap.
+    Choose or not choose
+    When level == nums.length, return a entry.
 */
 class Solution {
-    /**
-     * @param S: A set of numbers.
-     * @return: A list of lists. All valid subsets.
-     */
-    public ArrayList<ArrayList<Integer>> subsets(int[] nums) {
-        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> rst = new ArrayList<List<Integer>>();
         if (nums == null || nums.length == 0) {
             return rst;
         }
@@ -49,7 +53,7 @@ class Solution {
         
         return rst;
     }
-    public void helper(ArrayList<ArrayList<Integer>> rst, ArrayList<Integer> list,
+    public void helper(List<List<Integer>> rst, ArrayList<Integer> list,
                 int[] nums, int level) {
         if (level == nums.length) {
             rst.add(new ArrayList<Integer>(list));
@@ -66,27 +70,28 @@ class Solution {
 }
 
 
-
- public ArrayList<ArrayList<Integer>> subsets(ArrayList<Integer> source) {
-        // write your code here
-        ArrayList<ArrayList<Integer>> output = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> newList = new ArrayList<Integer>();
-        Collections.sort(source);
-        subsetHelper(0, source, newList, output);
-        return output;
+//Back tracking, DFS, recursive: recursive call of (rst, list, nums, index). 
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> rst = new ArrayList<List<Integer>>();
+        if (nums == null || nums.length == 0) {
+            return rst;
+        }
+        Arrays.sort(nums);
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        dfs(rst, list, nums, 0);
+        return rst;
     }
     
-    public void subsetHelper(int pos, 
-            ArrayList<Integer> source, ArrayList<Integer> newList, 
-            ArrayList<ArrayList<Integer>> output){
-        output.add(new ArrayList<Integer>(newList));
+    public void dfs(List<List<Integer>> rst, ArrayList<Integer> list, int[] nums, int index){
+        rst.add(new ArrayList<>(list));
         
-        for( int i = pos; i < source.size(); i++){
-            newList.add( source.get(i));
-            subsetHelper(i+1, source, newList, output);
-            newList.remove( newList.size() - 1 );
+        for( int i = index; i < nums.length; i++){
+            list.add(nums[i]);
+            dfs(rst, list, nums, i+1);
+            list.remove(list.size() - 1);
         }
     }
-
+}
 
 ```
