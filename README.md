@@ -1,6 +1,6 @@
-# LintCode
+# Java Algorithm Problems
 
-To host Java Solutions to problems from LintCode(http://LintCode.com).
+To host Java Solutions to algorithm problems from LintCode, LeetCode...etc.
 I Will try to revise the solutions once new problem or new testing case occurs.
 
 | Squence | Problem       | Level			| Language  |

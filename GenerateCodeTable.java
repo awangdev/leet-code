@@ -70,7 +70,7 @@ public class GenerateCodeTable {
 	*/
 	public static String generateWordPressPage(File[] listOfFiles) {
 		//Assemble output
-		String outputContent = "Java Solutions to problems from LintCode(<a href='http://lintcode.com/'>http://LintCode.com</a>).\n" +
+		String outputContent = "Java Solutions to algorithm problems from LintCode, LeetCode...etc.\n" +
 		"<table>" +
 			"<thead>" + 
 			"<tr>" + 
@@ -107,8 +107,8 @@ public class GenerateCodeTable {
 	*/
 	public static String generateREADME(File[] listOfFiles) {
 		//Assemble output
-		String outputContent = "# LintCode\n\n" + 
-			"To host Java Solutions to problems from LintCode(http://LintCode.com).\n" + 
+		String outputContent = "# Java Algorithm Problems\n\n" + 
+			"To host Java Solutions to algorithm problems from LintCode, LeetCode...etc.\n" + 
 			"I Will try to revise the solutions once new problem or new testing case occurs.\n\n" + 
 			"| Squence | Problem       | Level			| Language  |\n" + 
 			"|:-------:|:--------------|:---------------|:---------:|\n";
