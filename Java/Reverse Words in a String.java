@@ -1,25 +1,35 @@
-几种不同的方法flip：
+M
+
+几种不同的方法flip：   
 坑： 1. 结尾不能有空格。 2. 注意，如果Input是 ‘ ’的话，split以后就啥也没有了。check split以后 length == 0
+
+另个题目Reverse Words in String (char[]) 可以in-place，因为条件说char[]里面是没有首尾空格,好做许多哟.
+
 ```
 /*
-23% Accepted
 Given an input string, reverse the string word by word.
 
 For example,
 Given s = "the sky is blue",
 return "blue is sky the".
 
-Example
-Clarification
+Update (2015-02-12):
+For C programmers: Try to solve it in-place in O(1) space.
+
+click to show clarification.
+
+Clarification:
 What constitutes a word?
 A sequence of non-space characters constitutes a word.
-
 Could the input string contain leading or trailing spaces?
 Yes. However, your reversed string should not contain leading or trailing spaces.
 How about multiple spaces between two words?
 Reduce them to a single space in the reversed string.
-Tags Expand 
-String
+Hide Company Tags Bloomberg
+Hide Tags String
+Hide Similar Problems (M) Reverse Words in a String II
+
+
 */
 
 
@@ -27,7 +37,7 @@ String
 
 
 /*
-    Thoughts:12.08.2015
+    Thoughts:12.08.2015 
     Have multiple two other ways to do it: 
         1. flip all,then flip each individual word; 
         2. break into parts and append from end to beginning.
@@ -57,7 +67,7 @@ public class Solution {
 
 
 /*
-Thinking Process:
+Thinking Process: 
 1. Reverse it like reversing a int array
 2. Use Split into arrays.
 3. When reversing, make sure not empty string ""

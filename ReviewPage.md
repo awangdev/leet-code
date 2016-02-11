@@ -2912,8 +2912,16 @@ public class Solution {
 另一个union-find， 用hashmap的：http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
 
 ---
-**97. [Gray Code.java](https://github.com/shawnfan/LintCode/blob/master/Java/Gray Code.java)**我做的恰好和它要的结果不一样，但是我觉得我这种走法走出来也是没错的。
+**97. [Gray Code.java](https://github.com/shawnfan/LintCode/blob/master/Java/Gray Code.java)**		Level: Medium
+
+题目蛋疼，目前只接受一种结果。
+
+BackTracking + DFS:   
+   Recursive helper里每次flip一个 自己/左边/右边. Flip过后还要恢复原样.遍历所有.
+
+曾用法（未仔细验证）：   
 基本想法就是从一个点开始往一个方向走，每次flip一个bit, 碰壁的时候就回头走。
+
 
 ---
 **98. [Group Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Group Anagrams.java)**		Level: Medium
@@ -7351,73 +7359,24 @@ public class Solution {
 
 
 ---
-**225. [Reverse Words in a String II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Words in a String II.java)**Given an input string, reverse the string word by word. A word is defined as a sequence of non-space characters.
+**225. [Reverse Words in a String II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Words in a String II.java)**		Level: Medium
 
-The input string does not contain leading or trailing spaces and the words are always separated by a single space.
+In-place reverse.
 
-For example,
-Given s = "the sky is blue",
-return "blue is sky the".
+reverse用两回. 全局reverse。局部:遇到空格reverse。
 
-Could you do it in-place without allocating extra space?
-
-Related problem: Rotate Array
-
-Tags: String
-Similar Problems: (M) Reverse Words in a String, (E) Rotate Array
+注意：结尾点即使没有' '也要给reverse一下最后一个词。
 
 
-*/
-
-/*
-Thoughts: write an example: reverse the whole thing, then reverse each individual word, split by space.
-
-Note: becase we don't have space at end of the char[], so we will ignore last word. Remember to reverse that one.
-*/
-public class Solution {
-    public void reverseWords(char[] s) {
-    	if (s == null || s.length == 0) {
-    		return;
-    	}
-    	int len = s.length;
-    	//reverse whole
-    	for (int i = 0; i < len / 2; i++) {
-    		char temp = s[i];
-    		s[i] = s[len - 1 - i];
-    		s[len - 1 - i] = temp;
-    	}
-
-    	//reverse partial
-    	int start = 0;
-    	int mid = 0;
-    	int end = 0;
-    	for (int i = 0; i < len; i++) {
-    		if (s[i] == ' ') {
-    			mid = start + (end - start) / 2;
-    			for (int j = start; j <= mid; j++) {
-    				char temp = s[j];
-    				s[j] = s[end - (j - start)];
-    				s[end - (j - start)] = temp;
-    			}
-    			start = i + 1;
-    		} else {
-    			end = i;
-    		}
-    	}
-
-    	//Process last word
-    	mid = start + (end - start) / 2;
-    	for (int j = start; j <= mid; j++) {
-			char temp = s[j];
-			s[j] = s[end - (j - start)];
-			s[end - (j - start)] = temp;
-		}
-    	
-    }
-}
 
 ---
-**226. [Reverse Words in a String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Words in a String.java)**坑： 1. 结尾不能有空格。 2. 注意，如果Input是 ‘ ’的话，split以后就啥也没有了。check split以后 length == 0
+**226. [Reverse Words in a String.java](https://github.com/shawnfan/LintCode/blob/master/Java/Reverse Words in a String.java)**		Level: Medium
+
+几种不同的方法flip：   
+坑： 1. 结尾不能有空格。 2. 注意，如果Input是 ‘ ’的话，split以后就啥也没有了。check split以后 length == 0
+
+另个题目Reverse Words in String (char[]) 可以in-place，因为条件说char[]里面是没有首尾空格,好做许多哟.
+
 
 ---
 **227. [reverseInteger.java](https://github.com/shawnfan/LintCode/blob/master/Java/reverseInteger.java)**Reverse Integer 
