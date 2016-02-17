@@ -4539,51 +4539,14 @@ public class Solution {
 **142. [Longest Increasing Subsequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Increasing Subsequence.java)**每次都考虑o~i的所有情况。所以double for loop
 
 ---
-**143. [Longest Palindromic Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Palindromic Substring.java)**Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+**143. [Longest Palindromic Substring.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Palindromic Substring.java)**		Level: Medium
 
-Example
-Given the string = "abcdzdcab", return "cdzdc".
+方法1: 从中间劈开. 遍历i，从n个不同的点劈开：每次劈开都看是否可以从劈开出作为palindromic的中点延伸。   
+   Worst case: 整个string都是相同字符，time complexity变成： 1 + 2 +３　＋　．．．　＋n = O(n^2)
 
-Challenge
-O(n2) time is acceptable. Can you do it in O(n) time.
-
-Tags Expand 
-String
-*/
-/*
-	O(n) way, not done yet
-*/
+方法2: 穷举double for loop. O(n^2)
 
 
-/*
-	O(n^2)
-	Thoughts:
-	Like Palindrome Partioning II, try to use isPal[i][j] to verify each string (i,j). 
-	If string(i,j) is valid, note down the (i,j) portion and find the longest.
-	This is a standard O(n^2) process
-*/
-public class Solution {
-    /**
-     * @param s input string
-     * @return the longest palindromic substring
-     */
-    public String longestPalindrome(String s) {
-    	if (s == null || s.length() == 0) {
-    		return s;
-    	}
-    	boolean isPal[][] = new boolean[s.length()][s.length()];
-    	String maxStr = "";
-    	for (int j = 0; j < s.length(); j++) {
-    		for (int i = 0; i <= j; i++) {
-    			if (s.charAt(i) == s.charAt(j) && (j - i <= 1 || isPal[i + 1][j - 1])) {
-    				isPal[i][j] = true;
-    				maxStr = maxStr.length() > s.substring(i, j + 1).length() ? maxStr : s.substring(i, j + 1);
-    			}
-    		}
-    	}//end for j
-    	return maxStr;
-    }
-}
 
 ---
 **144. [Longest Substring with At Most K Distinct Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring with At Most K Distinct Characters.java)**map.size一旦超标，要把longest string最开头（marked by pointer:start）的那个char抹掉，而且要把它所有的appearance都抹掉；这样还不够，它最后一次出现以前的其他所有chars，也都要抹掉。
@@ -5552,16 +5515,19 @@ class Solution {
 **167. [Merge k Sorted Arrays.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge k Sorted Arrays.java)**自己建立一个class 来存放必要信息
 
 ---
-**168. [Merge k Sorted Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge k Sorted Lists.java)**非常正规的。
+**168. [Merge k Sorted Lists.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge k Sorted Lists.java)**		Level: Hard
 
-记得k lists 需要是已经sort好的。
+用Priorityqueue来排列所有list的头.
 
-时间：n*O(logk)
-PriorityQueue: logk
-这个题目可以有好几个衍生：
+记得k lists 需要是已经sort好的。   
 
-比如，如果k很大，一个机器上放不下所有的k list怎么办？ 
-比如，如果Merge起来的很长，一个机器上放不下怎么办？
+时间：n*O(logk)   
+PriorityQueue: logk   
+
+这个题目可以有好几个衍生：   
+   比如，如果k很大，一个机器上放不下所有的k list怎么办？ 
+   比如，如果Merge起来的很长，一个机器上放不下怎么办？
+
 
 ---
 **169. [Merge Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Merge Sorted Array II.java)**

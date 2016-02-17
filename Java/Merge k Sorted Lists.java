@@ -1,30 +1,43 @@
-用Priorityqueue来排列所有list的头头。
-非常正规的。
+H
 
-记得k lists 需要是已经sort好的。
+用Priorityqueue来排列所有list的头.
 
-时间：n*O(logk)
-PriorityQueue: logk
-这个题目可以有好几个衍生：
+记得k lists 需要是已经sort好的。   
 
-比如，如果k很大，一个机器上放不下所有的k list怎么办？ 
-比如，如果Merge起来的很长，一个机器上放不下怎么办？
+时间：n*O(logk)   
+PriorityQueue: logk   
+
+这个题目可以有好几个衍生：   
+   比如，如果k很大，一个机器上放不下所有的k list怎么办？ 
+   比如，如果Merge起来的很长，一个机器上放不下怎么办？
+
 ```
+
 /*
-22% 通过
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
-样例
-标签 Expand 
-Linked List Divide and Conquer Heap
+Hide Company Tags LinkedIn Google Uber Airbnb Facebook Twitter Amazon Microsoft
+Hide Tags Divide and Conquer Linked List Heap
+Hide Similar Problems (E) Merge Two Sorted Lists (M) Ugly Number II
 
 */
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+
 
 /*
     12.10.2015 recap
     Use queue to store the head of k lists. 
     First init with all heads.
     Because the ListNode always has a link to its next sibiling, so it's easy to add that sibling back to queue.
+    time: m * Log(k)
 */
 public class Solution {
     public ListNode mergeKLists(List<ListNode> lists) {  
