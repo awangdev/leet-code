@@ -1,8 +1,12 @@
-Use a flag . 当出现了第一次有 null children的node的时候，
-说明complete tree的最低level出现了。
-自此以后，再不该有node再有child, queue后面出现的node应该左右孩子都是null.
+E
 
-用BFS
+BFS   
+
+Use a flag . 当出现了第一次有 null children的node的时候，   
+说明complete tree的最低level出现了。    
+自此以后，queue再不该有node再有child, queue后面出现的node的左右孩子应该都是null.    
+
+
 ```
 /*
 Check a binary tree is completed or not. A complete binary tree is not binary tree that every level is completed filled except the deepest level. In the deepest level, all nodes must be as left as possible. See more definition

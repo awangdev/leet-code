@@ -1,5 +1,12 @@
-注意Symmetric Binary Tree的例子和定义。
-并不是说左右两个tree相等。
+E
+
+注意Symmetric Binary Tree的例子和定义: 是镜面一样的对称. 并不是说左右两个sub-tree相等。
+
+方法1: Recursively check symmetrically相对应的Node.  每个node的children都和镜面另外一边相对的node的children刚好成镜面反射位置。
+
+方法2: 用stack. 左手边sub-tree先加left,再加right child; 右手边sub-tree先加right child, 再加left child。   
+process时，若symmetric，所有stack里面出来的node会一一对应。
+
 ```
 /*
 Given a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).

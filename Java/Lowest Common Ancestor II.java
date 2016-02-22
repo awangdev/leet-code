@@ -1,4 +1,6 @@
-1. 曾经做的hashset的优化，找到的都存hashset. exist就return那个duplicate
+E
+
+1. 曾经做的hashset的优化，找到的都存hashset. exist就return那个duplicate.
 
 
 2. 正常做法：2 lists
@@ -46,11 +48,6 @@ LintCode Copyright Binary Tree
 */
 
 public class Solution {
-    /**
-     * @param root: The root of the tree
-     * @param A, B: Two node in the tree
-     * @return: The lowest common ancestor of A and B
-     */
     public ParentTreeNode lowestCommonAncestorII(ParentTreeNode root,
                                     ParentTreeNode A,ParentTreeNode B) {
         if (root == null || (A == null && B == null)) {
@@ -100,11 +97,6 @@ public class Solution {
  * }
  */
 public class Solution {
-    /**
-     * @param root: The root of the tree
-     * @param A, B: Two node in the tree
-     * @return: The lowest common ancestor of A and B
-     */
     public ParentTreeNode lowestCommonAncestorII(ParentTreeNode root,
                                                  ParentTreeNode A,
                                                  ParentTreeNode B) {

@@ -1,9 +1,12 @@
 M
 
-比Binary Tree Maximum Path Sum I 简单许多.
+比Binary Tree Maximum Path Sum I 简单许多. 因为条件给的更多：at least 1 node + have to start from root => have to have root.
 
-因为条件给的更多：at least 1 node + have to start from root => have to have root.
+方法1:   
+维持一个global或者recursive里的sum。traversal entire tree via DFS. 简单明了。
 
+
+方法2:   
 Single path: either left or right.   
 If the path sum < 0, just skip it.   
 
@@ -28,23 +31,35 @@ Binary Tree
 */
 
 /*
+    02.20.2016 recap
+    just return integer sum, so just traversal the entier binary tree via dfs
+    dfs: node, sum, return sum
+*/
+public class Solution {
+    public int maxPathSum2(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return dfs(root, 0);
+    }
+    public int dfs (TreeNode node, int sum) {
+        if (node == null) {
+            return sum;
+        }
+        sum += node.val;
+        return Math.max(sum, Math.max(dfs(node.left, sum),
+                                        dfs(node.right, sum)));
+    }
+}
+
+
+/*
 	Thoughts: maximum path sum from root, so it must include root, and it will be a single path 
     from root to some point in the tree.
 	(seems easier than Binary Tree Maximum path Sum I)
 	'contains at least 1 node' -> at least have root.
 	However, depending on child is positive or negative, we choose add or no add child
 */
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
 public class Solution {
     /**
      * @param root the root of binary tree.

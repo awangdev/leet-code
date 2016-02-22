@@ -1,7 +1,12 @@
-/*
-Check two given binary trees are identical or not. Assuming any number of tweaks are allowed. A tweak is defined as a swap of the children of one node in the tree.
+E
 
-Have you met this question in a real interview? Yes
+Recursive 比对左左,左右,右左，右右
+
+```
+/*
+Check two given binary trees are identical or not. Assuming any number of tweaks are allowed. 
+A tweak is defined as a swap of the children of one node in the tree.
+
 Example
     1             1
    / \           / \
@@ -28,10 +33,10 @@ Binary Tree
 */
 
 /*
-	check isTweakedIdentical(a.left, b.right);
+    check isTweakedIdentical(a.left, b.right);
 
-	corner case: if both null, true;
-	if one null, false
+    corner case: if both null, true;
+    if one null, false
 */
 /**
  * Definition of TreeNode:
@@ -50,19 +55,18 @@ public class Solution {
      * @return true if they are tweaked identical, or false.
      */
     public boolean isTweakedIdentical(TreeNode a, TreeNode b) {
-    	if (a == null || b == null) {
-    		return a == null && b == null;
-    	}
-    	if (a.val != b.val) {
-    		return false;
-    	}
-    	return (isTweakedIdentical(a.left, b.left) && isTweakedIdentical(a.right, b.right))
-    		|| (isTweakedIdentical(a.left, b.right) && isTweakedIdentical(a.right, b.left));
+        if (a == null || b == null) {
+            return a == null && b == null;
+        }
+        if (a.val != b.val) {
+            return false;
+        }
+        return (isTweakedIdentical(a.left, b.left) && isTweakedIdentical(a.right, b.right))
+            || (isTweakedIdentical(a.left, b.right) && isTweakedIdentical(a.right, b.left));
     }
 }
 
 
 
 
-
-
+```

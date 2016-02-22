@@ -1,3 +1,9 @@
+E 
+
+Not Done
+
+
+```
 /*
 Flatten Binary Tree to Linked List
 
@@ -48,19 +54,19 @@ public class Solution {
      */
     public TreeNode parentNode = null;
     public void flatten(TreeNode root) {
-    	if (root == null) {
-    		return;
-    	}
+      if (root == null) {
+        return;
+      }
 
-    	if (parentNode != null) {
-    		parentNode.left = null;
-    		parentNode.right = root;
-    	}
+      if (parentNode != null) {
+        parentNode.left = null;
+        parentNode.right = root;
+      }
 
-    	parentNode = root;
-    	TreeNode right  = root.right;
-    	flatten(root.left);
-    	flatten(right);
+      parentNode = root;
+      TreeNode right  = root.right;
+      flatten(root.left);
+      flatten(right);
     }
 }
 
@@ -80,3 +86,5 @@ public class Solution {
 
 
 
+
+```
