@@ -1,3 +1,10 @@
+E
+
+找到potential subtree, 比较Children.
+
+一点注意：即使找到T1 == T2, 但很可能只是数字相同（这里不是binary search tree!!），而children不同。所以同时要继续recursively isSubtree(T1.left, T2) ...etc.
+
+```
 /*
 You have two every large binary trees: T1, with millions of nodes, and T2, with hundreds of nodes. Create an algorithm to decide if T2 is a subtree of T1.
 
@@ -47,25 +54,60 @@ public class Solution {
      * @return: True if T2 is a subtree of T1, or false.
      */
     public boolean isSubtree(TreeNode T1, TreeNode T2) {
-    	if (T2 == null) {
-    		return true;
-    	} else if (T1 == null) {
-    		return false;
-    	} else {
-			return compare(T1, T2) || isSubtree(T1.left, T2) || isSubtree(T1.right, T2);
-    	}
+        if (T2 == null) {
+            return true;
+        } else if (T1 == null) {
+            return false;
+        } else {
+            return compare(T1, T2) || isSubtree(T1.left, T2) || isSubtree(T1.right, T2);
+        }
     }
- 	//Recursive compare
+    //Recursive compare
     public boolean compare(TreeNode node1, TreeNode node2) {
-    	if (node1 == null && node2 == null) {
-    		return true;
-    	} 
-    	if (node1 == null || node2 == null){
-    		return false;
-    	}
-    	if (node1.val != node2.val) {
-    		return false;
-    	}
-    	return compare(node1.left, node2.left) && compare(node1.right, node2.right);
+        if (node1 == null && node2 == null) {
+            return true;
+        } 
+        if (node1 == null || node2 == null){
+            return false;
+        }
+        if (node1.val != node2.val) {
+            return false;
+        }
+        return compare(node1.left, node2.left) && compare(node1.right, node2.right);
     }
 }
+
+
+// 2.22 recap: Find T2 first, then do a divide and conquer compare
+public class Solution {
+    /**
+     * @param T1, T2: The roots of binary tree.
+     * @return: True if T2 is a subtree of T1, or false.
+     */
+    public boolean isSubtree(TreeNode T1, TreeNode T2) {
+        if (T1 == null || T2 == null) {
+            return T2 == null;
+        }
+        
+        if (T1.val == T2.val) {
+            return compare(T1, T2) || isSubtree(T1.left, T2) || isSubtree(T1.right, T2);
+        } else {
+            return isSubtree(T1.left, T2) || isSubtree(T1.right, T2);
+        }
+    }
+    
+    public boolean compare(TreeNode T1, TreeNode T2) {
+        if (T1 == null && T2 == null) {
+            return true;
+        } else if (T1 == null || T2 == null) {
+            return false;
+        }
+        if (T1.val != T2.val) {
+            return false;
+        }
+            
+        return compare(T1.left, T2.left) && compare(T1.right, T2.right);
+    }
+}
+
+```

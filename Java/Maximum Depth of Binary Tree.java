@@ -1,5 +1,7 @@
-DFS
-Divide and conquer
+E
+
+DFS: Divide and conquer. 维持一个最大值。
+
 ```
 /*
 71% Accepted

@@ -1,3 +1,8 @@
+E
+
+Divide and Conquery一个最小值. 注意处理Leaf的null, 用Integer.MAX_VALUE代替，这样可以避免错误counting.
+
+```
 /*
 Given a binary tree, find its minimum depth.
 
@@ -62,3 +67,5 @@ public class Solution {
     }
 }
 
+
+```

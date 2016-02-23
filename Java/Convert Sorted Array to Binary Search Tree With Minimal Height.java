@@ -1,3 +1,8 @@
+E
+
+Binary Search的感觉. 中间一开两半, divde and conquer,左右各自recursive下去build left/right child.
+
+```
 /*
 Given a sorted (increasing order) array, Convert it to create a binary tree with minimal height.
 
@@ -19,8 +24,8 @@ Cracking The Coding Interview Recursion Binary Tree
 Thoughts:
 1. Find middle point x.
 2. All index before x, goes to left of the tree. Same apply to right tree
-	build sub array and pass alone: we can pass index start, end.
-	use parent node and pass along
+  build sub array and pass alone: we can pass index start, end.
+  use parent node and pass along
 3. Recur on left side array.
 
 */
@@ -45,22 +50,24 @@ public class Solution {
     public TreeNode sortedArrayToBST(int[] A) {  
         TreeNode root = null;
         if (A == null || A.length == 0) {
-        	return root;
+          return root;
         }
         root = helper(0, A.length - 1, A);
         return root;
     }  
 
     public TreeNode helper(int start, int end, int[] A) {
-    	if (start > end) {
-    		return null;
-    	}
-    	//add middle node
-    	int mid = start + (end - start)/2;
-    	TreeNode node = new TreeNode(A[mid]);
-    	//Split and append child
-    	node.left = helper(start, mid - 1, A);
-    	node.right = helper(mid + 1, end, A);
-    	return node;
+      if (start > end) {
+        return null;
+      }
+      //add middle node
+      int mid = start + (end - start)/2;
+      TreeNode node = new TreeNode(A[mid]);
+      //Split and append child
+      node.left = helper(start, mid - 1, A);
+      node.right = helper(mid + 1, end, A);
+      return node;
     }
 }
+
+```
