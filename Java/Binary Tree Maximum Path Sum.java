@@ -9,7 +9,7 @@ combo的三种情况：(root可能小于0)
    2。 只有右边   
    3. root大于0，那么就left,right,curr全部加起来。
 
-情况1和情况2去一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
+情况1和情况2取一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
 
 
 12.11.2015 recap:   

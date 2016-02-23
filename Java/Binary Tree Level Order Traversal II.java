@@ -2,6 +2,8 @@ M
 
 普通BFS，用一个queue，加上一个queue.size()来交替换行.
 
+rst里面add(0,...)每次都add在list开头
+
 
 ```
 
