@@ -1,5 +1,10 @@
-由Merge k linked list想到，有办法找到每个node的sibling, 而int[]又不行，所以：
-自己建立一个class 来存放必要信息
+M
+
+由Merge k sorted list启发。用PriorityQueue,存那k个首发element。
+
+PriorityQueue需要存储单位。自己建一个Class Node 存val, x,y index.    
+因为array里没有 'next' pointer，只能存x,y来推next element
+
 ```
 /*
 Given k sorted integer arrays, merge them into one sorted array.
@@ -78,20 +83,6 @@ public class Solution {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ```

@@ -1,6 +1,6 @@
-H
+M
 
-用Priorityqueue来排列所有list的头.
+用Priorityqueue来排列所有list的leading node.
 
 记得k lists 需要是已经sort好的。   
 
@@ -14,11 +14,25 @@ PriorityQueue: logk
 ```
 
 /*
-Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
-Hide Company Tags LinkedIn Google Uber Airbnb Facebook Twitter Amazon Microsoft
-Hide Tags Divide and Conquer Linked List Heap
-Hide Similar Problems (E) Merge Two Sorted Lists (M) Ugly Number II
+Merge k sorted linked lists and return it as one sorted list.
+
+Analyze and describe its complexity.
+
+
+Example
+Given lists:
+
+[
+  2->4->null,
+  null,
+  -1->null
+],
+return -1->2->4->null.
+
+Tags Expand 
+Divide and Conquer Linked List Priority Queue Heap Uber Google Twitter LinkedIn Airbnb Facebook
+
 
 */
 
