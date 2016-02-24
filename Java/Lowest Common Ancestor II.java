@@ -1,9 +1,16 @@
 E
 
+这个题有个奇葩的地方，每个node还有一个parent。 所以可以自底向上.
+
 1. 曾经做的hashset的优化，找到的都存hashset. exist就return那个duplicate.
 
 
-2. 正常做法：2 lists
+2. 普通做法：2 lists。
+   自底向上。利用parent往root方向返回。   
+
+注意：无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
+
+
 ```
 /*
 Lowest Common Ancestor II

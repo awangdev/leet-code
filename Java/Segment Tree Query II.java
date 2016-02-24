@@ -1,11 +1,20 @@
+M
+
 和 Segment Tree Query I 以及其他Segment Tree问题没啥区别。这个就是return个count。
-这个题目考的是：validate input source...
-搞不清楚LintCode出这个题目干啥。
+
+这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+那么第一步就要先clear一下。完全不在range就return 0. 有range重合就规整到root的range.
+
+
+
 ```
 /*
-For an array, we can build a SegmentTree for it, each node stores an extra attribute count to denote the number of elements in the the array which value is between interval start and end. (The array may not fully filled by elements)
+For an array, we can build a SegmentTree for it, each node stores an extra attribute count to 
+denote the number of elements in the the array which value is between interval start and end. 
+(The array may not fully filled by elements)
 
-Design a query method with three parameters root, start and end, find the number of elements in the in array's interval [start, end] by the given root of value SegmentTree.
+Design a query method with three parameters root, start and end, 
+find the number of elements in the in array's interval [start, end] by the given root of value SegmentTree.
 
 Example
 For array [0, 2, 3], the corresponding value Segment Tree is:
@@ -64,16 +73,19 @@ public class Solution {
     	if (root.start == start && root.end == end) {
     		return root.count;
     	}
-    	//Check if over range
-    	if ((start < root.start && end > root.end) ||
-    	    (start < root.start && end < root.start) ||
+      
+    	//Check if out range. If so, set border to root[start,end]
+    	if ((start < root.start && end < root.start) ||
     	    (start > root.end && end > root.end)) {
     	    return 0;
-    	} else if (start < root.start && end <= root.end) {
+    	}
+      if (start < root.start) {
     	    start = root.start;
-    	} else if (start >= root.start && end > root.end) {
+    	}
+      if (end > root.end) {
     	    end = root.end;
     	}
+
     	int mid = (root.start + root.end)/2;
     	if (end <= mid) {
     		return query(root.left, start, end);
@@ -81,6 +93,7 @@ public class Solution {
     	if (start > mid) {
     	    return query(root.right, start, end);
     	}
+      //mid in between [start, end]
     	return query(root.left, start, root.left.end) + query(root.right, root.right.start, end);
     }
 }

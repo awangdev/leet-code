@@ -1,10 +1,17 @@
-给的是Array。注意找区间内的max, assign给区间。
-想：区间break到底，像segment tree build I 里面一样最终也就是 start==end。也就是max=A[start] 或者A[end]
-往上一层，其实max就是比较左右孩子。然后一次递推。每次找max其实都是在两个sub-tree里面比较sub-tree的max。
-这就好做了：
+M
+
+
+给的是Array。注意找区间内的max, assign给区间。   其余和普通的segment tree build一样   
+给array,但是并不根据array里的内容排位，而是依然根据index割开区间，break到底，   
+最终start==end。同时assign max=A[start] or A[end]
+
+往上,parent一层的max:就是比较左右孩子,其实都是在两个sub-tree里面比较sub-tree的max。   
+
+这就好做了：   
 先分，找到left/right，比较max,在create current node,再append到当前node上面。
 
 实际上是depth-first, 自底向上建立起的。
+
 ```
 /*
 The structure of Segment Tree is a binary tree which each node has two attributes start and end 

@@ -1,9 +1,9 @@
 E
 
-方法1：O(n) space O(h) time。把两条线binary search出来。找第一个不同的parent. 代码长。 Iterative
+普通的Binary Tree，node child 自顶向下蔓延。
 
-方法2：O(1) sapce O(h). Recursive. 循环的截点是：   
-当root == null或者 A B 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.   
+方法1：O(1) sapce O(h). Recursive. 循环的截点是：      
+当root == null或者 A B 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
 
 三种情况：   
 1. A,B都找到，那么这个level的node就是其中一层的parent。其实，最先recursively return到的那个，就是最底的LCA parent.   
@@ -11,10 +11,13 @@ E
 3. A B 都null, 那就找错了没有呗, return null
 
 
+//无法找到target element, 因为不是Binary Search Tree    
+//[Not Working]：O(n) space O(h) time。把两条线binary search出来。找第一个不同的parent. 代码长。 Iterative       
+
 ```
 
 /*
-33% Accepted
+
 Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
 
 The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
@@ -113,17 +116,7 @@ At the bottom, if it’s node1 or node2, send back.
 When it returns to the top, return solution : ancestor
 
 */
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
+
 public class Solution {
     /**
      * @param root: The root of the binary search tree.
@@ -150,50 +143,15 @@ public class Solution {
 }
 
 
-//Extra storage, not a good method:
-
- //Find two lists of nodes
- //First non-common's previous one from two lists, or the end of one list, is the LCA
-public class Solution {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || p == null || q == null) {
-            return root;
-        }
-        ArrayList<TreeNode> list1 = new ArrayList<TreeNode>();
-        ArrayList<TreeNode> list2 = new ArrayList<TreeNode>();
-        TreeNode node = root;
-        list1.add(node);
-        while (node.val != p.val) {
-            if (p.val < node.val) {
-                node = node.left;
-            } else {
-                node = node.right;
-            }
-            list1.add(node);
-        }
-        node = root;
-        list2.add(node);
-        while (node.val != q.val) {
-            if (q.val < node.val) {
-                node = node.left;
-            } else {
-                node = node.right;
-            }
-            list2.add(node);
-        }
-        
-        int size = list1.size() < list2.size() ? list1.size() : list2.size();
-        node = root;
-        for (int i = 0; i < size; i++) {
-            if (list1.get(i) != list2.get(i)) {
-                break;
-            }
-            node = list1.get(i);
-        }
-        
-        return node;   
-    }
-}
-
-
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
 ```

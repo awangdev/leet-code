@@ -1,9 +1,13 @@
-按定义：
-左孩子：（A.left, (A.left+A.rigth)/2）
-右孩子：（(A.left+A.rigth)/2＋1， A.right）
+M
+
+按定义：   
+左孩子：（A.left, (A.left+A.rigth)/2）   
+右孩子：（(A.left+A.rigth)/2＋1， A.right）   
+
 ```
 /*
-The structure of Segment Tree is a binary tree which each node has two attributes start and end denote an segment / interval.
+The structure of Segment Tree is a binary tree which each node 
+has two attributes start and end denote an segment / interval.
 
 start and end are both integers, they should be assigned in following rules:
 
@@ -11,7 +15,8 @@ The root's start and end is given by build method.
 The left child of node A has start=A.left, end=(A.left + A.right) / 2.
 The right child of node A has start=(A.left + A.right) / 2 + 1, end=A.right.
 if start equals to end, there will be no children for this node.
-Implement a build method with two parameters start and end, so that we can create a corresponding segment tree with every node has the correct start and end value, return the root of this segment tree.
+Implement a build method with two parameters start and end, so that we can create a corresponding segment tree 
+with every node has the correct start and end value, return the root of this segment tree.
 
 Example
 Given start=0, end=3. The segment tree will be:

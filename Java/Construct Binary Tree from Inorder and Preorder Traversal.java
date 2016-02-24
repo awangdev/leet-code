@@ -1,3 +1,10 @@
+M
+
+和Construct from Inorder && Postorder 想法一样。
+
+写出Preorder和Inorder的字母例子，发现Preorder的开头总是这Level的root。依此写helper,注意处理index。
+
+```
 /*
 Given preorder and inorder traversal of a tree, construct the binary tree.
 
@@ -77,3 +84,5 @@ public class Solution {
     }
 }
 
+
+```

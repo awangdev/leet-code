@@ -1,12 +1,16 @@
-又一个Segment tree的例子。
-把min number存在区间里面。
+M
 
-类似的有存:max, sum, min, count
+SegtmentTree, methods: Build, Query. 这题是在SegmentTreeNode里面存min.
 
-如果考到的几率不高。那么这一系列题目就是练习写代码的能力，和举一反三的心态。
+类似的有存:max, sum, min
+
+
+
 ```
 /*
-Given an integer array (index from 0 to n-1, where n is the size of this array), and an query list. Each query has two integers [start, end]. For each query, calculate the minimum number between index start and end in the given array, return the result list.
+Given an integer array (index from 0 to n-1, where n is the size of this array), and an query list. 
+Each query has two integers [start, end]. For each query, calculate the minimum number between 
+index start and end in the given array, return the result list.
 
 Example
 For array [1,2,7,8,5], and queries [(1,2),(0,4),(2,4)], return [2,1,5]
@@ -25,6 +29,7 @@ LintCode Copyright Binary Tree Segment Tree
 	Thoughts:
 	Build a SegmentMinTree.
 	Do search using the interval
+	如果考到的几率不高。那么这一系列题目就是练习写代码的能力，和举一反三的心态。
 */
 
 /**
@@ -62,7 +67,7 @@ public class Solution {
 		
 		return node;
 	}
-
+	//Query method
 	public int search(SegmentMinTreeNode root, int start, int end){
 		if (root.start == start && root.end == end) {
 			return root.min;

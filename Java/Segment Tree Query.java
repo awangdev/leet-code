@@ -1,15 +1,21 @@
-[start,end]跟mid相比，可能：
-全在mid左
-全在mid右
-包含了mid： 这里要特别break into 2 query method
+M
 
-按定义：
+[start,end]跟mid相比，可能：   
+全在mid左   
+全在mid右   
+包含了mid： 这里要特别break into 2 query method   
+
+按定义：   
 mid = (root.start + root.end)/2
+
 ```
 /*
-For an integer array (index from 0 to n-1, where n is the size of this array), in the corresponding SegmentTree, each node stores an extra attribute max to denote the maximum number in the interval of the array (index from start to end).
+For an integer array (index from 0 to n-1, where n is the size of this array), 
+in the corresponding SegmentTree, each node stores an extra attribute max to denote 
+the maximum number in the interval of the array (index from start to end).
 
-Design a query method with three parameters root, start and end, find the maximum number in the interval [start, end] by the given root of segment tree.
+Design a query method with three parameters root, start and end,
+ find the maximum number in the interval [start, end] by the given root of segment tree.
 
 Example
 For array [1, 4, 2, 3], the corresponding Segment Tree is:

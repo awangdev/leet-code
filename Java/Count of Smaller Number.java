@@ -1,15 +1,33 @@
-和平时的segment tree问题不同。
-这个给了实际的value，而还是造一个based on index的segment tree才行。
-Thought1是失败的，因为虽然省了空间，但是search time还是O(n).
-Thought2才是真正的segment tree (based on index interval).
+M
 
-重要trick:
-在query前，给进去的start和end是： 0 ~ value-1.
-value-1就是说，找比自己所在range小1的range（那么自然而然地就不包括自己了），这样就找到了smaller number.
-这个trick还挺刁钻的。
+和平时的segment tree问题不同。 0 ～ n-1代表实际数字。是造一个based on real value的segment tree.
+Modify时，把array里面的value带进去，找到特定的位子（leaf）,然后count+1. 
+
+最终在SegmentTree leaf上面全是array里面实际的数字。
+
+trick:   
+在query前，给进去的start和end是： 0 ~ value-1.   
+value-1就是说，找比自己所在range小1的range（那么自然而然地就不包括自己了），这样就找到了smaller number.   
+
+
+[那么其他做过的SegmentTree是怎么样呢？]   
+那些构成好的SegmentTree(找min,max,sum)也有一个Array。但是构成Tree时候，随Array的index而构架。   
+也就是说，假如有Array[x,y,....]:在leaf,会有[0,0] with value = x. [1,1] with value = y. 
+
+[但是这题]   
+构成时，是用actual value.也就是比如Array[x,y,....]会产生leaf:[x,x]with value = ..; [y,y]with value =...    
+
+其实很容易看穿:   
+若给出一个固定的array构成 SegmentTree，那估计很简单：按照index从0~array.lengh，leaf上就是[0,0] with value = x.
+
+若题目让构造一个空心SegmentTree, based on value 0 ~ n-1 (n <= 10000), 然后把一个Array的value modify 进去。   
+这样八成是另外一种咯。
+
 ```
 /*
-Give you an integer array (index from 0 to n-1, where n is the size of this array, value from 0 to 10000) and an query list. For each query, give you an integer, return the number of element in the array that are smaller than the given integer.
+Give you an integer array (index from 0 to n-1, where n is the size of this array, value from 0 to 10000) 
+and an query list. For each query, give you an integer, return the number of element in the array that 
+are smaller than the given integer.
 
 
 Example
@@ -28,15 +46,21 @@ Tags Expand
 Binary Search LintCode Copyright Segment Tree
 
 */
+
+/*
+Thought1是失败的，因为虽然省了空间，但是search time还是O(n).
+Thought2才是真正的segment tree (based on index interval).
+*/
 /*
 	Thought2: http://www.jiuzhang.com/solutions/count-of-smaller-number/
 	Build a tree based on index 0 ~ 10000. Then use modify to update the tree with proper 'count' value
 	Use query method to search for final results.
 	Each A[i] will be stored at index value of A[i]. 
 	Count: how many numbers do we have from bottom till this level, including the A[i] itself.
-		For example, at the lowest A[i] spot, SegmentTreeNode(i,i), the  count == 1.
+		For example, at the lowest A[i] spot, SegmentTreeNode(i,i), the count == 1.
 
-	Note:Again, be careful on calculating the mid. It's usually based on root.start and root.end, instead of the target start,end interval.
+	Note:Again, be careful on calculating the mid. It's usually based on root.start and root.end, 
+	instead of the target start,end interval.
 */
 
 public class Solution {
@@ -118,7 +142,7 @@ public class Solution {
     	}
     	for (int value : queries) {
     		int count = 0;
-    		if (value > 0) {
+    		if (value > 0) {//Given value has to be in n's range: [0, 10000]
     			count = query(root, 0, value - 1);
     		}
     		rst.add(count);

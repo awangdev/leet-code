@@ -535,95 +535,9 @@ BFS，用queue.size()来出发saving result.
 
 
 ---
-**35. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Zigzag Level Order Traversal.java)**Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
+**35. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Zigzag Level Order Traversal.java)**		Level: Medium
 
-Example
-Given binary tree {3,9,20,#,#,15,7},
-
-    3
-   / \
-  9  20
-    /  \
-   15   7
- 
-
-return its zigzag level order traversal as:
-
-[
-  [3],
-  [20,9],
-  [15,7]
-]
-Tags Expand 
-Tree Search Breadth First Search Queue Binary Tree
-
-Thinking Process:
-1. realize: queue is no longer can be used. draw a example map to see why.
-Instead, use 2 stacks.
-Because we can only take the top of stack, and we are constantly adding to the top of the stac, so we need 2 stacks. One is the current one, will be empty every time when we finish the level. The other one is nextLevel, which holds next level’s nodes temporarily.
-2. Use a boolean to track if which level it’s running at.
-*/
-
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
- 
- 
-public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: A list of lists of integer include 
-     *          the zigzag level order traversal of its nodes' values 
-     */
-    public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
-        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        if (root == null) {
-            return result;
-        }
-        
-        Stack<TreeNode> currentLevel = new Stack<TreeNode>();
-        Stack<TreeNode> nextLevel = new Stack<TreeNode>();
-        
-        currentLevel.push(root);
-        boolean regularOrder = false;
-        
-        while (!currentLevel.empty()) {
-            ArrayList<Integer> list = new ArrayList<Integer>();
-            
-            while (!currentLevel.empty()) {
-                TreeNode temp = currentLevel.pop();
-                list.add(temp.val);
-                if (regularOrder) {
-                    addLevel(nextLevel, temp.right);
-                    addLevel(nextLevel, temp.left);
-                } else {
-                    addLevel(nextLevel, temp.left);
-                    addLevel(nextLevel, temp.right);
-                }
-            }
-            result.add(list);
-            regularOrder = !regularOrder;
-            Stack<TreeNode> tmp = currentLevel;
-            currentLevel = nextLevel;
-            nextLevel = tmp;
-        }
-        return result;
-    }
-    
-    public void addLevel(Stack<TreeNode> level, TreeNode node) {
-        if (node != null) {
-            level.push(node);
-        }
-    }
-}
+简单的level traversal.根据level奇数偶数而add到不同位子.
 
 
 ---
@@ -1220,171 +1134,24 @@ Use a flag . 当出现了第一次有 null children的node的时候，
 
 
 ---
-**49. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Construct Binary Tree from Inorder and Postorder Traversal.java)**Given inorder and postorder traversal of a tree, construct the binary tree.
+**49. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Construct Binary Tree from Inorder and Postorder Traversal.java)**		Level: Medium
 
-Note
-You may assume that duplicates do not exist in the tree.
+写个Inorder和Postorder的例子。利用他们分left/right subtree的规律解题。
 
-Example
-Given inorder [1,2,3] and postorder [1,3,2]
+Postorder array 的末尾， 就是当下层的root.   
+在Inorder array 里面找到这个root,就刚好把左右两边分割成left/right tree。
 
-return a tree
+这题比较tricky地用了一个helper做recursive。 特别要注意处理index的变化, precisely考虑开头结尾
 
-  2
- /  \
-1    3
-
-     
-Tags Expand 
-Binary Tree
-
-Thinking process:
-Know that the last element of PostOrder array is the root of the Binary tree.
-Find this root from the InOrder array, which will be the middle point. The front-part of the inorder array will be left-tree, the end-part of the inorder array will be the right-tree.
-Trick part:
-1. Need a helper function to perfrom divide/conquer.  
-2. Need to be careful when cutting the inorder and postorder array. 
-	For inorder array, left array: (instart, middlePosition -1), right array: (middlePosition + 1, inend)
-	For postorder array: when cutting, we know the very last node is cut off already, so we just need to evenly split the rest array.
-		left array(postStart, postStart + (middlePosition - instart) - 1). 
-			Note: (middlePositon - instart) means the length of the left-array/size of the left-tree
-			However, postStart + left-array-length exceed 1 over postorder-left-tree, hence minus 1 here.
-		right array(postStart + (middlePosition - instart),   postend - 1)
-			Note: postStart + left-tree-length is exactly the starting point of the post-right-array.
-			Because the ending element is cut off previously to serve as root, we need to do (postend - 1) for correct postorder-right-tree.
-
-*/
-
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
- 
- 
-public class Solution {
-    /**
-     *@param inorder : A list of integers that inorder traversal of a tree
-     *@param postorder : A list of integers that postorder traversal of a tree
-     *@return : Root of a tree
-     */
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
-        if (inorder.length != postorder.length) {
-            return null;
-        }
-        return buildTreeHelper(inorder, 0, inorder.length - 1, 
-                                postorder, 0, postorder.length - 1);
-    }
-    
-    public TreeNode buildTreeHelper(int[] inorder, int inStart, int inEnd, 
-                            int[] postorder, int postStart, int postEnd){
-        if (inStart > inEnd) {
-            return null;
-        }
-        TreeNode root = new TreeNode(postorder[postEnd]);
-        int mid = findMid(inorder, inStart, inEnd, postorder[postEnd]);
-        root.left = buildTreeHelper(inorder, inStart, mid - 1, 
-                    postorder, postStart, postStart + (mid - inStart) - 1);
-        root.right = buildTreeHelper(inorder, mid + 1, inEnd,
-                    postorder, postStart + (mid - inStart), postEnd - 1);
-        return root;
-    }
-    
-    public int findMid(int[] arr, int start, int end, int key) {
-        for (int i = start; i <= end; i++) {
-            if (arr[i] == key) {
-                return i;
-            }
-        }
-        return -1;
-    }
-}
+可惜有个不可避免的O(n) find element in array.
 
 
 ---
-**50. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Construct Binary Tree from Inorder and Preorder Traversal.java)**Given preorder and inorder traversal of a tree, construct the binary tree.
+**50. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/shawnfan/LintCode/blob/master/Java/Construct Binary Tree from Inorder and Preorder Traversal.java)**		Level: Medium
 
-Note
-You may assume that duplicates do not exist in the tree.
+和Construct from Inorder && Postorder 想法一样。
 
-Example
-Given inorder [1,2,3] and preorder [2,1,3]
-
-return a tree
-
-  2
-
- /  \
-
-1    3
-
-Tags Expand 
-Binary Tree
-
-Thinking process:
-See 'Construct tree from inorder + postorder' as example.
-This problem uses divide and conquer idea as well.
-For preorder: the front node is the root of the tree.
-For inorder: find the root in the middle of the array, then the left-side is left-tree, and the right-side is the right-tree.
-*/
-
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
- 
- 
-public class Solution {
-    /**
-     *@param preorder : A list of integers that preorder traversal of a tree
-     *@param inorder : A list of integers that inorder traversal of a tree
-     *@return : Root of a tree
-     */
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if (preorder.length != inorder.length) {
-            return null;
-        }
-        return buildTreeHelper(inorder, 0, inorder.length - 1, 
-            preorder, 0, preorder.length - 1);
-    }
-    
-    public TreeNode buildTreeHelper(int[] inorder, int inStart, int inEnd,
-        int[] preorder, int preStart, int preEnd) {
-        if (inStart > inEnd) {
-            return null;
-        }
-        TreeNode root = new TreeNode(preorder[preStart]);
-        int mid = findMid(inorder, inStart, inEnd, preorder[preStart]);
-        
-        root.left = buildTreeHelper(inorder, inStart, mid - 1,
-            preorder, preStart + 1, preStart + (mid - inStart));
-        root.right = buildTreeHelper(inorder, mid + 1, inEnd,
-            preorder, preStart + (mid - inStart) + 1, preEnd);
-        return root;
-    }
-    
-    public int findMid(int[] arr, int start, int end, int key) {
-        for (int i = start; i <= end; i++) {
-            if (arr[i] == key) {
-                return i;
-            }
-        }
-        return -1;
-    }
-}
+写出Preorder和Inorder的字母例子，发现Preorder的开头总是这Level的root。依此写helper,注意处理index。
 
 
 ---
@@ -1690,24 +1457,46 @@ public class Solution {
 }
 
 ---
-**62. [Count of Smaller Number before itself.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count of Smaller Number before itself.java)**Trick: 先Query，再modify.
-每次Query时候，A[i]都还没有加入到Segment Tree 里面，而A[i+1...etc]自然也还没有加进去。
-那么就自然是coutning smaller number before itself.
-刁钻啊！
+**62. [Count of Smaller Number before itself.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count of Smaller Number before itself.java)**		Level: Hard
 
-另外注意：
-在modify里面：多Check了root.start <= index 和  index <= root.end。 过去都忽略了。以后可以把这个也写上。
-（其实是Make sense的，就是更加严格地check了index再 root.left 或者 root.right里面的站位）
+与Count of Smaller Number非常类似。以实际的value来构成segment tree，leaf上存（count of smaller number）。
+
+Trick: 先Query，再modify.   
+每次Query时候，A[i]都还没有加入到Segment Tree 里面，而A[i+1,...etc]自然也还没有加进去。   
+那么就自然是coutning smaller number before itself.   
+刁钻啊！   
+
+另外注意：   
+在modify里面：多Check了root.start <= index 和  index <= root.end。 过去都忽略了。以后可以把这个也写上。   
+（其实是Make sense的，就是更加严格地check了index再 root.left 或者 root.right里面的站位）   
+
 
 ---
-**63. [Count of Smaller Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count of Smaller Number.java)**这个给了实际的value，而还是造一个based on index的segment tree才行。
-Thought1是失败的，因为虽然省了空间，但是search time还是O(n).
-Thought2才是真正的segment tree (based on index interval).
+**63. [Count of Smaller Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count of Smaller Number.java)**		Level: Medium
 
-重要trick:
-在query前，给进去的start和end是： 0 ~ value-1.
-value-1就是说，找比自己所在range小1的range（那么自然而然地就不包括自己了），这样就找到了smaller number.
-这个trick还挺刁钻的。
+和平时的segment tree问题不同。 0 ～ n-1代表实际数字。是造一个based on real value的segment tree.
+Modify时，把array里面的value带进去，找到特定的位子（leaf）,然后count+1. 
+
+最终在SegmentTree leaf上面全是array里面实际的数字。
+
+trick:   
+在query前，给进去的start和end是： 0 ~ value-1.   
+value-1就是说，找比自己所在range小1的range（那么自然而然地就不包括自己了），这样就找到了smaller number.   
+
+
+[那么其他做过的SegmentTree是怎么样呢？]   
+那些构成好的SegmentTree(找min,max,sum)也有一个Array。但是构成Tree时候，随Array的index而构架。   
+也就是说，假如有Array[x,y,....]:在leaf,会有[0,0] with value = x. [1,1] with value = y. 
+
+[但是这题]   
+构成时，是用actual value.也就是比如Array[x,y,....]会产生leaf:[x,x]with value = ..; [y,y]with value =...    
+
+其实很容易看穿:   
+若给出一个固定的array构成 SegmentTree，那估计很简单：按照index从0~array.lengh，leaf上就是[0,0] with value = x.
+
+若题目让构造一个空心SegmentTree, based on value 0 ~ n-1 (n <= 10000), 然后把一个Array的value modify 进去。   
+这样八成是另外一种咯。
+
 
 ---
 **64. [Count Primes.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count Primes.java)**还有另外一个中定义方法：
@@ -3490,19 +3279,31 @@ public class Solution {
 
 
 ---
-**122. [Interval Minimum Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Minimum Number.java)**把min number存在区间里面。
+**122. [Interval Minimum Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Minimum Number.java)**		Level: Medium
 
-类似的有存:max, sum, min, count
+SegtmentTree, methods: Build, Query. 这题是在SegmentTreeNode里面存min.
 
-如果考到的几率不高。那么这一系列题目就是练习写代码的能力，和举一反三的心态。
+类似的有存:max, sum, min
+
+
+
 
 ---
-**123. [Interval Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum II.java)**这题是好几个SegmentTree的结合，但是没什么创新的。
+**123. [Interval Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum II.java)**		Level: Hard
+
+SegmentTree大集合。记得几个Methods: Build, Query, Modify. 不难。只是要都记得不犯错:)
+
 
 ---
-**124. [Interval Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum.java)**构建tree记得怎么弄就好了。很简单的。
-但是，我犯了错..在search的时候求mid时，忘记了以root为基准（我用interval.start and interval.end为基准，当然错了）
-但实际上search起来就是binary search的想法，在interval/segment tree上面跑。顺顺哒。
+**124. [Interval Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Interval Sum.java)**		Level: Medium
+
+其实是segment tree 每个node上面加个sum。   
+
+记得Segment Tree methods: Build, Query
+
+Note: 存在SegmentTreeNode里面的是sum.  其他题目可能是min,max ... or something else.
+
+
 
 ---
 **125. [Invert Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Invert Binary Tree.java)**		Level: Easy
@@ -4465,99 +4266,41 @@ class Solution {
 ---
 **149. [Lowest Common Ancestor II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor II.java)**		Level: Easy
 
+这个题有个奇葩的地方，每个node还有一个parent。 所以可以自底向上.
+
 1. 曾经做的hashset的优化，找到的都存hashset. exist就return那个duplicate.
 
 
-2. 正常做法：2 lists
+2. 普通做法：2 lists。
+   自底向上。利用parent往root方向返回。   
+
+注意：无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
+
+
 
 ---
-**150. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor of a Binary Search Tree.java)**Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
+**150. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor of a Binary Search Tree.java)**		Level: Medium
 
-According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as descendants (where we allow a node to be a descendant of itself).”
-
-        _______6______
-       /              \
-    ___2__          ___8__
-   /      \        /      \
-   0      _4       7       9
-         /  \
-         3   5
-For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another example is LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
-
-Tags: Tree
-Similar Problems: (M) Lowest Common Ancestor of a Binary Tree
-
-*/
-/*
-Thoughts:
-Create 2 path: l1, l2.
-First different node's parent, will be the LCA
-Do binary search to generate the path l1,l2
-
-Note:
-When one of the target is root, make sure parent = root, and return root at the end. This is because: the if statement (l1.get(i).val != l2.get(i).val) won't capture this case; instead, the for loop ends by i == size. So, be careful here.
-*/
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || p == null || q == null) {
-        	return null;
-        }
-        ArrayList<TreeNode> l1 = new ArrayList<TreeNode>();
-     	ArrayList<TreeNode> l2 = new ArrayList<TreeNode>();
-     	binarySearch(root, p, l1);
-     	binarySearch(root, q, l2);
-
-     	TreeNode parent = root;
-     	int size = l1.size() > l2.size() ? l2.size() : l1.size();
-     	for (int i = 0; i < size; i++) {
-     		if (l1.get(i).val == l2.get(i).val) {
-     			parent = l1.get(i);
-     		} else {
-     			return parent;
-     		}
-     	}
-     	return parent;
-    }
+利用 BST的性质，可以直接搜到target node，而做成两个长度不一定相等的list。然后很简单找到LCA 
 
 
-    public void binarySearch(TreeNode root, TreeNode target, ArrayList<TreeNode> list) {
-    	TreeNode node = root;
-    	while (node != null) {
-    		list.add(node);
-    		if (node.val == target.val) {
-    			return;
-    		} else if (node.val < target.val) {
-    			node = node.right;
-    		} else {
-    			node = node.left;
-    		}
-    	}//END while
-    }
-}
 
 ---
 **151. [Lowest Common Ancestor.java](https://github.com/shawnfan/LintCode/blob/master/Java/Lowest Common Ancestor.java)**		Level: Easy
 
-方法1：O(n) space O(h) time。把两条线binary search出来。找第一个不同的parent. 代码长。 Iterative
+普通的Binary Tree，node child 自顶向下蔓延。
 
-方法2：O(1) sapce O(h). Recursive. 循环的截点是：   
-当root == null或者 A B 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.   
+方法1：O(1) sapce O(h). Recursive. 循环的截点是：      
+当root == null或者 A B 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
 
 三种情况：   
 1. A,B都找到，那么这个level的node就是其中一层的parent。其实，最先recursively return到的那个，就是最底的LCA parent.   
 2. A 或者 B 找到，那就还没有公共parent,return 非null得那个。   
 3. A B 都null, 那就找错了没有呗, return null
 
+
+//无法找到target element, 因为不是Binary Search Tree    
+//[Not Working]：O(n) space O(h) time。把两条线binary search出来。找第一个不同的parent. 代码长。 Iterative       
 
 
 ---
@@ -7252,64 +6995,13 @@ Binary Search
 **238. [Search Insert Position.java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Insert Position.java)**在结尾判断该return 哪个position。
 
 ---
-**239. [Search Range in Binary Search Tree .java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Range in Binary Search Tree .java)**37% Accepted
-Given two values k1 and k2 (where k1 < k2) and a root pointer to a Binary Search Tree. Find all the keys of tree in range k1 to k2. i.e. print all x such that k1<=x<=k2 and x is a key of given BST. Return all the keys in ascending order.
+**239. [Search Range in Binary Search Tree .java](https://github.com/shawnfan/LintCode/blob/master/Java/Search Range in Binary Search Tree .java)**		Level: Medium
 
-Example
-For example, if k1 = 10 and k2 = 22, then your function should print 12, 20 and 22.
+等于遍历了所有k1<= x <= k2的x node。
 
-          20
+如果是用Binary Search Tree搜索，那么一般是if (...) else {...}，也就是一条路走到底，直到找到target.
 
-       /        \
-
-    8           22
-
-  /     \
-
-4       12
-
-Tags Expand 
-Binary Tree Binary Search Tree
-Recursive
-
-Thinking Process:
-Find lowest and turn around.
-	If don’t hit the ground, keep digging:
-	if (root.val > k1) dig into root.left
-Check current
-Find maximum and turn around.
-	If don’t hit the ceiling, keep climbing:
-	if (root.val < k2) climb to root.right
-
-*/
-
-public class Solution {
-    /**
-     * @param root: The root of the binary search tree.
-     * @param k1 and k2: range k1 to k2.
-     * @return: Return all keys that k1<=key<=k2 in ascending order.
-     */
-    public ArrayList<Integer> searchRange(TreeNode root, int k1, int k2) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        helper(result, root, k1, k2);
-        return result;
-    }
-    
-    public void helper(ArrayList<Integer> result, TreeNode root, int k1, int k2) {
-        if (root == null) {
-            return;
-        }
-        if (root.val > k1) {
-            helper(result, root.left, k1, k2);
-        }
-        if (root.val >= k1 && root.val <= k2) {
-            result.add(root.val);
-        }
-        if (root.val < k2) {
-            helper(result, root.right, k1, k2);
-        }
-    }
-}
+这里, 把 left/right/match的情况全部cover了，然后把k1,k2的边框限制好，中间就全部遍历了。
 
 
 ---
@@ -7340,33 +7032,60 @@ public class Solution {
 
 
 ---
-**242. [Segment Tree Build II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build II.java)**想：区间break到底，像segment tree build I 里面一样最终也就是 start==end。也就是max=A[start] 或者A[end]
-往上一层，其实max就是比较左右孩子。然后一次递推。每次找max其实都是在两个sub-tree里面比较sub-tree的max。
-这就好做了：
+**242. [Segment Tree Build II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build II.java)**		Level: Medium
+
+
+给的是Array。注意找区间内的max, assign给区间。   其余和普通的segment tree build一样   
+给array,但是并不根据array里的内容排位，而是依然根据index割开区间，break到底，   
+最终start==end。同时assign max=A[start] or A[end]
+
+往上,parent一层的max:就是比较左右孩子,其实都是在两个sub-tree里面比较sub-tree的max。   
+
+这就好做了：   
 先分，找到left/right，比较max,在create current node,再append到当前node上面。
 
 实际上是depth-first, 自底向上建立起的。
 
----
-**243. [Segment Tree Build.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build.java)**左孩子：（A.left, (A.left+A.rigth)/2）
-右孩子：（(A.left+A.rigth)/2＋1， A.right）
 
 ---
-**244. [Segment Tree Modify.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Modify.java)**找到就update it with value.
-每次下一层以后，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下。
-最后轮回到头顶，头顶一下包括头顶，就全部都是max了。
+**243. [Segment Tree Build.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Build.java)**		Level: Medium
+
+按定义：   
+左孩子：（A.left, (A.left+A.rigth)/2）   
+右孩子：（(A.left+A.rigth)/2＋1， A.right）   
+
 
 ---
-**245. [Segment Tree Query II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query II.java)**这个题目考的是：validate input source...
-搞不清楚LintCode出这个题目干啥。
+**244. [Segment Tree Modify.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Modify.java)**		Level: Medium
+
+Recursively 在segment tree里面找index, update it with value.   
+
+每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下。   
+最后轮回到头顶，头顶一下包括头顶，就全部都是max了。   
+
 
 ---
-**246. [Segment Tree Query.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query.java)**全在mid左
-全在mid右
-包含了mid： 这里要特别break into 2 query method
+**245. [Segment Tree Query II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query II.java)**		Level: Medium
 
-按定义：
+和 Segment Tree Query I 以及其他Segment Tree问题没啥区别。这个就是return个count。
+
+这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+那么第一步就要先clear一下。完全不在range就return 0. 有range重合就规整到root的range.
+
+
+
+
+---
+**246. [Segment Tree Query.java](https://github.com/shawnfan/LintCode/blob/master/Java/Segment Tree Query.java)**		Level: Medium
+
+[start,end]跟mid相比，可能：   
+全在mid左   
+全在mid右   
+包含了mid： 这里要特别break into 2 query method   
+
+按定义：   
 mid = (root.start + root.end)/2
+
 
 ---
 **247. [Serilization and Deserialization Of Binary Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Serilization and Deserialization Of Binary Tree.java)**Design an algorithm and write code to serialize and deserialize a binary tree. Writing the tree to a file is called 'serialization' and reading back from the file to reconstruct the exact same binary tree is 'deserialization'.

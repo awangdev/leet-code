@@ -1,5 +1,7 @@
-这个题如果一上来就是做，拿的确烧脑，原因只有一个：太长了呀。就像Expression Tree一样。一旦知道了怎么做，就简单了，可如果生疏，也就难。
-这题是好几个SegmentTree的结合，但是没什么创新的。
+H
+
+SegmentTree大集合。记得几个Methods: Build, Query, Modify. 不难。只是要都记得不犯错:)
+
 ```
 /*
 Given an integer array in the construct method, implement two methods query(start, end) and modify(index, value):

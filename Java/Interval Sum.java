@@ -1,11 +1,18 @@
-其实是segment tree 每个node上面加个sum。
-构建tree记得怎么弄就好了。很简单的。
-但是，我犯了错..在search的时候求mid时，忘记了以root为基准（我用interval.start and interval.end为基准，当然错了）
-但实际上search起来就是binary search的想法，在interval/segment tree上面跑。顺顺哒。
+M
+
+其实是segment tree 每个node上面加个sum。   
+
+记得Segment Tree methods: Build, Query
+
+Note: 存在SegmentTreeNode里面的是sum.  其他题目可能是min,max ... or something else.
+
+
 ```
 /*
 
-Given an integer array (index from 0 to n-1, where n is the size of this array), and an query list. Each query has two integers [start, end]. For each query, calculate the sum number between index start and end in the given array, return the result list.
+Given an integer array (index from 0 to n-1, where n is the size of this array), 
+and an query list. Each query has two integers [start, end]. 
+For each query, calculate the sum number between index start and end in the given array, return the result list.
 
 Example
 For array [1,2,7,8,5], and queries [(0,4),(1,2),(2,4)], return [23,9,20]
@@ -87,18 +94,6 @@ public class Solution {
 
         for (Interval range : queries) {
         	long sum = 0;
-        	/*
-        	//Check for errors, but don't have to do these checks
-            //Well, it's being checked in segment query II
-        	if (range.start < root.start && range.end > root.end) {
-        		sum = root.sum;
-        	} else if (range.start < root.start && range.end <= root.end) {
-        		sum = searchTree(root, root.start, range.end);
-        	} else if (range.start >= root.start && range.end > root.end) {
-        		sum = searchTree(root, range.start, root.end);
-        	} else {
-        		sum = searchTree(root, range.start, range.end);
-        	}*/
         	sum = searchTree(root, range.start, range.end);
         	rst.add(sum);
         }
