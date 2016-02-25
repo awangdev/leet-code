@@ -1,8 +1,11 @@
+H
+
 和Max-tree一样，感谢http://blog.welkinlan.com/2015/06/29/max-tree-lintcode-java/
 这个题目是Min-tree， 头上最小，Logic 和max-tree如出一辙。
 注意虚拟的形态：treeNode,作用就是为了有个weight，好排序。
 要想想，Java这个strict mom，如果换做JavaScript, 直接在expressionTreeNode上面附加一个object就完了，哪还用什么另外一个TreeNode class.
 O(n)
+
 ```
 public class Solution {
     class TreeNode {

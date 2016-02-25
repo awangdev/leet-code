@@ -1,3 +1,5 @@
+H
+
 MaxTree值得记。
 Stack从下到上，最大在下。维持和利用这个性质：
 把所有小于curr node的，全Pop出来，最后一个小于Curr的，放在curr.left.
@@ -5,6 +7,7 @@ Stack从下到上，最大在下。维持和利用这个性质：
 结尾：stack底部一定是最大的那个，也就是max tree的头。
 
 妙啊！！！
+
 ```
 /*
 Given an integer array with no duplicates. A max tree building on this array is defined as follow:
@@ -13,7 +16,6 @@ The root is the maximum number in the array
 The left subtree and right subtree are the max trees of the subarray divided by the root number.
 Construct the max tree by the given array.
 
-Have you met this question in a real interview? Yes
 Example
 Given [2, 5, 6, 0, 3, 1], the max tree constructed by this array is:
 
@@ -50,29 +52,6 @@ These behavior keeps larger value on upper level of the tree
 
 */
 
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
-/*
-
-Given [2, 5, 6, 0, 3, 1], the max tree constructed by this array is:
-
-    6
-   / \
-  5   3
- /   / \
-2   0   1
-Challenge
-
-*/
 public class Solution {
     /**
      * @param A: Given an integer array with no duplicates.
@@ -101,5 +80,19 @@ public class Solution {
     	return rst;
     }
 }
+
+
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
 
 ```

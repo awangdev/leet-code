@@ -1,4 +1,4 @@
-M
+H
 
 用O(h)空间的做法：
 
@@ -17,9 +17,11 @@ M
 
 用O(1)空间的做法：不存stack, 时刻update current为最小值。
 
-找下一个最小值：   
-   如果current有right child,那么再找一遍current.right的left-most child,就是最小值了。
-   如果current没有right child,那么就要找current node的右上parent.
+找下一个最小值,如果current有right child：   
+   和用stack时的iteration类似,那么再找一遍current.right的left-most child,就是最小值了。
+   
+如果current没有right child:    
+    那么就要找current node的右上parent, search in BinarySearchTree from root.
 
 注意：
    一定要确保找到的parent满足parent.left == current.
@@ -70,7 +72,49 @@ Binary Tree LintCode Copyright Non Recursion Binary Search Tree Google LinkedIn 
  *    do something for node
  * } 
  */
+
+//Recap 02.24.2016: Similar to solution below.  O(h) space.
+//Stack, inorder traversal; first add left node till end. Each next() trigger a iteration. 
+public class BSTIterator {
+    public Stack<TreeNode> stack = new Stack<TreeNode>();
+    
+    //@param root: The root of binary tree.
+    //Add till end of left
+    public BSTIterator(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        stack.push(root);
+        while (root.left != null) {
+            stack.push(root.left);
+            root = root.left;
+        }
+    }
+
+    //@return: True if there has next node, or false
+    public boolean hasNext() {
+        return stack.size() > 0;
+    }
+    
+    //@return: return next node
+    public TreeNode next() {
+        TreeNode node = stack.pop();
+        if (node.right != null) {
+            TreeNode temp = node.right;
+            stack.push(temp);
+            while (temp.left != null) {
+                stack.push(temp.left);
+                temp = temp.left;
+            }            
+        }
+        return node;
+    }
+}
+
+
+
 /*
+    Previous correct implementation, O(h) space.
     Thoughts:http://blog.csdn.net/u014748614/article/details/46800891
     Put all left nodes into stack. Then top of stack must be the first element in in-order-traversal.
     We never add right node into stack directly, but ever time before returnning the rst node, we take care of rst.right right away.

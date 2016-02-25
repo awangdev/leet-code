@@ -1,7 +1,17 @@
+H
+
+把Input stream想成向上的山坡。山坡中间那点，自然就是median.
+
+前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
+
+后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
+
+Note:题目定义meadian = A[(n-1)/2],也就是说maxHeap需要和minHeap长度相等，或者多一个element,最后可以直接poll() and return.
+
+```
 /*
 Numbers keep coming, return the median of numbers at every time a new number added.
 
-Have you met this question in a real interview? Yes
 Example
 For numbers coming list: [1, 2, 3, 4, 5], return [1, 1, 2, 2, 3].
 
@@ -13,7 +23,9 @@ Challenge
 Total run time in O(nlogn).
 
 Clarification
-What's the definition of Median? - Median is the number that in the middle of a sorted array. If there are n numbers in a sorted array A, the median is A[(n - 1) / 2]. For example, if A=[1,2,3], median is 2. If A=[1,19], median is 1.
+What's the definition of Median? - Median is the number that in the middle of a sorted array. 
+If there are n numbers in a sorted array A, the median is A[(n - 1) / 2]. 
+For example, if A=[1,2,3], median is 2. If A=[1,19], median is 1.
 
 Tags Expand 
 LintCode Copyright Heap Priority Queue
@@ -60,3 +72,5 @@ public class Solution {
         return rst;
     }
 }
+
+```
