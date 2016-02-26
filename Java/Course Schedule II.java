@@ -1,4 +1,7 @@
+M
+
 详细的中文分析，看Course Schedule I
+
 ```
 /*
 There are a total of n courses you have to take, labeled from 0 to n - 1.

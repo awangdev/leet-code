@@ -1,5 +1,10 @@
-根据isBadVersion的性质，判断还如何end=mid or start=mid.
+M
+
+Binary Search
+
+根据isBadVersion的性质，判断还如何end=mid or start=mid.     
 isBadVersion 是有方向的嘛，一个点错了，后面全错。
+
 ```
 /*
 The code base version is an integer start from 1 to n. 
@@ -10,7 +15,7 @@ Find the first bad version.
 You can call isBadVersion to help you determine which version is the first bad one. 
 The details interface can be found in the code's annotation part.
 
-Have you met this question in a real interview? Yes
+
 Example
 Given n = 5:
 
@@ -43,10 +48,6 @@ Binary Search LintCode Copyright Facebook
  * the kth code version is bad or not.
 */
 class Solution {
-    /**
-     * @param n: An integers.
-     * @return: An integer which is the first bad version.
-     */
     public int findFirstBadVersion(int n) {
         if (n < 1) {
             return 0;

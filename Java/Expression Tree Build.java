@@ -1,12 +1,59 @@
 H
 
 和Max-tree一样，感谢http://blog.welkinlan.com/2015/06/29/max-tree-lintcode-java/
-这个题目是Min-tree， 头上最小，Logic 和max-tree如出一辙。
-注意虚拟的形态：treeNode,作用就是为了有个weight，好排序。
-要想想，Java这个strict mom，如果换做JavaScript, 直接在expressionTreeNode上面附加一个object就完了，哪还用什么另外一个TreeNode class.
-O(n)
+
+这个题目是Min-tree， 头上最小，Logic 和max-tree如出一辙   
+
+注意treeNode,为了帮助ExpressionTreeNode 排序。它加了一个weight based on expression，协助build Min-Tree 排序。
+
+Space: O(n) 
+Time on average: O(n).
 
 ```
+/*
+
+The structure of Expression Tree is a binary tree to evaluate certain expressions.
+All leaves of the Expression Tree have an number string value. 
+All non-leaves of the Expression Tree have an operator string value.
+
+Now, given an expression array, build the expression tree of this expression, return the root of this expression tree.
+
+Example
+For the expression (2*6-(23+7)/(1+2)) (which can be represented by ["2" "*" "6" "-" "(" "23" "+" "7" ")" "/" "(" "1" "+" "2" ")"]). 
+The expression tree will be like
+
+                 [ - ]
+             /          \
+        [ * ]              [ / ]
+      /     \           /         \
+    [ 2 ]  [ 6 ]      [ + ]        [ + ]
+                     /    \       /      \
+                   [ 23 ][ 7 ] [ 1 ]   [ 2 ] .
+After building the tree, you just need to return root node [-].
+
+Clarification
+See wiki:
+Expression Tree
+
+Tags Expand 
+LintCode Copyright Stack Binary Tree
+
+
+*/
+
+/**
+ * Definition of ExpressionTreeNode:
+ * public class ExpressionTreeNode {
+ *     public String symbol;
+ *     public ExpressionTreeNode left, right;
+ *     public ExpressionTreeNode(String symbol) {
+ *         this.symbol = symbol;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+
 public class Solution {
     class TreeNode {
         int val;

@@ -2,6 +2,7 @@ E
 
 双Stack：一个正常stack，另一个minStack存当下level最小值. 注意维护minStack的变化
 
+另外. 如果要maxStack，也是类似做法
 
 ```
 /*

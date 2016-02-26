@@ -1,6 +1,11 @@
-用build expression tree开头。
+H
+
+build expression tree。
+
 这个里面把TreeNode就当做成我们需要的node,里面扩展成有left/right child的node.
-这题，目的是建造tree,然后来个post-traversal就行了。
+
+建造Expression Tree,然后根据　Reverse Polish Notation 的定义，来个post-traversal就行了。
+
 ```
 /*
 Given an expression string array, return the Reverse Polish notation of this expression. (remove the parentheses)

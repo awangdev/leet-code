@@ -46,11 +46,6 @@ For inorder: find the root in the middle of the array, then the left-side is lef
  
  
 public class Solution {
-    /**
-     *@param preorder : A list of integers that preorder traversal of a tree
-     *@param inorder : A list of integers that inorder traversal of a tree
-     *@return : Root of a tree
-     */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length != inorder.length) {
             return null;

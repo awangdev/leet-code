@@ -1,10 +1,13 @@
 M
 
-Trie结构, prefix tree.
-节点里面有char, isEnd, HashMap<Character, TrieNode>
-记得怎么造trie：无增有移，没node就加，有node就移动。
-寻找word也一样逻辑：无错有移。
+Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
 
+节点里面有char, isEnd, HashMap<Character, TrieNode>   
+Build trie = Insert word:没node就加，有node就移动。   
+Search word:没有node就报错. 到结尾return true   
+
+这题因为'.'可以代替任何possible的字符，没一种都是一个新的path，所以recursive做比较好些。    
+(iterative就要queue了,麻烦点)
 
 ```
 /*

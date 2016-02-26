@@ -1,10 +1,27 @@
+M
+
+用Quick Sort 里面partion的一部分。     
+partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
+没找到继续partion recursively.
+
+sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
+
+Quick Sort:   
+每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
+找到一个low>pivot, high<pivot, 也就可以swap了。    
+得到的low就是当下的partion point了
+
+
+```
+
 /*
 Find K-th largest element in an array.
 
 Example
 In array [9,3,2,4,8], the 3rd largest element is 4
 
-In array [1,2,3,4,5], the 1st largest element is 5, 2nd largest element is 4, 3rd largest element is 3 and etc.
+In array [1,2,3,4,5], the 1st largest element is 5, 
+2nd largest element is 4, 3rd largest element is 3 and etc.
 
 Note
 You can swap elements in the array
@@ -15,12 +32,15 @@ O(n) time, O(1) space
 Tags Expand 
 Quick Sort Sort
 
+*/
+
+/*
+
 Thoughts:
 Almost the same as the Median problem: 
 the only difference is, this one is not looking for the middle point, but for the last kth element. 
 Using the same quick sort code with minor modifications, and we can solve this problem.
 */
-
 
 class Solution {
     //param k : description of k
@@ -66,26 +86,4 @@ class Solution {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```

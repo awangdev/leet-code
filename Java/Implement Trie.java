@@ -1,5 +1,21 @@
-HashMap构建Trie。
-Trie用来insert word，找word, 找prefix
+M
+
+Tire, 也即是 Prefix Tree. 
+
+HashMap构建Trie。 Trie三个Method:　   
+1. Inset: 加 word   
+2. Search: 找word    
+3. StartWith: 找prefix    
+
+只有两条children的是binary tree. 那么多个children就是Trie。 那么没有left/right pointer怎么找孩子？   
+用HashMap，以child的label为Key，value就是child node。 HashMap走位   
+
+Note:    
+node里的char在这是optional。    
+另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+
+
+
 ```
 /*
 Implement a trie with insert, search, and startsWith methods.

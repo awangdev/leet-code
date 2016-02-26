@@ -1,6 +1,8 @@
 M
 
-和check anagram 想法一样：转化并sort char array，用来作为key。把所有anagram 存在一起。注意结尾Collections.sort().
+和check anagram 想法一样：转化并sort char array，用来作为key。
+
+把所有anagram 存在一起。注意结尾Collections.sort().
 
 ```
 

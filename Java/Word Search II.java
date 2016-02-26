@@ -1,3 +1,19 @@
+H
+
+Build Trie with target words: insert, search, startWith.
+
+依然要对board matrix做DFS。下面对比不用Trie和用Trie。
+
+Regular:   
+for loop on words: inside, do board DFS based on each word.
+
+With Trie:
+no for loop on words. 直接对board DFS:   
+每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
+若不存在，就不必继续DFS下去了。
+
+
+```
 /*
 Given a matrix of lower alphabets and a dictionary. Find all words in the dictionary that can be found in the matrix. A word can start from any position in the matrix and go left/right/up/down to the adjacent position. 
 
@@ -40,8 +56,6 @@ LintCode Copyright Trie
 
 
 */
-//Well, the attempt2 uses Trie, but didn't really use find(). It just uses insert() to create Trie, and mainly
-//used the end point where string is finished.
 
 /*
 Attemp2: Trie solution.
@@ -66,86 +80,122 @@ find: for loop to iterate through subtrees of nodes, then return target on last 
 In the search:
 node.subtree.get(current).isString: this determines if a string exists or not.
 */
+
 public class Solution {
-   	class TrieNode {
-   		boolean isString;
-   		String s;
-   		HashMap<Character, TrieNode> subtree;
-   		public TrieNode() {
-   			this.isString = false;
-   			this.s = "";
-   			this.subtree = new HashMap<Character, TrieNode>();
-   		}
-   	}
-
-   	class TrieTree {
-   		TrieNode node;
-   		public TrieTree(TrieNode n) {
-   			node = n;
-   		}
-   		public void insert(String s) {
-   			TrieNode curr = node;
-   			for (int i = 0; i < s.length(); i++) {
-   				if (!curr.subtree.containsKey(s.charAt(i))) {
-   					curr.subtree.put(s.charAt(i), new TrieNode());
-   				}
-   				curr = curr.subtree.get(s.charAt(i));
-   			}
-   			curr.isString = true;
-   			curr.s = s;
-   		}
-   		public boolean find(String s) {
-   			TrieNode curr = node;
-   			for (int i = 0; i < s.length(); i++) {
-   				if (!curr.subtree.containsKey(s.charAt(i))) {
-   					return false;
-   				}
-   				curr = curr.subtree.get(s.charAt(i));
-   			}
-   			return curr.isString;
-   		}
-   	}
-
-   	public void search(char[][] board, ArrayList<String> rst, int i, int j, TrieNode node) {
-   		if (node.isString) {
-   			if(!rst.contains(node.s)) {
-   				rst.add(node.s);
-   			}
-   		}
-		if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] == '#' || node == null) {
-			return;
-		}
-		if (node.subtree.containsKey(board[i][j])) {
-			char temp = board[i][j];
-			TrieNode next = node.subtree.get(board[i][j]);
-			board[i][j] = '#';//Mark it, prevent going back-forth
-			search(board, rst, i, j + 1, next);
-			search(board, rst, i, j - 1, next);
-			search(board, rst, i - 1, j, next);
-			search(board, rst, i + 1, j, next);
-			board[i][j] = temp;
-		}
-   		
-   	}
+  class TrieNode {
+    String str;
+    boolean isEnd;
+    HashMap<Character, TrieNode> children;
+    public TrieNode () {
+      this.isEnd = false;
+      this.str = "";
+      children = new HashMap<Character, TrieNode>();
+    }
+  }
+  public TrieNode root;
+  public int[] xd = {1, -1, 0, 0};
+  public int[] yd = {0, 0, 1, -1};
+  
     public ArrayList<String> wordSearchII(char[][] board, ArrayList<String> words) {
-    	ArrayList<String> rst = new ArrayList<String>();
-    	if (board == null || words == null || words.size() == 0) {
-    		return rst;
-    	}
-    	TrieTree tree = new TrieTree(new TrieNode());
-    	for (String word : words) {
-    		tree.insert(word);
-    	}
+      ArrayList<String> rst = new ArrayList<String>();
+      if (board == null || board.length == 0 || board[0].length == 0 
+        || words == null || words.size() == 0) {
+        return rst;
+      }
 
-    	for (int i = 0; i < board.length; i++) {
-    		for (int j = 0; j < board[i].length; j++) {
-    			search(board, rst, i, j, tree.node);
-    		}
-    	}
+      //Build Trie with words
+      root = new TrieNode();
+      for (int i = 0; i < words.size(); i++) {
+        insert(words.get(i));
+      }
 
-    	return rst;
+      //Validate existance of the words in board
+      for (int i = 0; i < board.length; i++) {
+        for (int j = 0; j < board[0].length; j++) {
+          dfs(board, i, j, rst, "");
+        }
+      }
+
+      return rst;
+    }
+
+    //4 direction DFS search
+    public void dfs(char[][] board, int x, int y, ArrayList<String> rst, String s) {
+      if (x < 0 || x >= board.length || y < 0 || y >= board[x].length) {
+        return;
+      }
+      if (board[x][y] == '#') {
+          return;
+      }
+      s += board[x][y];
+      
+      if (!startWith(s)) {
+        return;
+      }
+      if (search(s) && !rst.contains(s)) {
+        rst.add(s);
+      } 
+      
+      char temp = board[x][y];
+      board[x][y] = '#';
+    for (int i = 0; i < 4; i++) {
+      int nX = x + xd[i];
+      int nY = y + yd[i];
+      dfs(board, nX, nY, rst, s);
+    }
+    board[x][y] = temp;
+      
+    }
+
+    /**************************Trie section *********************/
+    public void insert (String s){
+      char[] arr = s.toCharArray();
+      TrieNode node = root;
+      for (int i = 0; i < arr.length; i++) {
+        char c = arr[i];
+        if (!node.children.containsKey(c)) {
+          node.children.put(c, new TrieNode());
+        }
+        node = node.children.get(c);
+        if (i == arr.length - 1) {
+          node.isEnd = true;
+          node.str = s;
+        }
+      }
+    }
+
+    public boolean search(String s) {
+      char[] arr = s.toCharArray();
+      TrieNode node = root;
+      for (int i = 0; i < arr.length; i++) {
+        char c = arr[i];
+        if (!node.children.containsKey(c)) {
+          return false;
+        }
+        node = node.children.get(c);
+      }
+      return node.isEnd;
+    }
+
+    public boolean startWith(String s) {
+      char[] arr = s.toCharArray();
+      TrieNode node = root;
+      for (int i = 0; i < arr.length; i++) {
+        char c = arr[i];
+        if (!node.children.containsKey(c)) {
+          return false;
+        }
+        node = node.children.get(c);
+      }
+      return true;
     }
 }
+
+
+
+
+
+
 
 
 
@@ -159,52 +209,54 @@ Use word search1, and do for loop on the words... and that works .........Well, 
 
 public class Solution {
     public ArrayList<String> wordSearchII(char[][] board, ArrayList<String> words) {
-    	ArrayList<String> rst = new ArrayList<String>();
-    	if (board == null || words == null || words.size() == 0) {
-    		return rst;
-    	}
-    	for (String word : words) {
-    		if (exist(board, word)) {
-    			rst.add(word);
-    		}
-    	}
-    	return rst;
+      ArrayList<String> rst = new ArrayList<String>();
+      if (board == null || words == null || words.size() == 0) {
+        return rst;
+      }
+      for (String word : words) {
+        if (exist(board, word)) {
+          rst.add(word);
+        }
+      }
+      return rst;
     }
     //The following are from Word Search I
      public boolean exist(char[][] board, String word) {
-    	if (word == null || word.length() == 0) {
-    		return true;
-    	}
-    	if (board == null) {
-    		return false;
-    	}
-    	
-    	for (int i = 0; i < board.length; i++) {
-    		for (int j = 0; j < board[0].length; j++) {
-    			if (board[i][j] == word.charAt(0)) {
-    				boolean rst = search(board, word, i, j, 0);
-    				if (rst) {
-    					return true;
-    				}
-    			}
-    		}
-    	}
-    	return false;
+      if (word == null || word.length() == 0) {
+        return true;
+      }
+      if (board == null) {
+        return false;
+      }
+      
+      for (int i = 0; i < board.length; i++) {
+        for (int j = 0; j < board[0].length; j++) {
+          if (board[i][j] == word.charAt(0)) {
+            boolean rst = search(board, word, i, j, 0);
+            if (rst) {
+              return true;
+            }
+          }
+        }
+      }
+      return false;
     }
 
     public boolean search(char[][] board, String word, int i, int j, int start) {
-    	if (start == word.length()) {
-    		return true;
-    	}
-    	if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != word.charAt(start)) {
-    		return false;
-    	}
-    	board[i][j] = '#';
-    	boolean rst = search(board, word, i, j - 1, start + 1)
-    	|| search(board, word, i, j + 1, start + 1)
-    	|| search(board, word, i + 1, j, start + 1)
-     	|| search(board, word, i - 1, j, start + 1);   
-     	board[i][j] = word.charAt(start);
-    	return rst;
+      if (start == word.length()) {
+        return true;
+      }
+      if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != word.charAt(start)) {
+        return false;
+      }
+      board[i][j] = '#';
+      boolean rst = search(board, word, i, j - 1, start + 1)
+      || search(board, word, i, j + 1, start + 1)
+      || search(board, word, i + 1, j, start + 1)
+      || search(board, word, i - 1, j, start + 1);   
+      board[i][j] = word.charAt(start);
+      return rst;
     }
 }
+
+```

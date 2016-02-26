@@ -1,3 +1,5 @@
+E
+
 代码是不难的. 
 
 首先partition. 返还一个partition的那个中间点的位置。
@@ -8,6 +10,7 @@
 
 
 但是： 在partition array那个题目里面，第二个 nums[end] >= pivot, 是要去加上这个 ‘=’的
+
 ```
 /*
 Quick Sort a array.

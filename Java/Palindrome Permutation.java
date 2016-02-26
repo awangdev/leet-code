@@ -1,4 +1,7 @@
+E
+
 注意，条件里面没说是否全是lower case letter
+
 ```
 /*
 Given a string, determine if a permutation of the string could form a palindrome.

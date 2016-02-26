@@ -1,9 +1,14 @@
-2 Pointers， 
-双面夹击：找中间最大bar，两面往中心扫
+M
+
+2 Pointers， 双面夹击：   
+1. 找中间最高bar的index    
+2. 两面往中心扫：每次加上（topBarIndex - currIndex）* (elevation from previous index).也就是每次加一个横条。    
+3. 每次还要减去block自身的height。
 
 ```
 /*
-Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+Given n non-negative integers representing an elevation map where the width of each bar is 1, 
+compute how much water it is able to trap after raining.
 
 Example
 Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
