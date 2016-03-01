@@ -5,7 +5,7 @@ New problems will be automatically updated once added.
 
 **0. [2 Sum II - Input array is sorted.java](https://github.com/shawnfan/LintCode/blob/master/Java/2 Sum II - Input array is sorted.java)**		Level: Medium
 
-排序好的array. two pointer前后夹击。
+排序好的array. Binary Search移动start和end，核查sum。
 
 
 
@@ -17,6 +17,10 @@ LintCode的题. 注意找的是greater/bigger than target。
 由于给定条件允许O(nLogn):   
    sort
    two pointer
+
+while里面two pointer移动。每次如果num[left]+num[right] > target，那么其中所有num[left++]的加上num[right]都>target.   
+也就是,num[right]不动，计算加入挪动left能有多少组，那就是: right-left这么多。 全部加到count上去。     
+然后right--.换个right去和前面的left部分作比较。
 
 
 ---
@@ -146,16 +150,19 @@ Not Done yet。 Topological sort.
 ---
 **13. [Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Anagrams.java)**		Level: Medium
 
-HashMap 的做法. sort每个string, 存进HashMap, 重复的就是anagrams,最后输出。   
+
+1. HashMap 的做法. sort每个string, 存进HashMap, 重复的就是anagrams,最后输出。   
    toCharArray
    Arrays.sort
    Stirng.valueOf(char[])
 
 时间n*L*O(logL),L是最长string的长度。
 
+2. Arrays.toString(arr)的做法。arr是int[26], assuming only have 26 lowercase letters.    
+Count occurrance, 然后convert to String，作为map的key.
+Time complexity: nO(L)
 
-
-另一种做法：http://www.jiuzhang.com/solutions/anagrams/   
+3. 另一种做法：http://www.jiuzhang.com/solutions/anagrams/   
    1. take each string, count the occurrance of the 26 letters. save in int[]count.   
    2. hash the int[] count and output a unique hash value.   
       hash = hash * a + num   
@@ -1194,124 +1201,13 @@ sortedListToBST(head); //从头开始的前半段
 
 
 ---
-**58. [Copy List with Random Pointer.java](https://github.com/shawnfan/LintCode/blob/master/Java/Copy List with Random Pointer.java)**31% Accepted
-A linked list is given such that each node contains an additional random pointer 
-which could point to any node in the list or null.
+**58. [Copy List with Random Pointer.java](https://github.com/shawnfan/LintCode/blob/master/Java/Copy List with Random Pointer.java)**		Level: Medium
 
-Return a deep copy of the list.
+Basic Implementation, 其中用了一下HashMap:
 
-Example
-Tags Expand 
-Hash Table Linked List
-
-*/	
-
-/**
- * Definition for singly-linked list with a random pointer.
- * class RandomListNode {
- *     int label;
- *     RandomListNode next, random;
- *     RandomListNode(int x) { this.label = x; }
- * };
- */
-
-/*
-    Recap: 12.10.2015
-    Iterative through the list. 
-    Use a dummyHead and return dummyHead.next at the end.
-    In each iteration, check if Head is already exist, or make a new one
-    * use HashMap<oldNode, newNode> to mark if a node has been visited.
-    deep copy the random node of head as well.
-    
-    border case: if head == null, return null
-*/
-
-
-public class Solution {
-    public RandomListNode copyRandomList(RandomListNode head) {
-        if (head == null) {
-            return null;
-        }
-        //creat node, used to link all nodes
-        RandomListNode dummy = new RandomListNode(0);
-        RandomListNode node = dummy;
-        RandomListNode newNode;
-        
-        //HashMap to mark node
-        HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
-        
-        while(head != null) {
-            //process head. (we already know head!=null)
-            if (!map.containsKey(head)) {
-                map.put(head, new RandomListNode(head.label));
-            }
-            newNode = map.get(head);
-            node.next = newNode;
-            //process head.random
-            if (head.random != null) {
-                if(!map.containsKey(head.random)) {
-                    map.put(head.random, new RandomListNode(head.random.label));
-                }
-                newNode = map.get(head.random);
-                node.next.random = newNode;
-            }
-            node = node.next;
-            head = head.next;
-        }
-        return dummy.next;
-    }
-}
-
-/*
-Thinking process:
-1. Loop through the original list
-2. Use a HashMap<old node, new node>. User the old node as a key and new node as value.
-3. Doesn't matter of the order of node that being added into the hashMap.
-    For example, node1 is added.
-    node1.random, which is node 99, will be added into hashMap right after node1.
-4. During the loop:
-    If head exist in hashmap, get it; if not existed, create new node using head, add into hashMap
-    If head.random exist, get it; if not, add a new node using head.random.
-
-*/
-public class Solution {
-    /**
-     * @param head: The head of linked list with a random pointer.
-     * @return: A new head of a deep copy of the list.
-     */
-    public RandomListNode copyRandomList(RandomListNode head) {
-        if (head == null) {
-            return null;
-        }
-        HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
-        RandomListNode dummy = new RandomListNode(0);
-        RandomListNode pre = dummy;
-        RandomListNode newNode;
-        while (head != null) {
-            //Add new node 
-            if (map.containsKey(head)) {
-                newNode = map.get(head);
-            } else {
-                newNode = new RandomListNode(head.label);
-                map.put(head, newNode);
-            }
-            //Add new node's random node
-            if (head.random != null) {
-                if (map.containsKey(head.random)) {
-                    newNode.random = map.get(head.random);
-                } else {
-                    newNode.random = new RandomListNode(head.random.label);
-                    map.put(head.random, newNode.random);
-                }
-            }
-            //append and shift
-            pre.next = newNode;
-            pre = newNode;
-            head = head.next;
-        }
-        return dummy.next;
-    }
-}
+遍历head.next .... null.    
+每一步都check map里面有没有head。没有？加上。    
+每一步都check map里面有没有head.random。没有？加上。
 
 
 ---
@@ -2554,112 +2450,23 @@ o(n)也可以，用bucket. 比较巧妙。
 
 
 ---
-**102. [Happy Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Happy Number.java)**Write an algorithm to determine if a number is happy.
+**102. [Happy Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Happy Number.java)**		Level: Easy
 
-A happy number is a number defined by the following process: 
-Starting with any positive integer, replace the number by the sum of the squares of its digits, 
-and repeat the process until the number equals 1 (where it will stay), 
-or it loops endlessly in a cycle which does not include 1. 
-Those numbers for which this process ends in 1 are happy numbers.
+Basic Implementation of the requirements.
 
-Example
-19 is a happy number
-
-1^2 + 9^2 = 82
-8^2 + 2^2 = 68
-6^2 + 8^2 = 100
-1^2 + 0^2 + 0^2 = 1
-Tags Expand 
-Hash Table Mathematics
-*/
-
-/*
-	Thoughts:
-	Try some examples then find out: if it's not happy number, the 'sum of square of its digits' will
-	repeatedly occur. Use hashset to track existance.
-*/
-public class Solution {
-    public boolean isHappy(int n) {
-    	if (n <= 0) {
-    		return false;
-    	}
-    	long sum = n;
-    	HashSet<Long> set = new HashSet<Long>();
-    	while (sum != 1) {
-    		String s = String.valueOf(sum);
-    		sum = 0;
-    		for (char c : s.toCharArray()){
-    			sum += (c-'0')*(c-'0');
-    		}
-    		if (set.contains(sum)) {
-    			return false;	
-    		} else {
-    			set.add(sum);
-    		}
-    	}
-    	return true;
-    }
-}
-
-
-
+用HashSet存查看过的数值。若重复，return false.
 
 
 ---
-**103. [Hash Function.java](https://github.com/shawnfan/LintCode/blob/master/Java/Hash Function.java)**In data structure Hash, hash function is used to convert a string(or any other type) 
-into an integer smaller than hash size and bigger or equal to zero. The objective of 
-designing a hash function is to "hash" the key as unreasonable as possible. 
-A good hash function can avoid collision as less as possible. 
-A widely used hash function algorithm is using a magic number 33, 
-consider any string as a 33 based big integer like follow:
+**103. [Hash Function.java](https://github.com/shawnfan/LintCode/blob/master/Java/Hash Function.java)**		Level: Easy
 
+解释Hash怎么道理。Hash function例子：    
 hashcode("abcd") = (ascii(a) * 33^3 + ascii(b) * 33^2 + ascii(c) *33^1 + ascii(d)*33^0) % HASH_SIZE 
 
-                              = (97* 333 + 98 * 332 + 99 * 33 +100) % HASH_SIZE
+用到的参数比如: magic number 33, HASH_SIZE.
 
-                              = 3595978 % HASH_SIZE
-
-here HASH_SIZE is the capacity of the hash table 
-(you can assume a hash table is like an array with index 0 ~ HASH_SIZE-1).
-
-Given a string as a key and the size of hash table, return the hash value of this key.
-
-
-
-Example
-For key="abcd" and size=100, return 78
-
-Clarification
-For this problem, you are not necessary to design your own hash algorithm 
-or consider any collision issue, you just need to implement the algorithm as described.
-
-Tags Expand 
-Hash Table
-
-Thinking process:
-Use given hash function.
-However, need to consider integer overflow. 
-A simple way: save it as a long during calculation. Then return a (int).
-*/
-
-class Solution {
-    /**
-     * @param key: A String you should hash
-     * @param HASH_SIZE: An integer
-     * @return an integer
-     */
-    public int hashCode(char[] key, int HASH_SIZE) {
-        if (key.length == 0) {
-            return 0;
-        }
-        long hashRst = 0;
-        for (int i = 0; i < key.length ; i++) {
-            hashRst = hashRst * 33 + (int)(key[i]);
-            hashRst = hashRst % HASH_SIZE;
-        }
-        return (int)hashRst;
-    }
-};
+Hash的用法是：给一个string key, 转换成数字，从而把size变得更小。    
+真实的implementation还要处理collision, 可能需要design hash function 等等。
 
 
 ---

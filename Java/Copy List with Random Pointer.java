@@ -1,15 +1,23 @@
+M
+
+Basic Implementation, 其中用了一下HashMap:
+
+遍历head.next .... null.    
+每一步都check map里面有没有head。没有？加上。    
+每一步都check map里面有没有head.random。没有？加上。
+
+```
 /*
-31% Accepted
+
 A linked list is given such that each node contains an additional random pointer 
 which could point to any node in the list or null.
 
 Return a deep copy of the list.
 
-Example
 Tags Expand 
-Hash Table Linked List
+Hash Table Linked List Uber
 
-*/	
+*/  
 
 /**
  * Definition for singly-linked list with a random pointer.
@@ -80,10 +88,6 @@ Thinking process:
 
 */
 public class Solution {
-    /**
-     * @param head: The head of linked list with a random pointer.
-     * @return: A new head of a deep copy of the list.
-     */
     public RandomListNode copyRandomList(RandomListNode head) {
         if (head == null) {
             return null;
@@ -118,3 +122,5 @@ public class Solution {
     }
 }
 
+
+```

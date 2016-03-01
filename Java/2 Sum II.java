@@ -6,9 +6,14 @@ LintCode的题. 注意找的是greater/bigger than target。
    sort
    two pointer
 
+while里面two pointer移动。每次如果num[left]+num[right] > target，那么其中所有num[left++]的加上num[right]都>target.   
+也就是,num[right]不动，计算加入挪动left能有多少组，那就是: right-left这么多。 全部加到count上去。     
+然后right--.换个right去和前面的left部分作比较。
+
 ```
 /*
-Given an array of integers, find how many pairs in the array such that their sum is bigger than a specific target number. Please return the number of pairs.
+Given an array of integers, find how many pairs in the array such that 
+their sum is bigger than a specific target number. Please return the number of pairs.
 Example
 numbers=[2, 7, 11, 15], target=24
 
@@ -29,11 +34,6 @@ After doing Trigle Count...Can we just do the same for this, move while pointers
 OMG. The original idea was sooooooo complicated.
 */
 public class Solution {
-    /**
-     * @param nums: an array of integer
-     * @param target: an integer
-     * @return: an integer
-     */
     public int twoSum2(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return 0;
