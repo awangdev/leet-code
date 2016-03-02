@@ -4,6 +4,7 @@ Binary Tree的一个基本题。
 遍历到底，比较sum vs. target。   
 注意divide的情况。要把遍历的例子写写。   
 
+LeetCode: Path Sum II
 
 ```
 /*
@@ -47,6 +48,40 @@ Binary Tree Binary Tree Traversal
  *     }
  * }
  */
+
+/*
+3.1.2016 Recap
+Same approach
+*/
+public class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> rst = new ArrayList<List<Integer>>();
+        if (root == null) {
+            return rst;
+        }    
+        dfs(rst, new ArrayList<Integer>(), root, 0, sum);
+        
+        return rst;
+    }
+    
+    public void dfs(List<List<Integer>> rst, ArrayList<Integer> list, TreeNode node, int add, int sum) {
+        list.add(node.val);
+        if (node.left == null && node.right == null) {
+            if (add + node.val == sum) {
+                rst.add(new ArrayList<Integer>(list));                   
+            }
+            return;
+        }
+        if (node.left != null) {
+            dfs(rst, list, node.left, add + node.val, sum);
+            list.remove(list.size() - 1);
+        }
+        if (node.right != null) {
+            dfs(rst, list, node.right, add + node.val, sum);
+            list.remove(list.size() - 1);
+        }
+    }
+}
 
 public class Solution {
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {

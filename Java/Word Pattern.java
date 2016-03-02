@@ -1,7 +1,10 @@
+E
+
 每个char代表一个pattern。用HashMap<char, str>.
 但不够，如果a也match dog, b也match dog, 纠错了。比如pattern = "abba", str = "dog dog dog dog"。
 因此第二个HashMap<str, char> 反过来。
 确保pattern和str一一对应。
+
 ```
 /*
 Given a pattern and a string str, find if str follows the same pattern.
@@ -24,6 +27,39 @@ Hide Tags Hash Table
 Hide Similar Problems (E) Isomorphic Strings (H) Word Pattern II
 
 */
+
+/*
+	3.1.2016 recap.
+	HashMap, one to one mapping
+*/
+public class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        if (pattern == null || pattern.length() == 0 || str == null || str.length() == 0) {
+            return false;
+        }
+        
+        String[] strArr = str.split(" ");
+        if (pattern.length() != strArr.length) {
+            return false;
+        }
+        HashMap<Character, String> map = new HashMap<Character, String>();        
+        
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            String s = strArr[i];
+            if (!map.containsKey(c)) {
+                if (map.containsValue(s)) {
+                    return false;
+                }
+                map.put(c, s);
+            } else if (!map.get(c).equals(s)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
 
 /*
 Thoughts:
