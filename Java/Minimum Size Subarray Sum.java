@@ -1,11 +1,15 @@
+M
+
 2 pointer: 
 一个做base, 每次动一格：i.
 一个做前锋，加到满足条件为止。
 Note: 当sum >= s 条件在while里面满足时，end是多一个index的。所以result里面要处理好边缘情况：(end-1) 才是真的末尾位置，然后计算和开头的间隙：
 （end - 1） - start + 1;
+
 ```
 /*
-Given an array of n positive integers and a positive integer s, find the minimal length of a subarray of which the sum ≥ s. If there isn't one, return -1 instead.
+Given an array of n positive integers and a positive integer s, find the minimal length of a subarray of which the sum ≥ s. 
+If there isn't one, return -1 instead.
 
 Example
 Given the array [2,3,1,2,4,3] and s = 7, the subarray [4,3] has the minimal length under the problem constraint.

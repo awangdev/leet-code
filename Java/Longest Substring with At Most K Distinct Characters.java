@@ -1,13 +1,15 @@
-大清洗。
-map.size一旦超标，要把longest string最开头（marked by pointer:start）的那个char抹掉，而且要把它所有的appearance都抹掉；这样还不够，它最后一次出现以前的其他所有chars，也都要抹掉。
-大清洗的原因是： 一旦某一个char要被清除，由于substring必须是连续的，所以在它之前的所有chars都要被清洗。
-我去，黑帮大哥除龙头啊。
-简直就是要消灭伏地魔的7个魂器。
+M
+
+大清洗 O(nk)   
+map.size一旦>k，要把longest string最开头（marked by pointer:start）的那个char抹掉    
+一旦某一个char要被清除，所以在这个char 的1st and last appearance之间的char都要被清洗from map
+
+
+
 ```
 /*
 Given a string s, find the length of the longest substring T that contains at most k distinct characters.
 
-Have you met this question in a real interview? Yes
 Example
 For example, Given s = "eceba", k = 3,
 
@@ -16,9 +18,11 @@ T is "eceb" which its length is 4.
 Challenge
 O(n), n is the size of the string s.
 
-Tags Expand 
+Tags Expand
 String Two Pointers LintCode Copyright Hash Table
+
 */
+
 
 /*
 Thoughts:
@@ -33,11 +37,6 @@ Do while on map.size>k, and remove all chars before the last appearce of that pa
 Therefore, we need erase that particular char and all other chars before that particular char's last apperance.
 */
 public class Solution {
-    /**
-     * @param s : A string
-     * @return : The length of the longest substring 
-     *           that contains at most k distinct characters.
-     */
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
     	if (s == null || s.length() == 0 || k <= 0) {
     		return 0;
@@ -70,5 +69,17 @@ public class Solution {
     	return max;
     }
 }
+
+
+
+/*
+    3.1.2016. 
+    How about map to store last occurance of each char.
+    Use pointer head to show which char to cut off from string
+
+    Not work: still has to clean up all chars that being cut off from the map, which is O(n) again. 
+    So the solutoin has to be O(nk)
+*/
+
 
 ```

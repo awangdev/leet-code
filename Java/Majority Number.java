@@ -1,3 +1,11 @@
+E
+
+Majority Number是指超半数。任何超半数，都可以用0和1count：是某个number，+1；不是这个number-1. 
+
+注意：assume valid input, 是一定有一个majority number的。否则此法不成。[1,1,1,2,2,2,3]是个invalid input,结果是3，当然也错了。
+
+```
+
 /*
 Given an array of integers, the majority number is the number that occurs more than half of the size of the array. Find it.
 
@@ -9,6 +17,10 @@ O(n) time and O(1) space
 
 Tag: Enumeration
 
+
+*/
+
+/*
 Thinking process:
 Natural thinking process: count how many you have for 1st element, if next one is the same, count++, if next one is not the same, count- -. 
 When count ==0, that means other types of element has same amount as the 1st majority number, they are even.
@@ -16,7 +28,6 @@ From this point, count the value at current position as the majority number, kee
 Note: this solutions works only when the given array has a valid solution.
 CounterCase:[111223], with actually return 3 as the majority number. But again, this is not a valid input in this case.
 */
-
 public class Solution {
     /**
      * @param nums: a list of integers
@@ -43,3 +54,5 @@ public class Solution {
     }
 }
 
+
+```

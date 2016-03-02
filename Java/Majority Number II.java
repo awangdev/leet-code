@@ -1,3 +1,12 @@
+M
+
+分三份：a b c考虑。若a, countA++, 或b, countB++，或c，countA--,countB--.
+
+最后出现的两个count>0的a和b,自然是potentially大于1/3的。其中有一个大于1/3.
+
+比较a和b哪个大，就return哪一个。
+
+```
 /*
 Given an array of integers, the majority number is the number that occurs more than 1/3 of the size of the array.
 
@@ -12,23 +21,17 @@ For [1, 2, 1, 2, 1, 3, 3] return 1
 Challenge
 O(n) time and O(1) space
 
+*/
+
+/*
+
 Thinking process:
 Need to think the relations of 3 parts of the array:
-1. Assume a > 1/3, which is the candidate were are looking for
-	However, only konwing a appears more than 1/3 of the array, does not mean there is no other element appears more than 1/3, for example, aaaaabcccccc, a = 5/12, b = 6/12. The majority is b.
-2. Consider another element b, which is a different element rather than a. Discuss the 2 conditions of b.
-3. Consider the rest of the array is in set c, which can contain all different elements.
+1. Consider a and b.
+2. Consider the rest of the array is in set c, which can contain all different elements.
+3. Two if statement makes sure a and b fall into 1/3 of the conditions.
 
 Discuss relations between a, b, c
-Assume a > 1/3
-Case1: b < 1/3 
-	given: a > 1/3, means b + c < 2/3, known b < 1/3
-	get: c < 1/3
-	conclusion: a is the majority
-Case2: b > 1/3
-	given: a + b ? 2/3
-	get: c < 1/3
-	conclusion: return the greater element# of a or b
 
 Implementation:
 1. Have valA and valB two pointers to represent a and between
@@ -37,12 +40,7 @@ Implementation:
 4. Note: at each index i, only one of valA or valB is checked. That means, we evaluate a and b individually against the section c.
 5. At the end, we found 2 candidates: a and b. Now compare the # of a and b to see which is greater.
 */
-
 public class Solution {
-    /**
-     * @param nums: A list of integers
-     * @return: The majority number that occurs more than 1/3
-     */
     public int majorityNumber(ArrayList<Integer> nums) {
         if (nums == null || nums.size() == 0) {
             return -1;
@@ -81,3 +79,5 @@ public class Solution {
     }
 }
 
+
+```

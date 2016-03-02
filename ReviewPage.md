@@ -3787,13 +3787,28 @@ public class Solution {
 
 
 ---
-**149. [Longest Substring with At Most K Distinct Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring with At Most K Distinct Characters.java)**map.size一旦超标，要把longest string最开头（marked by pointer:start）的那个char抹掉，而且要把它所有的appearance都抹掉；这样还不够，它最后一次出现以前的其他所有chars，也都要抹掉。
-大清洗的原因是： 一旦某一个char要被清除，由于substring必须是连续的，所以在它之前的所有chars都要被清洗。
-我去，黑帮大哥除龙头啊。
-简直就是要消灭伏地魔的7个魂器。
+**149. [Longest Substring with At Most K Distinct Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring with At Most K Distinct Characters.java)**		Level: Medium
+
+大清洗 O(nk)   
+map.size一旦>k，要把longest string最开头（marked by pointer:start）的那个char抹掉    
+一旦某一个char要被清除，所以在这个char 的1st and last appearance之间的char都要被清洗from map
+
+
+
 
 ---
 **150. [Longest Substring Without Repeating Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Longest Substring Without Repeating Characters.java)**		Level: Medium
+
+
+方法2:用两个pointer, head和i.    
+   HashMap<Char, Integer>: <character, last occurance index>
+   head从index 0 开始。若没有重复char, 每次只有for loop的i++。每次取substring[head,i]作为最新的string.
+   一旦有重复，那么意味着，从重复的老的那个index要往后加一格开始。所以head = map.get(i) +１.
+
+
+注意：head很可能被退回到很早的地方，比如abbbbbba,当遇到第二个a，head竟然变成了 head = 0+1 = 1.      
+当然这是不对的，所以head要确保一直增长，不回溯。
+
 
 方法1：只要有non-existing char就count++. 一旦有重复char:   
    i = 新出现重复Char的位置.
@@ -3801,11 +3816,6 @@ public class Solution {
 
 这个方法每次都把map打碎重来, 是可以的，也没什么不好。就是在for里面改i，自己觉得不太顺.方法二可能顺一点。
 
-方法2:用两个pointer, head和i.    
-   head从index 0 开始。若没有重复char, 每次只有for loop的i++。每次取substring[head,i]作为最新的string.
-   一旦有重复，那么意味着，从重复的老的那个index要往后加一格开始。所以head = map.get(i) +１.
-
-注意：head很可能被退回到很早的地方，比如abbbbbba,当遇到第二个a，head竟然变成了 head = 0+1 = 1. 当然这是不对的，所以head要确保一直增长，不回溯。
    
 
 
@@ -4093,199 +4103,27 @@ public class LRUCache {
 ````
 
 ---
-**156. [Majority Number II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number II.java)**Given an array of integers, the majority number is the number that occurs more than 1/3 of the size of the array.
+**156. [Majority Number II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number II.java)**		Level: Medium
 
-Find it.
+分三份：a b c考虑。若a, countA++, 或b, countB++，或c，countA--,countB--.
 
-Note
-There is only one majority number in the array
+最后出现的两个count>0的a和b,自然是potentially大于1/3的。其中有一个大于1/3.
 
-Example
-For [1, 2, 1, 2, 1, 3, 3] return 1
-
-Challenge
-O(n) time and O(1) space
-
-Thinking process:
-Need to think the relations of 3 parts of the array:
-1. Assume a > 1/3, which is the candidate were are looking for
-	However, only konwing a appears more than 1/3 of the array, does not mean there is no other element appears more than 1/3, for example, aaaaabcccccc, a = 5/12, b = 6/12. The majority is b.
-2. Consider another element b, which is a different element rather than a. Discuss the 2 conditions of b.
-3. Consider the rest of the array is in set c, which can contain all different elements.
-
-Discuss relations between a, b, c
-Assume a > 1/3
-Case1: b < 1/3 
-	given: a > 1/3, means b + c < 2/3, known b < 1/3
-	get: c < 1/3
-	conclusion: a is the majority
-Case2: b > 1/3
-	given: a + b ? 2/3
-	get: c < 1/3
-	conclusion: return the greater element# of a or b
-
-Implementation:
-1. Have valA and valB two pointers to represent a and between
-2. Check valA against the array to count duplicates, similar as in Majority Number I 
-3. Check valB against .....
-4. Note: at each index i, only one of valA or valB is checked. That means, we evaluate a and b individually against the section c.
-5. At the end, we found 2 candidates: a and b. Now compare the # of a and b to see which is greater.
-*/
-
-public class Solution {
-    /**
-     * @param nums: A list of integers
-     * @return: The majority number that occurs more than 1/3
-     */
-    public int majorityNumber(ArrayList<Integer> nums) {
-        if (nums == null || nums.size() == 0) {
-            return -1;
-        }
-        int valA = 0; 
-        int valB = 0;
-        int countA = 0;
-        int countB = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            if (countA == 0 || nums.get(i) == valA) {
-                valA = nums.get(i);
-                countA++;
-            } else if (countB == 0 || nums.get(i) == valB) {
-                valB = nums.get(i);
-                countB++;
-            } else {//None of a || b matches
-                countA--;
-                countB--;
-                if (countA == 0) {
-                    countA = 1;
-                    valA = nums.get(i);
-                } else if (countB == 0) {
-                    countB = 1;
-                    valB = nums.get(i);
-                }
-            }
-        }//For
-        
-        countA = 0; 
-        countB = 0;
-        for (int num : nums) {
-            countA += num == valA ? 1 : 0;
-            countB += num == valB ? 1 : 0;
-        }
-        return countA > countB ? valA : valB;
-    }
-}
+比较a和b哪个大，就return哪一个。
 
 
 ---
-**157. [Majority Number III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number III.java)**Given an array of integers and a number k, the majority number is the number that occurs more than 1/k of the size of the array. Find it.
+**157. [Majority Number III.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number III.java)**		Level: Medium
 
-Note
-There is only one majority number in the array.
-
-Example
-For [3,1,2,3,2,3,3,4,4,4] and k = 3, return 3
-
-Challenge
-O(n) time and O(k) extra space
-
-Thinking process:
-Very similar to Majority I, II, except we can use a HashMap to store information (value, count).
-Having a HashMap we have one advantage: when checking if current value matches any previously recorded val, just do a map.containsKey(val).
-When a pair in hashMap has count ==0, remove this pair.
-Note, to learn how to use iterator in HashMap.
-Note: when map.containsKey(currVal) == false, the code checks map.size() == k before count-- perations. This is because:
-We first need to put k candidates into HashMap before we count-- from all of them. If map.size() < k, that means we still have free spot for candidate in the HashMap, so in this case we do: map.put(candidateKey, 1).
-*/
-
-
-public class Solution {
-    /**
-     * @param nums: A list of integers
-     * @param k: As described
-     * @return: The majority number
-     */
-    public int majorityNumber(ArrayList<Integer> nums, int k) {
-        if (nums == null || nums.size() == 0) {
-            return -1;
-        }
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (Integer num : nums) {
-            if (map.containsKey(num)) {//Found duplicates, count++
-                map.put(num, map.get(num) + 1);
-            } else {
-                if (map.size() == k) {//All candidates added, do count--
-                    Iterator<Map.Entry<Integer, Integer>> iter = map.entrySet().iterator();
-                    while (iter.hasNext()) {
-                        Map.Entry<Integer, Integer> entry = iter.next();
-                        if (entry.getValue() - 1 == 0) {
-                            iter.remove();
-                        } else {
-                            map.put(entry.getKey(), entry.getValue() - 1);
-                        }
-                    }//While
-                } else {
-                    map.put(num, 1);
-                }
-            }
-        }//For
-        
-        int result = 0;
-        int max = 0;
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > max) {
-                max = entry.getValue();
-                result = entry.getKey();
-            }
-        }
-        return result;
-    }
-}
+Not Done
 
 
 ---
-**158. [Majority Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number.java)**Given an array of integers, the majority number is the number that occurs more than half of the size of the array. Find it.
+**158. [Majority Number.java](https://github.com/shawnfan/LintCode/blob/master/Java/Majority Number.java)**		Level: Easy
 
-Example
-For [1, 1, 1, 1, 2, 2, 2], return 1
+Majority Number是指超半数。任何超半数，都可以用0和1count：是某个number，+1；不是这个number-1. 
 
-Challenge
-O(n) time and O(1) space
-
-Tag: Enumeration
-
-Thinking process:
-Natural thinking process: count how many you have for 1st element, if next one is the same, count++, if next one is not the same, count- -. 
-When count ==0, that means other types of element has same amount as the 1st majority number, they are even.
-From this point, count the value at current position as the majority number, keep the loop rolling.
-Note: this solutions works only when the given array has a valid solution.
-CounterCase:[111223], with actually return 3 as the majority number. But again, this is not a valid input in this case.
-*/
-
-public class Solution {
-    /**
-     * @param nums: a list of integers
-     * @return: find a  majority number
-     */
-    public int majorityNumber(ArrayList<Integer> nums) {
-        if (nums == null || nums.size() == 0) {
-            return -1;
-        }
-        int majorNum = nums.get(0);
-        int count = 1;
-        for (int i = 1; i < nums.size(); i++) {
-            if (majorNum == nums.get(i)) {
-                count++;
-            } else {
-                count--;
-            }
-            if (count == 0) {
-                majorNum = nums.get(i);
-                count = 1;
-            }
-        }
-        return majorNum;
-    }
-}
+注意：assume valid input, 是一定有一个majority number的。否则此法不成。[1,1,1,2,2,2,3]是个invalid input,结果是3，当然也错了。
 
 
 ---
@@ -4940,10 +4778,14 @@ public class Solution {
 
 
 ---
-**182. [Minimum Size Subarray Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Size Subarray Sum.java)**一个做base, 每次动一格：i.
+**182. [Minimum Size Subarray Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Size Subarray Sum.java)**		Level: Medium
+
+2 pointer: 
+一个做base, 每次动一格：i.
 一个做前锋，加到满足条件为止。
 Note: 当sum >= s 条件在while里面满足时，end是多一个index的。所以result里面要处理好边缘情况：(end-1) 才是真的末尾位置，然后计算和开头的间隙：
 （end - 1） - start + 1;
+
 
 ---
 **183. [Minimum Subarray.java](https://github.com/shawnfan/LintCode/blob/master/Java/Minimum Subarray.java)**Given an array of integers, find the subarray with smallest sum.
