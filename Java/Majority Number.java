@@ -1,8 +1,12 @@
 E
 
-Majority Number是指超半数。任何超半数，都可以用0和1count：是某个number，+1；不是这个number-1. 
+Majority Number是指超半数。任何超半数，都可以用0和1count：是某个number，+1；不是这个number,-1. 
 
 注意：assume valid input, 是一定有一个majority number的。否则此法不成。[1,1,1,2,2,2,3]是个invalid input,结果是3，当然也错了。
+
+Majority Number II，超1/3, 那么就分三份处理，countA, countB来计算最多出现的两个。
+
+Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 ```
 

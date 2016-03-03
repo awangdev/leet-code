@@ -1,6 +1,12 @@
 M
 
-Not Done
+与其他Majority Number一样。
+
+出现次数多余1/k，就要分成k份count occurance.用HashMap。 存在的+1；不存在map里的，分情况:    
+若map.size() == k,说明candidate都满了，要在map里把所有现存的都-1；
+若map.size() < k, 说明该加新candidate，那么map.put(xxx, 1);
+
+最后在HashMap里找出所留下的occurance最大的那个数。
 
 ```
 /*
@@ -38,7 +44,7 @@ public class Solution {
             if (map.containsKey(num)) {//Found duplicates, count++
                 map.put(num, map.get(num) + 1);
             } else {
-                if (map.size() == k) {//All candidates added, do count--
+                if (map.size() == k) {//Enough candidates added, do count--
                     Iterator<Map.Entry<Integer, Integer>> iter = map.entrySet().iterator();
                     while (iter.hasNext()) {
                         Map.Entry<Integer, Integer> entry = iter.next();

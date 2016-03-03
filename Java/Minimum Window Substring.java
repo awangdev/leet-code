@@ -1,3 +1,8 @@
+M
+
+Need look again. Had bad solution at 2nd attempt.
+
+```
 /*
 Given a string source and a string target, find the minimum window in source which will contain all the characters in target.
 
@@ -19,7 +24,10 @@ Should the characters in minimum window has the same order in target?
 
 Tags Expand 
 Hash Table
+*/
 
+
+/*
 Thoughts:
 The idea was from jiuzhang.com.
 1. count target Characters: store each Character with HashMap:tCounter<Character, # appearance>
@@ -110,3 +118,65 @@ public class Solution {
     	System.out.println("resutl is : " + rst);
     }
 }
+
+
+
+
+/*
+3.2.2016, another thought. But this does not work.
+1. record hashmap<char, list of index of matched char>
+2. record matched char's indexes in a arraylsit
+3. Use a char[256] to check through the arraylist, if any sequence match target chars, then use the position to calculate a result.
+4. repeat 3 and find the minimum
+*/
+public class Solution {
+    public String minWindow(String source, String target) {
+  		if (source == null || source.length() == 0 || target ==  null || target.length() == 0) {
+  			return "";
+  		}
+  		int[] match = new int[256];
+  		for (int i = 0; i < target.length(); i++) {
+  			match[target.charAt(i)] += 1;
+  		}
+
+  		ArrayList<Integer> posList = new ArrayList<Integer>();
+  		for (int i = 0; i < source.length(); i++) {
+  			if (target.indexOf(source.charAt(i)) != -1) {
+  				posList.add(i);
+  			}
+  		}
+
+  		int[] arr = new int[256];
+  		String matchStr = Arrays.toString(match);
+  		String rst = "";
+  		int start = -1;
+  		int end = -1;
+  		for (int i = 0; i < posList.size(); i++) {
+  			int pos = posList.get(i);
+  			char c = source.charAt(pos);
+  			if (target.indexOf(c) != -1) {
+  				if (arr[c] < match[c]) {
+  					arr[c] += 1;
+  				}
+  				
+  				if (start == -1) {
+  					start = pos;
+  				}
+  			}
+  			 
+  			if (Arrays.toString(arr).equals(matchStr)) {
+  				end = posList.get(i);
+  				String temp = source.substring(start, end + 1);
+  				if (rst.length() == 0 || temp.length() < rst.length()) {
+  					rst = temp;
+  				}
+  				arr[start] -= 1;
+  				start = -1;
+  			}
+  		}//end for
+
+  		return rst;
+    }
+}
+
+```

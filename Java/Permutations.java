@@ -1,5 +1,10 @@
-还是递归： 取，或者不取。
+M
+
+Recursive： 取，或者不取。    
+
 Iterative: 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍。
+
+
 ```
 /*
 Given a list of numbers, return all possible permutations.

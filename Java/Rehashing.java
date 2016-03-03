@@ -1,5 +1,11 @@
+M
+
+
+```
 /*
-The size of the hash table is not determinate at the very beginning. If the total size of keys is too large (e.g. size >= capacity / 10), we should double the size of the hash table and rehash every keys. Say you have a hash table looks like below:
+The size of the hash table is not determinate at the very beginning. 
+If the total size of keys is too large (e.g. size >= capacity / 10), 
+we should double the size of the hash table and rehash every keys. Say you have a hash table looks like below:
 
 size=3, capacity=4
 
@@ -59,56 +65,56 @@ Thoughts:
      * @return: A list of The first node of linked list which have twice size
      */    
     public ListNode[] rehashing(ListNode[] hashTable) {
-    	if (hashTable == null || hashTable.length == 0) {
-    		return hashTable;
-    	}
-    	//Find longest size
-    	/*
-    	int longest = 0;
-    	for (int i = 0; i < hashTable.length; i++) {
-    		ListNode node = hashTable[i];
-    		int count = 0;
-    		while (node != null) {
-    			count++;
-    			node = node.next;
-    		}
-    		longest = Math.max(longest, count);
-    	}*/
-    	//Calculate new capacity
-    	//Just to clarify, this problem asks to double the hashtable size, rather than 'longest' times longer.
-    	int capacity = hashTable.length * 2;
-    	if (capacity == hashTable.length) {
-    		return hashTable;
-    	}
-    	
-    	ListNode[] rst = new ListNode[capacity];
-    	for (int i = 0; i < hashTable.length; i++) {
-    		ListNode node = hashTable[i];
-    		while (node != null) {
-    			ListNode newNode = new ListNode(node.val);
-				int hCode = hashcode(newNode.val, capacity);
-				if (rst[hCode] == null) {
-    				rst[hCode] = newNode;
-    			} else {
-    				ListNode move = rst[hCode];
-    				while (move.next != null) {
-    					move = move.next;
-    				}
-    				move.next = newNode;
-    			}
-    			node = node.next;
-    		}
-    	}
+        if (hashTable == null || hashTable.length == 0) {
+            return hashTable;
+        }
+        //Find longest size
+        /*
+        int longest = 0;
+        for (int i = 0; i < hashTable.length; i++) {
+            ListNode node = hashTable[i];
+            int count = 0;
+            while (node != null) {
+                count++;
+                node = node.next;
+            }
+            longest = Math.max(longest, count);
+        }*/
+        //Calculate new capacity
+        //Just to clarify, this problem asks to double the hashtable size, rather than 'longest' times longer.
+        int capacity = hashTable.length * 2;
+        if (capacity == hashTable.length) {
+            return hashTable;
+        }
+        
+        ListNode[] rst = new ListNode[capacity];
+        for (int i = 0; i < hashTable.length; i++) {
+            ListNode node = hashTable[i];
+            while (node != null) {
+                ListNode newNode = new ListNode(node.val);
+                int hCode = hashcode(newNode.val, capacity);
+                if (rst[hCode] == null) {
+                    rst[hCode] = newNode;
+                } else {
+                    ListNode move = rst[hCode];
+                    while (move.next != null) {
+                        move = move.next;
+                    }
+                    move.next = newNode;
+                }
+                node = node.next;
+            }
+        }
 
-    	return rst;
+        return rst;
     }
 
     public int hashcode(int key, int capacity) {
-    	if (key < 0) {
-    		return (key % capacity + capacity) % capacity;
-    	} else {
-    		return key % capacity;
-    	}
+        if (key < 0) {
+            return (key % capacity + capacity) % capacity;
+        } else {
+            return key % capacity;
+        }
     }
 };
 
@@ -124,3 +130,5 @@ Thoughts:
 
 
 
+
+```
