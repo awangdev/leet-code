@@ -1,5 +1,13 @@
-好像没啥技术含量. 做就行了。
-validate block的时候虽然看到了4层for.其实也就是n^2.
+E
+
+用HashSet存visited value.
+
+方法1: 在nest for loop里面validate row,col,and block.     
+validate block要利用i 和 j 增长的规律。    
+说白了，i && j是按照0~n增长的index, 具体怎么用是可以flexible的。这个方法在同一个nest for loop解决所有运算。
+
+方法2: 单独做block validation: validate block的时候虽然看到了4层for.其实也就是n^2.
+
 ```
 /*
 Determine whether a Sudoku is valid.
@@ -26,6 +34,48 @@ Tags Expand
 Matrix
 */
 
+/*Recap 3.7.2016 */
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        if (board == null || board.length == 0 || board[0].length == 0 || board.length != board[0].length) {
+            return false;
+        }
+        HashSet<Character> row,col,block;
+        int n = board.length;
+    
+        for (int i = 0; i < n; i++) {
+            row = new HashSet<Character>();
+            col = new HashSet<Character>();
+            block = new HashSet<Character>();
+            for (int j = 0; j < n; j++) {
+                //Check row
+                if (!row.contains(board[i][j])) {
+                    row.add(board[i][j]);
+                } else if (board[i][j] != '.'){
+                    return false;
+                }
+                //Check col
+                if (!col.contains(board[j][i])) {
+                    col.add(board[j][i]);
+                } else if (board[j][i] != '.'){
+                    return false;
+                }
+                //check block
+                int c = j % 3 + 3 * (i % 3);//make use of how i and j increases
+                int r = j / 3 + 3 * (i / 3);
+                if (!block.contains(board[r][c])) {
+                    block.add(board[r][c]);
+                } else if (board[r][c] != '.') {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+};
+
+
 /*
 	Thoughts:
 	Each row/col/block can only 1 ~ 9, no duplicates
@@ -35,10 +85,6 @@ Matrix
 */
 
 class Solution {
-    /**
-      * @param board: the board
-        @return: wether the Sudoku is valid
-      */
     public boolean isValidSudoku(char[][] board) {
     	if (board == null || board.length == 0 || board[0].length == 0 || board.length != board[0].length) {
     		return false;

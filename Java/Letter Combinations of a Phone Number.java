@@ -1,3 +1,10 @@
+M
+
+方法1: Iterative with BFS using queue.
+
+方法2: Recursively adding chars per digit
+
+```
 /*
 Given a digit string, return all possible letter combinations that the number could represent.
 
@@ -17,19 +24,67 @@ Tags Expand
 String Backtracking Recursion Facebook Uber
 */
 
+/*3.7.2016 recap. Iterative way using BFS*/
+//Hashmap the list of chars.
+//Use queue to append all possibile candidates. BFS
+public class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> rst = new ArrayList<String>();
+        if (digits == null || digits.length() == 0) {
+            return rst;
+        }
+        //Init map
+        HashMap<Character, String> map = new HashMap<Character, String>();
+        map.put('2',"abc");
+        map.put('3',"def");
+        map.put('4',"ghi");
+        map.put('5',"jkl");
+        map.put('6',"mno");
+        map.put('7',"pqrs");
+        map.put('8',"tuv");
+        map.put('9',"wxyz");
+        // Init 1 digits and the chars in queue
+        Queue<String> queue = new LinkedList<String>();
+        char c = digits.charAt(0);
+        String s = map.get(c);
+        for (int i = 0; i < s.length(); i++) {
+            queue.offer(s.charAt(i) + "");
+        }
+        
+        int size = 0;
+        for (int i = 1; i < digits.length(); i++) {//iteratve all numbers
+            c = digits.charAt(i);
+            s = map.get(c);
+            size = queue.size();
+            for (int j = 0; j < size; j++) {//iteratve old queue
+                String str = queue.poll();
+                for (int k = 0; k < s.length(); k++) {//iteratve possibile chars per number key
+                    queue.offer(str + s.charAt(k));
+                }
+            }
+        }
+        while (!queue.isEmpty()) {
+            rst.add(queue.poll());
+        }
+        
+        return rst;
+    }
+}
+
+
 /*
-	Thoughts: have done this on Leetcode.
-	map integer to letters
-	combination of existing letters (by pressing fist number) with next number's letters.
-	put combinations into queue, reuse the queue.
-	finally, output into arraylist
+    Thoughts: have done this on Leetcode.
+    map integer to letters
+    combination of existing letters (by pressing fist number) with next number's letters.
+    put combinations into queue, reuse the queue.
+    finally, output into arraylist
 
-	NON-recursive/iterative: use a queue. (Done this one Leetcode)
+    NON-recursive/iterative: use a queue. (Done this one Leetcode)
 
-	This time, use recursive:
-	pass along rst, list, level number, digits, 
-	for (combine list with all next level's candidates, map)
-	when level number == digits.length(), return the candidate into rst.
+    This time, use recursive:
+    pass along rst, list, level number, digits, 
+    for (combine list with all next level's candidates, map)
+    when level number == digits.length(), return the candidate into rst.
 */
 public class Solution {
     /**
@@ -60,25 +115,25 @@ public class Solution {
     }
 
     public void helper(ArrayList<String> rst, ArrayList<String> list, 
-    	ArrayList<String[]> map, String digits, int level){
-    	//If level is finished, compress into string
-    	if (level == digits.length()) {
-    		StringBuffer sb = new StringBuffer();
-    		for (String s : list) {
-    			sb.append(s);
-    		}
-    		rst.add(sb.toString());
-    		return;
-    	}
-    	//For a specific list of candidates, face the level of chars
-    	int num = Integer.parseInt(digits.substring(level, level + 1));
-    	String[] strs = map.get(num);
+        ArrayList<String[]> map, String digits, int level){
+        //If level is finished, compress into string
+        if (level == digits.length()) {
+            StringBuffer sb = new StringBuffer();
+            for (String s : list) {
+                sb.append(s);
+            }
+            rst.add(sb.toString());
+            return;
+        }
+        //For a specific list of candidates, face the level of chars
+        int num = Integer.parseInt(digits.substring(level, level + 1));
+        String[] strs = map.get(num);
 
-    	for (int i = 0; i < strs.length; i++) {
-    		list.add(strs[i]);
-    		helper(rst, list, map, digits, level + 1);
-    		list.remove(list.size() - 1);
-    	}
+        for (int i = 0; i < strs.length; i++) {
+            list.add(strs[i]);
+            helper(rst, list, map, digits, level + 1);
+            list.remove(list.size() - 1);
+        }
     }
 
 }
@@ -148,3 +203,5 @@ public class Solution {
 
 
 
+
+```

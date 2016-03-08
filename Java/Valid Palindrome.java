@@ -1,4 +1,7 @@
-注意如何滤过: alphanumeric 
+E
+
+过滤alphanumeric，其他字母掠过
+
 ```
 /*
 Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
@@ -16,9 +19,48 @@ For the purpose of this problem, we define empty string as valid palindrome.
 Challenge
 O(n) time without extra memory.
 
-Tags Expand 
-String Two Pointers
+Company： Microsoft Uber Facebook Zenefits
+Hide Tags Two Pointers String
+Hide Similar Problems (E) Palindrome Linked List
+
+
 */
+
+
+/*
+3.4.2016 recap
+Filter the String first, then check Palindrome
+But uses extra space to filter the string. Can also just manipulate string on itself. no big deal
+*/
+
+public class Solution {
+    public boolean isPalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return true;
+        }
+        
+        StringBuffer sb = new StringBuffer();
+        s = s.toLowerCase();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if ((c <= 'z' && c >= 'a') || (c >= '0' && c <= '9')) {
+                sb.append(s.charAt(i));
+            }
+        }
+        s = sb.toString();
+        int start = 0;
+        int end = s.length() - 1;
+        while (start < end) {
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+}
+
 /*
 Thoughts:
 Pointer from front to end. Front char has to equal end char.

@@ -56,10 +56,33 @@ public class Solution {
     }
 }
 
-
-
+//LeetCode. Made assumption on ASCII code, so use int[256]
+public class Solution {
+    public boolean canPermutePalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return false;
+        }
+        
+        int[] map = new int[256];
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            map[c] += 1;
+        }
+        int countOdd = 0;
+        for (int i = 0; i < map.length; i++) {
+            if (map[i] % 2 == 1) {
+                countOdd++;
+            }
+            if (countOdd > 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 
 /*
+Invalid solution. Assumption made on lowercase letter.
 12.12.2015 recap:
 use a array of length == 26 to track it? No, because ther ecould be captalized letters, other ASCII code
 If with assmption of 26 chars

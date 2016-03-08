@@ -2,7 +2,7 @@ M
 
 Recursive： 取，或者不取。    
 
-Iterative: 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍。
+Iterative: 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍。 However, code is a bit massive.
 
 
 ```
@@ -37,6 +37,68 @@ Recursion Search
 */
 
 /*
+
+Thinking Process:
+1. Very similar idea: choose or not choose (1 / 0)
+    A key point is: when jumpped into next level of recursion, the 'list' will surely be filled up until it reach the max length.
+    That is: when 'not choose', the empty seat will be filled eventually with points not existed in 'list'.
+2. The recursion does not end before the list is filled.
+3. A for loop is doiong the filling of blank. Any order/combination will occur.
+*/
+
+class Solution {
+    public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> nums) {
+        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
+        if (nums == null || nums.size() == 0) {
+            return rst;
+        }
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        helper(rst, list, nums);
+        return rst;
+    }
+    
+    public void helper(ArrayList<ArrayList<Integer>> rst, ArrayList<Integer> list, ArrayList<Integer> nums) {
+        if (list.size() == nums.size()) {
+            rst.add(new ArrayList<Integer>(list));
+            return ;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (!list.contains(nums.get(i))) {
+                list.add(nums.get(i));
+                helper(rst, list, nums);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
+//Same solution as above, for Leetcode：
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> rst = new ArrayList<List<Integer>>();
+        if (nums == null || nums.length == 0) {
+            return rst;
+        }
+        helper(rst, new ArrayList<Integer>(), nums);
+        return rst;
+    }
+    
+    public void helper(List<List<Integer>> rst, ArrayList<Integer> list, int[] nums) {
+        if (list.size() == nums.length) {
+            rst.add(new ArrayList<Integer>(list));
+        }
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (!list.contains(nums[i])) {
+                list.add(nums[i]);
+                helper(rst, list, nums);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
+
+
+/*
     Thoughts: 12.07.2015 recap
     recursive: 
     pass list, rst, nums.
@@ -53,10 +115,6 @@ Recursion Search
 
 */
 class Solution {
-    /**
-     * @param nums: A list of integers.
-     * @return: A list of permutations.
-     */
     public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> nums) {
         ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
         if (nums == null || nums.size() == 0) {
@@ -90,46 +148,6 @@ class Solution {
 }
 
 
-
-/*
-
-Thinking Process:
-1. Very similar idea: choose or not choose (1 / 0)
-    A key point is: when jumpped into next level of recursion, the 'list' will surely be filled up until it reach the max length.
-    That is: when 'not choose', the empty seat will be filled eventually with points not existed in 'list'.
-2. The recursion does not end before the list is filled.
-3. A for loop is doiong the filling of blank. Any order/combination will occur.
-*/
-
-class Solution {
-    /**
-     * @param nums: A list of integers.
-     * @return: A list of permutations.
-     */
-    public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> nums) {
-        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
-        if (nums == null || nums.size() == 0) {
-            return rst;
-        }
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        helper(rst, list, nums);
-        return rst;
-    }
-    
-    public void helper(ArrayList<ArrayList<Integer>> rst, ArrayList<Integer> list, ArrayList<Integer> nums) {
-        if (list.size() == nums.size()) {
-            rst.add(new ArrayList<Integer>(list));
-            return ;
-        }
-        for (int i = 0; i < nums.size(); i++) {
-            if (!list.contains(nums.get(i))) {
-                list.add(nums.get(i));
-                helper(rst, list, nums);
-                list.remove(list.size() - 1);
-            }
-        }
-    }
-}
 
 
 ```
