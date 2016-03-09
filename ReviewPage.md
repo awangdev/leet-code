@@ -3784,7 +3784,7 @@ timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.
 
 巧妙点：     
 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
-2. 用双向的pointer: pre和next， 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
 
 一旦知道怎么解决了，就不是很特别，并不是难写的算法。    
@@ -4018,43 +4018,9 @@ public class Solution {
 所以从右边累计上来的。也是一样可以的。
 
 ---
-**167. [Median of two Sorted Arrays.java](https://github.com/shawnfan/LintCode/blob/master/Java/Median of two Sorted Arrays.java)**
-Median of two Sorted Arrays
+**167. [Median of two Sorted Arrays.java](https://github.com/shawnfan/LintCode/blob/master/Java/Median of two Sorted Arrays.java)**		Level: Hard
 
-There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays.
-
-Example
-Given A=[1,2,3,4,5,6] and B=[2,3,4,5], the median is 3.5.
-
-Given A=[1,2,3] and B=[4,5], the median is 3.
-
-Challenge
-The overall run time complexity should be O(log (m+n)).
-
-Tags Expand 
-Sorted Array Divide and Conquer Array Zenefits Uber Google
-
-*/
-
-/*
-	Thoughts:
-	Trivial: merge and find median. NOPE: have to be in log(m+n) time
-	http://www.jiuzhang.com/solutions/median-of-two-sorted-arrays/
-
-	http://fisherlei.blogspot.com/2012/12/leetcode-median-of-two-sorted-arrays.html
-	
-*/
-
-class Solution {
-    /**
-     * @param A: An integer array.
-     * @param B: An integer array.
-     * @return: a double whose format is *.5 or *.0
-     */
-    public double findMedianSortedArrays(int[] A, int[] B) {
-        // write your code here
-    }
-}
+Not done
 
 
 ---

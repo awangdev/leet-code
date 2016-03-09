@@ -11,7 +11,7 @@ timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.
 
 巧妙点：     
 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
-2. 用双向的pointer: pre和next， 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
 
 一旦知道怎么解决了，就不是很特别，并不是难写的算法。    
@@ -38,79 +38,96 @@ It looks like we need to do some design, according to (http://www.cnblogs.com/yu
 Note:
 Be careful: when removing a node due to capacity issue, remember to remove both 1st node(head.next) and the corresponding entry in the map: map.remove(head.next.key)
 */
-public class LRUCache {
-	private class LinkNode {
-		int key;
-		int val;
-		LinkNode pre = null;
-		LinkNode next = null;
-		LinkNode(int key, int val) {
-			this.key = key;
-			this.val = val;
-		}
-	}
 
-    private int cap;
-    private HashMap<Integer, LinkNode> map;
-    private LinkNode head;
-    private LinkNode tail;
+//Use double linked list to store value.
+//Store key in hashmap<key, node> to find node easily
+//Functions: insert in front, remove node, 
+public class LRUCache {
+    class DoubleLinkedListNode {
+        int key, val;
+        DoubleLinkedListNode next,prev;
+        public DoubleLinkedListNode(int key, int val){
+            this.key = key;
+            this.val = val;
+            next = null;
+            prev = null;
+        }
+    }
+    public int capacity;
+    public HashMap<Integer, DoubleLinkedListNode> map;
+    public DoubleLinkedListNode head, tail;
     public LRUCache(int capacity) {
-        this.cap = capacity;
-        this.map = new HashMap<Integer, LinkNode>();
-        this.head = new LinkNode(-1, -1);
-        this.tail = new LinkNode(-1, -1);
+        this.capacity = capacity;
+        this.map = new HashMap<Integer, DoubleLinkedListNode>();
+        this.head = new DoubleLinkedListNode(-1, -1);
+        this.tail = new DoubleLinkedListNode(-1, -1);
         head.next = tail;
-        tail.pre = head;
+        head.prev = tail;
+        tail.next = head;
+        tail.prev = head;
     }
     
     public int get(int key) {
-    	if (map.containsKey(key)) {
-    		LinkNode temp = map.get(key);
-    		moveUsedToTail(temp);
-    		return temp.val;
-    	} else {
-    		return -1;
-    	}
+        if (map.containsKey(key)) {
+            DoubleLinkedListNode node = map.get(key);
+            moveToHead(node);
+            return node.val;
+        } else {
+            return -1;
+        }
     }
     
     public void set(int key, int value) {
-    	if (map.containsKey(key)) {
-    		LinkNode temp = map.get(key);
-    		temp.val = value;
-    		moveUsedToTail(temp);	
-    	} else {
-			if (map.size() >= cap) {
-        		map.remove(head.next.key);
-        		removeHead();
-        	}
-        	LinkNode newNode = new LinkNode(key, value);
-	        addTail(newNode);
-	        map.put(key, newNode);
-    	}
+        if (map.containsKey(key)) {
+            map.get(key).val = value;
+            moveToHead(map.get(key));
+        } else {
+            DoubleLinkedListNode node = new DoubleLinkedListNode(key, value);
+            if (map.size() >= this.capacity) {
+                DoubleLinkedListNode rm = tail.prev;
+                remove(rm);
+                map.remove(rm.key);
+            }
+            insertHead(node);
+            map.put(key, node);
+        }
     }
     
-    public void moveUsedToTail(LinkNode node) {
-   		removeNode(node);
-    	addTail(node);
-   	}
-
-   	public void removeHead(){//O(1)
-   		removeNode(head.next);
-   	}
-   	public void addTail(LinkNode node){//O(1)
-   		tail.pre.next = node;
-   		node.pre = tail.pre;
-   		node.next = tail;
-   		tail.pre = node;
-   	}
-   	public void removeNode(LinkNode node) {//O(1)
-   		node.pre.next = node.next;
-   		node.next.pre = node.pre;
-   	}
+     public void moveToTail(DoubleLinkedListNode node) {
+        remove(node);
+        insertTail(node);
+    }
+    
+    public void moveToHead(DoubleLinkedListNode node) {
+        remove(node);
+        insertHead(node);
+    }
+    
+    //Helper functions
+    public void insertHead(DoubleLinkedListNode node) {
+        DoubleLinkedListNode next = head.next;
+        head.next = node;
+        node.prev = head;
+        node.next = next;
+        next.prev = node;
+    }
+    
+    public void insertTail(DoubleLinkedListNode node) {
+        DoubleLinkedListNode prev = tail.prev;
+        prev.next = node;
+        node.prev = prev;
+        node.next = tail;
+        tail.prev = node;
+    }
+    
+    public void remove(DoubleLinkedListNode node) {
+        DoubleLinkedListNode front = node.prev;
+        DoubleLinkedListNode end = node.next;
+        front.next = end;
+        end.prev = front;
+    }
+    
 }
-
-````
-````
 /*
 First Attempt: time exceeds
 
