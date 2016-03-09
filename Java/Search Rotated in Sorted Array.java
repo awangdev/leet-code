@@ -1,22 +1,26 @@
-方法1：
-    1. binay search break point
-    2. binary search target
-    注意等号，在判断target在前半段还是后半段：if (A[p1] <= target && target <= A[breakPoint]) 
+H
 
-方法2：
-    还是把它先当做正常的sorted list开始搜。
-    但是在比较的时候，多比较一个A[start] < A[mid]? 
-    在1 和 2 里面分别讨论 target 的位置
-        1. A[start] < A[mid] ?
-            说明在前半段
-            - start<target<mid
-            - target > mid
-        2. A[start] > A[mid]
-            说明 start 还在前半段，而mid在后半段
-            - mid < target < end
-            - target < mid
+方法1：O(logn)
+    还是把它先当做正常的sorted list开始搜。    
+    但是在比较的时候，多比较一个A[start] < A[mid]?     
+    在1 和 2 里面分别讨论 target 的位置     
+        1. A[start] < A[mid] ?     
+            说明在前半段    
+            - start<target<mid     
+            - target > mid      
+        2. A[start] > A[mid]     
+            说明 start 还在前半段，而mid在后半段     
+            - mid < target < end     
+            - target < mid     
 
    
+
+方法2：O(logn)     
+    1. binay search break point     
+    2. binary search target      
+    注意等号，在判断target在前半段还是后半段：if (A[p1] <= target && target <= A[breakPoint])      
+
+
 
 ```
 /*
@@ -36,6 +40,57 @@ For [4, 5, 1, 2, 3] and target=0, return -1
 Tags Expand 
 Binary Search Array Sorted Array
 */
+
+
+
+/*
+    Just 1 binary search: this is the better solution
+    //Observation: 
+    //1. There is only one break point
+    //2. There has to be a side that's continous, either first section or second section.
+    //3. Need to locate that continous section, then check if target is part of the continous section
+
+*/
+public class Solution { 
+    public int search(int[] A, int target) {
+        // write your code here
+        if (A.length == 0) {
+            return -1;
+        }
+        
+        int start = 0;
+        int end = A.length - 1;
+        int mid;
+        
+        while (start + 1 < end) {
+            mid = start + (end - start) / 2;
+            if (A[mid] == target) {//Check central point
+                return mid;
+            }
+            if (A[start] < A[mid]){//1st section is continous
+                if (A[start] <= target && target <= A[mid]) {//target in 1st section?
+                    end = mid;
+                } else {
+                    start = mid;
+                }
+            } else {//2nd section is continous
+                if (A[mid] <= target && target <= A[end]) {//target in 2nd section?
+                    start = mid;
+                } else {
+                    end = mid;
+                }
+            }
+        }//While
+        
+        if (A[start] == target) {
+            return start;
+        } else if (A[end] == target) {
+            return end;
+        } else {
+            return -1;
+        }
+    }
+}
 
 /*
     Easy solution:
@@ -100,61 +155,6 @@ public class Solution {
 }
 
 
-
-/*
-    Just 1 binary search: this is the better solution
-    //Observation: 
-    //1. There is only one break point
-    //2. There has to be a side that's continous, either first section or second section.
-    //3. Need to locate that continous section, then check if target is part of the continous section
-
-*/
-public class Solution {
-    /** 
-     *@param A : an integer rotated sorted array
-     *@param target :  an integer to be searched
-     *return : an integer
-     */
- 
-    public int search(int[] A, int target) {
-        // write your code here
-        if (A.length == 0) {
-            return -1;
-        }
-        
-        int start = 0;
-        int end = A.length - 1;
-        int mid;
-        
-        while (start + 1 < end) {
-            mid = start + (end - start) / 2;
-            if (A[mid] == target) {//Check central point
-                return mid;
-            }
-            if (A[start] < A[mid]){//1st section is continous
-                if (A[start] <= target && target <= A[mid]) {//target in 1st section?
-                    end = mid;
-                } else {
-                    start = mid;
-                }
-            } else {//2nd section is continous
-                if (A[mid] <= target && target <= A[end]) {//target in 2nd section?
-                    start = mid;
-                } else {
-                    end = mid;
-                }
-            }
-        }//While
-        
-        if (A[start] == target) {
-            return start;
-        } else if (A[end] == target) {
-            return end;
-        } else {
-            return -1;
-        }
-    }
-}
 
 
 ```
