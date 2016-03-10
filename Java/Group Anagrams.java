@@ -4,6 +4,8 @@ M
 
 把所有anagram 存在一起。注意结尾Collections.sort().
 
+O(NKlog(K)), N = string[] length, k = longest word length
+
 ```
 
 /*

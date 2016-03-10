@@ -1,10 +1,19 @@
-M
+H
 
-Need look again. Had bad solution at 2nd attempt.
+LeetCode Hard    
+LintCode M, 测试有问题，即使做错也能过.
+
+基本思想: 用个map存target的<char, int frequency>。 然后在搜索s的时候，遇到Match， frequency--.    
+一旦map里面的frequency都被减为0, 就说明找到candidate.
+
+有好几个trick：考虑start，前指针怎么移动；考虑start在candidate首字母没有多余前，不能移动；考虑candidate出现的情况...
+
+复习时，回去看别人网站和自己的thoughts
 
 ```
 /*
-Given a string source and a string target, find the minimum window in source which will contain all the characters in target.
+Given a string source and a string target, find the minimum window in source 
+which will contain all the characters in target.
 
 Example
 source = "ADOBECODEBANC" target = "ABC" Minimum window is "BANC".
@@ -12,7 +21,8 @@ source = "ADOBECODEBANC" target = "ABC" Minimum window is "BANC".
 Note
 If there is no such window in source that covers all characters in target, return the emtpy string "".
 
-If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in source.
+If there are multiple such windows, you are guaranteed that 
+there will always be only one unique minimum window in source.
 
 Challenge
 Can you do it in time complexity O(n) ?
@@ -26,8 +36,161 @@ Tags Expand
 Hash Table
 */
 
+/*
+03.09.2016
+http://blog.sina.com.cn/s/blog_eb52001d0102v2il.html
+
+只利用一个hashmap save frequency of target.
+1. 从map里面 减去 source char match target char 的frequency. 如果发现frequency = 0, size++
+    size == map.size,说明有一个candidate.
+2. 维持left,right pointer。
+记住一个规则: 如果map里面在left index上面的frequency >=0, 也就是frequency 没有小于0，所以暂时没有多余的这个char on left index.    
+因此left不能动。这里要测试并且break。
+然而，当frequency < 0时候，说明在后续的String里面出现了多余的char,也就是frequency--使其小于0. 这里，我们就可以动left++了，并且frequency++。
+这个效果就等于，当matched char在后面有重复出现（多余）时，我们可以left++，安全移动。
+
+另外. 其余那些不在target里面的char, 用left++过滤掉。
+
+3. right pointer一直在按规律跑动。 
+
+4. 当size == map.size(), 截取string
+
+*/
+public class Solution {
+    public String minWindow(String s, String t) {
+        if (s == null || s.length() == 0 || t == null || t.length() == 0) {
+            return "";
+        }
+        //Init map based on t
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        for (int i = 0; i < t.length(); i++) {
+            char c = t.charAt(i);
+            if (!map.containsKey(c)) {
+                map.put(c, 0);
+            }
+            map.put(c, map.get(c) + 1);
+        }
+        
+        int count = 0;
+        int start = 0;
+        int end = 0;
+        int lengS = s.length();
+        int leng = Integer.MAX_VALUE;
+        String rst = "";
+        //Iteratve through s
+        for (; end < lengS; end++) {
+            char c = s.charAt(end);
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) - 1);
+                if (map.get(c) == 0) {
+                    count++;
+                }
+            }
+            
+            while (start < lengS) {
+                char cs = s.charAt(start);
+                if (map.containsKey(cs)) {
+                    //If >= 0 still being used in map, not ready yet: can't move
+                    if (map.get(cs) >= 0) {
+                        break;
+                    } else {//less than 0, so we can skip previous cs, move start++
+                        map.put(cs, map.get(cs) + 1);
+                    }
+                }
+                //skip non-t chars
+                start++;
+            }
+            
+            if (count == map.size() && (end - start + 1) < leng) {
+                rst = s.substring(start, end + 1);
+                leng = rst.length();
+            }
+        }//end for
+        
+        return rst;
+    }
+}
+
+
 
 /*
+Same as below solution, incorrect: only picks the first possible solution, not minimum window.
+HOWEVER, it accidentally passed LintCode.
+
+只能找到第一个, 所以有错。
+
+//HashT<char, frequency>
+//HashS<char, frequency>: count the frequency of chars from source. 
+//once found one candidate, we may have a large window. Now move left-most char by comparison using HashS, to minimize the window
+
+*/
+public class Solution {
+    public String minWindow(String s, String t) {
+        if (s == null || s.length() == 0 || t == null || t.length() == 0) {
+            return "";
+        }
+        
+        HashMap<Character, Integer> hashT = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> hashS = new HashMap<Character, Integer>();
+        //init hashT
+        for (int i = 0; i < t.length(); i++) {
+            char c = t.charAt(i);
+            if (!hashT.containsKey(c)) {
+                hashT.put(c, 0);
+            }
+            hashT.put(c, hashT.get(c) + 1);
+        }
+        
+        //Check against S
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (!hashT.containsKey(c)) {
+                continue;
+            }
+            if (!hashS.containsKey(c)) {
+                hashS.put(c, 0);
+            }
+            hashS.put(c, hashS.get(c) + 1);
+            
+            if (hashS.get(c) <= hashT.get(c)) {
+                count++;
+            }
+            
+            //Found string
+            if (count == t.length()) {
+                return findStr(i, s, hashT, hashS);
+            }
+        }
+        return "";
+    }
+    
+    public String findStr(int end, String s, 
+            HashMap<Character, Integer> hashT, HashMap<Character, Integer> hashS) {
+        int start = 0;
+        while (start < s.length()) {
+            char c = s.charAt(start);
+            if (!hashS.containsKey(c)) {
+                start++;
+                continue;
+            }
+            if (hashS.get(c) > hashT.get(c)) {
+                hashS.put(c, hashS.get(c) - 1);
+                start++;
+                continue;
+            }
+            break;
+        }//end while
+        
+        return s.substring(start, end + 1);
+    }
+}
+
+
+
+
+/*
+Not working: it only picks up the first possible solution, but not the shortest
 Thoughts:
 The idea was from jiuzhang.com.
 1. count target Characters: store each Character with HashMap:tCounter<Character, # appearance>
@@ -46,12 +209,7 @@ Note, at this point, we confirm target exist in source. Now we just test against
 import java.util.*;
 
 public class Solution {
-    /**
-     * @param source: A string
-     * @param target: A string
-     * @return: A string denote the minimum window
-     *          Return "" if there is no such a string
-     */
+
     public String minWindow(String source, String target) {
     	if (source == null || source.length() == 0) {
     		return source;
@@ -119,64 +277,5 @@ public class Solution {
     }
 }
 
-
-
-
-/*
-3.2.2016, another thought. But this does not work.
-1. record hashmap<char, list of index of matched char>
-2. record matched char's indexes in a arraylsit
-3. Use a char[256] to check through the arraylist, if any sequence match target chars, then use the position to calculate a result.
-4. repeat 3 and find the minimum
-*/
-public class Solution {
-    public String minWindow(String source, String target) {
-  		if (source == null || source.length() == 0 || target ==  null || target.length() == 0) {
-  			return "";
-  		}
-  		int[] match = new int[256];
-  		for (int i = 0; i < target.length(); i++) {
-  			match[target.charAt(i)] += 1;
-  		}
-
-  		ArrayList<Integer> posList = new ArrayList<Integer>();
-  		for (int i = 0; i < source.length(); i++) {
-  			if (target.indexOf(source.charAt(i)) != -1) {
-  				posList.add(i);
-  			}
-  		}
-
-  		int[] arr = new int[256];
-  		String matchStr = Arrays.toString(match);
-  		String rst = "";
-  		int start = -1;
-  		int end = -1;
-  		for (int i = 0; i < posList.size(); i++) {
-  			int pos = posList.get(i);
-  			char c = source.charAt(pos);
-  			if (target.indexOf(c) != -1) {
-  				if (arr[c] < match[c]) {
-  					arr[c] += 1;
-  				}
-  				
-  				if (start == -1) {
-  					start = pos;
-  				}
-  			}
-  			 
-  			if (Arrays.toString(arr).equals(matchStr)) {
-  				end = posList.get(i);
-  				String temp = source.substring(start, end + 1);
-  				if (rst.length() == 0 || temp.length() < rst.length()) {
-  					rst = temp;
-  				}
-  				arr[start] -= 1;
-  				start = -1;
-  			}
-  		}//end for
-
-  		return rst;
-    }
-}
 
 ```
