@@ -8,6 +8,12 @@ hashcode("abcd") = (ascii(a) * 33^3 + ascii(b) * 33^2 + ascii(c) *33^1 + ascii(d
 Hash的用法是：给一个string key, 转换成数字，从而把size变得更小。    
 真实的implementation还要处理collision, 可能需要design hash function 等等。
 
+
+每一步都：     
+hashRst = hashRst * 33 + (int)(key[i]);       
+hashRst = hashRst % HASH_SIZE;       
+原因是，hashRst会变得太大，所以不能算完再%...
+
 ```
 /*
 In data structure Hash, hash function is used to convert a string(or any other type) 
@@ -19,7 +25,7 @@ consider any string as a 33 based big integer like follow:
 
 hashcode("abcd") = (ascii(a) * 33^3 + ascii(b) * 33^2 + ascii(c) *33^1 + ascii(d)*33^0) % HASH_SIZE 
 
-                              = (97* 333 + 98 * 332 + 99 * 33 +100) % HASH_SIZE
+                              = (97* 33^3 + 98 * 33^2  + 99 * 33 +100) % HASH_SIZE
 
                               = 3595978 % HASH_SIZE
 

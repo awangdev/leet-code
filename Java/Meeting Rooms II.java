@@ -1,9 +1,14 @@
-开会王，还是可以用PriorityQueue + 一个Class来解决。
-这里有尝试了一下用一个sorted Array + HashMap： 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+M
+
+
+方法1:PriorityQueue + 一个Class来解决。Ｏ(nlogn)
+
+方法2:这里有尝试了一下用一个sorted Array + HashMap： 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 ```
 /*
-Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
+Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
+find the minimum number of conference rooms required.
 
 For example
 Given [[0, 30],[5, 10],[15, 20]],
@@ -74,43 +79,42 @@ public class Solution {
 
 // Similar to Meeting Room I, using Point class and Priorityqueue
 // Creating a customized class, but makes the problem a bit easier to think.
-
 public class Solution {
-	class Point {
-		int pos;
-		int flag;
-		public Point(int pos, int flag) {
-			this.pos = pos;
-			this.flag = flag;
-		}
-	}
+    class Point {
+        int pos, flag;
+        public Point(int pos, int flag) {
+            this.pos = pos;
+            this.flag = flag;
+        }
+    }
     public int minMeetingRooms(Interval[] intervals) {
         if (intervals == null || intervals.length == 0) {
-        	return true;
+            return 0;
         }
-        PriorityQueue<Point> queue = new PriorityQueue<Point>(
-        	new Comparator<Point>(){
-        		public int compare(Point a, Point b){
-        			return (a.pos - b.pos);
-        		}
-        	}
-        );
-        for (Interval range : intervals) {
-        	queue.add(new Point(range.start, 1));
-        	queue.add(new Point(range.end, -1));
+        
+        PriorityQueue<Point> queue = new PriorityQueue<Point>(2, new Comparator<Point>() {
+            public int compare(Point p1, Point p2) {
+                return p1.pos - p2.pos;
+            }
+        });
+        
+        for (int i = 0; i < intervals.length; i++) {
+            queue.offer(new Point(intervals[i].start, 1));
+            queue.offer(new Point(intervals[i].end, -1));
         }
         int count = 0;
-        int max = 0;
+        int rst = 0;
         while (!queue.isEmpty()) {
-        	Point p = queue.poll();
-        	count += p.flag;
-        	while(!queue.isEmpty() && p.pos == queue.peek().pos) {
-        		p = queue.poll();
-        		count += p.flag;
-        	}
-        	max = Math.max(max, count);
+            Point p = queue.poll();
+            count += p.flag;
+            while (!queue.isEmpty() && p.pos == queue.peek().pos) {
+                p = queue.poll();
+                count += p.flag;
+            }
+            rst = Math.max(count, rst);
         }
-        return max;
+        
+        return rst;
     }
 }
 ```

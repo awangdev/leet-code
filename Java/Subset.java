@@ -1,13 +1,16 @@
 M
 
 最基本的递归题目。   
-坑：记得一开头sort一下 nums。 因为要升序。
+坑：记得一开头sort一下 nums。 因为要升序。那么整体就是O(nlogn)
 
 注意：用level/index来track到哪一步。最后一level就add into rst
 
 方法1: subset的概念，取或者不取,backtracking. 当level/index到底，return 一个list.
 
 方法2: 用for loop backtracking. 记得：每个dfs recursive call是一种独特可能，先加进rst。
+
+
+recap:时间久了忘记dfs的两种路子. for loop dfs/backtracking vs. regular dfs
 
 ```
 /*

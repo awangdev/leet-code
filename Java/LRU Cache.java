@@ -14,7 +14,10 @@ timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.
 2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
 
-一旦知道怎么解决了，就不是很特别，并不是难写的算法。    
+一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
+moveToHead()    
+insertHead()    
+remove()      
 
 ```
 /*
@@ -92,12 +95,7 @@ public class LRUCache {
             map.put(key, node);
         }
     }
-    
-     public void moveToTail(DoubleLinkedListNode node) {
-        remove(node);
-        insertTail(node);
-    }
-    
+
     public void moveToHead(DoubleLinkedListNode node) {
         remove(node);
         insertHead(node);
@@ -111,22 +109,13 @@ public class LRUCache {
         node.next = next;
         next.prev = node;
     }
-    
-    public void insertTail(DoubleLinkedListNode node) {
-        DoubleLinkedListNode prev = tail.prev;
-        prev.next = node;
-        node.prev = prev;
-        node.next = tail;
-        tail.prev = node;
-    }
-    
+
     public void remove(DoubleLinkedListNode node) {
         DoubleLinkedListNode front = node.prev;
         DoubleLinkedListNode end = node.next;
         front.next = end;
         end.prev = front;
-    }
-    
+    }  
 }
 /*
 First Attempt: time exceeds

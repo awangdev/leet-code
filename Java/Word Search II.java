@@ -1,16 +1,19 @@
 H
 
-Build Trie with target words: insert, search, startWith.
-
-依然要对board matrix做DFS。下面对比不用Trie和用Trie。
-
 Regular:   
-for loop on words: inside, do board DFS based on each word.
+for loop on words: inside, do board DFS based on each word.     
+Time cpmplexity: word[].length * boardWidth * boardHeight * (4^wordMaxLength)
 
-With Trie:
+Build Trie with target words: insert, search, startWith.    
+依然要对board matrix做DFS。
+
 no for loop on words. 直接对board DFS:   
 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
 若不存在，就不必继续DFS下去了。
+
+Trie solution time complexity, much better:      
+build Trie:   n * wordMaxLength
+search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search])
 
 
 ```

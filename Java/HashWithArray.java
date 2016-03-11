@@ -1,3 +1,7 @@
+E
+
+
+```
 /*
 	Self Test:
 	Implement HashTable with just array and integer.
@@ -62,8 +66,4 @@ Class HashMap {
 
 
 
-
-
-
-
-
+```
