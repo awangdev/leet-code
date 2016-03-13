@@ -1,5 +1,9 @@
 H
 
+Big improvement: use boolean visited on TrieNode!     
+不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
+在Trie search() method 里面，凡是visit过的，mark一下。  
+
 Regular:   
 for loop on words: inside, do board DFS based on each word.     
 Time cpmplexity: word[].length * boardWidth * boardHeight * (4^wordMaxLength)
@@ -84,38 +88,40 @@ In the search:
 node.subtree.get(current).isString: this determines if a string exists or not.
 */
 
+/*NOTE: is boolean visited on Trie!!! */
 public class Solution {
   class TrieNode {
     String str;
     boolean isEnd;
+    boolean visited;
     HashMap<Character, TrieNode> children;
     public TrieNode () {
       this.isEnd = false;
+      this.visited = false;
       this.str = "";
       children = new HashMap<Character, TrieNode>();
     }
   }
   public TrieNode root;
-  public int[] xd = {1, -1, 0, 0};
-  public int[] yd = {0, 0, 1, -1};
   
-    public ArrayList<String> wordSearchII(char[][] board, ArrayList<String> words) {
-      ArrayList<String> rst = new ArrayList<String>();
+    public List<String> findWords(char[][] board, String[] words) {
+      List<String> rst = new ArrayList<String>();
       if (board == null || board.length == 0 || board[0].length == 0 
-        || words == null || words.size() == 0) {
+        || words == null || words.length == 0) {
         return rst;
       }
 
       //Build Trie with words
       root = new TrieNode();
-      for (int i = 0; i < words.size(); i++) {
-        insert(words.get(i));
+      for (int i = 0; i < words.length; i++) {
+        insert(words[i]);
       }
 
       //Validate existance of the words in board
+      boolean[][] visited = new boolean[board.length][board[0].length];
       for (int i = 0; i < board.length; i++) {
         for (int j = 0; j < board[0].length; j++) {
-          dfs(board, i, j, rst, "");
+          dfs(rst, "", i, j, visited, board);
         }
       }
 
@@ -123,31 +129,30 @@ public class Solution {
     }
 
     //4 direction DFS search
-    public void dfs(char[][] board, int x, int y, ArrayList<String> rst, String s) {
-      if (x < 0 || x >= board.length || y < 0 || y >= board[x].length) {
-        return;
-      }
-      if (board[x][y] == '#') {
-          return;
-      }
-      s += board[x][y];
-      
-      if (!startWith(s)) {
-        return;
-      }
-      if (search(s) && !rst.contains(s)) {
-        rst.add(s);
-      } 
-      
-      char temp = board[x][y];
-      board[x][y] = '#';
-    for (int i = 0; i < 4; i++) {
-      int nX = x + xd[i];
-      int nY = y + yd[i];
-      dfs(board, nX, nY, rst, s);
-    }
-    board[x][y] = temp;
-      
+    public void dfs(List<String> rst, String s, int x, int y, boolean[][] visited, char[][] board) {
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
+            return;
+        }
+        if (visited[x][y]) {
+            return;
+        }
+        s += board[x][y];
+        if (!startWith(s)) {
+            return;
+        }
+        
+        if (search(s)) {
+            rst.add(s);
+        }
+        int[] dx = {0,0,1,-1};
+        int[] dy = {1,-1,0,0};
+        visited[x][y] = true;
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            dfs(rst, s, nx, ny, visited, board);
+        }
+        visited[x][y] = false;
     }
 
     /**************************Trie section *********************/
@@ -177,7 +182,11 @@ public class Solution {
         }
         node = node.children.get(c);
       }
-      return node.isEnd;
+      if (node.visited || !node.isEnd) {
+          return false;
+      }
+      node.visited = true;
+      return true;
     }
 
     public boolean startWith(String s) {
@@ -193,7 +202,6 @@ public class Solution {
       return true;
     }
 }
-
 
 
 
