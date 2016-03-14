@@ -8,6 +8,8 @@ Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it 
 Backtracking方法2:    
 用一个boolean visited[][]
 
+
+
 ```
 /*
 Given a 2D board and a word, find if the word exists in the grid.
@@ -138,5 +140,9 @@ public class Solution {
         return false;
     }
 }
+
+
+
+
 
 ```
