@@ -1,11 +1,23 @@
 E
 
-O(n) 直接找到可以insert newInterval的位子. Insert。
+
+方法1：Scan Line    
+Interval 拆点，PriorityQueue排点。     
+Merge时用count==0作判断点。    
+
+PriorityQueue: O(logN). 扫n点，总共：O(nLogn)    
+
+
+方法2：   
+O(n) 直接找到可以insert newInterval的位子. Insert。  这里已经给了sorted intervals by start point. 所以O(n)
 
 然后loop to merge entire interval array
 
 另外: 因为interval已经sort, 本想用Binary Search O(logn). 但是找到interval insert position， merge还是要用 O(n)。      
 比如刚好newInterval cover entire  list....
+
+ 
+
 ```
 
 /*
@@ -32,6 +44,79 @@ Basic Implementation
  *         this.end = end;
  *     }
  */
+
+
+
+/*
+Thoughts:
+What's the difference from merge intervals?
+1. Create Class point (x, flag)
+2. sort point in min-heap
+3. when count increase and decreases to 0, that means we can close an interval
+*/
+
+public class Solution {
+
+    class Point {
+        int x;
+        int flag;
+        public Point(int x, int flag) {
+            this.x = x;
+            this.flag = flag;
+        }
+    }
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        List<Interval> rst = new ArrayList<Interval>();
+        if (intervals == null && newInterval == null) {
+            return rst;
+        } else if (intervals == null) {
+            rst.add(newInterval);
+            return rst;
+        } else if (newInterval == null) {
+            return intervals;
+        }
+
+        PriorityQueue<Point> queue = new PriorityQueue<Point>(1, new Comparator<Point>(){
+            public int compare(Point a, Point b){
+                return a.x - b.x;
+            }
+        });
+
+        for (Interval range: intervals) {
+            queue.add(new Point(range.start, 1));
+            queue.add(new Point(range.end, -1));
+        }
+
+        queue.add(new Point(newInterval.start, 1));
+        queue.add(new Point(newInterval.end, -1));
+
+        int count = 0;
+        int startNew = 0;
+        int endNew = 0;
+        while (!queue.isEmpty()) {
+            Point p = queue.poll();
+            if (count == 0) {
+                startNew = p.x;
+            }
+            count += p.flag;
+
+            while (!queue.isEmpty() && p.x == queue.peek().x) {
+                p = queue.poll();
+                count += p.flag;
+            }
+
+            if (count == 0) {
+                endNew = p.x;
+                Interval addInterval = new Interval(startNew, endNew);
+                rst.add(addInterval);
+            }
+
+        }//end while
+
+        return rst;
+
+    }
+}
 
 
 

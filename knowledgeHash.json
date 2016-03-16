@@ -262,6 +262,24 @@
 			"",
 		]
 	},
+	"Scan Line" : {
+		"nickname": "扫描线",
+		"property" : [
+			"把Interval分拆成Point{x,flag}.起点flag=1,终点flag=-1",
+			"用PriorityQueue可以sort这些点",
+			"维持一个count来判断同时又几个meeting在开，需要多少房间；一个人同时能参加所有meeting嘛，需要不重合",
+			"天上多少飞机同时在飞",
+			"根据count的情况merge interval, insert interval",
+			"在扫描时候，一定注意PriorityQueue里面在同一个point.x的很多点，可能同时发生，要全部处理完才能move on",
+		],
+		"problems" : [
+			"Meeting Rooms",
+			"Meeting Rooms II",
+			"Merge Intervals",
+			"Insert Interval",
+			"Planes in sky",
+		]
+	},
 	"Math" : {
 		"nickname": "数学",
 		"property" : [

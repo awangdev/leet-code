@@ -1,5 +1,8 @@
-分析4个step.
-小心走位。
+E
+
+分析4个step:right, left-bottom,down,right-up    
+implement时注意index.有点耐心
+
 ```
 /*
 Matrix Zigzag Traversal

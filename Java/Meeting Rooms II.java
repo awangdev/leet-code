@@ -18,63 +18,7 @@ Tags: Heap Greedy Sort
 Similar Problems: (H) Merge Intervals, (E) Meeting Rooms
 */
 
-/*
-Thoughts: This seems to be: how many concurrent meetings do we have?
-Just return the count that we used in Meeting I.
 
-Though, instead of Prority queue + Point class, let me try to use just array and a hashmap.
-
-Using HashMap is tricky in this:
-Overallpping spot will be put on the same hashmap key. Be careful with handling the overlapping.
-Here, I decide to merge the edge when generate the map, so during the count check, need to skip
-duplicated time spot to prevent incorrectly re-use of certain time spot.
-
-
-*/
-
-/**
- * Definition for an interval.
- * public class Interval {
- *     int start;
- *     int end;
- *     Interval() { start = 0; end = 0; }
- *     Interval(int s, int e) { start = s; end = e; }
- * }
- */
-public class Solution {
-    public int minMeetingRooms(Interval[] intervals) {
-        if (intervals == null || intervals.length == 0) {
-        	return 0;
-        }
-        int[] timeSpot = new int[intervals.length * 2];
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < intervals.length; i++) {
-        	timeSpot[i] = intervals[i].start;
-        	timeSpot[intervals.length + i] = intervals[i].end;
-        	if (map.containsKey(intervals[i].start)) {
-        		map.put(intervals[i].start, map.get(intervals[i].start) + 1);
-        	} else {
-        		map.put(intervals[i].start, 1);
-        	}
-        	if (map.containsKey(intervals[i].end)) {
-        		map.put(intervals[i].end, map.get(intervals[i].end) - 1);
-        	} else {
-        		map.put(intervals[i].end, -1);
-        	}
-        }
-        Arrays.sort(timeSpot);
-        int count = 0;
-        int max = 0;
-        for (int i = 0; i < timeSpot.length; i++) {
-        	count += map.get(timeSpot[i]);
-        	while (i + 1 < timeSpot.length && timeSpot[i] == timeSpot[i + 1]) {
-        		i++;
-        	}
-        	max = Math.max(count, max);
-        }
-        return max;
-    }
-}
 
 
 // Similar to Meeting Room I, using Point class and Priorityqueue
@@ -117,4 +61,63 @@ public class Solution {
         return rst;
     }
 }
+
+/*
+Thoughts: This seems to be: how many concurrent meetings do we have?
+Just return the count that we used in Meeting I.
+
+Though, instead of Prority queue + Point class, let me try to use just array and a hashmap.
+
+Using HashMap is tricky in this:
+Overallpping spot will be put on the same hashmap key. Be careful with handling the overlapping.
+Here, I decide to merge the edge when generate the map, so during the count check, need to skip
+duplicated time spot to prevent incorrectly re-use of certain time spot.
+
+
+*/
+
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
+public class Solution {
+    public int minMeetingRooms(Interval[] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
+        int[] timeSpot = new int[intervals.length * 2];
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < intervals.length; i++) {
+            timeSpot[i] = intervals[i].start;
+            timeSpot[intervals.length + i] = intervals[i].end;
+            if (map.containsKey(intervals[i].start)) {
+                map.put(intervals[i].start, map.get(intervals[i].start) + 1);
+            } else {
+                map.put(intervals[i].start, 1);
+            }
+            if (map.containsKey(intervals[i].end)) {
+                map.put(intervals[i].end, map.get(intervals[i].end) - 1);
+            } else {
+                map.put(intervals[i].end, -1);
+            }
+        }
+        Arrays.sort(timeSpot);
+        int count = 0;
+        int max = 0;
+        for (int i = 0; i < timeSpot.length; i++) {
+            count += map.get(timeSpot[i]);
+            while (i + 1 < timeSpot.length && timeSpot[i] == timeSpot[i + 1]) {
+                i++;
+            }
+            max = Math.max(count, max);
+        }
+        return max;
+    }
+}
+
 ```

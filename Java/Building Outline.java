@@ -1,6 +1,29 @@
+H
+
+又叫做skyline
+
+看网上的解答做， 思路很漂亮。 （http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt）
+
+跟scan line的approach类似:      
+1. 把所有点分出来， 每个点有index x, 再加上一个height.         
+2. 在这个list上排序，根据index和height（注意用负数标记building start point,这样保证start在end 之前。）. 叫做 heightPoints            
+3. 在processs时候用max-heap (reversed priorityqueue)，在ieteraete heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+    处理1：因为start,end的height都存在了heightPoints里面，这里就是用来check end of bulding的，然后把height 从queue里面remove.
+    处理2：重复x 上面的许多height?  priorityqueue给了我们最高，这okay了；那么其他的重复点，用一个int prev来mark之前做过的，一旦重复，跳过。
+
+想法非常natural。 大题目，脑子乱。    
+看了解答再去想，挺naturally doable的。
+
+```
 /*
-Given N buildings in a x-axis，each building is a rectangle and can be represented by a triple (start, end, height)，where start is the start position on x-axis, end is the end position on x-axis and height is the height of the building. Buildings may overlap if you see them from far away，find the outline of them。
-An outline can be represented by a triple, (start, end, height), where start is the start position on x-axis of the outline, end is the end position on x-axis and height is the height of the outline.
+LintCode description:
+Given N buildings in a x-axis，each building is a rectangle and can be represented by a triple (start, end, height)，
+where start is the start position on x-axis, end is the end position on x-axis and height is the height of the building. 
+Buildings may overlap if you see them from far away，find the outline of them。
+An outline can be represented by a triple, (start, end, height), 
+where start is the start position on x-axis of the outline, 
+end is the end position on x-axis and height is the height of the outline.
+
 Example
 Given 3 buildings：
 [
@@ -19,32 +42,114 @@ Please merge the adjacent outlines if they have the same height and make sure di
 Tags Expand 
 LintCode Copyright Heap
 */
+
+/*LeetCode description
+A city's skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A), write a program to output the skyline formed by these buildings collectively (Figure B).
+
+ Buildings  Skyline Contour
+The geometric information of each building is represented by a triplet of integers [Li, Ri, Hi], where Li and Ri are the x coordinates of the left and right edge of the ith building, respectively, and Hi is its height. It is guaranteed that 0 ≤ Li, Ri ≤ INT_MAX, 0 < Hi ≤ INT_MAX, and Ri - Li > 0. You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height 0.
+
+For instance, the dimensions of all buildings in Figure A are recorded as: [ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ] .
+
+The output is a list of "key points" (red dots in Figure B) in the format of [ [x1,y1], [x2, y2], [x3, y3], ... ] that uniquely defines a skyline. A key point is the left endpoint of a horizontal line segment. Note that the last key point, where the rightmost building ends, is merely used to mark the termination of the skyline, and always has zero height. Also, the ground in between any two adjacent buildings should be considered part of the skyline contour.
+
+For instance, the skyline in Figure B should be represented as:[ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ].
+
+Notes:
+
+The number of buildings in any input list is guaranteed to be in the range [0, 10000].
+The input list is already sorted in ascending order by the left x position Li.
+The output list must be sorted by the x position.
+There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
+
+Hide Tags Divide and Conquer Binary Indexed Tree Heap Segment Tree
+
+*/
+
+/*
+    Thoughts
+    Based idea here:http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+    Here is the thinking process, 3.15.2016
+
+    The class HeightPoint{int x, int height} is very similar to scan line Point{int x, int flag}. However the usage is a bit different.
+        Sort all of the heightPoints by index && by height. 
+        Use nagtive height for start point to make sure start appears before end point, tho they share same height
+    We use an extra priorityQueue to store the height being processed (note, this queue, decending order, max in front)
+        When having a negative height(start point), add into queue
+        At each point, find heightest point (common sense!) and mark it on map: the overlapping point at this index will be skipped because the rest are not high enough.
+        How to process the rest redundant point?
+            Here introduce a 'prev' variable that stores last processed value. If same height appears right before curr, don't add to result; it's added during this continuous line.
+        How to maintain the queue?
+            Once a height > 0 appears, remove that height from queue. 
+            OKay, let's break it down:
+                because we sort HeightPoint object by index and height, start height will appear before end height of same building, for sure.
+                So whenever positive height appears, the same bulding must have been marked, so can safely remove the height instance from queue.
+                Well, in HeightPoint object, start height is negative for sorting purpose. When adding into queue, use it's absolute value : )    
+*/
+public class Solution {
+    public class HeightPoint{
+        int x, height;
+        public HeightPoint(int x, int height) {
+            this.x = x;
+            this.height = height;
+        }
+    }
+    public List<int[]> getSkyline(int[][] buildings) {
+        List<int[]> rst = new ArrayList<int[]>();
+        if (buildings == null || buildings.length == 0 || buildings[0].length == 0) {
+            return rst;
+        }
+
+        //Init the list sorted by index && height
+        List<HeightPoint> heightPoints = new ArrayList<HeightPoint>();
+        for (int i = 0; i < buildings.length; i++) {
+            heightPoints.add(new HeightPoint(buildings[i][0], -buildings[i][2]));
+            heightPoints.add(new HeightPoint(buildings[i][1], buildings[i][2]));
+        }
+        Collections.sort(heightPoints, new Comparator<HeightPoint>() {
+            public int compare(HeightPoint p1, HeightPoint p2) {
+                if (p1.x == p2.x) {
+                    return p1.height - p2.height;
+                } else {
+                    return p1.x - p2.x;
+                }
+            }
+        });
+
+        //Process height points
+        //reversed priorityqueue, becase for same pos x, we always want the highest point
+        PriorityQueue<Integer> queue = new PriorityQueue<Integer>(1000, Collections.reverseOrder());
+        queue.offer(0);
+        int prev = queue.peek();  
+
+        for (HeightPoint p : heightPoints) {
+            if (p.height < 0) {
+                queue.offer(-p.height);
+            } else {
+                queue.remove(p.height);
+            }
+
+            int currPeak = queue.peek();
+            if (currPeak != prev) {
+                rst.add(new int[] {p.x, currPeak});
+                prev = currPeak;
+            }
+        }
+
+        return rst;
+    }
+}
+
+
+
 /*
 Thoughts:
 Well, based on JiuZhang, http://www.jiuzhang.com/solutions/building-outline/, implement a HashHeap. 
 **HashHeap. Super long implementation: http://www.jiuzhang.com/solutions/hash-heap/
-*/
-
-
-
-
-
-/****
-  Attempt1, may not be correct.
-  Thoughts: 
-  PriorityQueue<Point>, sort by start.
-  1. Keep track of max height. 
-  2. Find max height.
-  3. Poll() queue. Whenever there is a jump(up or down) at current node, close a interval.
-  4. When closing interval, set prev = new node.h
-****/
-
-
-/**
 
 What is HashHeap Exactly? Document below:
 
-**/
+*/
 class HashHeap {
     //Heap is a arraylist, which stores the actaul Integer values. It stores the real data
     ArrayList<Integer> heap;
@@ -227,3 +332,5 @@ class HashHeap {
         }
     }
 }
+
+```
