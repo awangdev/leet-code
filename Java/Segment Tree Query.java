@@ -1,5 +1,7 @@
 M
 
+给了segment Tree, node里面有Max value, 找[start,end]里面的max
+
 [start,end]跟mid相比，可能：   
 全在mid左   
 全在mid右   

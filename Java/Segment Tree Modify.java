@@ -5,6 +5,8 @@ Recursively 在segment tree里面找index, update it with value.
 每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下。   
 最后轮回到头顶，头顶一下包括头顶，就全部都是max了。   
 
+Divde and Conquer
+
 ```
 /*
 For a Maximum Segment Tree, which each node has an extra value max to store the maximum value in this node's interval.

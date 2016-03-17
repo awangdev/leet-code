@@ -2,7 +2,8 @@ M
 
 
 给的是Array。注意找区间内的max, assign给区间。   其余和普通的segment tree build一样   
-给array,但是并不根据array里的内容排位，而是依然根据index割开区间，break到底，   
+
+给了array,但是并不根据array里的内容排位，而是依然根据index in [0, array.length - 1]割开区间，break到底，   
 最终start==end。同时assign max=A[start] or A[end]
 
 往上,parent一层的max:就是比较左右孩子,其实都是在两个sub-tree里面比较sub-tree的max。   
@@ -21,6 +22,7 @@ The root's start and end is given by build method.
 The left child of node A has start=A.left, end=(A.left + A.right) / 2.
 The right child of node A has start=(A.left + A.right) / 2 + 1, end=A.right.
 if start equals to end, there will be no children for this node.
+
 Implement a build method with a given array, so that we can create a corresponding segment tree 
 with every node value represent the corresponding interval max value in the array, 
 return the root of this segment tree.
