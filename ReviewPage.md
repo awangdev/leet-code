@@ -88,12 +88,17 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 ---
 **7. [A+B.java](https://github.com/shawnfan/LintCode/blob/master/Java/A+B.java)**		Level: Easy
 
-Bit Operation
- 
+^ 是不完全加法. 每次都忽略了进位。而 & 刚好可以算出需要的所有进位。
+
+那么就，首先记录好进位的数字：carry. 然后 a^b 不完全加法一次。然后b用来放剩下的carry, 每次移动一位，继续加，知道b循环为0为止。
+
+Bit Operation    
+Steps: 
    a & b: 每bit可能出得余数       
    a ^ b: 每bit在此次操作可能留下的值，XOR 操作         
    每次左移余数1位，然后存到b, 再去跟a做第一步。loop until b == 0    
 
+(http://www.meetqun.com/thread-6580-1-1.html)
 
 
 ---
@@ -155,8 +160,7 @@ Not Done yet。 Topological sort.
    toCharArray
    Arrays.sort
    Stirng.valueOf(char[])
-
-时间n*L*O(logL),L是最长string的长度。
+   时间n*L*O(logL),L是最长string的长度。
 
 2. Arrays.toString(arr)的做法。arr是int[26], assuming only have 26 lowercase letters.    
 Count occurrance, 然后convert to String，作为map的key.
@@ -274,24 +278,24 @@ O(n)
 ---
 **20. [Best Time to Buy and Sell Stock IV.java](https://github.com/shawnfan/LintCode/blob/master/Java/Best Time to Buy and Sell Stock IV.java)**		Level: Hard
 
-记得要理解： 为什么 i-1天的卖了又买，可以和第 i 天的卖合成一次交易？
+记得要理解： 为什么 i-1天的卖了又买，可以和第 i 天的卖合成一次交易？    
    因为每天交易的price是定的。所以卖了又买，等于没卖！这就是可以合并的原因。要对价格敏感啊少年。
 
-Inspired from here:
+Inspired from here:    
 http://liangjiabin.com/blog/2015/04/leetcode-best-time-to-buy-and-sell-stock.html
 
-局部最优解 vs. 全局最优解：   
-   local[i][j] = max(global[i – 1][j – 1] + diff, local[i – 1][j] + diff)
-   global[i][j] = max(global[i – 1][j], local[i][j])
+局部最优解 vs. 全局最优解：     
+   local[i][j] = max(global[i – 1][j – 1] + diff, local[i – 1][j] + diff)    
+   global[i][j] = max(global[i – 1][j], local[i][j])     
 
-local[i][j]和global[i][j]的区别是：local[i][j]意味着在第i天一定有交易（卖出）发生。
-   当第i天的价格高于第i-1天（即diff > 0）时，那么可以把这次交易（第i-1天买入第i天卖出）跟第i-1天的交易（卖出）合并为一次交易，即local[i][j]=local[i-1][j]+diff；
-   当第i天的价格不高于第i-1天（即diff<=0）时，那么local[i][j]=global[i-1][j-1]+diff，而由于diff<=0，所以可写成local[i][j]=global[i-1][j-1]。
-   (Note:在我下面这个solution里面没有省去 +diff）
+local[i][j]和global[i][j]的区别是：local[i][j]意味着在第i天一定有交易（卖出）发生。    
+   当第i天的价格高于第i-1天（即diff > 0）时，那么可以把这次交易（第i-1天买入第i天卖出）跟第i-1天的交易（卖出）合并为一次交易，即local[i][j]=local[i-1][j]+diff；    
+   当第i天的价格不高于第i-1天（即diff<=0）时，那么local[i][j]=global[i-1][j-1]+diff，而由于diff<=0，所以可写成local[i][j]=global[i-1][j-1]。    
+   (Note:在我下面这个solution里面没有省去 +diff）   
 
-global[i][j]就是我们所求的前i天最多进行k次交易的最大收益，可分为两种情况：
-   如果第i天没有交易（卖出），那么global[i][j]=global[i-1][j]；
-   如果第i天有交易（卖出），那么global[i][j]=local[i][j]。
+global[i][j]就是我们所求的前i天最多进行k次交易的最大收益，可分为两种情况：    
+   如果第i天没有交易（卖出），那么global[i][j]=global[i-1][j]；     
+   如果第i天有交易（卖出），那么global[i][j]=local[i][j]。    
 
 
 
@@ -387,12 +391,15 @@ rst里面add(0,...)每次都add在list开头
 
 
 ---
-**26. [Binary Tree Longest Consecutive Sequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Longest Consecutive Sequence.java)**我洋洋洒洒那么多行，最后还不work.看了solution, 如此精简。
+**26. [Binary Tree Longest Consecutive Sequence.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Longest Consecutive Sequence.java)**		Level: Medium
 
-主要想法：
-Recursive用好。首先在这个level比一比，可否成。
-不成的话，另立门户。
-然后左右开弓。再把结果拿过来比较一下就好了。简单明了。
+屌炸天的4行代码。Divide and Conquer
+
+主要想法：    
+Recursive用好。首先在这个level比一比，可否成。   
+不成的话，另立门户, count = 1。    
+然后左右开弓。再把结果拿过来比较一下就好了。
+
 
 ---
 **27. [Binary Tree Maximum Path Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Binary Tree Maximum Path Sum II.java)**		Level: Medium
@@ -725,58 +732,18 @@ public class Solution {
 
 
 ---
-**42. [Closest Binary Search Tree Value.java](https://github.com/shawnfan/LintCode/blob/master/Java/Closest Binary Search Tree Value.java)**Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+**42. [Closest Binary Search Tree Value.java](https://github.com/shawnfan/LintCode/blob/master/Java/Closest Binary Search Tree Value.java)**		Level: Easy
 
-Note:
-Given target value is a floating point.
-You are guaranteed to have only one unique value in the BST that is closest to the target.
+Binary Search. 记录找到过的closest. 直到tree leaf, 找完return
 
-Tags: Tree Binary Search
-Similar Problems: (M) Count Complete Tree Nodes, (H) Closest Binary Search Tree Value II
-
-*/
-
-
-/*
-Thoughts:
-Binary search, maintain a closest value.
-Note: initial closest in real case is just the root, since we start from the root
-*/
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public int closestValue(TreeNode root, double target) {
- 		if (root == null) {
- 			return 0;
- 		}       
- 		double closest = root.val;
- 		while (root != null) {
- 			if (root.val == target) {
- 				return root.val;
- 			} else {
- 				if (Math.abs(target - closest) >= Math.abs(target - root.val)) {
- 					closest = root.val;
- 				}
- 				if (root.val > target) {
- 					root = root.left;
- 				} else {
- 					root = root.right;
- 				}
- 			}
- 		}//END while
- 		return (int)closest;
-    }
-}
 
 ---
-**43. [Closest Number in Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Closest Number in Sorted Array.java)**一旦没有mid = target.index。 那么target最终就narrow down在(mid-1,mid) 或者(mid,mid+1)
+**43. [Closest Number in Sorted Array.java](https://github.com/shawnfan/LintCode/blob/master/Java/Closest Number in Sorted Array.java)**		Level: Easy
+
+跟Closest Binary Search Tree Vlaue类似：
+
+Binary search. 考虑mid-1, mid+1.    
+一旦没有mid = target.index。 那么target最终就narrow down在(mid-1,mid) 或者(mid,mid+1)   
 
 ---
 **44. [Coins in a Line.java](https://github.com/shawnfan/LintCode/blob/master/Java/Coins in a Line.java)**However, 分析过后简直屌炸天。一个 n%3就解决了。纯粹math.
@@ -796,99 +763,44 @@ public class Solution {
 
 
 ---
-**46. [Combination Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Combination Sum II.java)**
+**46. [Combination Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Combination Sum II.java)**		Level: Medium
 
----
-**47. [Combination Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Combination Sum.java)**记得求sum时候也pass 一个sum进去，backtracking一下sum也，这样就不必每次都sum the list了。
-
----
-**48. [Combinations.java](https://github.com/shawnfan/LintCode/blob/master/Java/Combinations.java)**Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
-
-Example
-For example,
-If n = 4 and k = 2, a solution is:
-[[2,4],[3,4],[2,3],[1,2],[1,3],[1,4]]
-Tags Expand 
-Backtracking Array
-
-Thinking process:
-Use a helper method to perform recursive backtracking:add an element to next-level recursive call, and remote the entry after the recursive call.
-Note: When 'new' something, cannot use 'List' because it's a abstract class. Need to new 'ArrayList'
-*/
-
-public class Solution {
-    /**
-     * @param n: Given the range of numbers
-     * @param k: Given the numbers of combinations
-     * @return: All the combinations of k numbers out of 1..n
-     */
-    public List<List<Integer>> combine(int n, int k) {
-        List<List<Integer>> rst = new ArrayList<List<Integer>>();
-        if (n <= 0 || k <= 0) {
-            return rst;
-        }
-        List<Integer> solution = new ArrayList<Integer>();
-        helper(rst, solution, n, k, 1);// Start == 1 because we want 1 ~ n in this problem
-        return rst;
-    }
-    public void helper(List<List<Integer>> rst, 
-                List<Integer> solution, int n, int k, int start) {
-        if (solution.size() == k) {
-            rst.add(new ArrayList(solution));
-            return;
-        }        
-        for (int i = start; i <= n; i++) {// <=n because we want 1 ~ n in this problem
-            solution.add(i);
-            helper(rst, solution, n, k, i + 1);
-            solution.remove(solution.size() - 1); //Back-track
-        }
-    }
-}
+还是DFS. 和Combination Sum I 类似.      
+确保Helper是用i+1，下一层的数字, 不允许重复。
 
 
 ---
-**49. [Compare Strings.java](https://github.com/shawnfan/LintCode/blob/master/Java/Compare Strings.java)**Compare two strings A and B, determine whether A contains all of the characters in B.
+**47. [Combination Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/Combination Sum.java)**		Level: Medium
 
-The characters in string A and B are all Upper Case letters.
+递归，backtracking. 非常normal。需要先sort.    
+记得求sum时候也pass 一个sum进去，backtracking一下sum也，这样就不必每次都sum the list了。   
 
-Example
-For A = "ABCD", B = "ABC", return true.
+题目里面所同一个元素可以用n次，但是，同一种solution不能重复出现。如何handle?
 
-For A = "ABCD" B = "AABC", return false.
+1. 用一个index （我们这里用了start）来mark每次recursive的起始点。
+2. 每个recursive都从for loop里面的i开始，而i = start。 也就是，下一个iteration,这个数字会有机会被重复使用。
+3. 同时，确定在同一个for loop里面，不同的Index上面相同的数字，不Process两遍。用一个prev 作为checker.
 
-Tags Expand 
-Basic Implementation String LintCode Copyright
+假如[x1, x2, y, z], where x1 == x2， 上面做法的效果: 
+我们可能有这样的结果: x1,x1,x1,y,z    
+但是不会有:x1,x2,x2,y,z   
+两个solution从数字上是一样的，也就是duplicated solution, 要杜绝第二种。
 
-Thinking process:
-Count the number of occurance for StringA. 
-Count the number of occurance for StringB.
-Check if all of StringB's char# <= StringA's char# at each index.
-*/
 
-public class Solution {
-    /**
-     * @param A : A string includes Upper Case letters
-     * @param B : A string includes Upper Case letter
-     * @return :  if string A contains all of the characters in B return true else return false
-     */
-    public boolean compareStrings(String A, String B) {
-        if (A == null || B == null || A.length() < B.length()) {
-            return false;
-        }
-        int[] countA = new int[26];
-        int[] countB = new int[26];
-        for (int i = 0; i < A.length(); i++) {
-            countA[A.charAt(i) - 'A']++;
-        }
-        for (int i = 0; i < B.length(); i++) {
-            countB[B.charAt(i) - 'A']++;
-            if (countB[B.charAt(i) - 'A'] > countA[B.charAt(i) - 'A']) {
-                return false;
-            }
-        }
-        return true;
-    }
-}
+---
+**48. [Combinations.java](https://github.com/shawnfan/LintCode/blob/master/Java/Combinations.java)**		Level: Medium
+
+Combination DFS。 画个图想想. 每次从1~n里面pick一个数字i
+
+因为下一层不能重新回去 [0~i]选，所以下一层recursive要从i+1开始选。
+
+
+---
+**49. [Compare Strings.java](https://github.com/shawnfan/LintCode/blob/master/Java/Compare Strings.java)**		Level: Easy
+
+比较一下大小, null.
+
+然后用char[]来count chars from A. 再对照chars in B.
 
 
 ---
@@ -928,11 +840,17 @@ Postorder array 的末尾， 就是当下层的root.
 另，若一面墙已经小于另外一面，就要移动，换掉矮墙（可能下一面更高，或更低）；但决不能换掉当下的高墙，因为低墙已经limit的盛水的上限，若高墙移动，导致两墙之间距离减少，就注定水量更少了。（弄啥来，不能缺心眼啊）
 
 ---
-**54. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Convert Binary Search Tree to Doubly Linked List.java)**不论right == null or != null, 每次都要强行move to right.
+**54. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/shawnfan/LintCode/blob/master/Java/Convert Binary Search Tree to Doubly Linked List.java)**		Level: Medium
 
-如果不node = node.right,
-很可能发生窘境：
-node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。
+会iterative traverse Binary Search Tree就好（Stack && handle left-dig-down）, 然后create Doubly-ListNode 时候注意就好.
+
+注意inorder traversal在check right node的事后，    
+不论right == null or != null, 每次都要强行move to right.    
+
+如果不node = node.right,     
+很可能发生窘境：       
+node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
+
 
 ---
 **55. [Convert Expression to Polish Notation.java](https://github.com/shawnfan/LintCode/blob/master/Java/Convert Expression to Polish Notation.java)**		Level: Hard
@@ -955,38 +873,15 @@ build expression tree。
 
 
 ---
-**57. [Convert Integer A to Integer B.java](https://github.com/shawnfan/LintCode/blob/master/Java/Convert Integer A to Integer B.java)**Determine the number of bits required to convert integer A to integer B 
+**57. [Convert Integer A to Integer B.java](https://github.com/shawnfan/LintCode/blob/master/Java/Convert Integer A to Integer B.java)**		Level: Easy
 
-Example
-Given n = 31, m = 14,return 2
+Bit Manipulation
 
-(31)10=(11111)2
+a^b 显示出bit format里面有不同binary code的数位.
 
-(14)10=(01110)2
+每次 (a^b)>>i 移动i位之后，   再 & 1时其实是指留下这一位的数字.
 
-Tags Expand 
-Cracking The Coding Interview Bit Manipulation Binary Representation
-
-Thinking process:
-Assume the integer is 32 bit.
-XOR a and b, shift by 1 bit everytime -> want to check the XORed value at index 0 : just & 1 will do.
-Count the above calculated result: how many bit difference do a and b have.
-*/
-
-class Solution {
-    /**
-     *@param a, b: Two integer
-     *return: An integer
-     */
-    public static int bitSwapRequired(int a, int b) {
-        int count = 0;
-        for (int i = 0; i < 32; i++) {
-            count += (a ^ b) >> i & 1;
-        }
-        return count;
-    }
-};
-
+count it up
 
 
 ---
@@ -996,16 +891,20 @@ Binary Search的感觉. 中间一开两半, divde and conquer,左右各自recurs
 
 
 ---
-**59. [Convert Sorted List to Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Convert Sorted List to Binary Search Tree.java)**
-找到mid。
-然后把root = mid.next 
+**59. [Convert Sorted List to Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Convert Sorted List to Binary Search Tree.java)**		Level: Medium
 
-然后开始sortedListToBST(mid.next.next); //后半段
-mid.next = null;//非常重要，要把后面拍过序的断掉
-sortedListToBST(head); //从头开始的前半段
+Divide and Conquer   
+用快慢pointer
+
+找到mid。   
+然后把root = mid.next     
+
+然后开始sortedListToBST(mid.next.next); //后半段    
+mid.next = null;//非常重要，要把后面拍过序的断掉    
+sortedListToBST(head); //从头开始的前半段     
 
 
-最后root.left, root.right merge一下。
+最后root.left, root.right merge一下。   
 
 
 ---
@@ -1019,113 +918,24 @@ Basic Implementation, 其中用了一下HashMap:
 
 
 ---
-**61. [Cosine Similarity.java](https://github.com/shawnfan/LintCode/blob/master/Java/Cosine Similarity.java)**
----
-**62. [Count 1 in Binary.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count 1 in Binary.java)**Count how many 1 in binary representation of a 32-bit integer.
+**61. [Cosine Similarity.java](https://github.com/shawnfan/LintCode/blob/master/Java/Cosine Similarity.java)**		Level: Easy
 
-Example
-Given 32, return 1
+basic implementation
 
-Given 5, return 2
-
-Given 1023, return 9
-
-Challenge
-If the integer is n bits with m 1 bits. Can you do it in O(m) time?
-
-Tags Expand 
-Binary Bit Manipulation
-
-Thoughts:
-1. break string into char[]
-2. convert char[] into integer using Character.getNumericValue()
-
-*/
-
-
-
-
-public class Solution {
-    /**
-     * @param num: an integer
-     * @return: an integer, the number of ones in num
-     */
-    public int countOnes(int num) {
-        if (num < 0) {
-            return 0;
-        }
-        String bits = Integer.toBinaryString(num);
-        char[] bitArray = bits.toCharArray();
-        int sum = 0;
-        for (int i = 0; i < bitArray.length; i++) {
-            sum += Character.getNumericValue(bitArray[i]);
-        }
-        return sum;
-    }
-};
 
 ---
-**63. [Count and Say.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count and Say.java)**The count-and-say sequence is the sequence of integers beginning as follows:
+**62. [Count 1 in Binary.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count 1 in Binary.java)**		Level: Easy
 
-1, 11, 21, 1211, 111221, ...
+1. 可以把integer -> string -> char array.
 
-1 is read off as "one 1" or 11.
-
-11 is read off as "two 1s" or 21.
-
-21 is read off as "one 2, then one 1" or 1211.
-
-Given an integer n, generate the nth sequence.
-
-Example
-Given n = 5, return "111221".
-
-Note
-The sequence of integers will be represented as a string.
-
-Tags Expand 
-String
+2. 或者就 count += num << i & 1
 
 
-1. Set up initial value '11'
-2. use while loop to build on past variable
-3. In each while loop case, break the string into charArray, count and name mark the type
-4. In for loop: when different, append string (count+type); when same, count++.
-*/
+---
+**63. [Count and Say.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count and Say.java)**		Level: Easy
 
+Basic implementation. Count duplicates and print
 
-public class Solution {
-    /**
-     * @param n the nth
-     * @return the nth sequence
-     */
-    public String countAndSay(int n) {
-        if (n <= 1) {
-            return n + "";
-        }
-        String str = "11";
-        int ind = 2;
-        while (ind < n) {
-        	StringBuffer sb = new StringBuffer();
-        	char[] arr = str.toCharArray();
-	        int count = 1;
-	        int type = Character.getNumericValue(arr[0]);
-	        for (int i = 1; i < arr.length; i++) {
-	            if (arr[i] == arr[i - 1]) {
-	                count++;
-	            } else {
-	                sb.append(count + "" + type);
-	                type = Character.getNumericValue(arr[i]);
-	                count = 1;
-	            }
-	        }
-        	ind++;
-        	sb.append(count + "" + type);
-        	str = sb.toString();
-        }
-        return str;
-    }
-}
 
 ---
 **64. [Count of Smaller Number before itself.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count of Smaller Number before itself.java)**		Level: Hard

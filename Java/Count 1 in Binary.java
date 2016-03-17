@@ -1,3 +1,10 @@
+E
+
+1. 可以把integer -> string -> char array.
+
+2. 或者就 count += num << i & 1
+
+```
 /*
 Count how many 1 in binary representation of a 32-bit integer.
 
@@ -41,3 +48,5 @@ public class Solution {
         return sum;
     }
 };
+
+```

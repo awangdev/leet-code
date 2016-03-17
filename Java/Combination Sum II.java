@@ -1,4 +1,7 @@
-确保Helper是用i+1，下一层的数字。
+M
+
+还是DFS. 和Combination Sum I 类似.      
+确保Helper是用i+1，下一层的数字, 不允许重复。
 
 ```
 /*

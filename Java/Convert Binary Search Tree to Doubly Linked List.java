@@ -1,15 +1,19 @@
-注意inorder traversal在check right node的事后，
-不论right == null or != null, 每次都要强行move to right.
+M
 
-如果不node = node.right,
-很可能发生窘境：
-node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。
+会iterative traverse Binary Search Tree就好（Stack && handle left-dig-down）, 然后create Doubly-ListNode 时候注意就好.
+
+注意inorder traversal在check right node的事后，    
+不论right == null or != null, 每次都要强行move to right.    
+
+如果不node = node.right,     
+很可能发生窘境：       
+node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
+
 ```
 /*
 
 Convert a binary search tree to doubly linked list with in-order traversal.
 
-Have you met this question in a real interview? Yes
 Example
 Given a binary search tree:
 
@@ -58,10 +62,6 @@ Linked List
     boarder case: if null, return a null.
 */
 public class Solution {
-    /**
-     * @param root: The root of tree
-     * @return: the head of doubly list node
-     */
     public DoublyListNode bstToDoublyList(TreeNode root) {  
         if (root == null) {
             return null;

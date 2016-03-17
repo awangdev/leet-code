@@ -1,5 +1,9 @@
-Binary search. 考虑mid-1, mid+1. 
-一旦没有mid = target.index。 那么target最终就narrow down在(mid-1,mid) 或者(mid,mid+1)
+E
+
+跟Closest Binary Search Tree Vlaue类似：
+
+Binary search. 考虑mid-1, mid+1.    
+一旦没有mid = target.index。 那么target最终就narrow down在(mid-1,mid) 或者(mid,mid+1)   
 ```
 /*
 Given a target number and an integer array A sorted in ascending order, find the index i in A such that A[i] is closest to the given target.

@@ -1,3 +1,14 @@
+E
+
+Bit Manipulation
+
+a^b 显示出bit format里面有不同binary code的数位.
+
+每次 (a^b)>>i 移动i位之后，   再 & 1时其实是指留下这一位的数字.
+
+count it up
+
+```
 /*
 Determine the number of bits required to convert integer A to integer B 
 
@@ -32,3 +43,5 @@ class Solution {
 };
 
 
+
+```

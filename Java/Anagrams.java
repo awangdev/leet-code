@@ -5,8 +5,7 @@ M
    toCharArray
    Arrays.sort
    Stirng.valueOf(char[])
-
-时间n*L*O(logL),L是最长string的长度。
+   时间n*L*O(logL),L是最长string的长度。
 
 2. Arrays.toString(arr)的做法。arr是int[26], assuming only have 26 lowercase letters.    
 Count occurrance, 然后convert to String，作为map的key.

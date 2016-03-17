@@ -115,6 +115,39 @@ Switch for the complex connections:
 Reason to lock, for example, 3306 not allowed at entering building? Because no one needs to inject query to db from outside of building; sql query usually only need to be done within the building, so lock the building up, don't allow bad sql injection : )
 
 
+### URL convention Example Final (http://www.hiredintech.com/system-design/final-thoughts/)
+- simple rules:
+	Always start a single machine
+	Benchmark the bottle necks, where it indroduces complexity. (No need to add extra complexity)
+	Think about the questions like: why sql vs. non-sql?
+
+- Scalable design:
+	1. Application, web server, handle requests/traffic
+		* start with 1 server
+		* it's better to measure the spark traffic (highest we get)
+		* add load balancer, and a cluster of servers. (could use amazon elastic load balancer, to automatically add more servers)
+
+	2. Data Storage
+		1) Billions of object,  2) each object is small, 3) no relationship between object, 4) read 9x more than write (360read/s, 40writes/s), 5) 3TB urls, 36GB of hashes
+		We can use sql or non-sql
+		In example, go with MySQL
+			widely used
+			Mature tech
+			Clear scaling paradiams(sharding, master/slave replication, master/master replication)
+			Used by fb, twitter, google.
+			* index lookups are very fast (as fast as non-sql)
+		mappings:
+			hash: varchar(6)
+			original_url: varchar(512)
+
+		Over years, it holds 3TB data. Storage-wise, it's okay. However, how to serve up quickly?
+		
+		* First, Use one MySQL table with two varchar fields
+		* Create uinique index on the hash(36GB+). We want to hold it in memory. However, we need to look up fast.
+		* For 1st stemp, vertical scaling of the MySQL machine, adding more RAM (nowadays ram are cheaper too : )
+		* Eventually need to partition the data, into 5 partitions: 600GB of data, 8GB of indexes on each machine. (Partitioning early on, it helps to scale later, just add more nodes)
+		* One day, if read/write are super different, Master-Slave, ... 
+			write to master, and read from slaves.
 
 ## Design UBER
 1. Requirements 

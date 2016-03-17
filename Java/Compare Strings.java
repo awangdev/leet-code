@@ -1,3 +1,10 @@
+E
+
+比较一下大小, null.
+
+然后用char[]来count chars from A. 再对照chars in B.
+
+```
 /*
 Compare two strings A and B, determine whether A contains all of the characters in B.
 
@@ -42,3 +49,5 @@ public class Solution {
     }
 }
 
+
+```

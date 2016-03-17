@@ -1,3 +1,10 @@
+M
+
+Combination DFS。 画个图想想. 每次从1~n里面pick一个数字i
+
+因为下一层不能重新回去 [0~i]选，所以下一层recursive要从i+1开始选。
+
+```
 /*
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 
@@ -14,11 +21,6 @@ Note: When 'new' something, cannot use 'List' because it's a abstract class. Nee
 */
 
 public class Solution {
-    /**
-     * @param n: Given the range of numbers
-     * @param k: Given the numbers of combinations
-     * @return: All the combinations of k numbers out of 1..n
-     */
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> rst = new ArrayList<List<Integer>>();
         if (n <= 0 || k <= 0) {
@@ -42,3 +44,5 @@ public class Solution {
     }
 }
 
+
+```

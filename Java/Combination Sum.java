@@ -1,5 +1,19 @@
-递归，backtracking. 非常normal。
-记得求sum时候也pass 一个sum进去，backtracking一下sum也，这样就不必每次都sum the list了。
+M
+
+递归，backtracking. 非常normal。需要先sort.    
+记得求sum时候也pass 一个sum进去，backtracking一下sum也，这样就不必每次都sum the list了。   
+
+题目里面所同一个元素可以用n次，但是，同一种solution不能重复出现。如何handle?
+
+1. 用一个index （我们这里用了start）来mark每次recursive的起始点。
+2. 每个recursive都从for loop里面的i开始，而i = start。 也就是，下一个iteration,这个数字会有机会被重复使用。
+3. 同时，确定在同一个for loop里面，不同的Index上面相同的数字，不Process两遍。用一个prev 作为checker.
+
+假如[x1, x2, y, z], where x1 == x2， 上面做法的效果: 
+我们可能有这样的结果: x1,x1,x1,y,z    
+但是不会有:x1,x2,x2,y,z   
+两个solution从数字上是一样的，也就是duplicated solution, 要杜绝第二种。
+
 ```
 /*
 Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.

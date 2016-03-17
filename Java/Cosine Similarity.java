@@ -1,7 +1,11 @@
-按题目意思，写出来就好了。
+E
+
+basic implementation
+
 ```
 /*
-Cosine similarity is a measure of similarity between two vectors of an inner product space that measures the cosine of the angle between them. 
+Cosine similarity is a measure of similarity between two vectors of an inner product space
+ that measures the cosine of the angle between them. 
 The cosine of 0° is 1, and it is less than 1 for any other angle.
 
 See wiki: Cosine Similarity

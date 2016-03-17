@@ -1,3 +1,8 @@
+E
+
+Binary Search. 记录找到过的closest. 直到tree leaf, 找完return
+
+```
 /*
 Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
 
@@ -48,3 +53,4 @@ public class Solution {
  		return (int)closest;
     }
 }
+```

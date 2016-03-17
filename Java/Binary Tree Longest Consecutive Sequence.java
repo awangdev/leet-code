@@ -1,15 +1,19 @@
-屌炸天的4行代码。
-我洋洋洒洒那么多行，最后还不work.看了solution, 如此精简。
+M
 
-主要想法：
-Recursive用好。首先在这个level比一比，可否成。
-不成的话，另立门户。
-然后左右开弓。再把结果拿过来比较一下就好了。简单明了。
+屌炸天的4行代码。Divide and Conquer
+
+主要想法：    
+Recursive用好。首先在这个level比一比，可否成。   
+不成的话，另立门户, count = 1。    
+然后左右开弓。再把结果拿过来比较一下就好了。
+
 ```
 /*
 Given a binary tree, find the length of the longest consecutive sequence path.
 
-The path refers to any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The longest consecutive path need to be from parent to child (cannot be the reverse).
+The path refers to any sequence of nodes from some starting node to any node in the tree 
+along the parent-child connections. The longest consecutive path need to be from parent to child 
+(cannot be the reverse).
 
 For example,
    1

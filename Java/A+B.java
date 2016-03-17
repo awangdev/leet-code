@@ -1,11 +1,16 @@
 E
 
-Bit Operation
- 
+^ 是不完全加法. 每次都忽略了进位。而 & 刚好可以算出需要的所有进位。
+
+那么就，首先记录好进位的数字：carry. 然后 a^b 不完全加法一次。然后b用来放剩下的carry, 每次移动一位，继续加，知道b循环为0为止。
+
+Bit Operation    
+Steps: 
    a & b: 每bit可能出得余数       
    a ^ b: 每bit在此次操作可能留下的值，XOR 操作         
    每次左移余数1位，然后存到b, 再去跟a做第一步。loop until b == 0    
 
+(http://www.meetqun.com/thread-6580-1-1.html)
 
 ```
 /*
