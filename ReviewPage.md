@@ -288,6 +288,9 @@ http://liangjiabin.com/blog/2015/04/leetcode-best-time-to-buy-and-sell-stock.htm
    local[i][j] = max(global[i – 1][j – 1] + diff, local[i – 1][j] + diff)    
    global[i][j] = max(global[i – 1][j], local[i][j])     
 
+local[i][j]: 第i天，当天一定进行第j次交易的profit     
+global[i][j]: 第i天，总共进行了j次交易的profit.
+
 local[i][j]和global[i][j]的区别是：local[i][j]意味着在第i天一定有交易（卖出）发生。    
    当第i天的价格高于第i-1天（即diff > 0）时，那么可以把这次交易（第i-1天买入第i天卖出）跟第i-1天的交易（卖出）合并为一次交易，即local[i][j]=local[i-1][j]+diff；    
    当第i天的价格不高于第i-1天（即diff<=0）时，那么local[i][j]=global[i-1][j-1]+diff，而由于diff<=0，所以可写成local[i][j]=global[i-1][j-1]。    
@@ -595,140 +598,12 @@ public class Solution {
 
 
 ---
-**41. [Clone Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Clone Graph.java)**Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
+**41. [Clone Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Clone Graph.java)**		Level: Medium
 
+Use HashMap to mark cloned nodes.    
 
-OJ's undirected graph serialization:
-Nodes are labeled uniquely.
+先能复制多少Node复制多少。然后把neighbor 加上
 
-We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.
-As an example, consider the serialized graph {0,1,2#1,2#2,2}.
-
-The graph has a total of three nodes, and therefore contains three parts as separated by #.
-
-First node is labeled as 0. Connect node 0 to both nodes 1 and 2.
-Second node is labeled as 1. Connect node 1 to node 2.
-Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.
-Visually, the graph looks like the following:
-
-       1
-      / \
-     /   \
-    0 --- 2
-         / \
-         \_/
-Hide Tags Depth-first Search Breadth-first Search Graph
-
-	
-*/
-
-/*
-    //NEED TO RUN THIS ON LINT
-    Thoughts: 12.12.2015
-    The original thoughs of using ArrayList, and using a index to track of which node has not been visited.
-        It's alright, but it uses extra space, and basically copie all nodes again.
-        It's similar to using a queue.
-        At the end, it's doing O(m * n)
-    Maybe can improve this.
-
-    Need a queue and process each element. and a hashmap to track duplicates.
-        1. make sure the node is no duplicate
-        2. make sure to all all child
-
-    border: case: node == nul, or node has not child, return a new instance of it'self?
-
-*/
-
-public class Solution {
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if (node == null || node.neighbors.size() == 0) {
-            return node;
-        }
-
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = 
-            new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
-
-        queue.offer(node);
-        //process each node
-        while (!queue.isEmpty()) {
-            UndirectedGraphNode curr = queue.poll();
-            UndirectedGraphNode newNode;
-            if (!map.containsKey(curr)) {
-                map.put(curr, new UndirectedGraphNode(curr.label));
-            }
-            UndirectedGraphNode newNode = map.get(curr);
-            //Add neighbors for each node
-            for (UndirectedGraphNode neighbor : curr.neighbors) {
-                UndirectedGraphNode newNeighbor;
-                if (!map.containsKey(neighbor)) {
-                    map.put(neighbor, new UndirectedGraphNode(neighbor.label));
-                }
-                newNeighbor = map.get(neighbor);
-
-                newNode.neighbors.add(newNeighbor);
-            }//end for
-
-        }//end while
-
-        return map.get(node);        
-    }
-}
-
-  
-
-/*
-
-    
-Thinking process:
-1. Clone all nodes available: using HashMap to go through all possible query. No duplicates added using HashMap.
-    HashMap map has the list of all new nodes. No neighbors added yet
-    <key,value> = <original node,  new node with just a label (without neighbor list)>
-    At same time, the arrayList nodes has all original nodes(with neighbors) in Breadth-first order.
-2. Add neighbor for nodes in map:
-    - Locate the 'newNode' from map by using the key: the original node
-    - loop through the original node's neighbor size
-    - use original neighbor as key to get the new neighbor instance from map
-    - add this new neighbor instance to the neighbor list of 'newNode'
-*/
-/**
- * Definition for undirected graph.
- * class UndirectedGraphNode {
- *     int label;
- *     List<UndirectedGraphNode> neighbors;
- *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
- * };
- */
-public class Solution {
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if (node == null) {
-            return node;
-        }
-        ArrayList<UndirectedGraphNode> nodes = new ArrayList<UndirectedGraphNode>();
-        nodes.add(node);
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-        map.put(node, new UndirectedGraphNode(node.label));
-        int start = 0;
-        //Clone nodes without neighbors:
-        while (start < nodes.size()) {
-            List<UndirectedGraphNode> neighbors = nodes.get(start++).neighbors;
-            for (int i = 0; i < neighbors.size(); i++) {
-                if (!map.containsKey(neighbors.get(i))) {
-                    map.put(neighbors.get(i), new UndirectedGraphNode(neighbors.get(i).label));
-                    nodes.add(neighbors.get(i));
-                }
-            }
-        }
-        // Clone neighbors:
-        for (int i = 0; i < nodes.size(); i++) {
-            UndirectedGraphNode newNode = map.get(nodes.get(i));
-            for (int j = 0; j < nodes.get(i).neighbors.size(); j++) {
-                newNode.neighbors.add(map.get(nodes.get(i).neighbors.get(j)));
-            }
-        }
-        return map.get(node);    
-    }
-}
 
 
 ---
@@ -980,14 +855,19 @@ value-1就是说，找比自己所在range小1的range（那么自然而然地�
 
 
 ---
-**66. [Count Primes.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count Primes.java)**还有另外一个中定义方法：
-这个n,有没有小于n的一个i,而达到： i*i + # of i = n. 如果有，那就不是 prime。 
+**66. [Count Primes.java](https://github.com/shawnfan/LintCode/blob/master/Java/Count Primes.java)**		Level: Easy
 
-方法很牛逼也很数学。没做的时候可能想不到。做了之后就觉得，哎，我去，有道理啊。
-简而言之：简历一个boolean长条，存isPrime[]。 然后从i=2， 全部变true.
-然后利用这个因子的性质，非prime满足条件： self*self, self * self + self ... etc.
-所以就check每一个j, j+i, j+i+i, 然后把所有non-prime全部mark成false.
-最后，数一遍还剩下的true个数就好了
+什么是prime number: >=2的没有除自己和1以外公约数的数。   
+
+还有另外一个定义方法!!    
+这个n,有没有小于n的一个i,而达到： i*i + # of i = n. 如果有，那就不是 prime。     
+
+方法很牛逼也很数学。没做的时候可能想不到。做了之后就觉得，哎，我去，有道理啊。   
+简而言之：简历一个boolean长条，存isPrime[]。 然后从i=2， 全部变true.    
+然后利用这个因子的性质，非prime满足条件： self*self, self * self + self ... etc.     
+所以就check每一个j, j+i, j+i+i, 然后把所有non-prime全部mark成false.     
+最后，数一遍还剩下的true个数就好了   
+
 
 ---
 **67. [Course Schedule II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Course Schedule II.java)**		Level: Medium
@@ -1700,28 +1580,36 @@ class Solution {
 **84. [Find Peak Element.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Peak Element.java)**一个特别的check condition, 和特别的move left, move right的case罢了。
 
 ---
-**85. [Find the Connected Component in the Undirected Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Connected Component in the Undirected Graph.java)**
-一定注意要把visit过的node Mark一下。因为curr node也会是别人的neighbor，会无限循环。
+**85. [Find the Connected Component in the Undirected Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Connected Component in the Undirected Graph.java)**		Level: Medium
+ 
+BFS遍历，把每个node的neighbor都加进来。    
 
-Component的定义：所有Component内的node必须被串联起来via path (反正这里是undirected, 只要链接上就好)
+一定注意要把visit过的node Mark一下。因为curr node也会是别人的neighbor，会无限循环。      
 
-这道题：其实component在input里面都已经给好了，所有能一口气visit到的，全部加进queue里面，他们就是一个component里面的了。
+Component的定义：所有Component内的node必须被串联起来via path (反正这里是undirected, 只要链接上就好)     
 
-而我们这里不需要判断他们是不是Component。
+这道题：其实component在input里面都已经给好了，所有能一口气visit到的，全部加进queue里面，他们就是一个component里面的了。     
+
+而我们这里不需要判断他们是不是Component。   
+
 
 ---
-**86. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Weak Connected Component in the Directed Graph.java)**看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。
+**86. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find the Weak Connected Component in the Directed Graph.java)**		Level: Medium
 
-为何不能从一个点出发，比如A，直接print它所有的neighbors呢？
-	不行，如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。
+Identify这是个union-find问题还挺巧妙。    
+看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    
 
-所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.
+为何不能从一个点出发，比如A，直接print它所有的neighbors呢？     
+	不行，如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。    
 
-最后output的想法：
-做一个 map <parent ID, list>。
-之前我们不是给每个num都存好了parent了嘛。
-每个num都有个parent, 然后不同的parent就创造一个不同的list。
-最后，把Map里面所有的list拿出来就好了。
+所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.     
+
+最后output的想法：    
+做一个 map <parent ID, list>。    
+之前我们不是给每个num都存好了parent了嘛。    
+每个num都有个parent, 然后不同的parent就创造一个不同的list。   
+最后，把Map里面所有的list拿出来就好了。    
+
 
 ---
 **87. [First Bad Version.java](https://github.com/shawnfan/LintCode/blob/master/Java/First Bad Version.java)**		Level: Medium
@@ -2010,10 +1898,15 @@ public class Solution {
 **97. [Generate Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Generate Parentheses.java)**看thought.取或者不取(,  )
 
 ---
-**98. [Graph Valid Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Graph Valid Tree.java)**题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.
-存储的关键都是：元素相对的index上存着他的root parent.
+**98. [Graph Valid Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Graph Valid Tree.java)**		Level: Medium
+
+复习Union-Find的另外一个种形式。   
+题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+存储的关键都是：元素相对的index上存着他的root parent.    
 
 另一个union-find， 用hashmap的：http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
+
+
 
 ---
 **99. [Gray Code.java](https://github.com/shawnfan/LintCode/blob/master/Java/Gray Code.java)**		Level: Medium
@@ -4241,115 +4134,9 @@ node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last n
 
 
 ---
-**198. [Number of Islands II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands II.java)**Given a n,m which means the row and column of the 2D matrix and an array of pair A( size k). Originally, the 2D matrix is all 0 which means there is only sea in the matrix. The list pair has k operator and each operator has two integer A[i].x, A[i].y means that you can change the grid matrix[A[i].x][A[i].y] from sea to island. Return how many island are there in the matrix after each operator.
+**198. [Number of Islands II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands II.java)**		Level: Hard
 
-Have you met this question in a real interview? Yes
-Example
-Given n = 3, m = 3, array of pair A = [(0,0),(0,1),(2,2),(2,1)].
 
-return [1,1,2,2].
-
-Note
-0 is represented as the sea, 1 is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
-
-Tags Expand 
-Union Find
-*/
-
-/*
-Thoughts:
-Each pos(x,y) turns that sea spot into a island spot.
-Image each isleand spot is a node in the graph, and each island(many island spots) has a root parent.
-In for loop, try to add operators into the matrix one after another.
-	Every time when adding a new island spot, check its sourandings and see if there are islands existed.
-	If souranding island was land:
-		To check if the surrouding spot are on common island (use find and union). 
-		Since the operator spot was sea, the it's root parent is itself. Then, souranding spot has different island root, 
-		they will surely have differet root parent, but they will do after they connect, so we do count--.
-
-On the otherhand, if surrounding was just sea, then count++ is natural
-
-Note:
-1. Know how to write up simple union find class
-2. Convert 2D array into 1D
-*/
-
-/**
- * Definition for a point.
- * class Point {
- *     int x;
- *     int y;
- *     Point() { x = 0; y = 0; }
- *     Point(int a, int b) { x = a; y = b; }
- * }
- */
-public class Solution {
-	class UnionFind {
-		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-		public UnionFind(int length) {
-			for (int i = 0; i < length; i++) {
-				map.put(i,i);
-			}
-		}
-		public int find(int target) {
-			int parent = map.get(target);
-			while (parent != map.get(parent)) {
-				parent = map.get(parent);
-			}
-			return parent;
-		}
-
-		public void union(int x, int y) {
-			int findX = find(x);
-			int findY = find(y);
-			if (findX != findY) {
-				map.put(findX, findY);
-			}
-		}
-	}
-    /**
-     * @param n an integer
-     * @param m an integer
-     * @param operators an array of point
-     * @return an integer array
-     */
-    public List<Integer> numIslands2(int n, int m, Point[] operators) {
-    	List<Integer> rst = new ArrayList<Integer>();
-    	if (operators == null || operators.length == 0) {
-    		return rst;
-    	}
-    	int count = 0;
-    	int[] island = new int[m*n];
-    	UnionFind uf = new UnionFind(m*n);
-    	int[] xs = {-1, 1,  0, 0};
-    	int[] ys = {0,  0, -1, 1};
-    	for (int i = 0; i < operators.length; i++) {
-    		int x = operators[i].x;
-    		int y = operators[i].y;
-    		int pos = x * m + y;
-    		count++;
-    		if (island[pos] != 1) {
-    			island[pos] = 1;
-	    		for (int j = 0; j < 4; j++) {
-	    			int nx = x + xs[j];
-	    			int ny = y + ys[j];
-	    			int newPos = nx * m + ny;
-	    			if (nx >= 0 && nx < n && ny >= 0 && ny < m && island[newPos] == 1) {//when new position is land
-	    				int findA = uf.find(pos);
-	    				int findB = uf.find(newPos);
-	    				if (findA != findB) {
-	    					count--;
-	    					uf.union(pos, newPos);
-	    				}
-	    			}
-	    		}
-    		}
-    		rst.add(count);
-    	}
-
-    	return rst;
-    }
-}
 
 ---
 **199. [Number of Islands.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands.java)**		Level: Medium
@@ -6596,95 +6383,23 @@ PriorityQueue里面用到了 String.compareTo(another String).巧妙。
 
 
 ---
-**288. [Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)**Given an directed graph, a topological order of the graph nodes is defined as follow:
+**288. [Topological Sorting.java](https://github.com/shawnfan/LintCode/blob/master/Java/Topological Sorting.java)**		Level: Medium
 
-For each directed edge A -> B in graph, A must before B in the order list.
-The first node in the order can be any node in the graph with no nodes direct to it.
-Find any topological order for the given graph.
+比较特别的BFS.
 
-Example
-For graph as follow:
+几个graph的condition：   
+1. 可能有多个root
+2. directed node, 可以direct backwards.
 
-picture
+Steps:    
+Track all neighbors/childrens. 把所有的children都存在map<label, count>里面
+先把所有的root加一遍，可能多个root。并且全部加到queue里面。
 
-The topological order can be:
-
-[0, 1, 2, 3, 4, 5]
-[0, 2, 3, 1, 5, 4]
-...
-Note
-You can assume that there is at least one topological order in the graph.
-
-Challenge
-Can you do it in both BFS and DFS?
-
-Tags Expand 
-LintCode Copyright Geeks for Geeks Depth First Search Breadth First Search
-
-Thoughts:
-First idea is Breadth First Search.
-1. Find the node which has no parent node: this will be the beginning node. Use a HashMap to map all nodes with children, and whatever not in that map, is a root option.
-2. Starting from this node, put all nodes in the queue (breadth-first)
-3. process each node in the queue: add to array list
+然后以process queue, do BFS:   
+Only when map.get(label) == 0, add into queue && rst.    
+这用map track apperance, 确保在后面出现的node, 一定最后process.
 
 
-Note: All all possible root node (whatever not added into the map) because there could be multiple heads : (. Really need to ask about this if not sure.
-
-*/
-
-/**
- * Definition for Directed graph.
- * class DirectedGraphNode {
- *     int label;
- *     ArrayList<DirectedGraphNode> neighbors;
- *     DirectedGraphNode(int x) { label = x; neighbors = new ArrayList<DirectedGraphNode>(); }
- * };
- */
-public class Solution {
-    /**
-     * @param graph: A list of Directed graph node
-     * @return: Any topological order for the given graph.
-     */    
-    public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
-        ArrayList<DirectedGraphNode> rst = new ArrayList<DirectedGraphNode>();
-        if (graph == null || graph.size() == 0) {
-        	return graph;
-        }
-       	//Keep track of all neighbors in HashMap
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (DirectedGraphNode node : graph) {
-        	for (DirectedGraphNode neighbor : node.neighbors) {
-        		int keyN = neighbor.label;
-	        	if (map.containsKey(keyN)) {
-	        		map.put(keyN, map.get(keyN) + 1);
-	        	} else {
-	        		map.put(keyN, 1);
-	        	}
-        	}
-        }
-        //BFS: Add root node. Note: 
-        Queue<DirectedGraphNode> queue = new LinkedList<DirectedGraphNode>();
-        for (DirectedGraphNode node : graph) {
-        	if (!map.containsKey(node.label)) {
-        		queue.offer(node);
-        		rst.add(node);
-        	}
-        }
-        //BFS: go through all children
-        while (!queue.isEmpty()) {
-        	DirectedGraphNode node = queue.poll();	
-        	for (DirectedGraphNode n : node.neighbors) {
-        		int label = n.label;
-        		map.put(label, map.get(label) - 1);
-        		if (map.get(label) == 0) {
-        			rst.add(n);
-        			queue.offer(n);
-        		}
-        	}
-        }
-        return rst;
-    }
-}
 
 ---
 **289. [Total Occurrence of Target.java](https://github.com/shawnfan/LintCode/blob/master/Java/Total Occurrence of Target.java)**找total number of occurance. 首先找first occurance, 再找last occurance.
@@ -7600,290 +7315,13 @@ valid[i]: 记录从i到valid array末尾是否valid.
 
 
 ---
-**315. [Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)**Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
+**315. [Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)**		Level: Hard
 
-Only one letter can be changed at a time
-Each intermediate word must exist in the dictionary
-Have you met this question in a real interview? Yes
-Example
-Given:
-start = "hit"
-end = "cog"
-dict = ["hot","dot","dog","lot","log"]
-Return
-  [
-    ["hit","hot","dot","dog","cog"],
-    ["hit","hot","lot","log","cog"]
-  ]
-Note
-All words have the same length.
-All words contain only lowercase alphabetic characters.
-Tags Expand 
-Backtracking Depth First Search Breadth First Search
-
-Attempt1 is by me: however it exceeds time/memory limit.
-Some other good sources can be found online:
-//http://www.jiuzhang.com/solutions/word-ladder-ii/
-//http://www.cnblogs.com/shawnhue/archive/2013/06/05/leetcode_126.html
-Adjacency List, Prefix ... etc. Let's look at them one after another. First get it through with a NineChapter solution
-*/
-
-//Attempt2: Use Nine Chapter solution, BFS + DFS. It works, very nicely, using backtracking.
-/*
-BFS:
-1. For all mutations in dict, create pastMap: all possible mutations that can turn into each particular str in dict.
-2. For all mutations in dict, create distance: distance to start point.
-DFS:
-3. Find minimum path by checking distance different of just 1. Use a List<String> to do DFS
-
-Note: 
-Map uses containsKey. Set uses contains
-In DFS, add new copy: new ArrayList<String>(path)
-BFS: queue, while loop
-DFS: recursion, with a structure to go deeper, remember to add/remove element when passing alone
-*/
-public class Solution {
-    
-    public List<List<String>> findLadders(String start, String end, Set<String> dict) {
-        List<List<String>> rst = new ArrayList<List<String>>();
-        Map<String, ArrayList<String>> pastMap = new HashMap<String, ArrayList<String>>();
-        Map<String, Integer> distance = new HashMap<String, Integer>();
-        Queue<String> queue = new LinkedList<String>();
-        
-        //Initiate the variables
-        dict.add(start);
-        dict.add(end);
-        queue.offer(start);
-        distance.put(start, 0);
-        for (String s : dict) {
-            pastMap.put(s, new ArrayList<String>());
-        }
-
-        //BFS
-        BFS(start, end, distance, pastMap, dict, queue);
-
-        //DFS
-        ArrayList<String> path = new ArrayList<String>();
-        DFS(start, end, distance, pastMap, path, rst);
-
-        return rst;
-    }
-    //BFS to populate map and distance:
-    //Distance: distance from each str in dict, to the starting point.
-    //Map: all possible ways to mutate into each str in dict.
-    public void BFS(String start, String end, Map<String, Integer> distance, Map<String, ArrayList<String>> pastMap, Set<String> dict, Queue<String> queue) {
-        while(!queue.isEmpty()) {
-            String str = queue.poll();
-            List<String> list = expand(str, dict);
-
-            for (String s : list) {
-                pastMap.get(s).add(str);
-                if (!distance.containsKey(s)) {
-                    distance.put(s, distance.get(str) + 1);
-                    queue.offer(s);
-                }
-            }
-        }
-    }
-    //DFS on the map, where map is the all possible ways to mutate into a particular str. Backtracking from end to start
-    public void DFS(String start, String str, Map<String, Integer> distance, Map<String, ArrayList<String>> pastMap, ArrayList<String> path, List<List<String>> rst) {
-        path.add(str);
-        if (str.equals(start)) {
-            Collections.reverse(path);
-            rst.add(new ArrayList<String>(path));
-            Collections.reverse(path);
-        } else {//next step, trace 1 step towards start
-            for (String s : pastMap.get(str)) {//All previous-mutation options that we have with str:
-                if (distance.containsKey(s) && distance.get(str) == distance.get(s) + 1) {//Only pick those that's 1 step away: keep minimum steps for optimal solution
-                    DFS(start, s, distance, pastMap, path, rst);
-                }
-            }
-        }
-        path.remove(path.size() - 1);
-    }
-    //Populate all possible mutations for particular str, skipping the case that mutates back to itself.
-    public ArrayList<String> expand(String str, Set<String> dict) {
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < str.length(); i++) {//Alternate each letter position
-            for (int j = 0; j < 26; j++) {//Alter 26 letters
-                if (str.charAt(i) != (char)('a' + j)) {
-                    String newStr = str.substring(0, i) + (char)('a' + j) + str.substring(i + 1);
-                    if (dict.contains(newStr)) {
-                        list.add(newStr);
-                    }
-                }
-            }
-        }
-        return list;
-    }
-}
-
-
-
-//Attempt1: probably works, however:
-//Testing against input: "qa", "sq", ["si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"]
-//0. Could be backtrackList exceed memory limit.
-//1. If use HashSet<String> set to check if particular sequence exist, then exceed memory
-//2. If use StringBuffer strCheck to check if particular sequence exist, then exceed time limit.
-//It looks like we'd use DFS for final results.
-public class Solution {
-	private Queue<String> q = new LinkedList<String>();
-	private Queue<ArrayList<String>> backtrackList = new LinkedList<ArrayList<String>>();
-    private Set<String> dict;
-    private String end;
-    private int level = 1;
-    private int len = Integer.MAX_VALUE;
-    private List<List<String>> rst = new ArrayList<List<String>>();
-
-    public List<List<String>> findLadders(String start, String end, Set<String> dict) {
-        if (start == null || end == null || dict == null || start.length() != end.length()) {
-    		return rst;
-    	}
-    	this.dict = dict;
-    	this.end = end;
-    	ArrayList<String> head = new ArrayList<String>();
-    	head.add(start);
-    	q.offer(start);
-    	backtrackList.offer(head);
-    	while(!q.isEmpty()) {//BFS
-    		int size = q.size();//Fix size
-    		level++;
-    		for (int k = 0; k < size; k++) {//LOOP through existing queue: for this specific level
-	    		String str = q.poll();
-	    		ArrayList<String> list = backtrackList.poll();
-	    		validateMutations(str, list);
-	    	}//END FOR K
-    	}//END WHILE
-
-    	List<List<String>> minRst = new ArrayList<List<String>>();
-    	for (int i = 0; i < rst.size(); i++) {
-    		if (rst.get(i).size() == len) {
-    			minRst.add(rst.get(i));
-    		}
-    	}
-    	return minRst;
-    }
-
-
-    public void validateMutations(String str, ArrayList<String> list) {
-    	if (list.size() > len) {//No need to digger further if list is already greater than min length
-    		return;
-    	}
-    	for (int i = 0; i < str.length(); i++) {//Alternate each letter position
-			for (int j = 0; j < 26; j++) {//Alter 26 letters
-                if (str.charAt(i) == (char)('a' + j)) {
-                    continue;
-                }
-				String newStr = str.substring(0, i) + (char)('a' + j) + str.substring(i + 1);
-
-				ArrayList<String> temp = (ArrayList<String>)list.clone();
-				temp.add(newStr);
-				if (dict.contains(newStr)) {
-					if (newStr.equals(end)) {//Found end
-						len = Math.min(len, level);
-						rst.add(temp);
-					} else {
-						q.offer(newStr);
-						backtrackList.offer(temp);
-					}
-				}
-			}//END FOR J
-		}//END FOR I
-    }
-}
-
-
-
-//Solution from NineChapter, commented:
-
-/*
-public class Solution {
-    public List<List<String>> findLadders(String start, String end,Set<String> dict) {
-        List<List<String>> ladders = new ArrayList<List<String>>();
-        Map<String, List<String>> map = new HashMap<String, List<String>>();
-        Map<String, Integer> distance = new HashMap<String, Integer>();
-
-        dict.add(start);
-        dict.add(end);
- 
-        bfs(map, distance, start, end, dict);
-        //Now at this step, we have: 
-        //a distance map of all mutated string from start, 
-        //a map of mutation and its list of 'pre-mutation' string
-        //dict: includes start and end
-        List<String> path = new ArrayList<String>();
-        
-        dfs(ladders, path, end, start, distance, map);
-
-        return ladders;
-    }
-    //crt: is not necessarily the 'end', since this is a recursive method
-    //crt at first is the 'end' string, then it's switching to other strings inorder to finally matches 'start'
-    void dfs(List<List<String>> ladders, List<String> path, String crt,
-            String start, Map<String, Integer> distance,
-            Map<String, List<String>> map) {
-        path.add(crt);
-        if (crt.equals(start)) {//Now, finally if the crt makes it to start and equals to start, we found a match.
-            Collections.reverse(path);//We had a reversed path
-            ladders.add(new ArrayList<String>(path));//add
-            Collections.reverse(path);//need to reverse it back, becase we need 'path' for more recursive calls.
-        } else {
-            for (String next : map.get(crt)) {//Find all possible tranformations/mutations that can turn itself into crt: we have a ArrayList of candidates (pre-mutated strings)
-                if (distance.containsKey(next) && distance.get(crt) == distance.get(next) + 1) { //if that mutation is just 1 step different, that's good, which means these mutation takes minimum of 1 step to happen. Note: we are comparing the distance to start point.
-                    dfs(ladders, path, next, start, distance, map);//If that's the case, pass varibles to next level: use new path (with crt added), and use the 'next' string (which is 1 step closer to start) for next level of searching.
-                }
-            }           
-        }
-        path.remove(path.size() - 1);//remove that ending crt, since 'path' is shared in recursive methods, need to keep it cleaned.
-    }
-//map: each string in the dict (including start, end) represents a key, and the value is a ArrayList of string.
-    void bfs(Map<String, List<String>> map, Map<String, Integer> distance, String start, String end, Set<String> dict) {
-        Queue<String> q = new LinkedList<String>();
-        q.offer(start);
-        distance.put(start, 0);//Distance: key: str, value: distance value from start.
-        for (String s : dict) {
-            map.put(s, new ArrayList<String>());
-        }
-        
-        while (!q.isEmpty()) {
-            String crt = q.poll();//Get head of queue, the item currently we are looking at. Called X.
-
-            List<String> nextList = expand(crt, dict);//generate all possible mutations (must exist in dict)
-            for (String next : nextList) {//For all mutations
-                map.get(next).add(crt);//append X to end of all of the mutated string (this will become a reverse order). This creates a path of mutation
-                if (!distance.containsKey(next)) {//If that mutated string never occured:
-                    distance.put(next, distance.get(crt) + 1);//add distance to this mutation. This is fixed and will never change, btw. This becomes a list of all mutations and distance from start.
-                    q.offer(next);//Add this mutation to queue.
-                }
-            }
-        }
-    }
-//all possible mutations based on 1 str polled from the queue.
-    List<String> expand(String crt, Set<String> dict) {
-        List<String> expansion = new ArrayList<String>();
-
-        for (int i = 0; i < crt.length(); i++) {
-            for (char ch = 'a'; ch <= 'z'; ch++) {
-                if (ch != crt.charAt(i)) {
-                    String expanded = crt.substring(0, i) + ch
-                            + crt.substring(i + 1);
-                    if (dict.contains(expanded)) {
-                        expansion.add(expanded);
-                    }
-                }
-            }
-        }
-        return expansion;
-    }
-}
-
-
-*/
 
 ---
 **316. [Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)**		Level: Medium
 
-Brutle: 遍历所有26个字母。
+BFS Brutle: 在start string基础上，string的每个字母都遍历所有26个字母，换换。
 
 方法2:    
 用Trie。 理应更快. However implementation可能有点重复计算的地方，LeetCode timeout. 需要再做做。

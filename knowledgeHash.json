@@ -169,7 +169,13 @@
 			"which of these points are in a given interval"
 		],
 		"problems" : [
-			"",
+			"Segment Tree Query",
+			"Segment Tree Modify",
+			"Segment Tree Build",
+			"Interval Sum",
+			"Interval Minimum Number",
+			"Count of Smaller Number",
+			"Count of Smaller Number before itself",
 		]
 	},
 	"Expression Tree" : {

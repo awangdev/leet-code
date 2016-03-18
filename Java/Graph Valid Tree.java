@@ -1,8 +1,12 @@
-复习Union-Find的另外一个种形式。
-题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.
-存储的关键都是：元素相对的index上存着他的root parent.
+M
+
+复习Union-Find的另外一个种形式。   
+题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+存储的关键都是：元素相对的index上存着他的root parent.    
 
 另一个union-find， 用hashmap的：http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
+
+
 ```
 /*
 Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), 

@@ -1,3 +1,21 @@
+M
+
+比较特别的BFS.
+
+几个graph的condition：   
+1. 可能有多个root
+2. directed node, 可以direct backwards.
+
+Steps:    
+Track all neighbors/childrens. 把所有的children都存在map<label, count>里面
+先把所有的root加一遍，可能多个root。并且全部加到queue里面。
+
+然后以process queue, do BFS:   
+Only when map.get(label) == 0, add into queue && rst.    
+这用map track apperance, 确保在后面出现的node, 一定最后process.
+
+
+```
 /*
 Given an directed graph, a topological order of the graph nodes is defined as follow:
 
@@ -51,40 +69,42 @@ public class Solution {
     public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
         ArrayList<DirectedGraphNode> rst = new ArrayList<DirectedGraphNode>();
         if (graph == null || graph.size() == 0) {
-        	return graph;
+            return graph;
         }
-       	//Keep track of all neighbors in HashMap
+        //Keep track of all neighbors in HashMap
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (DirectedGraphNode node : graph) {
-        	for (DirectedGraphNode neighbor : node.neighbors) {
-        		int keyN = neighbor.label;
-	        	if (map.containsKey(keyN)) {
-	        		map.put(keyN, map.get(keyN) + 1);
-	        	} else {
-	        		map.put(keyN, 1);
-	        	}
-        	}
+            for (DirectedGraphNode neighbor : node.neighbors) {
+                int keyN = neighbor.label;
+                if (map.containsKey(keyN)) {
+                    map.put(keyN, map.get(keyN) + 1);
+                } else {
+                    map.put(keyN, 1);
+                }
+            }
         }
         //BFS: Add root node. Note: 
         Queue<DirectedGraphNode> queue = new LinkedList<DirectedGraphNode>();
         for (DirectedGraphNode node : graph) {
-        	if (!map.containsKey(node.label)) {
-        		queue.offer(node);
-        		rst.add(node);
-        	}
+            if (!map.containsKey(node.label)) {
+                queue.offer(node);
+                rst.add(node);
+            }
         }
         //BFS: go through all children
         while (!queue.isEmpty()) {
-        	DirectedGraphNode node = queue.poll();	
-        	for (DirectedGraphNode n : node.neighbors) {
-        		int label = n.label;
-        		map.put(label, map.get(label) - 1);
-        		if (map.get(label) == 0) {
-        			rst.add(n);
-        			queue.offer(n);
-        		}
-        	}
+            DirectedGraphNode node = queue.poll();  
+            for (DirectedGraphNode n : node.neighbors) {
+                int label = n.label;
+                map.put(label, map.get(label) - 1);
+                if (map.get(label) == 0) {
+                    rst.add(n);
+                    queue.offer(n);
+                }
+            }
         }
         return rst;
     }
 }
+
+```

@@ -1,9 +1,14 @@
+H
+
+```
+
 /*
-Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
+Given two words (start and end), and a dictionary, 
+find all shortest transformation sequence(s) from start to end, such that:
 
 Only one letter can be changed at a time
 Each intermediate word must exist in the dictionary
-Have you met this question in a real interview? Yes
+
 Example
 Given:
 start = "hit"
@@ -126,8 +131,8 @@ public class Solution {
 //2. If use StringBuffer strCheck to check if particular sequence exist, then exceed time limit.
 //It looks like we'd use DFS for final results.
 public class Solution {
-	private Queue<String> q = new LinkedList<String>();
-	private Queue<ArrayList<String>> backtrackList = new LinkedList<ArrayList<String>>();
+    private Queue<String> q = new LinkedList<String>();
+    private Queue<ArrayList<String>> backtrackList = new LinkedList<ArrayList<String>>();
     private Set<String> dict;
     private String end;
     private int level = 1;
@@ -136,58 +141,58 @@ public class Solution {
 
     public List<List<String>> findLadders(String start, String end, Set<String> dict) {
         if (start == null || end == null || dict == null || start.length() != end.length()) {
-    		return rst;
-    	}
-    	this.dict = dict;
-    	this.end = end;
-    	ArrayList<String> head = new ArrayList<String>();
-    	head.add(start);
-    	q.offer(start);
-    	backtrackList.offer(head);
-    	while(!q.isEmpty()) {//BFS
-    		int size = q.size();//Fix size
-    		level++;
-    		for (int k = 0; k < size; k++) {//LOOP through existing queue: for this specific level
-	    		String str = q.poll();
-	    		ArrayList<String> list = backtrackList.poll();
-	    		validateMutations(str, list);
-	    	}//END FOR K
-    	}//END WHILE
+            return rst;
+        }
+        this.dict = dict;
+        this.end = end;
+        ArrayList<String> head = new ArrayList<String>();
+        head.add(start);
+        q.offer(start);
+        backtrackList.offer(head);
+        while(!q.isEmpty()) {//BFS
+            int size = q.size();//Fix size
+            level++;
+            for (int k = 0; k < size; k++) {//LOOP through existing queue: for this specific level
+                String str = q.poll();
+                ArrayList<String> list = backtrackList.poll();
+                validateMutations(str, list);
+            }//END FOR K
+        }//END WHILE
 
-    	List<List<String>> minRst = new ArrayList<List<String>>();
-    	for (int i = 0; i < rst.size(); i++) {
-    		if (rst.get(i).size() == len) {
-    			minRst.add(rst.get(i));
-    		}
-    	}
-    	return minRst;
+        List<List<String>> minRst = new ArrayList<List<String>>();
+        for (int i = 0; i < rst.size(); i++) {
+            if (rst.get(i).size() == len) {
+                minRst.add(rst.get(i));
+            }
+        }
+        return minRst;
     }
 
 
     public void validateMutations(String str, ArrayList<String> list) {
-    	if (list.size() > len) {//No need to digger further if list is already greater than min length
-    		return;
-    	}
-    	for (int i = 0; i < str.length(); i++) {//Alternate each letter position
-			for (int j = 0; j < 26; j++) {//Alter 26 letters
+        if (list.size() > len) {//No need to digger further if list is already greater than min length
+            return;
+        }
+        for (int i = 0; i < str.length(); i++) {//Alternate each letter position
+            for (int j = 0; j < 26; j++) {//Alter 26 letters
                 if (str.charAt(i) == (char)('a' + j)) {
                     continue;
                 }
-				String newStr = str.substring(0, i) + (char)('a' + j) + str.substring(i + 1);
+                String newStr = str.substring(0, i) + (char)('a' + j) + str.substring(i + 1);
 
-				ArrayList<String> temp = (ArrayList<String>)list.clone();
-				temp.add(newStr);
-				if (dict.contains(newStr)) {
-					if (newStr.equals(end)) {//Found end
-						len = Math.min(len, level);
-						rst.add(temp);
-					} else {
-						q.offer(newStr);
-						backtrackList.offer(temp);
-					}
-				}
-			}//END FOR J
-		}//END FOR I
+                ArrayList<String> temp = (ArrayList<String>)list.clone();
+                temp.add(newStr);
+                if (dict.contains(newStr)) {
+                    if (newStr.equals(end)) {//Found end
+                        len = Math.min(len, level);
+                        rst.add(temp);
+                    } else {
+                        q.offer(newStr);
+                        backtrackList.offer(temp);
+                    }
+                }
+            }//END FOR J
+        }//END FOR I
     }
 }
 
@@ -278,3 +283,4 @@ public class Solution {
 
 
 */
+```

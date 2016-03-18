@@ -10,6 +10,9 @@ http://liangjiabin.com/blog/2015/04/leetcode-best-time-to-buy-and-sell-stock.htm
    local[i][j] = max(global[i – 1][j – 1] + diff, local[i – 1][j] + diff)    
    global[i][j] = max(global[i – 1][j], local[i][j])     
 
+local[i][j]: 第i天，当天一定进行第j次交易的profit     
+global[i][j]: 第i天，总共进行了j次交易的profit.
+
 local[i][j]和global[i][j]的区别是：local[i][j]意味着在第i天一定有交易（卖出）发生。    
    当第i天的价格高于第i-1天（即diff > 0）时，那么可以把这次交易（第i-1天买入第i天卖出）跟第i-1天的交易（卖出）合并为一次交易，即local[i][j]=local[i-1][j]+diff；    
    当第i天的价格不高于第i-1天（即diff<=0）时，那么local[i][j]=global[i-1][j-1]+diff，而由于diff<=0，所以可写成local[i][j]=global[i-1][j-1]。    

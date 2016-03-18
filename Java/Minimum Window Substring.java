@@ -39,6 +39,7 @@ Hash Table
 /*
 03.09.2016
 http://blog.sina.com.cn/s/blog_eb52001d0102v2il.html
+http://www.rudy-yuan.net/archives/185/
 
 只利用一个hashmap save frequency of target.
 1. 从map里面 减去 source char match target char 的frequency. 如果发现frequency = 0, size++

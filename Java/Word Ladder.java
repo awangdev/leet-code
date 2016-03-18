@@ -1,13 +1,14 @@
 M
 
-Brutle: 遍历所有26个字母。
+BFS Brutle: 在start string基础上，string的每个字母都遍历所有26个字母，换换。
 
 方法2:    
 用Trie。 理应更快. However implementation可能有点重复计算的地方，LeetCode timeout. 需要再做做。
 
 ```
 /*
-Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
+Given two words (start and end), and a dictionary, 
+find the length of shortest transformation sequence from start to end, such that:
 
 Only one letter can be changed at a time
 Each intermediate word must exist in the dictionary
@@ -28,7 +29,8 @@ Tags Expand
 Breadth First Search
 
 Thoughts:
-Use the dict (check if mutation exist in dict) as base to create a directed graph, use BFS to find shortest path.
+Use the dict (check if mutation exist in dict) as base to create a directed graph, 
+use BFS to find shortest path.
 
 Note:
 Be careful with queue size when trying to do for loop on it. Use a pre-fixed size = q.size(), in case queue's size changes during for loop.

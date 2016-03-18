@@ -1,3 +1,11 @@
+M
+
+Use HashMap to mark cloned nodes.    
+
+先能复制多少Node复制多少。然后把neighbor 加上
+
+
+```
 /*
 Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
 
@@ -23,7 +31,7 @@ Visually, the graph looks like the following:
          \_/
 Hide Tags Depth-first Search Breadth-first Search Graph
 
-	
+    
 */
 
 /*
@@ -134,3 +142,5 @@ public class Solution {
     }
 }
 
+
+```

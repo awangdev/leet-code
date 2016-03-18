@@ -1,16 +1,19 @@
-Identify这是个union-find问题还挺巧妙。
-看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。
+M
 
-为何不能从一个点出发，比如A，直接print它所有的neighbors呢？
-	不行，如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。
+Identify这是个union-find问题还挺巧妙。    
+看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    
 
-所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.
+为何不能从一个点出发，比如A，直接print它所有的neighbors呢？     
+	不行，如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。    
 
-最后output的想法：
-做一个 map <parent ID, list>。
-之前我们不是给每个num都存好了parent了嘛。
-每个num都有个parent, 然后不同的parent就创造一个不同的list。
-最后，把Map里面所有的list拿出来就好了。
+所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.     
+
+最后output的想法：    
+做一个 map <parent ID, list>。    
+之前我们不是给每个num都存好了parent了嘛。    
+每个num都有个parent, 然后不同的parent就创造一个不同的list。   
+最后，把Map里面所有的list拿出来就好了。    
+
 ```
 /*
 Find the number Weak Connected Component in the directed graph. 
