@@ -878,18 +878,21 @@ value-1就是说，找比自己所在range小1的range（那么自然而然地�
 ---
 **68. [Course Schedule.java](https://github.com/shawnfan/LintCode/blob/master/Java/Course Schedule.java)**		Level: Medium
 
-有点绕，但是做过一次就明白一点。
-是topological sort的题目。一般都是给有dependency的东西排序。
+有点绕，但是做过一次就明白一点。    
+是topological sort的题目。一般都是给有dependency的东西排序。    
 
-最终都会到一个sink node， 再不会有向后的dependency, 在那个点截止。
-我就已这样子的点为map的key, 然后value是以这个node为prerequisite的 list of courses.
+最终都会到一个sink node， 再不会有向后的dependency, 在那个点截止。    
+我就已这样子的点为map的key, 然后value是以这个node为prerequisite的 list of courses.    
 
-画个图的话，prerequisite都是指向那个sink node， 然后我们在组成map的时候，都是从sink node 发散回来到dependent nodes.
+画个图的话，prerequisite都是指向那个sink node， 然后我们在组成map的时候，都是从sink node 发散回来到dependent nodes.    
 
-在DFS里面，我们是反向的， 然后，最先完全visited的那个node, 肯定是最左边的node了，它被mark的seq也是最高的。
+在DFS里面，我们是反向的， 然后，最先完全visited的那个node, 肯定是最左边的node了，它被mark的seq也是最高的。    
 
-而我们的sink node，当它所有的支线都visit完了，seq肯定都已经减到最小了，也就是0，它就是第一个被visit的。
+而我们的sink node，当它所有的支线都visit完了，seq肯定都已经减到最小了，也就是0，它就是第一个被visit的。   
 
+
+最终结果：
+每个有pre-requisit的node都trace上去（自底向上），并且都没有发现cycle.也就说明schedule可以用了。
 
 
 ---
@@ -2447,144 +2450,34 @@ HashMap 来确认match。有几种情况考虑:
 
 
 ---
-**132. [Jump Game II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game II.java)**Given an array of non-negative integers, you are initially positioned at the first index of the array.
+**132. [Jump Game II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game II.java)**		Level: Hard
 
-Each element in the array represents your maximum jump length at that position.
+Greedy, 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
 
-Your goal is to reach the last index in the minimum number of jumps.
+维护一个range, 是最远我们能走的. 
 
-Example
-Given array A = [2,3,1,1,4]
+index/i 是一步一步往前, 每次当 i <= range, 做一个while loop， 在其中找最远能到的地方 maxRange
 
-The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
+然后更新 range = maxRange
 
-Tags Expand 
-Greedy Array
+其中step也是跟index是一样, 一步一步走.
 
-Thanks to Yu’s Garden blog
-Thinking process:
-0.   Use two pointers pStart and pEnd to track the potential locations we can move to.
-Consider a range from current spot to the farthest spot: try to find a max value from this range, and see if the max can reach the tail of array. 
-If no max can read the tail of array, that means we need to move on. At this point, let pStart = pEnd + 1. At same time, move pEnd to the max spot we can go to. Since pEnd moves forward, we could step++
-If max reach the tail of array, return the steps.
-*/
+最后check的condition是，我们最远你能走的range >= nums.length - 1, 说明以最少的Step就到达了重点。Good.
 
-public class Solution {
-    /**
-     * @param A: A list of lists of integers
-     * @return: An integer
-     */
-    public int jump(int[] A) {
-        if (A == null || A.length == 0) {
-            return 0;
-        }
-        int pStart = 0;
-        int pEnd = 0;
-        int steps = 0;
-        while (pEnd < A.length - 1) {
-            steps++;    //Cound step everytime when pEnd is moving to the farthest.
-            int farthest = 0;
-            //Find farest possible and see if reach the tail
-            for (int i = pStart; i <= pEnd; i++) {
-                farthest = Math.max(farthest, i + A[i]);
-                if (farthest >= A.length - 1) {
-                    return steps;
-                }
-            }
-            //Re-select pointer position for start and end
-            pStart = pEnd + 1;
-            pEnd = farthest;
-        }
-        return -1;  //This is the case where no solution can be found.
-    }
-}
-
-
-//Also DP from nineChapter:
-http://www.ninechapter.com/solutions/jump-game-ii/
 
 
 ---
-**133. [Jump Game.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game.java)**Given an array of non-negative integers, you are initially positioned at the first index of the array.
+**133. [Jump Game.java](https://github.com/shawnfan/LintCode/blob/master/Java/Jump Game.java)**		Level: Medium
 
-Each element in the array represents your maximum jump length at that position.
+给出步数，看能不能reach to end.
 
-Determine if you are able to reach the last index.
-
-Example
-A = [2,3,1,1,4], return true.
-
-A = [3,2,1,0,4], return false.
-
-This can be done using DP. However, greedy algorithm is fast in this particular problem. Consider both solutions.
-
-DP
-Thinking Process:
-We have array A, that stores the # of steps for each index.
-State: f[i] means if previous steps can reach to i. True/False
-Function: f[i] = f[j] && (j + A[j] >= i)
-Init: f[0] = true
-Answer: f[n-1], if n is the length of A
-*/
-
-public class Solution {
-    /**
-     * @param A: A list of integers
-     * @return: The boolean answer
-     **/
-  //DP
-  public boolean canJump(int[] A) {
-        if (A == null || A.length == 0) {
-            return false;
-        }
-	//By default, boolean[] can is all false
-        boolean[] can = new boolean[A.length];
-        can[0] = true;
-        for (int i = 1; i < A.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (A[j] && (j + A[j] >= i)) {
-                    can[i] = true;
-                    break;
-                }
-            }
-        }
-        return can[A.length - 1];
-    }
-}
-
-
-
-/*
-
-Greedy. Ideas from Yu’s Garden
-At each index, check how far we can jump, store this forest-can-jump position in variable ‘farest’. Take max of current farest and (index + A[index]), store is in farest
-At each index, compare if ‘farest’ is greater than the end of array, if so, found solution, return true.
-At each index, also check if ‘farest == current index’, that means the farest we can move is to current index and we cannot move forward. Then return false.
-*/
-
-public class Solution {
-    /**
-     * @param A: A list of integers
-     * @return: The boolean answer
-     **/
-     
-    public boolean canJump(int[] A) {
-        if (A == null || A.length == 0) {
-            return false;
-        }
-        int farest = 0;
-        for (int i = 0; i < A.length; i++) {
-            farest = Math.max(farest, i + A[i]);
-            if (farest > A.length - 1) {
-                return true;
-            }
-            if (farest == i) {
-                return false;
-            }
-        }
-        return true;
-    }
-}
+Status:
+DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
+    其实j in [0~i)中间只需要一个能到达i 就好了
+Function:
+DP[i] = DP[j] && (j + A[j]), for all j in [0 ~ i)
+Return:
+    DP[dp.length - 1];
 
 
 ---
@@ -4136,6 +4029,11 @@ node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last n
 ---
 **198. [Number of Islands II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Number of Islands II.java)**		Level: Hard
 
+用HashMap的Union-find.
+
+把board转换成1D array， 就可以用union-find来判断了。 判断时，是在四个方向各走一步，判断是否是同一个Land.
+
+每走一次operator，都会count++. 若发现是同一个island, count--
 
 
 ---

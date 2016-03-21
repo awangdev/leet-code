@@ -7,7 +7,7 @@ M
 只不过这个不Return list, 而只是# of islands
 
 ```
-/*
+/*in
 Given a boolean 2D matrix, find the number of islands.
 
 Example

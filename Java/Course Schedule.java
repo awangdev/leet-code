@@ -1,17 +1,20 @@
 M
 
-有点绕，但是做过一次就明白一点。
-是topological sort的题目。一般都是给有dependency的东西排序。
+有点绕，但是做过一次就明白一点。    
+是topological sort的题目。一般都是给有dependency的东西排序。    
 
-最终都会到一个sink node， 再不会有向后的dependency, 在那个点截止。
-我就已这样子的点为map的key, 然后value是以这个node为prerequisite的 list of courses.
+最终都会到一个sink node， 再不会有向后的dependency, 在那个点截止。    
+我就已这样子的点为map的key, 然后value是以这个node为prerequisite的 list of courses.    
 
-画个图的话，prerequisite都是指向那个sink node， 然后我们在组成map的时候，都是从sink node 发散回来到dependent nodes.
+画个图的话，prerequisite都是指向那个sink node， 然后我们在组成map的时候，都是从sink node 发散回来到dependent nodes.    
 
-在DFS里面，我们是反向的， 然后，最先完全visited的那个node, 肯定是最左边的node了，它被mark的seq也是最高的。
+在DFS里面，我们是反向的， 然后，最先完全visited的那个node, 肯定是最左边的node了，它被mark的seq也是最高的。    
 
-而我们的sink node，当它所有的支线都visit完了，seq肯定都已经减到最小了，也就是0，它就是第一个被visit的。
+而我们的sink node，当它所有的支线都visit完了，seq肯定都已经减到最小了，也就是0，它就是第一个被visit的。   
 
+
+最终结果：
+每个有pre-requisit的node都trace上去（自底向上），并且都没有发现cycle.也就说明schedule可以用了。
 
 ```
 /*

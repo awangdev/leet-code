@@ -1,3 +1,16 @@
+M
+
+给出步数，看能不能reach to end.
+
+Status:
+DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
+    其实j in [0~i)中间只需要一个能到达i 就好了
+Function:
+DP[i] = DP[j] && (j + A[j]), for all j in [0 ~ i)
+Return:
+    DP[dp.length - 1];
+
+```
 /*
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
 
@@ -31,7 +44,7 @@ public class Solution {
         if (A == null || A.length == 0) {
             return false;
         }
-	//By default, boolean[] can is all false
+    //By default, boolean[] can is all false
         boolean[] can = new boolean[A.length];
         can[0] = true;
         for (int i = 1; i < A.length; i++) {
@@ -80,3 +93,5 @@ public class Solution {
     }
 }
 
+
+```

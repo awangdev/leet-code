@@ -1,5 +1,10 @@
 H
 
+用HashMap的Union-find.
+
+把board转换成1D array， 就可以用union-find来判断了。 判断时，是在四个方向各走一步，判断是否是同一个Land.
+
+每走一次operator，都会count++. 若发现是同一个island, count--
 
 ```
 /*
