@@ -1,3 +1,8 @@
+E
+
+Just do it. Link curr.next to curr.next.next
+
+```
 /*
 Implement an algorithm to delete a node in the middle of a singly linked list, given only access to that node.
 
@@ -32,9 +37,11 @@ public class Solution {
      */
     public void deleteNode(ListNode node) {
         if (node == null) {
-        	return;
+            return;
         }
         node.val = node.next.val;
         node.next = node.next.next;
     }
 }
+
+```

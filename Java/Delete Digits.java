@@ -1,5 +1,11 @@
+M
+
+数位靠前的，权值更大. 所以硬来把靠前的相对更大的（跟following digit相比）去掉。
+
+```
 /*
-Given string A representative a positive integer which has N digits, remove any k digits of the number, the remaining digits are arranged according to the original order to become a new positive integer.
+Given string A representative a positive integer which has N digits, remove any k digits of the number, 
+the remaining digits are arranged according to the original order to become a new positive integer.
 
 Find the smallest integer after remove k digits.
 
@@ -13,6 +19,10 @@ return a string "12"
 Tags Expand 
 Greedy LintCode Copyright
 
+*/
+
+/*
+
 Attempt2,Thoughts:
 loop k times: each interation, find one digit to remove
 Rules: want to remove whatever digit at A[i] that's A[i] > A[i+1].
@@ -21,14 +31,9 @@ Well... thinking straight (attempt2) seems much easier to understand and to code
 
 Note:
 remember to remove the prefixing 0's
-*/
 
+*/
 public class Solution {
-    /**
-     *@param A: A positive integer which has N digits, A is a string.
-     *@param k: Remove k digits.
-     *@return: A string
-     */
     public String DeleteDigits(String A, int k) {
         if (A == null || A.length() == 0 || k == 0) {
             return A;
@@ -112,3 +117,5 @@ public class Solution {
     }
 
 }
+
+```

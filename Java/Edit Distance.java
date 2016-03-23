@@ -1,5 +1,11 @@
+M
+
+Not Done
+
+```
 /*
-Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
+Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. 
+(each operation is counted as 1 step.)
 
 You have the following 3 operations permitted on a word:
 
@@ -27,10 +33,6 @@ Note: just remember to start from i=1,j=1, because we are using DP[i-1][j-1], be
 
 
 public class Solution {
-    /**
-     * @param word1 & word2: Two string.
-     * @return: The minimum number of steps.
-     */
     public int minDistance(String word1, String word2) {
 		if (word1 == null && word2 != null) {
 			return word2.length();
@@ -56,3 +58,5 @@ public class Solution {
 		return DP[word1.length()][word2.length()];
     }
 }
+
+```
