@@ -1,7 +1,11 @@
+M
+
+```
 /*
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
-The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+The robot can only move either down or right at any point in time. 
+The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
 
 How many possible unique paths are there?
 
@@ -9,15 +13,28 @@ Note
 m and n will be at most 100.
 
 Example
-1,1		1,2		1,3		1,4		1,5		1,6		1,7		
+1,1     1,2     1,3     1,4     1,5     1,6     1,7     
 2,1
-3,1												3,7
+3,1                                             3,7
 
 Above is a 3 x 7 grid. How many possible unique paths are there?
 
 Tags Expand 
 Array Dynamic Programming
 
+*/
+
+/*
+    3.25.2016 recap
+    Regular DFS: each spot has 2 possible way out: right/down. We can count++ whenever we reach end.
+    This pattern seems to be DP:
+        Use a DP[i][j] to store: the # of possible paths to reach coordinate (i,j)
+        
+*/
+
+
+
+/*
 Thinking process:
 f[x][y]: want to find out all possible path
 To get to f[m][m] from f[m-1][n-1] has 2 way: f[m-1][n] or f[m][n-1].
@@ -27,7 +44,6 @@ Recursively add up to (0,0), will find out the total path.
 
 1. Own solution: user HashMap to memorize
 */
-
 public class Solution {
     /**
      * @param n, m: positive integer (1 <= n ,m <= 100)
@@ -81,7 +97,7 @@ public class Solution {
      * @param n, m: positive integer (1 <= n ,m <= 100)
      * @return an integer
      */
-	//Traverse
+    //Traverse
     public int uniquePaths(int m, int n) {
         if (m <= 1 || n <= 1) {
             return 1;
@@ -104,3 +120,5 @@ public class Solution {
     }
 }
 
+
+```

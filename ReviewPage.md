@@ -553,48 +553,14 @@ For loop 所有的点作为x， 去burst。
 
 
 ---
-**40. [Climbing Stairs.java](https://github.com/shawnfan/LintCode/blob/master/Java/Climbing Stairs.java)**40% Accepted
-You are climbing a stair case. It takes n steps to reach to the top.
+**40. [Climbing Stairs.java](https://github.com/shawnfan/LintCode/blob/master/Java/Climbing Stairs.java)**		Level: Easy
 
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+方法1: DP。爬坡到i点总共有的方法，取决于i-1点和i-2的情况。也就是DP(i-1) + DP(i-2).
 
-Example
-Tags Expand 
+还可以用滚动数组优化一点：因为用到的变量就只有i,i-1,i-2，可以被替代。
+   注意要写好‘滚动’的代码。
 
-Thinking process:
-State: at i level, f[i] is the ways to climb to i position.
-Function: f[i] = f[i-1] + f[i-2]. 
-	f[i] is constructed from 2 branches: 
-		Last step is 1 from f[i-1]
-		Last step is 2 from f[i-2]
-	This idea can be presented using a tree. However we don’t need to do recursive. We just need to use two pointers to withhold 2 level’s values.
-Init: The for loop starts at level2, so before level 2 there are 2 init states:
-	f[0] == 1. This means we jump 2 steps from level0 to level2. 
-	f[i] == 1.  This means we jump 1 steps to level1, then jump another step to level2
-Answer: f[n]
-*/
-
-public class Solution {
-    /**
-     * @param n: An integer
-     * @return: An integer
-     */
-    public int climbStairs(int n) {
-        if (n <= 2) {
-            return n;
-        }
-        int last = 1;   //Init f[1]
-        int lastlast = 1;   //Init f[0]
-        int now = 0;
-        for (int i = 2; i <= n; i++) {  //Start from level2
-            now = last + lastlast;
-            lastlast = last;
-            last = now;
-        }
-        return now;
-    }
-}
-
+方法2: DFS但是timeout
 
 
 ---
@@ -932,9 +898,20 @@ Not Done
 
 
 ---
-**74. [Encode and Decode Strings.java](https://github.com/shawnfan/LintCode/blob/master/Java/Encode and Decode Strings.java)**不难，但是要考虑好如何handle ""。
-因为平时都把“” 当做Null对待，这里就犯浑了。
-这题，要把Null特别mark一下为‘NULL’，而特别处理 “” empty string.
+**74. [Encode and Decode Strings.java](https://github.com/shawnfan/LintCode/blob/master/Java/Encode and Decode Strings.java)**		Level: Medium
+
+方法1:    
+用数字+"#"+string来encode.    
+基于我们自己定的规律, 在decode的里面不需要过多地去check error input, assume所有input都是规范的.    
+decode就是找"#",然后用"#"前的数字截取后面的string.
+
+
+
+Old Solution:    
+Cast character into int. 串联起来, seperate by "LINE".   
+handle empty list [], or just null: 要把Null特别mark一下为‘NULL’, 这样decode时才能check到。      adminadmin
+
+
 
 ---
 **75. [ExcelSheetColumnNumber .java](https://github.com/shawnfan/LintCode/blob/master/Java/ExcelSheetColumnNumber .java)**		Level: Easy
@@ -972,100 +949,28 @@ Time on average: O(n).
 
 
 ---
-**78. [Fast Power.java](https://github.com/shawnfan/LintCode/blob/master/Java/Fast Power.java)**Calculate the a^n % b where a, b and n are all 32bit integers.
+**78. [Fast Power.java](https://github.com/shawnfan/LintCode/blob/master/Java/Fast Power.java)**		Level: Medium
 
-Example
-For 2^31 % 3 = 2
+a^n可以被拆解成(a*a*a*a....*a)， 是乘机形式，而%是可以把每一项都mod一下的。所以就拆开来take mod.
 
-For 100^1000 % 1000 = 0
+这里用个二分的方法，recursively二分下去，直到n/2为0或者1，然后分别对待. 
 
-Challenge
-O(logn)
+注意1: 二分后要conquer，乘积可能大于Integer.MAX_VALUE, 所以用个long.
 
-Tags Expand 
-Divide and Conquer
+注意2: 要处理n%2==1的情况，二分时候自动省掉了一份，要乘一下。
 
-Thoughts:
-Learn online:
-(a * b) % p = (a % p * b % p) % p
-Than mean: a ^ n can be divided into a^(n/2) * a^(n/2), that can be used for recursion: divde and conqure.
 
-Note: when n is odd number, it cannot be evenly divided into n/2 and n/2. This case needs special treatment: n = n/2 + n/2 + 1;
-*/
-
-class Solution {
-    /*
-     * @param a, b, n: 32bit integers
-     * @return: An integer
-     */
-    public int fastPower(int a, int b, int n) {
-    	if (n == 0) {
-    		return 1 % b;
-    	}
-    	if (n == 1) {
-    		return a % b;
-    	}
-
-    	long recurPow = fastPower(a, b, n / 2);
-    	recurPow = (recurPow * recurPow) % b;
-
-    	if (n % 2 == 1) {
-    		recurPow = recurPow * a % b;
-    	}
-
-    	return (int)recurPow;
-    }
-};
 
 ---
-**79. [Fibonacci.java](https://github.com/shawnfan/LintCode/blob/master/Java/Fibonacci.java)**Find the Nth number in Fibonacci sequence.
+**79. [Fibonacci.java](https://github.com/shawnfan/LintCode/blob/master/Java/Fibonacci.java)**		Level: Easy
 
-A Fibonacci sequence is defined as follow:
+方法1: DP array.
 
-The first two numbers are 0 and 1.
-The i th number is the sum of i-1 th number and i-2 th number.
-The first ten numbers in Fibonacci sequence is:
+方法1.1: 滚动数组, 简化DP。
 
-0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+方法2: recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
 
 
-Example
-Given 1, return 0
-
-Given 2, return 1
-
-Given 10, return 34
-
-Note
-The Nth fibonacci number won't exceed the max value of signed 32-bit integer in the test cases.
-
-Tags Expand 
-Enumeration Mathematics Non Recursion
-
-Thoughts:
-1. If non-recursion, do for loop for that n
-2. Note: this specfiic problem is not 0-based. it's 1-based.
-3. return fib[n]
-*/
-
-class Solution {
-    /**
-     * @param n: an integer
-     * @return an integer f(n)
-     */
-    public int fibonacci(int n) {
-        if (n <= 1) {
-        	return 0;
-        }
-        int[] fib = new int[n + 1];
-        fib[1] = 0;
-        fib[2] = 1;
-        for (int i = 3; i <= n; i++) {
-        	fib[i] = fib[i - 1] + fib[i - 2];
-        }
-        return fib[n];
-    }
-}
 
 ---
 **80. [Find Minimum in Rotated Sorted Array II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Find Minimum in Rotated Sorted Array II.java)**Medium Find Minimum in Rotated Sorted Array II My Submissions
@@ -6358,110 +6263,7 @@ public class Solution {
 **302. [Unique Characters.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Characters.java)**用hashSet, space O(n), time O(n)
 
 ---
-**303. [Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)**A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
-
-The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
-
-How many possible unique paths are there?
-
-Note
-m and n will be at most 100.
-
-Example
-1,1		1,2		1,3		1,4		1,5		1,6		1,7		
-2,1
-3,1												3,7
-
-Above is a 3 x 7 grid. How many possible unique paths are there?
-
-Tags Expand 
-Array Dynamic Programming
-
-Thinking process:
-f[x][y]: want to find out all possible path
-To get to f[m][m] from f[m-1][n-1] has 2 way: f[m-1][n] or f[m][n-1].
-After found 'f[m-1][n-1]', store it to a Hashmap with the #path.
-Every node pair (x,y) should have 1 solution.
-Recursively add up to (0,0), will find out the total path.
-
-1. Own solution: user HashMap to memorize
-*/
-
-public class Solution {
-    /**
-     * @param n, m: positive integer (1 <= n ,m <= 100)
-     * @return an integer
-     */
-    private int m,n;
-    public int uniquePaths(int m, int n) {
-        if (m <= 1 || n <= 1) {
-            return 1;
-        }
-        this.m = m;
-        this.n = n;
-        HashMap<ArrayList<Integer>, Integer> his = 
-            new HashMap<ArrayList<Integer>, Integer>();
-        int right = helper(0, 1, his);
-        int down = helper(1, 0, his);
-        return right + down;
-    }
-    
-    public int helper(int x, int y, HashMap<ArrayList<Integer>, Integer> his) {
-        ArrayList<Integer> pair = new ArrayList<Integer>();
-        pair.add(x);
-        pair.add(y);
-        if (his.containsKey(pair)) {
-            return his.get(pair);
-        }
-        if (x >= this.m -1 || y >= this.n - 1) {
-            his.put(pair, 1);
-            return his.get(pair);
-        }
-        int right = helper(x, y + 1, his);
-        int down = helper(x + 1, y, his);
-        his.put(pair, right + down);
-        return his.get(pair);
-    }
-}
-
-/*
-
-2. 9Chapter solution
-Thinking process:
-1. Assume (r,c) where r>=1, c>=1. Any node (r,c) has 2 ways to get to: (r-1, c) from top, or (r,c-1) from left-side.
-2. (r-1, c) and (r,c-1) stores the possible paths to get to them
-3. (r,c) = (r-1, c) + (r,c-1)
-4. Initialize the top-row and left-column to be 1: Assuming landing on any initial node has path # of 1.
-5. From top-bottom traverse
-*/
-
-public class Solution {
-    /**
-     * @param n, m: positive integer (1 <= n ,m <= 100)
-     * @return an integer
-     */
-	//Traverse
-    public int uniquePaths(int m, int n) {
-        if (m <= 1 || n <= 1) {
-            return 1;
-        }
-        int[][] matrix = new int[m][n];
-        //Initialize
-        for (int i = 0; i < m; i++) {
-            matrix[i][0] = 1;
-        }
-        for (int i = 0; i < n; i++) {
-            matrix[0][i] = 1;
-        }
-        //Traverse
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1];
-            }
-        }
-        return matrix[m - 1][n - 1];
-    }
-}
+**303. [Unique Path.java](https://github.com/shawnfan/LintCode/blob/master/Java/Unique Path.java)**		Level: Medium
 
 
 ---

@@ -1,7 +1,17 @@
+M
 
-不难，但是要考虑好如何handle ""。
-因为平时都把“” 当做Null对待，这里就犯浑了。
-这题，要把Null特别mark一下为‘NULL’，而特别处理 “” empty string.
+方法1:    
+用数字+"#"+string来encode.    
+基于我们自己定的规律, 在decode的里面不需要过多地去check error input, assume所有input都是规范的.    
+decode就是找"#",然后用"#"前的数字截取后面的string.
+
+
+
+Old Solution:    
+Cast character into int. 串联起来, seperate by "LINE".   
+handle empty list [], or just null: 要把Null特别mark一下为‘NULL’, 这样decode时才能check到。      adminadmin
+
+
 ```
 /*
 Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
@@ -37,6 +47,45 @@ Tags: String
 Similar Problems: (E) Count and Say, (M) Serialize and Deserialize Binary Tree
 
 */
+
+
+/*
+Recap 3.28.2016
+Use number+"#" to mark a string. Append them all.
+*/
+public class Codec {
+
+    // Encodes a list of strings to a single string.
+    public String encode(List<String> strs) {
+        if (strs.size() == 0) {
+            return "";
+        }
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < strs.size(); i++) {
+            sb.append(strs.get(i).length() + "#" + strs.get(i));
+        }
+        return sb.toString();
+    }
+
+    // Decodes a single string to a list of strings.
+    public List<String> decode(String s) {
+        List<String> strs = new ArrayList<String>();
+        if (s == null || s.length() == 0) {
+            return strs;
+        }
+        int start = 0;
+        while (start < s.length()) {
+            int ind = s.indexOf("#", start);
+            int leng = Integer.parseInt(s.substring(start, ind));
+                
+            start = ind + 1 + leng;
+            strs.add(s.substring(ind + 1, start));
+
+        }
+        return strs;
+    }
+}
+
 
 /*
 Thoughts:
