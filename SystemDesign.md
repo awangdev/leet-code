@@ -31,14 +31,14 @@ How does server process heavy calculation in background? Threading? NodeJS threa
 
 ## Scalibility lecture
 - key concepts:
-	Vertical scaling: add more cpu,ram,hard-drive
-	Horizontal scaling:add more cheaper computer, distribute traffice && storage into these machiens.
-	Caching: save some pre-processed data, like sticky session, pre-quried sqls
-	Load balancing: determine which web server to hit; determine which db to hit if having multiple db
-	Database replication: for faster read; for reduancy safety
-	Database partitioning: for faster performance for some contents, or distributed storage
-	Using NoSQL instead of scaling a relational database
-	Being asynchronous
+	Vertical scaling: add more cpu,ram,hard-drive    
+	Horizontal scaling:add more cheaper computer, distribute traffice && storage into these machiens.     
+	Caching: save some pre-processed data, like sticky session, pre-quried sqls    
+	Load balancing: determine which web server to hit; determine which db to hit if having multiple db    
+	Database replication: for faster read; for reduancy safety    
+	Database partitioning: for faster performance for some contents, or distributed storage    
+	Using NoSQL instead of scaling a relational database    
+	Being asynchronous   
 
 - Load Balancer?
 	load balancer is even good to protect server: now backend server can be on LAN with load balancer, so they are protected; and we just expose load balancer to clients.

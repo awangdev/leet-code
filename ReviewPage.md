@@ -1467,11 +1467,23 @@ BackTracking + DFS:
 ---
 **99. [Group Anagrams.java](https://github.com/shawnfan/LintCode/blob/master/Java/Group Anagrams.java)**		Level: Medium
 
+方法一: 60%
+
 和check anagram 想法一样：转化并sort char array，用来作为key。
 
 把所有anagram 存在一起。注意结尾Collections.sort().
 
-O(NKlog(K)), N = string[] length, k = longest word length
+O(NKlog(K)), N = string[] length, k = longest word length    
+
+
+优化：80%
+
+用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
+因为每个位子上的frequency的变化，就能构建一个unique的string
+
+
+错误的示范: 尝试先sort input strs[]，但是NlogN 其实效率更低. 13%
+
 
 
 ---
