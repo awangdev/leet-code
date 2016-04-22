@@ -9,7 +9,7 @@ M
 O(NKlog(K)), N = string[] length, k = longest word length    
 
 
-优化：80%
+优化：80% ~ 97%
 
 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
 因为每个位子上的frequency的变化，就能构建一个unique的string

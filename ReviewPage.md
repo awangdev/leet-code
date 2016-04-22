@@ -28,10 +28,10 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
 
-解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).   
-    1. 第一步 two pointer 找 value.    
-    2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)    
-    O(n) space, O(nlogn) time.
+解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).     
+1. 第一步 two pointer 找 value.       
+2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
+O(n) space, O(nlogn) time.    
 
 
 
@@ -1476,7 +1476,7 @@ BackTracking + DFS:
 O(NKlog(K)), N = string[] length, k = longest word length    
 
 
-优化：80%
+优化：80% ~ 97%
 
 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
 因为每个位子上的frequency的变化，就能构建一个unique的string
