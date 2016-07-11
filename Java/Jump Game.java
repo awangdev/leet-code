@@ -49,7 +49,7 @@ public class Solution {
         can[0] = true;
         for (int i = 1; i < A.length; i++) {
             for (int j = 0; j < i; j++) {
-                if (A[j] && (j + A[j] >= i)) {
+                if (can[j] && (j + A[j] >= i)) {
                     can[i] = true;
                     break;
                 }
