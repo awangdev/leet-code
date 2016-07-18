@@ -2,6 +2,8 @@
 
 To host Java Solutions to algorithm problems from LintCode, LeetCode...etc.
 I Will try to revise the solutions once new problem or new testing case occurs.
+**Mid 2016** I realize that people may want to contribute to this repo, and make it better by contributing fixes, better solutions ... etc. Free free to send pull request. Once verified, I'm happy to merge in!
+CALM DOWN AND CODE ON! Fellows! 
 
 | Squence | Problem       | Level			| Language  |
 |:-------:|:--------------|:---------------|:---------:|

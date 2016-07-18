@@ -109,7 +109,9 @@ public class GenerateCodeTable {
 		//Assemble output
 		String outputContent = "# Java Algorithm Problems\n\n" + 
 			"To host Java Solutions to algorithm problems from LintCode, LeetCode...etc.\n" + 
-			"I Will try to revise the solutions once new problem or new testing case occurs.\n\n" + 
+			"I Will try to revise the solutions once new problem or new testing case occurs.\n" + 
+			"**Mid 2016** I realize that people may want to contribute to this repo, and make it better by contributing fixes, better solutions ... etc. Free free to send pull request. Once verified, I'm happy to merge in!\n" +
+			"CALM DOWN AND CODE ON! Fellows! \n\n" +  
 			"| Squence | Problem       | Level			| Language  |\n" + 
 			"|:-------:|:--------------|:---------------|:---------:|\n";
 		int count = 0;
