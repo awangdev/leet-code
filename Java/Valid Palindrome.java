@@ -25,7 +25,28 @@ Hide Similar Problems (E) Palindrome Linked List
 
 
 */
-
+/*
+recap:
+Use regular expression [^a-zA-Z0-9] to replace all non-alphanumeric chars with ""
+*/
+public class Solution {
+    public boolean isPalindrome(String s) {
+        if (s == null || s.length() <= 1) {
+            return true;
+        }
+        final String str = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        int start = 0;
+        int end = str.length() - 1;
+        while (start < end) {
+            if (str.charAt(start) != str.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+}
 
 /*
 3.4.2016 recap
