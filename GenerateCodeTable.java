@@ -42,8 +42,6 @@ public class GenerateCodeTable {
 		} else {
 			return;
 		}
-
-
 	}	
 
 	/*
@@ -112,12 +110,25 @@ public class GenerateCodeTable {
 			"I Will try to revise the solutions once new problem or new testing case occurs.\n" + 
 			"**Mid 2016** I realize that people may want to contribute to this repo, and make it better by contributing fixes, better solutions ... etc. Free free to send pull request. Once verified, I'm happy to merge in!\n" +
 			"CALM DOWN AND CODE ON! Fellows! \n\n" +  
-			"| Squence | Problem       | Level			| Language  |\n" + 
-			"|:-------:|:--------------|:---------------|:---------:|\n";
+			"| Squence | Problem       | Level	| Language  | Video Tutorial|\n" + 
+			"|:-------:|:--------------|:------:|:---------:|:--------------|\n";
 		int count = 0;
+		String calculatedLevel = "";
 		for (File file : listOfFiles) {
 			if (file.getName().contains(".java")) {
-				outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/shawnfan/LintCode/blob/master/Java/"+ file.getName() +")| |" + "Java|\n";
+				try {
+					final BufferedReader reader = new BufferedReader(new InputStreamReader(
+												  new FileInputStream("Java/" + file.getName()), "UTF-8"));
+					final String firstLine = reader.readLine().trim();
+					if (firstLine.length() == 1) {
+						calculatedLevel = calculateLevel(firstLine.toUpperCase());
+					}
+				} catch (Exception e) {
+					System.err.format("IOException: %s%n", e);
+				}
+
+				outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/shawnfan/LintCode/blob/master/Java/"
+								+ file.getName() + ")|" + calculatedLevel + "|" + "Java| |\n";
 				count++;			
 			}
 		}	
@@ -148,35 +159,15 @@ public class GenerateCodeTable {
 					String line = null;
 					int countLine = 0;
 					while ((line = reader.readLine()) != null && !line.equals("```")) {
-						if (line.equals("")) {
-						//	continue;
-						}
-						if (countLine == 0) {
-							String level = line.substring(0).toUpperCase();
-							switch(level) {
-								case "N" : 
-									outputContent += "		Level: Naive\n";
-									break;
-								case "E" : 
-									outputContent += "		Level: Easy\n";
-								break;
-								case "M" : 
-									outputContent += "		Level: Medium\n";
-								break;
-								case "H" : 
-									outputContent += "		Level: Hard\n";
-								break;
-								case "S" : 
-									outputContent += "		Level: Super\n";
-								break;
+						if (countLine == 0 && line.trim().length() == 1) {
+							final String calculatedLevel = calculateLevel(line.trim().toUpperCase());
+							if (!calculatedLevel.isEmpty()) {
+								outputContent += "		Level: " + calculatedLevel + "\n";
 							}
 						} else {
 							outputContent += line + "\n";
 						}
 						countLine++;
-
-						//System.out.println(line);
-						//outputContent += line;
 					}
 				} catch (Exception e) {
 					System.err.format("IOException: %s%n", e);
@@ -188,7 +179,19 @@ public class GenerateCodeTable {
 		return outputContent;
 	}
 
-
-	
-
+	private static String calculateLevel(final String level) {
+		switch(level) {
+			case "N" : 
+				return "Naive";
+			case "E" : 
+				return "Easy";
+			case "M" : 
+				return "Medium";
+			case "H" : 
+				return "Hard";
+			case "S" : 
+				return "Super";
+		}
+		return "";
+	}
 }
