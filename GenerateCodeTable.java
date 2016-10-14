@@ -114,9 +114,9 @@ public class GenerateCodeTable {
 			"| Squence | Problem       | Level	| Language  | Video Tutorial|\n" + 
 			"|:-------:|:--------------|:------:|:---------:|:--------------|\n";
 		int count = 0;
-		String calculatedLevel = "";
 		String tutorialLink = "";
 		for (File file : listOfFiles) {
+			String calculatedLevel = "";
 			if (file.getName().contains(".java")) {
 				try {
 					final BufferedReader reader = new BufferedReader(new InputStreamReader(
