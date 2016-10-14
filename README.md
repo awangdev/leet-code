@@ -316,16 +316,16 @@ CALM DOWN AND CODE ON! Fellows!
 |306|[Update Bits.java](https://github.com/shawnfan/LintCode/blob/master/Java/Update Bits.java)||Java||
 |307|[Valid Anagram.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Anagram.java)||Java||
 |308|[Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)|Easy|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|309|[Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)|Easy|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|310|[Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)|Easy|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|311|[Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)|Medium|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|312|[Wiggle Sort.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wiggle Sort.java)||Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|313|[Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)||Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|314|[Word Break II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break II.java)|Hard|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|315|[Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)|Medium|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|316|[Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)|Hard|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|317|[Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)|Medium|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|318|[Word Pattern.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Pattern.java)|Easy|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|319|[Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)|Hard|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|320|[Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)|Medium|Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
-|321|[Zigzag Iterator.java](https://github.com/shawnfan/LintCode/blob/master/Java/Zigzag Iterator.java)||Java|[Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)|
+|309|[Valid Parentheses.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Parentheses.java)|Easy|Java||
+|310|[Valid Sudoku.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Sudoku.java)|Easy|Java||
+|311|[Validate Binary Search Tree.java](https://github.com/shawnfan/LintCode/blob/master/Java/Validate Binary Search Tree.java)|Medium|Java||
+|312|[Wiggle Sort.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wiggle Sort.java)||Java||
+|313|[Wood Cut.java](https://github.com/shawnfan/LintCode/blob/master/Java/Wood Cut.java)||Java||
+|314|[Word Break II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break II.java)|Hard|Java||
+|315|[Word Break.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Break.java)|Medium|Java||
+|316|[Word Ladder II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder II.java)|Hard|Java||
+|317|[Word Ladder.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Ladder.java)|Medium|Java||
+|318|[Word Pattern.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Pattern.java)|Easy|Java||
+|319|[Word Search II.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search II.java)|Hard|Java||
+|320|[Word Search.java](https://github.com/shawnfan/LintCode/blob/master/Java/Word Search.java)|Medium|Java||
+|321|[Zigzag Iterator.java](https://github.com/shawnfan/LintCode/blob/master/Java/Zigzag Iterator.java)||Java||
