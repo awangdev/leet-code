@@ -6,7 +6,7 @@ I Will try to revise the solutions once new problem or new testing case occurs.
 CALM DOWN AND CODE ON! Fellows! 
 
 | Squence | Problem       | Level	| Language  | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:--------------|
+|:-------:|:--------------|:------:|:---------:|:-------------:|
 |0|[2 Sum II - Input array is sorted.java](https://github.com/shawnfan/LintCode/blob/master/Java/2 Sum II - Input array is sorted.java)|Medium|Java||
 |1|[2 Sum II.java](https://github.com/shawnfan/LintCode/blob/master/Java/2 Sum II.java)|Medium|Java||
 |2|[2 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/2 Sum.java)|Medium|Java||

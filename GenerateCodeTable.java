@@ -112,7 +112,7 @@ public class GenerateCodeTable {
 			"**Mid 2016** I realize that people may want to contribute to this repo, and make it better by contributing fixes, better solutions ... etc. Free free to send pull request. Once verified, I'm happy to merge in!\n" +
 			"CALM DOWN AND CODE ON! Fellows! \n\n" +  
 			"| Squence | Problem       | Level	| Language  | Video Tutorial|\n" + 
-			"|:-------:|:--------------|:------:|:---------:|:--------------|\n";
+			"|:-------:|:--------------|:------:|:---------:|:-------------:|\n";
 		int count = 0;
 		for (File file : listOfFiles) {
 			String tutorialLink = "";
@@ -172,7 +172,7 @@ public class GenerateCodeTable {
 								outputContent += "\n";
 							}
 						} else if (countLine == 1 && line.indexOf(TUTORIAL_KEY_WORD) == 0) {
-							outputContent = "		[Tutorial Link](" + line.substring(TUTORIAL_KEY_WORD.length()) + ")";
+							outputContent += "		[Tutorial Link](" + line.substring(TUTORIAL_KEY_WORD.length()) + ")";
 						} else {
 							outputContent += line + "\n";
 						}
