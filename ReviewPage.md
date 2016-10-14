@@ -6670,6 +6670,7 @@ public class Solution {
 ---
 **308. [Valid Palindrome.java](https://github.com/shawnfan/LintCode/blob/master/Java/Valid Palindrome.java)**		Level: Easy
 		[Tutorial Link](https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb)
+
 过滤alphanumeric，其他字母掠过
 
 

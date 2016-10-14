@@ -172,7 +172,7 @@ public class GenerateCodeTable {
 								outputContent += "\n";
 							}
 						} else if (countLine == 1 && line.indexOf(TUTORIAL_KEY_WORD) == 0) {
-							outputContent += "		[Tutorial Link](" + line.substring(TUTORIAL_KEY_WORD.length()) + ")";
+							outputContent += "		[Tutorial Link](" + line.substring(TUTORIAL_KEY_WORD.length()) + ")\n";
 						} else {
 							outputContent += line + "\n";
 						}
