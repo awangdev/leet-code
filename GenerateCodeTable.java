@@ -7,6 +7,7 @@ Used to generate table of contents.
 	- args == 'all', genereate both table
 */
 public class GenerateCodeTable {
+	public final static String TUTORIAL_KEY_WORD = "tutorial:";
 	public static void main(String[] args) {	
 		//Read Java Solution Folder
 		File folder = new File("./Java");//"." = current path
@@ -114,21 +115,25 @@ public class GenerateCodeTable {
 			"|:-------:|:--------------|:------:|:---------:|:--------------|\n";
 		int count = 0;
 		String calculatedLevel = "";
+		String tutorialLink = "";
 		for (File file : listOfFiles) {
 			if (file.getName().contains(".java")) {
 				try {
 					final BufferedReader reader = new BufferedReader(new InputStreamReader(
 												  new FileInputStream("Java/" + file.getName()), "UTF-8"));
-					final String firstLine = reader.readLine().trim();
-					if (firstLine.length() == 1) {
-						calculatedLevel = calculateLevel(firstLine.toUpperCase());
+					final String levelLine = reader.readLine().trim();
+					if (levelLine.length() == 1) {
+						calculatedLevel = calculateLevel(levelLine.toUpperCase());
+					}
+					final String tutorialLine = reader.readLine();
+					if (tutorialLine.indexOf(TUTORIAL_KEY_WORD) == 0) {
+						tutorialLink = "[Link](" + tutorialLine.substring(TUTORIAL_KEY_WORD.length()) + ")";
 					}
 				} catch (Exception e) {
 					System.err.format("IOException: %s%n", e);
 				}
-
 				outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/shawnfan/LintCode/blob/master/Java/"
-								+ file.getName() + ")|" + calculatedLevel + "|" + "Java| |\n";
+								+ file.getName() + ")|" + calculatedLevel + "|" + "Java|" + tutorialLink + "|\n";
 				count++;			
 			}
 		}	
@@ -159,11 +164,15 @@ public class GenerateCodeTable {
 					String line = null;
 					int countLine = 0;
 					while ((line = reader.readLine()) != null && !line.equals("```")) {
-						if (countLine == 0 && line.trim().length() == 1) {
-							final String calculatedLevel = calculateLevel(line.trim().toUpperCase());
-							if (!calculatedLevel.isEmpty()) {
-								outputContent += "		Level: " + calculatedLevel + "\n";
+						if (countLine == 0) {
+							final String trimedLine = line.trim().toUpperCase();
+							if (trimedLine.length() == 1 && !calculateLevel(trimedLine).isEmpty()) {
+								outputContent += "		Level: " + calculateLevel(trimedLine) + "\n";
+							} else {
+								outputContent += "\n";
 							}
+						} else if (countLine == 1 && line.indexOf(TUTORIAL_KEY_WORD) == 0) {
+							outputContent = "		[Tutorial Link](" + line.substring(TUTORIAL_KEY_WORD.length()) + ")";
 						} else {
 							outputContent += line + "\n";
 						}
