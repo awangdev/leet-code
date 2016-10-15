@@ -25,6 +25,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 ---
 **2. [2 Sum.java](https://github.com/shawnfan/LintCode/blob/master/Java/2 Sum.java)**		Level: Medium
+		[Tutorial Link](https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be)
 
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
 
