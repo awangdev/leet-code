@@ -122,3 +122,65 @@ public class Solution {
 
 
 ```
+
+Here is another approach which is Shunting-yard algorithm (https://en.wikipedia.org/wiki/Shunting-yard_algorithm).
+```
+public class Solution {
+    /**
+     * @param expression: A string array
+     * @return: The Polish notation of this expression
+     */
+    public ArrayList<String> convertToPN(String[] expression) {
+        // write your code here
+        ArrayList<String> res = new ArrayList<String>();
+        if (expression == null || expression.length == 0) return res;
+        Stack<String> prefix = new Stack<>();
+        Stack<String> op = new Stack<>();
+        for (int i=expression.length-1; i>=0; --i) {
+            String s = expression[i];
+            if (isNumber(s)) {
+                prefix.push(s);
+            } else if (s.equals(")")) {
+                op.push(s);
+            } else if (isOperator(s)) {
+                while (!op.isEmpty() && !op.peek().equals(")") && getPriority(op.peek()) > getPriority(s)) {
+                    prefix.push(op.pop());
+                }
+                op.push(s);
+            } else if (s.equals("(")) {
+                while (!op.isEmpty() && !op.peek().equals(")")) {
+                    prefix.push(op.pop());
+                }
+                if (!op.isEmpty() && op.peek().equals(")")) {
+                    op.pop();
+                } else {
+                    return res;
+                }
+            }
+        }
+        while (!op.isEmpty()) {
+            prefix.push(op.pop());
+        }
+        while (!prefix.isEmpty()) {
+            res.add(prefix.pop());
+        }
+        return res;
+    }
+    
+    private boolean isNumber(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch(NumberFormatException e) {
+            return false;
+        }
+    }
+    private boolean isOperator(String s) {
+        return s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/");
+    }
+    private int getPriority(String s) {
+        if (s.equals("*") || s.equals("/")) return 2;
+        return 1;
+    }
+}
+```
