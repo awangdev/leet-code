@@ -88,7 +88,7 @@ public class Solution {
         int num1 = -1;
         int num2 = -1;
         while (start != end) {
-            int sum = numbers[start] + numbers[end];
+            int sum = (numbers[start] + numbers[end])/2;//的除以2
             if (sum == target) {
                 num1 = numbers[start];
                 num2 = numbers[end];
