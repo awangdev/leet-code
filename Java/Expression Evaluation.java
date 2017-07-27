@@ -149,3 +149,101 @@ public class Solution {
 
 
 ```
+
+Here is another approach which has fewer lines than above. 
+	Step 1. Convert the infix expression to postfix expression 
+		by Shunting-yard algorithm (https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
+	Step 2. Calculate the results from the postfix expression. This step can be merged to Step 1.
+
+```
+public class Solution {
+    /**
+     * @param expression: an array of strings;
+     * @return: an integer
+     */
+    public int evaluateExpression(String[] expression) {
+        if (expression == null || expression.length == 0) {
+            return 0; //invalid input expression
+        }
+        Stack<Integer> postfix = new Stack<>();
+        Stack<String> op = new Stack<>(); // operators to eval
+        for (String s : expression) {
+            if (isNumber(s)) {
+                postfix.push(Integer.parseInt(s));
+            } else if (s.equals("(")) {
+                op.push("(");  
+            } else if (isOperator(s)) {
+                while (!op.isEmpty() && isOperator(op.peek()) && getPriority(op.peek()) >= getPriority(s)) {
+                    cal(postfix, op.pop());
+                }
+                op.push(s);
+            } else if (s.equals(")")) {
+                while (!op.isEmpty() && !op.peek().equals("(")) {
+                    cal(postfix, op.pop());
+                }
+                if (!op.isEmpty() && op.peek().equals("(")) {
+                    op.pop();
+                } else {
+                    return 0; //invalid input expression
+                }
+            }
+        }
+        while (!op.isEmpty()) {
+            cal(postfix, op.pop());
+        }
+        if (postfix.size() == 1) {
+            return postfix.pop();
+        } else {
+            return 0; //invalid input expression
+        }
+    }
+    /**
+    *  Check if String s is an operator
+    **/
+    private boolean isOperator(String s) {
+        return s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/");
+    }
+    /**
+    *  Check if String s is a integer number
+    **/
+    private boolean isNumber(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    /**
+    *  get the priority of an operator
+    **/
+    private int getPriority(String s) {
+        if (s.equals("*") || s.equals("/")) return 2;
+        return 1;
+    }
+    /**
+    *  Calculate the top 2 integers in postfix with given operator and push the result in postfix
+    **/
+    private void cal(Stack<Integer> postfix, String op) {
+        int b = postfix.pop();
+        int a = postfix.pop();
+        int res = 0;
+        switch(op.charAt(0)) {
+            case '+':
+                res = a + b;
+                break;
+            case '-':
+                res = a - b;
+                break;
+            case '*':
+                res = a * b;
+                break;
+            case '/':
+                res = a / b;
+                break;
+        }
+        postfix.push(res);
+    }
+};
+```
+											       
