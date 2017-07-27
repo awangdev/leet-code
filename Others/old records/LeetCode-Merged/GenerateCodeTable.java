@@ -59,11 +59,11 @@ public class GenerateCodeTable {
 		int count = 0;
 		for (File file : listOfFiles) {
 			if (file.getName().contains(".java")) {
-				//outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/shawnfan/LintCode/blob/master/Java/"+ file.getName() +")| |" + "Java|\n";
+				//outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"+ file.getName() +")| |" + "Java|\n";
 				outputContent+= 
 				"<tr>" + 
 					"<td align='center'>" + count + "</td>" +
-					"<td align='left'><a href='https://github.com/shawnfan/LeetCode/blob/master/Java/"+ file.getName() + "'>" + file.getName() + "</a></td>" +
+					"<td align='left'><a href='https://github.com/awangdev/LeetCode/blob/master/Java/"+ file.getName() + "'>" + file.getName() + "</a></td>" +
 					"<td align='left'></td>" +
 					"<td align='center'>Java</td>" +
 				"</tr>";
@@ -90,7 +90,7 @@ public class GenerateCodeTable {
 		int count = 0;
 		for (File file : listOfFiles) {
 			if (file.getName().contains(".java")) {
-				outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/shawnfan/LeetCode/blob/master/Java/"+ file.getName() +")| |" + "Java|\n";
+				outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/awangdev/LeetCode/blob/master/Java/"+ file.getName() +")| |" + "Java|\n";
 				count++;			
 			}
 		}	
