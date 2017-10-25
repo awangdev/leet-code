@@ -61,7 +61,12 @@ public class Solution {
     }
 }
 
-//Find all depth and return max alone the way
+/*
+Thoughts:
+DFS. Find all depth and return max alone the way
+Check leaf child: (null, null) condition -> return 1
+Then upper parent = Math.max(DFS(left), DFS(right)) + 1
+*/
 public class Solution {
     public int maxDepth(TreeNode root) {
         if (root == null) {

@@ -52,28 +52,24 @@ Binary Tree
  * }
  */
 
-public class Solution {
-    /**
-     * @param root, the root of binary tree.
-     * @return true if it is a mirror of itself, or false.
-     */
+class Solution {
     public boolean isSymmetric(TreeNode root) {
-      if (root == null) {
-        return true;
-      }
-      return check(root.left, root.right);
+        if (root == null) {
+            return true;
+        }
+        return checkChild(root.left, root.right);
     }
-
-    public boolean check(TreeNode A, TreeNode B) {
-      if (A == null && B == null) {
-        return true;
-      } else if (A == null || B == null) {
-        return false;
-      }
-      return A.val == B.val && check(A.left, B.right) && check(A.right, B.left);
+    
+    public boolean checkChild(TreeNode leftNode, TreeNode rightNode) {
+        if (leftNode == null && rightNode == null) {
+            return true;
+        }
+        if (leftNode == null || rightNode == null) {
+            return false;
+        }
+        return leftNode.val == rightNode.val && checkChild(leftNode.left, rightNode.right) && checkChild(leftNode.right, rightNode.left);
     }
 }
-
 
 //Non-recursive, iterative
 /*

@@ -17,42 +17,36 @@ Tags Expand
 Stack
 */
 
-//02.04.2015 Recap
 //lock will be unlocked by the same key
 //put in stack. when '),],}' appears, check stack.top() to make sure they are good match
-public class Solution {
+/*
+Use stack to hold the parentheses (head/tail) and remove them accordingly.
+*/
+class Solution {
     public boolean isValid(String s) {
         if (s == null || s.length() == 0) {
             return true;
         }
-        if (s.length() % 2 != 0) {
-            return false;
-        }
-        Stack<Character> stack = new Stack<Character>();
-        
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '(' || c == '[' || c == '{') {
-                stack.push(c);
-            } else if (c ==')' || c == ']' || c == '}') {
+        final char[] charArray = s.toCharArray();
+        final Stack<Character> stack = new Stack<Character>();
+        for (char c : charArray) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.add(c);
+            } else if (c == ')' || c == '}' || c == ']') {
                 if (stack.isEmpty()) {
                     return false;
-                }   
-                char front = stack.pop();
-                if (c == ')' && front != '(') {
+                }
+                if (c == ')' && stack.peek() == '(') {
+                    stack.pop();
+                } else if (c == '}' && stack.peek() == '{') {
+                    stack.pop();
+                } else if (c == ']' && stack.peek() == '[') {
+                    stack.pop();
+                } else {
                     return false;
                 }
-                if (c == ']' && front != '[') {
-                    return false;
-                }
-                if (c == '}' && front != '{') {
-                    return false;
-                }
-            } else {
-                return false;
             }
         }
-        
         return stack.isEmpty();
     }
 }

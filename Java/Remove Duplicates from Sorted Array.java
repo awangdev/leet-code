@@ -1,3 +1,5 @@
+E
+
 Remove Duplicate from Array 不同于remove from linked list.
 
 LinkedList里面我们是最好不要动node.val的，直接把node去掉。
@@ -12,6 +14,41 @@ LinkedList里面我们是最好不要动node.val的，直接把node去掉。
 * 有个反向思维：remove duplicate,实际上也是找unique elements, and insert into original array
 
 ```
+/*
+LeetCode
+Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
+
+Do not allocate extra space for another array, you must do this in place with constant memory.
+
+For example,
+Given input array nums = [1,1,2],
+
+Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn't matter what you leave beyond the new length.
+*/
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums == null) {
+            return 0;
+        }
+        if (nums.length <= 1) {
+            return nums.length;
+        }
+        int currPos = 0;
+        int movingPos = 1;
+        while (movingPos < nums.length) {
+            while(movingPos < nums.length && nums[currPos] == nums[movingPos]) {
+                movingPos++;
+            }
+            if (movingPos < nums.length && nums[currPos] != nums[movingPos]) {
+                nums[currPos + 1] = nums[movingPos];
+                currPos++;
+                movingPos++;
+            }
+        }
+        return currPos + 1;
+    }
+}
+
 /*31% Accepted
 Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
 
@@ -53,6 +90,27 @@ public class Solution {
             }
         }
         return j + 1;
+    }
+}
+
+// Better vairable naming.
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums == null) {
+            return 0;
+        }
+        if (nums.length <= 1) {
+            return nums.length;
+        }
+        int currPos = 0;
+        int movingPos;
+        for (movingPos = 1; movingPos < nums.length; movingPos++) {
+            if (nums[currPos] != nums[movingPos]) {
+                nums[currPos + 1] = nums[movingPos];
+                currPos++;
+            }
+        }
+        return currPos + 1;
     }
 }
 

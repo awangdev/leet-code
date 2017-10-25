@@ -1,5 +1,10 @@
+M
+
 递归。
 看thought.取或者不取(,  )
+
+Note: 在DFS时, 可以pass object (String) and re-create every time; or pass a reference (StringBuffer) and maintain it
+
 ```
 /*
 Generate Parentheses
@@ -12,10 +17,81 @@ Given n = 3, a solution set is:
 
 "((()))", "(()())", "(())()", "()(())", "()()()"
 
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+
 Tags Expand 
 String Backtracking Recursion Zenefits Google
 
 */
+
+/*
+Thoughts:
+1. We know left-parentheses numL <= numR; otherwise it'll be incorrect
+2. Pick left or right parentheses always gives up to 2 options at one node: it becomes a tree. We can use DFS and find the leaf
+3. Always populate the List<String>
+*/
+//Faster because StringBuffer object is reused (add/remove elements of it)
+class Solution {
+    private final static String LEFT = "(";
+    private final static String RIGHT = ")";
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        if (n == 0) {
+            return result;
+        }
+        dfs(result, new StringBuffer(), n, n);
+        return result;
+    }
+    
+    private void dfs(List<String> result, StringBuffer sb, int numL, int numR) {
+        if (numL == 0 && numR == 0) {
+            result.add(sb.toString());
+            return;
+        }
+        if (numL > 0) {
+            dfs(result, sb.append(LEFT), numL - 1, numR);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        if (numR > 0 && numL < numR) {
+            dfs(result, sb.append(RIGHT), numL, numR - 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+}
+
+// Slightly slower because building new string every time.
+class Solution {
+    private final static String LEFT = "(";
+    private final static String RIGHT = ")";
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        if (n == 0) {
+            return result;
+        }
+        dfs(result, "", n, n);
+        return result;
+    }
+    
+    private void dfs(List<String> result, String str, int numL, int numR) {
+        if (numL == 0 && numR == 0) {
+            result.add(str);
+            return;
+        }
+        if (numL > 0) {
+            dfs(result, str + LEFT, numL - 1, numR);
+        }
+        if (numR > 0 && numL < numR) {
+            dfs(result, str + RIGHT, numL, numR - 1);
+        }
+    }
+}
+
 
 /*
 	Thoughts: 
@@ -63,72 +139,6 @@ public class Solution {
     		list.remove(list.size() - 1);
     	}
     }
-}
-
-
-/*
-	//
-	1st attempt, timeout. 
-	Thoughts:
-	n = 0, null
-	n = 1, trivial: ()
-	Do i-- from n. For each i >= 2
-		it can choose: close a paren
-						open another paren
-	front = (
-	end = )
-	helper(front, end, int n)
-	if (n == 1) {
-		front + "()" + end
-		rst.add // check duplicate
-	}
-
-*/
-public class Solution {
-    /**
-     * @param n n pairs
-     * @return All combinations of well-formed parentheses
-     */
-    public ArrayList<String> rst = new ArrayList<String>();
-    public ArrayList<String> generateParenthesis(int n) {
-    	if (n <= 0) {
-    		return rst;
-    	} else if (n == 1){
-    		rst.add("()");
-    		return rst;
-    	}
-    	helper("", "", n);
-    	Collections.sort(rst);
-    	return rst;
-    }
-	//3
-    public void helper(String front, String end, int n) {
-    	if (n == 1) {
-    		String rt = front + "()" + end;
-    		if (!rst.contains(rt)){
-    			rst.add(rt);
-    		}
-    		return;
-    	}
-    	n--;
-    	
-        helper(front + "(", ")" + end, n);
-    	helper(front + "()", end, n);
-    	helper(front, "()" + end, n);
-        helper(front + end + "(", ")", n);
-        helper(front + end, "()", n);
-        helper(front + end + "()", "", n);
-        helper("(", ")" + front + end, n);
-        helper("()", front + end, n);
-        helper("","()" + front + end, n);
-        helper("(",front+end+")",n);
-        helper("(" + front+end,")",n);
-        helper("(" + front, end + ")",n);
-        helper("("+front+end+")", "", n);
-        helper("", "("+front+end+")", n);
-
-    }
-
 }
 
 ```

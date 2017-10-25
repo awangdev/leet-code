@@ -1,31 +1,24 @@
 M
 
-Recursive： 取，或者不取。    
+Recursive Backtracking: 取，或者不取.
+Improvement: maintain list (add/remove elements) instead of 'list.contains'
 
 Iterative: 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍。 However, code is a bit massive.
 
 
 ```
 /*
-Given a list of numbers, return all possible permutations.
+Given a collection of distinct numbers, return all possible permutations.
 
-Example
-For nums [1,2,3], the permutaions are: 
-
+For example,
+[1,2,3] have the following permutations:
 [
-
-    [1,2,3],
-
-    [1,3,2],
-
-    [2,1,3],
-
-    [2,3,1],
-
-    [3,1,2],
-
-    [3,2,1]
-
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
 ]
 
 Challenge
@@ -35,6 +28,47 @@ Tags Expand
 Recursion Search
 
 */
+
+/*
+Thoughts:
+1. Backtracking: could start from any digit, until all elements are used
+2. Need a easily-resizable object to pass through DFS function such that we can maintain the items left at current level
+3. Each level loops through that levelList, minums one item and move to next level.
+4. Check condition: when index reach to end, add to result
+
+Slightly optimized becaue we are not using list.contains(...) which essentially is a search O(nLog(n))
+*/
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (nums == null) {
+            return result;
+        }
+        List<Integer> numList = new ArrayList();
+        for (int num : nums) {
+            numList.add(num);
+        }
+        dfs(result, new ArrayList<>(), numList);
+        return result;
+    }
+    
+    private void dfs(List<List<Integer>> result, List<Integer> levelList, List<Integer> remainingList) {
+        if (remainingList.size() == 0) {
+            result.add(new ArrayList<>(levelList));
+            return;
+        }
+        for (int i = 0; i < remainingList.size(); i++) {
+            int num = remainingList.get(i);
+            levelList.add(num);
+            remainingList.remove(i);
+
+            dfs(result, levelList, remainingList);
+
+            levelList.remove(levelList.size() - 1);
+            remainingList.add(i, num);
+        }
+    }
+}
 
 /*
 

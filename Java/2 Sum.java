@@ -41,25 +41,26 @@ Thoughts:
     (key, value) = (numbers[i], i)
     Note: return index+1 because this is not 0-based.
 */
-
-public class Solution {
-     //Using HashMap
-    public int[] twoSum(int[] numbers, int target) {
-        if (numbers == null || numbers.length == 0) {
+class Solution {
+    final static int RESULT_SIZE = 2;
+    final static int RESULT_INDEX1 = 0;
+    final static int RESULT_INDEX2 = 1;
+    public int[] twoSum(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
             return null;
         }
-        int[] rst = new int[2];
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < numbers.length; i++) {
-            if (map.containsKey(target - numbers[i])) {
-                rst[0] = map.get(target - numbers[i]) + 1;
-                rst[1] = i + 1;
-                break;
+        final int[] result = new int[RESULT_SIZE];
+        final Map<Integer, Integer> recordMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (recordMap.containsKey(target - nums[i])) {
+                result[RESULT_INDEX1] = recordMap.get(target - nums[i]);
+                result[RESULT_INDEX2] = i;
+                return result;
             } else {
-                map.put(numbers[i], i);
+                recordMap.put(nums[i], i);
             }
         }
-        return rst;
+        return result;
     }
 }
 

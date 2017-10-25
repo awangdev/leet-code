@@ -24,6 +24,33 @@ Example
 Tags Expand 
 Hash Table Mathematics
 */
+/*
+User HashMap/HashSet to record the calculated number
+*/
+class Solution {
+    public boolean isHappy(int n) {
+        final Set<Long> set = new HashSet<>();
+        long sum = n;
+        while (sum != 1) {
+            sum = calculateTheSum(sum);
+            if (set.contains(sum)) {
+                return false;
+            } else {
+                set.add(sum);
+            }
+        }
+        return true;
+    }
+    
+    private long calculateTheSum(long n) {
+        long result = 0;
+        while (n != 0) {
+            result += (n % 10)*(n % 10);
+            n = n / 10;
+        }
+        return result;
+    }
+}
 
 /*
     Thoughts:

@@ -1,6 +1,7 @@
 M
 
-普通BFS，用一个queue，加上一个queue.size()来交替换行.
+普通BFS，用一个queue，加上一个queue.size()来交替换行. 
+或者多用一个queue来存下个level的nodes
 
 rst里面add(0,...)每次都add在list开头
 
@@ -43,7 +44,42 @@ Queue Binary Tree Binary Tree Traversal Breadth First Search
  *     }
  * }
  */
- 
+
+/*
+Thoughts:
+Breadth first traversal. Add to 0 position every time.
+BFS uses a queue for level -> traversal completes when the queue is drained.
+Use another queue to store next level, and switch with current queue when need to be.
+*/
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        final List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (root == null) {
+            return result;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queueLevel = new LinkedList<>();
+        List<Integer> level = new ArrayList<>();
+        queue.add(root);
+        while(!queue.isEmpty()) {
+            final TreeNode node = queue.poll();
+            level.add(node.val);
+            if (node.left != null) {
+                queueLevel.add(node.left);
+            }
+            if (node.right != null) {
+                queueLevel.add(node.right);
+            }
+            if (queue.isEmpty()) {
+                queue = queueLevel;
+                result.add(0, level);
+                queueLevel = new LinkedList<>();
+                level = new ArrayList<>();
+            }
+        }
+        return result;
+    }
+}
  
  /*
 

@@ -1,4 +1,8 @@
+E
+
 一旦node.next 和node是重复，跳
+
+
 ```
 /*
 40% 通过
@@ -30,6 +34,37 @@ If so, head.next = head.next.next
  *     }
  * }
  */
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+/*
+Thoughts:
+1. Check head.
+2. Remove next if next != null && next.val == node.val
+3. Use node to move
+*/
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode node = head;
+        while (node != null) {
+            while (node.next != null && node.val == node.next.val) {
+                node.next = node.next.next;
+            }
+            node = node.next;
+        }
+        return head;
+    }
+}
+
 public class Solution {
     /**
      * @param ListNode head is the head of the linked list

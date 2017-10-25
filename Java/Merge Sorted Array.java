@@ -1,7 +1,7 @@
 E
 
 A够长，那么可以从A的尾部开始加新元素。     
-注意，从尾部，是大数字优先的。   
+注意，从尾部，是大数字优先排末尾的.  
 
 ```
 /*
@@ -15,6 +15,31 @@ Hide Tags Array Two Pointers
 Hide Similar Problems (E) Merge Two Sorted Lists
 
 */
+
+/*
+Given enough space in nums1, and given size of the two array, we can start labling the last element, since it's empty-safe indexes anyway.
+*/
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0) {
+            return;
+        }
+        int pos1 = m - 1;
+        int pos2 = n - 1;
+        for (int i = m + n - 1; i >= 0; i--) {
+            //Handle remaining of nums1 or nums2
+            if (pos1 < 0 || pos2 < 0) {
+                nums1[i] = pos1 < 0 ? nums2[pos2--] : nums1[pos1--];
+            } else {
+                if (nums1[pos1] >= nums2[pos2]) {
+                    nums1[i] = nums1[pos1--];
+                } else {
+                    nums1[i] = nums2[pos2--];
+                }
+            }
+        }
+    }
+}
 
 /*Recap 02.17.2015*/
 //merge from m + n position

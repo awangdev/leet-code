@@ -1,3 +1,9 @@
+E
+
+Bit XOR: 当两个bit不同时，return 1. 
+题目正要消光所有重复出现的数儿留下出现一次的那个.
+
+```
 /*
 62% Accepted
 Given 2*n + 1 numbers, every numbers occurs twice except one, find it.
@@ -19,22 +25,30 @@ Very smart trick to use bits.
 In order to compare from index 0 to the end, we need to extract index 0 first as result before for loop. And start for loop at i = 1.
 */
 
-public class Solution {
-	/**
-	 *@param A : an integer array
-	 *return : a integer 
-	 */
-	public int singleNumber(int[] A) {
-        if (A == null || A.length == 0) {
-           return 0;
+class Solution {
+    public int singleNumber(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
         }
-        int rst = A[0];
-        for (int i = 1; i < A.length; i++) {
-            rst = rst ^ A[i];
+        for (int i = 1; i < nums.length; i++) {
+            nums[0] = nums[0] ^ nums[i];
         }
-        return rst;
-	}
+        return nums[0];
+    }
+}
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int result = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            result = result ^ nums[i];
+        }
+        return result;
+    }
 }
 
 
-
+```

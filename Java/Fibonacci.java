@@ -58,6 +58,7 @@ class Solution {
 
 /*
 Thoughts:
+Bottomup with for loop.
 1. If non-recursion, do for loop for that n
 2. Note: this specfiic problem is not 0-based. it's 1-based.
 3. return fib[n]

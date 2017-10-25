@@ -30,17 +30,41 @@ Binary Search Divide and Conquer Recursion
 */
 
 /**
- * Definition of TreeNode:
+ * Definition for a binary tree node.
  * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
  */
 
+/*
+DFS: find each subtree's depth, and compare the two.
+However, making DFS for every node is very costly: the recursive calculations of depth are done repeatedly, so we want to at least tell, if a path has failed, no need to dive deep -> need a boolean-ish signature. 
+However, we can't return both boolean && depth (we actually don't need other depth valuese greater than 1).
+Combine the boolean && depth signature to mark the failed case: by using a negative number.
+*/
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return markDepth(root) > 0;
+    }
+    
+    private int markDepth(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftDepth = markDepth(node.left);
+        int rightDepth = markDepth(node.right);
+        if (leftDepth < 0 || rightDepth < 0 || (Math.abs(leftDepth - rightDepth)) > 1) {
+            return Integer.MIN_VALUE;
+        }
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+}
 
 /*
 
