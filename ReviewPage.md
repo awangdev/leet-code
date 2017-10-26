@@ -3718,12 +3718,18 @@ Preorder 写写， stack
 
 
 ---
-**163. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Medium
+**163. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
 
 理解意思是关键：   
    每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出。
    记录每天最小值Min是多少。O(n)
-   每天都算和当下的Min买卖，profit最大多少。
+   每天都算和当下的Min买卖，profit最大多少.
+
+Brutle:
+每天都试着买进，然后之后的每一天尝试卖出. double for loop, O(n^2). timeout.
+其中很多都是没必要的计算：[7, 1, 5, 3, 6, 4]。 if we know buyin with 1 is cheapest, we don't need to buyin at 5, 3, 6, 4 later on; we'll only sell on higher prices.
+
+这里就可以DP, memorize the min[i]: the minimum among [0 ~ i]; 然后用当天的price做减法算max.
 
 
 
@@ -5122,7 +5128,7 @@ public class Solution {
 
 
 ---
-**243. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Medium
+**243. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
 
 和Stock I 的区别：可以买卖多次，求总和的最大盈利。
 
@@ -5135,6 +5141,12 @@ public class Solution {
    当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
 
 O(n)
+
+这道题有几种不同的思路:
+1. 如上, 从低谷找peek, sell.
+2. DFS计算所有（timeout）
+3. Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
+4. Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起.
 
 
 ---
