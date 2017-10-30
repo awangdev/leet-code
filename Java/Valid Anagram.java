@@ -1,3 +1,8 @@
+E
+
+HashMap
+
+```
 /*
 Given two strings s and t, write a function to determine if t is an anagram of s.
 
@@ -26,33 +31,33 @@ check count of each index in the map; they should all be 0
 */
 
 
-public class Solution {
+class Solution {
     public boolean isAnagram(String s, String t) {
-        if (s == null || t == null) {
-        	return s == null && t == null;
-        } else if (s.length() != t.length()) {
-        	return false;
+        if (s == null || t == null || s.length() != t.length()) {
+            return false;
         }
-
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        if (s.equals(t)) {
+            return true;
+        }
+        final Map<Character, Integer> charMap = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
-        	if (!map.containsKey(s.charAt(i))) {
-        		map.put(s.charAt(i), 1);
-        	} else {
-        		map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
-        	}
-        	if (!map.containsKey(t.charAt(i))) {
-        		map.put(t.charAt(i), -1);
-        	} else {
-        		map.put(t.charAt(i), map.get(t.charAt(i)) - 1);
-        	}
-        }//END for
-        
-        for (int i = 0; i < s.length(); i++) {
-        	if (map.get(s.charAt(i)) != 0) {
-        		return false;
-        	}
+            char charS = s.charAt(i);
+            char charT = t.charAt(i);
+            if (!charMap.containsKey(charS)) {
+                charMap.put(charS, 0);
+            }
+            if (!charMap.containsKey(charT)) {
+                charMap.put(charT, 0);
+            }
+            charMap.put(charS, charMap.get(charS) + 1);
+            charMap.put(charT, charMap.get(charT) - 1);
+        }
+        for (Map.Entry<Character, Integer> entry: charMap.entrySet()) {
+            if (entry.getValue() != 0) {
+                return false;
+            }
         }
         return true;
     }
 }
+```

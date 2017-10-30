@@ -29,6 +29,43 @@ If two 1 is adjacent, we consider them in the same island. We only consider up/d
 */
 
 /*
+Thoughts:
+- DFS and flip the bit-1 on the grid to 0 as we go: to 4 different directions
+- Loop through all positions
+- Visited spots won't be visited again because they are updated to '0'
+*/
+class Solution {
+    private int[] dx = {1, -1, 0, 0};
+    private int[] dy = {0, 0, 1, -1};
+    
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1') {
+                    count++;
+                    dfs(grid, i, j);
+                }
+            }
+        }
+        return count;
+    }
+    
+    private void dfs(char[][] grid, int x, int y) {
+        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] == '0') {
+            return;
+        }
+        grid[x][y] = '0';
+        for (int i = 0; i < dx.length; i++) {
+            dfs(grid, x + dx[i], y + dy[i]);
+        }
+    }
+}
+
+/*
   12.12.2015 recap
   We are checking if a sets of adjacent nodes are int the same set
   We union all neighbors

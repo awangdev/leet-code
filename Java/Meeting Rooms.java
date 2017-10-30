@@ -1,6 +1,7 @@
 E
 
-Scan line, class Point{pos, flag}, PriorityQueue排序。计算count     
+方法1: 找是否有overlap. priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
+方法2: Scan line, class Point{pos, flag}, PriorityQueue排序。计算count     
 
 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点。     
 开会的是超人。瞬间移动接上下一个会议。
@@ -19,6 +20,45 @@ Hide Tags Sort
 Hide Similar Problems (H) Merge Intervals (M) Meeting Rooms II
 
 */
+
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
+/*
+Thoughts:
+Cannot have overlap -> sort by the interval.start using priority queue
+*/
+class Solution {
+    public boolean canAttendMeetings(Interval[] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return true;
+        }
+        final PriorityQueue<Interval> queue = new PriorityQueue<Interval>(2, new Comparator<Interval>() {
+            public int compare (Interval a, Interval b) {
+                return a.start - b.start;
+            }
+        });
+        for (Interval interval : intervals) {
+            queue.offer(interval);
+        }
+        while (!queue.isEmpty()) {
+            Interval first = queue.poll();
+            Interval second = queue.peek();
+            if (second != null) {
+                if (first.end > second.start) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
 
 /**
  * Definition for an interval.

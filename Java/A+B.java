@@ -4,9 +4,15 @@ E
 
 那么就，首先记录好进位的数字：carry. 然后 a^b 不完全加法一次。然后b用来放剩下的carry, 每次移动一位，继续加，知道b循环为0为止。
 
+在第一回 a ^ b 之后, b 的作用就消失了. 接下去应该给parameter重新命名.
+sum = a ^ b; // sum without adding carries
+nextCarry = (a & b) << 1;
+
+用其他variable name 取代 a, b 会更好理解一点.
+
 Bit Operation    
 Steps: 
-   a & b: 每bit可能出得余数       
+   a & b: 每bit可能出现的余数       
    a ^ b: 每bit在此次操作可能留下的值，XOR 操作         
    每次左移余数1位，然后存到b, 再去跟a做第一步。loop until b == 0    
 
@@ -14,6 +20,7 @@ Steps:
 
 ```
 /*
+Also on LeetCode: Sum of Two Integers
 Write a function that add two numbers A and B. You should not use + or any arithmetic operators.
 
 Example
@@ -37,6 +44,26 @@ Cracking The Coding Interview Bit Manipulation
 
 
 */
+
+/*
+Thoughts:
+Wring down truth table for a and b:
+a + b on each bit becomes OR operation, exception when they are both 1, where they becomes 0 and add forward to next bit.
+- We can use a carryOver
+- Use long to hold the result
+*/
+class Solution {
+    public int getSum(int a, int b) {
+        int sum = a ^ b; // incomplete sum
+        int nextCarry = (a & b) << 1;
+        while (nextCarry != 0) {
+            int currentCarry = sum & nextCarry;
+            sum = sum ^ nextCarry;
+            nextCarry = currentCarry << 1;
+        }
+        return sum;
+    }
+}
 
 /*
 Thought:

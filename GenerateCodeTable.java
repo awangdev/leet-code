@@ -75,7 +75,6 @@ public class GenerateCodeTable {
             "<tr>" + 
             "<th align='center'>#</th>" + 
             "<th align='left'>Problem</th>" + 
-            "<th align='left'>      Level</th>" + 
             "<th align='center'>  Language</th>" + 
             "</tr>" +
             "</thead>" +
@@ -88,8 +87,7 @@ public class GenerateCodeTable {
                 outputContent+= 
                 "<tr>" + 
                     "<td align='center'>" + count + "</td>" +
-                    "<td align='left'><a href='https://github.com/awangdev/LintCode/blob/master/Java/"+ file.getName() + "'>" + file.getName() + "</a></td>" +
-                    "<td align='left'></td>" +
+                    "<td align='left'><a href='https://github.com/awangdev/LintCode/blob/master/Java/" + file.getName() + "'>" + file.getName() + "</a></td>" +
                     "<td align='center'>Java</td>" +
                 "</tr>";
                 count++;            
