@@ -66,6 +66,101 @@ class Solution {
 }
 
 /*
+Thoughts:
+UnionFind.
+Traverse all points of grid and count the total number of island. See Number of Islands II for details.
+Note: need to initialize the 1D array first with all 1's. Therefore, when we start perform union-find, we already have knowledge of entire island status.
+
+However, it's not as straight-forward as DFS though.
+*/
+class Solution {
+    class UnionFind {
+        private HashMap<Integer, Integer> map = new HashMap<>();
+        
+        /*
+        Model the disjoint set with 1D array
+        During initialization, assume each spot has itself as the parent
+        */
+        public UnionFind(int size) {
+            for (int i = 0; i < size; i++) {
+                map.put(i, i);
+            }
+        }
+        
+        /*
+        Use one key and find out the root parent of this set where they key belongs to.
+        */
+        public int findRootParent(int item) {
+            int parent = map.get(item);
+            while (parent != map.get(parent)) {
+                parent = map.get(parent);
+            }
+            return parent;
+        }
+
+        /*
+        Find the root parent of each item. If the root parent is different,
+        join them together by adding them into the map as <key, value> pair.
+        */
+        public void union(int itemX, int itemY) {
+            int parentX = findRootParent(itemX);
+            int parentY = findRootParent(itemY);
+            if (parentX != parentY) {
+                map.put(parentX, parentY);
+            }
+        }
+    }
+
+    private int[] dx = {1, -1, 0, 0};
+    private int[] dy = {0, 0, 1, -1};
+    
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int count = 0;
+        int m = grid.length;
+        int n = grid[0].length;
+        final int[] islands = new int[m * n];
+        final UnionFind unionFind = new UnionFind(m * n);
+        // Initialize island
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '1') {
+                    int pos = i * n + j;
+                    islands[pos] = 1;
+                    count++;
+                }
+            }
+        }
+        // Merge island and decrease count if on merged island
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int pos = i * n + j;
+                if (islands[pos] != 1) {
+                    continue;
+                }
+                for (int k = 0; k < dx.length; k++) {
+                    int adjX = i + dx[k];
+                    int adjY = j + dy[k];
+                    int adjPos = adjX * n + adjY;
+                    if (adjX >= 0 && adjX < m && adjY >= 0 && adjY < n && islands[adjPos] == 1) {
+                        int currSpotRoot = unionFind.findRootParent(pos);
+                        int adjSpotRoot = unionFind.findRootParent(adjPos);
+                        if (currSpotRoot != adjSpotRoot) {
+                            count--;
+                            unionFind.union(currSpotRoot, adjSpotRoot);
+                        }
+                    }
+
+                }
+            }
+        }
+        return count;
+    }
+}
+
+/*
   12.12.2015 recap
   We are checking if a sets of adjacent nodes are int the same set
   We union all neighbors
