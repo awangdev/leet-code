@@ -1,7 +1,7 @@
 M
 
-利用 BST的性质，可以直接搜到target node，而做成两个长度不一定相等的list。然后很简单找到LCA 
-
+方法1: 利用 BST的性质，可以直接搜到target node，而做成两个长度不一定相等的list。然后很简单找到LCA 
+方法2: Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
 
 ```
 /*
@@ -25,6 +25,73 @@ Tags: Tree
 Similar Problems: (M) Lowest Common Ancestor of a Binary Tree
 
 */
+
+/*
+Thoughts:
+Based on the value of p and q, use BST to find the node, and store the visited nodes in two separate lists.
+Find last common item in the list to return.
+*/
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == null || q == null) {
+            return root;
+        }
+        final List<TreeNode> listP = new ArrayList<>();
+        final List<TreeNode> listQ = new ArrayList<>();
+        findNode(root, p, listP);
+        findNode(root, q, listQ);
+        int size = listP.size() > listQ.size() ? listQ.size() : listP.size();
+        TreeNode parent = root;
+        for (int i = 0; i < size; i++) {
+            if (listP.get(i).val == listQ.get(i).val) {
+                parent = listP.get(i);
+            } else {
+                return parent;
+            }
+        }
+        return parent;
+    }
+    
+    private void findNode(TreeNode node, TreeNode target, List<TreeNode> list) {
+        while (node != null) {
+            list.add(node);
+            if (node.val == target.val) {
+                return;
+            }
+            if (node.val > target.val) {
+                node = node.left;
+            } else {
+                node = node.right;   
+            }
+        }
+    }
+}
+
+
+/*
+Thoughts:
+Besides the method of finding all ancestors, we can look at the problem in a greedy way.
+Move both p and q to find the ancestor:
+If the root is on the left of both p and q, that means the ancestor must be on right size of root; same applies to the other direction.
+
+This leads to a compact recursive solution.
+
+However, the iterative way might be more useful in real development where it utilize data struture
+*/
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == null || q == null) {
+            return root;
+        }
+        if (root.val < p.val && root.val < q.val) {
+            return lowestCommonAncestor(root.right, p, q);
+        } else if (root.val > p.val && root.val > q.val) {
+            return lowestCommonAncestor(root.left, p, q);
+        }
+        return root;
+    }
+}
+
 /*
 Thoughts:
 Create 2 path: l1, l2.
@@ -35,50 +102,4 @@ Note:
 When one of the target is root, make sure parent = root, and return root at the end. This is because: the if statement (l1.get(i).val != l2.get(i).val) won't capture this case; instead, the for loop ends by i == size. So, be careful here.
 */
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || p == null || q == null) {
-            return null;
-        }
-        ArrayList<TreeNode> l1 = new ArrayList<TreeNode>();
-        ArrayList<TreeNode> l2 = new ArrayList<TreeNode>();
-        binarySearch(root, p, l1);
-        binarySearch(root, q, l2);
-
-        TreeNode parent = root;
-        int size = l1.size() > l2.size() ? l2.size() : l1.size();
-        for (int i = 0; i < size; i++) {
-            if (l1.get(i).val == l2.get(i).val) {
-                parent = l1.get(i);
-            } else {
-                return parent;
-            }
-        }
-        return parent;
-    }
-
-
-    public void binarySearch(TreeNode root, TreeNode target, ArrayList<TreeNode> list) {
-        TreeNode node = root;
-        while (node != null) {
-            list.add(node);
-            if (node.val == target.val) {
-                return;
-            } else if (node.val < target.val) {
-                node = node.right;
-            } else {
-                node = node.left;
-            }
-        }//END while
-    }
-}
 ```

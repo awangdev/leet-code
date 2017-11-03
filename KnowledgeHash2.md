@@ -61,7 +61,9 @@ Map
 
 Hash Table
 
-
+#### HashSet ####
+- contains: O(1)
+- set.add(...) returns false if there is duplicate. This operation won't change the existing set.
 
 ### Basics
 
@@ -77,8 +79,9 @@ Hash Table
 - sb = new StringBuffer()
 - sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length()
 
-Bit Manipulation
-
+#### Bit Manipulation ####
+- Bit OR |, AND &, XOR ^
+- Bit shift: <<, >>
 
 
 ### DP
@@ -119,7 +122,10 @@ Greedy
 
 Divide and Conquer
 
-Recursion
+#### Recursion ####
+- ex: dfs
+- always find the entry point or terminating point
+- watch out for the return or result of recursed function
 
 Design
 

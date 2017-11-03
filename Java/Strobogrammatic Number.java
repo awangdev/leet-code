@@ -1,3 +1,8 @@
+E
+
+根据题意枚举, 再根据规则basic implementation
+
+```
 /*
 A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
 Write a function to determine if a number is strobogrammatic. The number is represented as a string.
@@ -5,6 +10,37 @@ For example, the numbers "69", "88", and "818" are all strobogrammatic.
 Tags: Hash Table Math
 Similar Problems: (M) Strobogrammatic Number II, (H) Strobogrammatic Number III
 */
+/*
+Thoughts:
+The exact same number is 1 and 8.
+The flip-rotate-then-same number is 6 and 9.
+All we need to do is to flip number (6 and 9), and then reverse the string, see if the string is the same.
+*/
+class Solution {
+    public boolean isStrobogrammatic(String num) {
+        if (num == null || num.length() == 0) {
+            return true;
+        }
+        if (num.length() == 1) {
+            return num.equals("0") || num.equals("1") || num.equals("8");
+        }
+        List<Character> candidate = new ArrayList<>(Arrays.asList('0', '1', '8', '6', '9'));
+        char[] charArray = num.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            if (!candidate.contains(charArray[i])) {
+                return false;
+            }
+            if (charArray[i] == '6') {
+                charArray[i] = '9';
+            } else if (charArray[i] == '9') {
+                charArray[i] = '6';
+            }
+        }
+        StringBuffer sb = new StringBuffer(String.valueOf(charArray));
+        String upsideDownNum = sb.reverse().toString();
+        return num.equals(upsideDownNum);
+    }
+}
 
 /*
 OPTS 11.04.2015
@@ -81,3 +117,4 @@ public class Solution {
         return true;
     }
 }
+```
