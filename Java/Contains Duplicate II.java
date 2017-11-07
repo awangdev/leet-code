@@ -1,6 +1,6 @@
 E
 
-方法1: HashTable<value, list of duplicates>, brutly check agains the lsit
+方法1: HashTable<value, list of duplicates>, brutly check agains the list
 方法2: 很巧妙地根据k range地条件, 把HashSet里面的值控制在[i - k, i]. 那么一旦match, 就符合条件. 
 
 这两种做法很艺术:
