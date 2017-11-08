@@ -9,6 +9,7 @@ Heap
 #### Queue
 - Functions: peek(), poll(), add()/offer()
 - Linked List
+- PriorityQueue: new Comparator 很重要
 
 
 

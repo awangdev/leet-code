@@ -11,6 +11,10 @@ PriorityQueue: logk
    比如，如果k很大，一个机器上放不下所有的k list怎么办？ 
    比如，如果Merge起来的很长，一个机器上放不下怎么办？
 
+Note:
+1. 不要忘记customized priority需要一个customized new Comparator<T>()
+2. Given list 里面也可能有null node, 不要忘记查.
+
 ```
 
 /*
@@ -35,6 +39,49 @@ Divide and Conquer Linked List Priority Queue Heap Uber Google Twitter LinkedIn 
 
 
 */
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        // Initialize the priority queue with customized comparator
+        final PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>() {
+            public int compare (final ListNode a, final ListNode b) {
+                return a.val - b.val;
+            }
+        });
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null) {
+                queue.offer(lists[i]);
+            }
+        }
+
+        if (queue.isEmpty()) {
+            return null;
+        }
+        // Append the priority queue with all items
+        ListNode dummy = new ListNode(0);
+        ListNode head = dummy;
+        while (!queue.isEmpty()) {
+            ListNode node = queue.poll();
+            if (node.next != null) {
+                queue.offer(node.next);
+            }
+            head.next = node;
+            head = head.next;
+        }
+        return dummy.next;
+    }
+}
 
 /**
  * Definition for singly-linked list.
