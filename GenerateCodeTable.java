@@ -105,13 +105,17 @@ public class GenerateCodeTable {
     public static String generateREADME(File[] listOfFiles) {
         //Assemble output
         String outputContent = "# Java Algorithm Problems\n\n" + 
-            "### 前戏\n" +
-            "To host Java Solutions to algorithm problems from LintCode, LeetCode...etc.\n" + 
-            "I Will try to revise the solutions once new problem or new testing case occurs.\n" + 
-            "**Mid 2016** I realize that people may want to contribute to this repo, and make it better by contributing fixes, better solutions ... etc. Free free to send pull request. Once verified, I'm happy to merge in!\n" +
-            "CALM DOWN AND CODE ON! Fellows! \n\n" +  
-            "### News\n" + 
-            "2017年1月17日, 陪我征战多年的 2014 MackBookPro i7 3.xGHz 被一杯清水结束了生命，在这里深切缅怀悼念。这个Git Repo是小M陪我一字一句打出来的，有过蹉跎，也有过辉煌，陪我从Day1刷题一直刷到了Day1之中。直至今日，小M记录的代码还在给广大coder带来福利。为了延续小M无私奉献的精神,我将重新在这个repo活跃起来，重整已有的问题，也会尝试总结一些System Design方面的想法，将小M还没有能够达成的梦想实现。\n\n" + 
+            "### 程序员的一天\n" +
+            "从开始这个Github已经有将近两年时间, 很高兴这个repo可以帮到有需要的人. 我一直认为, 知识本身是无价的, 因此每逢闲暇, 我就会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 下面来简单介绍一下这个repo:\n" + 
+            "**README.md**: 所有所做过的题目\n" + 
+            "**ReviewPage.md**: 所有题目的总结和归纳（不断完善中）\n" + 
+            "**KnowledgeHash2.md**: 对所做过的知识点的一些笔记\n" + 
+            "**SystemDesign.md**: 对系统设计的一些笔记\n" + 
+            "**Future Milestone**: 我准备将一些有意思的题目，做成视频的形式给大家参考\n" + 
+            "**借此机会, 正式介绍一下自己, 以及我背后的大老板**\n" + 
+            "[![介绍一下自己！](https://img.youtube.com/vi/3keMZsV1I1U/0.jpg)](https://youtu.be/3keMZsV1I1U)\n" + 
+            "希望大家学习顺利, 对未来充满希望(程序员也是找到好老板的!)\n" + 
+            "有问题可以给我写邮件(wangdeve@gmail.com), 或者在GitHub上发issue给我.\n\n" +         
             "| Squence | Problem       | Level  | Language  | Video Tutorial|\n" + 
             "|:-------:|:--------------|:------:|:---------:|:-------------:|\n";
         int count = 0;
