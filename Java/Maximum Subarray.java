@@ -1,5 +1,14 @@
+E
+
+方法1
+比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
+那么就assign: sums[i]=nums[i]
+这个做法比较中规中矩, makes sense
+
+方法2(better)
 想着用一用prefix sum. 把值一个个叠加。
 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
+
 ```
 /*
 Maximum Subarray Show Result My Submissions
@@ -37,7 +46,7 @@ class Solution {
         int maxSum = sums[0];
         
         for (int i = 1; i < nums.length; i++) {
-            if (sums[i - 1] < 0) {
+            if (sums[i - 1] < 0) {// sums[i-1] only reduces maxSum, therefore skip it in sums[i]
                 sums[i] = nums[i];
             } else {
                 sums[i] = sums[i - 1] + nums[i];
@@ -158,21 +167,5 @@ public class Solution {
         return max;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ```

@@ -1,3 +1,7 @@
+E
+Same as https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java
+
+```
 /*
 Given an array of integers, find two numbers such that they add up to a specific target number.
 
@@ -38,3 +42,4 @@ public class Solution {
         return rst;
     }
 }
+```

@@ -1,10 +1,15 @@
 M
 
+方法1:
+跟Binary Tree Level Order Traversal一样,只不过存result一直存在存在0位.
+
+方法2(略复杂, 不需要):
 普通BFS，用一个queue，加上一个queue.size()来交替换行. 
 或者多用一个queue来存下个level的nodes
 
+方法3:
+DFS, 根据level来append每个list
 rst里面add(0,...)每次都add在list开头
-
 
 ```
 
@@ -44,6 +49,44 @@ Queue Binary Tree Binary Tree Traversal Breadth First Search
  *     }
  * }
  */
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        ArrayList<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        while (!queue.isEmpty()) {
+            final ArrayList<Integer> list = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                final TreeNode node = queue.poll();
+                list.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            result.add(0, list);
+        }// end while
+        
+        return result;
+    }
+}
 
 /*
 Thoughts:

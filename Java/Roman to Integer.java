@@ -31,7 +31,7 @@ M: 1000
 
 There are usual combinations:
 IV: 4
-IV: 9
+IX: 9
 XL: 40
 XC: 90
 CD: 400

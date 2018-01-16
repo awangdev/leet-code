@@ -1,3 +1,7 @@
+E
+Same as https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java
+
+```
 /*
 Reverse Integer 
 
@@ -33,3 +37,5 @@ public class Solution {
     }
 }
 
+
+```
