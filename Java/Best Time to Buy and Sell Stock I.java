@@ -5,12 +5,13 @@ E
    记录每天最小值Min是多少。O(n)
    每天都算和当下的Min买卖，profit最大多少.
 
+这里就可以DP, memorize the min[i]: the minimum among [0 ~ i]; 然后用当天的price做减法算max.
+更进一步, 用一个min来表示min[i], 因为计算中只需要当下的min.
+
+
 Brutle:
 每天都试着买进，然后之后的每一天尝试卖出. double for loop, O(n^2). timeout.
 其中很多都是没必要的计算：[7, 1, 5, 3, 6, 4]。 if we know buyin with 1 is cheapest, we don't need to buyin at 5, 3, 6, 4 later on; we'll only sell on higher prices.
-
-这里就可以DP, memorize the min[i]: the minimum among [0 ~ i]; 然后用当天的price做减法算max.
-
 
 ```
 /*

@@ -2,7 +2,7 @@ M
 
 方法1: 两个for loop brutle force。 DFS把每个跟1相关的都Mark一遍.生成一个island.
 
-方法2: （暂时没有写union-find的解）
+方法2:
 可以用union-find， 就像Number of island II 一样。
 只不过这个不Return list, 而只是# of islands
 
@@ -69,7 +69,8 @@ class Solution {
 Thoughts:
 UnionFind.
 Traverse all points of grid and count the total number of island. See Number of Islands II for details.
-Note: need to initialize the 1D array first with all 1's. Therefore, when we start perform union-find, we already have knowledge of entire island status.
+Note: need to initialize the 1D array first with all 1's. 
+Therefore, when we start perform union-find, we already have knowledge of entire island status.
 
 However, it's not as straight-forward as DFS though.
 */

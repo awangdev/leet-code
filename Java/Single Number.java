@@ -20,7 +20,9 @@ Greedy
 Manipulate bits:
 Thinking process:
 One-pass and constant extra space.
-since all numbers appears twice, consider them as in bits format. Two identical number XOR will be zero. If we XOR everything double-numbers together, it will be zero. At the end, we use o XOR our target number, the result is actually the target number.
+since all numbers appears twice, consider them as in bits format. Two identical number XOR will be zero. 
+If we XOR everything double-numbers together, it will be zero. 
+At the end, we use o XOR our target number, the result is actually the target number.
 Very smart trick to use bits.
 In order to compare from index 0 to the end, we need to extract index 0 first as result before for loop. And start for loop at i = 1.
 */
