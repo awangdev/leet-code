@@ -1,6 +1,9 @@
+E
+
 著名Nim游戏。
-写一些，发现n=4,5,6,7,8...etc之后的情况有规律性。
+写一些，发现n=4,5,6,7,8...etc之后的情况有规律性: 谁先手拿到4就输了.
 最终很简单n%4!=0就可以了
+
 ```
 /*
 You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.
