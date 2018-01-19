@@ -88,7 +88,7 @@ Hash Table
 - s.toCharArray()
 - String.valueOf(charArrary)
 - sb = new StringBuffer()
-- sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length()
+- sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length(), sb.setCharAt(index, char)
 
 #### Bit Manipulation
 - Bit OR |, AND &, XOR ^

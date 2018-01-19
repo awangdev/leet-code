@@ -151,7 +151,7 @@ public class GenerateCodeTable {
                                                   new FileInputStream("Java/" + file.getName()), "UTF-8"));
                     // Get level
                     final String levelLine = reader.readLine().trim();
-                    if (levelLine.length() == 1 && calculateLevel(levelLine.toUpperCase()).length() == 1) {
+                    if (levelLine.length() == 1) {
                         calculatedLevel = calculateLevel(levelLine.toUpperCase());
                     }
                     // Get timestamp
