@@ -57,6 +57,13 @@ Binary Search
 
 Sort
 
+### Collections
+
+#### methods
+Collections.sort()
+
+#### ArrayList
+new ArrayList(Arrays.asList([1,2,3]))
 
 
 ### Hash

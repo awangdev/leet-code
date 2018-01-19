@@ -1,4 +1,5 @@
 E
+
 tutorial:https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be
 
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.

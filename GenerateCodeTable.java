@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 /*
 Used to generate table of contents.
     - No args: generate GitHub table
@@ -7,6 +8,26 @@ Used to generate table of contents.
     - args == 'all', genereate both table
 */
 public class GenerateCodeTable {
+    /*
+        TableRow, used to hold table object and sort by date.
+    */
+    private static class TableRow {
+        private long date;
+        private String rowContext;
+        public TableRow(long date, String rowContext) {
+            this.date = date;
+            this.rowContext = rowContext;
+        }
+
+        public long getDate() {
+            return this.date;
+        }
+
+        public String getRowContext() {
+            return this.rowContext;
+        }
+    }
+
     public final static String TUTORIAL_KEY_WORD = "tutorial:";
     public static void main(String[] args) {    
         //Read Java Solution Folder
@@ -119,30 +140,46 @@ public class GenerateCodeTable {
             "| Squence | Problem       | Level  | Language  | Video Tutorial|\n" + 
             "|:-------:|:--------------|:------:|:---------:|:-------------:|\n";
         int count = 0;
+        final ArrayList<TableRow> tableRows = new ArrayList<>();
         for (File file : listOfFiles) {
             String tutorialLink = "";
             String calculatedLevel = "";
+            long timestamp = 0;
             if (file.getName().contains(".java")) {
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(
                                                   new FileInputStream("Java/" + file.getName()), "UTF-8"));
+                    // Get level
                     final String levelLine = reader.readLine().trim();
-                    if (levelLine.length() == 1) {
+                    if (levelLine.length() == 1 && calculateLevel(levelLine.toUpperCase()).length() == 1) {
                         calculatedLevel = calculateLevel(levelLine.toUpperCase());
                     }
+                    // Get timestamp
+                    final String timestampLine = reader.readLine();
+                    if (timestampLine.length() != 0) {
+                        timestamp = Long.parseLong(timestampLine);
+                    }
+
+                    // Get tutorial
                     final String tutorialLine = reader.readLine();
                     if (tutorialLine.indexOf(TUTORIAL_KEY_WORD) == 0) {
                         tutorialLink = "[Link](" + tutorialLine.substring(TUTORIAL_KEY_WORD.length()) + ")";
                     }
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     System.err.format("IOException: %s%n", e);
                 }
                 String convertedFileName = file.getName().replace(" ", "%20");
-                outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"
+                String composedLine = "|" + count + "|[" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"
                                 + convertedFileName + ")|" + calculatedLevel + "|" + "Java|" + tutorialLink + "|\n";
+                final TableRow tableRow = new TableRow(timestamp, composedLine);
+                tableRows.add(tableRow);
                 count++;            
             }
-        }   
+        }
+        Collections.sort(tableRows, Comparator.comparing(TableRow::getDate));
+        for (TableRow row : tableRows) {
+            outputContent += row.getRowContext();
+        }
         return outputContent;
     }
 
@@ -170,6 +207,7 @@ public class GenerateCodeTable {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("Java/" + file.getName()), "UTF-8"));
                     String line = null;
                     int countLine = 0;
+                    // Reading ends upon first '```'
                     while ((line = reader.readLine()) != null && !line.equals("```")) {
                         if (countLine == 0) {
                             final String trimedLine = line.trim().toUpperCase();
@@ -189,7 +227,7 @@ public class GenerateCodeTable {
                     System.err.format("IOException: %s%n", e);
                 }//end of one file
                 outputContent += "\n---\n";
-                count++;            
+                count++;
             }
         }   
         return outputContent;
