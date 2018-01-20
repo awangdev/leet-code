@@ -139,7 +139,6 @@ public class GenerateCodeTable {
             "有问题可以给我写邮件(wangdeve@gmail.com), 或者在GitHub上发issue给我.\n\n" +         
             "| Squence | Problem       | Level  | Language  | Video Tutorial|\n" + 
             "|:-------:|:--------------|:------:|:---------:|:-------------:|\n";
-        int count = 0;
         final ArrayList<TableRow> tableRows = new ArrayList<>();
         for (File file : listOfFiles) {
             String tutorialLink = "";
@@ -169,16 +168,15 @@ public class GenerateCodeTable {
                     System.err.format("IOException: %s%n", e);
                 }
                 String convertedFileName = file.getName().replace(" ", "%20");
-                String composedLine = "|" + count + "|[" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"
+                String composedLine = "|[" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"
                                 + convertedFileName + ")|" + calculatedLevel + "|" + "Java|" + tutorialLink + "|\n";
                 final TableRow tableRow = new TableRow(timestamp, composedLine);
                 tableRows.add(tableRow);
-                count++;            
             }
         }
         Collections.sort(tableRows, Comparator.comparing(TableRow::getDate));
-        for (TableRow row : tableRows) {
-            outputContent += row.getRowContext();
+        for (int i = 0; i < tableRows.size(); i++) {
+            outputContent += "|" + i + tableRows.get(i).getRowContext();
         }
         return outputContent;
     }
