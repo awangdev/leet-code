@@ -1,7 +1,8 @@
 M
+1516439332
 
-排序好的array. Binary Search移动start和end，核查sum。
-
+排序好的array. Two pointer移动start和end，核查sum.
+注意sum用long.
 
 ```
 /*
@@ -25,32 +26,31 @@ Similar Problems: (M) Two Sum
 
 /*
 Thoughts:
-Do a binary search, but do not over-complicate it:
+Two pointer sweeping.
 Start, end. Check if nums[start] + nums[end] == target.
-binary move it: in fact, moving the two border, 1 position at a time
 */
 
-public class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        int[] rst = new int[2];
-        if (nums == null || nums.length <= 1) {
-            return rst;
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        if (numbers == null || numbers.length == 0) {
+            return numbers;
         }
+        final int[] result = new int[2];
         int start = 0;
-        int end = nums.length - 1;
-        while(start < end) {
-            long sum = (long)(nums[start] + nums[end]);
-            if (target == sum) {
-                rst[0] = start + 1;
-                rst[1] = end + 1;
+        int end = numbers.length - 1;
+        while (start < end) {
+            long sum = (long)(numbers[start] + numbers[end]);
+            if (sum == target) {
+                result[0] = start + 1;
+                result[1] = end + 1;
                 break;
-            } else if (target > sum) {
+            } else if (sum < target) {
                 start++;
             } else {
                 end--;
             }
-        }//END while
-        return rst;
+        }//end while
+        return result;
     }
 }
 

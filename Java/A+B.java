@@ -20,7 +20,7 @@ Steps:
 
 ```
 /*
-Also on LeetCode: Sum of Two Integers
+Also on LeetCode: Sum of Two Integers. https://leetcode.com/problems/sum-of-two-integers/
 Write a function that add two numbers A and B. You should not use + or any arithmetic operators.
 
 Example

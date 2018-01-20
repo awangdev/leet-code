@@ -4,13 +4,16 @@ This page summarize the solutions of all problems. For thoughts,ideas written in
 New problems will be automatically updated once added.
 
 **0. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium
+1516439332
 
-排序好的array. Binary Search移动start和end，核查sum。
-
+排序好的array. Two pointer移动start和end，核查sum.
+注意sum用long.
 
 
 ---
 **1. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium
+1516439472
+与 2sum II - input array is sorted类似. 都是sort array, 然后two pointer.
 
 LintCode的题. 注意找的是greater/bigger than target。
 
@@ -25,7 +28,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 ---
 **2. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy
-
+1516438794
 tutorial:https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be
 
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
@@ -4401,6 +4404,7 @@ public class Solution {
 
 ---
 **250. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
+1516438554
 
 别无他法, 只能写一遍例子, 找规律,然后greedy. 
 需要写一遍发现的规律比如: 从h大的开始排列, 先放入k小的. 写comparator的时候要注意正确性.
