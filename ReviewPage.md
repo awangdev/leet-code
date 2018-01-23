@@ -58,9 +58,15 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 
 ---
 **5. [3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)**      Level: Medium
+1516689562
 
-用个for loop 加上 2sum 的土办法。
+方法1:
+sort array, for loop + two pointer. O(n)
+处理duplicate wthin triplets: 
+如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
+如果是triplet内有重复, 用完start point, 移动到结尾.
 
+Previous notes:
 注意:   
    1. 找 value triplets, 多个结果。注意，并非找index。    
    2. 要升序, 第一层for loop 从最后一个元素挑起, 保证了顺序。    
@@ -73,23 +79,24 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 
 时间 O(n^2), 两个nested loop
 
-
 另外, 还是可以用HashMap来做2Sum。稍微短点。还是要注意handle duplicates.
 
-再另外（leetcode做时写的）：先sort，然后two pointer。
 
 
 ---
 **6. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium
+1516696879
 
-方法1： 3Sum外面再加一层. 参考3Sum. 时间O(n^3)。 但此方法在k-sum时候，无疑过于费时间. O(n^k)
-
-方法2： 参见 http://lifexplorer.me/leetcode-3sum-4sum-and-k-sum/      
+方法1：  
    1. 利用2Sum的原理，把4Sum分为连个2Sum。左一个pair,右一个pair，每个pair里面放2个数字。   
    2. 以一个点，i，作为分界口，也要列举出所有i之前的pair,作为基础。   
    3. 再尝试从所有i+1后面,找合适的2nd pair。   
+ 
+   可以用HashSet<List>, 可以直接比较list里面每一个元素, 保证set不重复.
+   Previous Notes: 在造class Pair时候，要做@override的function: hashCode(), equals(Object d). 平时不太想得起来用。
+   参见 http://lifexplorer.me/leetcode-3sum-4sum-and-k-sum/    
 
-   注意：在造class Pair时候，要做@override的function: hashCode(), equals(Object d). 平时不太想得起来用。
+方法2： 3Sum外面再加一层. 参考3Sum. 时间O(n^3)。 但此方法在k-sum时候，无疑过于费时间. O(n^k)
 
 
 ---
@@ -6059,67 +6066,14 @@ process的时候，画个图也可以搞清楚，就是四个方向都走走，�
 
 
 ---
-**326. [Triangle Count.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangle%20Count.java)**
-Given an array of integers, how many three numbers can be found in the array, so that we can build an triangle whose three edges length is the three numbers that we find?
+**326. [Triangle Count.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangle%20Count.java)**      Level: Medium
+1516683660
 
-Example
-Given array S = [3,4,6,7], return 3. They are:
-
-[3,4,6]
-[3,6,7]
-[4,6,7]
-Given array S = [4,4,4,4], return 4. They are:
-
-[4(1),4(2),4(3)]
-[4(1),4(2),4(4)]
-[4(1),4(3),4(4)]
-[4(2),4(3),4(4)]
-Tags Expand 
-Two Pointers LintCode Copyright
-*/
-
-/*
-Thoughts:
-Pick 3 integers that fits the condition: 
-A + B > C
-B + C > A
-A + C > B
-If we sort the input, then we know A <= B <= C, so we can remove 2 conditoins above and only have:
-A + B > C
-That is, Pick one C, and pick two integers A,B in front. Similar to TWO SUM II.
-Have a fixed C as target, and find A + B > target in the remaining array on left of C. 
-How about just use 2 pointers left, right, and compare with a C (s[i] in for loop)
-Time: O(n^2)
-
-Note: don't forget to sort
-*/
-
-public class Solution {
-    /**
-     * @param S: A list of integers
-     * @return: An integer
-     */
-    public int triangleCount(int S[]) {
-    	if (S == null || S.length == 0) {
-    		return 0;
-    	}
-    	Arrays.sort(S);
-    	int count = 0;
-    	for (int i = 0; i < S.length; i++) {
-    		int left = 0;
-    		int right = i - 1; //at least 1 step left from C
-    		while (left < right){
-    			if (S[left] + S[right] > S[i]) {
-	    			count += (right - left);
-	    			right--;
-	    		} else {//(S[left] + S[right] <= S[i]) 
-	    			left++;
-	    		}
-    		}
-    	}
-    	return count;
-    }
-}
+其实也就是3sum的变形, 或者而说2sum的变形. 主要用2 pointers来做.
+注意, 在选index时候每次定好一个 [0 ~ i], 在这里面找点start, end, 然后i 来组成triangle.
+Note巧妙点:
+在此之中, 如果一种start/end/i 符合, 那么从这个[start~end]中, 大于start的都可以, 所以我们count+= end-start.
+反而言之, <end的其他index, 就不一定能符合nums[start] + nums[end] > nums[i]
 
 
 ---

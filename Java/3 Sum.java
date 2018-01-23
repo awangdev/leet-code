@@ -1,7 +1,13 @@
 M
+1516689562
 
-用个for loop 加上 2sum 的土办法。
+方法1:
+sort array, for loop + two pointer. O(n)
+处理duplicate wthin triplets: 
+如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
+如果是triplet内有重复, 用完start point, 移动到结尾.
 
+Previous notes:
 注意:   
    1. 找 value triplets, 多个结果。注意，并非找index。    
    2. 要升序, 第一层for loop 从最后一个元素挑起, 保证了顺序。    
@@ -14,10 +20,8 @@ M
 
 时间 O(n^2), 两个nested loop
 
-
 另外, 还是可以用HashMap来做2Sum。稍微短点。还是要注意handle duplicates.
 
-再另外（leetcode做时写的）：先sort，然后two pointer。
 
 ```
 /*
@@ -36,7 +40,46 @@ The solution set must not contain duplicate triplets.
 
 Tags Expand 
 Two Pointers Sort Array Facebook
+*//*
+Thoughts:
+Sort the list, do a for loop and two pointer within.
+Make sure to skip duplicated index value:
+when 'start' is duplicated, start++ until no duplicates.
+when i is duplicated, continue in for loop and get to end of last duplicate and use that as i.
+
+O(n) * O(n) -> O(n^2)
 */
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        final List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        for (int i = 2; i < nums.length; i++) {
+            if (i + 1 < nums.length && nums[i] == nums[i + 1]) {
+                continue;
+            }
+            int start = 0;
+            int end = i - 1;
+            while (start < end) {
+                if (nums[start] + nums[end] + nums[i] == 0) {
+                    final Integer[] intarr = {nums[start], nums[end], nums[i]};
+                    result.add(Arrays.asList(intarr));
+                    start++;
+                    while (start < end && nums[start - 1] == nums[start]) {
+                        start++;
+                    }
+                } else if (nums[start] + nums[end] + nums[i] < 0) {
+                    start++;
+                } else {
+                    end--;
+                }
+            }
+        }
+        return result;
+    }
+}
 
 /*
 Thoughts:

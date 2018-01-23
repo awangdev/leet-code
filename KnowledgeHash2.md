@@ -63,7 +63,8 @@ Sort
 Collections.sort()
 
 #### ArrayList
-new ArrayList(Arrays.asList([1,2,3]))
+Integer[] array = {1, 2, 3};
+new ArrayList(Arrays.asList(array))
 
 
 ### Hash
@@ -75,6 +76,7 @@ Hash Table
 #### HashSet
 - contains: O(1)
 - set.add(...) returns false if there is duplicate. This operation won't change the existing set.
+- Build HashSet<List> set, and the set will automatically compare the equivalence of the lists within at each list element level.
 
 ### Basics
 
