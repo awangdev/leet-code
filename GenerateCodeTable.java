@@ -164,6 +164,47 @@ public class GenerateCodeTable {
             "有问题可以给我写邮件(wangdeve@gmail.com), 或者在GitHub上发issue给我.\n\n" +         
             "| Squence | Problem       | Level  | Language  | Video Tutorial|\n" + 
             "|:-------:|:--------------|:------:|:---------:|:-------------:|\n";
+        final List<TableRow> tableRows = getTableRows(listOfFiles);
+        for (int i = 0; i < tableRows.size(); i++) {
+            outputContent += "|" + i + tableRows.get(i).getTableComposedLine();
+        }
+        return outputContent;
+    }
+
+    /*
+        Generate Review Page contents
+        Review Page content:
+        1. Sequence
+        2. Name
+        3. Difficulty
+        4. Summary of solution, key points.
+    */
+    public static String generateReviewPage(File[] listOfFiles) {
+        //Assemble output
+        String outputContent = "# Review Page\n\n" + 
+            "This page summarize the solutions of all problems. For thoughts,ideas written in English, refer to deach individual solution. \n" + 
+            "New problems will be automatically updated once added.\n\n";
+            
+        final List<TableRow> tableRows = getTableRows(listOfFiles);
+        int count = 0;
+        for (TableRow tableRow: tableRows) {
+            outputContent += "**" + count + ". [" + tableRow.getFileName()
+                          + "](https://github.com/awangdev/LintCode/blob/master/Java/"
+                          + tableRow.getFileName().replace(" ", "%20") +")**";
+            
+            outputContent += "      Level: " + tableRow.getLevel() + "\n";
+            outputContent += "      " + tableRow.getTutorialLink() + "\n";
+            outputContent += tableRow.getNote() + "\n";
+            outputContent += "\n---\n";
+            outputContent += "\n---\n";
+            count++;
+        }
+        return outputContent;
+    }
+
+    
+
+    private static List<TableRow> getTableRows(File[] listOfFiles) {
         final ArrayList<TableRow> tableRows = new ArrayList<>();
         for (File file : listOfFiles) {
             if (file.getName().contains(".java")) {
@@ -171,10 +212,7 @@ public class GenerateCodeTable {
             }
         }
         Collections.sort(tableRows, Comparator.comparing(TableRow::getDate));
-        for (int i = 0; i < tableRows.size(); i++) {
-            outputContent += "|" + i + tableRows.get(i).getTableComposedLine();
-        }
-        return outputContent;
+        return tableRows;
     }
 
     private static TableRow getTableRow(String fileName) {
@@ -220,38 +258,6 @@ public class GenerateCodeTable {
             System.err.format("IOException: %s%n", e);
         }
         return tableRow;
-    }
-
-    /*
-        Generate Review Page contents
-        Review Page content:
-        1. Sequence
-        2. Name
-        3. Difficulty
-        4. Summary of solution, key points.
-    */
-    public static String generateReviewPage(File[] listOfFiles) {
-        //Assemble output
-        String outputContent = "# Review Page\n\n" + 
-            "This page summarize the solutions of all problems. For thoughts,ideas written in English, refer to deach individual solution. \n" + 
-            "New problems will be automatically updated once added.\n\n";
-            
-        int count = 0;
-        for (File file : listOfFiles) {
-            if (file.getName().contains(".java")) {
-                String convertedFileName = file.getName().replace(" ", "%20");
-                outputContent += "**" + count + ". [" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"+ convertedFileName +")**";
-                final TableRow tableRow = getTableRow(file.getName());
-                
-                outputContent += "      Level: " + tableRow.getLevel() + "\n";
-                outputContent += "      " + tableRow.getTutorialLink() + "\n";
-                outputContent += tableRow.getNote() + "\n";
-                outputContent += "\n---\n";
-                outputContent += "\n---\n";
-                count++;
-            }
-        }   
-        return outputContent;
     }
 
     private static String calculateLevel(final String level) {
