@@ -12,19 +12,44 @@ public class GenerateCodeTable {
         TableRow, used to hold table object and sort by date.
     */
     private static class TableRow {
-        private long date;
-        private String rowContext;
-        public TableRow(long date, String rowContext) {
+        private long date = 0;
+        private String fileName;
+        private String level;
+        private String tutorialLink;
+        private String note;
+
+        public TableRow(long date, String fileName, String level, String tutorialLink, String note) {
+            System.out.println(fileName + " " + date);
             this.date = date;
-            this.rowContext = rowContext;
+            this.fileName = fileName;
+            this.level = level;
+            this.tutorialLink = tutorialLink;
+            this.note = note;
         }
 
         public long getDate() {
             return this.date;
         }
 
-        public String getRowContext() {
-            return this.rowContext;
+        public String getFileName() {
+            return this.fileName;
+        }
+
+        public String getLevel() {
+            return this.level;
+        }
+
+        public String getTutorialLink() {
+            return this.tutorialLink;
+        }
+
+        public String getNote() {
+            return this.note;
+        }
+
+        public String getTableComposedLine() {
+            return "|[" + this.fileName + "](https://github.com/awangdev/LintCode/blob/master/Java/" + fileName.replace(" ", "%20")
+                 + ")|" + this.level + "|" + "Java|" + this.tutorialLink + "|\n";
         }
     }
 
@@ -141,46 +166,61 @@ public class GenerateCodeTable {
             "|:-------:|:--------------|:------:|:---------:|:-------------:|\n";
         final ArrayList<TableRow> tableRows = new ArrayList<>();
         for (File file : listOfFiles) {
-            String tutorialLink = "";
-            String calculatedLevel = "";
-            long timestamp = 0;
             if (file.getName().contains(".java")) {
-                try {
-                    final BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                                  new FileInputStream("Java/" + file.getName()), "UTF-8"));
-                    // Get level
-                    final String levelLine = reader.readLine().trim();
-                    if (levelLine.length() == 1) {
-                        calculatedLevel = calculateLevel(levelLine.toUpperCase());
-                    }
-                    // Get timestamp
-                    final String timestampLine = reader.readLine();
-                    if (timestampLine.length() != 0) {
-                        timestamp = Long.parseLong(timestampLine);
-                    }
-
-                    // Get tutorial
-                    final String tutorialLine = reader.readLine();
-                    if (tutorialLine.indexOf(TUTORIAL_KEY_WORD) == 0) {
-                        tutorialLink = "[Link](" + tutorialLine.substring(TUTORIAL_KEY_WORD.length()) + ")";
-                    }
-                } catch (final Exception e) {
-                    System.err.format("IOException: %s%n", e);
-                }
-                String convertedFileName = file.getName().replace(" ", "%20");
-                String composedLine = "|[" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"
-                                + convertedFileName + ")|" + calculatedLevel + "|" + "Java|" + tutorialLink + "|\n";
-                final TableRow tableRow = new TableRow(timestamp, composedLine);
-                tableRows.add(tableRow);
+                tableRows.add(getTableRow(file.getName()));
             }
         }
         Collections.sort(tableRows, Comparator.comparing(TableRow::getDate));
         for (int i = 0; i < tableRows.size(); i++) {
-            outputContent += "|" + i + tableRows.get(i).getRowContext();
+            outputContent += "|" + i + tableRows.get(i).getTableComposedLine();
         }
         return outputContent;
     }
 
+    private static TableRow getTableRow(String fileName) {
+        TableRow tableRow = null;
+        String tutorialLink = "";
+        String calculatedLevel = "";
+        long timestamp = 0;
+        try {
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(
+                                          new FileInputStream("Java/" + fileName), "UTF-8"));
+            // Get level
+            String line = reader.readLine().trim();
+            if (line.length() == 1 && !calculateLevel(line).isEmpty()){
+                calculatedLevel = calculateLevel(line.toUpperCase());
+                line = reader.readLine().trim();
+            }
+
+            // Get timestamp
+            if (line.length() != 0) {
+                try{
+                    timestamp = Long.parseLong(line);
+                    line = reader.readLine().trim();
+                }catch(final Exception e){
+                    System.out.println("Timestamp Not added yet: " + fileName);
+                }
+            }
+
+            // Get tutorial
+            if (line.contains(TUTORIAL_KEY_WORD)) {
+                tutorialLink = "[Link](" + line.substring(TUTORIAL_KEY_WORD.length()) + ")";
+                line = reader.readLine().trim();
+            }
+
+            // Get Note
+            String note = "";
+            while ((line = reader.readLine()) != null && !line.equals("```") && !line.equals("/*")) {
+                note += line + "\n";
+            }
+
+            // Get result
+            tableRow = new TableRow(timestamp, fileName, calculatedLevel, tutorialLink, note);
+        } catch (final Exception e) {
+            System.err.format("IOException: %s%n", e);
+        }
+        return tableRow;
+    }
 
     /*
         Generate Review Page contents
@@ -201,29 +241,12 @@ public class GenerateCodeTable {
             if (file.getName().contains(".java")) {
                 String convertedFileName = file.getName().replace(" ", "%20");
                 outputContent += "**" + count + ". [" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"+ convertedFileName +")**";
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("Java/" + file.getName()), "UTF-8"));
-                    String line = null;
-                    int countLine = 0;
-                    // Reading ends upon first '```'
-                    while ((line = reader.readLine()) != null && !line.equals("```")) {
-                        if (countLine == 0) {
-                            final String trimedLine = line.trim().toUpperCase();
-                            if (trimedLine.length() == 1 && !calculateLevel(trimedLine).isEmpty()) {
-                                outputContent += "      Level: " + calculateLevel(trimedLine) + "\n";
-                            } else {
-                                outputContent += "\n";
-                            }
-                        } else if (countLine == 1 && line.indexOf(TUTORIAL_KEY_WORD) == 0) {
-                            outputContent += "      [Tutorial Link](" + line.substring(TUTORIAL_KEY_WORD.length()) + ")\n";
-                        } else {
-                            outputContent += line + "\n";
-                        }
-                        countLine++;
-                    }
-                } catch (Exception e) {
-                    System.err.format("IOException: %s%n", e);
-                }//end of one file
+                final TableRow tableRow = getTableRow(file.getName());
+                
+                outputContent += "      Level: " + tableRow.getLevel() + "\n";
+                outputContent += "      " + tableRow.getTutorialLink() + "\n";
+                outputContent += tableRow.getNote() + "\n";
+                outputContent += "\n---\n";
                 outputContent += "\n---\n";
                 count++;
             }

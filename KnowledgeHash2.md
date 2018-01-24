@@ -4,7 +4,7 @@ Heap
 
 #### Stack
 - Functions: peek(), pop(), push()
-
+- Stack<XXX> stack = new Stack<>();
 
 #### Queue
 - Functions: peek(), poll(), add()/offer()
