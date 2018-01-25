@@ -23,7 +23,8 @@ Breadth-first Search
 
 #### Binary Search Tree
 - If BST not given, can use TreeSet
-
+- All left nodes are less than current node.val; all right nodes are greater than curr node.val
+- Use DFS to traverse: divide and conquer. Similarly, usually can convert the DFS solution to interative solution.
 
 
 Binary Indexed Tree

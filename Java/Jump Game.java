@@ -7,7 +7,7 @@ Status:
 DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
     其实j in [0~i)中间只需要一个能到达i 就好了
 Function:
-DP[i] = DP[j] && (j + A[j]), for all j in [0 ~ i)
+DP[i] = DP[j] && (j + A[j]) ?= i, for all j in [0 ~ i)
 Return:
     DP[dp.length - 1];
 
