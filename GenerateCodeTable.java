@@ -272,6 +272,8 @@ public class GenerateCodeTable {
                 return "Hard";
             case "S" : 
                 return "Super";
+            case "R" : 
+                return "Review";
         }
         return "";
     }

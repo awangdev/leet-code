@@ -1,4 +1,4 @@
-M
+R
 1517300631
 
 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况

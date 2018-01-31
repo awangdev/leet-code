@@ -1,5 +1,15 @@
 H
+1517379489
 
+方法1:
+DP. 根据StockIII, 不难发现StockIV就是把状态划分为2k+1份. 那么同样的代码, 移植.
+注意1: 如果k很大, k>n/2, 那么长度为n的数组里面, 最多也只能n/2个transaction, 
+	  那么题目简化为stockII, 给n数组, 无限次transaction.
+注意2: n可以用滚动数组(prev/now)代替.
+注意3: 最后状态是'没有stock'的都该考虑, 做一个 for 循环比较max. 当然, 来一个profit variable,
+		不断比较, 也是可以的.
+
+方法2:
 记得要理解： 为什么 i-1天的卖了又买，可以和第 i 天的卖合成一次交易？    
    因为每天交易的price是定的。所以卖了又买，等于没卖！这就是可以合并的原因。要对价格敏感啊少年。
 
@@ -43,6 +53,106 @@ O(nk) time.
 Tags Expand 
 Dynamic Programming
 */
+
+
+/*
+Thoughts:
+Similar to StockIII, but able to make k transactions.
+K transactions divides leads to 2K + 1 different status: always have the two conditions 'before buying' and 'holding', plus the final sold status.
+
+Equation:
+on j%2 == 0 days (not having stock): 
+    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] + partialProfit);
+on j%2 == 1 days (holding stock)
+    dp[i][j] = Math.max(dp[i - 1][j] + partialProfit, dp[i - 1][j - 1]);
+
+O(n(2*k + 1)) = O(nk)
+space O(nk)
+time O(nk)
+*/
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        if (prices == null || prices.length == 0 || k <= 0) {
+            return 0;
+        }
+		int profit = 0;
+        int n = prices.length;
+        int statusLength = 2 * k + 1;
+
+        // A side note: if k > n/2, the problem becomes easy: any n/2 number of transactions
+        if (k >= n/2) {
+            for (int i = 1; i < n; i++) {
+                if (prices[i] > prices[i - 1]) {
+                    profit += prices[i] - prices[i - 1];
+                }
+            }
+            return profit;
+        }
+        
+        int[][] dp = new int[n][statusLength];
+        dp[0][0] = 0; // on day 0, having 0 stock, and with 0 transactions.
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < statusLength; j++) {
+                //int partialProfit = prices[i] - prices[i - 1];
+                if (j % 2 == 0) {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] + prices[i] - prices[i - 1]);
+					// Find best profit when not having stock
+                    profit = Math.max(profit, dp[i][j]);
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j] + prices[i] - prices[i - 1], dp[i - 1][j - 1]);
+                }
+            }
+        }
+        return profit;
+    }
+}
+
+
+// optimization: rolling array
+// space: O(k), time: O(nk)
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        if (prices == null || prices.length == 0 || k <= 0) {
+            return 0;
+        }
+		int profit = 0;
+        int n = prices.length;
+		int statusLength = 2 * k + 1;
+
+        // A side note: if k > n/2, the problem becomes easy: any n/2 number of transactions
+        if (k >= n/2) {
+            for (int i = 1; i < n; i++) {
+                if (prices[i] > prices[i - 1]) {
+                    profit += prices[i] - prices[i - 1];
+                }
+            }
+            return profit;
+        }
+
+        int[][] dp = new int[2][statusLength];
+        int prev, curr = 0;
+        dp[0][0] = 0; // on day 0, having 0 stock, and with 0 transactions.
+        
+        for (int i = 1; i < n; i++) {
+            // reverse rolling digit
+            prev = curr;
+            curr = 1 - prev;
+            for (int j = 1; j < statusLength; j++) {
+                //int partialProfit = prices[i] - prices[i - 1];
+                if (j % 2 == 0) {
+                    dp[curr][j] = Math.max(dp[prev][j], dp[prev][j - 1] + prices[i] - prices[i - 1]);
+					// Find best profit when not having stock
+                    profit = Math.max(profit, dp[curr][j]);
+                } else {
+                    dp[curr][j] = Math.max(dp[prev][j] + prices[i] - prices[i - 1], dp[prev][j - 1]);
+                }
+            }
+        }
+        return profit;
+    }
+}
+
 
 /*
 	Thoughts: http://liangjiabin.com/blog/2015/04/leetcode-best-time-to-buy-and-sell-stock.html

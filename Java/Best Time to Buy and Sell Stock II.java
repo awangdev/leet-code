@@ -1,6 +1,12 @@
 E
-
+1517373801
 和Stock I 的区别：可以买卖多次，求总和的最大盈利。
+
+这道题有几种其他不同的思路:
+1. Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起. 计算delta, 其实简单粗暴, 也还不错.
+2. 如下, 从低谷找peek, sell.
+3. 繁琐一点的DP. BuyOn[], SellOn[] 从末尾看起
+4. DFS计算所有(timeout).Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
 
 找涨幅最大的区间，买卖：
 找到低谷，买进:peek = start + 1 时候，就是每次往前走一步;若没有上涨趋势，继续往低谷前进。
@@ -10,11 +16,6 @@ profit += prices[peek - 1] - prices[start]; 挺特别的。
 当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
 
 O(n)
-
-这道题有几种其他不同的思路:
-1. 如上, 从低谷找peek, sell.
-2. Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起. 计算delta, 其实简单粗暴, 也还不错.
-3. DFS计算所有(timeout).Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
 
 ```
 /*
@@ -30,6 +31,34 @@ Given an example [2,1,2,0,1], return 2
 Tags Expand 
 Greedy Enumeration Array
 */
+
+/*
+Thoughts:
+Draw a curve and realize that, only when prices[i] > prices[i - 1], we complete buy/sell and take the profit.
+Adding more slopes can be greater than 0~N overall height diff. 
+*/
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int profit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1]) {
+                profit += prices[i] - prices[i - 1];
+            }
+        }
+        return profit;
+    }
+}
+/*
+Previous notes about the above solution:
+Greedy: when seeing a increase, sell, accumulate the delta benefits.
+For instance, at a inclining slope, the sum of delta changes between (i-1, i) equals to the increase of (0 , n), so it's okay to do greedy.
+But this is less inteligent, and not very applicable
+*/
+
+
 /*
 Thought:
 In this case, since we know the entire stock price for all days in the array, we want to this:
@@ -59,27 +88,6 @@ class Solution {
             profit += prices[peek - 1] - prices[curr];
             curr = peek;
             peek = curr + 1;
-        }
-        return profit;
-    }
-}
-
-/*
-Thoughts:
-Greedy: when seeing a increase, sell, accumulate the delta benefits.
-For instance, at a inclining slope, the sum of delta changes between (i-1, i) equals to the increase of (0 , n), so it's okay to do greedy.
-But this is less inteligent, and not very applicable
-*/
-class Solution {
-    public int maxProfit(int[] prices) {
-        if (prices == null || prices.length <= 1) {
-            return 0;
-        }
-        int profit = 0;
-        for (int i = 1; i < prices.length; i++) {
-            if (prices[i] > prices[i - 1]) {
-                profit += prices[i] - prices[i - 1];
-            }
         }
         return profit;
     }

@@ -1,14 +1,14 @@
 M
+1517368869
 
-和House Robber I 类似,  DP.
-
-根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
+和House Robber I 类似,  DP. 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 
 特别的是，末尾的last house 和 first house相连。这里就需要分别讨论两种情况:    
-1. 最后一个房子被rob    
-2. 最后一个房子没被rob   
+1. 第一个房子被rob    
+2. 第一个房子没被rob   
 
-两种情况做完，综合对比一下.
+分出两个branch, 可以看做两种状态. 
+可以考虑用两个DP array, 也可以加一维度, 补充这个状态.
 
 ```
 /*
@@ -31,9 +31,46 @@ Subscribe to see which companies asked this question
  Dynamic Programming
 Hide Similar Problems (E) House Robber (M) Paint House (E) Paint Fence (M) House Robber III
 
-
-
 */
+
+/*
+Thougths:
+If there is a circle, which give 2 branches: index i == 0 was robbed, or index i == 0 was not robbed.
+Create the 2nd dimension for this status. dp[i][j], where j = 0 or 1.
+dp[i][0]: if index i = 0 was not robbed, what's the max at i.
+dp[i][1]: if index i = 0 was robbed, what's the max at i.
+Note:
+1. Deal with final position with extra care.
+2. Initialize the dp carefully
+*/
+class Solution {
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        } else if (nums.length == 1) {
+            return nums[0];
+        }
+        int n = nums.length;
+        int[][] dp = new int[n][2];
+        // index i = 0, not robbed
+        dp[0][0] = 0;
+        dp[1][0] = nums[1];
+        // index i = 0, robbed
+        dp[0][1] = nums[0];
+        dp[1][1] = dp[0][1];
+        
+        for (int i = 2; i < n; i++) {
+            if (i == n - 1) {
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i -2][0] + nums[i]);
+                dp[i][1] = dp[i - 1][1];
+            } else {
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i -2][0] + nums[i]);
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i -2][1] + nums[i]);
+            }
+        }
+        return Math.max(dp[n - 1][0], dp[n - 1][1]);
+    }
+}
 
 /*
 	Each house depends on front and back houses

@@ -1,7 +1,8 @@
 E
+1517367917
 
 最基本的dp。      
-看前一个或前两个的情况，再总和考虑当下的。      
+看最后结尾状态的前一个或前两个的情况，再综合考虑当下的。      
 思考的适合搞清楚当下的和之前的情况的关系。    
 滚动数组的优化，就是确定了是这类“只和前一两个位子“相关的Fn而推出的。   
 
@@ -29,27 +30,29 @@ Dynamic Programming
 */
 
 
-
 /*
-    3.24.2016 recap
-    Find max, either add nums[i - 1] or not. Use dp[i] to track the max money take from [0 ~ i]
+Thoughts:
+MAX, think about DP.
+DP[i]: max sum at index i.
+Either house i is robbed or not: dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i])
+Init: dp[0] = nums[0]; dp[1] = Math.max(nums[0], nums[1])
 */
-public class Solution {
+class Solution {
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         } else if (nums.length == 1) {
             return nums[0];
         }
-        int[] dp = new int[nums.length];
+        int n = nums.length;
+        int[] dp = new int[n];
         dp[0] = nums[0];
         dp[1] = Math.max(nums[0], nums[1]);
-
-        for (int i = 2; i < dp.length; i++) {
-            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);                
+        
+        for(int i = 2; i < n; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
         }
-
-        return dp[dp.length - 1];
+        return dp[n - 1];
     }
 }
 

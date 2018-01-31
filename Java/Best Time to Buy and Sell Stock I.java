@@ -1,6 +1,7 @@
 E
+1517372448
 
-理解意思是关键：   
+理解意思是关键:
    每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出。
    记录每天最小值Min是多少。O(n)
    每天都算和当下的Min买卖，profit最大多少.
@@ -17,7 +18,8 @@ Brutle:
 /*
 Say you have an array for which the ith element is the price of a given stock on day i.
 
-If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.
+If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), 
+design an algorithm to find the maximum profit.
 
 Example 1:
 Input: [7, 1, 5, 3, 6, 4]

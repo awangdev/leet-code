@@ -1,6 +1,17 @@
-M
+H
+1517376279
 
-比stock II 多了一个限制：只有2次卖出机会。也就是：找峰头；然后往下再找一个峰头。
+比stock II 多了一个限制：只有2次卖出机会。
+
+方法1:
+DP加状态: 只卖2次, 把买卖分割成5个状态模块.
+在模块index 0, 2, 4: 没有持有股票. 1. 一直在此状态, max profit不变; 2. 刚卖掉, dp[i][前状态] + profit
+在模块index 1, 3: 持有股票. 1. 一直在此状态, daily profit. 2. 刚刚买进, 状态改变, 但是没有profit yet: dp[i][前状态]
+
+注意: 把每天的partial profit (diff)加在一起, 最终的overall profit是一样的. 唯一更好的是, 不需要记录中间买入的时间点.
+
+方法2:
+也就是：找峰头；然后往下再找一个峰头。
 
 怎么样在才能Optimize两次巅峰呢？
 
@@ -28,6 +39,54 @@ Tags Expand
 Enumeration Forward-Backward Traversal Array
 
 */
+/*
+Thoughts:
+DP: calculate the 
+Able to sell 2 times. Consider the last position dp[i], is it sold 2 times? sold 1 time? before buying 1st stock? before buying 2nd stock? or right in between 1st and 2nd transaction, having 0 stock?
+The status of the problem should be recorded, which leads to 2nd dimension to record these status:
+0 stock, before buying | having 1st stock | sold 1st stock, having 0, before buying | having 2nd stock| sold 2nd stock
+dp[i][4]: max profit at index i, where both are sold.
+Move the status from 0 ~ 4, and break when reached the end.
+
+equations are a bit complicated:
+- status index 0, 2, 4:
+    dp[i][j]: dp[i - 1][j - 1] + price[i] - price[i - 1] (status changed from yesterday, and profiting)
+              OR: dp[i - 1][j] (status didn't change from yesterday)
+- status index 1, 3
+    dp[i][3]: dp[i - 1][j] + price[i] - prices[i - 1] (status didn't change from yesterday, keep profiting)
+          OR: dp[i - 1][j - 1] (status changed from yesterday, just bought)
+
+init:
+dp[0][0] = 0;
+
+One note:
+Consider incremental profit sum = overall profit sum. Sum of price[i] - price[i - 1] = price[0~N]
+*/
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int profit = 0;
+        int n = prices.length;
+        int[][] dp = new int[n][5];
+        
+        dp[0][0] = 0; // No transaction on day 0
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < 5; j++) {
+                int dailyPartialProfit = prices[i] - prices[i - 1];
+                if (j % 2 == 0) {
+                    dp[i][j] = Math.max(dp[i - 1][j - 1] + dailyPartialProfit, dp[i - 1][j]);
+                    // Find best profit when not having stock
+                    profit = Math.max(profit, dp[i][j]);
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j] + dailyPartialProfit, dp[i - 1][j - 1]);
+                }
+            }
+        }
+        return profit;
+    }
+}
 
 /*
 Thoughts:
