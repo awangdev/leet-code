@@ -1,3 +1,5 @@
+M
+
 例子写出来，发现可以sort以后按照定义搜索一遍。 nlogn.
 	当然，搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
 

@@ -8,6 +8,7 @@ Used to generate table of contents.
     - args == 'all', genereate both table
 */
 public class GenerateCodeTable {
+    private static final String NOT_AVAILABLE = "N/A";
     /*
         TableRow, used to hold table object and sort by date.
     */
@@ -19,7 +20,6 @@ public class GenerateCodeTable {
         private String note;
 
         public TableRow(long date, String fileName, String level, String tutorialLink, String note) {
-            System.out.println(fileName + " " + date);
             this.date = date;
             this.fileName = fileName;
             this.level = level;
@@ -95,7 +95,7 @@ public class GenerateCodeTable {
         Output the content into file
     */
     public static void printTable(String fileName, String outputContent) {
-        System.out.println(outputContent);
+        //System.out.println(outputContent);
         //Write to README.md
         try {   
             File outFile = new File(fileName);
@@ -187,7 +187,15 @@ public class GenerateCodeTable {
             
         final List<TableRow> tableRows = getTableRows(listOfFiles);
         int count = 0;
+        int countMiss = 0;
         for (TableRow tableRow: tableRows) {
+            // Skip non-ready items
+            if (NOT_AVAILABLE.equals(tableRow.getLevel())) {
+                System.out.println(countMiss + ". [File not yet formatted]: " + tableRow.getFileName() + " [Skipping. Please revisit]");
+                countMiss++;
+                continue;
+            }
+            //System.out.println(count +  ". " + tableRow.getLevel() + " [File not yet formatted]: " + tableRow.getFileName());
             outputContent += "**" + count + ". [" + tableRow.getFileName()
                           + "](https://github.com/awangdev/LintCode/blob/master/Java/"
                           + tableRow.getFileName().replace(" ", "%20") +")**";
@@ -195,7 +203,6 @@ public class GenerateCodeTable {
             outputContent += "      Level: " + tableRow.getLevel() + "\n";
             outputContent += "      " + tableRow.getTutorialLink() + "\n";
             outputContent += tableRow.getNote() + "\n";
-            outputContent += "\n---\n";
             outputContent += "\n---\n";
             count++;
         }
@@ -218,7 +225,7 @@ public class GenerateCodeTable {
     private static TableRow getTableRow(String fileName) {
         TableRow tableRow = null;
         String tutorialLink = "";
-        String calculatedLevel = "";
+        String calculatedLevel = NOT_AVAILABLE;
         long timestamp = 0;
         try {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -275,6 +282,6 @@ public class GenerateCodeTable {
             case "R" : 
                 return "Review";
         }
-        return "";
+        return NOT_AVAILABLE;
     }
 }

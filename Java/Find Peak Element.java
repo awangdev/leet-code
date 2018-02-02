@@ -1,3 +1,5 @@
+M
+
 还是binary search. 
 一个特别的check condition, 和特别的move left, move right的case罢了。
 ```

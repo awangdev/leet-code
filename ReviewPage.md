@@ -26,8 +26,6 @@ Steps:
 
 
 ---
-
----
 **1. [Add and Search Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word.java)**      Level: Medium
       
 Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
@@ -42,8 +40,6 @@ Search word:没有node就报错. 到结尾return true
 
 
 ---
-
----
 **2. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy
       
 方法一:土办法没技术，把binary换成数字，加起来，再换成binary。如果input很大，那么很可能int,long都hold不住。不保险。
@@ -54,8 +50,6 @@ Search word:没有node就报错. 到结尾return true
 
 
 ---
-
----
 **3. [Add Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Digits.java)**      Level: Easy
       
 方法1: 普通做法就是按照题意, 把每个digit加起来. O(n)
@@ -63,8 +57,6 @@ Search word:没有node就报错. 到结尾return true
 方法2: 找数学规律, 每过9个数字, 取mod就会开始重复, 所以给所有数字取mod 就可以间接找到答案.
 
 
-
----
 
 ---
 **4. [Add Two Numbers II.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers%20II.java)**      Level: Medium
@@ -80,8 +72,6 @@ LinkedList并没有反过来，那么自己反：
 
 
 ---
-
----
 **5. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Easy
       
 LinkedList都已经反转好了，直接做。
@@ -94,15 +84,11 @@ LinkedList都已经反转好了，直接做。
 
 
 ---
-
----
 **6. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 Not Done yet。 Topological sort.
 
 
-
----
 
 ---
 **7. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium
@@ -134,8 +120,6 @@ Need to work on the getHash() function.
 
 
 ---
-
----
 **8. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium
       
 做了Backpack I, 这个就如出一辙。   
@@ -149,8 +133,6 @@ O(m)的做法:
 
 
 
-
----
 
 ---
 **9. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium
@@ -182,8 +164,6 @@ O(m)时间的做法，具体看solution. 注意j是倒序的啊！
 
 
 ---
-
----
 **10. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
       
 1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
@@ -194,8 +174,6 @@ O(m)时间的做法，具体看solution. 注意j是倒序的啊！
 2. Only calculate depth using maxDepth function. Same concept as in 1, but cost more traversal efforts.
 
 
-
----
 
 ---
 **11. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard
@@ -213,8 +191,6 @@ Decimal那边复杂点.
 (所以题目也才有了32BIT的要求！)
 
 
-
----
 
 ---
 **12. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Hard
@@ -251,8 +227,6 @@ Decimal那边复杂点.
 
 
 ---
-
----
 **13. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
       
 法一:      
@@ -273,8 +247,6 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 
 ---
-
----
 **14. [Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)**      Level: Medium
       
 方法1:
@@ -291,8 +263,6 @@ rst里面add(0,...)每次都add在list开头
 
 
 ---
-
----
 **15. [Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)**      Level: Medium
       
 方法1. 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
@@ -307,8 +277,6 @@ rst里面add(0,...)每次都add在list开头
 
 
 ---
-
----
 **16. [Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)**      Level: Medium
       
 屌炸天的4行代码。Divide and Conquer
@@ -319,8 +287,6 @@ Recursive用好。首先在这个level比一比，可否成。
 然后左右开弓。再把结果拿过来比较一下就好了。
 
 
-
----
 
 ---
 **17. [Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)**      Level: Medium
@@ -336,8 +302,6 @@ Single path: either left or right.
 If the path sum < 0, just skip it.   
 
 
-
----
 
 ---
 **18. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Medium
@@ -366,8 +330,6 @@ combo的三种情况：(root可能小于0)
 
 
 ---
-
----
 **19. [Binary Tree Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Path%20Sum.java)**      Level: Easy
       
 Binary Tree的一个基本题。   
@@ -377,8 +339,6 @@ Binary Tree的一个基本题。
 LeetCode: Path Sum II
 
 
-
----
 
 ---
 **20. [Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)**      Level: Easy
@@ -394,8 +354,6 @@ Recursive:分叉。Helper。
 
 
 ---
-
----
 **21. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Easy
       
 最prefer 2 stack的做法：   
@@ -408,8 +366,6 @@ Divide and Conquer 的recursive方法也非常明了！
 
 
 ---
-
----
 **22. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
       
 Preorder 写写， stack   
@@ -418,8 +374,6 @@ Preorder 写写， stack
 3. recursive with helper method   
 
 
-
----
 
 ---
 **23. [Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)**      Level: Medium
@@ -431,8 +385,6 @@ BFS，用queue.size()来出发saving result.
 
 
 ---
-
----
 **24. [Binary Tree Serialization.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Serialization.java)**      Level: Medium
       
 方法1: BFS. Non-recursive, using queue. 想法直观。level-order traversal. save到一个string里面就好。
@@ -442,15 +394,11 @@ BFS，用queue.size()来出发saving result.
 
 
 ---
-
----
 **25. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium
       
 简单的level traversal.根据level奇数偶数而add到不同位子.
 
 
-
----
 
 ---
 **26. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Hard
@@ -472,10 +420,9 @@ BFS，用queue.size()来出发saving result.
 
 
 ---
-
----
-**27. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: 
+**27. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
+其实会做之后挺好想的一个DP。
 dp[i][j] =  balloons i~j 之间的sum. 然后找哪个点开始burst? 设为x。
 For loop 所有的点作为x， 去burst。
 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
@@ -484,8 +431,6 @@ For loop 所有的点作为x， 去burst。
 这个是momorization, 而不纯是DP
 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
 
-
----
 
 ---
 **28. [Change to Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Change%20to%20Anagram.java)**      Level: Easy
@@ -499,8 +444,6 @@ For loop 所有的点作为x， 去burst。
 
 
 ---
-
----
 **29. [Classical Binary Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Classical%20Binary%20Search.java)**      Level: Easy
       
    while: start + 1 < end
@@ -509,8 +452,6 @@ For loop 所有的点作为x， 去burst。
 
 
 
-
----
 
 ---
 **30. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
@@ -525,8 +466,6 @@ For loop 所有的点作为x， 去burst。
 
 
 ---
-
----
 **31. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 Use HashMap to mark cloned nodes.    
@@ -537,15 +476,11 @@ Use HashMap to mark cloned nodes.
 
 
 ---
-
----
 **32. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
       
 Binary Search. 记录找到过的closest. 直到tree leaf, 找完return
 
 
-
----
 
 ---
 **33. [Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)**      Level: Easy
@@ -557,17 +492,7 @@ Binary search. 考虑mid-1, mid+1.
 
 
 ---
-
----
-**34. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: 
-      
-However, 分析过后简直屌炸天。一个 n%3就解决了。纯粹math.
-
-
----
-
----
-**35. [ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)**      Level: Medium
+**34. [ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)**      Level: Medium
       
 用HashMap， 理解题目规律，因为重复的计算可以被覆盖，所以是个优化题。
 
@@ -582,9 +507,7 @@ However, 分析过后简直屌炸天。一个 n%3就解决了。纯粹math.
 
 
 ---
-
----
-**36. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium
+**35. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium
       
 还是DFS. 和Combination Sum I 类似.      
 确保Helper是用i+1，下一层的数字, 不允许重复。
@@ -592,9 +515,7 @@ However, 分析过后简直屌炸天。一个 n%3就解决了。纯粹math.
 
 
 ---
-
----
-**37. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium
+**36. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium
       
 递归，backtracking. 非常normal。需要先sort.    
 记得求sum时候也pass 一个sum进去，backtracking一下sum也，这样就不必每次都sum the list了。   
@@ -613,9 +534,7 @@ However, 分析过后简直屌炸天。一个 n%3就解决了。纯粹math.
 
 
 ---
-
----
-**38. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium
+**37. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium
       
 Combination DFS。 画个图想想. 每次从1~n里面pick一个数字i
 
@@ -624,9 +543,7 @@ Combination DFS。 画个图想想. 每次从1~n里面pick一个数字i
 
 
 ---
-
----
-**39. [Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)**      Level: Easy
+**38. [Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)**      Level: Easy
       
 比较一下大小, null.
 
@@ -635,9 +552,7 @@ Combination DFS。 画个图想想. 每次从1~n里面pick一个数字i
 
 
 ---
-
----
-**40. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+**39. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 BFS   
 
@@ -649,9 +564,7 @@ Use a flag . 当出现了第一次有 null children的node的时候，
 
 
 ---
-
----
-**41. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium
+**40. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium
       
 写个Inorder和Postorder的例子。利用他们分left/right subtree的规律解题。
 
@@ -665,9 +578,7 @@ Postorder array 的末尾， 就是当下层的root.
 
 
 ---
-
----
-**42. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
+**41. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
       
 和Construct from Inorder && Postorder 想法一样。
 
@@ -676,18 +587,15 @@ Postorder array 的末尾， 就是当下层的root.
 
 
 ---
-
----
-**43. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: 
+**42. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium
       
+类似木桶理论。盛水的最高取决于最低的那面墙。
 左右两墙，往中间跑动。
 另，若一面墙已经小于另外一面，就要移动，换掉矮墙（可能下一面更高，或更低）；但决不能换掉当下的高墙，因为低墙已经limit的盛水的上限，若高墙移动，导致两墙之间距离减少，就注定水量更少了。（弄啥来，不能缺心眼啊）
 
 
 ---
-
----
-**44. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
+**43. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
       
 方法1: HashTable<value, list of duplicates>, brutly check agains the list
 方法2: 很巧妙地根据k range地条件, 把HashSet里面的值控制在[i - k, i]. 那么一旦match, 就符合条件. 
@@ -699,9 +607,7 @@ Postorder array 的末尾， 就是当下层的root.
 
 
 ---
-
----
-**45. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium
+**44. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium
       
 与Contains Duplicate II 类似概念. TreeSet有BST 因此可以直接用, 而不用自己构建BST
 简化题目里面的重要条件 Math.abs(A-B) <= t 而推断出需要用 TreeSet.ceiling(x): return number greater or equal to x. 这个用法要记住吧, 没别的捷径.
@@ -709,9 +615,7 @@ Postorder array 的末尾， 就是当下层的root.
 
 
 ---
-
----
-**46. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
+**45. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
       
 方法1: No brain: HashSet. O(n), 但是实际上比方法2 要慢.
 方法2: 排序, 重复数会排在一起. Arrays.sort() time complexity nLog(n)
@@ -719,9 +623,7 @@ Postorder array 的末尾， 就是当下层的root.
 
 
 ---
-
----
-**47. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium
+**46. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium
       
 会iterative traverse Binary Search Tree就好（Stack && handle left-dig-down）, 然后create Doubly-ListNode 时候注意就好.
 
@@ -735,9 +637,7 @@ node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍�
 
 
 ---
-
----
-**48. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
+**47. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
       
 还是Expression Tree (Min-Tree).
 
@@ -748,9 +648,7 @@ Note: label需要是String.虽然 Operator是长度为1的char, 但是数字可�
 
 
 ---
-
----
-**49. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
+**48. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
       
 build expression tree。
 
@@ -761,9 +659,7 @@ build expression tree。
 
 
 ---
-
----
-**50. [Convert Integer A to Integer B.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Integer%20A%20to%20Integer%20B.java)**      Level: Easy
+**49. [Convert Integer A to Integer B.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Integer%20A%20to%20Integer%20B.java)**      Level: Easy
       
 Bit Manipulation
 
@@ -776,18 +672,14 @@ count it up
 
 
 ---
-
----
-**51. [Convert Sorted Array to Binary Search Tree With Minimal Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree%20With%20Minimal%20Height.java)**      Level: Easy
+**50. [Convert Sorted Array to Binary Search Tree With Minimal Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree%20With%20Minimal%20Height.java)**      Level: Easy
       
 Binary Search的感觉. 中间一开两半, divde and conquer,左右各自recursive下去build left/right child.
 
 
 
 ---
-
----
-**52. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
+**51. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
       
 Divide and Conquer   
 用快慢pointer
@@ -805,9 +697,7 @@ sortedListToBST(head); //从头开始的前半段
 
 
 ---
-
----
-**53. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium
+**52. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium
       
 Basic Implementation, 其中用了一下HashMap:  
 
@@ -818,18 +708,14 @@ Basic Implementation, 其中用了一下HashMap:
 
 
 ---
-
----
-**54. [Cosine Similarity.java](https://github.com/awangdev/LintCode/blob/master/Java/Cosine%20Similarity.java)**      Level: Easy
+**53. [Cosine Similarity.java](https://github.com/awangdev/LintCode/blob/master/Java/Cosine%20Similarity.java)**      Level: Easy
       
 basic implementation
 
 
 
 ---
-
----
-**55. [Count 1 in Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%201%20in%20Binary.java)**      Level: Easy
+**54. [Count 1 in Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%201%20in%20Binary.java)**      Level: Easy
       
 1. 可以把integer -> string -> char array.
 
@@ -838,18 +724,14 @@ basic implementation
 
 
 ---
-
----
-**56. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy
+**55. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy
       
 Basic implementation. Count duplicates and print
 
 
 
 ---
-
----
-**57. [Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)**      Level: Hard
+**56. [Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)**      Level: Hard
       
 与Count of Smaller Number非常类似。以实际的value来构成segment tree，leaf上存（count of smaller number）。
 
@@ -865,9 +747,7 @@ Trick: 先Query，再modify.
 
 
 ---
-
----
-**58. [Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)**      Level: Medium
+**57. [Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)**      Level: Medium
       
 和平时的segment tree问题不同。 0 ～ n-1代表实际数字。是造一个based on real value的segment tree.
 Modify时，把array里面的value带进去，找到特定的位子（leaf）,然后count+1. 
@@ -895,9 +775,7 @@ value-1就是说，找比自己所在range小1的range（那么自然而然地�
 
 
 ---
-
----
-**59. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy
+**58. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy
       
 什么是prime number: >=2的没有除自己和1以外公约数的数。   
 
@@ -913,18 +791,14 @@ value-1就是说，找比自己所在range小1的range（那么自然而然地�
 
 
 ---
-
----
-**60. [Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)**      Level: Medium
+**59. [Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)**      Level: Medium
       
 详细的中文分析，看Course Schedule I
 
 
 
 ---
-
----
-**61. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium
+**60. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium
       
 有点绕，但是做过一次就明白一点。    
 是topological sort的题目。一般都是给有dependency的东西排序。    
@@ -945,9 +819,7 @@ value-1就是说，找比自己所在range小1的range（那么自然而然地�
 
 
 ---
-
----
-**62. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard
+**61. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard
       
 把Input stream想成向上的山坡。山坡中间那点，自然就是median.
 
@@ -960,45 +832,35 @@ Note:题目定义meadian = A[(n-1)/2],也就是说maxHeap需要和minHeap长度�
 
 
 ---
-
----
-**63. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium
+**62. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium
       
 数位靠前的，权值更大. 所以硬来把靠前的相对更大的（跟following digit相比）去掉。
 
 
 
 ---
-
----
-**64. [Delete Node in the Middle of Singly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20the%20Middle%20of%20Singly%20Linked%20List.java)**      Level: Easy
+**63. [Delete Node in the Middle of Singly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20the%20Middle%20of%20Singly%20Linked%20List.java)**      Level: Easy
       
 Just do it. Link curr.next to curr.next.next
 
 
 
 ---
-
----
-**65. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
+**64. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
       
 Not Done
 
 
 
 ---
-
----
-**66. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Medium
+**65. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Medium
       
 Not Done
 
 
 
 ---
-
----
-**67. [Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)**      Level: Medium
+**66. [Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)**      Level: Medium
       
 方法1:    
 用数字+"#"+string来encode.    
@@ -1015,9 +877,7 @@ handle empty list [], or just null: 要把Null特别mark一下为‘NULL’, 这
 
 
 ---
-
----
-**68. [ExcelSheetColumnNumber .java](https://github.com/awangdev/LintCode/blob/master/Java/ExcelSheetColumnNumber%20.java)**      Level: Easy
+**67. [ExcelSheetColumnNumber .java](https://github.com/awangdev/LintCode/blob/master/Java/ExcelSheetColumnNumber%20.java)**      Level: Easy
       
 'A' - 'A' = 0. 所以 char - 'A' + 1 = 题目里的对应数位。      
 26位运算和10位一样嘛，num += 每位的digit * Math.pow(26, 数位号)。
@@ -1026,9 +886,7 @@ handle empty list [], or just null: 要把Null特别mark一下为‘NULL’, 这
 
 
 ---
-
----
-**69. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
+**68. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 Build Expression Tree的另外一个变形，依然Min Tree.
 
@@ -1043,9 +901,7 @@ Note:
 
 
 ---
-
----
-**70. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
+**69. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
       
 和Max-tree一样，感谢http://blog.welkinlan.com/2015/06/29/max-tree-lintcode-java/
 
@@ -1059,9 +915,7 @@ Time on average: O(n).
 
 
 ---
-
----
-**71. [Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)**      Level: Medium
+**70. [Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)**      Level: Medium
       
 a^n可以被拆解成(a*a*a*a....*a)， 是乘机形式，而%是可以把每一项都mod一下的。所以就拆开来take mod.
 
@@ -1075,9 +929,7 @@ a^n可以被拆解成(a*a*a*a....*a)， 是乘机形式，而%是可以把每一
 
 
 ---
-
----
-**72. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy
+**71. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy
       
 方法1: DP array.
 
@@ -1089,165 +941,14 @@ a^n可以被拆解成(a*a*a*a....*a)， 是乘机形式，而%是可以把每一
 
 
 ---
-
----
-**73. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: 
+**72. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
       
-Medium Find Minimum in Rotated Sorted Array II My Submissions
-
-40% Accepted
-Suppose a sorted array is rotated at some pivot unknown to you beforehand.
-
-(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
-
-Find the minimum element.
-
-The array may contain duplicates.
-
-Example
-Given [4,4,5,6,7,0,1,2] return 0
-
-Tags Expand 
-Binary Search Divide and Conqueri
-
-Thinking process:
-It seems using binary search will leads to O(n), so just use a for loop with O(n)
-*/
-
-public class Solution {
-    /**
-     * @param num: a rotated sorted array
-     * @return: the minimum number in the array
-     */
-    public int findMin(int[] num) {
-        if (num == null || num.length == 0) {
-            return -1;
-        }
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < num.length; i++) {
-            if (min > num[i]) {
-                min = num[i];
-            }
-        }
-        return min;
-    }
-}
-
-
-
----
-
----
-**74. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: 
-      
-Suppose a sorted array is rotated at some pivot unknown to you beforehand.
-
-(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
-
-Find the minimum element.
-
-You may assume no duplicate exists in the array.
-
-Example
-Given [4,5,6,7,0,1,2] return 0
-
-Tags Expand 
-Binary Search
-
-Thinking process:
-Understand how to use binary in this problem: compare the mid point with end point.
-In this problem, because the sorted line is cut at one point then rotate, so one of the line is absolutely greater than the other line.
-Situation 1:
-if mid < end :  that means minimum is on the end point's line. Move end to left. end = mid.
-Situation 2:
-if mid > end: that means there must be a mountain-jump somewhere after mid and before end, which is the minimum point. Now move start to mid.
-*/
-
-public class Solution {
-    /**
-     * @param num: a rotated sorted array
-     * @return: the minimum number in the array
-     */
-    public int findMin(int[] num) {
-        if (num == null || num.length == 0) {
-            return -1;
-        }
-        int start = 0;
-        int end = num.length - 1;
-        int mid = 0;
-        while (start + 1 < end) {
-            mid = start + (end - start) / 2;
-            if (num[mid] > num[end]) {
-                start = mid;
-            } else {
-                end = mid;
-            }
-        }
-        if (num[start] < num[end]) {
-            return num[start];
-        } else {
-            return num[end];
-        }
-    }
-}
-
-
-
----
-
----
-**75. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: 
-      
-There is an integer matrix which has the following features:
-
-The numbers in adjacent positions are different.
-The matrix has n rows and m columns.
-For all i < m, A[0][i] < A[1][i] && A[n - 2][i] > A[n - 1][i].
-For all j < n, A[j][0] < A[j][1] && A[j][m - 2] > A[j][m - 1].
-We define a position P is a peek if:
-
-A[j][i] > A[j+1][i] && A[j][i] > A[j-1][i] && A[j][i] > A[j][i+1] && A[j][i] > A[j][i-1]
-Find a peak element in this matrix. Return the index of the peak.
-
-Have you met this question in a real interview? Yes
-Example
-Given a matrix:
-
-[
-  [1 ,2 ,3 ,6 ,5],
-  [16,41,23,22,6],
-  [15,17,24,21,7],
-  [14,18,19,20,10],
-  [13,14,11,10,9]
-]
-return index of 41 (which is [1,1]) or index of 24 (which is [2,2])
-
-Note
-The matrix may contains multiple peeks, find any of them.
-
-Challenge
-Solve it in O(n+m) time.
-
-If you come up with an algorithm that you thought it is O(n log m) or O(m log n), can you prove it is actually O(n+m) or propose a similar but O(n+m) algorithm?
-
-Tags Expand 
-Binary Search LintCode Copyright Matrix
-*/
-
-
-
----
-
----
-**76. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: 
-      
+还是binary search. 
 一个特别的check condition, 和特别的move left, move right的case罢了。
 
 
 ---
-
----
-**77. [Find the Connected Component in the Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Connected%20Component%20in%20the%20Undirected%20Graph.java)**      Level: Medium
+**73. [Find the Connected Component in the Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Connected%20Component%20in%20the%20Undirected%20Graph.java)**      Level: Medium
       
 BFS遍历，把每个node的neighbor都加进来。    
 
@@ -1262,9 +963,7 @@ Component的定义：所有Component内的node必须被串联起来via path (反
 
 
 ---
-
----
-**78. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium
+**74. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium
       
 Identify这是个union-find问题还挺巧妙。    
 看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    
@@ -1283,9 +982,7 @@ Identify这是个union-find问题还挺巧妙。
 
 
 ---
-
----
-**79. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Medium
+**75. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Medium
       
 Binary Search
 
@@ -1295,109 +992,16 @@ isBadVersion 是有方向的嘛，一个点错了，后面全错。
 
 
 ---
-
----
-**80. [First Missing Positive.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Missing%20Positive.java)**      Level: 
+**76. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium
       
-Given an unsorted integer array, find the first missing positive integer.
-
-Example
-Given [1,2,0] return 3, and [3,4,-1,1] return 2.
-
-Challenge
-Your algorithm should run in O(n) time and uses constant space.
-
-Tags Expand 
-Array
-
-Thoughts:
-It means: after it's sorted, what's the first missing postive int counted from 1 ---> more
-
-1. Arrays.sort();
-2. count = first non-zero element in A.
-3. count +1, and see if maches the current A[i]?
-
-NOTE:
-Deal with negative and positive number separately
-Watch out for redundant number: ask if the list has duplicated elements
-*/
-
-
-public class Solution {
-    /**    
-     * @param A: an array of integers
-     * @return: an integer
-     */
-    public int firstMissingPositive(int[] A) {
-    	if (A == null || A.length == 0) {
-    		return 1;
-    	}
-    	Arrays.sort(A);
-    	int count = -1;
-    	for (int i = 0; i < A.length; i++) {
-    		if (A[i] > 0) {
-    			if (count < 0) {//process 1st positive element
-	    			count = A[i];
-	    			if (count != 1) {
-	    				return 1;
-	    			}
-    			} 
-    			else if (A[i] == A[i - 1]) {//watch out for duplicates
-    				count--;
-    			}
-				else if(A[i] != count) {//if not match, kick out
-					return count;
-				}	
-    			count++;
-    		}
-    	}
-    	if (count < 0) {//if all negative, return 1
-    		return 1;
-    	}
-    	return count;
-    }
-}
-
-
----
-
----
-**81. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: 
-      
-Implement an iterator to flatten a 2d vector.
-
-For example,
-Given 2d vector =
-
-[
-  [1,2],
-  [3],
-  [4,5,6]
-]
-By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,2,3,4,5,6].
-
-Hint:
-
-How many variables do you need to keep track?
-Two variables is all you need. Try with x and y.
-Beware of empty rows. It could be the first few rows.
-To write correct code, think about the invariant to maintain. What is it?
-The invariant is x and y must always point to a valid point in the 2d vector. Should you maintain your invariant ahead of time or right when you need it?
-Not sure? Think about how you would implement hasNext(). Which is more complex?
-Common logic in two different places should be refactored into a common method.
-
-
-Tags: Design
-Similar Problems: (M) Binary Search Tree Iterator, (M) Zigzag Iterator, (M) Peeking Iterator
-
-*/
+大概意思就是把2D list里面的element全部遍历一遍。
+注意啊，一开始理解题意搞错：我以为是必须要排序正确，所以上来就PriorityQueue+HashMap搞得无比复杂。其实，这个跟一个nxn的matrix遍历，是没区别的拉。
+所有来个x,y，把2d list跑一变。
 
 
 
 ---
-
----
-**82. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Easy
+**77. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Easy
       
 Not Done
 
@@ -1405,20 +1009,9 @@ Not Done
 
 
 ---
-
----
-**83. [Flattern 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flattern%202D%20Vector.java)**      Level: 
+**78. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium
       
-注意啊，一开始理解题意搞错：我以为是必须要排序正确，所以上来就PriorityQueue+HashMap搞得无比复杂。其实，这个跟一个nxn的matrix遍历，是没区别的拉。
-所有来个x,y，把2d list跑一变。
-
-
-
----
-
----
-**84. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: 
-      
+12.06.2015 recap:
 注意：不要乱改input s. recursive call 需要用原始的input s.
 
 这个题目李特是屌炸天的。
@@ -1434,122 +1027,21 @@ p2: player2
 
 
 ---
-
----
-**85. [Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)**      Level: 
+**79. [Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)**      Level: Easy
       
+这个题目是很寂寞的. 2 pointer可以做, 在网上又搜了一下，貌似可以有很多牛逼的优化，我暂时还没去看。
 很郁闷的就是条件不明，原来只需要从'++'转到'--'的情况，反过来没必要关注...搞了我半天啊
 
 
 ---
-
----
-**86. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: 
+**80. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium
       
+不难想到处理除法：考虑正负，考虑小数点前后。主要是小数点以后的要着重考虑。
 很容易忽略的是integer的益处。
 
 
 ---
-
----
-**87. [Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)**      Level: 
-      
-According to the Wikipedia's article: 
-"The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
-
-Given a board with m by n cells, each cell has an initial state live (1) or dead (0). 
-Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules 
-(taken from the above Wikipedia article):
-
-Any live cell with fewer than two live neighbors dies, as if caused by under-population.
-Any live cell with two or three live neighbors lives on to the next generation.
-Any live cell with more than three live neighbors dies, as if by over-population..
-Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
-Write a function to compute the next state (after one update) of the board given its current state.
-
-Follow up: 
-Could you solve it in-place? Remember that the board needs to be updated at the same time: 
-You cannot update some cells first and then use their updated values to update other cells.
-In this question, we represent the board using a 2D array. 
-	In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. 
-	How would you address these problems?
-Credits:
-Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.
-
-Hide Company Tags Google TinyCo
-Hide Tags Array
-Hide Similar Problems (M) Set Matrix Zeroes
-
-*/
-
-
-
----
-
----
-**88. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: 
-      
-There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
-
-You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.
-
-Return the starting gas station's index if you can travel around the circuit once, otherwise return -1.
-
-Example
-Given 4 gas stations with gas[i]=[1,1,3,1], and the cost[i]=[2,2,1,1]. The starting gas station's index is 2.
-
-Note
-The solution is guaranteed to be unique.
-
-Challenge
-O(n) time and O(1) extra space
-
-Tags Expand 
-Greedy
-
-Thoughts:
-Loop through the gas station, and track the possible starting index.
-Start from i = 0 ~ gas.length, and use a second pointer move to track how far we are travelling
-	calculate: remain += gas[i] - cost[i]. (remain + gas[i] - cost[i]: the remaining gas plus i's gas, can we make it to i+1 gas station?)
-	if remain < 0, fail. Note: if from i ~ j can't work, even it's possible that i can make it to i+1's station, but i+1 ~ j won't work still.
-		Thus, once i's station failed to get to x, set index = x + 1: we are moving on to next possible starting point.
-
-'total':simply indicates if we can make it a circle
-*/
-
-public class Solution {
-    /**
-     * @param gas: an array of integers
-     * @param cost: an array of integers
-     * @return: an integer
-     */
-    public int canCompleteCircuit(int[] gas, int[] cost) {
-    	if (gas == null || cost == null || gas.length == 0 || cost.length == 0) {
-    		return -1;
-    	}
-    	int start = 0;
-    	int remain = 0;
-    	int total = 0;
-    	for (int i = 0; i < gas.length; i++) {
-    		remain += gas[i] - cost[i];
-    		if (remain < 0) {
-    			remain = 0;
-    			start = i + 1;
-    		} 
-    		total += gas[i] - cost[i];
-    	}
-    	if (total < 0) {
-    		return -1;
-    	}
-    	return start;
-    }
-}
-
-
----
-
----
-**89. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium
+**81. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium
       
 递归。
 看thought.取或者不取(,  )
@@ -1559,9 +1051,7 @@ Note: 在DFS时, 可以pass object (String) and re-create every time; or pass a 
 
 
 ---
-
----
-**90. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
+**82. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
       
 复习Union-Find的另外一个种形式。   
 题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
@@ -1573,9 +1063,7 @@ Note: 在DFS时, 可以pass object (String) and re-create every time; or pass a 
 
 
 ---
-
----
-**91. [Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)**      Level: Medium
+**83. [Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)**      Level: Medium
       
 题目蛋疼，目前只接受一种结果。
 
@@ -1588,9 +1076,7 @@ BackTracking + DFS:
 
 
 ---
-
----
-**92. [Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)**      Level: Medium
+**84. [Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)**      Level: Medium
       
 方法一: 60%
 
@@ -1613,9 +1099,7 @@ O(NKlog(K)), N = string[] length, k = longest word length
 
 
 ---
-
----
-**93. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy
+**85. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
 
@@ -1624,18 +1108,16 @@ O(NKlog(K)), N = string[] length, k = longest word length
 
 
 ---
-
----
-**94. [H-Index II.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index%20II.java)**      Level: 
+**86. [H-Index II.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index%20II.java)**      Level: Medium
       
+H-index的一个优化。
 binary search
 
 
 ---
-
----
-**95. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: 
+**87. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium
       
+例子写出来，发现可以sort以后按照定义搜索一遍。 nlogn.
 	当然，搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
 
 o(n)也可以，用bucket. 比较巧妙。
@@ -1644,18 +1126,14 @@ o(n)也可以，用bucket. 比较巧妙。
 
 
 ---
-
----
-**96. [Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Hamming%20Distance.java)**      Level: Easy
+**88. [Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Hamming%20Distance.java)**      Level: Easy
       
 bit: XOR, &, shift>>
 
 
 
 ---
-
----
-**97. [Happy Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Happy%20Number.java)**      Level: Easy
+**89. [Happy Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Happy%20Number.java)**      Level: Easy
       
 Basic Implementation of the requirements.
 
@@ -1664,9 +1142,7 @@ Basic Implementation of the requirements.
 
 
 ---
-
----
-**98. [Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)**      Level: Easy
+**90. [Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)**      Level: Easy
       
 解释Hash怎么道理。Hash function例子：    
 hashcode("abcd") = (ascii(a) * 33^3 + ascii(b) * 33^2 + ascii(c) *33^1 + ascii(d)*33^0) % HASH_SIZE 
@@ -1685,35 +1161,27 @@ hashRst = hashRst % HASH_SIZE;
 
 
 ---
-
----
-**99. [HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)**      Level: Hard
+**91. [HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)**      Level: Hard
       
 非题.是从九章找来的HashHeap implementation.
 
 
 
 ---
-
----
-**100. [HashWithArray.java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithArray.java)**      Level: Easy
+**92. [HashWithArray.java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithArray.java)**      Level: Easy
       
 
 
 
 ---
-
----
-**101. [HashWithCustomizedClass(LinkedList).java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithCustomizedClass(LinkedList).java)**      Level: Medium
+**93. [HashWithCustomizedClass(LinkedList).java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithCustomizedClass(LinkedList).java)**      Level: Medium
       
 练习HashMap with customized class. 
 
 
 
 ---
-
----
-**102. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium
+**94. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium
       
 Heap用的不多. 得用一下, 才好理解。   
 通常default 的PriorityQueue就是给了一个现成的min-heap：所有后面的对应element都比curr element 小。
@@ -1733,9 +1201,7 @@ siftdown时：在curr node和两个son里面小的比较。如果的确curr < so
 
 
 ---
-
----
-**103. [Heaters.java](https://github.com/awangdev/LintCode/blob/master/Java/Heaters.java)**      Level: Easy
+**95. [Heaters.java](https://github.com/awangdev/LintCode/blob/master/Java/Heaters.java)**      Level: Easy
       
 第一步：
 生题型, 理解题意需要时间：
@@ -1754,9 +1220,7 @@ http://www.cnblogs.com/grandyang/p/6181626.html
 
 
 ---
-
----
-**104. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
+**96. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
       
 由于无法用简单的方法构造DP array, 所以采取了普通的DFS。
 
@@ -1770,9 +1234,7 @@ The catch:
 
 
 ---
-
----
-**105. [Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Identical%20Binary%20Tree.java)**      Level: Easy
+**97. [Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Identical%20Binary%20Tree.java)**      Level: Easy
       
 Divide, && 每种情况（左右一一对应)    
 注意 null states
@@ -1781,72 +1243,7 @@ Divide, && 每种情况（左右一一对应)
 
 
 ---
-
----
-**106. [Implement Queue by Two Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20by%20Two%20Stacks.java)**      Level: 
-      
-As the title described, you should only use two stacks to implement a queue's actions.
-
-The queue should support push(element), pop() and top() where pop is pop the first(a.k.a front) element in the queue.
-
-Both pop and top methods should return the value of first element.
-
-Example
-For push(1), pop(), push(2), push(3), top(), pop(), you should return 1, 2 and 2
-
-Challenge
-implement it by two stacks, do not use any other data structure and push, pop and top should be O(1) by AVERAGE.
-
-Thoughts:
-1. Push everything into stack2: whatever comes in last, will be on top.
-2. Pop and Top: return stack1's top element. 
-3. Initially, when stack1 is empty, need to reverse all stack2 and put into stack: like pouring water from cup stack2 into cup stack1.
-	Or:when stack1 has been top() over, pour stack2 into stack1 again: the stack2's bottom becomes stack1's top, which is correct: returning the oldest element of queue (front of queue)
-
-Tags Expand 
-LintCode Copyright Stack Queue
-*/
-
-
-public class Solution {
-    private Stack<Integer> stack1;
-    private Stack<Integer> stack2;
-    public void pourS2ToS1(){
-    	while (!stack2.empty()) {
-    		stack1.push(stack2.peek());
-    		stack2.pop();
-    	}
-    }
-    public Solution() {
-    	stack1 = new Stack<Integer>();
-    	stack2 = new Stack<Integer>();	
-    }
-    
-    public void push(int element) {
-    	stack2.push(element);
-    }
-
-    public int pop() {
-    	if (stack1.empty()) {
-    		pourS2ToS1();
-    	}
-    	return stack1.pop();
-    }
-
-    public int top() {
-    	if (stack1.empty()) {
-    		pourS2ToS1();
-    	}
-    	return stack1.peek();
-    }
-}
-
-
-
----
-
----
-**107. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy
+**98. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy
       
 双Stack. 一个是等于是queue，一个是backfillStack.
 Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再backfill.
@@ -1856,10 +1253,9 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 ---
-
----
-**108. [Implement Stack by Two Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20by%20Two%20Queues.java)**      Level: 
+**99. [Implement Stack by Two Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20by%20Two%20Queues.java)**      Level: Easy
       
+两个Queue,交互倒水
 用一个Temp做swap
 
 做法1:
@@ -1874,9 +1270,7 @@ q1的头，就一直是最后加进去的值.
 
 
 ---
-
----
-**109. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy
+**100. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy
       
 两个Queue,交互倒水
 用一个Temp做swap
@@ -1894,34 +1288,18 @@ q1的头，就一直是最后加进去的值.
 
 
 ---
-
----
-**110. [Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)**      Level: 
+**101. [Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)**      Level: Easy
       
+stack 后入先出. 
 Data Structure: ArrayList 
 return/remove ArrayList的末尾项。
 
 
 
 ---
-
----
-**111. [Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)**      Level: 
+**102. [Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)**      Level: Medium
       
-1. border condition。 如果 haystack.length() < needle.length() 的话，必须错。但是这个可以优化省略。
-2. 当S2是“”的时候，也就是能在s1的其实位置找到s2....index = 0.
-3. 记得如何在s1里面找s2. 就是把遍历s1的 i , 加上遍历s2的 j。
-
-优化：
-1. s1, s2长短可以不比较。因为forloop的时候： s1.length() - s2.length() + 1，如果s2长于s1,这里自然就断了。
-2. if(s1.charAT(i+j) == s2.charAT(j)). 可以省略。For loop 里面就Check到这个了。
-
-
----
-
----
-**112. [Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)**      Level: 
-      
+Trie自己不多用到。
 如果是遇到一个一个字查询的题，可以考虑一下。
 构建TrieNode的时候要注意：如何找孩子？如果是个map的话，其实就挺好走位的。
 而且，每个node里面的 char 或者string有时候用处不大，
@@ -1931,9 +1309,7 @@ return/remove ArrayList的末尾项。
 
 
 ---
-
----
-**113. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
+**103. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
       
 Tire, 也即是 Prefix Tree. 
 
@@ -1954,9 +1330,7 @@ node里的char在这是optional。
 
 
 ---
-
----
-**114. [IndexMatch.java](https://github.com/awangdev/LintCode/blob/master/Java/IndexMatch.java)**      Level: Easy
+**104. [IndexMatch.java](https://github.com/awangdev/LintCode/blob/master/Java/IndexMatch.java)**      Level: Easy
       
 有序, 假设有这样的数字:target.        
 target 左边的数字，一定不比index大，target右边的数字，一定比index大。     
@@ -1965,9 +1339,7 @@ target 左边的数字，一定不比index大，target右边的数字，一定�
 
 
 ---
-
----
-**115. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium
+**105. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium
       
 画inorder图，发现规律.每个node的后继node(successor)有几种情况:   
 1. node.right 是个leaf到底了。那么就return.   
@@ -1978,9 +1350,7 @@ target 左边的数字，一定不比index大，target右边的数字，一定�
 
 
 ---
-
----
-**116. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Easy
+**106. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Easy
       
 
 方法1：Scan Line    
@@ -2003,9 +1373,7 @@ O(n) 直接找到可以insert newInterval的位子. Insert。  这里已经给�
 
 
 ---
-
----
-**117. [Insert Node in a Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Node%20in%20a%20Binary%20Search%20Tree%20.java)**      Level: Easy
+**107. [Insert Node in a Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Node%20in%20a%20Binary%20Search%20Tree%20.java)**      Level: Easy
       
 往Binary Search Tree里面加东西，一定会找到一个合适的leaf加上去。
 
@@ -2016,195 +1384,7 @@ O(n) 直接找到可以insert newInterval的位子. Insert。  这里已经给�
 
 
 ---
-
----
-**118. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: 
-      
-基本上就是正常的想法：已经有个sorted list, insert一个element进去。怎么做？
-    while 里面每个元素都小于 curr, keep going
-    一旦curr在某个点小了，加进去当下这个空隙。
-这个题目也就是：把list里面每个元素都拿出来，scan and insert一遍！
-
-
-
----
-
----
-**119. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: 
-      
-Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 2^31 - 1.
-
-For example,
-123 -> "One Hundred Twenty Three"
-12345 -> "Twelve Thousand Three Hundred Forty Five"
-1234567 -> "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
-Hint:
-
-Did you see a pattern in dividing the number into chunk of words? For example, 123 and 123000.
-Group the number by thousands (3 digits). You can write a helper function that takes a number less than 1000 and convert just that chunk to words.
-There are many edge cases. What are some good test cases? Does your code work with input such as 0? Or 1000010? (middle chunk is zero and should not be printed out)
-Tags: Math, String
-Similar Problems: (M) Integer to Roman
-
-Thoughts:
-2^31 - 1  = 2,147,483,647
-Trillion, Billion, Million, Thousand, Hundred, Ninty .... Ten, Nine ... One, Zero.
-
-1. Break the words to up to 4 parts: new break[4] by /(1000 ^ i)
-2. For each i, deal with that 3-digit number in break[i]
-3. Append corresponding words for each break[i]
-
-Special case:
-zero
-000 in one break[i]: skip the whole thing
-*/
-
-
-public class Solution {
-    public String[] v1 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    public String[] v2 = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-    public String numberToWords(int num) {
-        if (num < 0) {
-            return "";
-        }
-        if (num == 0) {
-            return "Zero";
-        }
-        String rst = "";
-        for (int i = 0; i < 4; i++) {
-            int partial = num  - (num / 1000) * 1000;
-            if (partial > 0) {
-                rst = helper(partial, i) + " " + rst;
-            }
-            num /= 1000;
-        }
-        while (rst.charAt(rst.length() - 1) == ' ')  {
-            rst = rst.substring(0, rst.length() - 1);
-        }
-        return rst;
-    }
-
-    public String helper(int num, int i) {
-        String str = "";
-        if (num >= 100) {
-            int hund = num / 100;
-            str = v1[hund] + " Hundred ";
-            num = num % 100;
-        }
-
-        if (num < 20) {
-            str += v1[num] + " ";
-        } else {
-            int numTens = num / 10;
-            int numDigit = num % 10;
-            str += v2[numTens] + " ";
-            str += v1[numDigit] + " ";
-        }
-        
-        while (str.charAt(str.length() - 1) == ' ')  {
-            str = str.substring(0, str.length() - 1);
-        }
-        
-        //depending on i:
-        switch (i) {
-            case 1 : 
-                str += " Thousand";
-                break;
-            case 2 :
-                str += " Million";
-                break;
-            case 3 :
-                str += " Billion";
-                break;
-        }
-
-        return str;
-    }
-}
-
-
----
-
----
-**120. [Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)**      Level: 
-      
-这里主要要特别考虑，正数多还是负数多的问题。
-count一下，然后举两个小栗子就看出来端倪了。
-然后Two Pointer
-
-
----
-
----
-**121. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: 
-      
-Given three strings: s1, s2, s3, determine whether s3 is formed by the interleaving of s1 and s2.
-
-Example
-For s1 = "aabcc", s2 = "dbbca"
-
-When s3 = "aadbbcbcac", return true.
-When s3 = "aadbbbaccc", return false.
-Challenge
-O(n2) time or better
-
-Tags Expand 
-Longest Common Subsequence Dynamic Programming
-
-Attempt2: DP[i][j]: boolean that if first S1(i) chars and first S2(j) chars can interleavign first S3(i + j)
-Match one char by one char. We have 2 conditions: match s1 or s2 char, Let's do double-for-loop on s1 and s2
-1. match s1: s3.charAt(i + j -1) == s1.charAt(i - 1) && DP[i - 1][j]; // makes sure DP[i-1][j] also works before adding s1[i-1] onto the match list
-2. match s2: s3.charAt(i + j -1) == s2.charAt(j - 1) && DP[i][j - 1]// similar as above
-
-Note:
-Need to initiate the starting conditions with just s1, or just s2
-Note2:
-DP ususally start i == 1, and always use (i - 1) in the loop... this is all because we are trying to get DP[i][j], which are 1 index more than length
-*/
-public class Solution {
-    public boolean isInterleave(String s1, String s2, String s3) {
-        if (s3 == null || (s1 == null && s2 == null) || s1.length() + s2.length() != s3.length()) {
-        	return false;
-        }
-        boolean[][] DP = new boolean[s1.length() + 1][s2.length() + 1];
-        DP[0][0] = true; // empty s1 and s2 would be a working case
-
-        //with just s1:
-        for (int i = 1; i <= s1.length(); i++) {
-        	if (s3.charAt(i - 1) == s1.charAt(i - 1) && DP[i - 1][0]) {
-        		DP[i][0] = true;
-        	}
-        }
-
-        //with just s2:
-        for (int j = 1; j <= s2.length(); j++) {
-        	if (s3.charAt(j - 1) == s2.charAt(j - 1) && DP[0][j - 1]) {
-        		DP[0][j] = true;
-        	}
-        }
-
-        for (int i = 1; i <= s1.length(); i++) {
-        	for (int j = 1; j <= s2.length(); j++) {
-        		if ((s3.charAt(i + j - 1) == s1.charAt(i - 1) && DP[i - 1][j]) 
-        			|| (s3.charAt(i + j - 1) == s2.charAt(j - 1) && DP[i][j - 1])) {
-        			DP[i][j] = true;
-        		}
-        	}
-        }
-
-        return DP[s1.length()][s2.length()];
-    }
-}
-
-
-
-
-
-
----
-
----
-**122. [Intersection of Two Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays.java)**      Level: Easy
+**108. [Intersection of Two Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays.java)**      Level: Easy
       
 方法1: 用到hashset找unique && duplicate: O(m+n)
 方法2: 可以用binary search 找数字. Note:binary search一定需要array sorted: nLog(m)
@@ -2212,9 +1392,7 @@ public class Solution {
 
 
 ---
-
----
-**123. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
+**109. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 长短list，找重合点。
 长度不同的话，切掉长的list那个的extra length。 那么起点一样后，重合点就会同时到达。
@@ -2223,9 +1401,7 @@ public class Solution {
 
 
 ---
-
----
-**124. [Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)**      Level: Medium
+**110. [Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)**      Level: Medium
       
 SegtmentTree, methods: Build, Query. 这题是在SegmentTreeNode里面存min.
 
@@ -2236,18 +1412,14 @@ SegtmentTree, methods: Build, Query. 这题是在SegmentTreeNode里面存min.
 
 
 ---
-
----
-**125. [Interval Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum%20II.java)**      Level: Hard
+**111. [Interval Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum%20II.java)**      Level: Hard
       
 SegmentTree大集合。记得几个Methods: Build, Query, Modify. 不难。只是要都记得不犯错:)
 
 
 
 ---
-
----
-**126. [Interval Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum.java)**      Level: Medium
+**112. [Interval Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum.java)**      Level: Medium
       
 其实是segment tree 每个node上面加个sum。   
 
@@ -2259,18 +1431,14 @@ Note: 存在SegmentTreeNode里面的是sum.  其他题目可能是min,max ... or
 
 
 ---
-
----
-**127. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
+**113. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
       
 non-recursive: BFS with queue。 或者regular recurisve - divide and conquer.
 
 
 
 ---
-
----
-**128. [Isomorphic Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Isomorphic%20Strings.java)**      Level: Easy
+**114. [Isomorphic Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Isomorphic%20Strings.java)**      Level: Easy
       
 HashMap 来确认match。有几种情况考虑:
 
@@ -2285,9 +1453,7 @@ HashMap 来确认match。有几种情况考虑:
 
 
 ---
-
----
-**129. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard
+**115. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard
       
 Greedy, 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
 
@@ -2305,9 +1471,7 @@ index/i 是一步一步往前, 每次当 i <= range, 做一个while loop， 在�
 
 
 ---
-
----
-**130. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Medium
+**116. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Medium
       
 用Quick Sort 里面partion的一部分。     
 partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
@@ -2324,19 +1488,7 @@ Quick Sort:
 
 
 ---
-
----
-**131. [Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)**      Level: 
-      
-Recursive 不难，然后稍微优化一下，确保rst.size() == k 时候，就可以return了。
-Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边（如果存在）； 下一个轮回，如果又左孩子，又是一顿加。
-
-
-
----
-
----
-**132. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
+**117. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
       
 和Merge K sorted Array/ List 类似：使用PriorityQueue。
 
@@ -2345,9 +1497,7 @@ Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边
 
 
 ---
-
----
-**133. [Kth Smallest Sum In Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Sum%20In%20Two%20Sorted%20Arrays.java)**      Level: Hard
+**118. [Kth Smallest Sum In Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Sum%20In%20Two%20Sorted%20Arrays.java)**      Level: Hard
       
 
 用priority queue. 每次把最小的展开，移位。分别x+1,或者y+1:   
@@ -2361,174 +1511,7 @@ Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边
 
 
 ---
-
----
-**134. [Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)**      Level: 
-      
-Given a list of non negative integers, arrange them such that they form the largest number.
-
-Example
-Given [1, 20, 23, 4, 8], the largest formed number is 8423201.
-
-Note
- The result may be very large, so you need to return a string instead of an integer.
-
-Tags Expand 
-Sort
-
-Thoughts:
-Use a comparator with String.comareTo, then uset Arrays.sort(...)
-
-*/
-
-class CustomComparator implements Comparator<String> {
-    public int compare(String s1, String s2) {
-        return (s2 + s1).compareTo(s1 + s2);
-    }
-}
-public class Solution {
-    /**
-     *@param num: A list of non negative integers
-     *@return: A string
-     */
-    public String largestNumber(int[] num) {
-        if (num == null || num.length == 0) {
-            return "";
-        }
-        String[] strs = new String[num.length];
-        for (int i = 0; i < num.length; i++) {
-            strs[i] = num[i] + "";
-        }
-        Arrays.sort(strs, new CustomComparator());
-        StringBuffer sb=  new StringBuffer();
-        for (int i = 0; i < num.length; i++) {
-            sb.append(strs[i]);
-        }
-        String rst = sb.toString();
-        if (rst.charAt(0) == '0') {
-            return "0";
-        }
-        return rst;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
----
-**135. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: 
-      
-Example
-Given height = [2,1,5,6,2,3],
-return 10.
-
-Tags Expand 
-Array Stack
-
-Thinking Process:
-///TODO: missing thinking process for Largest Rectangle in Histogram
-
-*/
-
-public class Solution {
-    /**
-     * @param height: A list of integer
-     * @return: The area of largest rectangle in the histogram
-     */
-    public int largestRectangleArea(int[] height) {
-        if (height == null || height.length == 0) {
-            return 0;
-        }    
-        Stack<Integer> stack = new Stack<Integer>();
-        int max = 0;
-        for (int i = 0; i <= height.length; i++) {
-            int current = (i == height.length) ? -1 : height[i];
-            while (!stack.empty() && current <= height[stack.peek()]) {
-                int h = height[stack.pop()];
-                int w = stack.empty() ? i : i - stack.peek() - 1;
-                max = Math.max(max, w * h);
-            }
-            stack.push(i);
-        }
-        return max;
-    }
-}
-
-
-
----
-
----
-**136. [Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)**      Level: 
-      
-有重复,不是末尾点，继续binary search
-
-
----
-
----
-**137. [Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)**      Level: 
-      
-Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
-
-If the last word does not exist, return 0.
-
-Example
-Given s = "Hello World", return 5.
-
-Note
-A word is defined as a character sequence consists of non-space characters only.
-
-Tags Expand 
-String
-
-Thoughts:
-1. Split by space
-2. return last word's length
-
-Note: Java split: have to add '\\' in order to pass the key word. 
-*/
-
-
-
-public class Solution {
-    /**
-     * @param s A string
-     * @return the length of last word
-     */
-    public int lengthOfLastWord(String s) {
-        if (s == null || s.length() == 0) {
-        	return 0;
-        }
-        String[] arr = s.split("\\ ");
-        String lastWord = arr[arr.length - 1];
-
-       	return lastWord.length();
-    }
-}
-
-
----
-
----
-**138. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
+**119. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
 方法1: Iterative with BFS using queue.
 
@@ -2537,35 +1520,7 @@ public class Solution {
 
 
 ---
-
----
-**139. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: 
-      
-
-
-O(1)要首先break while loop when there is a slow==fast
-然后，然后就有个我不懂得地方：
-
-当head == slow.next时候， head就是cycle starting point.
-也就是说，当slow 移动到了那个回溯点，slow.next那个点就刚好是head的那个点...
-
-这个可能要写一写，装一装，证明证明才行...不是特别清楚。
-
-
----
-
----
-**140. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: 
-      
-那个时候其实slow.val = fast.val.
-
-O(n):用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle le 
-
-
----
-
----
-**141. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Medium
+**120. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Medium
       
 Nested loop, 每一次比较所有string 同位是否相等。
 
@@ -2574,204 +1529,7 @@ Nested loop, 每一次比较所有string 同位是否相等。
 
 
 ---
-
----
-**142. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: 
-      
-Given two strings, find the longest comment subsequence (LCS).
-
-Your code should return the length of LCS.
-
-Example
-For "ABCD" and "EDCA", the LCS is "A" (or D or C), return 1
-
-For "ABCD" and "EACB", the LCS is "AC", return 2
-
-Clarification
-What's the definition of Longest Common Subsequence?
-
-    * The longest common subsequence (LCS) problem is to find the longest subsequence common to all sequences in a set of sequences (often just two). (Note that a subsequence is different from a substring, for the terms of the former need not be consecutive terms of the original sequence.) It is a classic computer science problem, the basis of file comparison programs such as diff, and has applications in bioinformatics.
-
-    * https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
-
-Tags Expand 
-LintCode Copyright Longest Common Subsequence Dynamic Programming
-
-Thinking process:
-Using DP.
-check[i][j] means: the length of longest common subsequnce between A(0 ~ i) and B(0 ~ j).
-Then there are two ways to reach check[i][j]:
-1. A(i-1) == B(j - 1), then check[i][j] = check[i - 1][j - 1] + 1;
-2. A(i-1) != B(j - 1), then pick the max between (i-1,j) ,  (i,j-1)  and (i, j )
-Note: check[][] is initialized with all 0's. Index (0,0) is used as starting 0.
-*/
-public class Solution {
-    /**
-     * @param A, B: Two strings.
-     * @return: The length of longest common subsequence of A and B.
-     */
-    public int longestCommonSubsequence(String A, String B) {
-        if (A == null || B == null || A.length() == 0 || B.length() == 0) {
-            return 0;
-        }
-        int[][] check = new int[A.length()  + 1][B.length() + 1];
-        for (int i = 1; i <= A.length(); i++) {
-            for (int j = 1; j <= B.length(); j++) {
-                if (A.charAt(i - 1) == B.charAt(j - 1)) {
-                    check[i][j] = check[i - 1][j - 1] + 1;
-                } else {
-                    check[i][j] = Math.max(check[i][j], check[i - 1][j]);
-                    check[i][j] = Math.max(check[i][j], check[i][j - 1]);
-                }
-            }
-        }
-        return check[A.length()][B.length()];
-    }
-}
-
-
-
-
----
-
----
-**143. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: 
-      
-Given two strings, find the longest common substring.
-
-Return the length of it.
-
-Example
-Given A = "ABCD", B = "CBCE", return 2.
-
-Note
-The characters in substring should occur continuously in original string. This is different with subsequence.
-
-Challenge
-O(n x m) time and memory.
-
-Tags Expand 
-LintCode Copyright Longest Common Subsequence Dynamic Programming
-
-Thoughts:
-1. Compare all i X j.
-2. Use a D[i][j] to mark the amount of common substring based on D[i - 1][j -1]. Could be 0.
-3. track max length
-
-NOTE1: create 2D array that's [N + 1][M + 1] because we want to hold D[n][M] in the 2d array
-NOTE2: be carefule with init index 0's
-
-*/
-
-
-public class Solution {
-    /**
-     * @param A, B: Two string.
-     * @return: the length of the longest common substring.
-     */
-    public int longestCommonSubstring(String A, String B) {
-    	if (A == null || B == null || A.length() == 0 || B.length() == 0) {
-    		return 0;
-    	}   
-    	int [][] D = new int[A.length() + 1][B.length() + 1];
-    	int max = 0;
-    	for (int i = 0; i <= A.length(); i++) {
-    		for(int j = 0; j <= B.length(); j++) {
-    		    if (i == 0 || j == 0) {
-    		        D[i][j] = 0;
-    		    } else {
-        			if (A.charAt(i - 1) == B.charAt(j - 1)) {
-        				D[i][j] = D[i - 1][j - 1] + 1;
-        			} else {
-        				D[i][j] = 0;
-        			}
-        			max = Math.max(max, D[i][j]);
-    		    }
-    		}
-    	}
-    	return max;
-    }
-}
-
-
----
-
----
-**144. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: 
-      
-Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
-
-For example,
-Given [100, 4, 200, 1, 3, 2],
-The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
-
-Your algorithm should run in O(n) complexity.
-
-Hide Tags Array
-
-Thinking process:
-0. This problem can be done using sorting, but time complexity of sorting is O(nlogn). This problem requires O(n).
-1. Want to check if a number's left and right is consecutive to itself, but cannot do it due to the given unsorted array: think about a Hashmap.
-2. HashMap(Key, Value) = (the number itself, boolean: have been counted or not). If you count a number as a consecutive, you only need to count it once.
-3. How HashMap works: 
-	when checking a number's consecutive, look at number--, number++, see if they are in the HashMap. If exist, means consecutive.
-	If a number exist in the hashmap and its value is 'true', then we need to skip this number beacuse it has been checked.
-4. Track the total number consecutives of 1 perticular number, compare it with the maxL. Save the Math.max to maxL.
-5. Depending on the problem, we can store a consecutive sequence or simply just its length: maxL. This problem wants the maxL.
-*/
-
-public class Solution {
-    public int longestConsecutive(int[] num) {
-        if (num == null || num.length == 0) {
-            return 0;
-        }
-        int maxL = 1;
-        HashMap<Integer, Boolean> history = new HashMap<Integer, Boolean>();
-        for (int i : num) {
-            history.put(i, false);
-        }
-        for (int i : num) {
-            if (history.get(i)) {
-                continue;
-            }
-            //check ++ side
-            int temp = i;
-            int total = 1;
-            while (history.containsKey(temp + 1)) {
-                total++;
-                temp++;
-                history.put(temp, true);
-            }
-            //check -- side
-            temp = i;
-            while (history.containsKey(temp - 1)) {
-                total++;
-                temp--;
-                history.put(temp, true);
-            }
-            maxL = Math.max(maxL, total);
-        }
-        return maxL;
-    }
-}
-
-
-
-
-
----
-
----
-**145. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: 
-      
-O(mn) runtime because each spot will be marked once visited. 
-这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
-
-
----
-
----
-**146. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy
+**121. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy
       
 O(n)跑2遍for.
 O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足条件所有的longestIncreasingContinuousSubsequence.
@@ -2779,9 +1537,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 
 ---
-
----
-**147. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium
+**122. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium
       
 方法1: 从中间劈开. 遍历i，从n个不同的点劈开：每次劈开都看是否可以从劈开出作为palindromic的中点延伸。   
    Worst case: 整个string都是相同字符，time complexity变成： 1 + 2 +３　＋　．．．　＋n = O(n^2)
@@ -2792,9 +1548,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 
 ---
-
----
-**148. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium
+**123. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium
       
 大清洗 O(nk)   
 map.size一旦>k，要把longest string最开头（marked by pointer:start）的那个char抹掉    
@@ -2805,9 +1559,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 ---
-
----
-**149. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium
+**124. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium
       
 
 方法2:用两个pointer, head和i.    
@@ -2831,9 +1583,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 ---
-
----
-**150. [Longest Univalue Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Univalue%20Path.java)**      Level: Easy
+**125. [Longest Univalue Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Univalue%20Path.java)**      Level: Easy
       
 弄明白path的意义: 连接node的edge.
 要找MAX, 可以在class scope里面定义一个max variable.
@@ -2843,9 +1593,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 ---
-
----
-**151. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy
+**126. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy
       
 方法1:
 按大小排序 -> 从最大的开始做contains()的比较 -> 结果再按照字母表顺序(lexicographically) sort一下.
@@ -2865,86 +1613,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 ---
-
----
-**152. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: 
-      
-Given a dictionary, find all of the longest words in the dictionary.
-
-Example
-Given
-
-{
-  "dog",
-  "google",
-  "facebook",
-  "internationalization",
-  "blabla"
-}
-the longest words are(is) ["internationalization"].
-
-Given
-
-{
-  "like",
-  "love",
-  "hate",
-  "yes"
-}
-the longest words are ["like", "love", "hate"].
-
-Challenge
-It's easy to solve it in two passes, can you do it in one pass?
-
-Tags Expand 
-Enumeration String LintCode Copyright
-
-Thoughts:
-Two pass: 1st, get longest length. 2nd pass, get all words.
-
-One pass:
-1. Use hashmap: <lengthOfString, ArrayList<String>>
-2. keep track of the longest length
-
-Review:
-Map: put, get
-ArrayList: add
-We can get a value from map, and change directly on it, if that's an object (basically refer to the original object)
-*/
-
-
-class Solution {
-    /**
-     * @param dictionary: an array of strings
-     * @return: an arraylist of strings
-     */
-    ArrayList<String> longestWords(String[] dictionary) {
-    	if (dictionary == null || dictionary.length == 0) {
-    		return null;
-    	}
-    	HashMap<Integer, ArrayList<String>> map = new HashMap<Integer, ArrayList<String>>();
-    	int longestLength = 0;
-
-    	for (int i = 0; i < dictionary.length; i++) {
-    		int strLength = dictionary[i].length();
-    		if (map.containsKey(strLength)) {
-    			map.get(strLength).add(dictionary[i]);
-    		} else {
-    			ArrayList<String> list = new ArrayList<String>();
-    			list.add(dictionary[i]);
-    			map.put(strLength, list);
-    		}
-    		longestLength = strLength > longestLength ? strLength : longestLength;
-    	}
-    	return map.get(longestLength);
-    }
-};
-
-
----
-
----
-**153. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy
+**127. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy
       
 这个题有个奇葩的地方，每个node还有一个parent。 所以可以自底向上.
 
@@ -2960,9 +1629,7 @@ class Solution {
 
 
 ---
-
----
-**154. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+**128. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
       
 方法1: 利用 BST的性质，可以直接搜到target node，而做成两个长度不一定相等的list。然后很简单找到LCA 
 方法2: Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
@@ -2970,9 +1637,7 @@ class Solution {
 
 
 ---
-
----
-**155. [Lowest Common Ancestor.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor.java)**      Level: Easy
+**129. [Lowest Common Ancestor.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor.java)**      Level: Easy
       
 普通的Binary Tree，node child 自顶向下蔓延。
 
@@ -2991,9 +1656,7 @@ class Solution {
 
 
 ---
-
----
-**156. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard
+**130. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard
       
 
 timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
@@ -3017,9 +1680,7 @@ remove()
 
 
 ---
-
----
-**157. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium
+**131. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium
       
 分三份：a b c考虑。若a, countA++, 或b, countB++，或c，countA--,countB--.
 
@@ -3030,9 +1691,7 @@ remove()
 
 
 ---
-
----
-**158. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium
+**132. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium
       
 与其他Majority Number一样。
 
@@ -3045,9 +1704,7 @@ remove()
 
 
 ---
-
----
-**159. [Majority Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number.java)**      Level: Easy
+**133. [Majority Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number.java)**      Level: Easy
       
 Majority Number是指超半数。任何超半数，都可以用0和1count：是某个number，+1；不是这个number,-1. 
 
@@ -3060,9 +1717,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
-
----
-**160. [Matrix Zigzag Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Matrix%20Zigzag%20Traversal.java)**      Level: Easy
+**134. [Matrix Zigzag Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Matrix%20Zigzag%20Traversal.java)**      Level: Easy
       
 分析4个step:right, left-bottom,down,right-up    
 implement时注意index.有点耐心
@@ -3070,9 +1725,7 @@ implement时注意index.有点耐心
 
 
 ---
-
----
-**161. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy
+**135. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy
       
 虽然Easy, 但用到DFS最基本的想法.
 1. dive deep
@@ -3085,9 +1738,7 @@ implement时注意index.有点耐心
 
 
 ---
-
----
-**162. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Hard
+**136. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Hard
       
 Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
 
@@ -3110,9 +1761,7 @@ Stack里，最大的值在下面。利用此性质，有这样几个step:
 
 
 ---
-
----
-**163. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+**137. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
       
 DP问题
 
@@ -3128,50 +1777,19 @@ Init：
 
 
 ---
-
----
-**164. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review
+**138. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review
       
 
 
 ---
-
----
-**165. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+**139. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
       
 DFS: Divide and conquer. 维持一个最大值。
 
 
 
 ---
-
----
-**166. [Maximum Subarray III.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20III.java)**      Level: 
-      
-
-Given an array of integers and a number k, find k non-overlapping subarrays which have the largest sum.
-
-The number in each subarray should be contiguous.
-
-Return the largest sum.
-
-Have you met this question in a real interview? Yes
-Example
-Given [-1,4,-2,3,-2,3], k=2, return 8
-
-Note
-The subarray should contain at least one number
-
-Tags Expand 
-LintCode Copyright Dynamic Programming Subarray Array
-*/
-
-
-
----
-
----
-**167. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
+**140. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
       
 方法1
 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
@@ -3185,64 +1803,14 @@ LintCode Copyright Dynamic Programming Subarray Array
 
 
 ---
-
----
-**168. [Maximum SubarrayII.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20SubarrayII.java)**      Level: 
-      
-注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-我们需要的那部分prefix sum，其实就是一段数字的总和。
-所以从右边累计上来的。也是一样可以的。
-
-
----
-
----
-**169. [MaximumSubarrayII.java](https://github.com/awangdev/LintCode/blob/master/Java/MaximumSubarrayII.java)**      Level: 
-      
-注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-我们需要的那部分prefix sum，其实就是一段数字的总和。
-所以从右边累计上来的。也是一样可以的。
-
-
----
-
----
-**170. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard
+**141. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard
       
 Not done
 
 
 
 ---
-
----
-**171. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: 
-      
-Given a unsorted array with integers, find the median of it. 
-
-A median is the middle number of the array after it is sorted. 
-
-If there are even numbers in the array, return the N/2-th number after sorted.
-
-Example
-Given [4, 5, 1, 2, 3], return 3
-
-Given [7, 9, 4, 5], return 5
-
-Challenge
-O(n) time.
-
-Tags Expand 
-LintCode Copyright Quick Sort Array
-
-
-*/
-
-
----
-
----
-**172. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
+**142. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
       
 
 方法1:PriorityQueue + 一个Class来解决。Ｏ(nlogn)
@@ -3252,9 +1820,7 @@ LintCode Copyright Quick Sort Array
 
 
 ---
-
----
-**173. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy
+**143. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy
       
 方法1: 找是否有overlap. priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
 方法2: Scan line, class Point{pos, flag}, PriorityQueue排序。计算count     
@@ -3265,9 +1831,7 @@ LintCode Copyright Quick Sort Array
 
 
 ---
-
----
-**174. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Easy
+**144. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Easy
       
 方法1：O(nlogn)         
 扫描线+Count无敌手。注意start end把interval给合起来。   
@@ -3296,9 +1860,7 @@ prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, m
 
 
 ---
-
----
-**175. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium
+**145. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium
       
 由Merge k sorted list启发。用PriorityQueue,存那k个首发element。
 
@@ -3308,9 +1870,7 @@ PriorityQueue需要存储单位。自己建一个Class Node 存val, x,y index.
 
 
 ---
-
----
-**176. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium
+**146. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium
       
 用Priorityqueue来排列所有list的leading node.
 
@@ -3330,16 +1890,7 @@ Note:
 
 
 ---
-
----
-**177. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: 
-      
-
-
----
-
----
-**178. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
+**147. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
       
 A够长，那么可以从A的尾部开始加新元素。     
 注意，从尾部，是大数字优先排末尾的.  
@@ -3347,18 +1898,14 @@ A够长，那么可以从A的尾部开始加新元素。
 
 
 ---
-
----
-**179. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy
+**148. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy
       
 基础binary tree traversal. 注意对null child的判断
 
 
 
 ---
-
----
-**180. [Merge Two Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Sorted%20Lists.java)**      Level: Easy
+**149. [Merge Two Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Sorted%20Lists.java)**      Level: Easy
       
 小的放前。每次比head大小。   
 while过后，把没完的list一口气接上。   
@@ -3368,22 +1915,7 @@ while过后，把没完的list一口气接上。
 
 
 ---
-
----
-**181. [Middle of Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Middle%20of%20Linked%20List.java)**      Level: 
-      
-
-不在乎slow是不是到底，因为fast肯定先到。
-确保fast, fast.next不是Null就好
-
-
-return slow
-
-
----
-
----
-**182. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy
+**150. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy
       
 双Stack：一个正常stack，另一个minStack存当下level最小值. 注意维护minStack的变化
 
@@ -3392,134 +1924,14 @@ return slow
 
 
 ---
-
----
-**183. [Minimum Absolute Difference in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Absolute%20Difference%20in%20BST.java)**      Level: Easy
+**151. [Minimum Absolute Difference in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Absolute%20Difference%20in%20BST.java)**      Level: Easy
       
 BST: inorder-traversal: 先left node(adding to stack till left leav), 再process stack.peek (mid node), 再 add rightNode && dive to rightNode.left leaf
 
 
 
 ---
-
----
-**184. [Minimum Height Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Height%20Trees.java)**      Level: 
-      
-For a undirected graph with tree characteristics, we can choose any node as the root. The result graph is then a rooted tree. Among all possible rooted trees, those with minimum height are called minimum height trees (MHTs). Given such a graph, write a function to find all the MHTs and return a list of their root labels.
-
-Format
-The graph contains n nodes which are labeled from 0 to n - 1. You will be given the number n and a list of undirected edges (each edge is a pair of labels).
-
-You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.
-
-Example 1:
-
-Given n = 4, edges = [[1, 0], [1, 2], [1, 3]]
-
-        0
-        |
-        1
-       / \
-      2   3
-return [1]
-
-Example 2:
-
-Given n = 6, edges = [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]
-
-     0  1  2
-      \ | /
-        3
-        |
-        4
-        |
-        5
-return [3, 4]
-
-Show Hint 
-Note:
-
-(1) According to the definition of tree on Wikipedia: “a tree is an undirected graph in which any two vertices are connected by exactly one path. In other words, any connected graph without simple cycles is a tree.”
-
-(2) The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
-
-Credits:
-Special thanks to @peisi for adding this problem and creating all test cases.
-
-Hide Company Tags Google
-Hide Tags Breadth-first Search Graph
-Hide Similar Problems (M) Course Schedule (M) Course Schedule II
-
-*/
-
-
-
-
----
-
----
-**185. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: 
-      
-Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
-
-Note
-You can only move either down or right at any point in time.
-
-Example
-Tags Expand 
-Dynamic Programming
-
-Thinking process:
-1. Check null, lenght == 0
-2. Min Sum = sum of array. Initialization is a bit different, for example: each row element is added up from previous elemenet. (Not simple value assign from given grid)
-	- Assign (0,0) to grid[0][0]
-	- Row 1st row and 1st col, add up values 
-3. f(x,y) = sum of path value. f(x,y) = Math.Min(f(x-1,y), f(x, y-1))
-4. return f(r-1)(c-1)
-
-*/
-
-
-public class Solution {
-    /**
-     * @param grid: a list of lists of integers.
-     * @return: An integer, minimizes the sum of all numbers along its path
-     */
-    public int minPathSum(int[][] grid) {
-        
-        if (grid == null || grid.length == 0 || grid[0].length == 0) {
-            return 0;
-        }
-        int row = grid.length;
-        int col = grid[0].length;
-        int[][] matrix = new int[row][col];
-        matrix[0][0] = grid[0][0];
-        //Add up for 1st row && 1st col
-        for (int i = 1; i < row; i++) {
-            matrix[i][0] = matrix[i - 1][0] + grid[i][0];
-        }
-        for (int j = 1; j < col; j++) {
-            matrix[0][j] = matrix[0][j - 1] + grid[0][j];
-        }
-        //Evaluate
-        for (int i = 1; i < row; i++) {
-            for (int j = 1; j < col; j++) {
-                matrix[i][j] = Math.min(matrix[i - 1][j], matrix[i][j - 1])
-                                + grid[i][j];
-            }
-        }
-        return matrix[row - 1][col - 1];
-        
-    }
-}
-
-
-
-
----
-
----
-**186. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
+**152. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
       
 2 pointer, O(n). 找subarray, start 或 end pointer，每次一格这样移动.
 
@@ -3533,58 +1945,7 @@ Note done the O(nlogn) yet
 
 
 ---
-
----
-**187. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: 
-      
-Given an array of integers, find the subarray with smallest sum.
-
-Return the sum of the subarray.
-
-Example
-For [1, -1, -2, 1], return -3
-
-Note
-The subarray should contain at least one integer.
-
-Tags Expand 
-Greedy LintCode Copyright Subarray Array
-
-Thoughts:
-Note: sub-array has order. It's not sub-set
-1. On each index: decide to add with nums.get(i), to use the new lowest value nums.get(i). That means:
-	If the new value is negative (it has decresing impact on sum) and the sum is larger than new value, just use the new value.
-	In another case, if sum has been nagative, so sum + new value will be even smaller, then use sum.
-2. Every time compare the currMin with the overall minimum value, call it minRst.	
-
-Note: remember to pre-set init value for curMin, minRst. 
-*/
-
-
-public class Solution {
-    /**
-     * @param nums: a list of integers
-     * @return: A integer indicate the sum of minimum subarray
-     */
-    public int minSubArray(ArrayList<Integer> nums) {
-		if (nums == null || nums.size() == 0) {
-			return 0;
-		}	
-		int curMin = nums.get(0);
-		int minRst = nums.get(0);
-		for (int i = 1; i < nums.size(); i++) {
-			curMin = Math.min(nums.get(i), curMin + nums.get(i));
-			minRst = Math.min(curMin, minRst);
-		}
-		return minRst;
-    }
-}
-
-
----
-
----
-**188. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard
+**153. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard
       
 LeetCode Hard    
 LintCode M, 测试有问题，即使做错也能过.
@@ -3599,34 +1960,14 @@ LintCode M, 测试有问题，即使做错也能过.
 
 
 ---
-
----
-**189. [MinimumDepthOfBinaryTree.java](https://github.com/awangdev/LintCode/blob/master/Java/MinimumDepthOfBinaryTree.java)**      Level: Easy
+**154. [MinimumDepthOfBinaryTree.java](https://github.com/awangdev/LintCode/blob/master/Java/MinimumDepthOfBinaryTree.java)**      Level: Easy
       
 Divide and Conquery一个最小值. 注意处理Leaf的null, 用Integer.MAX_VALUE代替，这样可以避免错误counting.
 
 
 
 ---
-
----
-**190. [Missing Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Ranges.java)**      Level: 
-      
-自己做的时候，想的太复杂，做起了binarysearch,企图节省时间。
-下次要算清楚，是否有意义。
-binarySearch的确logn,但是在lower 和upper之间的数字，很可能还是O(n).
-因此一开始就for一遍也是O(n), 而code会相对来说简单许多。
-
-想法：
-两个pointer， 每次计较prev和curr之间的部分。
-然后prev = curr，向前移动一格。
-
-
-
----
-
----
-**191. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium
+**155. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium
       
 想法不难。turn into int[], 然后每个位子乘积，然后余数carrier移位。
 
@@ -3652,9 +1993,7 @@ s.charAt(i) - 'a'; //字母
 
 
 ---
-
----
-**192. [Next Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Permutation.java)**      Level: Medium
+**156. [Next Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Permutation.java)**      Level: Medium
       
 需斟酌。
 
@@ -3672,9 +2011,7 @@ steps:
 
 
 ---
-
----
-**193. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
+**157. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
       
 著名Nim游戏。
 写一些，发现n=4,5,6,7,8...etc之后的情况有规律性: 谁先手拿到4就输了.
@@ -3683,44 +2020,7 @@ steps:
 
 
 ---
-
----
-**194. [NQueens.java](https://github.com/awangdev/LintCode/blob/master/Java/NQueens.java)**      Level: 
-      
-index就是col number
-值就是row number.
-
-validate n queue的时候 target row#
-1. array 里面不能有 target row#
-2. diagnal. 记得公式：
- row1 - row2 == col1 - col2. Diagnal elelment.fail
- row1 - row2 == -(col1 - col2). Diagnal element. fail
-
-
-
----
-
----
-**195. [NQueensII.java](https://github.com/awangdev/LintCode/blob/master/Java/NQueensII.java)**      Level: 
-      
-直接add 一个什么乱起八糟的东西进rst都可以。
-然后最后要的是 rst.size() = # of solutons
-
-
----
-
----
-**196. [Nth to Last Node in List.java](https://github.com/awangdev/LintCode/blob/master/Java/Nth%20to%20Last%20Node%20in%20List.java)**      Level: 
-      
-然后head开始跑。
-
-node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last nth
-
-
----
-
----
-**197. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium
+**158. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium
       
 把Interval拆分成数轴上的Point：    
 起飞mark 1   
@@ -3735,9 +2035,7 @@ node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last n
 
 
 ---
-
----
-**198. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard
+**159. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard
       
 用HashMap的Union-find.
 
@@ -3748,9 +2046,7 @@ node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last n
 
 
 ---
-
----
-**199. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium
+**160. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium
       
 方法1: 两个for loop brutle force。 DFS把每个跟1相关的都Mark一遍.生成一个island.
 
@@ -3761,106 +2057,7 @@ node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last n
 
 
 ---
-
----
-**200. [Number Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Triangles.java)**      Level: 
-      
-Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
-
-Note
-Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
-
-Example
-For example, given the following triangle
-
-[
-     [2],
-    [3,4],
-   [6,5,7],
-  [4,1,8,3]
-]
-The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
-
-Tags Expand 
-Dynamic Programming
-
-Thinking process:
-1. Bottom-up
-	- Start from the bottom row, get all values of this row. Note: in triangle, height = cols at each row. So row X has X numbers.
-	- Start from (n - 1)th row and run up: calculate min from lower level + current node value.
-	- Depending what is wanted, here we use a 2D int arraya and return the min sum.
-*/
-
-public class Solution {
-    /**
-     * @param triangle: a list of lists of integers.
-     * @return: An integer, minimum path sum.
-     */
-    //Bottom - up
-    public int minimumTotal(ArrayList<ArrayList<Integer>> triangle) {
-        if (triangle == null || triangle.size() == 0) {
-            return 0;
-        }
-        int n = triangle.size();
-        int[][] sum = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            sum[n - 1][i] = triangle.get(n - 1).get(i);
-        }
-        for (int i = n - 2; i >= 0; i--) {
-            for (int j = 0; j <= i; j++) {
-                sum[i][j] = Math.min(sum[i + 1][j], sum[i + 1][j + 1]) + triangle.get(i).get(j);
-            }
-        }
-        return sum[0][0];
-    }
-}
-
-
-
----
-
----
-**201. [O(1) Check Power of 2.java](https://github.com/awangdev/LintCode/blob/master/Java/O(1)%20Check%20Power%20of%202.java)**      Level: 
-      
-Using O(1) time to check whether an integer n is a power of 2.
-Example
-For n=4, return true
-
-For n=5, return false
-
-Challenge
-O(1) time
-
-Tags Expand 
-Binary
-
-Thinking process:
-Any integer that's power of 2, follows one pattern. They are all: 1000000000....000 format.
-so (n - 1) becomes: 01111111111...111. 
-If bit-and them togeter, it will be 0.
-
-*/
-
-class Solution {
-    /*
-     * @param n: An integer
-     * @return: True or false
-     */
-    public boolean checkPowerOf2(int n) {
-        if (n <= 0) {
-            return false;
-        }
-        return (n & (n - 1)) == 0;
-    }
-};
-
-
-
-
----
-
----
-**202. [One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)**      Level: Medium
+**161. [One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)**      Level: Medium
       
 理解Edit: 就是删除，增加，和替换。    
 换完之后，理论上换成的String 就应该全等             
@@ -3869,58 +2066,7 @@ class Solution {
 
 
 ---
-
----
-**203. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: 
-      
-设定T（n）的做法，最后题目化简以后就跟Fibonacci number一样一样的。详细分析如下。
-做完，还是觉得如有神。本来是个Easy题，想不到，就是搞不出。
-
-12.13.2015再看了一下：
-因为最多2个fence 颜色相同。
-假设i是和 i-1不同，那么结果就是 (k-1)*dp[i - 1]
-假设i是何 i-1相同，那么根据条件，i-1和i-2肯定不同。那么所有的结果就是(k-1)*dp[i-2]
-加在一起就有了。
-
-
----
-
----
-**204. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: 
-      
-linkedlist不能reverse iterating， 那么就reverse the list, 从中间开花作比较。
-
-
----
-
----
-**205. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: 
-      
-看上去，在检查i,j的时候，中间按的（i+1, j-1）怎么可能先知道？ 其实不然..在j慢慢长大的时候，所有的0~j的substring都检查过。所以isPal[i+1][j-1]一定是已经知道结果的。
-
-okay.那么假如以上任意一种情况成立，也就是说isPal[i][j] == true。那就要判断，切到第一层循环参数j的末尾点时，有多少种切法？
-想法很顺：我们naturally会想到，把i之前的cut加上i~j之间发生的不就好了。
-反正现在j不变，现在就看吧i定在哪里，cut[i - 1]是否更小/最小； 再在cut[i-1]基础上+1就完了。
-    当然，如果i==0, 而 i~j又是isPal,那没啥好谈的，不必切，0刀。
-
-最终，刷到cut[s.length() - 1] 也就是最后一点。 return的理所应当。
-
-
----
-
----
-**206. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: 
-      
-在遍历str的时候，考虑从每个curr spot 到 str 结尾，是能有多少种palindorme? 那就从curr spot当个字符开始算，开始back tracing.
-如果所选不是palindrome， 那move on.
-若所选的确是palindrome,　加到path里面，DFS去下个level，等遍历到了结尾，这就产生了一种分割成palindrome的串。
-每次DFS结尾，要把这一层加的所选palindrome删掉，backtracking嘛。
-
-
----
-
----
-**207. [Palindrome Permutation II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation%20II.java)**      Level: Medium
+**162. [Palindrome Permutation II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation%20II.java)**      Level: Medium
       
 permutation的综合题：    
 1. validate Input 是不是可以做palindromic permutation. 这个就是（Palindrome Permutation I）   
@@ -3930,134 +2076,21 @@ permutation的综合题：
 
 
 ---
-
----
-**208. [Palindrome Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation.java)**      Level: Easy
+**163. [Palindrome Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation.java)**      Level: Easy
       
 注意，条件里面没说是否全是lower case letter
 
 
 
 ---
-
----
-**209. [Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)**      Level: 
-      
-Partition an integers array into odd number first and even number second.
-
-Example
-Given [1, 2, 3, 4], return [1, 3, 2, 4]
-
-Challenge
-Do it in-place.
-
-Tags Expand 
-Two Pointers Array
-
-Thougths:
-Use two pointers: nextOddPt, firstEvenPt
-1. Whenever nextOddPt > firstEvenPt, swapt them
-2. Incrase nextOddPt in a for loop
-Note:
-After each swap, have to start checking again from beginning-switching point, which will be firstEvenPt. Need to set i = firstEvenPt.
-However, since for loop will do i++, we need to set i = firstEvenPt - 1;
-And firstEvenPt only needs to be update once so use -1 to check if it's set.
-*/
-
-public class Solution {
-    /**
-     * @param nums: an array of integers
-     * @return: nothing
-     */
-    public void partitionArray(int[] nums) {
-    	if (nums == null || nums.length == 0){
-    		return;
-    	}
-    	int nextOddPt = -1;
-    	int firstEvenPt = -1;
-    	for (int i = 0; i < nums.length; i++) {
-    		if (nums[i] % 2 == 1) {
-    			nextOddPt = i;
-    		} else {
-    			if (firstEvenPt == -1) {
-    				firstEvenPt = i;
-    			}
-    		}
-    		if (nextOddPt > firstEvenPt && firstEvenPt != -1) {
-    			int temp = nums[nextOddPt];
-    			nums[nextOddPt] = nums[firstEvenPt];
-    			nums[firstEvenPt] = temp;
-    			i = firstEvenPt - 1;
-    			firstEvenPt = -1;
-    		}
-    	}
-    }
-}
-
-
----
-
----
-**210. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: 
-      
-从array两边开始缩进。while loop到遍历完。非常直白的implement。
-注意low/high,或者叫start/end不要越边界
-O(n)
-
-Quick sort的基础。
-
-
----
-
----
-**211. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: 
-      
-
-那就最普通的，建造两个list
-
-把满足条件（<x, >=x）的数字分别放到两个list里面
-
-记得用dummyNode track head.
-最终pre.next = post链接起来。
-
-
----
-
----
-**212. [Pascal's Triangle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Pascal's%20Triangle%20II.java)**      Level: Easy
+**164. [Pascal's Triangle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Pascal's%20Triangle%20II.java)**      Level: Easy
       
 简单处理array list.
 
 
 
 ---
-
----
-**213. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: 
-      
-
-回到原题，其实不难。找一个cache来存next()的值，然后每次next()里面维护这个cache就好。
-
-
-
----
-
----
-**214. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: 
-      
-
-１.　第一步想到了，从数学角度，可能是从最大的perfect square number开始算起。
-２.　然后想法到了dp， 假设最后一步用了最大的maxSqrNum, 那么就在剩下的 dp[i - maxSqrNum^2] +１　不就好了？
-３.　做了，发现有个问题．．．最后一步选不选maxSqrNum?  比如12就是个例子。
-	然后就根据提示，想到BFS。顺的。 把1～maxSqrNum 都试一试。找个最小的。
-	看我把12拆分的那个example. 那很形象的就是BFS了。
-	面试时候，如果拆分到这个阶段不确定，那跟面试官陶瓷一下，说不定也就提示BFS了。
-
-
----
-
----
-**215. [Permutation Index.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutation%20Index.java)**      Level: Easy
+**165. [Permutation Index.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutation%20Index.java)**      Level: Easy
       
 和Permutation Sequence相反的题目。思想类似。
 
@@ -4095,9 +2128,7 @@ Same process, 看ｇｉｖｅｎ　数组的第二位５，算它接下去：
 
 
 ---
-
----
-**216. [Permutation Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutation%20Sequence.java)**      Level: Medium
+**166. [Permutation Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutation%20Sequence.java)**      Level: Medium
       
 k是permutation的一个数位。而permutation是有规律的。
 
@@ -4113,9 +2144,7 @@ k是permutation的一个数位。而permutation是有规律的。
 
 
 ---
-
----
-**217. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium
+**167. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium
       
 方法1:
 Mark visited. 并且要检查上一层recursive时有没有略过重复element. 并且要排序，通过permutation规律查看是否排出了重复结果。
@@ -4137,9 +2166,7 @@ Mark visited. 并且要检查上一层recursive时有没有略过重复element. 
 
 
 ---
-
----
-**218. [Permutations.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations.java)**      Level: Medium
+**168. [Permutations.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations.java)**      Level: Medium
       
 Recursive Backtracking: 取，或者不取.
 Improvement: maintain list (add/remove elements) instead of 'list.contains'
@@ -4150,9 +2177,7 @@ Iterative: 用个queue，每次poll()出来的list, 把在nums里面能加的挨
 
 
 ---
-
----
-**219. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Hard
+**169. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Hard
       
 非perfect tree, 也就是有random的null children. DFS＋BFS
 
@@ -4169,9 +2194,7 @@ Note: runtime O(n * 2^log(n) ) = O(n^2), not good.
 
 
 ---
-
----
-**220. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
+**170. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
       
 方法1：   
 题目要求DFS。   
@@ -4187,68 +2210,7 @@ process每层queue时, 注意把next pointer加上去就好.
 
 
 ---
-
----
-**221. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: 
-      
-n的正负。
-n == 0的情况。
-
-
----
-
----
-**222. [Product of Array Exclude Itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Product%20of%20Array%20Exclude%20Itself.java)**      Level: 
-      
-Given an integers array A.
-
-Define B[i] = A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1], calculate B WITHOUT divide operation.
-
-Example
-For A = [1, 2, 3], return [6, 3, 2].
-
-Tags Expand 
-Forward-Backward Traversal LintCode Copyright
-
-Thought:
-Trivial way would be first calculate the zigma(A[0]* ... A[n-1]) then divide by B[i]. However, not allowed in this question.
-
-The other way: do for loop again and again? that will be n^2 time. 
-
-*/
-
-
-
-public class Solution {
-    /**
-     * @param A: Given an integers array A
-     * @return: A Long array B and B[i]= A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1]
-     */
-    public ArrayList<Long> productExcludeItself(ArrayList<Integer> A) {
-    	if (A == null || A.size() == 0) {
-    		return null;
-    	}
-    	ArrayList<Long> rst = new ArrayList<Long>();
-    	for (int i = 0; i < A.size(); i++) {
-    		long num = 1;
-    		for (int j = 0; j < A.size(); j++) {
-    			if (j != i) {
-    				num *= A.get(j);
-    			}
-    		}
-    		rst.add(num);
-    	}
-    	return rst;
-    }
-}
-
-
-
-
----
-
----
-**223. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Easy
+**171. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Easy
       
 代码是不难的. 
 
@@ -4264,30 +2226,13 @@ public class Solution {
 
 
 ---
-
----
-**224. [Recover Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Rotated%20Sorted%20Array.java)**      Level: 
-      
-Rotate三步：
-rotate前半
-rotate后半
-rotate全部
-
-注意先找到断点。
-
-
----
-
----
-**225. [Rehashing.java](https://github.com/awangdev/LintCode/blob/master/Java/Rehashing.java)**      Level: Medium
+**172. [Rehashing.java](https://github.com/awangdev/LintCode/blob/master/Java/Rehashing.java)**      Level: Medium
       
 
 
 
 ---
-
----
-**226. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy
+**173. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy
       
 Remove Duplicate from Array 不同于remove from linked list.
 
@@ -4305,17 +2250,7 @@ LinkedList里面我们是最好不要动node.val的，直接把node去掉。
 
 
 ---
-
----
-**227. [Remove Duplicates from Sorted List II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List%20II.java)**      Level: 
-      
-多个node，check node.next ?= node.next.next
-
-
----
-
----
-**228. [Remove Duplicates from Sorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List.java)**      Level: Easy
+**174. [Remove Duplicates from Sorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List.java)**      Level: Easy
       
 一旦node.next 和node是重复，跳
 
@@ -4323,36 +2258,7 @@ LinkedList里面我们是最好不要动node.val的，直接把node去掉。
 
 
 ---
-
----
-**229. [Remove Duplicates from Unsorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Unsorted%20List.java)**      Level: 
-      
-遍历。
-遇到duplicate(可能多个),  while直到node.next不是duplicate.
-接下去,既然不是duplicate,那就add 进 set
-
-
-如果不用extra memory, do it in place:
-那就要sort linked list. 用merge sort.
-
-复习merge sort:
-1. find middle.
-2. recursively: right = sort(mid.next); left = sort(head).
-3. within sort(), at the end call merge(left, right)
-
-
----
-
----
-**230. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: 
-      
-如果不match, parent 和 node 一起移动
-
-
----
-
----
-**231. [Remove Node in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Node%20in%20Binary%20Search%20Tree.java)**      Level: Hard
+**175. [Remove Node in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Node%20in%20Binary%20Search%20Tree.java)**      Level: Hard
       
 方法1: Brutle一点。找到target和target的parent.    
 把target remove时，把target的children nodes 重新排列组成新的BST: inorder traversal, build tree based on inorder traversal list.
@@ -4362,176 +2268,7 @@ LinkedList里面我们是最好不要动node.val的，直接把node去掉。
 
 
 ---
-
----
-**232. [Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)**      Level: 
-      
-Given a linked list, remove the nth node from the end of list and return its head.
-
-Note
-The minimum number of nodes in list is n.
-
-Example
-Given linked list: 1->2->3->4->5->null, and n = 2.
-After removing the second node from the end, the linked list becomes 1->2->3->5->null.
-Challenge
-O(n) time
-
-Tags Expand 
-Two Pointers Linked List
-
-Thinking process:
-Very similar to 'Nth to last node'. Except, have a pre pointer to keep track of the previous node of 'nth to last'.
-Also have a dummy.next to store the beginning of the list;
-*/
-/**
- * Definition for ListNode.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int val) {
- *         this.val = val;
- *         this.next = null;
- *     }
- * }
- */ 
-public class Solution {
-    /**
-     * @param head: The first node of linked list.
-     * @param n: An integer.
-     * @return: The head of linked list.
-     */
-    ListNode removeNthFromEnd(ListNode head, int n) {
-        if (head == null || n < 0) {
-            return null;
-        }
-        int count = 0;
-        ListNode dummy = new ListNode(0);
-        ListNode pre = new ListNode(0);
-        pre.next = head;
-        dummy = pre;
-        ListNode node = head;
-        while (node != null && count < n) {
-            node = node.next;
-            count++;
-        }
-        while (node != null) {
-            node = node.next;
-            head = head.next;
-            pre = pre.next;
-        }
-        pre.next = head.next;
-        return dummy.next;   
-    }
-}
-
-
-
-
-
----
-
----
-**233. [Reorder List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reorder%20List.java)**      Level: 
-      
-24% 通过
-Given a singly linked list L: L0→L1→…→Ln-1→Ln,
-reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
-
-You must do this in-place without altering the nodes' values.
-
-
-
-样例
-For example,
-Given 1->2->3->4->null, reorder it to 1->4->2->3->null.
-
-标签 Expand 
-Linked List
-
-Thinking Process:
-Similar to sort list: 
-find middle.
-reverse last section
-merge(head, mid) alternatively by using index % 2.
-Append whatever left from the 2 lists
-Note: re-order in place, does not necessarily mean you can create any variable. As long as the variable is O(1), it should be fine.
-*/
-
-/**
- * Definition for ListNode.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int val) {
- *         this.val = val;
- *         this.next = null;
- *     }
- * }
- */ 
-public class Solution {
-    private ListNode reverse(ListNode head) {
-        ListNode reversedList = null;
-        while (head != null) {
-            ListNode temp = head.next;
-            head.next = reversedList;
-            reversedList = head;
-            head = temp;
-        }
-        return reversedList;
-    }
-
-    private void merge(ListNode head1, ListNode head2) {
-        ListNode dummy = new ListNode(0);
-        int index = 0;
-        while (head1 != null && head2 != null) {
-            if (index % 2 == 0) {
-                dummy.next = head1;
-                head1 = head1.next;
-            } else {
-                dummy.next = head2;
-                head2 = head2.next;
-            }
-            dummy = dummy.next;
-            index += 1;
-        }
-        if (head1 != null) {
-            dummy.next = head1;
-        } else if (head2 != null) {
-            dummy.next = head2;
-        }
-    }
-
-    private ListNode findMiddle(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return slow;
-    }
-    
-    
-    public void reorderList(ListNode head) {
-        if (head == null || head.next == null) {
-            return;
-        }
-
-        ListNode mid = findMiddle(head);
-        ListNode tail = reverse(mid.next);
-        mid.next = null;
-
-        merge(head, tail);
-    }
-}
-
-
-
----
-
----
-**234. [Reshape the Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Reshape%20the%20Matrix.java)**      Level: Easy
+**176. [Reshape the Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Reshape%20the%20Matrix.java)**      Level: Easy
       
 读例子理解题意.
 理清counter case. Basic implementation
@@ -4539,22 +2276,7 @@ public class Solution {
 
 
 ---
-
----
-**235. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: 
-      
-递归在一个index上面（具体问题，具体分析的情况）
-validate string要注意leading '0'
-
-注意： 递归的时候可以用一个start/level/index来跑路
-但是尽量不要去改变Input source， 会变得非常confusing.
-
-
-
----
-
----
-**236. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy
+**177. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy
       
 方法1: 转换成String 然后 reverse
 方法2: 每次加上x%10，然后x不断减小～0
@@ -4562,20 +2284,7 @@ validate string要注意leading '0'
 
 
 ---
-
----
-**237. [Reverse Linked List II .java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List%20II%20.java)**      Level: 
-      
-存一下那个点，
-从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
-
-
-
-
----
-
----
-**238. [Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)**      Level: Easy
+**178. [Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)**      Level: Easy
       
 建立新list。每次把newList append 在current node的后面。   
 用head来循环所有node。
@@ -4583,9 +2292,7 @@ validate string要注意leading '0'
 
 
 ---
-
----
-**239. [Reverse String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20String.java)**      Level: Easy
+**179. [Reverse String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20String.java)**      Level: Easy
       
 Similar to Reverse Integer.
 可以用StringBuffer, 也可以two pointer reverse head/tail
@@ -4593,9 +2300,7 @@ Similar to Reverse Integer.
 
 
 ---
-
----
-**240. [Reverse Words in a String II.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20II.java)**      Level: Medium
+**180. [Reverse Words in a String II.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20II.java)**      Level: Medium
       
 In-place reverse.
 
@@ -4607,9 +2312,7 @@ reverse用两回. 全局reverse。局部:遇到空格reverse。
 
 
 ---
-
----
-**241. [Reverse Words in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String.java)**      Level: Medium
+**181. [Reverse Words in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String.java)**      Level: Medium
       
 几种不同的方法flip：   
 坑： 1. 结尾不能有空格。 2. 注意，如果Input是 ‘ ’的话，split以后就啥也没有了。check split以后 length == 0
@@ -4619,17 +2322,13 @@ reverse用两回. 全局reverse。局部:遇到空格reverse。
 
 
 ---
-
----
-**242. [reverseInteger.java](https://github.com/awangdev/LintCode/blob/master/Java/reverseInteger.java)**      Level: Easy
+**182. [reverseInteger.java](https://github.com/awangdev/LintCode/blob/master/Java/reverseInteger.java)**      Level: Easy
       
 
 
 
 ---
-
----
-**243. [Roman to Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Roman%20to%20Integer.java)**      Level: Easy
+**183. [Roman to Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Roman%20to%20Integer.java)**      Level: Easy
       
 熟悉罗马字母规则     
 1. 'I V X L C D M' 分别代表的数字     
@@ -4640,144 +2339,14 @@ https://en.wikipedia.org/wiki/Roman_numerals
 
 
 ---
-
----
-**244. [Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)**      Level: Medium
+**184. [Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)**      Level: Medium
       
 找到个转角度的规律公式。用一个temp。in place.
 
 
 
 ---
-
----
-**245. [Rotate List.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20List.java)**      Level: 
-      
-/* Given a list, rotate the list to the right by k places, where k is non-negative.
-
-Example
-Given 1->2->3->4->5->null and k=2
-return 4->5->1->2->3->null
-Tags Expand 
-Basic Implementation Linked List
-
-Thining process:
-Two pointers.
-First pointer move k steps.
-Then 2 pointers start moving together. When 1st pointer reaches the end, then 2nd pointer should be in middle.
-Let 2nd pointer be head, and move original head to tail of the list
-
-*/
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    /**
-     * @param head: the List
-     * @param k: rotate to the right k places
-     * @return: the list after rotation
-     */
-    public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || k == 0) {
-            return head;
-        }
-        //Check length
-        int length = 0;
-        ListNode dummy = head;
-        while(dummy != null) {
-            dummy = dummy.next;
-            length++;
-        }
-        k = k % length;
-        //Store dummy as 1 node before tail
-        dummy = new ListNode(0);
-        dummy.next = head;
-        head = dummy;
-        for (int i = 0; i < k; i++) {
-            head = head.next;
-        }
-        //Move 2 pointers. When head reaches end, tail.next will be at the newHead
-        ListNode tail = dummy;
-        while (head.next != null) {
-            head = head.next;
-            tail = tail.next;
-        }
-        head.next = dummy.next;//Link old Head to the end, form circle
-        dummy.next = tail.next;//Link tail.next as new head. tail should be end point.
-        tail.next = null;//add null to end point tail
-        return dummy.next;
-    }
-}
-
-
----
-
----
-**246. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: 
-      
-有个坑：offset可能很长，那么要%length，才能得到真正需要rotate的部分。
-Note: rotate 一个 full length之后，是string 不变
-
-
----
-
----
-**247. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: 
-      
-You have a number of envelopes with widths and heights given as a pair of integers (w, h). One envelope can fit into another if and only if both the width and height of one envelope is greater than the width and height of the other envelope.
-
-What is the maximum number of envelopes can you Russian doll? (put one inside other)
-
-Example:
-Given envelopes = [[5,4],[6,4],[6,7],[2,3]], the maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).
-
-*/
-
-
----
-
----
-**248. [Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)**      Level: 
-      
-每次删掉一行，或者一列
-
-
----
-
----
-**249. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: 
-      
-2D转1D。
-Binary Search
-
-
----
-
----
-**250. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: 
-      
-
-
----
-
----
-**251. [Search Insert Position.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Insert%20Position.java)**      Level: 
-      
-在结尾判断该return 哪个position。
-
-
----
-
----
-**252. [Search Range in Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Range%20in%20Binary%20Search%20Tree%20.java)**      Level: Medium
+**185. [Search Range in Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Range%20in%20Binary%20Search%20Tree%20.java)**      Level: Medium
       
 等于遍历了所有k1<= x <= k2的x node。
 
@@ -4788,20 +2357,7 @@ Binary Search
 
 
 ---
-
----
-**253. [Search Rotated in Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Rotated%20in%20Sorted%20Array%20II.java)**      Level: 
-      
-因为最终binary search的结果也是O(n)
-所以这道题要记得： 既然是O(n), 那来个简单的for loop 也就好了。
-
-当然，要跟面试官提起来原因。别一上来就只有for。。。
-
-
----
-
----
-**254. [Search Rotated in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Rotated%20in%20Sorted%20Array.java)**      Level: Hard
+**186. [Search Rotated in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Rotated%20in%20Sorted%20Array.java)**      Level: Hard
       
 方法1：O(logn)
     还是把它先当做正常的sorted list开始搜。    
@@ -4828,9 +2384,7 @@ Binary Search
 
 
 ---
-
----
-**255. [Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)**      Level: Medium
+**187. [Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)**      Level: Medium
       
 
 给的是Array。注意找区间内的max, assign给区间。   其余和普通的segment tree build一样   
@@ -4848,9 +2402,7 @@ Binary Search
 
 
 ---
-
----
-**256. [Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)**      Level: Medium
+**188. [Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)**      Level: Medium
       
 按定义：   
 左孩子：（A.left, (A.left+A.rigth)/2）   
@@ -4859,9 +2411,7 @@ Binary Search
 
 
 ---
-
----
-**257. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium
+**189. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium
       
 Recursively 在segment tree里面找index, update it with value.   
 
@@ -4873,9 +2423,7 @@ Divde and Conquer
 
 
 ---
-
----
-**258. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium
+**190. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium
       
 和 Segment Tree Query I 以及其他Segment Tree问题没啥区别。这个就是return个count。
 
@@ -4887,9 +2435,7 @@ Divde and Conquer
 
 
 ---
-
----
-**259. [Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)**      Level: Medium
+**191. [Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)**      Level: Medium
       
 给了segment Tree, node里面有Max value, 找[start,end]里面的max
 
@@ -4904,101 +2450,7 @@ mid = (root.start + root.end)/2
 
 
 ---
-
----
-**260. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: 
-      
-Design an algorithm and write code to serialize and deserialize a binary tree. Writing the tree to a file is called 'serialization' and reading back from the file to reconstruct the exact same binary tree is 'deserialization'.
-
-There is no limit of how you deserialize or serialize a binary tree, you only need to make sure you can serialize a binary tree to a string and deserialize this string to the original structure.
-
-Example
-An example of testdata: Binary tree {3,9,20,#,#,15,7},  denote the following structure:
-
-    3
-   / \
-  9  20
-    /  \
-   15   7
-Our data serialization use bfs traversal. This is just for when you got wrong answer and want to debug the input.
-
-You can use other method to do serializaiton and deserialization.
-
-Tags Expand 
-Binary Tree
-
-Thinking process:
-1. Carefully turn the binary tree into a string: use pre-order in this example.
-2. Use a global variable to track the data(data string will be cut in different levels of recursion).
-The concept is very easy tho, just need to carefully code it up.
-
-*/
-
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
-class Solution {
-    /**
-     * This method will be invoked first, you should design your own algorithm 
-     * to serialize a binary tree which denote by a root node to a string which
-     * can be easily deserialized by your own "deserialize" method later.
-     */
-    public String serialize(TreeNode root) {
-        if (root == null) {
-            return "#,";
-        }
-        String mid = root.val + ",";
-        String left = serialize(root.left);
-        String right = serialize(root.right);
-        mid += left + right;
-        return mid;
-    }
-    
-    private String data = "";
-    /**
-     * This method will be invoked second, the argument data is what exactly
-     * you serialized at method "serialize", that means the data is not given by
-     * system, it's given by your own serialize method. So the format of data is
-     * designed by yourself, and deserialize it here as you serialize it in 
-     * "serialize" method.
-     */
-    public TreeNode deserialize(String data) {
-        this.data = data;
-        return desHelper();
-    }
-    
-    public TreeNode desHelper() {
-        if (this.data.indexOf("#,") == 0) {
-            this.data = this.data.substring(this.data.indexOf(",") + 1);
-            return null;
-        }
-        String midVal = this.data.substring(0, this.data.indexOf(","));
-        TreeNode mid = new TreeNode(Integer.parseInt(midVal));
-        this.data = this.data.substring(this.data.indexOf(",") + 1);
-        TreeNode left = desHelper();
-        TreeNode right = desHelper();
-        mid.left = left;
-        mid.right = right;
-        return mid;
-    }
-}
-
-
-
-
-
----
-
----
-**261. [Shortest Word Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Word%20Distance.java)**      Level: Easy
+**192. [Shortest Word Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Word%20Distance.java)**      Level: Easy
       
 找short distance, wordB可以在wordA的前后；而同一时间，只需要计算一个最近的up to date的distance。
 greedy不断变更A/B index再做比较即可。
@@ -5006,109 +2458,7 @@ greedy不断变更A/B index再做比较即可。
 
 
 ---
-
----
-**262. [Single Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Single%20Number%20II.java)**      Level: 
-      
-Given 3*n + 1 numbers, every numbers occurs triple times except one, find it.
-Example
-Given [1,1,2,3,3,3,2,2,4,1] return 4
-
-Challenge
-One-pass, constant extra space
-Thinking process:
-Still using bit manipulation. We need to erase all of the 3-appearance number and leave the single number out. A few steps:
-Store the final result by continuously bit OR with the result variable.
-Want to XOR the 3 numbers, but can’t erase them as if only 2 duplicate numbers:Consider the number as 3-based number, so XOR can be understand this way 
-	when add 3 numbers together, add each individual bit. If the sum is 3, then set it as 0. If not 3, leave as is.
-3.   Store the bits in a integer array, which simulates a binary version of the integer
-4.   When each bit’s XOR process finishes, bit OR it with result
-*/
-
-public class Solution {
-    public int singleNumberII(int[] A) {
-        if (A == null || A.length == 0) {
-            return -1;
-        }
-	//present the XOR results in binary format
-        int[] bits = new int[32];
-        int rst = 0;
-        for (int i = 0; i < 32; i++) {
-            for (int j = 0; j < A.length; j++){
-	//XOR the numbers in a 3-base fashion. Whenever bit[i] has a number 3, set it back to 0.
-                bits[i] += A[j] >> i & 1;
-                bits[i] %= 3;
-            }
-	//OR it to the result. However, each time only the i - spot is updated with the bits[i].
-            rst |= bits[i] << i;
-        }
-        return rst;
-    }
-}
-
-
-
----
-
----
-**263. [Single Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Single%20Number%20III.java)**      Level: 
-      
-Given 2*n + 2 numbers, every numbers occurs twice except two, find them.
-
-Example
-Given [1,2,2,3,4,4,5,3] return 1 and 5
-
-Challenge
-O(n) time, O(1) extra space.
-
-Thinking Process:
-The 2 exception must have this feature: a ^ b != 0, since they are different
-Still want to do 2n + 1 problem as in Single Number I, then we need to split a and b into 2 groups and deal with two 2n+1 problems
-Assume c = a^b, there mush be a bit where a and b has the difference, so that bit in c is 1.
-Find this bit position and use it to split the group: shift number in the array by ‘bit-position’ indexes. If the shifted number has 1 at the ‘bit-position’, set it to one group; otherwise to another group. 
-*/
-
-public class Solution {
-    /**
-     * @param A : An integer array
-     * @return : Two integers
-     */
-    public List<Integer> singleNumberIII(int[] A) {
-        if (A == null || A.length == 0) {
-            return null;
-        }
-        List<Integer> rst = new ArrayList<Integer>();
-        int xor = 0;
-        for (int i = 0; i < A.length; i++) {
-            xor ^= A[i];
-        }
-        int bitOnePos = 0;
-        for (int i = 0; i < 32; i++) {
-            if ((xor >> i & 1) == 1) {
-                bitOnePos = i;
-            }
-        }
-        int rstA = 0;
-        int rstB = 0;
-        for (int i = 0; i < A.length; i++) {
-            if ((A[i] >> bitOnePos & 1) == 1) {
-                rstA ^= A[i];
-            } else {
-                rstB ^= A[i];
-            }
-        }
-        rst.add(rstA);
-        rst.add(rstB);
-        return rst;
-    }
-}
-
-
-
----
-
----
-**264. [Single Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Single%20Number.java)**      Level: Easy
+**193. [Single Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Single%20Number.java)**      Level: Easy
       
 Bit XOR: 当两个bit不同时，return 1. 
 题目正要消光所有重复出现的数儿留下出现一次的那个.
@@ -5116,416 +2466,7 @@ Bit XOR: 当两个bit不同时，return 1.
 
 
 ---
-
----
-**265. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: 
-      
-Singleton is a most widely used design pattern. If a class has and only has one instance at every moment, we call this design as singleton. For example, for class Mouse (not a animal mouse), we should design it in singleton.
-
-You job is to implement a getInstance method for given class, return the same instance of this class every time you call this method.
-
-
-Example
-In Java:
-
-A a = A.getInstance();
-A b = A.getInstance();
-a should equal to b.
-
-Challenge
-If we call getInstance concurrently, can you make sure your code could run correctly?
-
-Tags Expand 
-LintCode Copyright OO Design
-
-Thoughts:
-...
-Was not clear to me. Need to loop up more on synchronized/volatile
-Good reference:
-http://www.cnblogs.com/EdwardLiu/p/4443230.html
-
-*/
-
-
-class Solution {
-	public static volatile Solution solution = null;
-    /**
-     * @return: The same instance of this class every time
-     */
-    public static Solution getInstance() {
-        if (solution == null) {
-            synchronized (Solution.class) {
-                 // Double check
-                 if (solution == null) {
-                     solution = new Solution();
-                 }
-             }
-         }
-         return solution;
-    }
-};
-
-
----
-
----
-**266. [Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)**      Level: 
-      
-每次把小于当前node的，全部剔除，剩下的，自然就是:最大的>第二大的>第三大的...ETC.
-为啥可以不管不无地剔除？
-因为我们只在乎最大值的存在；而任何小于当前（正要新就加进去的）值的，反正以后也成不了最大值，于是扔掉！
-
-
----
-
----
-**267. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: 
-      
-移动窗口2step：
-1. 加一个数。
-2. 减一个数。
-加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
-抽完balance一下。
-
-记得:
-左边的maxHeap总有 x+1或者x个数字。
-后边minHeap应该一直有x个数字。
-
-
-
----
-
----
-**268. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: 
-      
-Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
-
-Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
-
-Example
-Note
-You are not suppose to use the library's sort function for this problem. 
-
-Clarification
-Follow up:
-A rather straight forward solution is a two-pass algorithm using counting sort.
-First, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's.
-
-Could you come up with an one-pass algorithm using only constant space?
-
-Tags Expand 
-Two Pointers Sort Array
-
-Thoughts;
-A easier version of Sort ColorII. Using the exact same code with different k number. Note, now k is start from 0.
-
-*/
-
-class Solution {
-    /**
-     * @param nums: A list of integer which is 0, 1 or 2 
-     * @return: nothing
-     */
-    public void sortColors(int[] colors) {
-        if (colors == null || colors.length == 0) {
-            return;
-        }
-        int end = colors.length - 1;
-        int k = 2; // 3 different colors
-        for (int i = 0; i < k; i++) {
-            end = helper(colors, 0, end, k - i - 1);
-        }
-    }
-    
-    public void swap(int[] colors, int x, int y){
-        int temp = colors[x];
-        colors[x] = colors[y];
-        colors[y] = temp;
-    }
-    
-    public int helper(int[] colors, int start, int end, int pivot) {
-        int low = start;
-        int high = end;
-        while (low <= high) {
-            while(low < high && colors[low] <= pivot) {
-                low++;
-            }
-            while(high > 0 && colors[high] > pivot) {
-                high--;
-            }
-            if (low <= high) {
-                swap(colors, low, high);
-                low++;
-                high--;
-            }
-        }
-        return low - 1;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
----
-**269. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: 
-      
-Given an array of n objects with k different colors (numbered from 1 to k), sort them so that objects of the same color are adjacent, with the colors in the order 1, 2, ... k.
-
-Example
-GIven colors=[3, 2, 2, 1, 4], k=4, your code should sort colors in-place to [1, 2, 2, 3, 4]. 
-
-Note
-You are not suppose to use the library's sort function for this problem.
-
-Challenge
-A rather straight forward solution is a two-pass algorithm using counting sort. That will cost O(k) extra memory.
-
-Can you do it without using extra memory?
-
-Tags Expand 
-Two Pointers Sort
-
-Thoughts (Need to revist and think about this, very interesting)
-Doing quick sort partition for K -1 times.
-1. Use K - 1 value as pivot
-2. Starting from 0, whenever low<high && less or equal to pivot, low++
-3. starting from end, whenever high >0, and greater than pivot, high--
-4. Result: only swap when low and high have disagreement on the pivot value.
-
-*/
-
-class Solution {
-    /**
-     * @param colors: A list of integer
-     * @param k: An integer
-     * @return: nothing
-     */
-    public void sortColors2(int[] colors, int k) {
-        if (colors == null || colors.length == 0 || k <= 0) {
-            return;
-        }
-        int end = colors.length - 1;
-        for (int i = 0; i < k - 1; i++) {
-            end = helper(colors, 0, end, k - i - 1);
-        }
-    }
-    
-    public void swap(int[] colors, int x, int y){
-        int temp = colors[x];
-        colors[x] = colors[y];
-        colors[y] = temp;
-    }
-    
-    public int helper(int[] colors, int start, int end, int pivot) {
-        int low = start;
-        int high = end;
-        while (low <= high) {
-            while(low < high && colors[low] <= pivot) {
-                low++;
-            }
-            while(high > 0 && colors[high] > pivot) {
-                high--;
-            }
-            if (low <= high) {
-                swap(colors, low, high);
-                low++;
-                high--;
-            }
-        }
-        return low - 1;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
----
-**270. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: 
-      
-Given a string which contains only letters. Sort it by lower case first and upper case second.
-
-Example
-For "abAcD", a reasonable answer is "acbAD"
-
-Note
-It's not necessary to keep the original order of lower-case letters and upper case letters.
-
-Challenge
-Do it in one-pass and in-place.
-
-Tags Expand 
-String Two Pointers LintCode Copyright Sort
-
-Thoughts:
-Another two pointer sorting.
-Difference: use a ASCII code 'a' as the pivot. all the letters that from a ~ z 
-have bigger integer values, and A~Z have small integer values.
-This problem requires lowcase+upperCase, so we'd sort the list from high to low.
-NOTE: in the 2 while loop, the it's always having ">='
-
-*/
-
-
-public class Solution {
-    /** 
-     *@param chars: The letter array you should sort by Case
-     *@return: void
-     */
-    public void sortLetters(char[] chars) {
-        if (chars == null || chars.length == 0) {
-            return;
-        }
-        char pivot = 'a';
-        int start = 0; int end = chars.length - 1;
-        while (start <= end) {
-            while (start <= end && chars[start] >= pivot) {
-                start++;
-            }
-            while (start <= end && chars[end] < pivot) {
-                end--;
-            }
-            if (start <= end) {
-                char temp = chars[end];
-                chars[end] = chars[start];
-                chars[start] = temp;
-                start++;
-                end--;
-            }
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
----
-**271. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: 
-      
-    1. find middle. 快慢指针
-    2. Merge:  假设given list A, B 已经是sorted, 然后按照大小，混合。
-    3. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段。
-        然后mege.
-        要recursively call itself.
-
-Quick sort:
-想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
-
-但是quick sort不建议用在list上面。
-
-排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
-
-
-
----
-
----
-**272. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: 
-      
-Write a method to replace all spaces in a string with %20. The string is given in a characters array, you can assume it has enough space for replacement and you are given the true length of the string.
-
-Example
-Given "Mr John Smith", length = 13.
-
-The string after replacement should be "Mr%20John%20Smith".
-
-Note
-If you are using Java or Python，please use characters array instead of string.
-
-Challenge
-Do it in-place.
-
-Tags Expand 
-String Cracking The Coding Interview
-
-Thoughts:
-Overriding the array from the back to front.
-This is because as we re-writing the string from the back, stuff at head of the string does not change yet.
-This is wonderful:) 
-
-*/
-
-
-public class Solution {
-    /**
-     * @param string: An array of Char
-     * @param length: The true length of the string
-     * @return: The true length of new string
-     */
-    public int replaceBlank(char[] string, int length) {
-    	if (string == null || string.length == 0) {
-    		return 0;
-    	}
-    	int count = 0;
-    	for (char c : string) {
-    		if (c == ' ') {
-    			count += 2;
-    		}
-    	}
-    	int lastIndex = length + count - 1;
-    	//from back to front:
-    	for (int i = length - 1; i >= 0; i--) {
-    		if (string[i] == ' ') {
-				string[lastIndex--] = '0';
-				string[lastIndex--] = '2';
-				string[lastIndex--] = '%';
-    		} else {
-    			string[lastIndex--] = string[i];
-    		}
-    	}
-    	return length + count;
-    }
-}
-
-
----
-
----
-**273. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
+**194. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
       
 理解题意, 从[0, x]找一个可以m*m=x的值.
 注意, 如果找不到, 最后问考官该return一个什么值：按道理，因为return int, 会取整，那么return一个平方最close to x就可以.
@@ -5534,26 +2475,14 @@ public class Solution {
 
 
 ---
-
----
-**274. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: 
-      
-NOT DONE YET
-
-
----
-
----
-**275. [String Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/String%20Permutation.java)**      Level: Easy
+**195. [String Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/String%20Permutation.java)**      Level: Easy
       
 把#of occurrences 存进HashMap, 第一个string 做加法，第二个string做减法。最后看是否有不等于0的作判断。
 
 
 
 ---
-
----
-**276. [String to Integer(atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer(atoi).java)**      Level: Easy
+**196. [String to Integer(atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer(atoi).java)**      Level: Easy
       
 方法1: 问清情况，一点一点把case都涉及到。
 
@@ -5562,9 +2491,7 @@ NOT DONE YET
 
 
 ---
-
----
-**277. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium
+**197. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium
       
 耗了一点时间。本以为需要DP一下，把做过的n存一下。后来发现，其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
 难的case先不handle.到底之后来一次O(n) scan.
@@ -5572,90 +2499,21 @@ NOT DONE YET
 
 
 ---
-
----
-**278. [Strobogrammatic Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number.java)**      Level: Easy
+**198. [Strobogrammatic Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number.java)**      Level: Easy
       
 根据题意枚举, 再根据规则basic implementation
 
 
 
 ---
-
----
-**279. [StrStr.java](https://github.com/awangdev/LintCode/blob/master/Java/StrStr.java)**      Level: 
-      
-StrStr:
-strStr My Submissions
-
-19% Accepted
-strstr (a.k.a find sub string), is a useful function in string operation. You task is to implement this function. 
-
-For a given source string and a target string, you should output the "first" index(from 0) of target string in source string.
-
-If target is not exist in source, just return -1.
-
-Example
-If source="source" and target="target", return -1.
-
-If source="abcdabcdefg" and target="bcd", return 1.
-
-Challenge
-O(n) time.
-
-Clarification
-Do I need to implement KMP Algorithm in an interview?
-
-    - Not necessary. When this problem occurs in an interview, the interviewer just want to test your basic implementation ability.
-
-Tags Expand 
-Basic Implementation String
-
-Thinking process:
-Two Pointer.
-String Null case.
-Break Statement.
-
-
-Check position i+j of source and position j of target. If not match, break out.
-If j matches target.length(), means target is fully embedded in source. 
-return start point of target in source: i
-*/
-public int strStr(String source, String target) {
-        //Check Null
-        if(source == null || target == null){
-            return -1;
-        }
-        //Two Pointer check for target
-        int i,j;
-        for (i = 0; i < source.length() - target.length() + 1; i++){
-            for (j = 0; j < target.length(); j++){
-                if (source.charAt(i+j) != target.charAt(j)){
-                    break; 
-                } 
-            }
-            if( j == target.length()){
-                return i;
-            }
-        }
-        //'target' not found:
-        return -1;
-}
-
-
----
-
----
-**280. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium
+**199. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium
       
 ?
 
 
 
 ---
-
----
-**281. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy
+**200. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy
       
 分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum(a ~ b] = 0.    
 
@@ -5664,9 +2522,7 @@ public int strStr(String source, String target) {
 
 
 ---
-
----
-**282. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium
+**201. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium
       
 最基本的递归题目。   
 坑：记得一开头sort一下 nums。 因为要升序。那么整体就是O(nlogn)
@@ -5683,9 +2539,7 @@ recap:时间久了忘记dfs的两种路子. for loop dfs/backtracking vs. regula
 
 
 ---
-
----
-**283. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium
+**202. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium
       
 递归：找准需要pass along的几个数据结构。    
 
@@ -5708,9 +2562,7 @@ Iterative: 写一写，用个Queue. Not recommended, Again, rst.contains() cost 
 
 
 ---
-
----
-**284. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy
+**203. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy
       
 找到potential subtree, 比较Children.
 
@@ -5719,126 +2571,7 @@ Iterative: 写一写，用个Queue. Not recommended, Again, rst.contains() cost 
 
 
 ---
-
----
-**285. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: 
-      
-Given a sorted integer array without duplicates, return the summary of its ranges.
-
-For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
-
-Tags: Array
-Similar Problems: (M) Missing Ranges
-
-
-*/
-
-
----
-
----
-**286. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: 
-      
-Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X'.
-
-A region is captured by flipping all 'O's into 'X's in that surrounded region.
-
-For example,
-X X X X
-X O O X
-X X O X
-X O X X
-After running your function, the board should be:
-
-X X X X
-X X X X
-X X X X
-X O X X
-Hide Tags Breadth-first Search
-
-Thinking Process:
-Since dfs does not work, try bfs.
-Very similar to DFS, however, when checking the 4 bounaries: 
-1. chcek the curruent point.
-2. Add surrounding points into a queue.
-3. Deal with the queue immediately via a while loop
-
-*/
-public class Solution {
-    private char[][] board;
-    private int row;
-    private int col;
-    private char target;
-    private char mark;
-    private Queue<Integer> queue = new LinkedList<Integer>();
-    public void solve(char[][] board) {
-        if (board == null || board.length == 0) {
-            return;
-        }
-        this.board = board;
-        row = board.length;
-        col = board[0].length;
-        target = 'O';
-        mark = 'M';
-        //Check the board
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (i == 0 || i == row - 1 || j == 0 || j == col - 1) {
-                    check(i,j);
-                }
-            }
-        }
-        //Replacement
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (board[i][j] == target) {
-                    board[i][j] = 'X';
-                } 
-                if (board[i][j] == mark) {
-                    board[i][j] = target;
-                }
-            }
-        }
-    }
-    //BFS
-    public void check(int i, int j) {
-        fill(board, i, j);
-        while(!queue.isEmpty()) {
-            int val = queue.poll();
-            int x = val / col;
-            int y = val % col;
-            fill(board, x - 1, y);
-            fill(board, x + 1, y);
-            fill(board, x, y - 1);
-            fill(board, x, y + 1);
-        }
-    }
-    public void fill(char[][] board, int i, int j) {
-        if (i < 0 || i >= row || j < 0 || j >= col || board[i][j] != target) {
-            return;
-        }
-        board[i][j] = mark;
-        queue.offer(i * col + j);
-    }
-}
-
-
-
-
-
-
----
-
----
-**287. [Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)**      Level: 
-      
-画三个block, 1,2,3. 连线。
-
-
----
-
----
-**288. [Symmetric Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Binary%20Tree.java)**      Level: Easy
+**204. [Symmetric Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Binary%20Tree.java)**      Level: Easy
       
 Symmetric Tree
 
@@ -5852,29 +2585,7 @@ process时，若symmetric，所有stack里面出来的node会一一对应。
 
 
 ---
-
----
-**289. [The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)**      Level: 
-      
-Given two array of integers(the first array is array A, the second array is array B), now we are going to find a element in array A which is A[i], and another element in array B which is B[j], so that the difference between A[i] and B[j] (|A[i] - B[j]|) is as small as possible, return their smallest difference.
-
-
-Example
-For example, given array A = [3,6,7,4], B = [2,8,9,3], return 0
-
-Challenge
-O(n log n) time
-
-Tags Expand 
-Two Pointers LintCode Copyright Sort Array
-*/
-
-
-
----
-
----
-**290. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium
+**205. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium
       
 题目有提醒: 不能用O(nLog(n)) 也就是说明要Log(n): 首先想到就是PriorityQueue, 并且不能queue.offer on the fly.
 那么就先count, O(n); 再priorityQueue, Log(k), k是unique 数字的总量. 
@@ -5882,9 +2593,7 @@ Two Pointers LintCode Copyright Sort Array
 
 
 ---
-
----
-**291. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium
+**206. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium
       
 方法1：Brutle force用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
    注意排序时Collection.sort()的cost是O(nLogk)
@@ -5898,9 +2607,7 @@ PriorityQueue里面用到了 String.compareTo(another String).巧妙。
 
 
 ---
-
----
-**292. [Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)**      Level: Medium
+**207. [Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)**      Level: Medium
       
 比较特别的BFS.
 
@@ -5920,73 +2627,7 @@ Only when map.get(label) == 0, add into queue && rst.
 
 
 ---
-
----
-**293. [Total Occurrence of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Total%20Occurrence%20of%20Target.java)**      Level: 
-      
-找total number of occurance. 首先找first occurance, 再找last occurance.
-
-
----
-
----
-**294. [Trailing Zeros.java](https://github.com/awangdev/LintCode/blob/master/Java/Trailing%20Zeros.java)**      Level: 
-      
-Write an algorithm which computes the number of trailing zeros in n factorial.
-
-Example
-11! = 39916800, so the out should be 2
-
-Challenge
-O(log N) time
-
-Tags Expand 
-Mathematics
-
-Thoughts:
-Attempt1:
-Can this problem be converted to : how many 10's to I have?
-Loop through n, and check how many 2s, 5s do we have.
-For each i, do while loop and count the number of 2s, and 5s in that particular i.
-
-Note:
-5 and 2 makes 10. So don't worry about 10.
-Some values will be checked redundantly, so record the ones checked, return the hash value directly.
-
-Attempt2:
-Don't even need to worry about 2's because 2 is definitely more than 5's. Only need to care about 5's.
-
-How many 5's? n/5.   loop (1 ~ n)
-However, some number within (1 ~ n) may give more 5's, which for example is: 25 = 5 * 5, double 5's. And 125 = triple 5's.
-
-In fact count = n / 5 + n / 25 + n / 125 + ....
-*/
-class Solution {
-    /*
-     * param n: As desciption
-     * return: An integer, denote the number of trailing zeros in n!
-     */
-    public long trailingZeros(long n) {
-    	if ( n < 5) {
-    		return 0;
-    	}
-    	long count = 0;
-    	for (long i = 5; n / i != 0; i *= 5) {
-    		count += n / i;
-    	}
-    	return count;
-    }
-
-}
-
-
-
-
-
----
-
----
-**295. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard
+**208. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard
       
 用PriorityQueue把选中的height排序。为走位，create class Cell {x,y, height}.
 
@@ -6006,82 +2647,14 @@ process的时候，画个图也可以搞清楚，就是四个方向都走走，�
 
 
 ---
-
----
-**296. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
+**209. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
       
 Recursive 比对左左,左右,右左，右右
 
 
 
 ---
-
----
-**297. [Two Lists Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Lists%20Sum.java)**      Level: 
-      
-You have two numbers represented by a linked list, where each node contains a single digit.The digits are stored in reverse order, such that the 1’s digit is at the head of the list.Write a function that adds the two numbers and returns the sum as a linked list.
-
-Example
-Given two lists, 3->1->5->null and 5->9->2->null, return 8->0->8->null
-
-Tags Expand 
-Linked List Backtracking
-//TODO: check 9chapter solution
-Thinking process:
-Simply add 2 lists’ values together.
-Handle the carrier
-Use dummy node at beginning.
-*/
-
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;      
- *     }
- * }
- */
-public class Solution {
-    /**
-     * @param l1: the first list
-     * @param l2: the second list
-     * @return: the sum list of l1 and l2 
-     */
-    public ListNode addLists(ListNode l1, ListNode l2) {
-        ListNode rst = new ListNode(0);
-        ListNode dummy = rst;
-        int carrier = 0;
-        //while
-        while (l1 != null || l2 != null) {
-            if (l1 != null) {
-                carrier += l1.val;
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                carrier += l2.val;
-                l2 = l2.next;
-            }
-            rst.next = new ListNode(carrier % 10);
-            carrier = carrier / 10;
-            rst = rst.next;
-        }
-        //check the carrier
-        if (carrier == 1) {
-            rst.next = new ListNode(1);
-        }
-        return dummy.next;
-    }
-}
-
-
-
----
-
----
-**298. [Two Strings Are Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Strings%20Are%20Anagrams.java)**      Level: Easy
+**210. [Two Strings Are Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Strings%20Are%20Anagrams.java)**      Level: Easy
       
 方法1:char ascii 用count[256]   
 坑：不要想象这个是个26letter lowercase. may not be true.
@@ -6092,22 +2665,7 @@ public class Solution {
 
 
 ---
-
----
-**299. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: 
-      
-每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
-最后时间是n*log(n*3)
-
-注意：
-Long
-HashSet确保没有重复。
-
-
----
-
----
-**300. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium
+**211. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium
       
 方法1: PriorityQueue排序。用ArrayList check 新的ugly Number是否出现过。
 
@@ -6119,177 +2677,14 @@ HashSet确保没有重复。
 
 
 ---
-
----
-**301. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: 
-      
-Given n, generate all structurally unique BST's (binary search trees) that store values 1...n.
-
-Example
-Given n = 3, your program should return all 5 unique BST's shown below.
-
-   1         3     3      2      1
-    \       /     /      / \      \
-     3     2     1      1   3      2
-    /     /       \                 \
-   2     1         2                 3
-Tags Expand 
-Dynamic Programming Depth First Search
-
-Thinking process:
-- For a BST, root can be any node from node(1) to node(n).
-- For each root, left nodes has mutiple forms of BST, and right node has mutiple forms of BST.
-- For each root node, divide and conquer left / right
-*/
-
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
-public class Solution {
-    /**
-     * @paramn n: An integer
-     * @return: A list of root
-     */
-    public List<TreeNode> generateTrees(int n) {
-        return generate(1, n);
-    }
-    public ArrayList<TreeNode> generate(int start, int end) {
-        ArrayList<TreeNode> rst = new ArrayList<TreeNode>();
-        if (start > end) {
-            rst.add(null);
-            return rst;
-        }
-        for (int i = start; i <= end; i++){
-            ArrayList<TreeNode> left = generate(start, i - 1);
-            ArrayList<TreeNode> right = generate(i +  1, end);
-            for (TreeNode l : left) {
-                for (TreeNode r : right) {
-                    TreeNode root = new TreeNode(i);
-                    root.left = l;
-                    root.right = r;
-                    rst.add(root);
-                }
-            }
-        }
-        return rst;
-    }
-}
-
-
-
----
-
----
-**302. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: 
-      
-用hashSet, space O(n), time O(n)
-
-
----
-
----
-**303. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: 
-      
-An abbreviation of a word follows the form <first letter><number><last letter>. Below are some examples of word abbreviations:
-
-a) it                      --> it    (no abbreviation)
-
-     1
-b) d|o|g                   --> d1g
-
-              1    1  1
-     1---5----0----5--8
-c) i|nternationalizatio|n  --> i18n
-
-              1
-     1---5----0
-d) l|ocalizatio|n          --> l10n
-Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is unique if no other word from the dictionary has the same abbreviation.
-
-Example: 
-Given dictionary = [ "deer", "door", "cake", "card" ]
-
-isUnique("dear") -> false
-isUnique("cart") -> true
-isUnique("cane") -> false
-isUnique("make") -> true
-
-Tags: Hash Table, Design
-Similar Problems: (E) Two Sum III - Data structure design
-
-
-
-*/
-
-
----
-
----
-**304. [Update Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Update%20Bits.java)**      Level: 
-      
-Given two 32-bit numbers, N and M, and two bit positions, i and j. Write a method to set all bits between i and j in N equal to M (e g , M becomes a substring of N located at i and starting at j)   
-
-
-
-Example
-Given N = (10000000000)2, M = (10101)2, i = 2, j = 6
-
-return N = (10001010100)2
-
-Challenge
-Minimum number of operations？
-
-Tags Expand 
-Cracking The Coding Interview Bit Manipulation Binary Representation
-
-Thinking process:
-Create a mask: xxxx000000xxxx.
-Trick part: when it encounters negative number or dealing with index at edge index = 31, it starts having issue. Interesting fix: use long for masks.
-*/
-
-class Solution {
-    /**
-     *@param n, m: Two integer
-     *@param i, j: Two bit positions
-     *return: An integer
-     */
-    public int updateBits(int n, int m, int i, int j) {
-        //Create mask: xxx00000xxx
-        long rightMask = ~0 >> i;
-        rightMask = ~(rightMask << i);// 00000xxx
-        long leftMask = ~0 >> (j + 1);
-        leftMask = leftMask << (j + 1);//xxxxx00000000
-        long mask = leftMask | rightMask;//xxx00000xxx
-        n = (int) (n & mask);
-        n = (int) (n | (m << i));
-        return n;
-    }
-}
-
-
-
-
----
-
----
-**305. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy
+**212. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy
       
 HashMap
 
 
 
 ---
-
----
-**306. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy
+**213. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy
       
 tutorial:https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb
 
@@ -6298,9 +2693,7 @@ tutorial:https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTm
 
 
 ---
-
----
-**307. [Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Parentheses.java)**      Level: Easy
+**214. [Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Parentheses.java)**      Level: Easy
       
 剥皮过程。解铃还须系铃人   
 左边的外皮'{['在stack底部   
@@ -6311,9 +2704,7 @@ tutorial:https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTm
 
 
 ---
-
----
-**308. [Valid Sudoku.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Sudoku.java)**      Level: Easy
+**215. [Valid Sudoku.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Sudoku.java)**      Level: Easy
       
 用HashSet存visited value.
 
@@ -6326,95 +2717,14 @@ validate block要利用i 和 j 增长的规律。
 
 
 ---
-
----
-**309. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
+**216. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
 
 
 
 ---
-
----
-**310. [Wood Cut.java](https://github.com/awangdev/LintCode/blob/master/Java/Wood%20Cut.java)**      Level: 
-      
-Given n pieces of wood with length L[i] (integer array). Cut them into small pieces to guarantee you could have equal or more than k pieces with the same length. What is the longest length you can get from the n pieces of wood? Given L & k, return the maximum length of the small pieces.
-
-Note
-You couldn't cut wood into float length.
-
-Example
-For L=[232, 124, 456], k=7, return 114.
-
-Challenge
-O(n log Len), where Len is the longest length of the wood.
-
-Tags Expand 
-Binary Search
-
-Thinking process:
-Take the largest item. 
-Priorities:
-1. Have to get calculatedK >= givenK
-2. Meanwhile, want to maximize the  smal piece.
-
-One thing not clear: do we have to use the given small piece? If we have to, we need to concern about the shortest wood piece. See commentted-out part
-In this problem, however, we can abandon the small pieces, as long as the max_small_pieces can allow calculatedK >= givenK.
-
-Use binary search on the largest item:
-1. if calculatedK < givenK: end = mid;
-2. If calculated >= givenK, move start = mid as much as possible, which gives maximized small piece.
-
-*/
-
-
-public class Solution {
-    /** 
-     *@param L: Given n pieces of wood with length L[i]
-     *@param k: An integer
-     *return: The maximum length of the small pieces.
-     */
-    public int woodCut(int[] L, int k) {
-        if (L == null || L.length == 0 || k < 0) {
-            return 0;
-        } 
-        if (L.length == 1) {
-            return L[0] / (L[0] / k);
-        }
-        Arrays.sort(L);
-        int start = 0;
-        int end = L[L.length - 1];
-        int mid = 0;
-        int max = 0;
-       // int min = L[0];
-        while (start + 1 < end) {
-            mid = start + (end - start) / 2;
-            //if (mid > min) {
-            //    end = mid;
-           // } else {
-                int count = 0;
-                for (int i : L) {
-                    count += i / mid;
-                }
-                if (count < k) {
-                    end = mid;
-                } else {
-                    start = mid;
-                    max = mid;
-                }
-            //}
-        }//end while
-        return max;
-    }
-}
-
-
-
----
-
----
-**311. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard
+**217. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard
       
 两个DP一起用.解决了timeout的问题     
 1. isWord[i][j], subString(i,j)是否存在dict中？
@@ -6436,9 +2746,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 
 ---
-
----
-**312. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium
+**218. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium
       
 DP
 
@@ -6457,16 +2765,12 @@ valid[i]: 记录从i到valid array末尾是否valid.
 
 
 ---
-
----
-**313. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard
+**219. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard
       
 
 
 ---
-
----
-**314. [Word Ladder.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder.java)**      Level: Medium
+**220. [Word Ladder.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder.java)**      Level: Medium
       
 BFS Brutle: 在start string基础上，string的每个字母都遍历所有26个字母，换换。
 
@@ -6476,9 +2780,7 @@ BFS Brutle: 在start string基础上，string的每个字母都遍历所有26个
 
 
 ---
-
----
-**315. [Word Pattern.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Pattern.java)**      Level: Easy
+**221. [Word Pattern.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Pattern.java)**      Level: Easy
       
 每个char代表一个pattern。用HashMap<char, str>.
 但不够，如果a也match dog, b也match dog, 纠错了。比如pattern = "abba", str = "dog dog dog dog"。
@@ -6488,9 +2790,7 @@ BFS Brutle: 在start string基础上，string的每个字母都遍历所有26个
 
 
 ---
-
----
-**316. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard
+**222. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard
       
 Big improvement: use boolean visited on TrieNode!     
 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
@@ -6515,9 +2815,7 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 
 
 ---
-
----
-**317. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium
+**223. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium
       
 Backtracking:
 比较 Brutle。找到开头的字母，然后投入一个recursive找字母的工程：每到一个字母，朝四个方向走。他们之中，有一个true就可以。
@@ -6532,18 +2830,7 @@ Backtracking方法2:
 
 
 ---
-
----
-**318. [Zigzag Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Zigzag%20Iterator.java)**      Level: 
-      
-每次next(), 相应的list的头拿下来就好。
-然后就跑圈呗，每次刷一个list头。不难。只要把几个variable维护清楚就行。
-
-
----
-
----
-**319. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
+**224. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
 比较简单, 用HashMap 存index list. 最后再遍历一遍数组A, 列举出所有元素.
 O(n)
@@ -6551,18 +2838,14 @@ O(n)
 
 
 ---
-
----
-**320. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
+**225. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 简单的character checking. 各个方向, 加加减减.
 
 
 
 ---
-
----
-**321. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy
+**226. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy
       
 最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
 最后合计结果就好.
@@ -6577,9 +2860,7 @@ O(n)
 
 
 ---
-
----
-**322. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy
+**227. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy
       
 方法1: 按照题意, 找到第一个 first index == last index的字母.
 
@@ -6588,9 +2869,7 @@ O(n)
 
 
 ---
-
----
-**323. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
+**228. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 方法1:
 Power of 3:  3 ^ x == n ?
@@ -6605,27 +2884,21 @@ Power of 3:  3 ^ x == n ?
 
 
 ---
-
----
-**324. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
+**229. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 简单的实现, 加1, 进位. 唯一取巧的地方, 最后如果要多一位, 一定是10000...这个模式, 可以走捷径, 直接来个+1size的array, 然后第一位=1.
 注意,转换成long也不合理,用太多memory.
 
 
 ---
-
----
-**325. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
+**230. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
 跟powerOfThree一样: 可以loop, check mod; 也可以用binary search找合适的数字.
 
 
 
 ---
-
----
-**326. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
+**231. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 方法1: two pointer. 前后两个指针, 在while loop里面跑. 注意 i<j, 一旦相遇, 就break. 找到合适的, 就做swap.
 StringBuffer可以 sb.setCharAt()记得用.
@@ -6635,18 +2908,14 @@ StringBuffer可以 sb.setCharAt()记得用.
 
 
 ---
-
----
-**327. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
+**232. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 binary search 公式
 
 
 
 ---
-
----
-**328. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium
+**233. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium
       
 其实想到了切入点, 是个可难可简单的题目. 这里的encode就是想办法把url存起来, 然后给个 key.
 那么具体怎么做这个key, 简单就可以用一个map, 然后counting. 复杂一点就可以做random letter/number组成key.
@@ -6654,9 +2923,7 @@ binary search 公式
 
 
 ---
-
----
-**329. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
+**234. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
 方法1:
 排序, nLog(n). 然后把直线上坡变成层叠山峰, 需要每隔几个(题目中是每隔2位)就做个swap 造成高低不平.
@@ -6676,9 +2943,7 @@ O(n)
 
 
 ---
-
----
-**330. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
+**235. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
       
 别无他法, 只能写一遍例子, 找规律,然后greedy. 
 需要写一遍发现的规律比如: 从h大的开始排列, 先放入k小的. 写comparator的时候要注意正确性.
@@ -6693,9 +2958,7 @@ O(n) space, O(nLog(n)) time, because of sorting.
 
 
 ---
-
----
-**331. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy
+**236. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy
       [Link](https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be)
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
 
@@ -6708,9 +2971,7 @@ O(n) space, O(nlogn) time.
 
 
 ---
-
----
-**332. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium
+**237. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium
       
 排序好的array. Two pointer移动start和end，核查sum.
 注意sum用long.
@@ -6718,9 +2979,7 @@ O(n) space, O(nlogn) time.
 
 
 ---
-
----
-**333. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium
+**238. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium
       
 
 LintCode的题. 注意找的是greater/bigger than target。
@@ -6736,9 +2995,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 
 ---
-
----
-**334. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
+**239. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 DP. 找对方程f[x], 积累到amount x最少用多少个coin: #coin是value, index是 [0~x].
 子问题的关系是: 如果用了一个coin, 那么就应该是f[x - coinValue]那个位置的#coins + 1
@@ -6754,9 +3011,7 @@ DP. 找对方程f[x], 积累到amount x最少用多少个coin: #coin是value, in
 
 
 ---
-
----
-**335. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+**240. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 可以DP.计数DP.
 注意方程式前两位置加在一起: 前两种情况没有overlap, 也不会缺情况.
@@ -6766,9 +3021,7 @@ DP. 找对方程f[x], 积累到amount x最少用多少个coin: #coin是value, in
 
 
 ---
-
----
-**336. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
+**241. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
       
 给出步数，看能不能reach to end.
 
@@ -6783,9 +3036,7 @@ Return:
 
 
 ---
-
----
-**337. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium
+**242. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium
       
 求最值, DP.
 两个特别处:
@@ -6797,9 +3048,7 @@ Return:
 
 
 ---
-
----
-**338. [3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)**      Level: Medium
+**243. [3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)**      Level: Medium
       
 3Sum 的一种简单形式, 并且都没有找index, value, 而只是找个sum罢了.
 
@@ -6810,9 +3059,7 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 
 
 ---
-
----
-**339. [Triangle Count.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangle%20Count.java)**      Level: Medium
+**244. [Triangle Count.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangle%20Count.java)**      Level: Medium
       
 其实也就是3sum的变形, 或者而说2sum的变形. 主要用2 pointers来做.
 注意, 在选index时候每次定好一个 [0 ~ i], 在这里面找点start, end, 然后i 来组成triangle.
@@ -6823,9 +3070,7 @@ Note巧妙点:
 
 
 ---
-
----
-**340. [3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)**      Level: Medium
+**245. [3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)**      Level: Medium
       
 方法1:
 sort array, for loop + two pointer. O(n)
@@ -6852,9 +3097,7 @@ Previous notes:
 
 
 ---
-
----
-**341. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium
+**246. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium
       
 方法1：  
    1. 利用2Sum的原理，把4Sum分为连个2Sum。左一个pair,右一个pair，每个pair里面放2个数字。   
@@ -6870,9 +3113,7 @@ Previous notes:
 
 
 ---
-
----
-**342. [k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)**      Level: Hard
+**247. [k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)**      Level: Hard
       
 DP. 公式如何想到, 还需要重新理解.
 
@@ -6885,9 +3126,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 
 
 ---
-
----
-**343. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard
+**248. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard
       
 方法1:
 主要想法和方法2一致: 在山坡下坡的基础上, 一直用stack堆积bottom. 
@@ -6903,9 +3142,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 
 
 ---
-
----
-**344. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
+**249. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
       
 简单的DP:dp[i]存在i点时连续上升#. dp[i]时可能为0, 一旦断开.
 
@@ -6915,9 +3152,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 
 
 ---
-
----
-**345. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
+**250. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
 方法1:
 [0 ~ i], 0<i<n: 以i为结尾, 每个不同的i会得出的max-length. 所以每个结尾i都要被考虑一遍.
@@ -6934,9 +3169,7 @@ O(n log n)? 还没有做. 是否for loop里面用binary search?
 
 
 ---
-
----
-**346. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
+**251. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 Not quite clear.
 根据左右分割而总结出了原理, 每次分割, 左右两边都会有一定数量的permutation, 总体上的情况数量当然是相乘.
@@ -6948,9 +3181,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 
 ---
-
----
-**347. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
+**252. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
       
 方法1:
 适合复习BST. 用DFS对待每个node. 注意BST的特征: 所有left nodes都小于当下node, 所有right nodes都大于当下node.
@@ -6963,9 +3194,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 
 ---
-
----
-**348. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
+**253. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 典型的坐标型DP. 考虑最终结尾需要的状态:如何组成,写出公式.
 公式中注意处理能跳掉的block, '到不了', 即为 0 path.
@@ -6973,9 +3202,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 
 ---
-
----
-**349. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium
+**254. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium
       
 Bit题目 用num的数值本身表示DP的状态.
 这里, dp[i] 并不是和 dp[i-1]有逻辑关系; 而是dp[i] 和dp[i>>1], 从binary representation看出有直接关系.
@@ -6983,9 +3210,7 @@ Bit题目 用num的数值本身表示DP的状态.
 
 
 ---
-
----
-**350. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium
+**255. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium
       
 分方向考虑的方法很容易想到,但是四个方向移动的代码比较繁琐.
 往上炸: 要从顶向下考虑
@@ -6996,9 +3221,7 @@ Bit题目 用num的数值本身表示DP的状态.
 
 
 ---
-
----
-**351. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
+**256. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
       
 考虑DP最后一个位置的情况. 发现给出了一些特殊条件, 需要附带在DP[i-1]上,
 那么就定义二维数组
@@ -7006,9 +3229,7 @@ Bit题目 用num的数值本身表示DP的状态.
 
 
 ---
-
----
-**352. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Review
+**257. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Review
       
 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 note: calculate number from characters, need to - '0' to get the correct integer mapping.
@@ -7018,9 +3239,7 @@ note: calculate number from characters, need to - '0' to get the correct integer
 
 
 ---
-
----
-**353. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy
+**258. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy
       
 最基本的dp。      
 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的。      
@@ -7030,9 +3249,7 @@ note: calculate number from characters, need to - '0' to get the correct integer
 
 
 ---
-
----
-**354. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium
+**259. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium
       
 和House Robber I 类似,  DP. 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 
@@ -7046,9 +3263,7 @@ note: calculate number from characters, need to - '0' to get the correct integer
 
 
 ---
-
----
-**355. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
+**260. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
       
 理解意思是关键:
    每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出。
@@ -7066,9 +3281,7 @@ Brutle:
 
 
 ---
-
----
-**356. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
+**261. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
       
 
 这道题有几种其他不同的思路:
@@ -7089,9 +3302,7 @@ O(n)
 
 
 ---
-
----
-**357. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard
+**262. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard
       
 比stock II 多了一个限制：只有2次卖出机会。
 
@@ -7118,9 +3329,7 @@ DP加状态: 只卖2次, 把买卖分割成5个状态模块.
 
 
 ---
-
----
-**358. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard
+**263. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard
       
 方法1:
 DP. 根据StockIII, 不难发现StockIV就是把状态划分为2k+1份. 那么同样的代码, 移植.
@@ -7158,9 +3367,7 @@ global[i][j]就是我们所求的前i天最多进行k次交易的最大收益，
 
 
 ---
-
----
-**359. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Review
+**264. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Review
       
 一般的DP被加了状态变成2D. 
 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
@@ -7178,9 +3385,7 @@ O(NK)
 
 
 ---
-
----
-**360. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium
+**265. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium
       
 一般的O(n3)肯定不行。在此基础上优化。
 发现j,k满足条件时候，(k - j)就是所有 sum <target的情况了。
@@ -7189,9 +3394,7 @@ O(NK)
 
 
 ---
-
----
-**361. [Array Partition I.java](https://github.com/awangdev/LintCode/blob/master/Java/Array%20Partition%20I.java)**      Level: Easy
+**266. [Array Partition I.java](https://github.com/awangdev/LintCode/blob/master/Java/Array%20Partition%20I.java)**      Level: Easy
       
 从结果出发, 只需要找到加法的结果，而不强调具体配对。
 找到排列取单数位的规律，再考虑负数和正数的相同规律，即可找到排列求解的方法。
@@ -7200,9 +3403,7 @@ O(NK)
 
 
 ---
-
----
-**362. [1-bit and 2-bit Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/1-bit%20and%202-bit%20Characters.java)**      Level: Easy
+**267. [1-bit and 2-bit Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/1-bit%20and%202-bit%20Characters.java)**      Level: Easy
       
 方法1:
 Greedy.
@@ -7217,9 +3418,7 @@ loop to end, and see if index reaches the end.
 
 
 ---
-
----
-**363. [Non-decreasing Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Non-decreasing%20Array.java)**      Level: Easy
+**268. [Non-decreasing Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Non-decreasing%20Array.java)**      Level: Easy
       
 比较升序的时候, 必须要估计到 i-1, i, i+1三个数位.
 写出来i-1, i+1之间的关系, 然后做合理的fix.
@@ -7229,9 +3428,7 @@ loop to end, and see if index reaches the end.
 
 
 ---
-
----
-**364. [Max Consecutive Ones.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Consecutive%20Ones.java)**      Level: Easy
+**269. [Max Consecutive Ones.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Consecutive%20Ones.java)**      Level: Easy
       
 Basic. Math.max track结果。
 记得在有对外操作的loop后，一定要把result object清理干净。
@@ -7239,9 +3436,7 @@ Basic. Math.max track结果。
 
 
 ---
-
----
-**365. [Find All Numbers Disappeared in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Numbers%20Disappeared%20in%20an%20Array.java)**      Level: Easy
+**270. [Find All Numbers Disappeared in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Numbers%20Disappeared%20in%20an%20Array.java)**      Level: Easy
       
 方法1:
 换到正确的位置。
@@ -7262,17 +3457,13 @@ Preserve原数的负数，这样可以继续用此负数的绝对值来寻找原
 
 
 ---
-
----
-**366. [Maximum Average Subarray I.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20I.java)**      Level: Easy
+**271. [Maximum Average Subarray I.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20I.java)**      Level: Easy
       
 简单的求sum, 同时求max, 结尾求余数就好.
 
 
 ---
-
----
-**367. [Largest Number At Least Twice of Others.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number%20At%20Least%20Twice%20of%20Others.java)**      Level: Easy
+**272. [Largest Number At Least Twice of Others.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number%20At%20Least%20Twice%20of%20Others.java)**      Level: Easy
       
 找最大值, 和第二大的值, 看是否符合题意, 就行了.
 分析题意, 最简单方法, 可以loop 两遍: 找最值; 作比较.
@@ -7281,15 +3472,11 @@ Preserve原数的负数，这样可以继续用此负数的绝对值来寻找原
 
 
 ---
-
----
-**368. [Toeplitz Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Toeplitz%20Matrix.java)**      Level: Easy
+**273. [Toeplitz Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Toeplitz%20Matrix.java)**      Level: Easy
       
 似乎没什么算法特点, 就是array基本运算, 然后分割成一个helper function去做重复计算, 剪短代码.
 注意check MxN 的分界线.
 
 
-
----
 
 ---

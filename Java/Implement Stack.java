@@ -1,3 +1,5 @@
+E
+
 stack 后入先出. 
 Data Structure: ArrayList 
 return/remove ArrayList的末尾项。

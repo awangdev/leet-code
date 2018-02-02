@@ -1,3 +1,5 @@
+M
+
 12.06.2015 recap:
 注意：不要乱改input s. recursive call 需要用原始的input s.
 

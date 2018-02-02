@@ -1,3 +1,5 @@
+E
+
 两个Queue,交互倒水
 用一个Temp做swap
 

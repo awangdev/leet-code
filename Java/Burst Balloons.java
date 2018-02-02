@@ -1,3 +1,5 @@
+H
+
 其实会做之后挺好想的一个DP。
 dp[i][j] =  balloons i~j 之间的sum. 然后找哪个点开始burst? 设为x。
 For loop 所有的点作为x， 去burst。
