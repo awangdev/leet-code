@@ -1,4 +1,5 @@
 E
+1517550043
 
 方法1:
 换到正确的位置。
@@ -64,6 +65,44 @@ class Solution {
         }
         return resultList;
     }
+}
+
+/*
+Thougths:
+1. traverse nums:switch each number to its correct location, and save existing number into list.
+2. traverse list: treat the numbers as index, and save them back to nums
+3. traverse nums again, some indexed will stil be incorrectly assigned, and they will be the missing values.
+note: number 1 <-> index 0
+*/
+class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        final List<Integer> list = new ArrayList<>();
+        if (nums == null) {
+            return list;
+        }
+        // switch
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != i + 1) {
+                int correctIndex = nums[i] - 1;
+                int temp = nums[correctIndex];
+                nums[correctIndex] = nums[i];
+                list.add(temp);
+            }
+        }
+        // fill the rest
+        while (list.size() != 0) {
+            nums[list.get(0) - 1] = list.get(0);
+            list.remove(0);
+        }
+
+        // validate
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != i + 1) {
+                list.add(i + 1);
+            }
+        }
+        return list;
+    } 
 }
 
 
