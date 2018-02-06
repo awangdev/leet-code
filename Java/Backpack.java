@@ -1,6 +1,13 @@
 M
+1517903196
 
-DP。   
+需要从'可能性'的角度考虑, 不要搞成单一的最大值问题.
+
+1. 背包大小和总承重有关.
+2. 不要去找f[i]前i个物品的最大总重, 找的不是这个. 
+    f[i]及时找到可放的最大sum, 但是i+1可能有更好的值, 把f[i+1]变得更大更合适.
+
+DP. 
    row是item大小: 0, A[0], A[1] ... A[A.length -1]
    col是背包累积的size: 0, 1, 2, ... m.
 
@@ -49,6 +56,110 @@ LintCode Copyright Dynamic Programming Backpack
 
 
 */
+/*
+Thoughts:
+DO NOT try to find the maxSum using given values: this approach f[i] only returns max sum, 
+but does not guarantee to pick the most sutible items that maximize f[n]. 
+
+1. Always consider weight
+2. Consider it as a possibility problem based on weight 0 ~ m
+
+Using given items, can we fill backpack with size 0, size 1, size 2... size m - 1, and size m?
+We save these values with boolean dp[i][w]: using i items to fill size w, where i is the A index.
+
+Two conditions for calculating dp[i][w]
+1. i - 1 items filled up w, so dp[i][w] = dp[i - 1][w]. No need to add A[i - 1].
+2. i - 1 items fileld up w - A[i - 1]; once adding A[i - 1], it'll fill up w. dp[i][w] = dp[i - 1][w - A[i - 1]], so we are counting on if i - 1 items filled up weight: w - A[i - 1].
+
+We'll loop over j = 1 ~ m, and attempt to fill all sizes with i items.
+
+init:
+dp[0][0]: using 0 items to fill 0 space, sure. True.
+dp[0][1~m]: using 0 items to fill 1~m space, not gonna work. False.
+
+
+*/
+public class Solution {
+    
+    public int backPack(int m, int[] A) {
+    	if (A == null || A.length < 0) {
+    	    return 0;
+    	}
+    	int n = A.length;
+    	boolean[][] dp = new boolean[n + 1][m + 1];
+    	
+    	// weight 0 is a valid value.
+    	// items does not have 0's item, so we need to init dp based for all entries where i == 0
+    	dp[0][0] = true;
+    	for (int j = 1; j <= m; j++) {
+    	    dp[0][j] = false;
+    	}
+    	
+    	// Calculcate possibility for i items to fill up w weight
+    	for (int i = 1; i <= n; i++) {
+    	    for (int j = 0; j <= m; j++) {
+    	        // default: item(i-1) not used:
+    	        dp[i][j] = dp[i - 1][j];
+    	        if (j - A[i - 1] >= 0) { // possible to use item(i-1)
+    	            dp[i][j] |= dp[i - 1][j - A[i - 1]]; // use item(i-1)
+    	        }
+    	    }
+    	}
+    	
+    	// Find max weight size that makes dp[i][j] true
+    	for (int j = m; j >= 0; j--) {
+    	    if (dp[n][j]) {
+    	        return j;
+    	    }
+    	}
+    	return 0;
+    }
+}
+
+/*
+Thoughts: rolling array.
+Always use i, and i - 1 dp. can replace the two index with
+curr, pre
+*/
+public class Solution {
+    
+    public int backPack(int m, int[] A) {
+    	if (A == null || A.length < 0) {
+    	    return 0;
+    	}
+    	int n = A.length;
+    	boolean[][] dp = new boolean[2][m + 1];
+    	int curr = 0;
+    	int pre = 1;
+    	// weight 0 is a valid value.
+    	// items does not have 0's item, so we need to init dp based for all entries where i == 0
+    	dp[curr][0] = true;
+    	for (int j = 1; j <= m; j++) {
+    	    dp[curr][j] = false;
+    	}
+    	
+    	// Calculcate possibility for i items to fill up w weight
+    	for (int i = 1; i <= n; i++) {
+    	    curr = pre;
+    	    pre = 1 - curr;
+    	    for (int j = 0; j <= m; j++) {
+    	        // default: item(i-1) not used:
+    	        dp[curr][j] = dp[pre][j];
+    	        if (j - A[i - 1] >= 0) { // possible to use item(i-1)
+    	            dp[curr][j] |= dp[pre][j - A[i - 1]]; // use item(i-1)
+    	        }
+    	    }
+    	}
+    	
+    	// Find max weight size that makes dp[i][j] true
+    	for (int j = m; j >= 0; j--) {
+    	    if (dp[curr][j]) {
+    	        return j;
+    	    }
+    	}
+    	return 0;
+    }
+}
 
 /* 
     Thoughts: Recap on 12.02.2015
