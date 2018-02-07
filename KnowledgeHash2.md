@@ -96,7 +96,15 @@ Hash Table
 #### Bit Manipulation
 - Bit OR |, AND &, XOR ^
 - Bit shift: <<, >>
-
+- A << 1: binary of A shifted left for 1 bit, which result in value x 2
+- A >> 1: divide by integer 2. Note: decimals are ignored in the result.
+- bit shift is a lot faster than reqular 'times' operation.
+- 32 bit number: leading bit = 1, negative numbjer; leading bit = 0, positive number.
+- >> add leading '1' if the 32 bit number originally has leading '1'.
+- Java/python: logical shift >>>, always add leading '0' regardless of the sign of the 32-bit number. That is, it may turn a negative number to positive, if the leading bit is originally '1'
+- Because with '( )', make sure to surround the desired operation
+- & 0000 = clean up; | ABC = assign ABC
+- A^B=C, then A = B^C
 
 ### DP
 

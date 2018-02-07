@@ -1,10 +1,14 @@
 E
+1517979387
 
-^ 是不完全加法. 每次都忽略了进位。而 & 刚好可以算出需要的所有进位。
+a^b 是: 不完全加法.
+a&b 是: 所有可能的进位. a&b<<1是向左边进位的形态.
+
+Goal: 先a^b裸加, 算出进位; 再把结果和进位裸加, 再算出这一轮的进位; 再..裸价, 算进位....直到进位数==0. 
 
 那么就，首先记录好进位的数字：carry. 然后 a^b 不完全加法一次。然后b用来放剩下的carry, 每次移动一位，继续加，知道b循环为0为止。
 
-在第一回 a ^ b 之后, b 的作用就消失了. 接下去应该给parameter重新命名.
+在第一回 a ^ b 之后, b 的本身意义就消失. 接下去应该给parameter重新命名.
 sum = a ^ b; // sum without adding carries
 nextCarry = (a & b) << 1;
 
@@ -12,7 +16,7 @@ nextCarry = (a & b) << 1;
 
 Bit Operation    
 Steps: 
-   a & b: 每bit可能出现的余数       
+   a & b: 每bit可能出现的进位数       
    a ^ b: 每bit在此次操作可能留下的值，XOR 操作         
    每次左移余数1位，然后存到b, 再去跟a做第一步。loop until b == 0    
 
@@ -71,12 +75,15 @@ Thought:
 */
 class Solution {
     public int aplusb(int a, int b) {
-        while (b != 0) {
-            int carry = a & b;
-            a = a ^ b;
-            b = carry << 1;
+        int numA = a;
+        int numB = b;
+        int incompleteSum = 0;
+        while (numB != 0) {
+            incompleteSum = numA ^ numB;
+            numB = (numA & numB) << 1; // carry
+            numA = incompleteSum;
         }
-        return a;
+        return incompleteSum; // sum completes when the carry in numB is finished.
     }
 };
 
