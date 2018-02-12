@@ -1,3 +1,14 @@
+H
+1518165366
+
+Find minimum cut: 分割型DP
+考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min{d[j] + 1}.
+
+利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
+这样就给我们的问题合理降维, 目前是time: O(n^2). 
+不然求一次palindrome, 就是n, 会变成O(n^3)
+
+Previous Notes:
 Double for loop 检查每种substring string (i~j). 若i,j相邻或者同点，那么肯定isPal；否则，i,j之间的（i+1, j-1）一定得isPal。
 看上去，在检查i,j的时候，中间按的（i+1, j-1）怎么可能先知道？ 其实不然..在j慢慢长大的时候，所有的0~j的substring都检查过。所以isPal[i+1][j-1]一定是已经知道结果的。
 
@@ -16,6 +27,77 @@ For example, given s = "aab",
 Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
 Tags Expand 
 Dynamic Programming
+*/
+
+/*
+Thoughts:
+Find minimum?
+Say dp[i] represents min # of cuts for string with length i.
+Think about last index i: dp[i]'s min depends on if previous 1 or more indexes forms a palindrome:
+dp[i] = Min(dp[i - 1], dp[i - 2], dp[i - 3], .... dp[i - x]) + 1, assuming [i-1, i) is palindrome.
+Set up a j and let j = i - 1, j-- to try all options see if any [j, i-1] is palindrome.
+
+Note:
+dp[i] gives minimum # of palindromes.
+We need cuts, so dp[i] - 1
+
+O(n^2)
+We optimized using a palindrome[][] to save all possible palindromes across [i,j]
+*/
+class Solution {
+    public int minCut(String s) {
+        if (s == null || s.length() <= 1) {
+            return 0;
+        }
+        int len = s.length();
+        int[] dp = new int[len + 1];
+        boolean[][] palindrome = calcPalindrome(s.toCharArray());
+        dp[0] = 0;
+
+        for (int i = 1; i <= len; i++) {
+            dp[i] = Integer.MAX_VALUE;
+            for (int j = 0; j < i; j++) {
+                if (palindrome[j][i - 1]) { // check if [j , i - 1]
+                    dp[i] = Math.min(dp[i], dp[j] + 1); // move cursor to j
+                }
+            }
+        }
+        return dp[len] - 1; // need cuts
+    }
+
+    /*
+        Find if any [i,j] is palindrome.
+        Start attempting from mid point, and expand to both side. Set true of is palindrome.
+        For odd length: there will be a mid point, and expansion goes to both sides naturally.
+        For even length: mid and mid+1 will be middle 2 indexes.
+    */
+    private boolean[][] calcPalindrome(char[] s) {
+        int n = s.length;
+        boolean[][] palindrome = new boolean[n][n];
+        
+        for (int mid = 0; mid < n; mid++) {
+            // odd
+            int i = mid, j = mid;
+            while (i >= 0 && j < n && s[i] == s[j]) {
+                palindrome[i][j] = true;
+                i--;
+                j++;
+            }
+            
+            i = mid;
+            j = mid + 1;
+            while (i >= 0 && j < n && s[i] == s[j]) {
+                palindrome[i][j] = true;
+                i--;
+                j++;
+            }
+        }
+        return palindrome;
+    }
+}
+
+/*
+Previous notes
 Thinking process:
 DP problem.
 Use a isPal to record if any [i ~ j] is Palindrome, true/false
@@ -24,8 +106,7 @@ Use cut[j] to record the minimal cut from char index [0 ~ j]
     by default, cut[j] = j because the worst condition is cut j times at each charactor: none 2+ character palindrome, and split into individual chars.
     update cut[j] by comparing existing cut[j] and (cut[i - 1] + 1).
 At the end, return cut[s.length() - 1].
-*/
-
+ */
 public class Solution {
     /**
      * @param s a string

@@ -3529,3 +3529,117 @@ mask = mask | (1 << i); // prefix mask
 
 
 ---
+**277. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+      
+如果我是先手, 每次只能拿1个,或者2个coins, 我如何赢?
+只要保证对手在剩下的棋子中挑的时候'有可能败', 那就足够.
+设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
+所以:
+dp[i] = !dp[i - 1] || !dp[i-2]
+时间: O(n), 空间O(n)
+博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
+
+优化:
+空间优化O(1)
+
+
+
+---
+**278. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
+      
+分割型. 考虑最后的数字: 要是12割个1出来, 剩下11怎么考虑? 割个4出来,剩下8怎么考虑?
+就变成了dp = Min{dp[i - j^2] + 1}
+
+时间复杂度: 乍一看是O(n*sqrt(n)). 实际也是. 但如何推导?
+考虑sqrt(1) + sqrt(2) + ....sqrt(n):找这个的upper bound and lower bound.
+最后发现它的两边是 A*n*sqrt(n) <= actual time complexity <= B*n*sqrt(n)
+那么就是O(n*sqrt(n))啦
+
+Previous Notes:
+一开始没clue.看了一下提示。
+
+１.　第一步想到了，从数学角度，可能是从最大的perfect square number开始算起。
+２.　然后想法到了dp， 假设最后一步用了最大的maxSqrNum, 那么就在剩下的 dp[i - maxSqrNum^2] +１　不就好了？
+３.　做了，发现有个问题．．．最后一步选不选maxSqrNum?  比如12就是个例子。
+	然后就根据提示，想到BFS。顺的。 把1～maxSqrNum 都试一试。找个最小的。
+	看我把12拆分的那个example. 那很形象的就是BFS了。
+	面试时候，如果拆分到这个阶段不确定，那跟面试官陶瓷一下，说不定也就提示BFS了。
+
+
+
+---
+**279. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
+      
+Find minimum cut: 分割型DP
+考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min{d[j] + 1}.
+
+利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
+这样就给我们的问题合理降维, 目前是time: O(n^2). 
+不然求一次palindrome, 就是n, 会变成O(n^3)
+
+Previous Notes:
+Double for loop 检查每种substring string (i~j). 若i,j相邻或者同点，那么肯定isPal；否则，i,j之间的（i+1, j-1）一定得isPal。
+看上去，在检查i,j的时候，中间按的（i+1, j-1）怎么可能先知道？ 其实不然..在j慢慢长大的时候，所有的0~j的substring都检查过。所以isPal[i+1][j-1]一定是已经知道结果的。
+
+okay.那么假如以上任意一种情况成立，也就是说isPal[i][j] == true。那就要判断，切到第一层循环参数j的末尾点时，有多少种切法？
+想法很顺：我们naturally会想到，把i之前的cut加上i~j之间发生的不就好了。
+反正现在j不变，现在就看吧i定在哪里，cut[i - 1]是否更小/最小； 再在cut[i-1]基础上+1就完了。
+    当然，如果i==0, 而 i~j又是isPal,那没啥好谈的，不必切，0刀。
+
+最终，刷到cut[s.length() - 1] 也就是最后一点。 return的理所应当。
+
+
+---
+**280. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium
+      
+与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
+
+对于末尾, 还是两种情况:
+1. i-1位置没有加bag
+2. i-1位置加了bag
+
+两种情况可以fill满w的情况加起来, 就是我们要的结果.
+
+如常: dp[n + 1][w + 1]
+
+方法1:
+Space: O(MN)
+Time: O(MN)
+
+方法2:
+空间优化, 滚动数组
+Space: O(M) * 2 = O(M)
+Time: O(MN)
+
+方法3:
+降维打击, 终极优化: 分析row(i-1)的规律, 发现所有row(i)的值, 都跟row(i-1)的左边element相关, 而右边element是没用的.
+所以可以被override.
+Space: O(M), 真*一维啊!
+Time: O(MN)
+
+
+
+---
+**281. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium
+      
+拼背包时, 可以有重复item, 所以考虑'最后被放入的哪个unique item' 就没有意义了.
+背包问题, 永远和weight分不开关系.
+这里很像coin chagne: 考虑最后被放入的东西的value/weigth, 而不考虑是哪个.
+
+1维: dp[w]: fill了weigth w 有多少种方法. 前面有多少种可能性, 就sum多少个:
+dp[w] = sum{dp[w - nums[i]]}, i = 0~n
+
+
+
+
+
+---
+**282. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Review
+      
+k个人copy完i本书.
+定义Integer.MAX_VALUE的地方需要注意.
+Review: 为什么有i level的iteration? Chapter4.1
+
+
+
+---
