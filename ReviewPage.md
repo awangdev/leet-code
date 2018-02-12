@@ -3643,3 +3643,11 @@ Review: 为什么有i level的iteration? Chapter4.1
 
 
 ---
+**283. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review
+      
+Binary找sqrt. 基本 mid+1, mid-1 template.
+注意: define index as long. 
+
+
+
+---
