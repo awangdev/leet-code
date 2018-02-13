@@ -25,141 +25,141 @@
 |4|[Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)|Easy|Java||
 |5|[Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)|Hard|Java||
 |6|[Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)|Medium|Java||
-|7|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java||
-|8|[Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)|Medium|Java||
-|9|[Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)|Hard|Java||
-|10|[Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)|Hard|Java||
-|11|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java||
-|12|[Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)|Medium|Java||
-|13|[Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)|Medium|Java||
-|14|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java||
-|15|[Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)|Medium|Java||
-|16|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Medium|Java||
-|17|[Binary Tree Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Path%20Sum.java)|Easy|Java||
-|18|[Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)|Easy|Java||
-|19|[Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)|Easy|Java||
-|20|[Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)|Easy|Java||
-|21|[Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)|Medium|Java||
-|22|[Binary Tree Serialization.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Serialization.java)|Medium|Java||
-|23|[Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)|Medium|Java||
-|24|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Hard|Java||
-|25|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java||
-|26|[Change to Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Change%20to%20Anagram.java)|Easy|Java||
-|27|[Classical Binary Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Classical%20Binary%20Search.java)|Easy|Java||
-|28|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java||
-|29|[Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)|Medium|Java||
-|30|[Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)|Easy|Java||
-|31|[Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)|Easy|Java||
-|32|[ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)|Medium|Java||
-|33|[Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)|Medium|Java||
-|34|[Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)|Medium|Java||
-|35|[Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)|Medium|Java||
-|36|[Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)|Easy|Java||
-|37|[Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)|Easy|Java||
-|38|[Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)|Medium|Java||
-|39|[Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)|Medium|Java||
-|40|[Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)|Medium|Java||
-|41|[Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)|Easy|Java||
-|42|[Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)|Medium|Java||
-|43|[Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)|Easy|Java||
-|44|[Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)|Medium|Java||
-|45|[Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)|Hard|Java||
-|46|[Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)|Hard|Java||
-|47|[Convert Integer A to Integer B.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Integer%20A%20to%20Integer%20B.java)|Easy|Java||
-|48|[Convert Sorted Array to Binary Search Tree With Minimal Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree%20With%20Minimal%20Height.java)|Easy|Java||
-|49|[Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)|Medium|Java||
-|50|[Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)|Medium|Java||
-|51|[Cosine Similarity.java](https://github.com/awangdev/LintCode/blob/master/Java/Cosine%20Similarity.java)|Easy|Java||
-|52|[Count 1 in Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%201%20in%20Binary.java)|Easy|Java||
-|53|[Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)|Easy|Java||
-|54|[Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)|Hard|Java||
-|55|[Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)|Medium|Java||
-|56|[Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)|Easy|Java||
-|57|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java||
-|58|[Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)|Medium|Java||
-|59|[Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)|Hard|Java||
-|60|[Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)|Medium|Java||
-|61|[Delete Node in the Middle of Singly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20the%20Middle%20of%20Singly%20Linked%20List.java)|Easy|Java||
-|62|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java||
-|63|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Medium|Java||
-|64|[Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)|Medium|Java||
-|65|[ExcelSheetColumnNumber .java](https://github.com/awangdev/LintCode/blob/master/Java/ExcelSheetColumnNumber%20.java)|Easy|Java||
-|66|[Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)|Hard|Java||
-|67|[Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)|Hard|Java||
-|68|[Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)|Medium|Java||
-|69|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java||
-|70|[Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)|N/A|Java||
-|71|[Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)|N/A|Java||
-|72|[Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)|N/A|Java||
-|73|[Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)|Medium|Java||
-|74|[Find the Connected Component in the Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Connected%20Component%20in%20the%20Undirected%20Graph.java)|Medium|Java||
-|75|[Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)|Medium|Java||
-|76|[First Missing Positive.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Missing%20Positive.java)|N/A|Java||
-|77|[Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)|Medium|Java||
-|78|[Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)|Easy|Java||
-|79|[Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)|Medium|Java||
-|80|[Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)|Easy|Java||
-|81|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java||
-|82|[Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)|N/A|Java||
-|83|[Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)|N/A|Java||
-|84|[Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)|Medium|Java||
-|85|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java||
-|86|[Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)|Medium|Java||
-|87|[Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)|Medium|Java||
-|88|[Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)|Easy|Java||
-|89|[H-Index II.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index%20II.java)|Medium|Java||
-|90|[H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)|Medium|Java||
-|91|[Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Hamming%20Distance.java)|Easy|Java||
-|92|[Happy Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Happy%20Number.java)|Easy|Java||
-|93|[Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)|Easy|Java||
-|94|[HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)|Hard|Java||
-|95|[HashWithArray.java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithArray.java)|Easy|Java||
-|96|[HashWithCustomizedClass(LinkedList).java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithCustomizedClass(LinkedList).java)|Medium|Java||
-|97|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Medium|Java||
-|98|[Heaters.java](https://github.com/awangdev/LintCode/blob/master/Java/Heaters.java)|Easy|Java||
-|99|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Hard|Java||
-|100|[Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Identical%20Binary%20Tree.java)|Easy|Java||
-|101|[Implement Queue by Two Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20by%20Two%20Stacks.java)|N/A|Java||
-|102|[Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)|Easy|Java||
-|103|[Implement Stack by Two Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20by%20Two%20Queues.java)|Easy|Java||
-|104|[Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)|Easy|Java||
-|105|[Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)|Easy|Java||
-|106|[Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)|N/A|Java||
-|107|[Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)|Medium|Java||
-|108|[Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)|Medium|Java||
-|109|[IndexMatch.java](https://github.com/awangdev/LintCode/blob/master/Java/IndexMatch.java)|Easy|Java||
-|110|[Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)|Medium|Java||
-|111|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Easy|Java||
-|112|[Insert Node in a Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Node%20in%20a%20Binary%20Search%20Tree%20.java)|Easy|Java||
-|113|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|N/A|Java||
-|114|[Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)|N/A|Java||
-|115|[Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)|N/A|Java||
-|116|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|N/A|Java||
-|117|[Intersection of Two Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays.java)|Easy|Java||
-|118|[Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)|Easy|Java||
-|119|[Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)|Medium|Java||
-|120|[Interval Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum%20II.java)|Hard|Java||
-|121|[Interval Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum.java)|Medium|Java||
-|122|[Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)|Easy|Java||
-|123|[Isomorphic Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Isomorphic%20Strings.java)|Easy|Java||
-|124|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java||
-|125|[Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)|Medium|Java||
-|126|[Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)|N/A|Java||
-|127|[Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)|Medium|Java||
-|128|[Kth Smallest Sum In Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Sum%20In%20Two%20Sorted%20Arrays.java)|Hard|Java||
-|129|[Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)|N/A|Java||
-|130|[Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)|N/A|Java||
-|131|[Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)|N/A|Java||
-|132|[Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)|N/A|Java||
-|133|[Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)|Medium|Java||
-|134|[Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)|N/A|Java||
-|135|[Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)|N/A|Java||
-|136|[Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)|Medium|Java||
-|137|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|N/A|Java||
-|138|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|N/A|Java||
-|139|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|N/A|Java||
-|140|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|N/A|Java||
-|141|[Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)|Easy|Java||
+|7|[Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)|Medium|Java||
+|8|[Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)|Hard|Java||
+|9|[Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)|Hard|Java||
+|10|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java||
+|11|[Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)|Medium|Java||
+|12|[Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)|Medium|Java||
+|13|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java||
+|14|[Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)|Medium|Java||
+|15|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Medium|Java||
+|16|[Binary Tree Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Path%20Sum.java)|Easy|Java||
+|17|[Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)|Easy|Java||
+|18|[Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)|Easy|Java||
+|19|[Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)|Easy|Java||
+|20|[Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)|Medium|Java||
+|21|[Binary Tree Serialization.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Serialization.java)|Medium|Java||
+|22|[Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)|Medium|Java||
+|23|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Hard|Java||
+|24|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java||
+|25|[Change to Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Change%20to%20Anagram.java)|Easy|Java||
+|26|[Classical Binary Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Classical%20Binary%20Search.java)|Easy|Java||
+|27|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java||
+|28|[Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)|Medium|Java||
+|29|[Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)|Easy|Java||
+|30|[Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)|Easy|Java||
+|31|[ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)|Medium|Java||
+|32|[Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)|Medium|Java||
+|33|[Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)|Medium|Java||
+|34|[Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)|Medium|Java||
+|35|[Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)|Easy|Java||
+|36|[Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)|Easy|Java||
+|37|[Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)|Medium|Java||
+|38|[Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)|Medium|Java||
+|39|[Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)|Medium|Java||
+|40|[Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)|Easy|Java||
+|41|[Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)|Medium|Java||
+|42|[Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)|Easy|Java||
+|43|[Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)|Medium|Java||
+|44|[Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)|Hard|Java||
+|45|[Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)|Hard|Java||
+|46|[Convert Integer A to Integer B.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Integer%20A%20to%20Integer%20B.java)|Easy|Java||
+|47|[Convert Sorted Array to Binary Search Tree With Minimal Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree%20With%20Minimal%20Height.java)|Easy|Java||
+|48|[Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)|Medium|Java||
+|49|[Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)|Medium|Java||
+|50|[Cosine Similarity.java](https://github.com/awangdev/LintCode/blob/master/Java/Cosine%20Similarity.java)|Easy|Java||
+|51|[Count 1 in Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%201%20in%20Binary.java)|Easy|Java||
+|52|[Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)|Easy|Java||
+|53|[Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)|Hard|Java||
+|54|[Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)|Medium|Java||
+|55|[Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)|Easy|Java||
+|56|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java||
+|57|[Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)|Medium|Java||
+|58|[Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)|Hard|Java||
+|59|[Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)|Medium|Java||
+|60|[Delete Node in the Middle of Singly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20the%20Middle%20of%20Singly%20Linked%20List.java)|Easy|Java||
+|61|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java||
+|62|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Medium|Java||
+|63|[Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)|Medium|Java||
+|64|[ExcelSheetColumnNumber .java](https://github.com/awangdev/LintCode/blob/master/Java/ExcelSheetColumnNumber%20.java)|Easy|Java||
+|65|[Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)|Hard|Java||
+|66|[Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)|Hard|Java||
+|67|[Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)|Medium|Java||
+|68|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java||
+|69|[Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)|N/A|Java||
+|70|[Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)|N/A|Java||
+|71|[Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)|N/A|Java||
+|72|[Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)|Medium|Java||
+|73|[Find the Connected Component in the Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Connected%20Component%20in%20the%20Undirected%20Graph.java)|Medium|Java||
+|74|[Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)|Medium|Java||
+|75|[First Missing Positive.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Missing%20Positive.java)|N/A|Java||
+|76|[Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)|Medium|Java||
+|77|[Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)|Easy|Java||
+|78|[Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)|Medium|Java||
+|79|[Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)|Easy|Java||
+|80|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java||
+|81|[Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)|N/A|Java||
+|82|[Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)|N/A|Java||
+|83|[Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)|Medium|Java||
+|84|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java||
+|85|[Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)|Medium|Java||
+|86|[Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)|Medium|Java||
+|87|[Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)|Easy|Java||
+|88|[H-Index II.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index%20II.java)|Medium|Java||
+|89|[H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)|Medium|Java||
+|90|[Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Hamming%20Distance.java)|Easy|Java||
+|91|[Happy Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Happy%20Number.java)|Easy|Java||
+|92|[Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)|Easy|Java||
+|93|[HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)|Hard|Java||
+|94|[HashWithArray.java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithArray.java)|Easy|Java||
+|95|[HashWithCustomizedClass(LinkedList).java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithCustomizedClass(LinkedList).java)|Medium|Java||
+|96|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Medium|Java||
+|97|[Heaters.java](https://github.com/awangdev/LintCode/blob/master/Java/Heaters.java)|Easy|Java||
+|98|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Hard|Java||
+|99|[Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Identical%20Binary%20Tree.java)|Easy|Java||
+|100|[Implement Queue by Two Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20by%20Two%20Stacks.java)|N/A|Java||
+|101|[Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)|Easy|Java||
+|102|[Implement Stack by Two Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20by%20Two%20Queues.java)|Easy|Java||
+|103|[Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)|Easy|Java||
+|104|[Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)|Easy|Java||
+|105|[Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)|N/A|Java||
+|106|[Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)|Medium|Java||
+|107|[Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)|Medium|Java||
+|108|[IndexMatch.java](https://github.com/awangdev/LintCode/blob/master/Java/IndexMatch.java)|Easy|Java||
+|109|[Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)|Medium|Java||
+|110|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Easy|Java||
+|111|[Insert Node in a Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Node%20in%20a%20Binary%20Search%20Tree%20.java)|Easy|Java||
+|112|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|N/A|Java||
+|113|[Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)|N/A|Java||
+|114|[Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)|N/A|Java||
+|115|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|N/A|Java||
+|116|[Intersection of Two Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays.java)|Easy|Java||
+|117|[Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)|Easy|Java||
+|118|[Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)|Medium|Java||
+|119|[Interval Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum%20II.java)|Hard|Java||
+|120|[Interval Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum.java)|Medium|Java||
+|121|[Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)|Easy|Java||
+|122|[Isomorphic Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Isomorphic%20Strings.java)|Easy|Java||
+|123|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java||
+|124|[Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)|Medium|Java||
+|125|[Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)|N/A|Java||
+|126|[Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)|Medium|Java||
+|127|[Kth Smallest Sum In Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Sum%20In%20Two%20Sorted%20Arrays.java)|Hard|Java||
+|128|[Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)|N/A|Java||
+|129|[Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)|N/A|Java||
+|130|[Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)|N/A|Java||
+|131|[Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)|N/A|Java||
+|132|[Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)|Medium|Java||
+|133|[Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)|N/A|Java||
+|134|[Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)|N/A|Java||
+|135|[Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)|Medium|Java||
+|136|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|N/A|Java||
+|137|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|N/A|Java||
+|138|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|N/A|Java||
+|139|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|N/A|Java||
+|140|[Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)|Easy|Java||
+|141|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|N/A|Java||
 |142|[Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)|Medium|Java||
 |143|[Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)|Medium|Java||
 |144|[Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)|Medium|Java||
@@ -393,3 +393,5 @@
 |372|[Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)|Review|Java||
 |373|[Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)|Easy|Java||
 |374|[First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)|Easy|Java||
+|375|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java||
+|376|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Review|Java||
