@@ -3674,3 +3674,15 @@ O(m)的做法:
 
 
 ---
+**286. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
+      
+区间型动态规划. 
+1. 用[i][j]表示区间的首尾
+2. 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
+3. Iteration一定是以i ~ j 之间的len来看的. len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+
+注意考虑len == 1, len == 2是的特殊情况.
+
+
+
+---
