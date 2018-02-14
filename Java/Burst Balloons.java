@@ -1,4 +1,18 @@
 H
+1518586276
+
+Range DP.
+因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
+最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
+
+Range DP 三把斧:
+1. 中间劈开
+2. 砍断首或尾
+3. Range区间作为iteration的根本
+
+Note: print the process. use pi[i][j] and print recursively.
+Print k, using pi[i][j]: max value taken at k
+
 
 其实会做之后挺好想的一个DP。
 dp[i][j] =  balloons i~j 之间的sum. 然后找哪个点开始burst? 设为x。
@@ -8,6 +22,7 @@ For loop 所有的点作为x， 去burst。
 
 这个是momorization, 而不纯是DP
 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
+
 ```
 /*
 Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. 
@@ -37,6 +52,53 @@ Divide and Conquer Dynamic Programming
 
 
 */
+
+/*
+Thoughts:
+Range DP. Think about it: it's really hard to find which ballon burst first; how about which ballon burst last?
+If it burst last, the value will be left * lastItem * right.
+Now we just have to pick which one burst last? k = [i, j]
+Note that, we need the invisible wall on head and tail, so make sure creating dp at length of n+2
+dp[i][j] represents the max value for range (i + 1 ~ j - 1)
+
+Pick k in the middle:
+dp[i][j] = dp[i][k] + dp[k][j] + nums[i] * nums[k] * nums[j];
+where:
+dp[i][k]: range (i + 1, k - 1)
+dp[k][j]: range (k + 1, j - 1)
+
+Time O(n^3)
+Space O(n^2)
+*/
+class Solution {
+    public int maxCoins(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+
+        int[] values = new int[n + 2];
+        values[0] = values[n + 1] = 1;
+        // reassign new array
+        for (int i = 1; i <= n; i++) {
+            values[i] = nums[i - 1];
+        }
+        
+        n = values.length; // increase n size and simplify code below
+        int[][] dp = new int[n][n];
+        // Critical: iterate over RANGE: then come up with i and j; i <= n - len
+        for (int len = 3; len <= n; len++) {
+            for (int i = 0; i <= n - len; i++) {
+                int j = len + i - 1;
+                for (int k = i + 1; k < j; k++) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i][k] + dp[k][j] + values[i] * values[k] * values[j]);
+                }
+            }
+        }
+        return dp[0][n - 1];
+    }
+}
+
 
 /*
 	Thoughts: as seen in dicussion. Build DP.
