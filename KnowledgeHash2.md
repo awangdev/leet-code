@@ -17,14 +17,11 @@ Heap
 
 Tree
 
-Depth-first Search
-
-Breadth-first Search
-
 #### Binary Search Tree
 - If BST not given, can use TreeSet
 - All left nodes are less than current node.val; all right nodes are greater than curr node.val
 - Use DFS to traverse: divide and conquer. Similarly, usually can convert the DFS solution to interative solution.
+- Use stack to traverse iteratively
 
 
 Binary Indexed Tree
@@ -115,7 +112,11 @@ Optimization problems:
 - Shortest paths
 - guessing && DAG View
 
+### Search
 
+#### Depth-first Search
+
+#### Breadth-first Search
 
 
 ### Backtracking ###

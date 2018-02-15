@@ -3747,3 +3747,11 @@ template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定
 
 
 ---
+**290. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
+      
+Sequence DP
+跟StockIII很像. 分析好HaveStock && NoStock的状态, 然后看最后一步.
+
+
+
+---
