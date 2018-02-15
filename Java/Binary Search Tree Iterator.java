@@ -1,5 +1,10 @@
-H
+M
+1518626557
 
+画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
+每次消耗TreeNode, 都看看rightNode(其实就是下一个最小的candidate), 并且一条龙stack叠上rightNode所有的left子孙.
+
+Previous Notes:
 用O(h)空间的做法：
 
 理解binary search tree inorder traversal的规律：
@@ -54,7 +59,6 @@ Binary Tree LintCode Copyright Non Recursion Binary Search Tree Google LinkedIn 
 */
 
 
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -72,6 +76,43 @@ Binary Tree LintCode Copyright Non Recursion Binary Search Tree Google LinkedIn 
  *    do something for node
  * } 
  */
+
+ /*
+Thoughts:
+Inorder traversal, always having the smallest on top.
+Use stack to keep smallest item on top of stack; when consuming an item, always find right, and dive in and stack most left children
+*/
+public class BSTIterator {
+    final Stack<TreeNode> stack = new Stack<>();
+    public BSTIterator(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        TreeNode node = root;
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+    }
+
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+
+    /** @return the next smallest number */
+    public int next() {
+        TreeNode rst = stack.pop();
+        if (rst.right != null) {
+            TreeNode node = rst.right;
+            while(node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+        }
+        return rst.val;
+    }
+}
 
 //Recap 02.24.2016: Similar to solution below.  O(h) space.
 //Stack, inorder traversal; first add left node till end. Each next() trigger a iteration. 
