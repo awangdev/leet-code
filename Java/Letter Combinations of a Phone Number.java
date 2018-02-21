@@ -1,4 +1,5 @@
 M
+1519232186
 
 方法1: Iterative with BFS using queue.
 
@@ -23,6 +24,58 @@ Although the above answer is in lexicographical order, your answer could be in a
 Tags Expand 
 String Backtracking Recursion Facebook Uber
 */
+
+/*
+Thoughts:
+1. Have to use all letters
+2. DFS: can skip a letter but need to use it later for other combinations
+3. When string length matches target length, add string.
+4. When input digits are used up, return final result.
+*/
+class Solution {
+    final Map<Character, List<String>> map = new HashMap<>();
+
+    public List<String> letterCombinations(String digits) {
+        final List<String> rst = new ArrayList<String>();
+        if (digits == null || digits.length() == 0) {
+            return rst;
+        }
+        
+        //Prepare map
+        map.put('2', Arrays.asList("a","b","c"));
+        map.put('3', Arrays.asList("d","e","f"));
+        map.put('4', Arrays.asList("g","h","i"));
+        map.put('5', Arrays.asList("j","k","l"));
+        map.put('6', Arrays.asList("m","n","o"));
+        map.put('7', Arrays.asList("p","q","r","s"));
+        map.put('8', Arrays.asList("t","u","v"));
+        map.put('9', Arrays.asList("w","x","y","z"));
+        
+        List<String> list = new ArrayList<>();
+        dfs(rst, list, digits.toCharArray(), 0);
+        
+        return rst;
+    }
+    
+    public void dfs(List<String> rst, List<String> list, char[] digit, int level) {
+        if (list.size() == digit.length) {
+            StringBuffer sb = new StringBuffer();
+            for (String str : list) {
+                sb.append(str);
+            }
+            rst.add(sb.toString());
+            return;
+        }
+        
+        List<String> letters = map.get(digit[level]);
+        for (String letter : letters) {
+            list.add(letter);
+            dfs(rst, list, digit, level + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+
 
 /*3.7.2016 recap. Iterative way using BFS*/
 //Hashmap the list of chars.
