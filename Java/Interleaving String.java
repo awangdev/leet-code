@@ -1,3 +1,110 @@
+H
+1519199180
+
+双序列DP, 从最后点考虑.
+拆分问题的末尾, 考虑和s1, s2 subsequence之间的关联.
+
+求存在性, boolean
+
+
+```
+/*
+LeetCode:
+Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
+
+For example,
+Given:
+s1 = "aabcc",
+s2 = "dbbca",
+
+When s3 = "aadbbcbcac", return true.
+When s3 = "aadbbbaccc", return false.
+ */
+
+/*
+Thoughts:
+Take continuous part of s1, and part of s2 to form s3.
+Consider last index of s3: where is this last char from (s1, or s2)?
+Two possible conditioins:
+1. s3 last char from s1. Next step: consider s1[0 ~ n-1] and s2 to form s3[0 ~ m - 1];
+2. s3 last char from s2. Next step: consider s1 and s2[0 ~ n-1] to form s3[0 ~ m - 1];
+
+dp[i][j]: up to ith and jth index of s1 and s2, is it possible to form s3[i + j];
+
+dp[i][j] = dp[i - 1][j]|s1[i - 1] == s3[i + j - 1] OR dp[i][j - 1]|s2[i - 1] == s3[i + j - 1]
+
+dp[0][0] = false; // 0th length, false;
+
+Time: O(MN)
+Space: O(MN)
+*/
+class Solution {
+    public boolean isInterleave(String s1, String s2, String s3) {
+        if (s1 == null || s2 == null || s1.length() + s2.length() != s3.length()) {
+            return false;
+        }
+        int m = s1.length();
+        int n = s2.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i == 0 && j == 0) { // since s3.length() = s1.length() + s2.length(), so it'll be true here.
+                    dp[i][j] = true;
+                    continue;
+                }
+                
+                dp[i][j] = false;
+                if (i > 0 && s1.charAt(i - 1) == s3.charAt(i + j - 1)) {
+                    dp[i][j] |= dp[i - 1][j];
+                } 
+                
+                if (j > 0 && s2.charAt(j - 1) == s3.charAt(i + j - 1)) {
+                    dp[i][j] |= dp[i][j - 1];
+                }
+            }
+        }
+        return dp[m][n];
+    }
+}
+
+//Optimize: rolling array
+// Time: O(MN), Space O(N)
+class Solution {
+    public boolean isInterleave(String s1, String s2, String s3) {
+        if (s1 == null || s2 == null || s1.length() + s2.length() != s3.length()) {
+            return false;
+        }
+        int m = s1.length();
+        int n = s2.length();
+        boolean[][] dp = new boolean[2][n + 1];
+        int curr = 0;
+        int prev = 0;
+        
+        for (int i = 0; i <= m; i++) {
+            prev = curr;
+            curr = 1 - prev;
+
+            for (int j = 0; j <= n; j++) {
+                if (i == 0 && j == 0) { // since s3.length() = s1.length() + s2.length(), so it'll be true here.
+                    dp[curr][j] = true;
+                    continue;
+                }
+                
+                dp[curr][j] = false;
+                if (i > 0 && s1.charAt(i - 1) == s3.charAt(i + j - 1)) {
+                    dp[curr][j] |= dp[prev][j];
+                } 
+                
+                if (j > 0 && s2.charAt(j - 1) == s3.charAt(i + j - 1)) {
+                    dp[curr][j] |= dp[curr][j - 1];
+                }
+            }
+        }
+        return dp[curr][n];
+    }
+}
+
 /*
 Given three strings: s1, s2, s3, determine whether s3 is formed by the interleaving of s1 and s2.
 
@@ -99,3 +206,5 @@ public class Solution {
         return true;
     }
 }
+
+```

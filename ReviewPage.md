@@ -3757,3 +3757,27 @@ Goal: find peak, where both sides are descending
 
 
 ---
+**291. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
+      
+经典序列型.
+设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+
+双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析3种情况:
+1. A最后字符不在common sequence.
+2. B最后字符不在common sequence.
+3. A/B最后字符都在common sequence. 总体+1.
+
+
+
+---
+**292. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
+      
+双序列DP, 从最后点考虑.
+拆分问题的末尾, 考虑和s1, s2 subsequence之间的关联.
+
+求存在性, boolean
+
+
+
+
+---
