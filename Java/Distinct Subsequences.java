@@ -1,8 +1,107 @@
 H
+1519279629
 
-Not Done
+Double Sequence DP:
+0. DP size (n+1): 找前nth的结果, 那么dp array就需要开n+1, 因为结尾要return dp[n][m]
+1. 在for loop 里面initialize dp[0][j] dp[i][0]
+2. Rolling array 优化成O(N): 如果dp[i][j]在for loop里面, 就很好替换 curr/prev
 
 ```
+/*
+LeetCode
+Given a string S and a string T, count the number of distinct subsequences of S which equals T.
+
+A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
+
+Here is an example:
+S = "rabbbit", T = "rabbit"
+
+Return 3.
+
+*/
+/*
+Thoughts:
+2 Sequence, count (adds up) DP.
+dp[i][j]: # of distinct subsequence of B[0 ~ j - 1] that can occur in A[0 ~ i - 1]
+Consider the last index of A and B. There can be two conditions:
+1. A's last index is not part of B.
+2. A's last index is part of B.
+
+dp[i][j] = dp[i - 2][j - 1] + dp[i - 2][j - 2]|A[i-1]==B[j-1];
+
+dp[0][0] = 0;
+dp[i][0] = 1; // ignore physical meaning, requirement for DP.
+
+Time,Space: O(MN)
+
+*/
+class Solution {
+    public int numDistinct(String s, String t) {
+        if (s == null || t == null || t.length() > s.length()) {
+            return 0;
+        } else if (s.equals(t)) {
+            return 1;
+        }
+        
+        int m = s.length();
+        int n = t.length();
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (j == 0) {
+                    dp[i][j] = 1;
+                    continue;
+                }
+                if (i == 0) {
+                    dp[i][j] = 0;
+                    continue;
+                }
+                dp[i][j] = dp[i - 1][j];
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                   dp[i][j] += dp[i - 1][j - 1];
+                }
+            }
+        }
+        return dp[m][n];
+    }
+}
+
+// Optimize, rolling array: Space O(N)
+class Solution {
+    public int numDistinct(String s, String t) {
+        if (s == null || t == null || t.length() > s.length()) {
+            return 0;
+        } else if (s.equals(t)) {
+            return 1;
+        }
+        
+        int m = s.length();
+        int n = t.length();
+        int[][] dp = new int[2][n + 1];
+        int curr = 0;
+        int prev = 0;
+        for (int i = 0; i <= m; i++) {
+            prev = curr;
+            curr = 1 - prev;
+            for (int j = 0; j <= n; j++) {
+                if (j == 0) {
+                    dp[curr][j] = 1;
+                    continue;
+                }
+                if (i == 0) {
+                    dp[curr][j] = 0;
+                    continue;
+                }
+                dp[curr][j] = dp[prev][j];
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                   dp[curr][j] += dp[prev][j - 1];
+                }
+            }
+        }
+        return dp[curr][n];
+    }
+}
+
 /*
 Given a string S and a string T, count the number of distinct subsequences of T in S.
 
@@ -103,16 +202,4 @@ public class Solution {
         return count;
     }
 }
-
-
-
-/*
-First Thought:
-find the # of ways to get T from S, while having to follow the rules of 'subsequence'
-How about: find what chars are missing in T based on S, then find the number of ways to insert the missing chars to make it back to S?
-The missing chars: misChars = new ArrayList<String>();
-However, time cost on this:
-For example I have n missing chars from S.length == m. so I have (m + 1) places where i can insert the n chars. Then it's a mCn problem. This goes up to m!, too much. Not applicapable.
-
-*/
 ```
