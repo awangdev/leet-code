@@ -112,6 +112,13 @@ Optimization problems:
 - Shortest paths
 - guessing && DAG View
 
+### Double Sequence
+- Sequence problem, have dp[] length of n + 1.
+- Look at last index for clues
+- Usually can start for loop at index = 0, and we handle the init conditions within the for loop (ex: assign particular value or skip i=0 rows)
+- Rolling array (curr, prev pointer) to optimize space; note the rolling dimension should be apply at the top-for loop.
+
+
 ### Search
 
 #### Depth-first Search

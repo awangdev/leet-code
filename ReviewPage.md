@@ -3800,3 +3800,27 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
+**294. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
+      
+Double sequence DP. 与regular expression 很像.
+
+注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
+    同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+
+
+
+---
+**295. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
+      
+还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
+所以开了3维数组.
+
+如果用滚动数组优化空间, 需要把要滚动的那个for loop放在最外面, 而不是最里面.
+当然, 这个第三位define在 dp[][][]的哪个位置, 问题都不大.
+
+另外, 注意在外面calcualte zeros and ones, 节约时间复杂度.
+
+
+
+---
