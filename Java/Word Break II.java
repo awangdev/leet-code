@@ -1,4 +1,5 @@
-H
+R
+1519546502
 
 两个DP一起用.解决了timeout的问题     
 1. isWord[i][j], subString(i,j)是否存在dict中？
@@ -34,7 +35,108 @@ Hide Company Tags Google Uber
 Hide Tags Dynamic Programming Backtracking
 
 */
+
 /*
+Thoughts:
+Dict is a look up table. We need to backtrack on s && result list.
+When iterating over s && worst case of each remaining letter is a word, time: n + (n - 1) + (n - 2) + (n - 3) ... + 1 => O(n^2)
+
+return result when s string is traversed completely.
+
+Questions to ask:
+1. all chars in s need to be used? 
+2. can we jump over chars in s? NO
+3. can we resume item in dict? YES
+
+Problem:
+dict.contains() is O(logN), so overall time went up to O(N^2*LogN). Should improve.
+
+DP1:
+Is (i,j) a valid word form dictionary? DP[i][j] represents true/false valid word.
+
+DP2:
+for s[i,j] to be a valid entry in the result, s[0, i] has to be validated as well. 
+dp[i] represents: up to ith index, all substring ahead are valid
+*/
+class Solution {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        List<String> result = new ArrayList<>();
+        if(s == null || s.length() == 0 || wordDict == null || wordDict.size() == 0) {
+            return result;
+        }
+        
+        boolean[][] isWord = isWord(wordDict, s);
+        boolean[] isValid = validatePossibility(wordDict, isWord, s);
+        helper(result, new ArrayList<String>(), isWord, isValid, s, 0);
+        return result;
+    }
+    
+    public void helper(List<String> result, List<String> list, boolean[][] isWord, boolean[] isValid, String s, int start) {
+        if (!isValid[start]) {
+            return;
+        }
+        if (start >= s.length()) {
+            StringBuffer sb = new StringBuffer();
+            for (String word : list) {
+                sb.append(word + " ");
+            }
+            result.add(sb.toString().trim());
+            return;
+        }
+        for (int i = start; i < s.length(); i++) {
+            if (!isWord[start][i]) {//O(1)
+                continue;
+            }
+            list.add(s.substring(start, i + 1));
+            helper(result, list, isWord, isValid, s, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+    
+	// isWord[i][j]: is subString s[i, j] a word from dictionary?
+    public boolean[][] isWord(List<String> wordDict, String s) {
+        int n = s.length();
+        boolean[][] isWord = new boolean[n][n];
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                isWord[i][j] = wordDict.contains(s.substring(i, j + 1));
+            }
+        }
+        return isWord;
+    }
+    
+	/*
+		Verify: up to i letters, is it possible to satisfy the 'word break' rules?
+		Need to consider ith index: sequence DP, create dp[n + 1];
+		dp[i] = substring(i, j) valid && dp[after substring, j to end]
+        Calculating DP from right-side of the string: from the right side, we need to know the substring is valid, then move to left and check further
+	*/
+    public boolean[] validatePossibility(List<String> wordDict, boolean[][] isWord, String s) {
+        //optimize, find maxLength in wordDict to restrict string growth
+        int maxLen = 0;
+        for (String word : wordDict) {
+            maxLen = Math.max(maxLen, word.length());
+        }
+
+        int n = s.length();
+        boolean[] isValid = new boolean[n + 1];
+        isValid[n] = true;
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                if (isWord[i][j] && isValid[j + 1]) {
+                    isValid[i] = true;
+                    break;
+                }
+            }
+        }
+        return isValid;
+    }
+}
+
+
+/*
+	Previous notes:
 	Thoughts: DP
 	Check if s.substring(i,j) is a valid word
 		state: isWord[i][j]
@@ -47,100 +149,5 @@ Hide Tags Dynamic Programming Backtracking
 	DFS:
 		if isValid(i), and isWord(i,j) then go deeper
 */
-
-public class Solution {
-    public List<String> wordBreak(String s, Set<String> wordDict) {
-        List<String> rst = new ArrayList<String>();
-        if (s == null || s.length() == 0 || wordDict == null || wordDict.size() == 0) {
-        	return rst;
-        }
-    	
-    	boolean[][] isWord = validateWord(s, wordDict);
-    	boolean[] isValid = validatePossibility(s, wordDict, isWord);
-    	
-    	dfs(rst, new ArrayList<String>(), s, 0, isValid, isWord, wordDict);
-     	return rst;
-    }
-
-    public void dfs(List<String> rst, ArrayList<String> list, String s, 
-    				int index, boolean[] isValid, boolean[][] isWord, Set<String> set) {
-    	if (!isValid[index]) {
-    		return;
-    	}
-    	//output
-    	if (index >= s.length()) {
-    		StringBuffer sb = new StringBuffer();
-    		for (int i = 0; i < list.size(); i++) {
-    			sb.append(list.get(i));
-    			if (i != list.size() - 1) {
-    				sb.append(" ");
-    			}
-    		}
-		    rst.add(sb.toString());
-		    return;
-    	}
-    	//dfs
-    	for (int i = index; i < s.length(); i++) {
-    		if (!isWord[index][i]) {
-    			continue;
-    		}
-    		
-			list.add(s.substring(index, i + 1));
-			dfs(rst, list, s, i + 1, isValid, isWord, set);
-			list.remove(list.size() - 1);
-    	}
-    }
-
-    //dp[i][j] check if s.substring(i,j) is a proper word from dictionary
-    public boolean[][] validateWord(String s, Set<String> set) {
-    	boolean[][] isWord = new boolean[s.length()][s.length()];
-    	for (int i = 0; i < s.length(); i++) {
-    		for (int j = i; j < s.length(); j++) {
-    			isWord[i][j] = set.contains(s.substring(i, j + 1));
-    		}
-    	}
-    	return isWord;
-    }
-
-    //Build the validation boolean[]
-    public boolean[] validatePossibility(String s, Set<String> set, boolean[][] isWord) {
-    	/*
-    	boolean[] valid = new boolean[s.length() + 1];
-    	valid[s.length()] = true;
-
-    	int maxLeng = getMaxLength(set);
-    	for (int i = s.length() - 1; i >= 0; i--) {
-    		for (int j = i; j < s.length() && (j - i) <= maxLeng; j++) {
-    			if (isWord[i][j] && valid[j + 1]) {
-    				valid[i] = true;
-    				break;
-    			}
-    		}
-    	}*/
-    	boolean[] valid = new boolean[s.length() + 1];
-        valid[0] = true;
-        int maxLength = getMaxLength(set);
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = 0; j < i && j < maxLength; j++) {//iterate [0 ~ i]
-                if (isWord[i - j][i] && isValid[i - j + 1])) {
-                    valid[i + 1] = true;
-                    break;
-                }
-            }
-        }
-
-    	return valid;
-    }
-
-    //Get max length, a little optimization
-    public int getMaxLength(Set<String> dict) {
-        int length = 0;
-        for (String word : dict) {
-            length = Math.max(length, word.length());
-        }
-        return length;
-    }
-}
-
 
 ```
