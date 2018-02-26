@@ -121,9 +121,11 @@ Optimization problems:
 
 ### Search
 
-#### Depth-first Search
 
 #### Breadth-first Search
+Track queue size, use the queue as in rotation
+
+#### Depth-first Search
 
 
 ### Backtracking ###

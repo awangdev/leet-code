@@ -1,4 +1,8 @@
-M
+R
+1519634117
+
+LeetCode: H
+用 PathSumType 比较特别. 没有 data structure的时候, 写起来比较繁琐.
 
 第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
    single path max 的计算是为了给后面的comboMax用的。
@@ -111,6 +115,62 @@ public class Solution {
     
 }
 
+
+// Incorrect:
+/*
+[9,6,-3,null,null,-6,2,null,null,2,null,-6,-6,-6]
+Output:
+15
+Expected:
+16
+ */
+class Solution {
+    public int maxPathSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int result = 0;
+        int leftMaxDirectPathSum = Integer.MIN_VALUE;
+        int rightMaxDirectPathSum = Integer.MIN_VALUE;
+        int leftMaxComboPathSum = Integer.MIN_VALUE;
+        int rightMaxComboPathSum = Integer.MIN_VALUE;
+        if (root.left != null) {
+            leftMaxDirectPathSum = maxDirectPathSum(root.left);
+            leftMaxComboPathSum = maxPathSum(root.left);
+        }
+        if (root.right != null) {
+            rightMaxDirectPathSum = maxDirectPathSum(root.right);
+            rightMaxComboPathSum = maxPathSum(root.right);
+        }
+        int maxComboPathSum = root.val;
+        if (root.left != null) {
+            maxComboPathSum += leftMaxDirectPathSum;
+        }
+        if (root.right != null) {
+            maxComboPathSum += rightMaxDirectPathSum;
+        }
+        int partResultA = Math.max(root.val, Math.max(leftMaxDirectPathSum, rightMaxDirectPathSum));
+        int partResultB = maxComboPathSum;
+        if (root.left == null || root.right == null) {
+            leftMaxDirectPathSum = leftMaxDirectPathSum == Integer.MIN_VALUE ? 0 : leftMaxDirectPathSum;
+            rightMaxDirectPathSum = rightMaxDirectPathSum == Integer.MIN_VALUE ? 0 : rightMaxDirectPathSum;
+        }
+        partResultB = Math.max(partResultB, Math.max(leftMaxDirectPathSum, rightMaxDirectPathSum) + root.val);
+        result = Math.max(partResultA, partResultB);
+
+        return Math.max(Math.max(leftMaxComboPathSum, rightMaxComboPathSum), result);
+    }
+    
+    /*
+    Path that start with root and end with a leaf
+    */
+    public int maxDirectPathSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return root.val + Math.max(maxDirectPathSum(root.left), maxDirectPathSum(root.right));
+    }
+}
 
 
 ```
