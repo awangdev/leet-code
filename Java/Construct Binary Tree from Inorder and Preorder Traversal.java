@@ -1,4 +1,5 @@
 M
+1519663383
 
 和Construct from Inorder && Postorder 想法一样。
 
@@ -24,12 +25,6 @@ return a tree
 
 Tags Expand 
 Binary Tree
-
-Thinking process:
-See 'Construct tree from inorder + postorder' as example.
-This problem uses divide and conquer idea as well.
-For preorder: the front node is the root of the tree.
-For inorder: find the root in the middle of the array, then the left-side is left-tree, and the right-side is the right-tree.
 */
 
 /**
@@ -43,8 +38,64 @@ For inorder: find the root in the middle of the array, then the left-side is lef
  *     }
  * }
  */
+
+ /*
+Thougths:
+DFS with tracking of preorder/inorder sequence indexes.
+preorder: start from root, traverse all left children, and then all right children.
+inorder: if found the root node in the sequence, all indexes less than the root is left sub tree; same applies to right indexes.
+
+1. Use preorder head index as root
+2. Find the root node index in inorder sequence.
+3. split into subproblems: track by indexes
+*/
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder == null || inorder == null || preorder.length != inorder.length) {
+            return null;
+        }
+        return dfs(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+    }
+    
+    public TreeNode dfs(int[] preorder, int preStart, int preEnd,
+                        int[] inorder, int inStart, int inEnd) {
+        if (preStart > preEnd) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[preStart]);
+        int mid = findMidIndex(inorder, inStart, inEnd, preorder[preStart]);
+            
+        if (mid < 0) {
+            return null;
+        }
+        //root.left
+        root.left = dfs(preorder, preStart + 1, preStart + (mid - inStart),
+                       inorder, inStart, mid - 1);
+        //root.right
+        root.right = dfs(preorder, preStart + (mid - inStart) + 1, preEnd,
+                        inorder, mid + 1, inEnd);
+        
+        return root;
+    }
+    
+    public int findMidIndex(int[] inorder, int inStart, int inEnd, int val) {
+        for (int i = inStart; i <= inEnd; i++) {
+            if (inorder[i] == val) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
  
- 
+/**
+Previous notes
+Thinking process:
+See 'Construct tree from inorder + postorder' as example.
+This problem uses divide and conquer idea as well.
+For preorder: the front node is the root of the tree.
+For inorder: find the root in the middle of the array, then the left-side is left-tree, and the right-side is the right-tree.
+ */
 public class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length != inorder.length) {
