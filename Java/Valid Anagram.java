@@ -1,4 +1,5 @@
 E
+1519713982
 
 HashMap
 
@@ -54,6 +55,33 @@ class Solution {
         }
         for (Map.Entry<Character, Integer> entry: charMap.entrySet()) {
             if (entry.getValue() != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+/*
+Thoughts: if only lower case letters, use int[26] for simplicity
+*/
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s == null || t == null || s.length() != t.length()) {
+            return false;
+        }
+        if (s.equals(t)) {
+            return true;
+        }
+        int[] chars = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            chars[s.charAt(i) - 'a'] += 1;
+            chars[t.charAt(i) - 'a'] -= 1;
+        }
+        
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] != 0) {
                 return false;
             }
         }

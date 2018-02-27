@@ -1,12 +1,13 @@
 M
+1519711895
 
-LinkedList并没有反过来，那么自己反：   
-   方向相反。巧用stack.
+Singly-linked list需要reverse, 用stack.
+最终结果要恢复成input list 那样的sequence方向, 用stack一个个pop()刚好就可以做到.
 
-做加法都一样：   
-   1. carrier
-   2. carrier = (rst + carrier) / 10
-   3. rst = (rst + carrier) % 10
+加法都一样:
+   1. sum = carry
+   2. carry = sum / 10
+   3. sum = sum % 10;
 
 ```
 /*
@@ -22,6 +23,67 @@ Return 9->1->2. That is, 912.
 Tags Expand 
 Linked List High Precision
 */
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+/*
+Thoughts:
+Reverse the items in stack.
+Add two stacks and save the result in stack as well.
+Use top of the result stack as header of the result ListNode
+Time, Space: O(n)
+*/
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) {
+            return l1 == null ? l2 : l1;
+        }
+        Stack<ListNode> s1 = new Stack<ListNode>();
+        Stack<ListNode> s2 = new Stack<ListNode>();
+        Stack<ListNode> result = new Stack<ListNode>();
+        while (l1 != null) {
+            s1.push(l1);
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            s2.push(l2);
+            l2 = l2.next;
+        }
+
+        // sum up
+        int carry = 0;
+        while (!s1.isEmpty() || !s2.isEmpty()) {
+            int sum = carry;
+            if (!s1.isEmpty()) {
+                sum += s1.pop().val;
+            }
+            if (!s2.isEmpty()) {
+                sum += s2.pop().val;
+            }
+            carry = sum / 10;
+            sum = sum % 10;
+            result.push(new ListNode(sum));
+        }
+        if (carry != 0) {
+            result.push(new ListNode(carry));
+        }
+        
+        // Convert to list
+        ListNode node = new ListNode(-1);
+        ListNode dummy = node;
+        while (!result.isEmpty()) {
+            node.next = result.pop();
+            node = node.next;
+        }
+        return dummy.next;
+    }
+}
 
 /*
 	Thoughts: Different from Add Two Numbers I, which is in reverse order.

@@ -1,10 +1,14 @@
-E
+M
+1519711343
 
-LinkedList都已经反转好了，直接做。
+LinkedList都已经反转好了，直接做.
+遍历两个l1,l2把carry-on处理好，每次生成一个新node，最后检查carry-on.
 
-遍历两个l1,l2把carry-on处理好，每次生成一个新node，最后检查carry-on。
+跟Add Binary的理解方式一模一样.
 
-跟Add Binary的理解方式一模一样。
+注意:
+Linked List 没有天然size.
+用DummyNode(-1).next来hold住结果.
 
 
 ```
@@ -38,6 +42,47 @@ Cracking The Coding Interview Linked List High Precision
  *     }
  * }
  */
+
+ /*
+Thoughts:
+The list has been reversed, just add them up.
+Append one more ListNode if there is an carry.
+*/
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) {
+            return l1 == null ? l2 : l1;
+        }
+        int carry = 0;
+        ListNode node = new ListNode(-1);
+        ListNode head = node;
+        // Add l1 and l2
+        while (l1 != null || l2 != null) {
+            int sum = carry;
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            carry = sum / 10;
+            sum = sum % 10;
+            node.next = new ListNode(sum);
+            node = node.next;
+        }
+
+        // Finish adding carry
+        if (carry != 0) {
+            node.next = new ListNode(carry);
+        }
+
+        return head.next;
+    }
+}
+
+// Previous solution
 public class Solution {
     /**
      * @param l1: the first list

@@ -1,9 +1,11 @@
 M
+1519715027
 
 方法1：   
-题目要求DFS。   
-其实basic implementation. 每次处理node.left.next = node.right; node.right.next = node.next.left;
-
+题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
+其实basic implementation, 每次处理next链接:
+1. node.left.next = node.right
+2. If node.next != null, link node.right.next = node.next.left;
 
 方法2:   
 不和题意，用了queue space，与Input成正比。太大。
@@ -46,7 +48,6 @@ Hide Similar Problems (H) Populating Next Right Pointers in Each Node II (M) Bin
 
 */
 
-
 /**
  * Definition for binary tree with next pointer.
  * public class TreeLinkNode {
@@ -55,7 +56,28 @@ Hide Similar Problems (H) Populating Next Right Pointers in Each Node II (M) Bin
  *     TreeLinkNode(int x) { val = x; }
  * }
  */
+/*
+Thoughts:
+BFS with queue will be trival, but 2^(logN) = N, so O(n) space can't do.
+DFS: at each level, carefully link:
+1. node.left.next = node.right
+2. If node.next != null, link node.right.next = node.next.left;
+*/
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if (root == null || root.left == null || root.right == null) {
+            return;
+        }
+        root.left.next = root.right;
+        if (root.next != null) {
+            root.right.next = root.next.left;
+        }
+        connect(root.left);
+        connect(root.right);
+    }
+}
 
+// Previous solution. Actuall no need of a helper dfs.
 //DFS. Basic implementation according to problem.
  public class Solution {
     public void connect(TreeLinkNode root) {
@@ -81,8 +103,8 @@ Hide Similar Problems (H) Populating Next Right Pointers in Each Node II (M) Bin
 
 
 
-
- //BFS, However, 不和题意。 point each node to the next in queue. if none, add null
+// # of leaf nodes: 2 ^ (height) ~= 2 ^ (logN) = N => used O(N) space
+//BFS, However, 不和题意。 point each node to the next in queue. if none, add null
 public class Solution {
     public void connect(TreeLinkNode root) {
         if (root == null || (root.left == null && root.right == null)) {

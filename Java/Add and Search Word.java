@@ -1,4 +1,5 @@
 M
+1519707037
 
 Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
 
@@ -32,6 +33,77 @@ Tags Expand
 Trie
 */
 
+/*
+Thougths:
+Use Trie to store the letters and mark end letter with end = true
+Trie structure: 
+class TrieNode {
+    HashMap<Character, TrieNode> map;
+    boolean isEnd;
+}
+During search, when facing '.', try all possible characters with the given TrieNode.map
+*/
+class WordDictionary {
+    class TrieNode {
+        HashMap<Character, TrieNode> map;
+        boolean end;
+        TrieNode() {
+            this.map = new HashMap<>();
+            this.end = false;
+        }
+        public HashMap<Character, TrieNode> getMap() {
+            return map;
+        }
+        public boolean isEnd() {
+            return this.end;
+        }
+    }
+
+    TrieNode root;
+    /** Initialize your data structure here. */
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+    
+    /** Adds a word into the data structure. */
+    public void addWord(String word) {
+        char[] arr = word.toCharArray();
+        TrieNode node = root;
+        for (char c : arr) {
+            HashMap<Character, TrieNode> map = node.getMap();
+            if (!map.containsKey(c)) {
+                map.put(c, new TrieNode());
+            }
+            node = map.get(c);
+        }
+        node.end = true;
+    }
+    
+    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+    public boolean search(String word) {
+        return searchHelper(root, word, 0);
+    }
+    
+    public boolean searchHelper(TrieNode root, String word, int index) {
+        if (index == word.length()) {
+            return root.isEnd();
+        }
+        TrieNode node = root;
+        char c = word.charAt(index);
+        HashMap<Character, TrieNode> map = node.getMap();
+        if (map.containsKey(c)) {
+            return searchHelper(map.get(c), word, index + 1);
+        } else if (c == '.') {
+            for (Map.Entry<Character, TrieNode> entry : map.entrySet()) {
+                if (searchHelper(entry.getValue(), word, index + 1)) {
+                    return true;
+                }
+            }
+            return false;
+        } 
+        return false;
+    }
+}
 
 /*
 Build the WordDictionary like a TrieTree.

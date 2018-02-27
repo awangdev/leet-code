@@ -8,10 +8,14 @@ Heap
 
 #### Queue
 - Functions: peek(), poll(), add()/offer()
-- Linked List
+- queue = new LinkedList<...>()
 - PriorityQueue: new Comparator 很重要
 
-
+#### Linked List
+- No concept of size(), it's all pointers: node.next.next
+- how to set head/dummy, and return dummy.next as result.
+- iterate over linked list
+- Don't get mixed up with Java LinkedList. Here we are talking about linked list concept, not the Java data structure LinkedList
 
 ### Tree
 
