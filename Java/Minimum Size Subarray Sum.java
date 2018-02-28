@@ -1,13 +1,23 @@
 M
+1519835840
+tags: Array, Two Pointers, Binary Search
 
+方法1:
 2 pointer, O(n). 找subarray, start 或 end pointer，每次一格这样移动.
 
-好的策略: 先找一个solution, 定住end, 然后移动start; 记录每个solution if occurs； 然后再移动end，往下找。
+好的策略: 
+1. 先找一个solution, 定住end. 
+2. 然后移动start; 记录每个solution if occurs
+3. 然后再移动end，往下找。
 
 Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
 
+方法2:
+Double for loop, base i 每次只+1, 所以最后O(n^2)
 
-Note done the O(nlogn) yet
+方法3:
+Binary Search, O(nLogN)
+Not done yet
 
 ```
 /*
@@ -24,39 +34,77 @@ Tags Expand
 Two Pointers Array
 */
 
+
 /*
-3.2.2016
-Clearner:
-1. Move 'end' for first possbile solution
-2. Store it and remove one 'start' element from sum. Save any solution if occurs, in while loop.
-3. Go back to step 1, until 'end' hits nums.length
+Thoughts:
+Two pointer. 
+1. Find the end which has sum >= s, move start forward as much as possible until sum < s.
+2. Use new start and end to look for next new end.
 */
-
 public class Solution {
-    public int minimumSize(int[] nums, int s) {
+    public int minSubArrayLen(int s, int[] nums) {
         if (nums == null || nums.length == 0) {
-            return -1;
+            return 0;
         }
+        int start, end, sum;
+        start = end = sum = 0;
         int min = Integer.MAX_VALUE;
-        int start = 0;
-        int end = 0;
-        int sum = 0;
-
         while (end < nums.length) {
-            while (end < nums.length && sum < s) {
+            while (sum < s && end < nums.length) {
                 sum += nums[end];
                 end++;
             }
-            while (sum >= s) {
+            // move start and log any possible min
+            while (sum >= s && start >= 0) {
                 min = Math.min(min, end - start);
                 sum -= nums[start];
                 start++;
             }
         }
-        return (min == Integer.MAX_VALUE) ? -1 : min;
+        return min == Integer.MAX_VALUE ? 0 : min;
     }
 }
 
+
+/*
+Previous notes on O(n) solution
+1. Move 'end' for first possbile solution
+2. Store it and remove one 'start' element from sum. Save any solution if occurs, in while loop.
+3. Go back to step 1, until 'end' hits nums.length
+*/
+
+/*
+Thoughts:
+Brutly, two pointer checking. Record Min.
+Optimize: if futher length > min, no need to move the right pointer
+Worst case: n + (n-1) + (n-2) ....+ 1 = O(n^2)
+*/
+class Solution {
+    public int minSubArrayLen(int s, int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int result = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length - 1; i++) {
+            int sum = nums[i];
+            if (sum >= s) {
+                result = 1;
+                break;
+            }
+            for (int j = i + 1; j < nums.length; j++) {
+                if (j - i >= result) {
+                    break;
+                }
+                sum += nums[j];
+                if (sum >= s) {
+                    result = Math.min(result, j - i + 1);
+                    break;
+                }
+            }
+        }
+        return result == Integer.MAX_VALUE ? 0 : result;
+    }
+}
 
 /*
 Thoughts: old solution O(n), not prefered.
