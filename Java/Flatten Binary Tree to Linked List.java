@@ -1,31 +1,41 @@
-E 
+M
+1519794111
+tags: Binary Tree, DFS
 
-Not Done
-
+分析题意后, 按照题意:
+1. reserve right child
+2. DFS flatten部分
+3. 移花接木
+4. flatten 剩下的.
 
 ```
 /*
-Flatten Binary Tree to Linked List
+Given a binary tree, flatten it to a linked list in-place.
 
-Flatten a binary tree to a fake "linked list" in pre-order traversal.
+For example,
+Given
 
-Here we use the right pointer in TreeNode as the next pointer in ListNode.
+         1
+        / \
+       2   5
+      / \   \
+     3   4   6
+The flattened tree should look like:
+   1
+    \
+     2
+      \
+       3
+        \
+         4
+          \
+           5
+            \
+             6
+click to show hints.
 
-Example
-              1
-               \
-     1          2
-    / \          \
-   2   5    =>    3
-  / \   \          \
- 3   4   6          4
-                     \
-                      5
-                       \
-                        6
-Note
-Don't forget to mark the left child of each node to null. 
-Or you will get Time Limit Exceeded or Memory Limit Exceeded.
+Hints:
+If you notice carefully in the flattened tree, each node's right child points to the next node of a pre-order traversal.
 
 Challenge
 Do it in-place without any extra memory.
@@ -34,57 +44,49 @@ Tags Expand
 Binary Tree Depth First Search
 */
 
-
-
 /**
- * Definition of TreeNode:
+ * Definition for a binary tree node.
  * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    /**
-     * @param root: a TreeNode, the root of the binary tree
-     * @return: nothing
-     */
-    public TreeNode parentNode = null;
+/*
+Thoughts:
+1. Move root.left to root.rigthMost child (while loop find leaf)
+2. Take notion of the first root.right, and flatten(xx) on it.
+3. On each level, if not left child, flatten right child.
+*/
+class Solution {
     public void flatten(TreeNode root) {
-      if (root == null) {
-        return;
-      }
+        if (root == null) {
+            return;
+        }
+        if (root.left == null) {
+            flatten(root.right);
+        } else {
+            // Reserve right sub tree
+            TreeNode rightNode = root.right;
+            
+            // Move left child to right side, cut off original left child
+            root.right = root.left;
+            root.left = null;
 
-      if (parentNode != null) {
-        parentNode.left = null;
-        parentNode.right = root;
-      }
+            // Flatten the new right child
+            flatten(root.right);
 
-      parentNode = root;
-      TreeNode right  = root.right;
-      flatten(root.left);
-      flatten(right);
+            // Append previous right child to end of flatten tree
+            TreeNode node = root;
+            while (node.right != null) {
+                node = node.right;
+            }
+            node.right = rightNode;
+            flatten(root.right);
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ```

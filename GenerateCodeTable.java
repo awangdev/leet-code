@@ -18,13 +18,21 @@ public class GenerateCodeTable {
         private String level;
         private String tutorialLink;
         private String note;
+        private List<String> tags;
 
-        public TableRow(long date, String fileName, String level, String tutorialLink, String note) {
+        public TableRow(
+            long date,
+            String fileName,
+            String level,
+            String tutorialLink,
+            String note,
+            List<String> tags) {
             this.date = date;
             this.fileName = fileName;
             this.level = level;
             this.tutorialLink = tutorialLink;
             this.note = note;
+            this.tags = tags;
         }
 
         public long getDate() {
@@ -47,13 +55,18 @@ public class GenerateCodeTable {
             return this.note;
         }
 
+        public List<String> getTags() {
+            return this.tags;
+        }
+
         public String getTableComposedLine() {
             return "|[" + this.fileName + "](https://github.com/awangdev/LintCode/blob/master/Java/" + fileName.replace(" ", "%20")
-                 + ")|" + this.level + "|" + "Java|" + this.tutorialLink + "|\n";
+                 + ")|" + this.level + "|Java|" + this.tags + "|"+ this.tutorialLink + "|\n";
         }
     }
 
     public final static String TUTORIAL_KEY_WORD = "tutorial:";
+    public final static String TAGS_KEY_WORD = "tags:";
     public static void main(String[] args) {    
         //Read Java Solution Folder
         File folder = new File("./Java");//"." = current path
@@ -79,13 +92,18 @@ public class GenerateCodeTable {
         } else if (args != null && args[0].contains("review")) {//Review Page
             outputContent = generateReviewPage(listOfFiles);
             printTable("ReviewPage.md", outputContent);
+        } else if (args != null && args[0].contains("tags")) {//Wordpress
+            outputContent = generateTagREADME(listOfFiles);
+            printTable("TagsREADME.txt", outputContent);
         } else if (args != null && args[0].contains("all")) {
             outputContent = generateREADME(listOfFiles);
             printTable("README.md", outputContent);
-            outputContent = generateWordPressPage(listOfFiles);
-            printTable("WordPress.txt", outputContent);
+            //outputContent = generateWordPressPage(listOfFiles);
+            //printTable("WordPress.txt", outputContent);
             outputContent = generateReviewPage(listOfFiles);
             printTable("ReviewPage.md", outputContent);
+            outputContent = generateTagREADME(listOfFiles);
+            printTable("TagsREADME.md", outputContent);
         } else {
             return;
         }
@@ -162,11 +180,41 @@ public class GenerateCodeTable {
             //"[![介绍一下自己！](https://img.youtube.com/vi/3keMZsV1I1U/0.jpg)](https://youtu.be/3keMZsV1I1U)\n\n" + 
             "希望大家学习顺利, 对未来充满希望(程序员也是找到好老板的!)\n" + 
             "有问题可以给我写邮件(wangdeve@gmail.com), 或者在GitHub上发issue给我.\n\n" +         
-            "| Squence | Problem       | Level  | Language  | Video Tutorial|\n" + 
-            "|:-------:|:--------------|:------:|:---------:|:-------------:|\n";
+            "| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|\n" + 
+            "|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|\n";
         final List<TableRow> tableRows = getTableRows(listOfFiles);
         for (int i = 0; i < tableRows.size(); i++) {
             outputContent += "|" + i + tableRows.get(i).getTableComposedLine();
+        }
+        return outputContent;
+    }
+
+    public static String generateTagREADME(File[] listOfFiles) {
+        String outputContent = "# Problems Sorted By Tag\n\n";
+        String header = "| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|\n" + 
+                        "|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|\n";
+        final List<TableRow> tableRows = getTableRows(listOfFiles);
+        final HashMap<String, List<TableRow>> tagToRows = new HashMap<>();
+        tableRows.forEach(tableRow -> {
+            for (String tag: tableRow.getTags()) {
+                if (tag == null || tag.length() == 0) {
+                    continue;
+                }
+                if (!tagToRows.containsKey(tag)) {
+                    tagToRows.put(tag, new ArrayList<TableRow>());
+                }
+                tagToRows.get(tag).add(tableRow);
+            }
+        });
+        // Build View
+        for (Map.Entry<String, List<TableRow>> entry : tagToRows.entrySet()) {
+            StringBuffer sb = new StringBuffer("### " + entry.getKey() + "\n");
+            sb.append(header);
+            List<TableRow> entryTableRows = entry.getValue();
+            for (int i = 0; i < entryTableRows.size(); i++) {
+                sb.append("|" + i + entryTableRows.get(i).getTableComposedLine());
+            }
+            outputContent += sb.toString() + "\n\n\n";
         }
         return outputContent;
     }
@@ -227,6 +275,7 @@ public class GenerateCodeTable {
         String tutorialLink = "";
         String calculatedLevel = NOT_AVAILABLE;
         long timestamp = 0;
+        List<String> tags = new ArrayList<>();
         try {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(
                                           new FileInputStream("Java/" + fileName), "UTF-8"));
@@ -253,6 +302,16 @@ public class GenerateCodeTable {
                 line = reader.readLine().trim();
             }
 
+            // Get Tags
+            if (line.contains(TAGS_KEY_WORD)) {
+                // Do something
+                String tagLine = line.substring(TAGS_KEY_WORD.length());
+                for (String tag : tagLine.split(",")) {
+                    tags.add(tag.trim());
+                }
+                Collections.sort(tags);
+            }
+
             // Get Note
             String note = "";
             while ((line = reader.readLine()) != null && !line.equals("```") && !line.equals("/*")) {
@@ -260,7 +319,7 @@ public class GenerateCodeTable {
             }
 
             // Get result
-            tableRow = new TableRow(timestamp, fileName, calculatedLevel, tutorialLink, note);
+            tableRow = new TableRow(timestamp, fileName, calculatedLevel, tutorialLink, note, tags);
         } catch (final Exception e) {
             System.err.format("IOException: %s%n", e);
         }

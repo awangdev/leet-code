@@ -1,9 +1,12 @@
 E
+1519797926
+tags: Binary Tree, DFS
 
 方法1：   
-Recursive:分叉。Helper。
+Recursive:分叉. dfs.
 
-方法2，Iterative:    
+方法2:
+Iterative:    
    非递归练习了一下   
    因为要每次切短list, 所以再加了一个Stack 来存level   
 
@@ -32,7 +35,55 @@ Tags Expand
 Binary Tree Binary Tree Traversal Facebook Google
 */
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 /*
+Basic dfs, pass along sb, List<String>.
+Save when root == null.
+*/
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> rst = new ArrayList<>();
+        if (root == null) {
+            return rst;
+        }
+        dfs(rst, new ArrayList<>(), root);
+        return rst;
+    }
+    
+    public void dfs(List<String> rst, List<Integer> list, TreeNode node) {
+        list.add(node.val);
+        if (node.left == null && node.right == null) {
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < list.size() - 1; i++) {
+                sb.append(list.get(i) + "->");
+            }
+            sb.append(list.get(list.size() - 1));
+            rst.add(sb.toString());
+            return;
+        }
+        
+        if (node.left != null) {
+            dfs(rst, list, node.left);
+            list.remove(list.size() - 1);
+        }
+        if (node.right != null) {
+            dfs(rst, list, node.right);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+
+
+/*
+Previous notes
 	Thoughts:
 	Recursive, need a helper (root, arraylist<Integer> list, List<String>)
 	Add curr.
@@ -44,42 +95,6 @@ Binary Tree Binary Tree Traversal Facebook Google
 
 	time: 2715m
 */
-
-public class Solution {
-    /**
-     * @param root the root of the binary tree
-     * @return all root-to-leaf paths
-     */
-    public List<String> binaryTreePaths(TreeNode root) {
-    	List<String> rst = new ArrayList<String>();
-    	if (root == null) {
-    		return rst;
-    	}
-    	helper(root, rst, new ArrayList<Integer>());
-    	return rst;
-    }
-
-    public void helper(TreeNode root, List<String> rst, ArrayList<Integer> list){
-    	list.add(root.val);
-    	if (root.left == null && root.right == null) {
-    		StringBuffer sb = new StringBuffer();
-    		for (int i = 0; i < list.size() - 1; i++) {
-    			sb.append(list.get(i) + "->");
-    		}
-    		sb.append(list.get(list.size() - 1));
-    		rst.add(sb.toString());
-    	}
-    	if (root.left != null) {
-    		helper(root.left, rst, list);
-    		list.remove(list.size() - 1);
-    	}
-    	if (root.right != null) {
-    		helper(root.right, rst, list);
-    		list.remove(list.size() - 1);
-    	}
-    }
-}
-
 
 /*
 	Iterative:
