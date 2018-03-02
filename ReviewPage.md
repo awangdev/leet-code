@@ -3916,3 +3916,22 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 
 ---
+**301. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy
+      
+
+O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
+那个时候其实slow.val = fast.val.
+
+O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+
+
+---
+**302. [Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)**      Level: Medium
+      
+
+O(n), one pace, no extra space
+找到窗口, 然后平移, 最后pre 和 head之间 skip一个node就好.
+
+
+
+---

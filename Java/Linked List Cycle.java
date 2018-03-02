@@ -1,7 +1,11 @@
+E
+1520009168
+tags: Linked List, Two Pointers
+
 O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
 那个时候其实slow.val = fast.val.
 
-O(n):用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle le 
+O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
 ```
 /*
 50% Accepted
@@ -31,6 +35,28 @@ Linked List Two Pointers
  *     }
  * }
  */ 
+/*
+Thoughts:
+Fast/Slow pointer: fast pointer will eventually catch up with slow pointer
+*/
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null) {
+            return false;
+        }
+        
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast.next != null && fast.next.next != null) {
+            if (slow == fast) {
+                return true;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow == fast;
+    }
+}
 
 /*
     REDO 12.10.2015
@@ -61,36 +87,4 @@ public class Solution {
         return true;
     }
 }
-
-
-/*
-Thinking process:
-If there is a cycle, then slow node and fast node will meet at some point.
-
-
-However, we cannot simply compare slow.val == fast.val.
-This is because, there can be different link node with same value, but they are stored on different index, 
-so they should not be cycle.
-
-The below passes the test case in lintcode, which is wrong.
-
-public class Solution {
-    public boolean hasCycle(ListNode head) {  
-        if (head == null) {
-            return false;
-        }
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while (fast != null && fast.next != null) {
-            if (slow.val == fast.val) {
-                return true;
-            }
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return false;
-    }
-}
-*/
-
 ```
