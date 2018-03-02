@@ -1,28 +1,26 @@
 H
+1519980648
+tags: Hash Table, Two Pointers, String
 
-LeetCode Hard    
-LintCode M, 测试有问题，即使做错也能过.
+基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
+符合的就process as result candidate.
 
-基本思想: 用个map存target的<char, int frequency>。 然后在搜索s的时候，遇到Match， frequency--.    
-一旦map里面的frequency都被减为0, 就说明找到candidate.
-
-有好几个trick：考虑start，前指针怎么移动；考虑start在candidate首字母没有多余前，不能移动；考虑candidate出现的情况...
-
-复习时，回去看别人网站和自己的thoughts
+HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 ```
 /*
-Given a string source and a string target, find the minimum window in source 
-which will contain all the characters in target.
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
 
-Example
-source = "ADOBECODEBANC" target = "ABC" Minimum window is "BANC".
+For example,
+S = "ADOBECODEBANC"
+T = "ABC"
+Minimum window is "BANC".
 
-Note
-If there is no such window in source that covers all characters in target, return the emtpy string "".
+Note:
+If there is no such window in S that covers all characters in T, return the empty string "".
 
-If there are multiple such windows, you are guaranteed that 
-there will always be only one unique minimum window in source.
+If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
+
 
 Challenge
 Can you do it in time complexity O(n) ?
@@ -36,6 +34,61 @@ Tags Expand
 Hash Table
 */
 
+/*
+Thoughts:
+Use 2 pointer to track window.
+Use set to track t's characters: charSet
+end pionter: subtracting c from the charSet.
+start pointer: if start++ skipping a candidate, we add it back to the charSet.
+*/
+
+class Solution {
+    public String minWindow(String s, String t) {
+        if (s == null || t == null || s.length() < t.length()) {
+            return "";
+        }
+        int end = 0;
+        int length = Integer.MAX_VALUE;
+        String rst = "";
+
+        // Initialize source map for validation usage
+        int[] source = new int[256];
+        int[] target = new int[256];
+        for (char c : t.toCharArray()) {
+            target[c]++;
+        }
+
+        for (int i = 0; i < s.length(); i++){
+            while (end < s.length() && !valid(source, target)) {
+                source[s.charAt(end)]++;
+                end++;
+            }
+            if (valid(source, target)) {
+                if (end - i < length) {
+                    length = Math.min(length, end - i);
+                    rst = s.substring(i, end);
+                }
+            }
+            source[s.charAt(i)]--;
+        }
+        return rst;
+    }
+    
+    /*
+        Validate if the count of source map matches targetMap.
+        Use target as base, since it's substring.
+    */
+    private boolean valid(int[] source, int[] target) {
+        for (int i = 0; i < 256; i++) {
+            if (source[i] < target[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+//Previous notes
 /*
 03.09.2016
 http://blog.sina.com.cn/s/blog_eb52001d0102v2il.html

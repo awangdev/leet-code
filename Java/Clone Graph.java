@@ -1,9 +1,25 @@
 M
+1519966780
+tags: DFS, BFS, Graph
 
+思想:
 Use HashMap to mark cloned nodes.    
+先能复制多少Node复制多少. 然后把neighbor 加上
 
-先能复制多少Node复制多少。然后把neighbor 加上
+方法一: DFS
+1. copy the node
+2. Mark 'added' using map(old, new)
+3. for loop on the each one of the neighbors: map copy, record in map, and further dfs
+4. once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
+主要思想是: 一旦复制过了, 不必要重新复制
 
+方法二: BFS
+1. Copy the root node, then copy all the neighbors. 
+2. Mark copied node in map.
+3. Use queue to contain the newly added neighbors. Need to work on them in the future.
+
+注意:
+initialize map with (node, newNode)
 
 ```
 /*
@@ -33,76 +49,6 @@ Hide Tags Depth-first Search Breadth-first Search Graph
 
     
 */
-
-/*
-    //NEED TO RUN THIS ON LINT
-    Thoughts: 12.12.2015
-    The original thoughs of using ArrayList, and using a index to track of which node has not been visited.
-        It's alright, but it uses extra space, and basically copie all nodes again.
-        It's similar to using a queue.
-        At the end, it's doing O(m * n)
-    Maybe can improve this.
-
-    Need a queue and process each element. and a hashmap to track duplicates.
-        1. make sure the node is no duplicate
-        2. make sure to all all child
-
-    border: case: node == nul, or node has not child, return a new instance of it'self?
-
-*/
-
-public class Solution {
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if (node == null || node.neighbors.size() == 0) {
-            return node;
-        }
-
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = 
-            new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
-
-        queue.offer(node);
-        //process each node
-        while (!queue.isEmpty()) {
-            UndirectedGraphNode curr = queue.poll();
-            UndirectedGraphNode newNode;
-            if (!map.containsKey(curr)) {
-                map.put(curr, new UndirectedGraphNode(curr.label));
-            }
-            UndirectedGraphNode newNode = map.get(curr);
-            //Add neighbors for each node
-            for (UndirectedGraphNode neighbor : curr.neighbors) {
-                UndirectedGraphNode newNeighbor;
-                if (!map.containsKey(neighbor)) {
-                    map.put(neighbor, new UndirectedGraphNode(neighbor.label));
-                }
-                newNeighbor = map.get(neighbor);
-
-                newNode.neighbors.add(newNeighbor);
-            }//end for
-
-        }//end while
-
-        return map.get(node);        
-    }
-}
-
-  
-
-/*
-
-    
-Thinking process:
-1. Clone all nodes available: using HashMap to go through all possible query. No duplicates added using HashMap.
-    HashMap map has the list of all new nodes. No neighbors added yet
-    <key,value> = <original node,  new node with just a label (without neighbor list)>
-    At same time, the arrayList nodes has all original nodes(with neighbors) in Breadth-first order.
-2. Add neighbor for nodes in map:
-    - Locate the 'newNode' from map by using the key: the original node
-    - loop through the original node's neighbor size
-    - use original neighbor as key to get the new neighbor instance from map
-    - add this new neighbor instance to the neighbor list of 'newNode'
-*/
 /**
  * Definition for undirected graph.
  * class UndirectedGraphNode {
@@ -111,36 +57,74 @@ Thinking process:
  *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
  * };
  */
+/*
+Thougths:
+DFS with map in graph.
+The serialized graph is just explaination for the test input.
+1. copy the node
+2. Mark 'added' using map(old, new)
+3. for loop on the each one of the neighbors: map copy, record in map, and further dfs
+4. once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
+*/
 public class Solution {
+    HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
         if (node == null) {
-            return node;
+            return null;
         }
-        ArrayList<UndirectedGraphNode> nodes = new ArrayList<UndirectedGraphNode>();
-        nodes.add(node);
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-        map.put(node, new UndirectedGraphNode(node.label));
-        int start = 0;
-        //Clone nodes without neighbors:
-        while (start < nodes.size()) {
-            List<UndirectedGraphNode> neighbors = nodes.get(start++).neighbors;
-            for (int i = 0; i < neighbors.size(); i++) {
-                if (!map.containsKey(neighbors.get(i))) {
-                    map.put(neighbors.get(i), new UndirectedGraphNode(neighbors.get(i).label));
-                    nodes.add(neighbors.get(i));
-                }
+       
+        UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
+        map.put(node, newNode);
+        dfs(node);
+        return newNode;
+    }
+    
+    public void dfs(UndirectedGraphNode node) {
+        if (node == null) {
+            return;
+        }
+        for (UndirectedGraphNode neighbor: node.neighbors) {
+            if (!map.containsKey(neighbor)) {
+                UndirectedGraphNode newNeighbor = new UndirectedGraphNode(neighbor.label);
+                map.put(neighbor, newNeighbor);
+                dfs(neighbor);
             }
+            map.get(node).neighbors.add(map.get(neighbor));
         }
-        // Clone neighbors:
-        for (int i = 0; i < nodes.size(); i++) {
-            UndirectedGraphNode newNode = map.get(nodes.get(i));
-            for (int j = 0; j < nodes.get(i).neighbors.size(); j++) {
-                newNode.neighbors.add(map.get(nodes.get(i).neighbors.get(j)));
-            }
-        }
-        return map.get(node);    
     }
 }
 
+/*
+Thougths:
+BFS, same concept as DFS.
+1. Copy the root node, then copy all the neighbors. 
+2. Mark copied node in map.
+3. Use queue to contain the neighbors for next round: if it has neighbors
+*/
+public class Solution {
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if (node == null) {
+            return null;
+        }
+        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
+        map.put(node, new UndirectedGraphNode(node.label));
 
+        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
+        queue.offer(node);
+        
+        while(!queue.isEmpty()) {
+            UndirectedGraphNode curr = queue.poll();
+            for (UndirectedGraphNode neighbor: curr.neighbors) {
+                // Copy neighbors
+                if (!map.containsKey(neighbor)) {
+                    queue.offer(neighbor);
+                    map.put(neighbor, new UndirectedGraphNode(neighbor.label));
+                }
+                map.get(curr).neighbors.add(map.get(neighbor));
+            }
+        }
+        
+        return map.get(node);
+    }
+}
 ```
