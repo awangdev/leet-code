@@ -10,6 +10,7 @@ Heap
 - Functions: peek(), poll(), add()/offer()
 - queue = new LinkedList<...>()
 - PriorityQueue: new Comparator 很重要
+- 看到Min/Max就要想到heap. 如果给出的数组没有排序, 先排序, 然后用heap. PrioirtyQueue是用Binary Heap做出来的
 
 #### Linked List
 - No concept of size(), it's all pointers: node.next.next
@@ -57,7 +58,9 @@ Two Pointers
 
 Binary Search
 
-Sort
+### Sort
+
+#### Quick Sort
 
 ### Collections
 
@@ -67,7 +70,6 @@ Collections.sort()
 #### ArrayList
 Integer[] array = {1, 2, 3};
 new ArrayList(Arrays.asList(array))
-
 
 ### Hash
 

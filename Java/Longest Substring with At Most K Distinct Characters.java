@@ -1,9 +1,10 @@
 M
+1520228394
+tags: Hash Table, String
 
 大清洗 O(nk)   
 map.size一旦>k，要把longest string最开头（marked by pointer:start）的那个char抹掉    
 一旦某一个char要被清除，所以在这个char 的1st and last appearance之间的char都要被清洗from map
-
 
 
 ```
@@ -22,6 +23,53 @@ Tags Expand
 String Two Pointers LintCode Copyright Hash Table
 
 */
+
+/*
+Thoughts:
+Two pointer, use HashMap to record the passed <char, count>.
+If map.size() == k, check string length.
+If map.size() > k, start moving front index i until map.size() reduces [while]
+*/
+class Solution {
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        if (s == null || s.length() == 0 || k <= 0) {
+            return 0;
+        }
+        int n = s.length();
+        int start = 0;
+        int end = 0;
+        int rst = Integer.MIN_VALUE;
+        HashMap<Character, Integer> map = new HashMap<>();
+        while (start < n) {
+            while (end < n) {
+                char c = s.charAt(end);
+                if (map.containsKey(c)) {
+                    map.put(c, map.get(c) + 1);
+                } else {
+                    if (map.size() == k) {
+                        break;
+                    }
+                    map.put(c, 1);
+                }                
+                end++;
+            }
+            // Calculate length when map.size() == n or end == n
+            rst = Math.max(rst, end - start);
+
+            // move start forward
+            char c = s.charAt(start);
+            int count = map.get(c);
+            if (count == 1) {
+                map.remove(c);
+            } else {
+                map.put(c, count - 1);
+            }
+            start++;
+        }
+
+        return rst;
+    }
+}
 
 
 /*
