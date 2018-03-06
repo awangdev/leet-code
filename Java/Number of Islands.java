@@ -1,10 +1,13 @@
 M
+1520355237
+tags: DFS, BFS, Union Find
 
 方法1: 两个for loop brutle force。 DFS把每个跟1相关的都Mark一遍.生成一个island.
 
 方法2:
 可以用union-find， 就像Number of island II 一样。
 只不过这个不Return list, 而只是# of islands
+记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 ```
 /*in
@@ -27,14 +30,12 @@ Note
 If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
 
 */
-
 /*
 Thoughts:
 Similart to ConnectingGraph, and we count # of unions left.
 Build UnionFind and let query return # of unions left (isolated island in this problem).
 Need to know which island to connect/union, need to go 4 directions.
-
-TODO: Not complete yet.
+Convert 2D matrix to 1D index = rowNum * numOfColumn + colNum
 */
 class Solution {
     
@@ -64,7 +65,8 @@ class Solution {
                         int y = j + dy[k];
                         if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == '1') {
                             // Attemp to connect all of the 4 directions
-                            unionFind.union(i * m + j, x * m + y);
+                            // 1D index = rowNum * numOfColumn + colNum
+                            unionFind.union(i * n + j, x * n + y);
                         }
                     }
                 }
