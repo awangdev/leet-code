@@ -1,3 +1,8 @@
+R
+Internally calls findPeakElementI()
+Operated with 2D array
+
+```
 /*
 There is an integer matrix which has the following features:
 
@@ -29,14 +34,15 @@ The matrix may contains multiple peeks, find any of them.
 Challenge
 Solve it in O(n+m) time.
 
-If you come up with an algorithm that you thought it is O(n log m) or O(m log n), can you prove it is actually O(n+m) or propose a similar but O(n+m) algorithm?
+If you come up with an algorithm that you thought it is O(n log m) or O(m log n), 
+can you prove it is actually O(n+m) or propose a similar but O(n+m) algorithm?
 
 Tags Expand 
 Binary Search LintCode Copyright Matrix
 */
 
 /*
-	NOT DONE. Will try if have time
+	Not on LeetCode. 
 */
 
 
@@ -50,3 +56,5 @@ class Solution {
     }
 }
 
+
+```

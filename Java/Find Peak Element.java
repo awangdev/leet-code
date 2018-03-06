@@ -1,14 +1,22 @@
 M
 1518761203
+tags: Array, Binary Search
 
 binary search. 
 Goal: find peak, where both sides are descending
 最左边, 最右边是Integer.MIN_VALUE时候, 也能构成中间数mid是peak的条件.
 
+Note:
+没有必要特别check (mid-1)<0或者(mid+1)>=n.
+证明:
+1. 最左端: 当start=0, end = 2 => mid = 1, mid-1 = 0;
+2. 最有段: 当end = n - 1, start = n - 3; mid = (start+end)/2 = n - 2; 
+那么mid + 1 = n - 2 + 1 = n - 1 < n 是理所当然的
+
 ```
 
 /**
-Leet
+LeetCode
 A peak element is an element that is greater than its neighbors.
 
 Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.
@@ -25,6 +33,58 @@ Note:
 Your solution should be in logarithmic complexity.
 
  */
+
+ /*
+Thoughts:
+Binary serach, find the one nums[mid] > nums[mid-1] && nums[mid] < nums[mid - 1]
+*/
+class Solution {
+    public int findPeakElement(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int start = 0;
+        int end = n - 1;
+        while (start + 1 < end) {
+            int mid = (start + end) >> 1;
+            if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1]) { // match
+                return mid;
+            } else if (nums[mid] > nums[mid - 1]) { // ascending slope
+                start = mid;
+            } else { // descending slope
+                end = mid;
+            }
+        }
+        return nums[start] > nums[end] ? start : end;
+    }
+}
+
+/*
+Thoughts:
+Binary serach, find the one nums[mid] > nums[mid-1] && nums[mid] < nums[mid - 1]
+*/
+class Solution {
+    public int findPeakElement(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int start = 0;
+        int end = n - 1;
+        while (start + 1 < end) {
+            int mid = (start + end) >> 1;
+            if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1]) { // match
+                return mid;
+            } else if (nums[mid] > nums[mid - 1]) { // ascending slope
+                start = mid;
+            } else { // descending slope
+                end = mid;
+            }
+        }
+        return nums[start] > nums[end] ? start : end;
+    }
+}
 
 /*
 Thoughts:

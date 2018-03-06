@@ -20,22 +20,29 @@ Heap
 
 ### Tree
 
-Tree
-
 #### Binary Search Tree
 - If BST not given, can use TreeSet
 - All left nodes are less than current node.val; all right nodes are greater than curr node.val
 - Use DFS to traverse: divide and conquer. Similarly, usually can convert the DFS solution to interative solution.
 - Use stack to traverse iteratively
 
-
 Binary Indexed Tree
 
 Segment Tree
 
-Union Find
+### Union Find
+- Find and Union functions
 
-Trie
+#### UnionFind基础操作
+- 查询两个元素是否在同一个集合内
+- 合并两个元素所在的集合
+
+#### UnionFind follow up
+- 查询某个元素所在集合的元素个数
+- 查询当前集合的个数
+
+
+### Trie
 
 
 
@@ -171,11 +178,14 @@ Design
 
 
 
+### Problem Sets
 
+#### Two Pointer
 
-
-
-
+#### Min/Max Heap
+- 见到需要维护一个集合的最小值/最大值的时候要想到用堆
+- 第k小的元素，Heap用来维护当前候选集合
+- 见到数组要想到先排序
 
 
 

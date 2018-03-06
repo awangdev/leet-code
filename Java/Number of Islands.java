@@ -30,6 +30,89 @@ If two 1 is adjacent, we consider them in the same island. We only consider up/d
 
 /*
 Thoughts:
+Similart to ConnectingGraph, and we count # of unions left.
+Build UnionFind and let query return # of unions left (isolated island in this problem).
+Need to know which island to connect/union, need to go 4 directions.
+
+TODO: Not complete yet.
+*/
+class Solution {
+    
+    int[] dx = {1, -1, 0, 0};
+    int[] dy = {0, 0, 1, -1};
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+            return 0;
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        
+        UnionFind unionFind = new UnionFind(m * n);
+        int totalLandCount = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                totalLandCount += grid[i][j] == '1' ? 1 : 0;
+            }    
+        }
+        unionFind.setCount(totalLandCount);
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '1') {
+                    for (int k = 0; k < dx.length; k++) {
+                        int x = i + dx[k];
+                        int y = j + dy[k];
+                        if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == '1') {
+                            // Attemp to connect all of the 4 directions
+                            unionFind.union(i * m + j, x * m + y);
+                        }
+                    }
+                }
+            }    
+        }
+        
+        return unionFind.query();
+    }
+}
+
+class UnionFind {
+    int father[] = null;
+    int count;
+
+    public UnionFind(int n) {
+        father = new int[n];
+        for (int i = 0; i < n; i++) {
+            father[i] = i;
+        }
+    }
+
+    public void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX != rootY) {
+            father[rootX] = rootY;
+            count--;
+        }
+    }
+    
+    public int query() {
+        return count;
+    }
+    
+    public void setCount(int value) {
+        count = value;
+    }
+
+    private int find(int x) {
+        if (father[x] == x) {
+            return x;
+        }
+        return father[x] = find(father[x]);
+    }
+}
+
+/*
+Thoughts:
 - DFS and flip the bit-1 on the grid to 0 as we go: to 4 different directions
 - Loop through all positions
 - Visited spots won't be visited again because they are updated to '0'
