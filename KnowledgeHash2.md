@@ -32,6 +32,8 @@ Segment Tree
 
 ### Union Find
 - Find and Union functions
+- Time Complexity: log(n)
+- 在UnionFind function里维护不同的状态, expose with public helper functions
 
 #### UnionFind基础操作
 - 查询两个元素是否在同一个集合内

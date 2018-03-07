@@ -1,13 +1,101 @@
 M
+1520398072
+tags: DFS, BFS, Union Find, Graph
 
 复习Union-Find的另外一个种形式。   
 题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 存储的关键都是：元素相对的index上存着他的root parent.    
 
+注意: 结尾要检查, 是否只剩下1个union. Tree必须连接到所有给出的node.
+
 另一个union-find， 用hashmap的：http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
 
 
 ```
+/*
+Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes),
+write a function to check whether these edges make up a valid tree.
+
+For example:
+
+Given n = 5 and edges = [[0, 1], [0, 2], [0, 3], [1, 4]], return true.
+
+Given n = 5 and edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]], return false.
+
+Note: you can assume that no duplicate edges will appear in edges. Since all edges are undirected,
+[0, 1] is the same as [1, 0] and thus will not appear together in edges.
+
+
+ */
+/*
+Thoughts:
+Tree should not have cycle, which means adding each edge should connect a new node and that node should not be in the tree yet.
+If found cycle, return false.
+
+Note: need to count # of unions after merging. Count should be 1 for a tree.
+*/
+
+class Solution {
+    public boolean validTree(int n, int[][] edges) {
+        // No node, false
+        if (n == 0) {
+            return false;
+        }
+        // 1 Node without edges, true
+        if (n == 1 && (edges == null || edges.length == 0)) {
+            return true;
+        }
+        // >= 2 nodes but no edges, false;
+        if (edges == null || edges.length == 0 || edges[0] == null || edges[0].length == 0) {
+            return false;
+        }
+        UnionFind unionFind = new UnionFind(n);
+        for (int i = 0; i < edges.length; i++) {
+            int x = edges[i][0];
+            int y = edges[i][1];
+            if (unionFind.find(x) == unionFind.find(y)) {
+                return false;
+            }
+            unionFind.union(x, y);
+        }
+        return unionFind.query() == 1;
+    }
+}
+
+class UnionFind {
+    int[] father;
+    int count;
+
+    UnionFind(int x) {
+        father = new int[x];
+        count = x;
+        for (int i = 0; i < x; i++) {
+            father[i] = i;
+        }
+    }
+    
+    public void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX != rootY) {
+            father[rootX] = rootY;
+            count--;
+        }
+    }
+
+    public int find(int x) {
+        if (father[x] == x) {
+            return x;
+        }
+        return father[x] = find(father[x]);
+    }
+    
+    public int query() {
+        return count;
+    }
+}
+
+
 /*
 Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), 
 write a function to check whether these edges make up a valid tree.
@@ -25,6 +113,7 @@ Tags Expand
 Depth First Search Breadth First Search Union Find Facebook Zenefits Google
 
 */
+
 
 /*
 	Thoughts: do union-find. //http://www.jiuzhang.com/solutions/graph-valid-tree/

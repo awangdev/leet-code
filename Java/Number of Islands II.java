@@ -1,10 +1,23 @@
 H
+1520396316
+tags: Union Find
 
+方法1: 
+用int[] father 的unionFind, 需要转换2D position into 1D index.
+count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
+这样比较clean
+Time: O(k * log(mn))
+
+方法2: 
 用HashMap的Union-find.
 
 把board转换成1D array， 就可以用union-find来判断了。 判断时，是在四个方向各走一步，判断是否是同一个Land.
-
 每走一次operator，都会count++. 若发现是同一个island, count--
+
+Side Note:
+Proof of UnionFind log(n) time: 
+https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
+
 
 ```
 /*
@@ -41,6 +54,90 @@ Operation #4: addLand(2, 1) turns the water at grid[2][1] into a land.
 We return the result as an array: [1, 1, 2, 3]
 
 */
+
+/*
+Thoughts:
+
+1. UnionFind with count of island: initially 0 island, with addLand, it creates land.
+2. Need to union with the 4 directions every time when adding new land.
+3. Turn 2D array into 1D, then use unionFind.
+4. have query function in UnionFind to get final result.
+
+Time: O(k logm*n): k = positions.length; union(x,y) time is log(m*n)
+https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
+*/
+class Solution {
+    public List<Integer> numIslands2(int m, int n, int[][] positions) {
+        List<Integer> rst = new ArrayList<>();
+        if (m <= 0 || n <= 0 || positions == null || positions.length == 0
+            || positions[0] == null || positions[0].length == 0) {
+            return rst;
+        }
+        
+        int[] dx = {0, 0, 1, -1};
+        int[] dy = {1, -1, 0, 0};
+        int[][] grid = new int[m][n];
+        UnionFind unionFind = new UnionFind(m * n);
+        
+        for (int i = 0; i < positions.length; i++) {
+            int x = positions[i][0];
+            int y = positions[i][1];
+            if (grid[x][y] == 1) {
+                continue;
+            }
+            grid[x][y] = 1;
+            unionFind.increaseCount();
+            for (int j = 0; j < dx.length; j++) {
+                int movedX = x + dx[j];
+                int movedY = y + dy[j];
+                if (movedX >= 0 && movedX < m && movedY >= 0 && movedY < n && grid[movedX][movedY] == 1) {
+                    unionFind.union(x * n + y, movedX * n + movedY);
+                }
+            }
+            rst.add(unionFind.query());
+        }
+
+        return rst;
+    }
+}
+
+class UnionFind {
+    int[] father;
+    int count;
+    
+    public UnionFind(int x) {
+        father = new int[x];
+        count = 0;
+        for (int i = 0; i < x; i++) {
+            father[i] = i;
+        }
+    }
+    
+    public void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX != rootY) {
+            father[rootX] = rootY;
+            count--;
+            return;
+        }
+    }
+    
+    public int query() {
+        return count;
+    }
+    
+    public void increaseCount() {
+        count++;
+    }
+    
+    private int find(int x) {
+        if (father[x] == x) {
+            return x;
+        }
+        return father[x] = find(father[x]);
+    }
+}
 
 /*
 Thoughts:
@@ -157,6 +254,7 @@ Note
 Tags Expand 
 Union Find
 */
+
 
 /*
 Thoughts:
