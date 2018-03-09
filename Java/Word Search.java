@@ -1,7 +1,10 @@
 M
+1520573473
+tags: Array, Backtracking
 
 Backtracking:
-比较 Brutle。找到开头的字母，然后投入一个recursive找字母的工程：每到一个字母，朝四个方向走。他们之中，有一个true就可以。
+找到开头的字母, 然后recursively DFS 去把word串到底:
+每到一个字母, 朝四个方向走, 之中一个true就可以.
 
 Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
 
@@ -35,6 +38,51 @@ Tags Expand
 Backtracking
 
 */
+
+/*
+Thoughts:
+Word Search II 简化版: 只有DFS, 没有words的结构优化
+1. DFS (board, x, y)
+2. Backtracking: mark visited item '#'
+*/
+
+class Solution {
+    int[] dx = {0, 0, 1, -1};
+    int[] dy = {1, -1, 0, 0};
+    public boolean exist(char[][] board, String word) {
+        if (board == null || board.length == 0 || board[0] == null || board[0].length == 0
+            || word == null || word.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (word.charAt(0) == board[i][j] && dfs(board, word, i, j, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    private boolean dfs(char[][] board, String word, int x, int y, int index) {
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length
+            || board[x][y] != word.charAt(index) || board[x][y] == '#') {
+            return false;
+        }
+        if (index == word.length() - 1) {
+            return true;
+        }
+        board[x][y] = '#';
+        for (int i = 0; i < dx.length; i++) {
+            if (dfs(board, word, x + dx[i], y + dy[i], index + 1)) {
+                return true;
+            }
+        }
+        board[x][y] = word.charAt(index);
+        return false;
+    }
+    
+}
 
 /*
 Thoughts:

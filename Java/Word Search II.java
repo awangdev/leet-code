@@ -1,5 +1,16 @@
 H
+1520570560
+tags: Backtracking, Trie, DFS
 
+相比之前的implementation, 有一些地方可以优化:
+1. Backtracking时候, 在board[][] 上面mark就可以, 不需要开一个visited[][]
+2. 不需要implement trie的所有方程, 用不到: 这里只需要insert.
+   普通的trie题目会让你search a word, 但是这里是用一个board, 看board的每一个字母能不能走出个Word.
+   也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
+3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
+
+-----
+Previous Notes:
 Big improvement: use boolean visited on TrieNode!     
 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
 在Trie search() method 里面，凡是visit过的，mark一下。  
@@ -21,6 +32,123 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 
 
 ```
+/*
+LeetCode
+Given a 2D board and a list of words from the dictionary, find all words in the board.
+
+Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+
+For example,
+Given words = ["oath","pea","eat","rain"] and board =
+
+[
+  ['o','a','a','n'],
+  ['e','t','a','e'],
+  ['i','h','k','r'],
+  ['i','f','l','v']
+]
+Return ["eat","oath"].
+Note:
+You may assume that all inputs are consist of lowercase letters a-z.
+
+Hint:
+
+You would need to optimize your backtracking to pass the larger test. Could you stop backtracking earlier?
+
+If the current candidate does not exist in all words' prefix, 
+you could stop backtracking immediately. What kind of data structure could answer such query efficiently? 
+Does a hash table work? Why or why not? How about a Trie? If you would like to learn how to implement a basic trie, 
+please work on this problem: Implement Trie (Prefix Tree) first.
+
+ */
+/*
+Thoughts:
+Simplify the problem: want to find the words' existance based on the trie structure.
+1. Build the trie with the words.
+2. DFS and backtracking with the board and see if the combination exist.
+
+Build Trie:
+  time: O(mn), m = words.length, n = max word.length
+Search with dfs
+  board[k][k] -> k^2
+  longest word: n
+  O(k^2 * n)
+
+Overall: O(k^2 * n) + O(mn) = O(mn), k should be small
+*/
+class Solution {
+    class TrieNode {
+        String word;
+        TrieNode[] children;
+        public TrieNode() {
+            this.word = null;
+            this.children = new TrieNode[26];
+        }
+    }
+    
+    TrieNode root;
+    int[] dx = {0, 0, 1, -1};
+    int[] dy = {1, -1, 0, 0};
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> result = new ArrayList<>();
+        if (board == null || board.length == 0 || board[0] == null || board[0].length == 0
+           || words == null || words.length == 0) {
+            return result;
+        }
+
+        // Build trie
+        root = new TrieNode();
+        for (String word : words) {
+            insert(word);
+        }
+        
+        // DFS and populate the result
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                dfs(root, board, i, j, result);
+            }
+        }
+
+        return result;
+    }
+    
+    private void dfs(TrieNode node, char[][] board, int x, int y, List<String> result) {
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] == '#') {
+            return;
+        }
+        char c = board[x][y];
+        if (node.children[c - 'a'] == null) {
+            return;
+        }
+        node = node.children[c - 'a'];
+        // Found the match
+        if (node.word != null) {
+            result.add(node.word);
+            node.word = null; // mark it null, means the word has been found and registered in result.
+        }
+        // Not found the match, dfs and backtracking
+        board[x][y] = '#';
+        for (int i = 0; i < dx.length; i++) {
+            dfs(node, board, x + dx[i], y + dy[i], result);
+        }
+        board[x][y] = c;
+    }
+    
+    private void insert(String word) {
+        TrieNode node = root;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (node.children[c - 'a'] == null) {
+                node.children[c - 'a'] = new TrieNode();
+            }
+            node = node.children[c - 'a'];
+            if (i == word.length() - 1) {
+                node.word = word;
+            }
+        }
+    }
+}
+
 /*
 Given a matrix of lower alphabets and a dictionary. Find all words in the dictionary that can be found in the matrix. A word can start from any position in the matrix and go left/right/up/down to the adjacent position. 
 

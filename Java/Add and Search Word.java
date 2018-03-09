@@ -1,5 +1,6 @@
 M
-1519707037
+1520491896
+tags: Backtracking, Design, Trie
 
 Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
 

@@ -1,3 +1,17 @@
+R
+1520479490
+tags: DFS, BFS, Union Find
+
+从四个边的edge出发, 像感染僵尸病毒一样扩散, 把靠边的node全部mark, 然后将还是'O'的改成X, 最后回复marks -> 'O'
+
+方法1:
+UnionFind里面这次用到了一个rank的概念, 需要review
+
+方法2,3:
+DFS, BFS都好理解, 
+
+
+```
 /*
 Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X'.
 
@@ -16,6 +30,100 @@ X X X X
 X O X X
 Hide Tags Breadth-first Search
 
+*/
+/*
+Thoughts:
+The only where it can't be surrounded is when the O is on edge; also, same to any connecting O with it.
+1. Find all edging O and union all the neighbors, mark them differently
+2. Assign all other positiions to X if not alreay is.
+3. Flip marked positions back to O
+
+Use union the 4 directions of O to mark them
+*/
+class Solution {
+    public void solve(char[][] board) {
+        if (board == null || board.length == 0 || board[0] == null || board[0].length == 0) {
+            return;
+        }
+        int m = board.length;
+        int n = board[0].length;
+        UnionFind unionFind = new UnionFind(m * n + 1);
+        int root = m * n;
+        int[] dx = {0, 0, 1, -1};
+        int[] dy = {1, -1, 0, 0};
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == 'X') {
+                    continue;
+                }
+                int curr = i * n + j;
+                // Merging the edge with the virtual root position
+                if (i == 0 || j == 0 || i == m - 1 || j == n - 1) {
+                    unionFind.union(curr, root);
+                    continue;
+                }
+                // If edge is 'O', union them.
+                for (int k = 0; k < dx.length; k++) {
+                    int x = i + dx[k];
+                    int y = j + dy[k];
+                    
+                    if (x >= 0 && x < m && y >= 0 && y < n && board[x][y] == 'O') {
+                        unionFind.union(curr, x * n + y);
+                    }
+                }
+            }
+        }
+
+        // Assign 'X'
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == 'O' && unionFind.find(i * n + j) != root) {
+                    board[i][j] = 'X';
+                }
+            }
+        }
+    }
+}
+
+class UnionFind {
+    int[] father;
+    int[] rank;
+    public UnionFind(int x) {
+        father = new int[x];
+        rank = new int[x];
+        for (int i = 0; i < x; i++) {
+            father[i] = i;
+        }
+        rank[x - 1] = x;
+    }
+    
+    public void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX == rootY) {
+            return;
+        }
+        if (rank[rootX] < rank[rootY]) {
+            father[rootX] = rootY;
+        } else {
+            if (rank[rootX] == rank[rootY]) {
+                rank[rootX]++;
+            }
+            father[rootY] = rootX;
+        }
+    }
+
+    public int find(int x) {
+        if (father[x] == x) {
+            return x;
+        }
+        return father[x] = find(father[x]);
+    }
+}
+
+/*
+Previous notes:
 Thinking Process:
 Since dfs does not work, try bfs.
 Very similar to DFS, however, when checking the 4 bounaries: 
@@ -23,7 +131,7 @@ Very similar to DFS, however, when checking the 4 bounaries:
 2. Add surrounding points into a queue.
 3. Deal with the queue immediately via a while loop
 
-*/
+ */
 public class Solution {
     private char[][] board;
     private int row;
@@ -150,3 +258,5 @@ public class Solution {
 }
 
 */
+
+```
