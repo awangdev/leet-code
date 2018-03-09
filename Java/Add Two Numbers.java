@@ -1,5 +1,6 @@
 M
 1519711343
+tags: Linked List, Math
 
 LinkedList都已经反转好了，直接做.
 遍历两个l1,l2把carry-on处理好，每次生成一个新node，最后检查carry-on.

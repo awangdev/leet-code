@@ -1,5 +1,6 @@
 M
 1519711895
+tags: Linked List
 
 Singly-linked list需要reverse, 用stack.
 最终结果要恢复成input list 那样的sequence方向, 用stack一个个pop()刚好就可以做到.

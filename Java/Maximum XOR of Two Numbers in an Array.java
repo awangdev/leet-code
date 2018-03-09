@@ -1,5 +1,6 @@
 M
 1517990589
+tags: Bit Manipulation, Trie
 
 比较难想到. 利用到XOR性质A^B=C, then A=B^C.
 1. 枚举可能的A, 2. 然后一个个猜.

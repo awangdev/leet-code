@@ -1,5 +1,6 @@
 M
 1517984778
+tags: Bit Manipulation
 
 熟悉bits的一些trick:
 - ~0 = -1 = 111111...11111111 (32-bit)

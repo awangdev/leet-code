@@ -1,5 +1,6 @@
 M
 1518626557
+tags: Stack, Tree, Design
 
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
 每次消耗TreeNode, 都看看rightNode(其实就是下一个最小的candidate), 并且一条龙stack叠上rightNode所有的left子孙.

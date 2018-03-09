@@ -1,5 +1,6 @@
 E
 1517979387
+tags: Bit Manipulation
 
 a^b 是: 不完全加法.
 a&b 是: 所有可能的进位. a&b<<1是向左边进位的形态.

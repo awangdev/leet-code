@@ -1,5 +1,6 @@
 E
 1517561820
+tags: Array
 
 似乎没什么算法特点, 就是array基本运算, 然后分割成一个helper function去做重复计算, 剪短代码.
 注意check MxN 的分界线.

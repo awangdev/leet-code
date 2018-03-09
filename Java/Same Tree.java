@@ -1,5 +1,6 @@
 E
 1519629098
+tags: Tree, DFS
 
 DFS. 确定leaf条件, && with all sub problems.
 

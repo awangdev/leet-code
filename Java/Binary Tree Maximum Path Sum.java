@@ -1,5 +1,6 @@
 R
 1519634117
+tags: Tree, DFS
 
 LeetCode: H
 用 PathSumType 比较特别. 没有 data structure的时候, 写起来比较繁琐.

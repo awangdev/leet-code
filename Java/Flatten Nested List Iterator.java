@@ -1,5 +1,6 @@
 M
 1518666697
+tags: Stack, Design
 
 方法1: 用queue, 把需要的item全部打出来
 方法2: 用stack, 把需要的item先存一行, 每次打开子序列时候, 全部加回stack.

@@ -1,5 +1,6 @@
 M
 1519508947
+tags: Math, Binary Search
 
 傻做就O(n), 要更好就考虑O(logN).
 减少重复计算, 一切两半.

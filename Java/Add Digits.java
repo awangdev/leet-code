@@ -1,5 +1,6 @@
 E
 1519709532
+tags: Math
 
 方法1: 普通做法就是按照题意, double-while loop把数字加起来. 第一层循环是O(n), 然后第二层循环就少很多数位, overall O(n)
 

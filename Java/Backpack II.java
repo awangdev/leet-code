@@ -1,5 +1,6 @@
 M
 1518497606
+tags: DP
 
 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是w可否存成功true/false. dp存的是加上sum value的最大值.
 想法还是，选了A[i - 1] 或者没选A[i - 1]时候不同的value值.

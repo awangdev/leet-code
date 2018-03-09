@@ -1,5 +1,6 @@
 E
 1518453586
+tags: Hash Table, Two Pointers, Binary Search, Sort
 
 方法1:
 用HashMap: 存一个nums1, 再拿nums2 check against map. 时间/空间:O(n)

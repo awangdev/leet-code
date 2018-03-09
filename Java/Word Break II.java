@@ -1,5 +1,6 @@
 R
 1519546502
+tags: DP, Backtracking
 
 两个DP一起用.解决了timeout的问题     
 1. isWord[i][j], subString(i,j)是否存在dict中？

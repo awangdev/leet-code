@@ -1,5 +1,6 @@
 H
 1518586276
+tags: Divide and Conquer, DP
 
 Range DP.
 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?

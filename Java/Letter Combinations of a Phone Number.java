@@ -1,5 +1,6 @@
 M
 1519232186
+tags: String, Backtracking
 
 方法1: Iterative with BFS using queue.
 

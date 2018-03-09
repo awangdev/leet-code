@@ -1,5 +1,6 @@
 H
 1519279629
+tags: String, DP
 
 Double Sequence DP:
 0. DP size (n+1): 找前nth的结果, 那么dp array就需要开n+1, 因为结尾要return dp[n][m]

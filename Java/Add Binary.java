@@ -1,5 +1,6 @@
 E
 1519709164
+tags: Math, String
 
 方法一:土办法没技术，把binary换成数字，加起来，再换成binary。如果input很大，那么很可能int,long都hold不住。不保险。
 

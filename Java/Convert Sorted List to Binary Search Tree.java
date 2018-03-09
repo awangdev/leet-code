@@ -1,5 +1,6 @@
 M
 1519792143
+tags: Linked List, DFS
 
 Divide and Conquer   
 找到mid node

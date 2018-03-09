@@ -1,5 +1,6 @@
 R
 1518426971
+tags: Math, Binary Search
 
 Binary找sqrt. 基本 mid+1, mid-1 template.
 注意: define index as long. 

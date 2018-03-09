@@ -1,5 +1,7 @@
 M
 1519720374
+tags: Tree, DFS
+
 查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
 
 Note: min/max需要时long type. 

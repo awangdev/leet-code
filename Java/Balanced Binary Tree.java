@@ -1,5 +1,6 @@
 M
 1519713672
+tags: Tree, DFS
 
 1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
    一旦有 <0 或者差值大于1， 就全部返回Integer.MIN_VALUE. Integer.MIN_VALUE比较极端, 确保结果的正确性。

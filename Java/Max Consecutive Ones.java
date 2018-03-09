@@ -1,5 +1,6 @@
 E
 1517548857
+tags: Array
 
 Basic. Math.max track结果。
 记得在有对外操作的loop后，一定要把result object清理干净。

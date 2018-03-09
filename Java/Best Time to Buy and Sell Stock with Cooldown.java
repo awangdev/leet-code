@@ -1,5 +1,6 @@
 M
 1518714005
+tags: DP
 
 Sequence DP
 跟StockIII很像. 分析好HaveStock && NoStock的状态, 然后看最后一步.

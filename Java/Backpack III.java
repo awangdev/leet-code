@@ -1,5 +1,6 @@
 R
 1518502818
+tags: DP
 
 可以无限使用物品, 就失去了last i, last unique item的意义: 因为可以重复使用.
 

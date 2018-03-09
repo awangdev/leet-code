@@ -1,5 +1,6 @@
 E
 1519630976
+tags: Tree, DFS
 
 Binary Search Tree特点: 左边的node都比右边的node小. 
 如果要height相差<1, 必须左右sub tree均分. 做DFS.

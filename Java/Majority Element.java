@@ -1,5 +1,6 @@
 E
 1519318460
+tags: Array, Divide and Conquer, Bit Manipulation
 
 方法1: Vote 计数, vote++, vote--到最后剩下的就是winner. Time O(n), Space O(1)
 Majority Number是指超半数. 超半数的数字, 最后都会至少有vote>=1: match current majority number，vote++；if not, vote--. 

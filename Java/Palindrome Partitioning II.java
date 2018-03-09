@@ -1,5 +1,6 @@
 H
 1518165366
+tags: DP
 
 Find minimum cut: 分割型DP
 考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min{d[j] + 1}.

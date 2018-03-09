@@ -1,5 +1,6 @@
 H
 1519371920
+tags: DP
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
 所以开了3维数组.
