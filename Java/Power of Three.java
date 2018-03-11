@@ -1,5 +1,6 @@
 E
 1516341495
+tags: Math
 
 方法1:
 Power of 3:  3 ^ x == n ?

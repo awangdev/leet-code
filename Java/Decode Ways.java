@@ -1,5 +1,6 @@
 R
 1517300631
+tags: String, DP
 
 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 note: calculate number from characters, need to - '0' to get the correct integer mapping.

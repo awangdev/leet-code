@@ -1,5 +1,6 @@
 M
 1517465602
+tags: Two Pointers, Array
 
 一般的O(n3)肯定不行。在此基础上优化。
 发现j,k满足条件时候，(k - j)就是所有 sum <target的情况了。

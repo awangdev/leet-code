@@ -1,5 +1,6 @@
 M
 1516602798
+tags: Array, Greedy
 
 给出步数，看能不能reach to end.
 

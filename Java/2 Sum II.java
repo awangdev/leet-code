@@ -1,5 +1,7 @@
 M
 1516439472
+tags: Array, Two Pointers, Binary Search
+
 与 2sum II - input array is sorted类似. 都是sort array, 然后two pointer.
 
 LintCode的题. 注意找的是greater/bigger than target。

@@ -1,5 +1,6 @@
 M
 1517292069
+tags: DP, Bit Manipulation
 
 Bit题目 用num的数值本身表示DP的状态.
 这里, dp[i] 并不是和 dp[i-1]有逻辑关系; 而是dp[i] 和dp[i>>1], 从binary representation看出有直接关系.

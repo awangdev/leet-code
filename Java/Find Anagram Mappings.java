@@ -1,5 +1,6 @@
 E
 1516255454
+tags: Hash Table
 
 比较简单, 用HashMap 存index list. 最后再遍历一遍数组A, 列举出所有元素.
 O(n)

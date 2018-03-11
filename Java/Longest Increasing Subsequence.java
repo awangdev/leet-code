@@ -1,5 +1,6 @@
 M
 1516863852
+tags: Binary Search, DP
 
 方法1:
 [0 ~ i], 0<i<n: 以i为结尾, 每个不同的i会得出的max-length. 所以每个结尾i都要被考虑一遍.

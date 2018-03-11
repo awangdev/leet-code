@@ -1,5 +1,6 @@
 E
 1516346617
+tags: Binary Search
 
 binary search 公式
 

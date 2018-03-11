@@ -1,5 +1,6 @@
 M
 1516696879
+tags: Hash Table
 
 方法1：  
    1. 利用2Sum的原理，把4Sum分为连个2Sum。左一个pair,右一个pair，每个pair里面放2个数字。   

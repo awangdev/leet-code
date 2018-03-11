@@ -1,5 +1,6 @@
 M
 1516689562
+tags: Array, Two Pointers
 
 方法1:
 sort array, for loop + two pointer. O(n)

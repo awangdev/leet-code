@@ -1,5 +1,6 @@
 E
 1516343302
+tags: Math, Bit Manipulation
 
 跟powerOfThree一样: 可以loop, check mod; 也可以用binary search找合适的数字.
 

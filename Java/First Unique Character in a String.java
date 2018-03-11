@@ -1,5 +1,6 @@
 E
 1516264417
+tags: Hash Table, String
 
 方法1: 按照题意, 找到第一个 first index == last index的字母.
 

@@ -2265,6 +2265,7 @@ BFS Brutle: 在start string基础上，string的每个字母都遍历所有26个
 ---
 **185. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
+
 比较简单, 用HashMap 存index list. 最后再遍历一遍数组A, 列举出所有元素.
 O(n)
 
@@ -2273,6 +2274,7 @@ O(n)
 ---
 **186. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
+
 简单的character checking. 各个方向, 加加减减.
 
 
@@ -2280,6 +2282,7 @@ O(n)
 ---
 **187. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy
       
+
 最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
 最后合计结果就好.
 
@@ -2295,6 +2298,7 @@ O(n)
 ---
 **188. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy
       
+
 方法1: 按照题意, 找到第一个 first index == last index的字母.
 
 方法2: 用hashmap存字母的index, 有些重复字母的index就会是个list. 找到单一index, 结合成list, sort, return list.get(0)
@@ -2304,6 +2308,7 @@ O(n)
 ---
 **189. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
+
 方法1:
 Power of 3:  3 ^ x == n ?
 意思是 n / 3 一直除, 最后是可以等于1的, 那么就有了 n/=3, check n%3, 最后看结果是不是整除到1的做法. 用while loop.
@@ -2319,6 +2324,7 @@ Power of 3:  3 ^ x == n ?
 ---
 **190. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
+
 简单的实现, 加1, 进位. 唯一取巧的地方, 最后如果要多一位, 一定是10000...这个模式, 可以走捷径, 直接来个+1size的array, 然后第一位=1.
 注意,转换成long也不合理,用太多memory.
 
@@ -2326,6 +2332,7 @@ Power of 3:  3 ^ x == n ?
 ---
 **191. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
+
 跟powerOfThree一样: 可以loop, check mod; 也可以用binary search找合适的数字.
 
 
@@ -2333,6 +2340,7 @@ Power of 3:  3 ^ x == n ?
 ---
 **192. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
+
 方法1: two pointer. 前后两个指针, 在while loop里面跑. 注意 i<j, 一旦相遇, 就break. 找到合适的, 就做swap.
 StringBuffer可以 sb.setCharAt()记得用.
 
@@ -2343,6 +2351,7 @@ StringBuffer可以 sb.setCharAt()记得用.
 ---
 **193. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
+
 binary search 公式
 
 
@@ -2350,6 +2359,7 @@ binary search 公式
 ---
 **194. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium
       
+
 其实想到了切入点, 是个可难可简单的题目. 这里的encode就是想办法把url存起来, 然后给个 key.
 那么具体怎么做这个key, 简单就可以用一个map, 然后counting. 复杂一点就可以做random letter/number组成key.
 
@@ -2358,6 +2368,7 @@ binary search 公式
 ---
 **195. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
+
 方法1:
 排序, nLog(n). 然后把直线上坡变成层叠山峰, 需要每隔几个(题目中是每隔2位)就做个swap 造成高低不平.
 Note: 每隔山峰之间是相互没有关系的, 所以每次只要操心 [i], [i-1]两个位置就好了.
@@ -2378,6 +2389,7 @@ O(n)
 ---
 **196. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
       
+
 别无他法, 只能写一遍例子, 找规律,然后greedy. 
 需要写一遍发现的规律比如: 从h大的开始排列, 先放入k小的. 写comparator的时候要注意正确性.
 如果要sort, 并且灵活insert:用arrayList. 自己做一个object.
@@ -2392,7 +2404,10 @@ O(n) space, O(nLog(n)) time, because of sorting.
 
 ---
 **197. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy
-      [Link](https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be)
+      
+
+tutorial:https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be
+
 解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
 
 解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).     
@@ -2406,6 +2421,7 @@ O(n) space, O(nlogn) time.
 ---
 **198. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium
       
+
 排序好的array. Two pointer移动start和end，核查sum.
 注意sum用long.
 
@@ -2414,6 +2430,8 @@ O(n) space, O(nlogn) time.
 ---
 **199. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium
       
+
+与 2sum II - input array is sorted类似. 都是sort array, 然后two pointer.
 
 LintCode的题. 注意找的是greater/bigger than target。
 
@@ -2430,6 +2448,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 ---
 **200. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
+
 DP. 找对方程f[x], 积累到amount x最少用多少个coin: #coin是value, index是 [0~x].
 子问题的关系是: 如果用了一个coin, 那么就应该是f[x - coinValue]那个位置的#coins + 1
 
@@ -2446,6 +2465,7 @@ DP. 找对方程f[x], 积累到amount x最少用多少个coin: #coin是value, in
 ---
 **201. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
+
 可以DP.计数DP.
 注意方程式前两位置加在一起: 前两种情况没有overlap, 也不会缺情况.
 注意initialization, 归1.
@@ -2456,6 +2476,7 @@ DP. 找对方程f[x], 积累到amount x最少用多少个coin: #coin是value, in
 ---
 **202. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
       
+
 给出步数，看能不能reach to end.
 
 Status:
@@ -2471,6 +2492,7 @@ Return:
 ---
 **203. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium
       
+
 求最值, DP.
 两个特别处:
 1. 正负数情况, 需要用两个DP array. 
@@ -2483,6 +2505,7 @@ Return:
 ---
 **204. [3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)**      Level: Medium
       
+
 3Sum 的一种简单形式, 并且都没有找index, value, 而只是找个sum罢了.
 
 double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
@@ -2494,6 +2517,7 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 ---
 **205. [Triangle Count.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangle%20Count.java)**      Level: Medium
       
+
 其实也就是3sum的变形, 或者而说2sum的变形. 主要用2 pointers来做.
 注意, 在选index时候每次定好一个 [0 ~ i], 在这里面找点start, end, 然后i 来组成triangle.
 Note巧妙点:
@@ -2505,6 +2529,7 @@ Note巧妙点:
 ---
 **206. [3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)**      Level: Medium
       
+
 方法1:
 sort array, for loop + two pointer. O(n)
 处理duplicate wthin triplets: 
@@ -2532,6 +2557,7 @@ Previous notes:
 ---
 **207. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium
       
+
 方法1：  
    1. 利用2Sum的原理，把4Sum分为连个2Sum。左一个pair,右一个pair，每个pair里面放2个数字。   
    2. 以一个点，i，作为分界口，也要列举出所有i之前的pair,作为基础。   
@@ -2548,6 +2574,7 @@ Previous notes:
 ---
 **208. [k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)**      Level: Hard
       
+
 DP. 公式如何想到, 还需要重新理解.
 
 dp[i][j][m]: # of possibilities such that from j elements, pick m elements and sum up to i. 
@@ -2561,6 +2588,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 ---
 **209. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
       
+
 简单的DP:dp[i]存在i点时连续上升#. dp[i]时可能为0, 一旦断开.
 
 方法1: dp[i], maintain max
@@ -2571,6 +2599,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 ---
 **210. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
+
 方法1:
 [0 ~ i], 0<i<n: 以i为结尾, 每个不同的i会得出的max-length. 所以每个结尾i都要被考虑一遍.
 dp[i]: represent the max length aggregated up to index i.
@@ -2588,6 +2617,7 @@ O(n log n)? 还没有做. 是否for loop里面用binary search?
 ---
 **211. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
+
 Not quite clear.
 根据左右分割而总结出了原理, 每次分割, 左右两边都会有一定数量的permutation, 总体上的情况数量当然是相乘.
 然后每一个不同的分割点都加一遍:
@@ -2600,6 +2630,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 ---
 **212. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
       
+
 方法1:
 适合复习BST. 用DFS对待每个node. 注意BST的特征: 所有left nodes都小于当下node, 所有right nodes都大于当下node.
 
@@ -2613,6 +2644,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 ---
 **213. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
+
 典型的坐标型DP. 考虑最终结尾需要的状态:如何组成,写出公式.
 公式中注意处理能跳掉的block, '到不了', 即为 0 path.
 
@@ -2621,6 +2653,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 ---
 **214. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium
       
+
 Bit题目 用num的数值本身表示DP的状态.
 这里, dp[i] 并不是和 dp[i-1]有逻辑关系; 而是dp[i] 和dp[i>>1], 从binary representation看出有直接关系.
 
@@ -2629,6 +2662,7 @@ Bit题目 用num的数值本身表示DP的状态.
 ---
 **215. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium
       
+
 分方向考虑的方法很容易想到,但是四个方向移动的代码比较繁琐.
 往上炸: 要从顶向下考虑
 往下炸: 要从下向上考虑
@@ -2640,6 +2674,7 @@ Bit题目 用num的数值本身表示DP的状态.
 ---
 **216. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
       
+
 考虑DP最后一个位置的情况. 发现给出了一些特殊条件, 需要附带在DP[i-1]上,
 那么就定义二维数组
 
@@ -2648,6 +2683,7 @@ Bit题目 用num的数值本身表示DP的状态.
 ---
 **217. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Review
       
+
 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 note: calculate number from characters, need to - '0' to get the correct integer mapping.
 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
@@ -2658,6 +2694,7 @@ note: calculate number from characters, need to - '0' to get the correct integer
 ---
 **218. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy
       
+
 最基本的dp。      
 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的。      
 思考的适合搞清楚当下的和之前的情况的关系。    
@@ -2668,6 +2705,7 @@ note: calculate number from characters, need to - '0' to get the correct integer
 ---
 **219. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium
       
+
 和House Robber I 类似,  DP. 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 
 特别的是，末尾的last house 和 first house相连。这里就需要分别讨论两种情况:    
@@ -2682,6 +2720,7 @@ note: calculate number from characters, need to - '0' to get the correct integer
 ---
 **220. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
       
+
 理解意思是关键:
    每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出。
    记录每天最小值Min是多少。O(n)
@@ -2700,6 +2739,8 @@ Brutle:
 ---
 **221. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
       
+
+和Stock I 的区别：可以买卖多次，求总和的最大盈利。
 
 这道题有几种其他不同的思路:
 1. Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起. 计算delta, 其实简单粗暴, 也还不错.
@@ -2721,6 +2762,7 @@ O(n)
 ---
 **222. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard
       
+
 比stock II 多了一个限制：只有2次卖出机会。
 
 方法1:
@@ -2748,6 +2790,7 @@ DP加状态: 只卖2次, 把买卖分割成5个状态模块.
 ---
 **223. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard
       
+
 方法1:
 DP. 根据StockIII, 不难发现StockIV就是把状态划分为2k+1份. 那么同样的代码, 移植.
 注意1: 如果k很大, k>n/2, 那么长度为n的数组里面, 最多也只能n/2个transaction, 
@@ -2786,6 +2829,7 @@ global[i][j]就是我们所求的前i天最多进行k次交易的最大收益，
 ---
 **224. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Review
       
+
 一般的DP被加了状态变成2D. 
 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
 所以变成了O(NK^2)
@@ -2804,6 +2848,7 @@ O(NK)
 ---
 **225. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium
       
+
 一般的O(n3)肯定不行。在此基础上优化。
 发现j,k满足条件时候，(k - j)就是所有 sum <target的情况了。
 而一旦>target, 又因为j不能后退，只能k--，那么问题就被锁定了. 这样可以做到O(n2)

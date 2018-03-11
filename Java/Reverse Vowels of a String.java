@@ -1,5 +1,6 @@
 E
 1516344636
+tags: Two Pointers, String
 
 方法1: two pointer. 前后两个指针, 在while loop里面跑. 注意 i<j, 一旦相遇, 就break. 找到合适的, 就做swap.
 StringBuffer可以 sb.setCharAt()记得用.

@@ -1,5 +1,6 @@
 M
 1516610949
+tags: Array, Two Pointers
 
 3Sum 的一种简单形式, 并且都没有找index, value, 而只是找个sum罢了.
 
