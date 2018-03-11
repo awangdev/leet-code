@@ -50,12 +50,14 @@ Table of Contents
 ### Stack
 - Functions: peek(), pop(), push()
 - Stack<XXX> stack = new Stack<>();
+- 用来暂且保存有效信息
 
 ### Queue
-- Functions: peek(), poll(), add()/offer()
+- Functions: peek(), poll(), add()/offer(), remove(object)
 - queue = new LinkedList<...>()
 - PriorityQueue: new Comparator 很重要
 - 看到Min/Max就要想到heap. 如果给出的数组没有排序, 先排序, 然后用heap. PrioirtyQueue是用Binary Heap做出来的
+- 看到median 想到heap
 
 ### Linked List
 - No concept of size(), it's all pointers: node.next.next
