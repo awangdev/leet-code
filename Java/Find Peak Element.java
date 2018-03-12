@@ -10,7 +10,7 @@ Note:
 没有必要特别check (mid-1)<0或者(mid+1)>=n.
 证明:
 1. 最左端: 当start=0, end = 2 => mid = 1, mid-1 = 0;
-2. 最有段: 当end = n - 1, start = n - 3; mid = (start+end)/2 = n - 2; 
+2. 最右端: 当end = n - 1, start = n - 3; mid = (start+end)/2 = n - 2; 
 那么mid + 1 = n - 2 + 1 = n - 1 < n 是理所当然的
 
 ```

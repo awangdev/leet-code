@@ -1,5 +1,17 @@
-swap总是confuse.
-画三个block, 1,2,3. 连线。
+M
+1520834172
+tags: Linked List
+
+==== enumurate 
+基本原理, 写出来, 然后连线:
+pre -> A -> B -> C -> ...
+需要一个虚拟 preNode做起始node, 不然无法把后面的node换到开头.
+
+==== 注意
+用dummy = pre作为head前一格.
+用 `pre.next == null && pre.next.next` 来check是否为NULL.
+pre.next.next 保证了至少有一次swap.
+
 ```
 /*
 Swap Nodes in Pairs
@@ -15,14 +27,6 @@ Your algorithm should use only constant space. You may not modify the values in 
 Tags Expand 
 Linked List
 */
-
-/*
-	Thoughts:
-	1. swap
-	2. move 2 steps, then swap again.
-	3. becareful node.next == null, that's the end of list. no swapping.
-*/
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -31,30 +35,35 @@ Linked List
  *     ListNode(int x) { val = x; }
  * }
  */
-
-public class Solution {
-    /**
-     * @param head a ListNode
-     * @return a ListNode
-     */
+/*
+Thoughts:
+pre -> A -> B -> C -> ...
+1. Link pre to B
+2. Link A to C
+3. Link B to A
+4. move forward.
+*/
+class Solution {
     public ListNode swapPairs(ListNode head) {
-    	if (head == null) {
-    		return head;
-    	}
-		ListNode dummy = new ListNode(0);
-		dummy.next = head;
-		head = dummy;
-    	while (head.next != null && head.next.next != null) {
-    		ListNode n1 = head.next;
-    		ListNode n2 = head.next.next;
-    		
-    		n1.next = n2.next;
-    		n2.next = n1;
-    		n1 = n2;
-
-    		head = head.next.next;
-    	}
-    	return dummy.next;
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode pre = new ListNode(-1);
+        pre.next = head;
+        ListNode dummy = pre;
+        
+        while (pre.next != null && pre.next.next != null) {
+            ListNode a = pre.next;
+            ListNode b = a.next;
+            
+            a.next = b.next;
+            b.next = a;
+            pre.next = b;
+            
+            // Move
+            pre = pre.next.next;
+        }
+        return dummy.next;
     }
 }
 
