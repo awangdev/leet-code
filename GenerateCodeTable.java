@@ -67,7 +67,8 @@ public class GenerateCodeTable {
 
     public final static String TUTORIAL_KEY_WORD = "tutorial:";
     public final static String TAGS_KEY_WORD = "tags:";
-    public static void main(String[] args) {    
+    public static void main(String[] args) {
+        GenerateCodeTable gct = new GenerateCodeTable();   
         //Read Java Solution Folder
         File folder = new File("./Java");//"." = current path
         if (!folder.exists() || !folder.isDirectory()) {
@@ -84,35 +85,35 @@ public class GenerateCodeTable {
         File outFile;
         
         if (args.length == 0){
-            outputContent = generateREADME(listOfFiles);
-            printTable("README.md", outputContent);
+            outputContent = gct.generateREADME(listOfFiles);
+            gct.printTable("README.md", outputContent);
         } else if (args != null && args[0].contains("wordpress")) {//Wordpress
-            outputContent = generateWordPressPage(listOfFiles);
-            printTable("WordPress.txt", outputContent);
+            outputContent = gct.generateWordPressPage(listOfFiles);
+            gct.printTable("WordPress.txt", outputContent);
         } else if (args != null && args[0].contains("review")) {//Review Page
-            outputContent = generateReviewPage(listOfFiles);
-            printTable("ReviewPage.md", outputContent);
+            outputContent = gct.generateReviewPage(listOfFiles);
+            gct.printTable("ReviewPage.md", outputContent);
         } else if (args != null && args[0].contains("tags")) {//Wordpress
-            outputContent = generateTagREADME(listOfFiles);
-            printTable("TagsREADME.txt", outputContent);
+            outputContent = gct.generateTagREADME(listOfFiles);
+            gct.printTable("TagsREADME.txt", outputContent);
         } else if (args != null && args[0].contains("all")) {
-            outputContent = generateREADME(listOfFiles);
-            printTable("README.md", outputContent);
+            outputContent = gct.generateREADME(listOfFiles);
+            gct.printTable("README.md", outputContent);
             //outputContent = generateWordPressPage(listOfFiles);
             //printTable("WordPress.txt", outputContent);
-            outputContent = generateReviewPage(listOfFiles);
-            printTable("ReviewPage.md", outputContent);
-            outputContent = generateTagREADME(listOfFiles);
-            printTable("TagsREADME.md", outputContent);
-        } else {
-            return;
+            outputContent = gct.generateReviewPage(listOfFiles);
+            gct.printTable("ReviewPage.md", outputContent);
+            outputContent = gct.generateTagREADME(listOfFiles);
+            gct.printTable("TagsREADME.md", outputContent);
+            outputContent = gct.generateTagReviewPage(listOfFiles);
+            gct.printTable("TagReviewPage.md", outputContent);
         }
     }   
 
     /*
         Output the content into file
     */
-    public static void printTable(String fileName, String outputContent) {
+    public void printTable(String fileName, String outputContent) {
         //System.out.println(outputContent);
         //Write to README.md
         try {   
@@ -131,7 +132,7 @@ public class GenerateCodeTable {
     /*
         Generate Wordpress contents
     */
-    public static String generateWordPressPage(File[] listOfFiles) {
+    public String generateWordPressPage(File[] listOfFiles) {
         //Assemble output
         String outputContent = "Java Solutions to algorithm problems from LintCode, LeetCode...etc.\n" +
         "<table>" +
@@ -166,7 +167,7 @@ public class GenerateCodeTable {
     /*
         Generate GitHub ReadMe contents
     */
-    public static String generateREADME(File[] listOfFiles) {
+    public String generateREADME(File[] listOfFiles) {
         //Assemble output
         String outputContent = "# Java Algorithm Problems\n\n" + 
             "### 程序员的一天\n" +
@@ -189,7 +190,7 @@ public class GenerateCodeTable {
         return outputContent;
     }
 
-    public static String generateTagREADME(File[] listOfFiles) {
+    public String generateTagREADME(File[] listOfFiles) {
         String outputContent = "# Problems Sorted By Tag\n\n";
         String header = "| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|\n" + 
                         "|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|\n";
@@ -208,12 +209,37 @@ public class GenerateCodeTable {
         });
         // Build View
         for (Map.Entry<String, List<TableRow>> entry : tagToRows.entrySet()) {
-            StringBuffer sb = new StringBuffer("### " + entry.getKey() + "\n");
+            StringBuffer sb = new StringBuffer("## " + entry.getKey() + "\n");
             sb.append(header);
             List<TableRow> entryTableRows = entry.getValue();
             for (int i = 0; i < entryTableRows.size(); i++) {
                 sb.append("|" + i + entryTableRows.get(i).getTableComposedLine());
             }
+            outputContent += sb.toString() + "\n\n\n";
+        }
+        return outputContent;
+    }
+
+    public String generateTagReviewPage(File[] listOfFiles) {
+        String outputContent = "# Review Notes Sorted By Tag\n\n";
+        final List<TableRow> tableRows = getTableRows(listOfFiles);
+        final HashMap<String, List<TableRow>> tagToRows = new HashMap<>();
+        // Group by tags:
+        tableRows.forEach(tableRow -> {
+            for (String tag: tableRow.getTags()) {
+                if (tag == null || tag.length() == 0) {
+                    continue;
+                }
+                if (!tagToRows.containsKey(tag)) {
+                    tagToRows.put(tag, new ArrayList<TableRow>());
+                }
+                tagToRows.get(tag).add(tableRow);
+            }
+        });
+        // Build View
+        for (Map.Entry<String, List<TableRow>> entry : tagToRows.entrySet()) {
+            StringBuffer sb = new StringBuffer("## " + entry.getKey() + "\n");
+            sb.append(buildReviewSection(entry.getValue()));
             outputContent += sb.toString() + "\n\n\n";
         }
         return outputContent;
@@ -227,7 +253,7 @@ public class GenerateCodeTable {
         3. Difficulty
         4. Summary of solution, key points.
     */
-    public static String generateReviewPage(File[] listOfFiles) {
+    public String generateReviewPage(File[] listOfFiles) {
         //Assemble output
         String outputContent = "# Review Page\n\n" + 
             "This page summarize the solutions of all problems. For thoughts,ideas written in English, refer to deach individual solution. \n" + 
@@ -236,6 +262,14 @@ public class GenerateCodeTable {
         final List<TableRow> tableRows = getTableRows(listOfFiles);
         int count = 0;
         int countMiss = 0;
+        outputContent += buildReviewSection(tableRows);
+        return outputContent;
+    }
+
+    private String buildReviewSection(List<TableRow> tableRows) {
+        int count = 0;
+        int countMiss = 0;
+        StringBuffer sb = new StringBuffer();
         for (TableRow tableRow: tableRows) {
             // Skip non-ready items
             if (NOT_AVAILABLE.equals(tableRow.getLevel())) {
@@ -244,22 +278,22 @@ public class GenerateCodeTable {
                 continue;
             }
             //System.out.println(count +  ". " + tableRow.getLevel() + " [File not yet formatted]: " + tableRow.getFileName());
-            outputContent += "**" + count + ". [" + tableRow.getFileName()
-                          + "](https://github.com/awangdev/LintCode/blob/master/Java/"
-                          + tableRow.getFileName().replace(" ", "%20") +")**";
+            sb.append("**" + count + ". [" + tableRow.getFileName());
+            sb.append("](https://github.com/awangdev/LintCode/blob/master/Java/");
+            sb.append(tableRow.getFileName().replace(" ", "%20") +")**");
             
-            outputContent += "      Level: " + tableRow.getLevel() + "\n";
-            outputContent += "      " + tableRow.getTutorialLink() + "\n";
-            outputContent += tableRow.getNote() + "\n";
-            outputContent += "\n---\n";
+            sb.append("      Level: " + tableRow.getLevel() + "\n");
+            sb.append("      " + tableRow.getTutorialLink() + "\n");
+            sb.append(tableRow.getNote() + "\n");
+            sb.append("\n---\n");
             count++;
         }
-        return outputContent;
+        return sb.toString();
     }
 
 
 
-    private static List<TableRow> getTableRows(File[] listOfFiles) {
+    private List<TableRow> getTableRows(File[] listOfFiles) {
         final ArrayList<TableRow> tableRows = new ArrayList<>();
         for (File file : listOfFiles) {
             if (file.getName().contains(".java")) {
@@ -270,7 +304,7 @@ public class GenerateCodeTable {
         return tableRows;
     }
 
-    private static TableRow getTableRow(String fileName) {
+    private TableRow getTableRow(String fileName) {
         TableRow tableRow = null;
         String tutorialLink = "";
         String calculatedLevel = NOT_AVAILABLE;
@@ -326,7 +360,7 @@ public class GenerateCodeTable {
         return tableRow;
     }
 
-    private static String calculateLevel(final String level) {
+    private String calculateLevel(final String level) {
         switch(level) {
             case "N" : 
                 return "Naive";
