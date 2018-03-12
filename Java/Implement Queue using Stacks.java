@@ -1,5 +1,13 @@
 E
+1520797719
+tags: Stack, Design
 
+==== 双Stack
+画图, 知道最后maintain的stack是那个 reverseStack: pop(), peek(), empty() 都在这个stack上, 无需变换.
+push()里面做stack和reverseStack的来回倾倒.
+相比老的code, 在PUSH里面做倾倒, 更容易读.
+
+==== Previous notes
 双Stack. 一个是等于是queue，一个是backfillStack.
 Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再backfill.
 写一下例子就知道，如果提早backfill，stack.peek()就不是queue的head了.
@@ -19,6 +27,54 @@ You must use only standard operations of a stack -- which means only push to top
 Depending on your language, stack may not be supported natively. You may simulate a stack by using a list or deque (double-ended queue), as long as you use only standard operations of a stack.
 You may assume that all operations are valid (for example, no pop or peek operations will be called on an empty queue).
 */
+/*
+Thoughts:
+Use 2 stacks:
+Stack: hold items in regular stack order
+ReverseStack: hold items in the queue order.
+
+- Add: pure from reverseStack into stack, add item, and pure back into reverseStack.
+- Remove: remove from reverseStack
+- peek, empty are trivial
+*/
+class MyQueue {
+    Stack<Integer> stack;
+    Stack<Integer> reverseStack;
+    /** Initialize your data structure here. */
+    public MyQueue() {
+        stack = new Stack<>();
+        reverseStack = new Stack<>();
+    }
+    
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        while (!reverseStack.isEmpty()) {
+            stack.push(pop());
+        }
+        stack.push(x);
+
+        // Pure back
+        while (!stack.isEmpty()) {
+            reverseStack.push(stack.pop());
+        }
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        return reverseStack.pop();
+    }
+    
+    /** Get the front element. */
+    public int peek() {
+        return reverseStack.peek();
+    }
+    
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        return reverseStack.isEmpty();
+    }
+}
+
 
 /*
 Thoughts:

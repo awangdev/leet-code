@@ -1,4 +1,6 @@
 E
+1520797111
+tags: Stack, Design
 
 双Stack：一个正常stack，另一个minStack存当下level最小值. 注意维护minStack的变化
 
@@ -63,30 +65,28 @@ public class MinStack {
     MinStack keeps the minnimum value at current time (there can be duplicates if min value does not change)
 */
 class MinStack {
-    private Stack<Integer> stack;
-    private Stack<Integer> minStack;
+    Stack<Integer> stack;
+    Stack<Integer> minStack;
     /** initialize your data structure here. */
     public MinStack() {
-        stack = new Stack<>();
-        minStack = new Stack<>();
+        stack = new Stack<Integer>();
+        minStack = new Stack<Integer>();
     }
     
     public void push(int x) {
-        stack.push(x);
-        if (minStack.isEmpty()) {
+        if (minStack.isEmpty() || getMin() > x) {
             minStack.push(x);
         } else {
-            if (minStack.peek() >= x) {
-                minStack.push(x);
-            } else {
-                minStack.push(minStack.peek());
-            }
+            minStack.push(getMin());
         }
+        stack.push(x);
     }
     
     public void pop() {
-        minStack.pop();
-        stack.pop();
+        if (!stack.isEmpty()) {
+            stack.pop();
+            minStack.pop();
+        }
     }
     
     public int top() {
@@ -106,6 +106,5 @@ class MinStack {
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
  */
-
 
 ```

@@ -48,9 +48,24 @@ Table of Contents
 ### Heap
 
 ### Stack
-- Functions: peek(), pop(), push()
+
+#### Functions
+- peek(), pop(), push()
 - Stack<XXX> stack = new Stack<>();
+
+#### 基本用法
 - 用来暂且保存有效信息
+- 翻转stack
+- stack优化DFS, 变成非递归
+
+#### Monotonous Stack
+- 找每个元素左边或者右边 第一个比它自身小/大的元素
+- 用单调栈来维护
+- 维护monotonous stack 是题目需要, 而不是stack本身性质. 比如, 题目需要stack.peek() O(1), 加上需要单调递增/递减的性质, 就用起来了stack.
+
+#### Expample
+MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
+
 
 ### Queue
 - Functions: peek(), poll(), add()/offer(), remove(object)
@@ -173,6 +188,7 @@ Hash Table
 - 转换成string
 - % mod, 除法
 - Integer.MAX_VALUE, Integer.MIN_VALUE; if overflow, use long
+- Integer.valueOf(number), where number is int
 
 
 ##### String
@@ -180,6 +196,7 @@ Hash Table
 - String.valueOf(charArrary)
 - sb = new StringBuffer()
 - sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length(), sb.setCharAt(index, char)
+- Character.isDigit(x)
 
 ##### Bit Manipulation
 - Bit OR |, AND &, XOR ^
@@ -257,6 +274,10 @@ Design
 #### Data Structure
 - Union Find
 - Trie
+- Heap: PriorityQueue[Java]. Made of: Binary Heap
+- Hash: HashMap[Java]. Made of: HashMap
+- TreeMap: TreeMap[Java]. Balanced Binary Tree
+- TreeSet: TreeSet[Java]. Balanced Binary Tree
 
 ### Problem Sets
 
@@ -266,6 +287,14 @@ Design
 - 见到需要维护一个集合的最小值/最大值的时候要想到用堆
 - 第k小的元素，Heap用来维护当前候选集合
 - 见到数组要想到先排序
+
+##### Stack
+- Monotonous stack的运用: 找左边和右边第一个比它大的元素
+- 递归转非递归
+
+##### Windows Problem
+- 加一个数
+- 删一个数
 
 
 
