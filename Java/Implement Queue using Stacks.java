@@ -2,12 +2,12 @@ E
 1520797719
 tags: Stack, Design
 
-==== 双Stack
+#### 双Stack
 画图, 知道最后maintain的stack是那个 reverseStack: pop(), peek(), empty() 都在这个stack上, 无需变换.
 push()里面做stack和reverseStack的来回倾倒.
 相比老的code, 在PUSH里面做倾倒, 更容易读.
 
-==== Previous notes
+#### Previous notes
 双Stack. 一个是等于是queue，一个是backfillStack.
 Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再backfill.
 写一下例子就知道，如果提早backfill，stack.peek()就不是queue的head了.

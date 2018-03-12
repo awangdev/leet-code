@@ -2,7 +2,7 @@ M
 1520828407
 tags: Tree, Stack
 
-==== Monotonous Stack
+#### Monotonous Stack
 用到bottom->top递减的stack: 最底下的root维持成最大的element.
 过程当中, 一旦遇到currNode.val > stack.peek(), 就意味着需要把这个currNode放在 stack的底层位置.
 也就是说, 遇到这个条件, process, pop()所有 currNode.val > stack.peek(), 最后把currNode加进去.
@@ -11,7 +11,7 @@ maxTree题目本身的要求是: 大的在最中间, 左右两边的subTree也�
 - Monotonous Stack在这里帮助 keep/track of max value, 但是left/right tree的logic是MaxTree独有的.
 - left/right node的assignment是根据题目要求: 中间最大值分开后, 左边的是左边subTree, 右边的作为右边subTree.
 
-==== Previous notes
+#### Previous notes
 Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
 
 Stack里，最大的值在下面。利用此性质，有这样几个step:

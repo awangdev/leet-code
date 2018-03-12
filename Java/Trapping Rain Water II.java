@@ -4,13 +4,13 @@ tags: Heap, BFS
 
 用PriorityQueue把选中的height排序。为走位，create class Cell (x,y, height).
 
-==== 注意几个理论
+#### 注意几个理论
 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block。
 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层。
 
 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
 
-==== 具体步骤
+#### 具体步骤
 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
    若大于零，那么周围的cell就有积水。
 2. 每个visited的cell都要mark. 
@@ -19,12 +19,12 @@ tags: Heap, BFS
 再多一句解释: 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
 这里要附上curr cell 和 move-to cell的最大高度。
 
-==== 为什么想到用Heap (min-heap - priorityQueue)
+#### 为什么想到用Heap (min-heap - priorityQueue)
 - 要找到bucket的最短板
 - 每次需要最先处理最短的那条 (on top)
 
 
-==== 为什么从外向里遍历
+#### 为什么从外向里遍历
 - 木桶理论, 包水, 是从外面包住里面
 - 洋葱剥皮, 用完丢掉
 

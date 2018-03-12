@@ -611,12 +611,12 @@ Linked List 没有天然size.
 **10. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy
       
 
-==== 方法1
+#### 方法1
 每次加上x%10，然后x不断减小～0
 注意处理MAX_VALUE, MIN_VALUE
 符号不重要, 直接处理, 也会保留.
 
-==== 方法2
+#### 方法2
 转换成String 然后 reverse
 Space O(n), time O(n)
 
@@ -1468,7 +1468,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 **40. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Hard
       
 
-==== 方法1: monotonous stack
+#### 方法1: monotonous stack
 分解开来, 其实是'Largest Rectangle in Histogram', 只不过这里要自己model heights.
 一个2D array里面的rectangle, 最终也是用height * width做出来的.
 巧妙在于, 把每一行当做底边, 算出这个底边, 到顶部的height: 
@@ -1477,7 +1477,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 如果看具体实例, 有些row似乎是白算的, 但是没有办法, 这是一个搜索的过程, 最终会比较出最优解.
 
-==== 方法2: DP
+#### 方法2: DP
 
 从边长为2的正方形看起，看左上角的那个点。   
 如何确定是个正方形？首先看左上点是不是1，然后看右边，右下，下面的点是不是1.   
@@ -1592,13 +1592,13 @@ DFS, BFS都好理解,
 
 用PriorityQueue把选中的height排序。为走位，create class Cell (x,y, height).
 
-==== 注意几个理论
+#### 注意几个理论
 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block。
 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层。
 
 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
 
-==== 具体步骤
+#### 具体步骤
 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
    若大于零，那么周围的cell就有积水。
 2. 每个visited的cell都要mark. 
@@ -1607,12 +1607,12 @@ DFS, BFS都好理解,
 再多一句解释: 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
 这里要附上curr cell 和 move-to cell的最大高度。
 
-==== 为什么想到用Heap (min-heap - priorityQueue)
+#### 为什么想到用Heap (min-heap - priorityQueue)
 - 要找到bucket的最短板
 - 每次需要最先处理最短的那条 (on top)
 
 
-==== 为什么从外向里遍历
+#### 为什么从外向里遍历
 - 木桶理论, 包水, 是从外面包住里面
 - 洋葱剥皮, 用完丢掉
 
@@ -1645,13 +1645,13 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 
 用PriorityQueue把选中的height排序。为走位，create class Cell (x,y, height).
 
-==== 注意几个理论
+#### 注意几个理论
 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block。
 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层。
 
 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
 
-==== 具体步骤
+#### 具体步骤
 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
    若大于零，那么周围的cell就有积水。
 2. 每个visited的cell都要mark. 
@@ -1660,12 +1660,12 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 再多一句解释: 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
 这里要附上curr cell 和 move-to cell的最大高度。
 
-==== 为什么想到用Heap (min-heap - priorityQueue)
+#### 为什么想到用Heap (min-heap - priorityQueue)
 - 要找到bucket的最短板
 - 每次需要最先处理最短的那条 (on top)
 
 
-==== 为什么从外向里遍历
+#### 为什么从外向里遍历
 - 木桶理论, 包水, 是从外面包住里面
 - 洋葱剥皮, 用完丢掉
 
@@ -1675,12 +1675,12 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 **2. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard
       
 
-==== 原理
+#### 原理
 - 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.
 - 前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
 - 后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
 
-==== 注意
+#### 注意
 - 这里要首先定好, 哪一个queue是多存一个element的. 这里选maxHeap: maxHeap.size() == minHeap.size() + 1 || minHeap.size()
 - 必须先维护maxHeap里面有个元素, 否则null了会在比较大小时出问题.
 
@@ -1694,12 +1694,12 @@ Median还是用min-heap 和 max-heap. Time(logN)
 加/减: prioirtyQueue, log(n)
 findMedian: O(1)
 
-==== 思想
+#### 思想
 - 加一个数, 减一个数。
 - 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
 - 抽完balance一下
 
-==== 注意
+#### 注意
 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
 左边的maxHeap总有 x+1或者x个数字
 后边minHeap应该一直有x个数字
@@ -1801,12 +1801,12 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 **4. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy
       
 
-==== 双Stack
+#### 双Stack
 画图, 知道最后maintain的stack是那个 reverseStack: pop(), peek(), empty() 都在这个stack上, 无需变换.
 push()里面做stack和reverseStack的来回倾倒.
 相比老的code, 在PUSH里面做倾倒, 更容易读.
 
-==== Previous notes
+#### Previous notes
 双Stack. 一个是等于是queue，一个是backfillStack.
 Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再backfill.
 写一下例子就知道，如果提早backfill，stack.peek()就不是queue的head了.
@@ -1818,7 +1818,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 **5. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
-==== 方法1 - Stack
+#### 方法1 - Stack
 Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner string
 有很多需要注意的细节才能做对:
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
@@ -1827,7 +1827,7 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
   用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
   最后再从buffer里面倒进StringBuffer.
 
-==== 方法2 - DFS
+#### 方法2 - DFS
 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
@@ -1838,7 +1838,7 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 **6. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
 
-==== Monotonous Stack
+#### Monotonous Stack
 重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
 在loop over indexes的时候:
 - 如果高度>= previous peek(), 那么对于那个peek, 就意味着, 往下走, 一直走高嘛, 之前的peek总可以继续抄底
@@ -1849,7 +1849,7 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 - 为什么用stack? 因为需要知道连续递增的peek, stack.peek() O(1), 好用
   而其实不用stack, 也可以用其他方式记录所有height, 只不过要 O(n)去找peek不方便
 
-==== 知识点
+#### 知识点
 - 理解monotonous stack 是如何被维护的
 - 维护monotonous stack 是题目需要, 而不是stack本身性质, 是一种借助 stack.peek() O(1)的巧妙用法.
 
@@ -1860,7 +1860,7 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 **7. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Hard
       
 
-==== 方法1: monotonous stack
+#### 方法1: monotonous stack
 分解开来, 其实是'Largest Rectangle in Histogram', 只不过这里要自己model heights.
 一个2D array里面的rectangle, 最终也是用height * width做出来的.
 巧妙在于, 把每一行当做底边, 算出这个底边, 到顶部的height: 
@@ -1869,7 +1869,7 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 
 如果看具体实例, 有些row似乎是白算的, 但是没有办法, 这是一个搜索的过程, 最终会比较出最优解.
 
-==== 方法2: DP
+#### 方法2: DP
 
 从边长为2的正方形看起，看左上角的那个点。   
 如何确定是个正方形？首先看左上点是不是1，然后看右边，右下，下面的点是不是1.   
@@ -1886,7 +1886,7 @@ Init：
 **8. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Medium
       
 
-==== Monotonous Stack
+#### Monotonous Stack
 用到bottom->top递减的stack: 最底下的root维持成最大的element.
 过程当中, 一旦遇到currNode.val > stack.peek(), 就意味着需要把这个currNode放在 stack的底层位置.
 也就是说, 遇到这个条件, process, pop()所有 currNode.val > stack.peek(), 最后把currNode加进去.
@@ -1895,7 +1895,7 @@ maxTree题目本身的要求是: 大的在最中间, 左右两边的subTree也�
 - Monotonous Stack在这里帮助 keep/track of max value, 但是left/right tree的logic是MaxTree独有的.
 - left/right node的assignment是根据题目要求: 中间最大值分开后, 左边的是左边subTree, 右边的作为右边subTree.
 
-==== Previous notes
+#### Previous notes
 Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
 
 Stack里，最大的值在下面。利用此性质，有这样几个step:
@@ -2027,12 +2027,12 @@ HashMap, O(n) space
 **6. [Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)**      Level: Medium
       
 
-==== enumurate 
+#### enumurate 
 基本原理, 写出来, 然后连线:
 pre -> A -> B -> C -> ...
 需要一个虚拟 preNode做起始node, 不然无法把后面的node换到开头.
 
-==== 注意
+#### 注意
 用dummy = pre作为head前一格.
 用 `pre.next == null && pre.next.next` 来check是否为NULL.
 pre.next.next 保证了至少有一次swap.
@@ -2565,7 +2565,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 **34. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
 
-==== Monotonous Stack
+#### Monotonous Stack
 重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
 在loop over indexes的时候:
 - 如果高度>= previous peek(), 那么对于那个peek, 就意味着, 往下走, 一直走高嘛, 之前的peek总可以继续抄底
@@ -2576,7 +2576,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 - 为什么用stack? 因为需要知道连续递增的peek, stack.peek() O(1), 好用
   而其实不用stack, 也可以用其他方式记录所有height, 只不过要 O(n)去找peek不方便
 
-==== 知识点
+#### 知识点
 - 理解monotonous stack 是如何被维护的
 - 维护monotonous stack 是题目需要, 而不是stack本身性质, 是一种借助 stack.peek() O(1)的巧妙用法.
 
@@ -2587,7 +2587,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 **35. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Hard
       
 
-==== 方法1: monotonous stack
+#### 方法1: monotonous stack
 分解开来, 其实是'Largest Rectangle in Histogram', 只不过这里要自己model heights.
 一个2D array里面的rectangle, 最终也是用height * width做出来的.
 巧妙在于, 把每一行当做底边, 算出这个底边, 到顶部的height: 
@@ -2596,7 +2596,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 如果看具体实例, 有些row似乎是白算的, 但是没有办法, 这是一个搜索的过程, 最终会比较出最优解.
 
-==== 方法2: DP
+#### 方法2: DP
 
 从边长为2的正方形看起，看左上角的那个点。   
 如何确定是个正方形？首先看左上点是不是1，然后看右边，右下，下面的点是不是1.   
@@ -2702,12 +2702,12 @@ Search word:没有node就报错. 到结尾return true
 **4. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard
       
 
-==== 原理
+#### 原理
 - 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.
 - 前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
 - 后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
 
-==== 注意
+#### 注意
 - 这里要首先定好, 哪一个queue是多存一个element的. 这里选maxHeap: maxHeap.size() == minHeap.size() + 1 || minHeap.size()
 - 必须先维护maxHeap里面有个元素, 否则null了会在比较大小时出问题.
 
@@ -2721,12 +2721,12 @@ Median还是用min-heap 和 max-heap. Time(logN)
 加/减: prioirtyQueue, log(n)
 findMedian: O(1)
 
-==== 思想
+#### 思想
 - 加一个数, 减一个数。
 - 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
 - 抽完balance一下
 
-==== 注意
+#### 注意
 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
 左边的maxHeap总有 x+1或者x个数字
 后边minHeap应该一直有x个数字
@@ -2747,12 +2747,12 @@ findMedian: O(1)
 **7. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy
       
 
-==== 双Stack
+#### 双Stack
 画图, 知道最后maintain的stack是那个 reverseStack: pop(), peek(), empty() 都在这个stack上, 无需变换.
 push()里面做stack和reverseStack的来回倾倒.
 相比老的code, 在PUSH里面做倾倒, 更容易读.
 
-==== Previous notes
+#### Previous notes
 双Stack. 一个是等于是queue，一个是backfillStack.
 Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再backfill.
 写一下例子就知道，如果提早backfill，stack.peek()就不是queue的head了.
@@ -3046,7 +3046,7 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 **17. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
-==== 方法1 - Stack
+#### 方法1 - Stack
 Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner string
 有很多需要注意的细节才能做对:
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
@@ -3055,7 +3055,7 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
   用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
   最后再从buffer里面倒进StringBuffer.
 
-==== 方法2 - DFS
+#### 方法2 - DFS
 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
@@ -3216,7 +3216,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 **11. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Hard
       
 
-==== 方法1: monotonous stack
+#### 方法1: monotonous stack
 分解开来, 其实是'Largest Rectangle in Histogram', 只不过这里要自己model heights.
 一个2D array里面的rectangle, 最终也是用height * width做出来的.
 巧妙在于, 把每一行当做底边, 算出这个底边, 到顶部的height: 
@@ -3225,7 +3225,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 如果看具体实例, 有些row似乎是白算的, 但是没有办法, 这是一个搜索的过程, 最终会比较出最优解.
 
-==== 方法2: DP
+#### 方法2: DP
 
 从边长为2的正方形看起，看左上角的那个点。   
 如何确定是个正方形？首先看左上点是不是1，然后看右边，右下，下面的点是不是1.   
@@ -3592,7 +3592,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 **2. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
-==== 方法1 - Stack
+#### 方法1 - Stack
 Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner string
 有很多需要注意的细节才能做对:
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
@@ -3601,7 +3601,7 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
   用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
   最后再从buffer里面倒进StringBuffer.
 
-==== 方法2 - DFS
+#### 方法2 - DFS
 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
@@ -3949,7 +3949,7 @@ Note: min/max需要时long type.
 **11. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Medium
       
 
-==== Monotonous Stack
+#### Monotonous Stack
 用到bottom->top递减的stack: 最底下的root维持成最大的element.
 过程当中, 一旦遇到currNode.val > stack.peek(), 就意味着需要把这个currNode放在 stack的底层位置.
 也就是说, 遇到这个条件, process, pop()所有 currNode.val > stack.peek(), 最后把currNode加进去.
@@ -3958,7 +3958,7 @@ maxTree题目本身的要求是: 大的在最中间, 左右两边的subTree也�
 - Monotonous Stack在这里帮助 keep/track of max value, 但是left/right tree的logic是MaxTree独有的.
 - left/right node的assignment是根据题目要求: 中间最大值分开后, 左边的是左边subTree, 右边的作为右边subTree.
 
-==== Previous notes
+#### Previous notes
 Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
 
 Stack里，最大的值在下面。利用此性质，有这样几个step:

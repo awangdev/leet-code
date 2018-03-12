@@ -26,7 +26,6 @@ Table of Contents
 * [Greedy](#greedy)
 * [Trie](#trie)
 
-
 ## Binary Tree
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|

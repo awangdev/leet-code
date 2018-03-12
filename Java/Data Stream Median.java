@@ -2,12 +2,12 @@ H
 1520749166
 tags: Heap, Design
 
-==== 原理
+#### 原理
 - 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.
 - 前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
 - 后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
 
-==== 注意
+#### 注意
 - 这里要首先定好, 哪一个queue是多存一个element的. 这里选maxHeap: maxHeap.size() == minHeap.size() + 1 || minHeap.size()
 - 必须先维护maxHeap里面有个元素, 否则null了会在比较大小时出问题.
 

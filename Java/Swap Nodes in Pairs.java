@@ -2,12 +2,12 @@ M
 1520834172
 tags: Linked List
 
-==== enumurate 
+#### enumurate 
 基本原理, 写出来, 然后连线:
 pre -> A -> B -> C -> ...
 需要一个虚拟 preNode做起始node, 不然无法把后面的node换到开头.
 
-==== 注意
+#### 注意
 用dummy = pre作为head前一格.
 用 `pre.next == null && pre.next.next` 来check是否为NULL.
 pre.next.next 保证了至少有一次swap.

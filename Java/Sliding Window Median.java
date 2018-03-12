@@ -6,12 +6,12 @@ Median还是用min-heap 和 max-heap. Time(logN)
 加/减: prioirtyQueue, log(n)
 findMedian: O(1)
 
-==== 思想
+#### 思想
 - 加一个数, 减一个数。
 - 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
 - 抽完balance一下
 
-==== 注意
+#### 注意
 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
 左边的maxHeap总有 x+1或者x个数字
 后边minHeap应该一直有x个数字

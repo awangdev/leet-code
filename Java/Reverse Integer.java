@@ -2,12 +2,12 @@ E
 1520830132
 tags: Math
 
-==== 方法1
+#### 方法1
 每次加上x%10，然后x不断减小～0
 注意处理MAX_VALUE, MIN_VALUE
 符号不重要, 直接处理, 也会保留.
 
-==== 方法2
+#### 方法2
 转换成String 然后 reverse
 Space O(n), time O(n)
 

@@ -2,7 +2,7 @@ H
 1520815993
 tags: Array, Hash Table, DP, Stack
 
-==== 方法1: monotonous stack
+#### 方法1: monotonous stack
 分解开来, 其实是'Largest Rectangle in Histogram', 只不过这里要自己model heights.
 一个2D array里面的rectangle, 最终也是用height * width做出来的.
 巧妙在于, 把每一行当做底边, 算出这个底边, 到顶部的height: 
@@ -11,7 +11,7 @@ tags: Array, Hash Table, DP, Stack
 
 如果看具体实例, 有些row似乎是白算的, 但是没有办法, 这是一个搜索的过程, 最终会比较出最优解.
 
-==== 方法2: DP
+#### 方法2: DP
 
 从边长为2的正方形看起，看左上角的那个点。   
 如何确定是个正方形？首先看左上点是不是1，然后看右边，右下，下面的点是不是1.   

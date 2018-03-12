@@ -2,7 +2,7 @@ H
 1520813180
 tags: Array, Stack
 
-==== Monotonous Stack
+#### Monotonous Stack
 重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
 在loop over indexes的时候:
 - 如果高度>= previous peek(), 那么对于那个peek, 就意味着, 往下走, 一直走高嘛, 之前的peek总可以继续抄底
@@ -13,7 +13,7 @@ tags: Array, Stack
 - 为什么用stack? 因为需要知道连续递增的peek, stack.peek() O(1), 好用
   而其实不用stack, 也可以用其他方式记录所有height, 只不过要 O(n)去找peek不方便
 
-==== 知识点
+#### 知识点
 - 理解monotonous stack 是如何被维护的
 - 维护monotonous stack 是题目需要, 而不是stack本身性质, 是一种借助 stack.peek() O(1)的巧妙用法.
 
