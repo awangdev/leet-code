@@ -1,33 +1,34 @@
-# Review Notes Sorted By Tag
+# Problems Sorted By Tag
 
 Table of Contents
 =================
-* [Binary Tree](#binary-tree)
-* [Two Pointers](#two-pointers)
-* [String](#string)
-* [Math](#math)
-* [Binary Search](#binary-search)
-* [DP](#dp)
-* [BFS](#bfs)
-* [Heap](#heap)
-* [Stack](#stack)
-* [Linked List](#linked-list)
-* [Array](#array)
-* [Design](#design)
-* [DFS](#dfs)
-* [Hash Table](#hash-table)
-* [Backtracking](#backtracking)
-* [Graph](#graph)
-* [Bit Manipulation](#bit-manipulation)
-* [Divide and Conquer](#divide-and-conquer)
-* [Union Find](#union-find)
-* [Sort](#sort)
-* [Tree](#tree)
-* [Greedy](#greedy)
-* [Trie](#trie)
-* [Two Pointer](#two-pointer)
+* [Binary Tree (2)](#binary-tree-2)
+* [Two Pointers (14)](#two-pointers-14)
+* [String (15)](#string-15)
+* [Math (12)](#math-12)
+* [Binary Search (17)](#binary-search-17)
+* [DP (41)](#dp-41)
+* [BFS (6)](#bfs-6)
+* [Heap (4)](#heap-4)
+* [Stack (9)](#stack-9)
+* [Linked List (7)](#linked-list-7)
+* [Array (37)](#array-37)
+* [Design (8)](#design-8)
+* [DFS (19)](#dfs-19)
+* [Hash Table (12)](#hash-table-12)
+* [Backtracking (8)](#backtracking-8)
+* [Graph (2)](#graph-2)
+* [Bit Manipulation (7)](#bit-manipulation-7)
+* [Divide and Conquer (4)](#divide-and-conquer-4)
+* [Union Find (7)](#union-find-7)
+* [Sort (3)](#sort-3)
+* [Tree (12)](#tree-12)
+* [Greedy (5)](#greedy-5)
+* [Trie (5)](#trie-5)
+* [Two Pointer (1)](#two-pointer-1)
 
-## Binary Tree
+
+## Binary Tree (2)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)|Medium|Java|[Binary Tree, DFS]||
@@ -35,7 +36,7 @@ Table of Contents
 
 
 
-## Two Pointers
+## Two Pointers (14)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)|Easy|Java|[String, Two Pointers]||
@@ -55,7 +56,7 @@ Table of Contents
 
 
 
-## String
+## String (15)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)|Easy|Java|[String]||
@@ -76,7 +77,7 @@ Table of Contents
 
 
 
-## Math
+## Math (12)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)|Easy|Java|[Math]||
@@ -94,7 +95,7 @@ Table of Contents
 
 
 
-## Binary Search
+## Binary Search (17)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)|Easy|Java|[Binary Search]||
@@ -117,7 +118,7 @@ Table of Contents
 
 
 
-## DP
+## DP (41)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[DP]||
@@ -164,7 +165,7 @@ Table of Contents
 
 
 
-## BFS
+## BFS (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math]||
@@ -176,7 +177,7 @@ Table of Contents
 
 
 
-## Heap
+## Heap (4)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)|Medium|Java|[Binary Search, Heap]||
@@ -186,7 +187,7 @@ Table of Contents
 
 
 
-## Stack
+## Stack (9)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)|Medium|Java|[Design, Stack, Tree]||
@@ -201,7 +202,7 @@ Table of Contents
 
 
 
-## Linked List
+## Linked List (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)|Medium|Java|[Linked List, Math]||
@@ -214,7 +215,7 @@ Table of Contents
 
 
 
-## Array
+## Array (37)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)|Easy|Java|[Array, Math]||
@@ -257,7 +258,7 @@ Table of Contents
 
 
 
-## Design
+## Design (8)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)|Medium|Java|[Design, Stack, Tree]||
@@ -271,7 +272,7 @@ Table of Contents
 
 
 
-## DFS
+## DFS (19)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)|Easy|Java|[DFS]||
@@ -296,7 +297,7 @@ Table of Contents
 
 
 
-## Hash Table
+## Hash Table (12)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)|Easy|Java|[Hash Table]||
@@ -314,7 +315,7 @@ Table of Contents
 
 
 
-## Backtracking
+## Backtracking (8)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)|Medium|Java|[Backtracking, String]||
@@ -328,7 +329,7 @@ Table of Contents
 
 
 
-## Graph
+## Graph (2)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)|Medium|Java|[BFS, DFS, Graph]||
@@ -336,7 +337,7 @@ Table of Contents
 
 
 
-## Bit Manipulation
+## Bit Manipulation (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)|Easy|Java|[Bit Manipulation, Math]||
@@ -349,7 +350,7 @@ Table of Contents
 
 
 
-## Divide and Conquer
+## Divide and Conquer (4)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer]||
@@ -359,7 +360,7 @@ Table of Contents
 
 
 
-## Union Find
+## Union Find (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)|Medium|Java|[Union Find]||
@@ -372,7 +373,7 @@ Table of Contents
 
 
 
-## Sort
+## Sort (3)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)|Medium|Java|[Array, Sort]||
@@ -381,7 +382,7 @@ Table of Contents
 
 
 
-## Tree
+## Tree (12)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)|Medium|Java|[DP, Tree]||
@@ -399,7 +400,7 @@ Table of Contents
 
 
 
-## Greedy
+## Greedy (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)|Medium|Java|[Greedy]||
@@ -410,7 +411,7 @@ Table of Contents
 
 
 
-## Trie
+## Trie (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)|Medium|Java|[Bit Manipulation, Trie]||
@@ -421,7 +422,7 @@ Table of Contents
 
 
 
-## Two Pointer
+## Two Pointer (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)|Medium|Java|[Array, Binary Search, Two Pointer]||

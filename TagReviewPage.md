@@ -1,33 +1,34 @@
-# Problems Sorted By Tag
+# Review Notes Sorted By Tag
 
 Table of Contents
 =================
-* [Binary Tree](#binary-tree)
-* [Two Pointers](#two-pointers)
-* [String](#string)
-* [Math](#math)
-* [Binary Search](#binary-search)
-* [DP](#dp)
-* [BFS](#bfs)
-* [Heap](#heap)
-* [Stack](#stack)
-* [Linked List](#linked-list)
-* [Array](#array)
-* [Design](#design)
-* [DFS](#dfs)
-* [Hash Table](#hash-table)
-* [Backtracking](#backtracking)
-* [Graph](#graph)
-* [Bit Manipulation](#bit-manipulation)
-* [Divide and Conquer](#divide-and-conquer)
-* [Union Find](#union-find)
-* [Sort](#sort)
-* [Tree](#tree)
-* [Greedy](#greedy)
-* [Trie](#trie)
-* [Two Pointer](#two-pointer)
+* [Binary Tree (2)](#binary-tree-2)
+* [Two Pointers (14)](#two-pointers-14)
+* [String (15)](#string-15)
+* [Math (12)](#math-12)
+* [Binary Search (17)](#binary-search-17)
+* [DP (41)](#dp-41)
+* [BFS (6)](#bfs-6)
+* [Heap (4)](#heap-4)
+* [Stack (9)](#stack-9)
+* [Linked List (7)](#linked-list-7)
+* [Array (37)](#array-37)
+* [Design (8)](#design-8)
+* [DFS (19)](#dfs-19)
+* [Hash Table (12)](#hash-table-12)
+* [Backtracking (8)](#backtracking-8)
+* [Graph (2)](#graph-2)
+* [Bit Manipulation (7)](#bit-manipulation-7)
+* [Divide and Conquer (4)](#divide-and-conquer-4)
+* [Union Find (7)](#union-find-7)
+* [Sort (3)](#sort-3)
+* [Tree (12)](#tree-12)
+* [Greedy (5)](#greedy-5)
+* [Trie (5)](#trie-5)
+* [Two Pointer (1)](#two-pointer-1)
 
-## Binary Tree
+
+## Binary Tree (2)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
       
 
@@ -58,7 +59,7 @@ Iterative:
 
 
 
-## Two Pointers
+## Two Pointers (14)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -300,7 +301,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 
 
-## String
+## String (15)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -483,7 +484,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 
-## Math
+## Math (12)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -623,10 +624,26 @@ Space O(n), time O(n)
 
 
 ---
+**11. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
+      
+
+#### s- qrt(int x)
+- 理解题意, 从[0, x]找一个可以m*m=x的值.
+- 注意, 如果找不到, 最后问考官该return一个什么值：按道理，因为return int, 会取整，那么return一个平方最close to x就可以.
+- 注意 mid 用 long, 因为很可能超过最大int.
+
+#### sqrt(double x)
+- 二分float number, 应该用精度来定义结尾.
+- 还是二分, 但是判断条件变成: while ( end - start > eps)
+- eps = 1e-12,也就是精度到1e-12
 
 
 
-## Binary Search
+---
+
+
+
+## Binary Search (17)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -702,18 +719,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 
 ---
-**6. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Easy
-      
-
-Binary Search
-
-根据isBadVersion的性质，判断还如何end=mid or start=mid.     
-isBadVersion 是有方向的嘛，一个点错了，后面全错。
-
-
-
----
-**7. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
+**6. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
       
 
 binary search. 
@@ -730,7 +736,7 @@ Note:
 
 
 ---
-**8. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium
+**7. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium
       
 
 傻做就O(n), 要更好就考虑O(logN).
@@ -743,7 +749,7 @@ Note:
 
 
 ---
-**9. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
+**8. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
       
 
 方法1:
@@ -766,7 +772,7 @@ Not done yet
 
 
 ---
-**10. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
+**9. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
       
 
 方法1:
@@ -783,7 +789,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 
 
 ---
-**11. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium
+**10. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium
       
 
 画图, 最小值被rotate之后, 变成array中间的最低谷.
@@ -795,7 +801,7 @@ O(nlogn)
 
 
 ---
-**12. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard
+**11. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard
       
 
 一个需要严谨思考的题目. 因为有duplicate, 会导致不断平移, 所以最终time complexity是O(n)
@@ -806,10 +812,102 @@ O(nlogn)
 
 
 ---
+**12. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
+      
+
+Should break down by mid row. More details:
+http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
+http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
+
+#### 方法1
+##### 基本原理
+我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
+根据这个点, 再往剩下两个方向移动
+
+1. 在中间的一行, 找到peak所在的y.
+
+2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+
+3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+
+4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+
+##### 剪枝/切分象限
+每次只是找到一个row/col里面的peak而已!
+
+找到这个点, 就等于把board切成了两半.
+
+然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
+
+切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+
+##### 时间复杂度
+每一个level都减一半
+T(n) = n + T(n/2) = n + n/2 + n/4 + ... + 1 = n(1 + 1/2 + .... + 1/n) = 2n = O(n)
+
+#### 方法2
+Binary Search
+还没有写 : )
+O(nLogN)
 
 
 
-## DP
+---
+**13. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
+      
+
+#### s- qrt(int x)
+- 理解题意, 从[0, x]找一个可以m*m=x的值.
+- 注意, 如果找不到, 最后问考官该return一个什么值：按道理，因为return int, 会取整，那么return一个平方最close to x就可以.
+- 注意 mid 用 long, 因为很可能超过最大int.
+
+#### sqrt(double x)
+- 二分float number, 应该用精度来定义结尾.
+- 还是二分, 但是判断条件变成: while ( end - start > eps)
+- eps = 1e-12,也就是精度到1e-12
+
+
+
+---
+**14. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Easy
+      
+
+Binary Search
+
+根据isBadVersion的性质，判断还如何end=mid or start=mid.     
+isBadVersion 是有方向的嘛，一个点错了，后面全错。
+
+
+
+---
+**15. [Wood Cut.java](https://github.com/awangdev/LintCode/blob/master/Java/Wood%20Cut.java)**      Level: Medium
+      
+
+二分的思想: 判断的是一个 validate() function, 而不是简单的'=='
+
+不需要sort! 为什么呢? 因为我们不是在given array上面二分, 我们是根据最大值在[0, max]上二分.
+
+Overall time: O(nLogM), where M = largest wood length
+
+
+
+---
+**16. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
+      
+
+- 注意不要思维定式: 以为mid是index
+- 这里mid其实是binary search on value [1, n] 的一个value.
+- 再次用到validate() function
+
+Time: O(nLogN)
+
+
+
+---
+
+
+
+## DP (41)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1494,7 +1592,7 @@ Init：
 
 
 
-## BFS
+## BFS (6)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -1622,7 +1720,7 @@ DFS, BFS都好理解,
 
 
 
-## Heap
+## Heap (4)
 **0. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
       
 
@@ -1710,7 +1808,7 @@ findMedian: O(1)
 
 
 
-## Stack
+## Stack (9)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -1919,7 +2017,7 @@ Stack里，最大的值在下面。利用此性质，有这样几个step:
 
 
 
-## Linked List
+## Linked List (7)
 **0. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
       
 
@@ -2043,7 +2141,7 @@ pre.next.next 保证了至少有一次swap.
 
 
 
-## Array
+## Array (37)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -2610,10 +2708,22 @@ Init：
 
 
 ---
+**36. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
+      
+
+- 注意不要思维定式: 以为mid是index
+- 这里mid其实是binary search on value [1, n] 的一个value.
+- 再次用到validate() function
+
+Time: O(nLogN)
 
 
 
-## Design
+---
+
+
+
+## Design (8)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -2764,7 +2874,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 
-## DFS
+## DFS (19)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy
       
 
@@ -3063,10 +3173,51 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 
 
 ---
+**18. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
+      
+
+Should break down by mid row. More details:
+http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
+http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
+
+#### 方法1
+##### 基本原理
+我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
+根据这个点, 再往剩下两个方向移动
+
+1. 在中间的一行, 找到peak所在的y.
+
+2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+
+3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+
+4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+
+##### 剪枝/切分象限
+每次只是找到一个row/col里面的peak而已!
+
+找到这个点, 就等于把board切成了两半.
+
+然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
+
+切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+
+##### 时间复杂度
+每一个level都减一半
+T(n) = n + T(n/2) = n + n/2 + n/4 + ... + 1 = n(1 + 1/2 + .... + 1/n) = 2n = O(n)
+
+#### 方法2
+Binary Search
+还没有写 : )
+O(nLogN)
 
 
 
-## Hash Table
+---
+
+
+
+## Hash Table (12)
 **0. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
 
@@ -3242,7 +3393,7 @@ Init：
 
 
 
-## Backtracking
+## Backtracking (8)
 **0. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
 
@@ -3387,7 +3538,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 
 
-## Graph
+## Graph (2)
 **0. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 
@@ -3431,7 +3582,7 @@ initialize map with (node, newNode)
 
 
 
-## Bit Manipulation
+## Bit Manipulation (7)
 **0. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
 
@@ -3541,7 +3692,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 
-## Divide and Conquer
+## Divide and Conquer (4)
 **0. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
 
@@ -3609,14 +3760,43 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 
 
 ---
-**3. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Review
+**3. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
-Calling findPeakElementI() internally, is INCORRECT
 Should break down by mid row. More details:
 http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
 http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
 
+#### 方法1
+##### 基本原理
+我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
+根据这个点, 再往剩下两个方向移动
+
+1. 在中间的一行, 找到peak所在的y.
+
+2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+
+3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+
+4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+
+##### 剪枝/切分象限
+每次只是找到一个row/col里面的peak而已!
+
+找到这个点, 就等于把board切成了两半.
+
+然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
+
+切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+
+##### 时间复杂度
+每一个level都减一半
+T(n) = n + T(n/2) = n + n/2 + n/4 + ... + 1 = n(1 + 1/2 + .... + 1/n) = 2n = O(n)
+
+#### 方法2
+Binary Search
+还没有写 : )
+O(nLogN)
 
 
 
@@ -3624,7 +3804,7 @@ http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
 
 
 
-## Union Find
+## Union Find (7)
 **0. [Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)**      Level: Medium
       
 
@@ -3720,7 +3900,7 @@ DFS, BFS都好理解,
 
 
 
-## Sort
+## Sort (3)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
 
@@ -3766,7 +3946,7 @@ HashMap
 
 
 
-## Tree
+## Tree (12)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -3982,7 +4162,7 @@ Stack里，最大的值在下面。利用此性质，有这样几个step:
 
 
 
-## Greedy
+## Greedy (5)
 **0. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
       
 
@@ -4070,7 +4250,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 
-## Trie
+## Trie (5)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
 
@@ -4182,6 +4362,22 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 这时, 试一试所有candidate: dfs
 
 能想到这种倒转的结构来存prefix candidates 在 Trie里面, 这个想法非常值得思考.
+
+
+
+---
+
+
+
+## Two Pointer (1)
+**0. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
+      
+
+- 注意不要思维定式: 以为mid是index
+- 这里mid其实是binary search on value [1, n] 的一个value.
+- 再次用到validate() function
+
+Time: O(nLogN)
 
 
 
