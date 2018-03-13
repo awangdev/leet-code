@@ -1,5 +1,5 @@
 E
-1518454051
+1520920514
 tags: Binary Search
 
 Binary Search
@@ -44,6 +44,28 @@ Binary search on [1 .... n]. If prev == good, curr == bad -> return curr index.
 */
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
+
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        if (n <= 0) {
+            return n;
+        }
+        int start = 0;
+        int end = n;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (isBadVersion(mid) && mid - 1 >= 1 && !isBadVersion(mid - 1)) {
+                return mid;
+            } else if (isBadVersion(mid)) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        return isBadVersion(start) ? start : end;
+    }
+}
+
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
         if (n <= 0) {
@@ -104,11 +126,6 @@ class Solution {
         return end;
     }
 }
-
-
-
-
-
 
 
 class Solution {

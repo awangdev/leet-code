@@ -156,7 +156,17 @@ Topological Sort
 
 Two Pointers
 
-Binary Search
+### Binary Search
+- 记得二分的template
+- 往往不会有个数组让我们二分, 但是同样是要去找满足某个条件的最大/最小值
+- 二分是个思想, 不是简单的array二分公式.
+- 有时候在index上二分, mid是index; 但是有时候, 会在数值上二分, 那么mid就是value, 忌讳不要死板地套用nums[mid]
+
+#### 二分思想
+- 找到可能的解的范围
+- 猜答案
+- 检验答案 (match/if/else ...)
+- 调整搜索范围
 
 ### Sort
 

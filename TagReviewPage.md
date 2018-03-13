@@ -25,7 +25,7 @@ Table of Contents
 * [Tree](#tree)
 * [Greedy](#greedy)
 * [Trie](#trie)
-
+* [Two Pointer](#two-pointer)
 
 ## Binary Tree
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
