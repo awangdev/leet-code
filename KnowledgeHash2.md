@@ -207,6 +207,7 @@ Hash Table
 - sb = new StringBuffer()
 - sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length(), sb.setCharAt(index, char)
 - Character.isDigit(x)
+- 遇到找string的相关问题: 考虑string的重复性
 
 ##### Bit Manipulation
 - Bit OR |, AND &, XOR ^
@@ -220,6 +221,7 @@ Hash Table
 - Because with '( )', make sure to surround the desired operation
 - & 0000 = clean up; | ABC = assign ABC
 - A^B=C, then A = B^C
+- bits可以用来表示不同的状态, 比如2bit可以表示4种状态: 00, 01, 10, 11
 
 ### DP
 

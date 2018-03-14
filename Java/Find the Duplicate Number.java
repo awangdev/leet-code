@@ -1,6 +1,6 @@
 M
 1520924985
-tags: Array, Two Pointer, Binary Search
+tags: Array, Two Pointers, Binary Search
 
 - 注意不要思维定式: 以为mid是index
 - 这里mid其实是binary search on value [1, n] 的一个value.

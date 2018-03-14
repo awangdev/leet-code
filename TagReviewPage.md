@@ -3,19 +3,19 @@
 Table of Contents
 =================
 * [Binary Tree (2)](#binary-tree-2)
-* [Two Pointers (14)](#two-pointers-14)
-* [String (15)](#string-15)
+* [Two Pointers (15)](#two-pointers-15)
+* [String (16)](#string-16)
 * [Math (12)](#math-12)
-* [Binary Search (17)](#binary-search-17)
+* [Binary Search (18)](#binary-search-18)
 * [DP (41)](#dp-41)
 * [BFS (6)](#bfs-6)
 * [Heap (4)](#heap-4)
 * [Stack (9)](#stack-9)
 * [Linked List (7)](#linked-list-7)
-* [Array (37)](#array-37)
+* [Array (38)](#array-38)
 * [Design (8)](#design-8)
 * [DFS (19)](#dfs-19)
-* [Hash Table (12)](#hash-table-12)
+* [Hash Table (13)](#hash-table-13)
 * [Backtracking (8)](#backtracking-8)
 * [Graph (2)](#graph-2)
 * [Bit Manipulation (7)](#bit-manipulation-7)
@@ -24,9 +24,7 @@ Table of Contents
 * [Sort (3)](#sort-3)
 * [Tree (12)](#tree-12)
 * [Greedy (5)](#greedy-5)
-* [Trie (5)](#trie-5)
-* [Two Pointer (1)](#two-pointer-1)
-
+* [Trie (6)](#trie-6)
 
 ## Binary Tree (2)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
@@ -59,7 +57,7 @@ Iterative:
 
 
 
-## Two Pointers (14)
+## Two Pointers (15)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -298,10 +296,22 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 
 ---
+**14. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
+      
+
+- 注意不要思维定式: 以为mid是index
+- 这里mid其实是binary search on value [1, n] 的一个value.
+- 再次用到validate() function
+
+Time: O(nLogN)
 
 
 
-## String (15)
+---
+
+
+
+## String (16)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -481,6 +491,35 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 ---
+**15. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
+      
+
+Obvious的做法是全部试一遍, 判断, 变成 O(n^2) * O(m) = O(mn^2). O(m): isPalindrome() time.
+
+当然不行了, 那就看是O(nlogN), 还是O(n)?
+
+#### 方法1: Hash Table + Palindrome的性质. 复合型.
+O(mn)
+
+##### 思路
+- 每一个word, 都可以拆分成 front + mid + end. 如果这个word + 其他word可以组成palindrome,那就是说
+- 砍掉 (mid+end), front.reverse() 应该存在 words[] 里面.
+- 砍掉 (front+mid), end.reverse() 应该存在 words[] 里面.
+- 我们用HashMap存所有的<word, index>, 然后reverse, 找配对就好.
+
+##### Corner case
+- 如果有 empty string "", 那么它跟任何一个palindrome word, 都可以配对, 并且根据位置前后变换, 凑成2份 distinct indexes.
+- 这样就有了那个 `if (reverseEnd.equals("")) {...}` 的logic.
+- 注意: 虽然在处理砍头/砍尾的两个 for loop里面都在根据 empty string 重复记录, 
+  但因为 "" 自己本身不能作为起点, 所以overall只会在被其他palindrome配对时记录一次.
+
+
+#### 方法2: Trie
+还要做一下那.
+
+
+
+---
 
 
 
@@ -643,7 +682,7 @@ Space O(n), time O(n)
 
 
 
-## Binary Search (17)
+## Binary Search (18)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -697,7 +736,24 @@ O(n log n)? 还没有做. 是否for loop里面用binary search?
 
 
 ---
-**4. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review
+**4. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
+      
+
+#### 方法1: Binary Search
+- 根据: 每个人花的多少时间(time)来做binary search: 每个人花多久时间, 可以在K个人之内, 用最少的时间完成?
+- time variable的范围不是index, 也不是page大小. 而是[minPage, pageSum]
+- validation 的时候注意3种情况: 人够用 k>=0, 人不够所以结尾减成k<0, 还有一种是time(每个人最多花的时间)小于当下的页面, return -1
+- O(nLogM). n = pages.length; m = sum of pages.
+
+#### 方法2: DP
+k个人copy完i本书.
+定义Integer.MAX_VALUE的地方需要注意.
+Review: 为什么有i level的iteration? Chapter4.1
+
+
+
+---
+**5. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review
       
 
 Binary找sqrt. 基本 mid+1, mid-1 template.
@@ -706,7 +762,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 
 ---
-**5. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
+**6. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
       
 
 方法1:
@@ -719,7 +775,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 
 ---
-**6. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
+**7. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
       
 
 binary search. 
@@ -736,7 +792,7 @@ Note:
 
 
 ---
-**7. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium
+**8. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium
       
 
 傻做就O(n), 要更好就考虑O(logN).
@@ -749,7 +805,7 @@ Note:
 
 
 ---
-**8. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
+**9. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
       
 
 方法1:
@@ -772,7 +828,7 @@ Not done yet
 
 
 ---
-**9. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
+**10. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
       
 
 方法1:
@@ -789,7 +845,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 
 
 ---
-**10. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium
+**11. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium
       
 
 画图, 最小值被rotate之后, 变成array中间的最低谷.
@@ -801,7 +857,7 @@ O(nlogn)
 
 
 ---
-**11. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard
+**12. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard
       
 
 一个需要严谨思考的题目. 因为有duplicate, 会导致不断平移, 所以最终time complexity是O(n)
@@ -812,7 +868,7 @@ O(nlogn)
 
 
 ---
-**12. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
+**13. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
 Should break down by mid row. More details:
@@ -853,7 +909,7 @@ O(nLogN)
 
 
 ---
-**13. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
+**14. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
       
 
 #### s- qrt(int x)
@@ -869,7 +925,7 @@ O(nLogN)
 
 
 ---
-**14. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Easy
+**15. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Easy
       
 
 Binary Search
@@ -880,7 +936,7 @@ isBadVersion 是有方向的嘛，一个点错了，后面全错。
 
 
 ---
-**15. [Wood Cut.java](https://github.com/awangdev/LintCode/blob/master/Java/Wood%20Cut.java)**      Level: Medium
+**16. [Wood Cut.java](https://github.com/awangdev/LintCode/blob/master/Java/Wood%20Cut.java)**      Level: Medium
       
 
 二分的思想: 判断的是一个 validate() function, 而不是简单的'=='
@@ -892,7 +948,7 @@ Overall time: O(nLogM), where M = largest wood length
 
 
 ---
-**16. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
+**17. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
       
 
 - 注意不要思维定式: 以为mid是index
@@ -1324,9 +1380,16 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 
 
 ---
-**24. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Review
+**24. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
       
 
+#### 方法1: Binary Search
+- 根据: 每个人花的多少时间(time)来做binary search: 每个人花多久时间, 可以在K个人之内, 用最少的时间完成?
+- time variable的范围不是index, 也不是page大小. 而是[minPage, pageSum]
+- validation 的时候注意3种情况: 人够用 k>=0, 人不够所以结尾减成k<0, 还有一种是time(每个人最多花的时间)小于当下的页面, return -1
+- O(nLogM). n = pages.length; m = sum of pages.
+
+#### 方法2: DP
 k个人copy完i本书.
 定义Integer.MAX_VALUE的地方需要注意.
 Review: 为什么有i level的iteration? Chapter4.1
@@ -2141,7 +2204,7 @@ pre.next.next 保证了至少有一次swap.
 
 
 
-## Array (37)
+## Array (38)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -2720,6 +2783,28 @@ Time: O(nLogN)
 
 
 ---
+**37. [Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)**      Level: Medium
+      
+
+#### basic
+- 简单的implementation, 把count function写清楚就好.
+- time: O(mn), extra space: O(mn)
+- 注意结尾要一个个board[i][j]copy
+
+#### follow up
+unlimited border? 可能需要分割board. 用大框分割, 每次换行的时候, 重复计算2行就好了. see details below.
+
+#### improvement: do it in place!
+- time: O(mn), extra space: O(1)
+- bit manipulation: 用第二个bit来存previous value.
+- 因为我们只考虑 0 和 1 而已, 所以可以这样取巧. 但是并不scalable.
+- 如果需要存multiple state, 可能需要移动更多位, 或者用一个 state map
+- 注意 bit manipulation 的细节: <<1, >>1, 还有 mast的用法: |, & 
+
+
+
+
+---
 
 
 
@@ -3217,7 +3302,7 @@ O(nLogN)
 
 
 
-## Hash Table (12)
+## Hash Table (13)
 **0. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
 
@@ -3386,6 +3471,35 @@ DP就是根据这个特征想出来。dp[i,j]: 从右下往左上推算，包括
 
 Init：   
    把右边，下边两个边缘init一遍，存matrix在这两条边上的值，代表的意思也就是dp[i][j]在这些点上的初始值:变成为1 or 0.  
+
+
+
+---
+**12. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
+      
+
+Obvious的做法是全部试一遍, 判断, 变成 O(n^2) * O(m) = O(mn^2). O(m): isPalindrome() time.
+
+当然不行了, 那就看是O(nlogN), 还是O(n)?
+
+#### 方法1: Hash Table + Palindrome的性质. 复合型.
+O(mn)
+
+##### 思路
+- 每一个word, 都可以拆分成 front + mid + end. 如果这个word + 其他word可以组成palindrome,那就是说
+- 砍掉 (mid+end), front.reverse() 应该存在 words[] 里面.
+- 砍掉 (front+mid), end.reverse() 应该存在 words[] 里面.
+- 我们用HashMap存所有的<word, index>, 然后reverse, 找配对就好.
+
+##### Corner case
+- 如果有 empty string "", 那么它跟任何一个palindrome word, 都可以配对, 并且根据位置前后变换, 凑成2份 distinct indexes.
+- 这样就有了那个 `if (reverseEnd.equals("")) {...}` 的logic.
+- 注意: 虽然在处理砍头/砍尾的两个 for loop里面都在根据 empty string 重复记录, 
+  但因为 "" 自己本身不能作为起点, 所以overall只会在被其他palindrome配对时记录一次.
+
+
+#### 方法2: Trie
+还要做一下那.
 
 
 
@@ -4250,7 +4364,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 
-## Trie (5)
+## Trie (6)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
 
@@ -4366,18 +4480,31 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 
 ---
-
-
-
-## Two Pointer (1)
-**0. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
+**5. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
       
 
-- 注意不要思维定式: 以为mid是index
-- 这里mid其实是binary search on value [1, n] 的一个value.
-- 再次用到validate() function
+Obvious的做法是全部试一遍, 判断, 变成 O(n^2) * O(m) = O(mn^2). O(m): isPalindrome() time.
 
-Time: O(nLogN)
+当然不行了, 那就看是O(nlogN), 还是O(n)?
+
+#### 方法1: Hash Table + Palindrome的性质. 复合型.
+O(mn)
+
+##### 思路
+- 每一个word, 都可以拆分成 front + mid + end. 如果这个word + 其他word可以组成palindrome,那就是说
+- 砍掉 (mid+end), front.reverse() 应该存在 words[] 里面.
+- 砍掉 (front+mid), end.reverse() 应该存在 words[] 里面.
+- 我们用HashMap存所有的<word, index>, 然后reverse, 找配对就好.
+
+##### Corner case
+- 如果有 empty string "", 那么它跟任何一个palindrome word, 都可以配对, 并且根据位置前后变换, 凑成2份 distinct indexes.
+- 这样就有了那个 `if (reverseEnd.equals("")) {...}` 的logic.
+- 注意: 虽然在处理砍头/砍尾的两个 for loop里面都在根据 empty string 重复记录, 
+  但因为 "" 自己本身不能作为起点, 所以overall只会在被其他palindrome配对时记录一次.
+
+
+#### 方法2: Trie
+还要做一下那.
 
 
 

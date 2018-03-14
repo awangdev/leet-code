@@ -3070,9 +3070,16 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 
 
 ---
-**236. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Review
+**236. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
       
 
+#### 方法1: Binary Search
+- 根据: 每个人花的多少时间(time)来做binary search: 每个人花多久时间, 可以在K个人之内, 用最少的时间完成?
+- time variable的范围不是index, 也不是page大小. 而是[minPage, pageSum]
+- validation 的时候注意3种情况: 人够用 k>=0, 人不够所以结尾减成k<0, 还有一种是time(每个人最多花的时间)小于当下的页面, return -1
+- O(nLogM). n = pages.length; m = sum of pages.
+
+#### 方法2: DP
 k个人copy完i本书.
 定义Integer.MAX_VALUE的地方需要注意.
 Review: 为什么有i level的iteration? Chapter4.1
@@ -4403,6 +4410,57 @@ Overall time: O(nLogM), where M = largest wood length
 - 再次用到validate() function
 
 Time: O(nLogN)
+
+
+
+---
+**317. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
+      
+
+Obvious的做法是全部试一遍, 判断, 变成 O(n^2) * O(m) = O(mn^2). O(m): isPalindrome() time.
+
+当然不行了, 那就看是O(nlogN), 还是O(n)?
+
+#### 方法1: Hash Table + Palindrome的性质. 复合型.
+O(mn)
+
+##### 思路
+- 每一个word, 都可以拆分成 front + mid + end. 如果这个word + 其他word可以组成palindrome,那就是说
+- 砍掉 (mid+end), front.reverse() 应该存在 words[] 里面.
+- 砍掉 (front+mid), end.reverse() 应该存在 words[] 里面.
+- 我们用HashMap存所有的<word, index>, 然后reverse, 找配对就好.
+
+##### Corner case
+- 如果有 empty string "", 那么它跟任何一个palindrome word, 都可以配对, 并且根据位置前后变换, 凑成2份 distinct indexes.
+- 这样就有了那个 `if (reverseEnd.equals("")) {...}` 的logic.
+- 注意: 虽然在处理砍头/砍尾的两个 for loop里面都在根据 empty string 重复记录, 
+  但因为 "" 自己本身不能作为起点, 所以overall只会在被其他palindrome配对时记录一次.
+
+
+#### 方法2: Trie
+还要做一下那.
+
+
+
+---
+**318. [Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)**      Level: Medium
+      
+
+#### basic
+- 简单的implementation, 把count function写清楚就好.
+- time: O(mn), extra space: O(mn)
+- 注意结尾要一个个board[i][j]copy
+
+#### follow up
+unlimited border? 可能需要分割board. 用大框分割, 每次换行的时候, 重复计算2行就好了. see details below.
+
+#### improvement: do it in place!
+- time: O(mn), extra space: O(1)
+- bit manipulation: 用第二个bit来存previous value.
+- 因为我们只考虑 0 和 1 而已, 所以可以这样取巧. 但是并不scalable.
+- 如果需要存multiple state, 可能需要移动更多位, 或者用一个 state map
+- 注意 bit manipulation 的细节: <<1, >>1, 还有 mast的用法: |, & 
+
 
 
 
