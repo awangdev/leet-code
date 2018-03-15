@@ -1,21 +1,25 @@
 M
+1521098587
+tags: Array, Interval, Sweep Line, Sort
 
-把Interval拆分成数轴上的Point：    
-起飞mark 1   
-降落mark -1     
-用PriorityQueue排序， loop through queue, 计算(起飞+降落)值可能有的max。
+#### Sweep Line
+- 把Interval拆分成数轴上的Point 
+- 起飞mark 1   
+- 降落mark -1     
+- 用PriorityQueue排序， loop through queue, 计算(起飞+降落)值可能有的max。
 
-注意:
-同时起飞和降落，就是 1 - 1 = 0. 所以在while loop里面有第二个while loop，    
-当坐标x重合时，在这里做完所有x点的加减，然后再比较 max。     
-这避免了错误多count，或者少count
+#### 注意
+- 同时起飞和降落，就是 1 - 1 = 0. 所以在while loop里面有第二个while loop，    
+- 当坐标x重合时，在这里做完所有x点的加减，然后再比较 max。     
+- 这避免了错误多count，或者少count
 
 ```
 
 
 /*
 http://www.lintcode.com/en/problem/number-of-airplanes-in-the-sky/
-Given an interval list which are flying and landing time of the flight. How many airplanes are on the sky at most?
+Given an interval list which are flying and landing time of the flight. 
+How many airplanes are on the sky at most?
 
 Example
 For interval list [[1,10],[2,3],[5,8],[4,7]], return 3

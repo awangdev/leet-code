@@ -2,13 +2,14 @@ E
 1519797926
 tags: Binary Tree, DFS
 
-方法1：   
+返回所有root-to-leaf path
+
+#### 方法1：   
 Recursive:分叉. dfs.
 
-方法2:
-Iterative:    
-   非递归练习了一下   
-   因为要每次切短list, 所以再加了一个Stack 来存level   
+#### 方法2:
+- Iterative, 非递归练习了一下   
+- 因为要每次切短list, 所以再加了一个Stack 来存level   
 
 
 ```

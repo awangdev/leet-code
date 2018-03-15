@@ -2,10 +2,16 @@ E
 1516344636
 tags: Two Pointers, String
 
-方法1: two pointer. 前后两个指针, 在while loop里面跑. 注意 i<j, 一旦相遇, 就break. 找到合适的, 就做swap.
-StringBuffer可以 sb.setCharAt()记得用.
+vowels: 元音字母. 要求reverse所有元音字母.
 
-方法2: 拿出所有vowels, 反过来放进去. O(n)
+##### 方法1: two pointer.
+- 前后两个指针, 在while loop里面跑.
+- 注意 i<j, 一旦相遇, 就break.
+- 找到合适的, 就做swap.
+- StringBuffer可以 sb.setCharAt()记得用.
+- O(n)
+##### 方法2:
+拿出所有vowels, 反过来放进去. O(n)
 
 ```
 /**

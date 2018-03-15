@@ -2,7 +2,7 @@ M
 1519794111
 tags: Binary Tree, DFS
 
-分析题意后, 按照题意:
+分析题意后, 按照题意: Flatten it with in-place order
 1. reserve right child
 2. DFS flatten部分
 3. 移花接木
