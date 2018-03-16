@@ -1,35 +1,5 @@
 # Problems Sorted By Tag
 
-Table of Contents
-=================
-* [Two Pointers (15)](#two-pointers-15)
-* [String (16)](#string-16)
-* [Math (12)](#math-12)
-* [DP (41)](#dp-41)
-* [BFS (6)](#bfs-6)
-* [Segment Tree (1)](#segment-tree-1)
-* [Design (8)](#design-8)
-* [DFS (19)](#dfs-19)
-* [Hash Table (13)](#hash-table-13)
-* [Backtracking (8)](#backtracking-8)
-* [Bit Manipulation (7)](#bit-manipulation-7)
-* [Divide and Conquer (5)](#divide-and-conquer-5)
-* [Sort (6)](#sort-6)
-* [Tree (12)](#tree-12)
-* [Greedy (6)](#greedy-6)
-* [Trie (6)](#trie-6)
-* [Binary Tree (2)](#binary-tree-2)
-* [Binary Search (19)](#binary-search-19)
-* [Heap (6)](#heap-6)
-* [Stack (9)](#stack-9)
-* [Linked List (7)](#linked-list-7)
-* [Array (40)](#array-40)
-* [Binary Indexed Tree (1)](#binary-indexed-tree-1)
-* [Graph (2)](#graph-2)
-* [Union Find (7)](#union-find-7)
-* [Sweep Line (4)](#sweep-line-4)
-* [Interval (1)](#interval-1)
-
 ## Two Pointers (15)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|

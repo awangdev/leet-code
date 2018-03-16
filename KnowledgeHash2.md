@@ -139,6 +139,15 @@ Segment Tree
 - 查找前缀
 
 
+### Deque
+- linear collection that supports insertion and removal at both ends. Pronounced 'deck'
+- It's a queue && stack
+- new ArrayDeque<Integer>()
+- head/top: offerFirst(), pollFirst(), peekFirst()
+- tail/bottom: offerLast(), pollLast(), peekLast() 
+- 双端queue: 维护一个候选可能的最大值集合
+- ex: Sliding WIndow Maximum
+
 ### Graph
 
 Graph
@@ -163,10 +172,12 @@ Two Pointers
 - 有时候在index上二分, mid是index; 但是有时候, 会在数值上二分, 那么mid就是value, 忌讳不要死板地套用nums[mid]
 
 #### 二分思想
+- 按值二分，需要怎么二分性
 - 找到可能的解的范围
 - 猜答案
 - 检验答案 (match/if/else ...)
 - 调整搜索范围
+- Find Peak Element II
 
 ### Sort
 
@@ -307,6 +318,13 @@ Design
 ##### Windows Problem
 - 加一个数
 - 删一个数
+
+##### Sweep Line
+- 见到区间需要排序就可以考虑扫描线
+- 事件往往是以区间的形式存在
+- 区间两端代表事件的开始和结束
+- 需要排序
+- Meeting Room I, II
 
 
 

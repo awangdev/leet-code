@@ -7,25 +7,27 @@ Table of Contents
 * [Math (12)](#math-12)
 * [DP (41)](#dp-41)
 * [BFS (6)](#bfs-6)
+* [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
 * [DFS (19)](#dfs-19)
 * [Hash Table (13)](#hash-table-13)
 * [Backtracking (8)](#backtracking-8)
 * [Bit Manipulation (7)](#bit-manipulation-7)
-* [Divide and Conquer (4)](#divide-and-conquer-4)
-* [Sort (5)](#sort-5)
+* [Divide and Conquer (5)](#divide-and-conquer-5)
+* [Sort (6)](#sort-6)
 * [Tree (12)](#tree-12)
-* [Greedy (5)](#greedy-5)
+* [Greedy (6)](#greedy-6)
 * [Trie (6)](#trie-6)
 * [Binary Tree (2)](#binary-tree-2)
 * [Binary Search (19)](#binary-search-19)
-* [Heap (4)](#heap-4)
+* [Heap (6)](#heap-6)
 * [Stack (9)](#stack-9)
 * [Linked List (7)](#linked-list-7)
 * [Array (40)](#array-40)
+* [Binary Indexed Tree (1)](#binary-indexed-tree-1)
 * [Graph (2)](#graph-2)
 * [Union Find (7)](#union-find-7)
-* [Sweep Line (2)](#sweep-line-2)
+* [Sweep Line (4)](#sweep-line-4)
 * [Interval (1)](#interval-1)
 
 ## Two Pointers (15)
@@ -1493,6 +1495,36 @@ DFS, BFS都好理解,
 
 
 
+## Segment Tree (1)
+**0. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+      
+
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
+
+#### 方法1: Sweep Line, Time O(nLogN), Space O(n)
+original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+
+sweep line:
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
+
+#### 方法2: Segment Tree
+REVIEW
+
+Binary Indexed Tree?
+
+HashHeap?
+
+
+
+---
+
+
+
 ## Design (8)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
@@ -2448,7 +2480,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 
-## Divide and Conquer (4)
+## Divide and Conquer (5)
 **0. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
 
@@ -2557,10 +2589,36 @@ O(nLogN)
 
 
 ---
+**4. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+      
+
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
+
+#### 方法1: Sweep Line, Time O(nLogN), Space O(n)
+original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+
+sweep line:
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
+
+#### 方法2: Segment Tree
+REVIEW
+
+Binary Indexed Tree?
+
+HashHeap?
 
 
 
-## Sort (5)
+---
+
+
+
+## Sort (6)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
 
@@ -2634,6 +2692,21 @@ HashMap
 - 同时起飞和降落，就是 1 - 1 = 0. 所以在while loop里面有第二个while loop，    
 - 当坐标x重合时，在这里做完所有x点的加减，然后再比较 max。     
 - 这避免了错误多count，或者少count
+
+
+
+---
+**5. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
+      
+
+给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
+
+#### 方法1
+- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
+- 跟 Number of Airpline in the sky是同一道题
+
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
+也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 
 
@@ -2857,7 +2930,7 @@ Stack里，最大的值在下面。利用此性质，有这样几个step:
 
 
 
-## Greedy (5)
+## Greedy (6)
 **0. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
       
 
@@ -2938,6 +3011,21 @@ Double sequence DP. 与regular expression 很像.
 注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
 注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
     同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+
+
+
+---
+**5. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
+      
+
+给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
+
+#### 方法1
+- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
+- 跟 Number of Airpline in the sky是同一道题
+
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
+也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 
 
@@ -3428,7 +3516,7 @@ Time: O(nLogN)
 
 
 
-## Heap (4)
+## Heap (6)
 **0. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
       
 
@@ -3509,6 +3597,47 @@ findMedian: O(1)
 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
 左边的maxHeap总有 x+1或者x个数字
 后边minHeap应该一直有x个数字
+
+
+
+---
+**4. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
+      
+
+给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
+
+#### 方法1
+- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
+- 跟 Number of Airpline in the sky是同一道题
+
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
+也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+
+
+
+---
+**5. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+      
+
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
+
+#### 方法1: Sweep Line, Time O(nLogN), Space O(n)
+original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+
+sweep line:
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
+
+#### 方法2: Segment Tree
+REVIEW
+
+Binary Indexed Tree?
+
+HashHeap?
 
 
 
@@ -4492,6 +4621,36 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 
 
+## Binary Indexed Tree (1)
+**0. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+      
+
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
+
+#### 方法1: Sweep Line, Time O(nLogN), Space O(n)
+original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+
+sweep line:
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
+
+#### 方法2: Segment Tree
+REVIEW
+
+Binary Indexed Tree?
+
+HashHeap?
+
+
+
+---
+
+
+
 ## Graph (2)
 **0. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
@@ -4632,7 +4791,7 @@ DFS, BFS都好理解,
 
 
 
-## Sweep Line (2)
+## Sweep Line (4)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy
       
 
@@ -4664,6 +4823,47 @@ DFS, BFS都好理解,
 - 同时起飞和降落，就是 1 - 1 = 0. 所以在while loop里面有第二个while loop，    
 - 当坐标x重合时，在这里做完所有x点的加减，然后再比较 max。     
 - 这避免了错误多count，或者少count
+
+
+
+---
+**2. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
+      
+
+给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
+
+#### 方法1
+- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
+- 跟 Number of Airpline in the sky是同一道题
+
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
+也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+
+
+
+---
+**3. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+      
+
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
+
+#### 方法1: Sweep Line, Time O(nLogN), Space O(n)
+original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+
+sweep line:
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
+
+#### 方法2: Segment Tree
+REVIEW
+
+Binary Indexed Tree?
+
+HashHeap?
 
 
 

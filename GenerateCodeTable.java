@@ -95,7 +95,7 @@ public class GenerateCodeTable {
             gct.printTable("ReviewPage.md", outputContent);
         } else if (args != null && args[0].contains("tags")) {//Wordpress
             outputContent = gct.generateTagREADME(listOfFiles);
-            gct.printTable("TagsREADME.txt", outputContent);
+            gct.printTable("TagREADME.md", outputContent);
         } else if (args != null && args[0].contains("all")) {
             outputContent = gct.generateREADME(listOfFiles);
             gct.printTable("README.md", outputContent);
@@ -104,7 +104,7 @@ public class GenerateCodeTable {
             outputContent = gct.generateReviewPage(listOfFiles);
             gct.printTable("ReviewPage.md", outputContent);
             outputContent = gct.generateTagREADME(listOfFiles);
-            gct.printTable("TagsREADME.md", outputContent);
+            gct.printTable("TagREADME.md", outputContent);
             outputContent = gct.generateTagReviewPage(listOfFiles);
             gct.printTable("TagReviewPage.md", outputContent);
         }

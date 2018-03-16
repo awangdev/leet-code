@@ -1,20 +1,126 @@
-H
+R
+1521176156
+tags: Divide and Conquer, Heap, Binary Indexed Tree, Segment Tree, Sweep Line
 
-又叫做skyline
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
 
-看网上的解答做， 思路很漂亮。 （http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt）
+#### 方法1: Sweep Line, Time O(nLogN), Space O(n)
+original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
 
-跟scan line的approach类似:      
-1. 把所有点分出来， 每个点有index x, 再加上一个height.         
-2. 在这个list上排序，根据index和height（注意用负数标记building start point,这样保证start在end 之前。）. 叫做 heightPoints            
-3. 在processs时候用max-heap (reversed priorityqueue)，在ieteraete heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
-    处理1：因为start,end的height都存在了heightPoints里面，这里就是用来check end of bulding的，然后把height 从queue里面remove.
-    处理2：重复x 上面的许多height?  priorityqueue给了我们最高，这okay了；那么其他的重复点，用一个int prev来mark之前做过的，一旦重复，跳过。
+sweep line:
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
 
-想法非常natural。 大题目，脑子乱。    
-看了解答再去想，挺naturally doable的。
+#### 方法2: Segment Tree
+REVIEW
+
+Binary Indexed Tree?
+
+HashHeap?
 
 ```
+/*
+LeetCode:
+A city's skyline is the outer contour of the silhouette formed by all the buildings in that city
+when viewed from a distance. Now suppose you are given the locations and height of all the buildings
+as shown on a cityscape photo (Figure A), write a program to output the skyline formed by these buildings
+collectively (Figure B).
+
+The geometric information of each building is represented by a triplet of integers [Li, Ri, Hi],
+where Li and Ri are the x coordinates of the left and right edge of the ith building, respectively,
+and Hi is its height. It is guaranteed that 0 ≤ Li, Ri ≤ INT_MAX, 0 < Hi ≤ INT_MAX, and Ri - Li > 0.
+You may assume all buildings are perfect rectangles grounded on an absolutely flat surface at height 0.
+
+For instance, the dimensions of all buildings in Figure A are recorded as:
+[ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ] .
+
+The output is a list of "key points" (red dots in Figure B) in the format of
+[ [x1,y1], [x2, y2], [x3, y3], ... ] that uniquely defines a skyline.
+A key point is the left endpoint of a horizontal line segment. Note that the last key point,
+where the rightmost building ends, is merely used to mark the termination of the skyline,
+and always has zero height. Also, the ground in between any two adjacent buildings
+should be considered part of the skyline contour.
+
+For instance, the skyline in Figure B should be represented as:
+[ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ].
+
+Notes:
+
+The number of buildings in any input list is guaranteed to be in the range [0, 10000].
+The input list is already sorted in ascending order by the left x position Li.
+The output list must be sorted by the x position.
+There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
+
+*/
+
+/*
+Thoughts:
+Sweep Line. 
+1. Store the building start/end points into a Point object.
+2. PriorityQueue on the Point: height low -> high && position lowX -> highX
+3. Loop over PointQueue, and store the heights in a separate maxQueue
+4. Based on the currPeak and prevPeak to detect diff: when there is a diff, there is a recording point.
+   Keeping add start height into the maxHeap, and remove end points whenever facing one.
+
+*/
+class Solution {
+    class Point {
+        int pos;
+        int height;
+        public Point(int pos, int height) {
+            this.pos = pos;
+            this.height = height;
+        }
+    }
+    public List<int[]> getSkyline(int[][] buildings) {
+        List<int[]> rst = new ArrayList<>();
+        if (buildings == null || buildings.length == 0 || buildings[0] == null || buildings[0].length == 0) {
+            return rst;
+        }
+        int m = buildings.length;
+        // Sort points(xPos, height, isStart:boolean) by height && xPos with queue
+        PriorityQueue<Point> queue = new PriorityQueue<Point>(new Comparator<Point>() {
+           public int compare(Point a, Point b) {
+               if (a.pos == b.pos) {
+                   return a.height - b.height;
+               } else {
+                   return a.pos - b.pos;
+               }
+           }
+        });
+        for (int i = 0; i < m; i++) {
+            queue.offer(new Point(buildings[i][0], -buildings[i][2]));
+            queue.offer(new Point(buildings[i][1], buildings[i][2]));
+        }
+        
+        // Mark height and calcualte the outline point.
+        PriorityQueue<Integer> maxHeightQueue = new PriorityQueue<>(Collections.reverseOrder());
+        maxHeightQueue.offer(0);
+        int prevPeak = maxHeightQueue.peek();
+
+        while (!queue.isEmpty()) {
+            Point point = queue.poll();
+            if (point.height < 0) {
+                maxHeightQueue.offer(-point.height);
+            } else { // is end point of a building
+                maxHeightQueue.remove(point.height);
+            }
+            
+            int currPeak = maxHeightQueue.peek();
+            if (currPeak != prevPeak) {
+                rst.add(new int[]{point.pos, currPeak});
+                prevPeak = currPeak;
+            }
+        }
+        return rst;
+    }
+}
+
+
 /*
 LintCode description:
 Given N buildings in a x-axis，each building is a rectangle and can be represented by a triple (start, end, height)，
