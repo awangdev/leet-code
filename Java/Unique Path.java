@@ -1,11 +1,20 @@
 M
-1516585226
+1521312479
 tags: Array, DP
 
-可以DP.计数DP.
-注意方程式前两位置加在一起: 前两种情况没有overlap, 也不会缺情况.
-注意initialization, 归1.
-需要initialize的原因是,也是一个reminder: 在方程中会出现-1index
+2D array, 算走到最右下角，有多少种方式.
+
+##### DP
+- 计数DP.注意方程式前两位置加在一起: 前两种情况没有overlap, 也不会缺情况.
+- 注意initialization, 归1.
+- 需要initialize的原因是,也是一个reminder: 在方程中会出现-1index
+- Of course, row i = 0, or col j = 0, there is only 1 way to access
+- time O(mn), space O(mn)
+
+##### 滚动数组
+- [i] 只跟 [i - 1] 有关系, 用 curr/prev 建立滚动数组.
+- space O(n) 优化空间
+
 
 ```
 /*
@@ -30,6 +39,50 @@ Tags Expand
 Array Dynamic Programming
 
 */
+
+
+
+/*
+Thoughts:
+Count # of ways to reach bottom-right: it depends on top/left
+dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+Init:
+For all i == 0, there is only 1 way to reach each spot: can only move down or right.
+
+Rolling Array:
+1st dimension [i] only deals with [i - 1].
+Build rolling array to save space: O(n)
+*/
+class Solution {
+    public int uniquePaths(int m, int n) {
+        if (m <= 0 || n <= 0) {
+            return 0;
+        }
+        int[][] dp = new int[2][n];
+        int curr = 0;
+        int prev = 0;
+        // Init j = 0 col
+        for (int i = 0; i < 2; i++) {
+            dp[i][0] = 1;
+        }
+        // Init i = 0 row
+        for (int j = 0; j < n; j++) {
+            dp[curr][j] = 1;
+        }
+        
+        // Calcualte the dp[i][j]
+        for (int i = 1; i < m; i++) {
+            prev = curr;
+            curr = 1 - prev;
+            for (int j = 1; j < n; j++) {
+                dp[curr][j] = dp[prev][j] + dp[curr][j - 1];
+            }
+        }
+        
+        return dp[curr][n - 1];
+    }
+}
+
 
 /*
 Thoughts:
