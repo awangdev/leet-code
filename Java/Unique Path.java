@@ -1,6 +1,6 @@
 M
 1521312479
-tags: Array, DP
+tags: Array, DP, Coordinate DP
 
 2D array, 算走到最右下角，有多少种方式.
 
