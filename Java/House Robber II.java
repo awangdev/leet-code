@@ -1,15 +1,20 @@
 M
 1517368869
-tags: DP
+tags: DP, Sequence DP
 
-和House Robber I 类似,  DP. 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
+和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
 
-特别的是，末尾的last house 和 first house相连。这里就需要分别讨论两种情况:    
-1. 第一个房子被rob    
-2. 第一个房子没被rob   
+#### Sequence DP
+- 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
+- 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
 
-分出两个branch, 可以看做两种状态. 
-可以考虑用两个DP array, 也可以加一维度, 补充这个状态.
+#### 两个状态
+- 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
+- 可以考虑用两个DP array; 也可以加一dp维度, 补充这个状态.
+- 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
+
+#### Rolling array
+与House Robber I一样, 可以用%2 来操作rolling array
 
 ```
 /*
@@ -70,6 +75,40 @@ class Solution {
             }
         }
         return Math.max(dp[n - 1][0], dp[n - 1][1]);
+    }
+}
+/*
+Thougths:
+Rolling array:
+index [i] is only calculated based on prior [i - 1] and [i - 2].
+[i - 1] and [i - 2] can be distinguished by using %2.
+*/
+class Solution {
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        } else if (nums.length == 1) {
+            return nums[0];
+        }
+        int n = nums.length;
+        int[][] dp = new int[2][2];
+        // index i = 0, not robbed
+        dp[0][0] = 0;
+        dp[1][0] = nums[1];
+        // index i = 0, robbed
+        dp[0][1] = nums[0];
+        dp[1][1] = dp[0][1];
+        
+        for (int i = 2; i < n; i++) {
+            if (i == n - 1) {
+                dp[i % 2][0] = Math.max(dp[(i - 1) % 2][0], dp[(i - 2) % 2][0] + nums[i]);
+                dp[i % 2][1] = dp[(i - 1) % 2][1];
+            } else {
+                dp[i % 2][0] = Math.max(dp[(i - 1) % 2][0], dp[(i - 2) % 2][0] + nums[i]);
+                dp[i % 2][1] = Math.max(dp[(i - 1) % 2][1], dp[(i - 2) % 2][1] + nums[i]);
+            }
+        }
+        return Math.max(dp[(n - 1) % 2][0], dp[(n - 1) % 2][1]);
     }
 }
 

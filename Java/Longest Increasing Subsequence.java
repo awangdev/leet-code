@@ -1,18 +1,24 @@
 M
 1516863852
-tags: Binary Search, DP
+tags: Binary Search, DP, Sequence DP, Memoization
 
-方法1:
-[0 ~ i], 0<i<n: 以i为结尾, 每个不同的i会得出的max-length. 所以每个结尾i都要被考虑一遍.
-dp[i]: represent the max length aggregated up to index i.
+无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
 
-Previous Note:
-i位和之前的0~i-1 都远关系。复杂一点。
-每次都考虑o~i的所有情况。所以double for loop
+#### DP, double for loop, O(n^2)
+- 考虑nums[i]的时候, 在[0, i) 里count有多少小于nums[i]
+- 对于所有 i in [0, n), 最常的increasing序列有多少length?
+- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
+- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
+- 时间复杂度  O(n^2)
 
 
-方法2:
-O(n log n)? 还没有做. 是否for loop里面用binary search?
+#### O(nLogN)
+- 维持一个list of increasing sequence
+- 这个list其实是一个base-line, 记录着最低的increasing sequence.
+- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
+- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
+- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
+- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
 
 ```
 
@@ -30,114 +36,85 @@ Follow up: Could you improve it to O(n log n) time complexity?
 
 /*
 Thoughts:
-Follow up based on LCIS: it does not have to be continuous, which means there can be bottoms between peeks.
-In given example, starting from value 2, we can find [2, 5, 3] -> max= 2
-It does not matter if the [2, 5] or [2, 3] is picked, since the results are equal.
-However, if we have [2, 5, 3, '4'], it matters that if '5' or '3' was picked. Therefore, making sure [2,3] was picked is cretical.
+Want to the max increasing sequence length. For example, if nums[i] > nums[i - 1], count++.
+To find all count through [0 ~ i] history, need to calculate them all and count the maximum.
+dp[i]: represents the max increasing sequence length for nums[i].
+Note: not 'up to i', it's just specifically calculated for index i: nums[i]
 
-Therefore, the goal is to set end index i [0~n], aim all nums[j] <= nums[i], j < i, see what's the max length.
-Use the nums[i] as low-bound to find increasing chain.
+Trying to compare all prior values:
+dp[i] = dp[i] > dp[j] + 1 ? dp[i] : dp[j] + 1, where j = [0, i). 
 
-Of course, we want to keep the max found from each ending-i, as i goes rom [0~n], so use DP.
-
-dp[i]: represent the max length aggregated up to index i.
-init: dp[0] = 0 at each j iteration.
-return max + 1 since base-0 was used.
-
-for loop over i
-    for loop over j=0, j < i, j++
-
-O(n^2)
+dp[0]: max index count should = 0 since only 1 element in the race.
 */
 class Solution {
     public int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        final int[] dp = new int[nums.length];
+        int n = nums.length;
+        int[] dp = new int[n]; // dp[0] = 0
         int max = 0;
-        for (int i = 0; i < nums.length; i++) {
-            dp[0] = 0;
+        
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < i; j++) {
-                if (nums[j] < nums[i]) {
-                    dp[i] = dp[i] > dp[j] + 1 ? dp[i] : dp[j] + 1;
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
             max = Math.max(dp[i], max);
         }
-        return max + 1;
+        return max + 1; // 连续增长了max次, 序列长度为 max+1
     }
 }
 
 
-// LintCode
 /*
-Given a sequence of integers, find the longest increasing subsequence (LIS).
+Thoughts:
+O(nLogN) using binary serach.
+Maintain a list of nums in increasing order.
+When considering new num:
+- See if it can append (num > last-max-num from the list)
+- If not, do binary search with the list and see where the number may fit.
+- Every time, set num to where may fit in the list (find the smallest item from list which also > num)
 
-You code should return the length of the LIS.
+Why setting a number in the list?
+The list works as a baseline, which adjusts dynamically: any number less than the baseline won't be able to append.
+However, it can hellp refine (lower) the baseline, which potentially allow future number to append.
 
-Example
-For [5, 4, 1, 2, 3], the LIS  is [1, 2, 3], return 3
-
-For [4, 2, 4, 5, 3, 7], the LIS is [4, 4, 5, 7], return 4
-
-Challenge
-Time complexity O(n^2) or O(nlogn)
-
-Clarification
-What's the definition of longest increasing subsequence?
-
-    * The longest increasing subsequence problem is to find a subsequence of a given sequence in which the subsequence's elements are in sorted order, lowest to highest, and in which the subsequence is as long as possible. This subsequence is not necessarily contiguous, or unique.  
-
-    * https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
-
-Tags Expand 
-Binary Search LintCode Copyright Dynamic Programming
+In the end, return the size of list.
 */
-
-/*
-	Thoughts:
-	dp[i] depends on not only dp[i-1], but also [i-1] ...[0].
-	So it has to be double-for loop.
-	Each sub-for loop on i, traverse 0 ~ j(j<=i) to find largest number to put on dp[i]
-	fn:
-		dp[i] = dp[i] > dp[j] + 1 ? dp[i] : dp[j] + 1
-	init:
-		dp[i] initally all = 1. (i = 0 ~ n). If no other number meets the requirement, at least it has itself.
-	Result:
-		dp[n - 1]
-
-	Note: nums[j] <= nums[i] is the 'increasing' requirement
-	dp[j] + 1 means: best we can do at dp[j] + 1, is this better than what we already have on dp[i]?	
-
-*/
-
-
-public class Solution {
-    /**
-     * @param nums: The integer array
-     * @return: The length of LIS (longest increasing subsequence)
-     */
-    public int longestIncreasingSubsequence(int[] nums) {
-    	if (nums == null || nums.length == 0) {
-    		return 0;
-    	}
-    	int n = nums.length;
-    	int[] dp  = new int[n];
-    	int max = 0;
-    	for (int i = 0; i < n; i++) {
-    		dp[i] = 1;
-    		for (int j = 0; j < i; j++) {
-    			if (nums[j] <= nums[i]){
-    				dp[i] = dp[i] > dp[j] + 1 ? dp[i] : dp[j] + 1;
-    			}
-    		}
-    		if (dp[i] > max) {
-    		    max = dp[i];
-    		}
-    	}
-    	return max;
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (list.size() == 0 || nums[i] > list.get(list.size() - 1)) {
+                list.add(nums[i]);
+            } else {
+                int index = binarySearch(list, nums[i]);
+                list.set(index, nums[i]);
+            }
+        }
+        return list.size();
+    }
+    
+    public int binarySearch(List<Integer> list, int target) {
+        int start = 0;
+        int end = list.size() - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (list.get(mid) == target) {
+                return mid;
+            } else if (list.get(mid) < target) {
+                start = mid;
+            } else {
+                end = mid;
+            }
+        }
+        return list.get(start) >= target ? start : end;
     }
 }
-
 ```
