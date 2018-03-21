@@ -1,13 +1,37 @@
 E
+1521648080
+tags: Tree, DFS
 
-Binary Tree的一个基本题。   
-遍历到底，比较sum vs. target。   
-注意divide的情况。要把遍历的例子写写。   
+Binary Tree的一个基本题: 找到所有满足条件的path
 
-LeetCode: Path Sum II
+- 遍历到底，比较sum vs. target
+- 注意divide的情况。要把遍历的例子写写
 
 ```
 /*
+LeetCode
+Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+
+For example:
+Given the below binary tree and sum = 22,
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \    / \
+        7    2  5   1
+return
+[
+   [5,4,11,2],
+   [5,8,4,5]
+]
+*/
+
+
+
+/*
+// LintCode: Binary Tree Path Sum
 Given a binary tree, find all paths that sum of the nodes in the path equals to a given number target.
 
 A valid path is from root node to any of the leaf nodes.
@@ -29,6 +53,40 @@ return
 Tags Expand 
 Binary Tree Binary Tree Traversal
 */
+
+/*
+Recursively: list<list> rst, path, currSum, sum
+*/
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> rst = new ArrayList<>();
+        if (root == null) {
+            return rst;
+        }
+        dfs(rst, new ArrayList<>(), root, 0, sum);
+        return rst;
+    }
+    
+    private void dfs (List<List<Integer>> rst, List<Integer> path, TreeNode root, int currSum, int sum) {
+        path.add(root.val);
+        if (root.left == null && root.right == null) {
+            if (currSum + root.val == sum) {
+                rst.add(new ArrayList<>(path));
+            }
+            return;
+        }
+        if (root.left != null) {
+            dfs(rst, path, root.left, currSum + root.val, sum);
+            path.remove(path.size() - 1);
+        }
+
+ 
+        if (root.right != null) {
+            dfs(rst, path, root.right, currSum + root.val, sum);
+            path.remove(path.size() - 1);
+        }
+    }
+}
 
 /*
 	Thoughts:

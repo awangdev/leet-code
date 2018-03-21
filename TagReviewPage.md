@@ -2,33 +2,41 @@
 
 Table of Contents
 =================
+* [Sequence DP (3)](#sequence-dp-3)
+* [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
 * [String (16)](#string-16)
 * [Math (12)](#math-12)
-* [DP (41)](#dp-41)
+* [DP (46)](#dp-46)
 * [BFS (6)](#bfs-6)
 * [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
-* [DFS (19)](#dfs-19)
-* [Hash Table (13)](#hash-table-13)
+* [DFS (22)](#dfs-22)
+* [Game Theory (2)](#game-theory-2)
+* [Hash Table (14)](#hash-table-14)
 * [Backtracking (8)](#backtracking-8)
 * [Bit Manipulation (7)](#bit-manipulation-7)
 * [Divide and Conquer (5)](#divide-and-conquer-5)
+* [Status DP (1)](#status-dp-1)
+* [Topological Sort (1)](#topological-sort-1)
 * [Sort (6)](#sort-6)
-* [Tree (12)](#tree-12)
+* [Tree (15)](#tree-15)
 * [Greedy (6)](#greedy-6)
 * [Trie (6)](#trie-6)
+* [Coordinate DP (3)](#coordinate-dp-3)
 * [Binary Tree (2)](#binary-tree-2)
 * [Binary Search (19)](#binary-search-19)
 * [Heap (6)](#heap-6)
-* [Stack (9)](#stack-9)
+* [Stack (10)](#stack-10)
 * [Linked List (7)](#linked-list-7)
-* [Array (40)](#array-40)
+* [Array (42)](#array-42)
 * [Binary Indexed Tree (1)](#binary-indexed-tree-1)
 * [Graph (2)](#graph-2)
 * [Union Find (7)](#union-find-7)
+* [Memoization (3)](#memoization-3)
 * [Sweep Line (4)](#sweep-line-4)
 * [Interval (1)](#interval-1)
+
 
 ## Sequence DP (3)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
@@ -89,6 +97,53 @@ Table of Contents
 
 #### Rolling array
 与House Robber I一样, 可以用%2 来操作rolling array
+
+
+
+---
+
+
+
+## MiniMax (1)
+**0. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+      
+
+给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
+每次只能拿1个或者2个棋子, 最后看谁拿的总值最大.
+
+MiniMax的思考方法很神奇, 最后写出来的表达式很简单
+
+##### DP, Game Theory 自考过程比较长
+- 跟Coins in a line I 不一样: 每个coin的value不同.
+- 用到MiniMax的思想, 这里其实是MaxiMin. Reference: http://www.cnblogs.com/grandyang/p/5864323.html
+- Goal: 使得player拿到的coins value 最大化. 
+- 于此同时, 你的对手playerB也想最大化, 而你的选择又不得不被对手的选择所牵制.
+- 用MaxiMin的思想, 我们假设一个当下的状态, 假想对手playerB会做什么反应(从对手角度, 如何让我输)
+- 在劣势中(对手让我输的目标下)找到最大的coins value sum
+- 设定dp[i]: 从index i 到 index n的最大值. 所以dp[0]就是我们先手在[0 ~ n]的最大取值
+
+##### 推算表达式
+Reference里面详细介绍了表达式如何推到出来, 简而言之:
+- 如果我选了i, 那么对手就只能选(i+1), (i+2) 两个位置, 而我在对方掌控时的局面就是min(dp[i+2], dp[i+3])
+- 如果我选了i和(i+1), 那么对手就只能选(i+2), (i+3) 两个位置, 而我在对方掌控时的局面就是min(dp[i+3], dp[i+4])
+- 大家都是可选1个或者2个coins
+- 目标是maximize上面两个最坏情况中的最好结果
+
+##### 简化表达式
+- 更加简化一点: 如果我是先手, dp[i]代表我的最大值.
+- 取决于我拿了[i], 还是[i] + [i+1], 对手可能是dp[i + 1], 或者是dp[i+2]
+- 其实dp[i] = Math.max(sum - dp[i + 1], sum - dp[i + 2]);
+- 这里的sum[i] = [i ~ n] 的sum, 减去dp[i+1], 剩下就是dp[i]的值没错了
+
+##### Initialization
+- 这个做法是从最后往前推的, 注意initialize dp末尾的值.
+- dp = new int[n + 1]; dp[n] = 0; // [n ~ n]啥也不选的时候, 为0.
+- sum = new int[n + 1]; sum[n] = 0; // 啥也不选的时候, 自然等于0
+- 然后记得initialize (n-1), (n-2)
+
+##### 时间/空间
+Time O(n)
+Space O(n): dp[], sum[]
 
 
 
@@ -741,7 +796,7 @@ Space O(n), time O(n)
 
 
 
-## DP (44)
+## DP (46)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1055,24 +1110,7 @@ dp[i][j] = dp[i - 1][j] || dp[i - 1][j - A[i - 1]]
 
 
 ---
-**18. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
-      
-
-如果我是先手, 每次只能拿1个,或者2个coins, 我如何赢?
-只要保证对手在剩下的棋子中挑的时候'有可能败', 那就足够.
-设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
-所以:
-dp[i] = !dp[i - 1] || !dp[i-2]
-时间: O(n), 空间O(n)
-博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
-
-优化:
-空间优化O(1)
-
-
-
----
-**19. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
+**18. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
 分割型. 考虑最后的数字: 要是12割个1出来, 剩下11怎么考虑? 割个4出来,剩下8怎么考虑?
@@ -1096,7 +1134,7 @@ Previous Notes:
 
 
 ---
-**20. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
+**19. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
       
 
 Find minimum cut: 分割型DP
@@ -1119,7 +1157,7 @@ okay.那么假如以上任意一种情况成立，也就是说isPal[i][j] == tru
 
 
 ---
-**21. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium
+**20. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium
       
 
 与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
@@ -1150,7 +1188,7 @@ Time: O(MN)
 
 
 ---
-**22. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium
+**21. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium
       
 
 拼背包时, 可以有重复item, 所以考虑'最后被放入的哪个unique item' 就没有意义了.
@@ -1165,7 +1203,7 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 
 
 ---
-**23. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
+**22. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
       
 
 #### 方法1: Binary Search
@@ -1182,7 +1220,7 @@ Review: 为什么有i level的iteration? Chapter4.1
 
 
 ---
-**24. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium
+**23. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium
       
 
 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是w可否存成功true/false. dp存的是加上sum value的最大值.
@@ -1199,7 +1237,7 @@ O(m)的做法:
 
 
 ---
-**25. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Review
+**24. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Review
       
 
 可以无限使用物品, 就失去了last i, last unique item的意义: 因为可以重复使用.
@@ -1218,7 +1256,7 @@ O(m)的做法:
 
 
 ---
-**26. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
+**25. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
       
 
 区间型动态规划. 
@@ -1231,7 +1269,7 @@ O(m)的做法:
 
 
 ---
-**27. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+**26. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
 
 Range DP.
@@ -1259,7 +1297,7 @@ For loop 所有的点作为x， 去burst。
 
 
 ---
-**28. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
+**27. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
 区间型
@@ -1274,7 +1312,7 @@ dp[i][j][w]: 从i点和j点开始, 各自走w距离, 得到的S和T是否是scra
 
 
 ---
-**29. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+**28. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
       
 
 博弈 + 区间. 
@@ -1296,7 +1334,7 @@ template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定
 
 
 ---
-**30. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
+**29. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
       
 
 Sequence DP
@@ -1305,7 +1343,7 @@ Sequence DP
 
 
 ---
-**31. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
+**30. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
 经典序列型.
@@ -1319,7 +1357,7 @@ Sequence DP
 
 
 ---
-**32. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
+**31. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
       
 
 双序列DP, 从最后点考虑.
@@ -1331,7 +1369,7 @@ Sequence DP
 
 
 ---
-**33. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
+**32. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
 两个字符串变话, 找最小值, two sequence DP.
@@ -1345,7 +1383,7 @@ Sequence DP
 
 
 ---
-**34. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
+**33. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
       
 
 Double Sequence DP:
@@ -1356,13 +1394,13 @@ Double Sequence DP:
 
 
 ---
-**35. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
+**34. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
       
 
 
 
 ---
-**36. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
+**35. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
       
 
 Double sequence DP. 与regular expression 很像.
@@ -1374,7 +1412,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**37. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
+**36. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -1388,7 +1426,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**38. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
+**37. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
       
 
 两个DP一起用.解决了timeout的问题     
@@ -1411,7 +1449,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 
 ---
-**39. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+**38. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -1431,7 +1469,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 
 ---
-**40. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
+**39. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
 #### 方法1: monotonous stack
@@ -1449,7 +1487,7 @@ Coordinate DP?
 
 
 ---
-**41. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+**40. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -1471,7 +1509,7 @@ Coordinate DP?
 
 
 ---
-**42. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**41. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP
@@ -1485,7 +1523,7 @@ TODO
 
 
 ---
-**43. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
+**42. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -1505,6 +1543,88 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 这个过程里面, 再也不用回去visit most-left-leaf了, 算过一遍就完事.
 - 然而, 普通没有dp的dfs, 在算完visited的情况下的dfs, 还要重新dfs一遍!visited的情况.
 - Space O(h), time O(n), 或者说是O(2^h), where h = log(n)
+
+
+
+---
+**43. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
+      
+
+m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
+
+- 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
+- 斜角方向不能走, 只能走上下左右
+
+#### DP, DFS
+- DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
+- initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- O(m * n * k), where k is the longest path
+
+#### Topological sort
+还没有做
+
+
+
+---
+**44. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+      
+
+拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
+
+Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
+
+#### DP, Game Theory
+- 要赢, 必须保证对手拿到棋盘时, 在所有他可走的情况中, '有可能败', 那就足够.
+- 设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
+- dp[i] = !dp[i - 1] || !dp[i-2]
+- 时间: O(n), 空间O(n)
+- 博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
+
+#### Rolling Array
+空间优化O(1). Rolling array, %2
+
+
+
+---
+**45. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+      
+
+给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
+每次只能拿1个或者2个棋子, 最后看谁拿的总值最大.
+
+MiniMax的思考方法很神奇, 最后写出来的表达式很简单
+
+##### DP, Game Theory 自考过程比较长
+- 跟Coins in a line I 不一样: 每个coin的value不同.
+- 用到MiniMax的思想, 这里其实是MaxiMin. Reference: http://www.cnblogs.com/grandyang/p/5864323.html
+- Goal: 使得player拿到的coins value 最大化. 
+- 于此同时, 你的对手playerB也想最大化, 而你的选择又不得不被对手的选择所牵制.
+- 用MaxiMin的思想, 我们假设一个当下的状态, 假想对手playerB会做什么反应(从对手角度, 如何让我输)
+- 在劣势中(对手让我输的目标下)找到最大的coins value sum
+- 设定dp[i]: 从index i 到 index n的最大值. 所以dp[0]就是我们先手在[0 ~ n]的最大取值
+
+##### 推算表达式
+Reference里面详细介绍了表达式如何推到出来, 简而言之:
+- 如果我选了i, 那么对手就只能选(i+1), (i+2) 两个位置, 而我在对方掌控时的局面就是min(dp[i+2], dp[i+3])
+- 如果我选了i和(i+1), 那么对手就只能选(i+2), (i+3) 两个位置, 而我在对方掌控时的局面就是min(dp[i+3], dp[i+4])
+- 大家都是可选1个或者2个coins
+- 目标是maximize上面两个最坏情况中的最好结果
+
+##### 简化表达式
+- 更加简化一点: 如果我是先手, dp[i]代表我的最大值.
+- 取决于我拿了[i], 还是[i] + [i+1], 对手可能是dp[i + 1], 或者是dp[i+2]
+- 其实dp[i] = Math.max(sum - dp[i + 1], sum - dp[i + 2]);
+- 这里的sum[i] = [i ~ n] 的sum, 减去dp[i+1], 剩下就是dp[i]的值没错了
+
+##### Initialization
+- 这个做法是从最后往前推的, 注意initialize dp末尾的值.
+- dp = new int[n + 1]; dp[n] = 0; // [n ~ n]啥也不选的时候, 为0.
+- sum = new int[n + 1]; sum[n] = 0; // 啥也不选的时候, 自然等于0
+- 然后记得initialize (n-1), (n-2)
+
+##### 时间/空间
+Time O(n)
+Space O(n): dp[], sum[]
 
 
 
@@ -1821,7 +1941,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 
-## DFS (20)
+## DFS (22)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy
       
 
@@ -2186,10 +2306,107 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 ---
+**20. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
+      
+
+m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
+
+- 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
+- 斜角方向不能走, 只能走上下左右
+
+#### DP, DFS
+- DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
+- initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- O(m * n * k), where k is the longest path
+
+#### Topological sort
+还没有做
 
 
 
-## Hash Table (13)
+---
+**21. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
+      
+
+Binary Tree的一个基本题: 找到所有满足条件的path
+
+- 遍历到底，比较sum vs. target
+- 注意divide的情况。要把遍历的例子写写
+
+
+
+---
+
+
+
+## Game Theory (2)
+**0. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+      
+
+拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
+
+Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
+
+#### DP, Game Theory
+- 要赢, 必须保证对手拿到棋盘时, 在所有他可走的情况中, '有可能败', 那就足够.
+- 设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
+- dp[i] = !dp[i - 1] || !dp[i-2]
+- 时间: O(n), 空间O(n)
+- 博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
+
+#### Rolling Array
+空间优化O(1). Rolling array, %2
+
+
+
+---
+**1. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+      
+
+给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
+每次只能拿1个或者2个棋子, 最后看谁拿的总值最大.
+
+MiniMax的思考方法很神奇, 最后写出来的表达式很简单
+
+##### DP, Game Theory 自考过程比较长
+- 跟Coins in a line I 不一样: 每个coin的value不同.
+- 用到MiniMax的思想, 这里其实是MaxiMin. Reference: http://www.cnblogs.com/grandyang/p/5864323.html
+- Goal: 使得player拿到的coins value 最大化. 
+- 于此同时, 你的对手playerB也想最大化, 而你的选择又不得不被对手的选择所牵制.
+- 用MaxiMin的思想, 我们假设一个当下的状态, 假想对手playerB会做什么反应(从对手角度, 如何让我输)
+- 在劣势中(对手让我输的目标下)找到最大的coins value sum
+- 设定dp[i]: 从index i 到 index n的最大值. 所以dp[0]就是我们先手在[0 ~ n]的最大取值
+
+##### 推算表达式
+Reference里面详细介绍了表达式如何推到出来, 简而言之:
+- 如果我选了i, 那么对手就只能选(i+1), (i+2) 两个位置, 而我在对方掌控时的局面就是min(dp[i+2], dp[i+3])
+- 如果我选了i和(i+1), 那么对手就只能选(i+2), (i+3) 两个位置, 而我在对方掌控时的局面就是min(dp[i+3], dp[i+4])
+- 大家都是可选1个或者2个coins
+- 目标是maximize上面两个最坏情况中的最好结果
+
+##### 简化表达式
+- 更加简化一点: 如果我是先手, dp[i]代表我的最大值.
+- 取决于我拿了[i], 还是[i] + [i+1], 对手可能是dp[i + 1], 或者是dp[i+2]
+- 其实dp[i] = Math.max(sum - dp[i + 1], sum - dp[i + 2]);
+- 这里的sum[i] = [i ~ n] 的sum, 减去dp[i+1], 剩下就是dp[i]的值没错了
+
+##### Initialization
+- 这个做法是从最后往前推的, 注意initialize dp末尾的值.
+- dp = new int[n + 1]; dp[n] = 0; // [n ~ n]啥也不选的时候, 为0.
+- sum = new int[n + 1]; sum[n] = 0; // 啥也不选的时候, 自然等于0
+- 然后记得initialize (n-1), (n-2)
+
+##### 时间/空间
+Time O(n)
+Space O(n): dp[], sum[]
+
+
+
+---
+
+
+
+## Hash Table (14)
 **0. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
 
@@ -2379,6 +2596,30 @@ O(mn)
 
 #### 方法2: DP
 Coordinate DP?
+
+
+
+---
+**13. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
+      
+
+Inorder traverse Binary Tree
+
+#### Recursive
+- 在自己的基础上recursive, 不用helper function
+- Divide and Conquer, with helper(dfs) method
+
+#### Stack
+- Add left nodes all the way   
+- Print curr   
+- Move to right, add right if possible.   
+  
+注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
+
+若不右移, 很可能发生窘境:
+
+curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
+
 
 
 
@@ -2807,6 +3048,29 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 
+## Topological Sort (1)
+**0. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
+      
+
+m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
+
+- 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
+- 斜角方向不能走, 只能走上下左右
+
+#### DP, DFS
+- DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
+- initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- O(m * n * k), where k is the longest path
+
+#### Topological sort
+还没有做
+
+
+
+---
+
+
+
 ## Sort (6)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
@@ -2903,7 +3167,7 @@ HashMap
 
 
 
-## Tree (13)
+## Tree (15)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -3140,6 +3404,41 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 ---
+**13. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
+      
+
+Inorder traverse Binary Tree
+
+#### Recursive
+- 在自己的基础上recursive, 不用helper function
+- Divide and Conquer, with helper(dfs) method
+
+#### Stack
+- Add left nodes all the way   
+- Print curr   
+- Move to right, add right if possible.   
+  
+注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
+
+若不右移, 很可能发生窘境:
+
+curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
+
+
+
+
+---
+**14. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
+      
+
+Binary Tree的一个基本题: 找到所有满足条件的path
+
+- 遍历到底，比较sum vs. target
+- 注意divide的情况。要把遍历的例子写写
+
+
+
+---
 
 
 
@@ -3199,24 +3498,7 @@ O(n)
 
 
 ---
-**3. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
-      
-
-如果我是先手, 每次只能拿1个,或者2个coins, 我如何赢?
-只要保证对手在剩下的棋子中挑的时候'有可能败', 那就足够.
-设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
-所以:
-dp[i] = !dp[i - 1] || !dp[i-2]
-时间: O(n), 空间O(n)
-博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
-
-优化:
-空间优化O(1)
-
-
-
----
-**4. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
+**3. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
       
 
 Double sequence DP. 与regular expression 很像.
@@ -3228,7 +3510,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**5. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
+**4. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
       
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
@@ -3239,6 +3521,26 @@ Double sequence DP. 与regular expression 很像.
 
 #### 方法2: 尝试了一下用一个sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+
+
+
+---
+**5. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+      
+
+拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
+
+Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
+
+#### DP, Game Theory
+- 要赢, 必须保证对手拿到棋盘时, 在所有他可走的情况中, '有可能败', 那就足够.
+- 设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
+- dp[i] = !dp[i - 1] || !dp[i-2]
+- 时间: O(n), 空间O(n)
+- 博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
+
+#### Rolling Array
+空间优化O(1). Rolling array, %2
 
 
 
@@ -3924,7 +4226,7 @@ HashHeap?
 
 
 
-## Stack (9)
+## Stack (10)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -4122,6 +4424,30 @@ Coordinate DP?
 
 
 ---
+**9. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
+      
+
+Inorder traverse Binary Tree
+
+#### Recursive
+- 在自己的基础上recursive, 不用helper function
+- Divide and Conquer, with helper(dfs) method
+
+#### Stack
+- Add left nodes all the way   
+- Print curr   
+- Move to right, add right if possible.   
+  
+注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
+
+若不右移, 很可能发生窘境:
+
+curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
+
+
+
+
+---
 
 
 
@@ -4249,7 +4575,7 @@ pre.next.next 保证了至少有一次swap.
 
 
 
-## Array (41)
+## Array (42)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -4904,6 +5230,49 @@ TODO
 
 
 ---
+**41. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+      
+
+给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
+每次只能拿1个或者2个棋子, 最后看谁拿的总值最大.
+
+MiniMax的思考方法很神奇, 最后写出来的表达式很简单
+
+##### DP, Game Theory 自考过程比较长
+- 跟Coins in a line I 不一样: 每个coin的value不同.
+- 用到MiniMax的思想, 这里其实是MaxiMin. Reference: http://www.cnblogs.com/grandyang/p/5864323.html
+- Goal: 使得player拿到的coins value 最大化. 
+- 于此同时, 你的对手playerB也想最大化, 而你的选择又不得不被对手的选择所牵制.
+- 用MaxiMin的思想, 我们假设一个当下的状态, 假想对手playerB会做什么反应(从对手角度, 如何让我输)
+- 在劣势中(对手让我输的目标下)找到最大的coins value sum
+- 设定dp[i]: 从index i 到 index n的最大值. 所以dp[0]就是我们先手在[0 ~ n]的最大取值
+
+##### 推算表达式
+Reference里面详细介绍了表达式如何推到出来, 简而言之:
+- 如果我选了i, 那么对手就只能选(i+1), (i+2) 两个位置, 而我在对方掌控时的局面就是min(dp[i+2], dp[i+3])
+- 如果我选了i和(i+1), 那么对手就只能选(i+2), (i+3) 两个位置, 而我在对方掌控时的局面就是min(dp[i+3], dp[i+4])
+- 大家都是可选1个或者2个coins
+- 目标是maximize上面两个最坏情况中的最好结果
+
+##### 简化表达式
+- 更加简化一点: 如果我是先手, dp[i]代表我的最大值.
+- 取决于我拿了[i], 还是[i] + [i+1], 对手可能是dp[i + 1], 或者是dp[i+2]
+- 其实dp[i] = Math.max(sum - dp[i + 1], sum - dp[i + 2]);
+- 这里的sum[i] = [i ~ n] 的sum, 减去dp[i+1], 剩下就是dp[i]的值没错了
+
+##### Initialization
+- 这个做法是从最后往前推的, 注意initialize dp末尾的值.
+- dp = new int[n + 1]; dp[n] = 0; // [n ~ n]啥也不选的时候, 为0.
+- sum = new int[n + 1]; sum[n] = 0; // 啥也不选的时候, 自然等于0
+- 然后记得initialize (n-1), (n-2)
+
+##### 时间/空间
+Time O(n)
+Space O(n): dp[], sum[]
+
+
+
+---
 
 
 
@@ -5077,7 +5446,7 @@ DFS, BFS都好理解,
 
 
 
-## Memoization (1)
+## Memoization (3)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
 
@@ -5098,6 +5467,68 @@ DFS, BFS都好理解,
 - 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
 - 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
 - '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
+
+
+
+---
+**1. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
+      
+
+m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
+
+- 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
+- 斜角方向不能走, 只能走上下左右
+
+#### DP, DFS
+- DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
+- initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- O(m * n * k), where k is the longest path
+
+#### Topological sort
+还没有做
+
+
+
+---
+**2. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+      
+
+给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
+每次只能拿1个或者2个棋子, 最后看谁拿的总值最大.
+
+MiniMax的思考方法很神奇, 最后写出来的表达式很简单
+
+##### DP, Game Theory 自考过程比较长
+- 跟Coins in a line I 不一样: 每个coin的value不同.
+- 用到MiniMax的思想, 这里其实是MaxiMin. Reference: http://www.cnblogs.com/grandyang/p/5864323.html
+- Goal: 使得player拿到的coins value 最大化. 
+- 于此同时, 你的对手playerB也想最大化, 而你的选择又不得不被对手的选择所牵制.
+- 用MaxiMin的思想, 我们假设一个当下的状态, 假想对手playerB会做什么反应(从对手角度, 如何让我输)
+- 在劣势中(对手让我输的目标下)找到最大的coins value sum
+- 设定dp[i]: 从index i 到 index n的最大值. 所以dp[0]就是我们先手在[0 ~ n]的最大取值
+
+##### 推算表达式
+Reference里面详细介绍了表达式如何推到出来, 简而言之:
+- 如果我选了i, 那么对手就只能选(i+1), (i+2) 两个位置, 而我在对方掌控时的局面就是min(dp[i+2], dp[i+3])
+- 如果我选了i和(i+1), 那么对手就只能选(i+2), (i+3) 两个位置, 而我在对方掌控时的局面就是min(dp[i+3], dp[i+4])
+- 大家都是可选1个或者2个coins
+- 目标是maximize上面两个最坏情况中的最好结果
+
+##### 简化表达式
+- 更加简化一点: 如果我是先手, dp[i]代表我的最大值.
+- 取决于我拿了[i], 还是[i] + [i+1], 对手可能是dp[i + 1], 或者是dp[i+2]
+- 其实dp[i] = Math.max(sum - dp[i + 1], sum - dp[i + 2]);
+- 这里的sum[i] = [i ~ n] 的sum, 减去dp[i+1], 剩下就是dp[i]的值没错了
+
+##### Initialization
+- 这个做法是从最后往前推的, 注意initialize dp末尾的值.
+- dp = new int[n + 1]; dp[n] = 0; // [n ~ n]啥也不选的时候, 为0.
+- sum = new int[n + 1]; sum[n] = 0; // 啥也不选的时候, 自然等于0
+- 然后记得initialize (n-1), (n-2)
+
+##### 时间/空间
+Time O(n)
+Space O(n): dp[], sum[]
 
 
 

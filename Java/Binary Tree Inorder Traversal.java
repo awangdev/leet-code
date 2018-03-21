@@ -1,17 +1,22 @@
 E
+1521646879
+tags: Hash Table, Stack, Tree
 
-法一:      
-Recursive: Divide and Conquer, with helper(dfs) method
+Inorder traverse Binary Tree
 
-法二:   
-Stack: 
-Add left nodes all the way   
-Print curr   
-Move to right, add right if possible.   
+#### Recursive
+- 在自己的基础上recursive, 不用helper function
+- Divide and Conquer, with helper(dfs) method
+
+#### Stack
+- Add left nodes all the way   
+- Print curr   
+- Move to right, add right if possible.   
   
 注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
 
-若不右移，很可能发生窘境：    
+若不右移, 很可能发生窘境:
+
 curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
 
 
@@ -38,6 +43,30 @@ Tags Expand
 Recursion Binary Tree Binary Tree Traversal
 
 */
+
+/*
+Thoughts:
+Recursive, append left, itself, then right
+*/
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> rst = new ArrayList<>();
+        if (root == null) {
+            return rst;
+        }
+        if (root.left == null && root.right == null) {
+            rst.add(root.val);
+            return rst;
+        }
+        List<Integer> left = inorderTraversal(root.left);
+        List<Integer> right = inorderTraversal(root.right);
+        
+        rst.addAll(left);
+        rst.add(root.val);
+        rst.addAll(right);
+        return rst;
+    }
+}
 
 /*
     recap 3.15.2016

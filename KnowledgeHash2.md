@@ -263,6 +263,13 @@ Hash Table
 - 博弈
 - combos
 
+#### 记忆化搜索 Memoization
+- 本质是DP, 所有DP也都是为了解决重复计算
+- 从大到小搜索, 其实是暴利解决的思路, 只是在深入到底的的过程中存了状态, 不需要重复计算.
+- 什么时候用记忆化搜索: 状态转移特别麻烦，不是顺序性, 初始化状态不是很容易找到
+
+#### Minimax
+
 
 #### Optimization problems
 - memoization && subproblems
@@ -300,9 +307,7 @@ Track queue size, use the queue as in rotation
 
 ### Fancy
 
-Memoization
 
-Minimax
 
 Reservoir Sampling
 
@@ -358,11 +363,3 @@ Design
 - 区间两端代表事件的开始和结束
 - 需要排序
 - Meeting Room I, II
-
-
-
-
-
-
-
-
