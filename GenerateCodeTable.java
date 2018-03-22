@@ -108,6 +108,8 @@ public class GenerateCodeTable {
             outputContent = gct.generateTagReviewPage(listOfFiles);
             gct.printTable("TagReviewPage.md", outputContent);
         }
+
+        System.out.println("Mission Accomplished. Now go ahead and commit");
     }   
 
     /*
@@ -123,7 +125,6 @@ public class GenerateCodeTable {
             fop.write(contentInBytes);
             fop.flush();
             fop.close();
-            System.out.println("Mission Accomplished. Now go ahead and commit");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -241,6 +242,7 @@ public class GenerateCodeTable {
             StringBuffer sb = new StringBuffer(" \n \n \n## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
             sb.append(buildReviewSection(entry.getValue()));
             outputContent += sb.toString() + "\n\n\n";
+            printTable("review/" + entry.getKey() + ".md", sb.toString());
         }
         return outputContent;
     }
