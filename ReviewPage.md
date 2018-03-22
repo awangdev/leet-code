@@ -4026,7 +4026,13 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 **291. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
-#### 方法1 - Stack
+
+#### DFS
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+
+#### Stack
 - Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner string
 - 有很多需要注意的细节才能做对:
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
@@ -4035,11 +4041,6 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 - 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
 - 最后再从buffer里面倒进StringBuffer.
 
-
-#### 方法2 - DFS
-- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
 
 
