@@ -209,7 +209,7 @@ public class GenerateCodeTable {
         });
         // Build View
         for (Map.Entry<String, List<TableRow>> entry : tagToRows.entrySet()) {
-            StringBuffer sb = new StringBuffer("## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
+            StringBuffer sb = new StringBuffer(" \n \n \n## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
             sb.append(header);
             List<TableRow> entryTableRows = entry.getValue();
             for (int i = 0; i < entryTableRows.size(); i++) {
@@ -238,7 +238,7 @@ public class GenerateCodeTable {
         });
         // Build View
         for (Map.Entry<String, List<TableRow>> entry : tagToRows.entrySet()) {
-            StringBuffer sb = new StringBuffer("## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
+            StringBuffer sb = new StringBuffer(" \n \n \n## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
             sb.append(buildReviewSection(entry.getValue()));
             outputContent += sb.toString() + "\n\n\n";
         }

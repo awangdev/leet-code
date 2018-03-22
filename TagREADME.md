@@ -41,6 +41,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Sequence DP (4)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -51,6 +54,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## MiniMax (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -58,6 +64,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Two Pointers (15)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -79,6 +88,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## String (17)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -102,6 +114,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Math (12)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -120,6 +135,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## DP (47)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -173,6 +191,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## BFS (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -185,6 +206,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Segment Tree (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -192,6 +216,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Design (8)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -206,6 +233,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## DFS (22)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -234,6 +264,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Game Theory (3)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -243,6 +276,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Hash Table (14)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -263,6 +299,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Backtracking (8)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -277,6 +316,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Bit Manipulation (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -290,6 +332,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Divide and Conquer (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -301,6 +346,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Status DP (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -308,6 +356,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Topological Sort (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -315,6 +366,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Sort (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -327,6 +381,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Tree (16)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -349,6 +406,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Greedy (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -361,6 +421,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Trie (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -373,6 +436,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Coordinate DP (3)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -382,6 +448,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Binary Tree (2)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -390,6 +459,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Binary Search (20)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -416,6 +488,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Heap (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -428,6 +503,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Interval DP (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -435,6 +513,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Stack (11)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -452,6 +533,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Linked List (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -465,6 +549,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Array (42)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -513,6 +600,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Binary Indexed Tree (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -520,6 +610,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Graph (2)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -528,6 +621,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Union Find (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -541,6 +637,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Memoization (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -552,6 +651,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Sweep Line (4)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -562,6 +664,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Two Stacks (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -569,6 +674,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Interval (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|

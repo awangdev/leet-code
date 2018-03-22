@@ -4032,13 +4032,13 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
 - 几个 type check: instanceof String, Character.isDigit(x), Integer.valueOf(int num)
 - 出结果时候, 不能轻易 sb.reverse().toString(): sb.reverse() 翻转了整个连在一起的string, 错.
-  用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
-  最后再从buffer里面倒进StringBuffer.
+- 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
+- 最后再从buffer里面倒进StringBuffer.
 
 #### 方法2 - DFS
-与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
 
 

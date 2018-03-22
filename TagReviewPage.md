@@ -41,6 +41,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## Sequence DP (4)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
@@ -132,6 +135,9 @@ Table of Contents
 
 
 
+ 
+ 
+ 
 ## MiniMax (1)
 **0. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
       
@@ -179,6 +185,9 @@ Space O(n): dp[], sum[]
 
 
 
+ 
+ 
+ 
 ## Two Pointers (15)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
@@ -447,6 +456,9 @@ Time: O(nLogN)
 
 
 
+ 
+ 
+ 
 ## String (17)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
@@ -679,6 +691,9 @@ HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要
 
 
 
+ 
+ 
+ 
 ## Math (12)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
@@ -838,6 +853,9 @@ Space O(n), time O(n)
 
 
 
+ 
+ 
+ 
 ## DP (47)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
@@ -1710,6 +1728,9 @@ Space O(n): dp[], sum[]
 
 
 
+ 
+ 
+ 
 ## BFS (6)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
@@ -1838,6 +1859,9 @@ DFS, BFS都好理解,
 
 
 
+ 
+ 
+ 
 ## Segment Tree (1)
 **0. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
       
@@ -1868,6 +1892,9 @@ HashHeap?
 
 
 
+ 
+ 
+ 
 ## Design (8)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
@@ -2019,6 +2046,9 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 
+ 
+ 
+ 
 ## DFS (22)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy
       
@@ -2308,13 +2338,13 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
 - 几个 type check: instanceof String, Character.isDigit(x), Integer.valueOf(int num)
 - 出结果时候, 不能轻易 sb.reverse().toString(): sb.reverse() 翻转了整个连在一起的string, 错.
-  用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
-  最后再从buffer里面倒进StringBuffer.
+- 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
+- 最后再从buffer里面倒进StringBuffer.
 
 #### 方法2 - DFS
-与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
 
 
@@ -2417,6 +2447,9 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 
+ 
+ 
+ 
 ## Game Theory (3)
 **0. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
       
@@ -2517,6 +2550,9 @@ Space O(n): dp[], sum[]
 
 
 
+ 
+ 
+ 
 ## Hash Table (14)
 **0. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
@@ -2741,6 +2777,9 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 
 
+ 
+ 
+ 
 ## Backtracking (8)
 **0. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
@@ -2886,6 +2925,9 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 
 
+ 
+ 
+ 
 ## Bit Manipulation (7)
 **0. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
@@ -2996,6 +3038,9 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 
+ 
+ 
+ 
 ## Divide and Conquer (5)
 **0. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
@@ -3053,13 +3098,13 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
 - 几个 type check: instanceof String, Character.isDigit(x), Integer.valueOf(int num)
 - 出结果时候, 不能轻易 sb.reverse().toString(): sb.reverse() 翻转了整个连在一起的string, 错.
-  用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
-  最后再从buffer里面倒进StringBuffer.
+- 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
+- 最后再从buffer里面倒进StringBuffer.
 
 #### 方法2 - DFS
-与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
 
 
@@ -3134,6 +3179,9 @@ HashHeap?
 
 
 
+ 
+ 
+ 
 ## Status DP (1)
 **0. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
       
@@ -3162,6 +3210,9 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 
+ 
+ 
+ 
 ## Topological Sort (1)
 **0. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
       
@@ -3185,6 +3236,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 
 
+ 
+ 
+ 
 ## Sort (6)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
@@ -3281,6 +3335,9 @@ HashMap
 
 
 
+ 
+ 
+ 
 ## Tree (16)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
@@ -3587,6 +3644,9 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 
+ 
+ 
+ 
 ## Greedy (6)
 **0. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
       
@@ -3693,6 +3753,9 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 
 
+ 
+ 
+ 
 ## Trie (6)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
@@ -3841,6 +3904,9 @@ O(mn)
 
 
 
+ 
+ 
+ 
 ## Coordinate DP (3)
 **0. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
@@ -3901,6 +3967,9 @@ TODO
 
 
 
+ 
+ 
+ 
 ## Binary Tree (2)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
       
@@ -3933,6 +4002,9 @@ Recursive:分叉. dfs.
 
 
 
+ 
+ 
+ 
 ## Binary Search (20)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
@@ -4255,6 +4327,9 @@ Time: O(nLogN)
 
 
 
+ 
+ 
+ 
 ## Heap (6)
 **0. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
       
@@ -4384,6 +4459,9 @@ HashHeap?
 
 
 
+ 
+ 
+ 
 ## Interval DP (1)
 **0. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
       
@@ -4421,6 +4499,9 @@ HashHeap?
 
 
 
+ 
+ 
+ 
 ## Stack (11)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
@@ -4535,13 +4616,13 @@ Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner 
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
 - 几个 type check: instanceof String, Character.isDigit(x), Integer.valueOf(int num)
 - 出结果时候, 不能轻易 sb.reverse().toString(): sb.reverse() 翻转了整个连在一起的string, 错.
-  用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
-  最后再从buffer里面倒进StringBuffer.
+- 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
+- 最后再从buffer里面倒进StringBuffer.
 
 #### 方法2 - DFS
-与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
 
 
@@ -4677,6 +4758,9 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 
+ 
+ 
+ 
 ## Linked List (7)
 **0. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
       
@@ -4801,6 +4885,9 @@ pre.next.next 保证了至少有一次swap.
 
 
 
+ 
+ 
+ 
 ## Array (42)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
@@ -5513,6 +5600,9 @@ Space O(n): dp[], sum[]
 
 
 
+ 
+ 
+ 
 ## Binary Indexed Tree (1)
 **0. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
       
@@ -5543,6 +5633,9 @@ HashHeap?
 
 
 
+ 
+ 
+ 
 ## Graph (2)
 **0. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
@@ -5587,6 +5680,9 @@ initialize map with (node, newNode)
 
 
 
+ 
+ 
+ 
 ## Union Find (7)
 **0. [Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)**      Level: Medium
       
@@ -5683,6 +5779,9 @@ DFS, BFS都好理解,
 
 
 
+ 
+ 
+ 
 ## Memoization (5)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
@@ -5831,6 +5930,9 @@ Space O(n): dp[], sum[]
 
 
 
+ 
+ 
+ 
 ## Sweep Line (4)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy
       
@@ -5911,6 +6013,9 @@ HashHeap?
 
 
 
+ 
+ 
+ 
 ## Two Stacks (1)
 **0. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
       
@@ -5943,6 +6048,9 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 
+ 
+ 
+ 
 ## Interval (1)
 **0. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium
       
