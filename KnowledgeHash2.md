@@ -1,63 +1,66 @@
 Table of Contents
 =================
- * [Heap](#heap)
- * [Stack](#stack)
-    * [Functions](#functions)
-    * [基本用法](#基本用法)
-    * [Monotonous Stack](#monotonous-stack)
-    * [Expample](#expample)
- * [Queue](#queue)
- * [Linked List](#linked-list)
- * [Tree](#tree)
-       * [Binary Search Tree](#binary-search-tree)
- * [Union Find](#union-find)
-       * [UnionFind基础操作](#unionfind基础操作)
-       * [UnionFind follow up](#unionfind-follow-up)
- * [Trie](#trie)
-       * [applications:](#applications)
-       * [why not using a hashmap to store string?](#why-not-using-a-hashmap-to-store-string)
-       * [Model](#model)
-       * [sample peoblems](#sample-peoblems)
-       * [考点](#考点)
- * [Deque](#deque)
- * [Graph](#graph)
- * [Topological Sort](#topological-sort)
- * [Array](#array)
-       * [Array](#array-1)
- * [Binary Search](#binary-search)
-    * [二分思想](#二分思想)
- * [Sort](#sort)
-       * [Quick Sort](#quick-sort)
- * [Collections](#collections)
-       * [methods](#methods)
-       * [ArrayList](#arraylist)
- * [Hash](#hash)
-       * [HashSet](#hashset)
- * [Basics](#basics)
-       * [Math](#math)
-       * [String](#string)
-       * [Bit Manipulation](#bit-manipulation)
- * [DP](#dp)
-    * [Technique](#technique)
-    * [分类](#分类)
-    * [Optimization problems](#optimization-problems)
-    * [Double Sequence](#double-sequence)
-    * [存状态](#存状态)
-       * [Examples](#examples)
- * [Search](#search)
-       * [Breadth-first Search](#breadth-first-search)
-       * [Depth-first Search](#depth-first-search)
- * [Backtracking](#backtracking)
- * [Fancy](#fancy)
- * [Approach](#approach)
-       * [Recursion](#recursion)
-    * [Data Structure](#data-structure)
- * [Problem Sets](#problem-sets)
-       * [Two Pointer](#two-pointer)
-       * [Min/Max Heap](#minmax-heap)
-       * [Stack](#stack-1)
-       * [Windows Problem](#windows-problem)
-       * [Sweep Line](#sweep-line)
+* [Heap](#heap)
+* [Stack](#stack)
+* [Functions](#functions)
+* [基本用法](#基本用法)
+* [Monotonous Stack](#monotonous-stack)
+* [Expample](#expample)
+* [Queue](#queue)
+* [Linked List](#linked-list)
+* [Tree](#tree)
+   * [Binary Search Tree](#binary-search-tree)
+* [Union Find](#union-find)
+   * [UnionFind基础操作](#unionfind基础操作)
+   * [UnionFind follow up](#unionfind-follow-up)
+* [Trie](#trie)
+   * [applications:](#applications)
+   * [why not using a hashmap to store string?](#why-not-using-a-hashmap-to-store-string)
+   * [Model](#model)
+   * [sample peoblems](#sample-peoblems)
+   * [考点](#考点)
+* [Deque](#deque)
+* [Graph](#graph)
+* [Topological Sort](#topological-sort)
+* [Array](#array)
+   * [Array](#array-1)
+* [Binary Search](#binary-search)
+* [二分思想](#二分思想)
+* [Sort](#sort)
+   * [Quick Sort](#quick-sort)
+* [Collections](#collections)
+   * [methods](#methods)
+   * [ArrayList](#arraylist)
+* [Hash](#hash)
+   * [HashSet](#hashset)
+* [Basics](#basics)
+   * [Math](#math)
+   * [String](#string)
+   * [Bit Manipulation](#bit-manipulation)
+* [DP](#dp)
+* [Technique](#technique)
+* [分类](#分类)
+* [Sequence DP](#sequence-dp)
+* [记忆化搜索 Memoization](#记忆化搜索-memoization)
+* [Minimax](#minimax)
+* [Optimization problems](#optimization-problems)
+* [Double Sequence](#double-sequence)
+* [存状态](#存状态)
+   * [Examples](#examples)
+* [Search](#search)
+   * [Breadth-first Search](#breadth-first-search)
+   * [Depth-first Search](#depth-first-search)
+* [Backtracking](#backtracking)
+* [Fancy](#fancy)
+* [Approach](#approach)
+   * [Recursion](#recursion)
+* [Data Structure](#data-structure)
+* [Problem Sets](#problem-sets)
+   * [Two Pointer](#two-pointer)
+   * [Min/Max Heap](#minmax-heap)
+   * [Stack](#stack-1)
+   * [Windows Problem](#windows-problem)
+   * [Sweep Line](#sweep-line)
 
 ### Heap
 
@@ -263,10 +266,16 @@ Hash Table
 - 博弈
 - combos
 
+#### Sequence DP
+- DP[]存的是以 1-based index的状态
+- 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1]
+- dp[0]往往是有特殊状态的
+
+
 #### 记忆化搜索 Memoization
 - 本质是DP, 所有DP也都是为了解决重复计算
 - 从大到小搜索, 其实是暴利解决的思路, 只是在深入到底的的过程中存了状态, 不需要重复计算.
-- 什么时候用记忆化搜索: 状态转移特别麻烦，不是顺序性, 初始化状态不是很容易找到
+- 什么时候用记忆化搜索: 1. 状态转移特别麻烦，不是顺序性; 2. 初始化状态不是很容易找到; 3. 从大到小
 
 #### Minimax
 
@@ -315,6 +324,7 @@ Geometry
 
 Brainteaser
 
+Red Black Tree
 
 
 ### Approach

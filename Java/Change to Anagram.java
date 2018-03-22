@@ -1,25 +1,40 @@
 E
+1521692946
+tags: String
 
-简单的check int[26] 26个小写字母是否需要改变。若需要count+1. 
+HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要变化多少个字符, 能变成anagram.
 
-主要HackerRank里要注意自己写: Scanner, import java.util, non-static method ...etc.
+- 切两半成两个String A,B. 分别在int count[26]里面++, --.
+- 记录 26个小写字母的频率. 如果全部抵消, 就是anagram.
+- 注意: 最后count出来要除以2：字母不同，会在不同的字母位上加减count,那么就是刚好重复计算了一遍。所以除以二
 
-注意: 最后count出来要除以2：字母不同，会在不同的字母位上加减count,那么就是刚好重复计算了一遍。所以除以二。
+- Note: HackerRank里要注意自己写: Scanner, import java.util, non-static method ...etc.
 
 ```
 /*
 HackerRank CodePair
 
-Sid loves to read short stories. Being a Computer Science student, he decides to do some frequency analysis on his favorite reading material. For each data point, chooses a string of length a from one book, and a string of length b from a second book. The strings' lengths differ by no more than 1.
+Sid loves to read short stories. Being a Computer Science student, 
+he decides to do some frequency analysis on his favorite reading material. 
+For each data point, chooses a string of length a from one book, 
+and a string of length b from a second book. The strings' lengths differ by no more than 1.
 |a-b|≤1, where |x| represents the absolute value function.
  
-The frequency analysis consists of checking how far the strings are from being anagrams of one another. Your challenge is to help him find the minimum number of characters of the first string he needs to change to make it an anagram of the second string.  He can neither add nor delete characters from the first string. Only replacement of the characters with new ones is allowed.
+The frequency analysis consists of checking how far the strings are 
+from being anagrams of one another. Your challenge is to help him find 
+the minimum number of characters of the first string he needs to change to 
+make it an anagram of the second string.  He can neither add nor delete characters 
+from the first string. Only replacement of the characters with new ones is allowed.
 
 Input Format
-The first line will contain an integer T representing the number of test cases. Each test case will contain a string having length (a+b) which will be concatenation of both the strings described in problem. The string will only contain small letters and without any spaces.
+The first line will contain an integer T representing 
+the number of test cases. Each test case will contain a string having length (a+b) 
+which will be concatenation of both the strings described in problem. 
+The string will only contain small letters and without any spaces.
 
 Output Format
-An integer corresponding to each test case is printed in a different line i.e., the number of changes required for each test case. Print ‘-1’ if it is not possible.
+An integer corresponding to each test case is printed in a different line i.e., 
+the number of changes required for each test case. Print ‘-1’ if it is not possible.
 
 Constraints
 1 ≤ T ≤ 100

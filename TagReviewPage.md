@@ -1,18 +1,18 @@
-# Review Notes Sorted By Tag
 
 Table of Contents
 =================
-* [Sequence DP (3)](#sequence-dp-3)
+
+* [Sequence DP (4)](#sequence-dp-4)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
-* [String (16)](#string-16)
+* [String (17)](#string-17)
 * [Math (12)](#math-12)
-* [DP (46)](#dp-46)
+* [DP (47)](#dp-47)
 * [BFS (6)](#bfs-6)
 * [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
 * [DFS (22)](#dfs-22)
-* [Game Theory (2)](#game-theory-2)
+* [Game Theory (3)](#game-theory-3)
 * [Hash Table (14)](#hash-table-14)
 * [Backtracking (8)](#backtracking-8)
 * [Bit Manipulation (7)](#bit-manipulation-7)
@@ -20,25 +20,28 @@ Table of Contents
 * [Status DP (1)](#status-dp-1)
 * [Topological Sort (1)](#topological-sort-1)
 * [Sort (6)](#sort-6)
-* [Tree (15)](#tree-15)
+* [Tree (16)](#tree-16)
 * [Greedy (6)](#greedy-6)
 * [Trie (6)](#trie-6)
 * [Coordinate DP (3)](#coordinate-dp-3)
 * [Binary Tree (2)](#binary-tree-2)
-* [Binary Search (19)](#binary-search-19)
+* [Binary Search (20)](#binary-search-20)
 * [Heap (6)](#heap-6)
-* [Stack (10)](#stack-10)
+* [Interval DP (1)](#interval-dp-1)
+* [Stack (11)](#stack-11)
 * [Linked List (7)](#linked-list-7)
 * [Array (42)](#array-42)
 * [Binary Indexed Tree (1)](#binary-indexed-tree-1)
 * [Graph (2)](#graph-2)
 * [Union Find (7)](#union-find-7)
-* [Memoization (3)](#memoization-3)
+* [Memoization (5)](#memoization-5)
 * [Sweep Line (4)](#sweep-line-4)
+* [Two Stacks (1)](#two-stacks-1)
 * [Interval (1)](#interval-1)
 
 
-## Sequence DP (3)
+
+## Sequence DP (4)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
 
@@ -97,6 +100,31 @@ Table of Contents
 
 #### Rolling array
 与House Robber I一样, 可以用%2 来操作rolling array
+
+
+
+---
+**3. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+      
+
+#### Recursive + Memoization
+- 递归很好写, 但是重复计算, timeout. time: O(2^n)
+- O(2^n): each n can spawn 2 dfs child, at next level, it will keep spawn. Total 2^n nodes will spawn.
+- 用全局变量int[] memo 帮助减少重复计算
+- O(n) time, space
+
+#### DP
+- 最后一步被前两种走法决定: dp[i] = dp[i - 1] + dp[i - 2]
+- 基础sequence DP, int[] dp = int[n + 1];
+- DP[]存的是以 1-based index的状态
+- 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1]
+- dp[0]往往是有特殊状态的
+- O(n) space, time
+
+#### 序列DP, 滚动数组
+- [i] only associates with [i-2], [i-1].
+- %2
+- O(1) space
 
 
 
@@ -419,7 +447,7 @@ Time: O(nLogN)
 
 
 
-## String (16)
+## String (17)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -634,6 +662,20 @@ O(mn)
 
 
 ---
+**16. [Change to Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Change%20to%20Anagram.java)**      Level: Easy
+      
+
+HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要变化多少个字符, 能变成anagram.
+
+- 切两半成两个String A,B. 分别在int count[26]里面++, --.
+- 记录 26个小写字母的频率. 如果全部抵消, 就是anagram.
+- 注意: 最后count出来要除以2：字母不同，会在不同的字母位上加减count,那么就是刚好重复计算了一遍。所以除以二
+
+- Note: HackerRank里要注意自己写: Scanner, import java.util, non-static method ...etc.
+
+
+
+---
 
 
 
@@ -796,7 +838,7 @@ Space O(n), time O(n)
 
 
 
-## DP (46)
+## DP (47)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1312,29 +1354,7 @@ dp[i][j][w]: 从i点和j点开始, 各自走w距离, 得到的S和T是否是scra
 
 
 ---
-**28. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
-      
-
-博弈 + 区间. 
-S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
-dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
-dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
-
-最后判断 dp[0][n] >= 0
-
-区间型动态规划:
-找出[i, j]区间内的性质.
-子问题: 砍头, 砍尾, 砍头砍尾
-loop应该基于区间的length
-template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
-
-注意: 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
-我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
-
-
-
----
-**29. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
+**28. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
       
 
 Sequence DP
@@ -1343,7 +1363,7 @@ Sequence DP
 
 
 ---
-**30. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
+**29. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
 经典序列型.
@@ -1357,7 +1377,7 @@ Sequence DP
 
 
 ---
-**31. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
+**30. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
       
 
 双序列DP, 从最后点考虑.
@@ -1369,7 +1389,7 @@ Sequence DP
 
 
 ---
-**32. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
+**31. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
 两个字符串变话, 找最小值, two sequence DP.
@@ -1383,7 +1403,7 @@ Sequence DP
 
 
 ---
-**33. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
+**32. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
       
 
 Double Sequence DP:
@@ -1394,13 +1414,13 @@ Double Sequence DP:
 
 
 ---
-**34. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
+**33. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
       
 
 
 
 ---
-**35. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
+**34. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
       
 
 Double sequence DP. 与regular expression 很像.
@@ -1412,7 +1432,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**36. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
+**35. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -1426,7 +1446,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**37. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
+**36. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
       
 
 两个DP一起用.解决了timeout的问题     
@@ -1449,7 +1469,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 
 ---
-**38. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+**37. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -1469,7 +1489,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 
 ---
-**39. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
+**38. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
 #### 方法1: monotonous stack
@@ -1487,7 +1507,7 @@ Coordinate DP?
 
 
 ---
-**40. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+**39. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -1509,7 +1529,7 @@ Coordinate DP?
 
 
 ---
-**41. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**40. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP
@@ -1523,7 +1543,7 @@ TODO
 
 
 ---
-**42. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
+**41. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -1547,7 +1567,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 ---
-**43. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
+**42. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -1566,7 +1586,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 
 ---
-**44. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+**43. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -1586,7 +1606,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 
 ---
-**45. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+**44. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -1625,6 +1645,64 @@ Reference里面详细介绍了表达式如何推到出来, 简而言之:
 ##### 时间/空间
 Time O(n)
 Space O(n): dp[], sum[]
+
+
+
+---
+**45. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+      
+
+#### Recursive + Memoization
+- 递归很好写, 但是重复计算, timeout. time: O(2^n)
+- O(2^n): each n can spawn 2 dfs child, at next level, it will keep spawn. Total 2^n nodes will spawn.
+- 用全局变量int[] memo 帮助减少重复计算
+- O(n) time, space
+
+#### DP
+- 最后一步被前两种走法决定: dp[i] = dp[i - 1] + dp[i - 2]
+- 基础sequence DP, int[] dp = int[n + 1];
+- DP[]存的是以 1-based index的状态
+- 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1]
+- dp[0]往往是有特殊状态的
+- O(n) space, time
+
+#### 序列DP, 滚动数组
+- [i] only associates with [i-2], [i-1].
+- %2
+- O(1) space
+
+
+
+---
+**46. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+      
+
+还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
+
+#### Memoization + Search
+- 跟Coins in a Line II 一样, MiniMax的思想: 找到我的掠视中的最大值
+- dp[i][j] 代表在[i,j]区间上的先手最多能取的value 总和
+- 同样, sum[i][j]表示[i] 到 [j]间的value总和
+- dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
+- 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
+
+#### 博弈 + 区间DP
+(这个方法需要复习, 跟数学表达式的推断相关联)
+- S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
+- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+- dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
+- 最后判断 dp[0][n] >= 0
+
+#### 注意
+- 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
+- 我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
+
+#### 区间型动态规划
+- 找出[i, j]区间内的性质: dp[i][j]下标表示区间范围 [i, j]
+- 子问题: 砍头, 砍尾, 砍头砍尾
+- loop应该基于区间的length
+- template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
+
 
 
 
@@ -2339,7 +2417,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 
-## Game Theory (2)
+## Game Theory (3)
 **0. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
       
 
@@ -2399,6 +2477,39 @@ Reference里面详细介绍了表达式如何推到出来, 简而言之:
 ##### 时间/空间
 Time O(n)
 Space O(n): dp[], sum[]
+
+
+
+---
+**2. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+      
+
+还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
+
+#### Memoization + Search
+- 跟Coins in a Line II 一样, MiniMax的思想: 找到我的掠视中的最大值
+- dp[i][j] 代表在[i,j]区间上的先手最多能取的value 总和
+- 同样, sum[i][j]表示[i] 到 [j]间的value总和
+- dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
+- 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
+
+#### 博弈 + 区间DP
+(这个方法需要复习, 跟数学表达式的推断相关联)
+- S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
+- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+- dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
+- 最后判断 dp[0][n] >= 0
+
+#### 注意
+- 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
+- 我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
+
+#### 区间型动态规划
+- 找出[i, j]区间内的性质: dp[i][j]下标表示区间范围 [i, j]
+- 子问题: 砍头, 砍尾, 砍头砍尾
+- loop应该基于区间的length
+- template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
+
 
 
 
@@ -2608,18 +2719,21 @@ Inorder traverse Binary Tree
 #### Recursive
 - 在自己的基础上recursive, 不用helper function
 - Divide and Conquer, with helper(dfs) method
+- O(n) time, no extra space
 
-#### Stack
+#### Iterative: Stack
 - Add left nodes all the way   
 - Print curr   
-- Move to right, add right if possible.   
+- Move to right, add right if possible
+- O(n) time, O(h) space
   
 注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
 
 若不右移, 很可能发生窘境:
-
 curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
 
+#### HashMap
+? How?
 
 
 
@@ -3167,7 +3281,7 @@ HashMap
 
 
 
-## Tree (15)
+## Tree (16)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -3412,18 +3526,21 @@ Inorder traverse Binary Tree
 #### Recursive
 - 在自己的基础上recursive, 不用helper function
 - Divide and Conquer, with helper(dfs) method
+- O(n) time, no extra space
 
-#### Stack
+#### Iterative: Stack
 - Add left nodes all the way   
 - Print curr   
-- Move to right, add right if possible.   
+- Move to right, add right if possible
+- O(n) time, O(h) space
   
 注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
 
 若不右移, 很可能发生窘境:
-
 curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
 
+#### HashMap
+? How?
 
 
 
@@ -3435,6 +3552,34 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 - 遍历到底，比较sum vs. target
 - 注意divide的情况。要把遍历的例子写写
+
+
+
+---
+**15. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
+      
+
+如题, POST-ORDER traversal.
+
+LeetCode给了hard, 应该是觉得stack的做法比较难想到.
+
+#### Recursive
+trivial, 先加left recursively, 再加right recursively, 然后组成头部.
+
+#### Stack
+- 双stack的思想, 需要在图纸上画一画
+- 原本需要的顺序是: 先leftChild, rightChild, currNode.
+- 营造一个stack, reversely process: 先currNode, 再rightChild, 再leftChild
+- 这样出来的结果是reverse的, 那么翻转一下就可以了.
+- v1做的时候用了stack1, stack2, 因为根据这个双stack的思想而来
+- v2简化, 可以放在一个stack里面, 每次record result 的时候: rst.add(0, item);
+
+##### 利用stack的特点
+- 每次加element进stack的时候, 想要在 bottom/后process的, 先加
+- 想要下一轮立刻process的, 最后push进stack.
+
+##### 注意
+这些binary tree traversal的题目.常常有多个做法:recursive or iterative
 
 
 
@@ -3788,7 +3933,7 @@ Recursive:分叉. dfs.
 
 
 
-## Binary Search (19)
+## Binary Search (20)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -4094,6 +4239,19 @@ Time: O(nLogN)
 
 
 ---
+**19. [Classical Binary Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Classical%20Binary%20Search.java)**      Level: Easy
+      
+
+#### Binary Search Template
+- while: start + 1 < end
+- mid = start + (end - start) / 2;
+- 根据mid作比较
+- 末尾double check start, end.
+
+
+
+
+---
 
 
 
@@ -4226,7 +4384,44 @@ HashHeap?
 
 
 
-## Stack (10)
+## Interval DP (1)
+**0. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+      
+
+还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
+
+#### Memoization + Search
+- 跟Coins in a Line II 一样, MiniMax的思想: 找到我的掠视中的最大值
+- dp[i][j] 代表在[i,j]区间上的先手最多能取的value 总和
+- 同样, sum[i][j]表示[i] 到 [j]间的value总和
+- dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
+- 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
+
+#### 博弈 + 区间DP
+(这个方法需要复习, 跟数学表达式的推断相关联)
+- S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
+- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+- dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
+- 最后判断 dp[0][n] >= 0
+
+#### 注意
+- 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
+- 我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
+
+#### 区间型动态规划
+- 找出[i, j]区间内的性质: dp[i][j]下标表示区间范围 [i, j]
+- 子问题: 砍头, 砍尾, 砍头砍尾
+- loop应该基于区间的length
+- template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
+
+
+
+
+---
+
+
+
+## Stack (11)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -4432,18 +4627,49 @@ Inorder traverse Binary Tree
 #### Recursive
 - 在自己的基础上recursive, 不用helper function
 - Divide and Conquer, with helper(dfs) method
+- O(n) time, no extra space
 
-#### Stack
+#### Iterative: Stack
 - Add left nodes all the way   
 - Print curr   
-- Move to right, add right if possible.   
+- Move to right, add right if possible
+- O(n) time, O(h) space
   
 注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
 
 若不右移, 很可能发生窘境:
-
 curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
 
+#### HashMap
+? How?
+
+
+
+---
+**10. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
+      
+
+如题, POST-ORDER traversal.
+
+LeetCode给了hard, 应该是觉得stack的做法比较难想到.
+
+#### Recursive
+trivial, 先加left recursively, 再加right recursively, 然后组成头部.
+
+#### Stack
+- 双stack的思想, 需要在图纸上画一画
+- 原本需要的顺序是: 先leftChild, rightChild, currNode.
+- 营造一个stack, reversely process: 先currNode, 再rightChild, 再leftChild
+- 这样出来的结果是reverse的, 那么翻转一下就可以了.
+- v1做的时候用了stack1, stack2, 因为根据这个双stack的思想而来
+- v2简化, 可以放在一个stack里面, 每次record result 的时候: rst.add(0, item);
+
+##### 利用stack的特点
+- 每次加element进stack的时候, 想要在 bottom/后process的, 先加
+- 想要下一轮立刻process的, 最后push进stack.
+
+##### 注意
+这些binary tree traversal的题目.常常有多个做法:recursive or iterative
 
 
 
@@ -4931,29 +5157,7 @@ Preserve原数的负数，这样可以继续用此负数的绝对值来寻找原
 
 
 ---
-**24. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
-      
-
-博弈 + 区间. 
-S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
-dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
-dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
-
-最后判断 dp[0][n] >= 0
-
-区间型动态规划:
-找出[i, j]区间内的性质.
-子问题: 砍头, 砍尾, 砍头砍尾
-loop应该基于区间的length
-template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
-
-注意: 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
-我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
-
-
-
----
-**25. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
+**24. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
       
 
 binary search. 
@@ -4970,7 +5174,7 @@ Note:
 
 
 ---
-**26. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
+**25. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
       
 
 方法1: Vote 计数, vote++, vote--到最后剩下的就是winner. Time O(n), Space O(1)
@@ -4989,7 +5193,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
-**27. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
+**26. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
       
 
 和Construct from Inorder && Postorder 想法一样。
@@ -4999,7 +5203,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
-**28. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
+**27. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
       
 
 方法1:
@@ -5022,7 +5226,7 @@ Not done yet
 
 
 ---
-**29. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium
+**28. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium
       
 
 画图, 最小值被rotate之后, 变成array中间的最低谷.
@@ -5034,7 +5238,7 @@ O(nlogn)
 
 
 ---
-**30. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard
+**29. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard
       
 
 一个需要严谨思考的题目. 因为有duplicate, 会导致不断平移, 所以最终time complexity是O(n)
@@ -5045,7 +5249,7 @@ O(nlogn)
 
 
 ---
-**31. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium
+**30. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium
       
 
 Backtracking:
@@ -5062,7 +5266,7 @@ Backtracking方法2:
 
 
 ---
-**32. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard
+**31. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard
       
 
 这道题目的方法比较多.
@@ -5091,7 +5295,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 
 ---
-**33. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
+**32. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
 
 #### Monotonous Stack
@@ -5113,7 +5317,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 
 ---
-**34. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
+**33. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
       
 
 - 注意不要思维定式: 以为mid是index
@@ -5125,7 +5329,7 @@ Time: O(nLogN)
 
 
 ---
-**35. [Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)**      Level: Medium
+**34. [Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)**      Level: Medium
       
 
 #### basic
@@ -5147,7 +5351,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 
 ---
-**36. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review
+**35. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
@@ -5161,7 +5365,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 
 ---
-**37. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium
+**36. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium
       
 
 #### Sweep Line
@@ -5178,7 +5382,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 
 ---
-**38. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+**37. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -5198,7 +5402,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 
 ---
-**39. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
+**38. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
 #### 方法1: monotonous stack
@@ -5216,7 +5420,7 @@ Coordinate DP?
 
 
 ---
-**40. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**39. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP
@@ -5230,7 +5434,7 @@ TODO
 
 
 ---
-**41. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+**40. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -5269,6 +5473,39 @@ Reference里面详细介绍了表达式如何推到出来, 简而言之:
 ##### 时间/空间
 Time O(n)
 Space O(n): dp[], sum[]
+
+
+
+---
+**41. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+      
+
+还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
+
+#### Memoization + Search
+- 跟Coins in a Line II 一样, MiniMax的思想: 找到我的掠视中的最大值
+- dp[i][j] 代表在[i,j]区间上的先手最多能取的value 总和
+- 同样, sum[i][j]表示[i] 到 [j]间的value总和
+- dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
+- 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
+
+#### 博弈 + 区间DP
+(这个方法需要复习, 跟数学表达式的推断相关联)
+- S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
+- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+- dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
+- 最后判断 dp[0][n] >= 0
+
+#### 注意
+- 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
+- 我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
+
+#### 区间型动态规划
+- 找出[i, j]区间内的性质: dp[i][j]下标表示区间范围 [i, j]
+- 子问题: 砍头, 砍尾, 砍头砍尾
+- loop应该基于区间的length
+- template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
+
 
 
 
@@ -5446,7 +5683,7 @@ DFS, BFS都好理解,
 
 
 
-## Memoization (3)
+## Memoization (5)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
 
@@ -5533,6 +5770,64 @@ Space O(n): dp[], sum[]
 
 
 ---
+**3. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+      
+
+#### Recursive + Memoization
+- 递归很好写, 但是重复计算, timeout. time: O(2^n)
+- O(2^n): each n can spawn 2 dfs child, at next level, it will keep spawn. Total 2^n nodes will spawn.
+- 用全局变量int[] memo 帮助减少重复计算
+- O(n) time, space
+
+#### DP
+- 最后一步被前两种走法决定: dp[i] = dp[i - 1] + dp[i - 2]
+- 基础sequence DP, int[] dp = int[n + 1];
+- DP[]存的是以 1-based index的状态
+- 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1]
+- dp[0]往往是有特殊状态的
+- O(n) space, time
+
+#### 序列DP, 滚动数组
+- [i] only associates with [i-2], [i-1].
+- %2
+- O(1) space
+
+
+
+---
+**4. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+      
+
+还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
+
+#### Memoization + Search
+- 跟Coins in a Line II 一样, MiniMax的思想: 找到我的掠视中的最大值
+- dp[i][j] 代表在[i,j]区间上的先手最多能取的value 总和
+- 同样, sum[i][j]表示[i] 到 [j]间的value总和
+- dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
+- 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
+
+#### 博弈 + 区间DP
+(这个方法需要复习, 跟数学表达式的推断相关联)
+- S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
+- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+- dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
+- 最后判断 dp[0][n] >= 0
+
+#### 注意
+- 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
+- 我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
+
+#### 区间型动态规划
+- 找出[i, j]区间内的性质: dp[i][j]下标表示区间范围 [i, j]
+- 子问题: 砍头, 砍尾, 砍头砍尾
+- loop应该基于区间的length
+- template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
+
+
+
+
+---
 
 
 
@@ -5609,6 +5904,38 @@ REVIEW
 Binary Indexed Tree?
 
 HashHeap?
+
+
+
+---
+
+
+
+## Two Stacks (1)
+**0. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
+      
+
+如题, POST-ORDER traversal.
+
+LeetCode给了hard, 应该是觉得stack的做法比较难想到.
+
+#### Recursive
+trivial, 先加left recursively, 再加right recursively, 然后组成头部.
+
+#### Stack
+- 双stack的思想, 需要在图纸上画一画
+- 原本需要的顺序是: 先leftChild, rightChild, currNode.
+- 营造一个stack, reversely process: 先currNode, 再rightChild, 再leftChild
+- 这样出来的结果是reverse的, 那么翻转一下就可以了.
+- v1做的时候用了stack1, stack2, 因为根据这个双stack的思想而来
+- v2简化, 可以放在一个stack里面, 每次record result 的时候: rst.add(0, item);
+
+##### 利用stack的特点
+- 每次加element进stack的时候, 想要在 bottom/后process的, 先加
+- 想要下一轮立刻process的, 最后push进stack.
+
+##### 注意
+这些binary tree traversal的题目.常常有多个做法:recursive or iterative
 
 
 

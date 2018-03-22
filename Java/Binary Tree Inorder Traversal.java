@@ -7,18 +7,21 @@ Inorder traverse Binary Tree
 #### Recursive
 - 在自己的基础上recursive, 不用helper function
 - Divide and Conquer, with helper(dfs) method
+- O(n) time, no extra space
 
-#### Stack
+#### Iterative: Stack
 - Add left nodes all the way   
 - Print curr   
-- Move to right, add right if possible.   
+- Move to right, add right if possible
+- O(n) time, O(h) space
   
 注意stack.pop()在加完left-most child 的后，一定要curr = curr.right.
 
 若不右移, 很可能发生窘境:
-
 curr下一轮还是去找自己的left-most child，不断重复curr and curr.left, 会infinite loop, 永远在左边上下上下。
 
+#### HashMap
+? How?
 
 ```
 /*
@@ -95,43 +98,47 @@ public class Solution {
 
 
 
-
 /*
-    recap 3.15.2016
-    Iterative
-    stack: add left till end; consume top, if has right, add right; push right.left till end of right's left node.
+Thoughts:
+Iterative
+Stack, always treat left-most-leaf with priority
+- add node.left till end.
+- consume stack.pop()
+- if has right, add node.right and push all left children to stack
 */
-public class Solution {
+class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> rst = new ArrayList<Integer>();
+        List<Integer> rst = new ArrayList<>();
         if (root == null) {
             return rst;
         }
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<TreeNode> stack = new Stack<>();
         TreeNode node = root;
-        //Initialize
+        // Dive deep to left-most leaf
         while (node != null) {
             stack.push(node);
             node = node.left;
         }
-        //iteratively add && process via inorder traversal
+        
         while (!stack.isEmpty()) {
+            // Add to rst
             node = stack.pop();
             rst.add(node.val);
-            if (node.right != null) {//process right, but put right's left children on top of stack
+            // Add node.right and all left children
+            if (node.right != null) {
                 node = node.right;
                 while (node != null) {
                     stack.push(node);
                     node = node.left;
                 }
             }
-            
         }
         return rst;
     }
 }
 
 
+// Previous notes
 /*
     1. Use a helper method, recursively add to rst
 */

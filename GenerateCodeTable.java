@@ -191,7 +191,7 @@ public class GenerateCodeTable {
     }
 
     public String generateTagREADME(File[] listOfFiles) {
-        String outputContent = "# Problems Sorted By Tag\n\n";
+        String outputContent = generateTableOfContent("TagREADME.md") + "\n\n";
         String header = "| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|\n" + 
                         "|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|\n";
         final List<TableRow> tableRows = getTableRows(listOfFiles);
@@ -221,7 +221,7 @@ public class GenerateCodeTable {
     }
 
     public String generateTagReviewPage(File[] listOfFiles) {
-        String outputContent = "# Review Notes Sorted By Tag\n\n";
+        String outputContent = generateTableOfContent("TagREADME.md") + "\n\n";
         final List<TableRow> tableRows = getTableRows(listOfFiles);
         final HashMap<String, List<TableRow>> tagToRows = new HashMap<>();
         // Group by tags:
@@ -376,5 +376,40 @@ public class GenerateCodeTable {
                 return "Review";
         }
         return NOT_AVAILABLE;
+    }
+
+    // Build the table of contents of the page. Need to have 'gh-md-toc' installed
+    private String generateTableOfContent(String fileName) {
+        StringBuffer sb = new StringBuffer();
+        try {
+            Runtime rt = Runtime.getRuntime();
+            String[] commands = {"./gh-md-toc", fileName};
+            Process proc = rt.exec(commands);
+
+            BufferedReader stdInput = new BufferedReader(new 
+                 InputStreamReader(proc.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new 
+                 InputStreamReader(proc.getErrorStream()));
+
+            // read the output from the command
+            System.out.println("Here is the standard output of the command:\n");
+            String s = null;
+            while ((s = stdInput.readLine()) != null) {
+                if (!s.contains("[gh-md-toc]") && !s.contains("table-of-contents")) {
+                    sb.append(s.trim() + "\n");
+                }
+            }
+
+            // read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+        } catch (final Exception e) {
+            System.err.format("IOException: %s%n", e);
+        }
+        System.out.println(sb.toString());
+        return sb.toString();
     }
 }

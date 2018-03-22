@@ -1,8 +1,12 @@
 E 
+1521694570
+tags: Binary Search
 
-   while: start + 1 < end
-   mid = start + (end - start) / 2;
-   末尾double check start, end.
+#### Binary Search Template
+- while: start + 1 < end
+- mid = start + (end - start) / 2;
+- 根据mid作比较
+- 末尾double check start, end.
 
 
 ```
@@ -31,32 +35,31 @@ Thoughts: classic
 start,mid,end
 */
 public class Solution {
-    /**
-     * @param A an integer array sorted in ascending order
-     * @param target an integer
-     * @return an integer
-     */
-    public int findPosition(int[] A, int target) {
-        if (A == null || A.length == 0) {
+    public int findPosition(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
             return -1;
         }
         int start = 0;
-        int end = A.length - 1;
-        int mid;
-        while(start + 1 < end) {
-            mid = start + (end - start) / 2;
-            if (target == A[mid]) {
+        int end = nums.length - 1;
+        while (start + 1 < end) {
+            int mid = start + ((end - start) >> 1);
+            if (nums[mid] == target) {
                 return mid;
-            } else if (target > A[mid]) {
+            } else if (nums[mid] < target) {
                 start = mid;
             } else {
                 end = mid;
             }
-        }//end while
-        if (A[start] == target || A[end] == target) {
-            return A[start] == target ? start : end;
+        }
+
+        if (nums[start] == target) {
+            return start;
+        }
+        if (nums[end] == target) {
+            return end;
         }
         return -1;
     }
 }
+
 ```
