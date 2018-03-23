@@ -99,11 +99,16 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 ### Tree
 
-##### Binary Search Tree
+#### Binary Search Tree
 - If BST not given, can use TreeSet
 - All left nodes are less than current node.val; all right nodes are greater than curr node.val
 - Use DFS to traverse: divide and conquer. Similarly, usually can convert the DFS solution to interative solution.
 - Use stack to traverse iteratively
+
+#### Binary Tree
+- Complete binary tree: all levels are filled, except maybe the last level. 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
+- Balenced bianry tree: has the minimum posible maximum height(depth) for left nodes; for given leaf nodes, the leaf nodes will be placed at greatest height possible.
+- 一个child tree的nodes总量是 2 ^ h - 1; 那么一个child tree + root 的nodes 总量就是 2 ^ h了.
 
 Binary Indexed Tree
 
@@ -249,6 +254,8 @@ Hash Table
 - & 0000 = clean up; | ABC = assign ABC
 - A^B=C, then A = B^C
 - bits可以用来表示不同的状态, 比如2bit可以表示4种状态: 00, 01, 10, 11
+- Math.pow(2, h) = 2 << (h - 1); 2 << 1就是把所有bits往左移动一位, 也就是 * 2 
+- Also, 1 << h = 2 ^ h; 1 << h 就是 2 * 2 * 2* ....乘h次.
 
 ### DP
 

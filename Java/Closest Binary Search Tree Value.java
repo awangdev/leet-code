@@ -1,6 +1,18 @@
 E
+1521773643
+tags: Binary Search, Tree
 
-Binary Search. 记录找到过的closest. 直到tree leaf, 找完return
+给一个BST, 和一个double target, 走位找到最接近的number.
+
+#### Recursive
+- when less than curr val, consider left
+- when greater than curr val, consider right
+- dfs到底, 然后每一层比较, 再return
+
+#### Binary Search
+- 记录找到过的closest
+- Binary Search, 根据current node走位,
+- 找到 node.val == target, 或者走位走完, return closest
 
 ```
 /*
@@ -15,6 +27,23 @@ Similar Problems: (M) Count Complete Tree Nodes, (H) Closest Binary Search Tree 
 
 */
 
+/*
+Thoughts:
+dfs, before going into the left/right child, compare target with root, leftChild and rightChild see if a match
+*/
+class Solution {
+    public int closestValue(TreeNode root, double target) {
+        if (root.left != null && target < root.val) {
+            int leftResult = closestValue(root.left, target);
+            return Math.abs(leftResult - target) < Math.abs(root.val - target) ? leftResult : root.val;
+        }
+        if (root.right != null && target > root.val) {
+            int rightResult = closestValue(root.right, target);
+            return Math.abs(rightResult - target) < Math.abs(root.val - target) ? rightResult : root.val;
+        }
+        return root.val;
+    }
+}
 
 /*
 Thoughts:

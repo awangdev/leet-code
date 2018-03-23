@@ -287,7 +287,7 @@ public class GenerateCodeTable {
             sb.append("      Level: " + tableRow.getLevel() + "\n");
             sb.append("      " + tableRow.getTutorialLink() + "\n");
             sb.append(tableRow.getNote() + "\n");
-            sb.append("\n---\n");
+            sb.append("\n---\n\n");
             count++;
         }
         return sb.toString();

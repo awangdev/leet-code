@@ -256,7 +256,6 @@ DFS, BFS都好理解,
    也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
------
 Previous Notes:
 Big improvement: use boolean visited on TrieNode!     
 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    

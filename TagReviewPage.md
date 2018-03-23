@@ -5,7 +5,7 @@ Table of Contents
 * [Sequence DP (4)](#sequence-dp-4)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
-* [String (17)](#string-17)
+* [String (18)](#string-18)
 * [Math (12)](#math-12)
 * [DP (47)](#dp-47)
 * [BFS (6)](#bfs-6)
@@ -20,12 +20,12 @@ Table of Contents
 * [Status DP (1)](#status-dp-1)
 * [Topological Sort (1)](#topological-sort-1)
 * [Sort (6)](#sort-6)
-* [Tree (16)](#tree-16)
+* [Tree (18)](#tree-18)
 * [Greedy (6)](#greedy-6)
 * [Trie (6)](#trie-6)
 * [Coordinate DP (3)](#coordinate-dp-3)
 * [Binary Tree (2)](#binary-tree-2)
-* [Binary Search (20)](#binary-search-20)
+* [Binary Search (22)](#binary-search-22)
 * [Heap (6)](#heap-6)
 * [Interval DP (1)](#interval-dp-1)
 * [Stack (11)](#stack-11)
@@ -459,7 +459,7 @@ Time: O(nLogN)
  
  
  
-## String (17)
+## String (18)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -684,6 +684,25 @@ HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要
 - 注意: 最后count出来要除以2：字母不同，会在不同的字母位上加减count,那么就是刚好重复计算了一遍。所以除以二
 
 - Note: HackerRank里要注意自己写: Scanner, import java.util, non-static method ...etc.
+
+
+
+---
+**17. [Compare Version Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Version%20Numbers.java)**      Level: Medium
+      
+
+给两串version number,  由数字和'.' 组成. 比较先后顺序. 
+
+If version1 > version2 return 1, if version1 < version2 return -1, otherwise return 0.
+
+#### divide and conquer 
+- 用 str.split("\\.") 分割string
+- Convert成integer, 逐个击破
+
+#### 注意
+- '1.0' 和 '0' 是相等的
+- 如果可以假设version integer都是valid, 直接Integer.parseInt()就可以了
+- 不然的话, 可以compare string
 
 
 
@@ -2304,7 +2323,6 @@ DFS, BFS都好理解,
    也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
------
 Previous Notes:
 Big improvement: use boolean visited on TrieNode!     
 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
@@ -2859,7 +2877,6 @@ Search word:没有node就报错. 到结尾return true
    也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
------
 Previous Notes:
 Big improvement: use boolean visited on TrieNode!     
 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
@@ -3342,7 +3359,7 @@ HashMap
  
  
  
-## Tree (16)
+## Tree (18)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -3645,6 +3662,45 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 ---
+**16. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
+      
+
+给一个BST, 和一个double target, 走位找到最接近的number.
+
+#### Recursive
+- when less than curr val, consider left
+- when greater than curr val, consider right
+- dfs到底, 然后每一层比较, 再return
+
+#### Binary Search
+- 记录找到过的closest
+- Binary Search, 根据current node走位,
+- 找到 node.val == target, 或者走位走完, return closest
+
+
+
+---
+**17. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
+      
+
+Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
+
+#### DFS + Optimization
+- 每次看最左left depth和最右leaf depth 是不是一样, 如果一样, 直接 2 ^ h - 1就好
+- 不一样的话, 再DFS
+
+##### Trick
+- 直接DFS会timeout, O(n), 其实可以optimize
+- to pass the test with O(h^2), 位运算: Math.pow(2, h) = 2 << (h - 1). 神奇!
+- 2 << 1就是把所有bits往左移动一位, 也就是 * 2 
+
+#### Iteratively
+- See details in comments inline. 要对tree非常理解
+- binary tree one child tree nodes # = 2 ^ h - 1; 所以一个child tree + root = 2 ^ h
+
+
+
+---
 
 
 
@@ -3828,7 +3884,6 @@ Search word:没有node就报错. 到结尾return true
    也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
------
 Previous Notes:
 Big improvement: use boolean visited on TrieNode!     
 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
@@ -4009,7 +4064,7 @@ Recursive:分叉. dfs.
  
  
  
-## Binary Search (20)
+## Binary Search (22)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -4324,6 +4379,45 @@ Time: O(nLogN)
 - 根据mid作比较
 - 末尾double check start, end.
 
+
+
+
+---
+**20. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
+      
+
+给一个BST, 和一个double target, 走位找到最接近的number.
+
+#### Recursive
+- when less than curr val, consider left
+- when greater than curr val, consider right
+- dfs到底, 然后每一层比较, 再return
+
+#### Binary Search
+- 记录找到过的closest
+- Binary Search, 根据current node走位,
+- 找到 node.val == target, 或者走位走完, return closest
+
+
+
+---
+**21. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
+      
+
+Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
+
+#### DFS + Optimization
+- 每次看最左left depth和最右leaf depth 是不是一样, 如果一样, 直接 2 ^ h - 1就好
+- 不一样的话, 再DFS
+
+##### Trick
+- 直接DFS会timeout, O(n), 其实可以optimize
+- to pass the test with O(h^2), 位运算: Math.pow(2, h) = 2 << (h - 1). 神奇!
+- 2 << 1就是把所有bits往左移动一位, 也就是 * 2 
+
+#### Iteratively
+- See details in comments inline. 要对tree非常理解
+- binary tree one child tree nodes # = 2 ^ h - 1; 所以一个child tree + root = 2 ^ h
 
 
 

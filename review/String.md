@@ -1,7 +1,7 @@
  
  
  
-## String (17)
+## String (18)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -226,6 +226,25 @@ HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要
 - 注意: 最后count出来要除以2：字母不同，会在不同的字母位上加减count,那么就是刚好重复计算了一遍。所以除以二
 
 - Note: HackerRank里要注意自己写: Scanner, import java.util, non-static method ...etc.
+
+
+
+---
+**17. [Compare Version Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Version%20Numbers.java)**      Level: Medium
+      
+
+给两串version number,  由数字和'.' 组成. 比较先后顺序. 
+
+If version1 > version2 return 1, if version1 < version2 return -1, otherwise return 0.
+
+#### divide and conquer 
+- 用 str.split("\\.") 分割string
+- Convert成integer, 逐个击破
+
+#### 注意
+- '1.0' 和 '0' 是相等的
+- 如果可以假设version integer都是valid, 直接Integer.parseInt()就可以了
+- 不然的话, 可以compare string
 
 
 
