@@ -9,7 +9,8 @@ Table of Contents
 * [Queue](#queue)
 * [Linked List](#linked-list)
 * [Tree](#tree)
-   * [Binary Search Tree](#binary-search-tree)
+* [Binary Search Tree](#binary-search-tree)
+* [Binary Tree](#binary-tree)
 * [Union Find](#union-find)
    * [UnionFind基础操作](#unionfind基础操作)
    * [UnionFind follow up](#unionfind-follow-up)
@@ -22,6 +23,8 @@ Table of Contents
 * [Deque](#deque)
 * [Graph](#graph)
 * [Topological Sort](#topological-sort)
+* [Topological Sort - BFS](#topological-sort---bfs)
+* [Topological Sort - DFS](#topological-sort---dfs)
 * [Array](#array)
    * [Array](#array-1)
 * [Binary Search](#binary-search)
@@ -174,7 +177,28 @@ Segment Tree
 
 
 ### Topological Sort
+- Sort vertices in a graph
+- Run DFS, output reverse of finishing times of vertices (stored in a list) 
+- G graph has a cycle? If there is a back edge, there is a cycle
+- Job Schedule/ Course Schedule: should not have cycle, so acyclic
 
+#### Topological Sort - BFS
+- https://www.youtube.com/watch?v=_LuIvEi_kZk
+- Can be used to return the topologically sorted list
+- The final sorted list will not include the element on a cycle; these vertices won't reduce to in-degree 0.
+- 给一个graph of nodes
+- 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
+- 如果有cycle, 这个item就不会被放在最后的list 里面. 比如: 如果两个课互相是dependency, 就变成了cyclic dependency.
+- 注意, 有些有cycle的题目里面要求直接fail掉, 因为有了cycle, topological sort的结果是缺element的, 也许对某个场景来说就是没有意义的.
+- 相比DFS, BFS 更容易理解和walk through
+
+
+#### Topological Sort - DFS
+- https://youtu.be/AfSk24UTFS8?t=42m
+- 还是要先构建好 edges = map<node, list of node>; 或者edges = List[arraylist];
+- dfs到底, 再没有其他child node的时候, 把这个node加进stack (垫底)
+- 最终按照stack的顺序, pop()出来的顺序 (reverse) 就是正确的topological sort
+- 这个比BFS有时候要灵活一些: 可以detect cycle on the fly, 而BFS的做法会到最后再结算cycle是否存在
 
 
 
@@ -313,7 +337,8 @@ Hash Table
 Track queue size, use the queue as in rotation
 
 ##### Depth-first Search
-
+- backtracking: do not repeatly visit a node
+- DFS traverse O(n)
 
 ### Backtracking ###
 - Finding all (or some) solutions to some computational problems, notebaly constraint satisfaction problems

@@ -5,7 +5,7 @@ Table of Contents
 * [Sequence DP (4)](#sequence-dp-4)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
-* [String (17)](#string-17)
+* [String (18)](#string-18)
 * [Math (12)](#math-12)
 * [DP (47)](#dp-47)
 * [BFS (6)](#bfs-6)
@@ -20,12 +20,12 @@ Table of Contents
 * [Status DP (1)](#status-dp-1)
 * [Topological Sort (1)](#topological-sort-1)
 * [Sort (6)](#sort-6)
-* [Tree (16)](#tree-16)
+* [Tree (18)](#tree-18)
 * [Greedy (6)](#greedy-6)
 * [Trie (6)](#trie-6)
 * [Coordinate DP (3)](#coordinate-dp-3)
 * [Binary Tree (2)](#binary-tree-2)
-* [Binary Search (20)](#binary-search-20)
+* [Binary Search (22)](#binary-search-22)
 * [Heap (6)](#heap-6)
 * [Interval DP (1)](#interval-dp-1)
 * [Stack (11)](#stack-11)
@@ -195,7 +195,7 @@ Table of Contents
  
  
  
-## BFS (6)
+## BFS (8)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math]||
@@ -204,6 +204,8 @@ Table of Contents
 |3|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
 |4|[Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)|Review|Java|[BFS, DFS, Union Find]||
 |5|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap]||
+|6|[Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
+|7|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
 
 
 
@@ -237,7 +239,7 @@ Table of Contents
  
  
  
-## DFS (22)
+## DFS (24)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)|Easy|Java|[DFS]||
@@ -262,6 +264,8 @@ Table of Contents
 |19|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Hard|Java|[DFS, DP, Status DP, Tree]||
 |20|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[DFS, DP, Memoization, Topological Sort]||
 |21|[Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)|Easy|Java|[DFS, Tree]||
+|22|[Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
+|23|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
 
 
 
@@ -360,10 +364,12 @@ Table of Contents
  
  
  
-## Topological Sort (1)
+## Topological Sort (3)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[DFS, DP, Memoization, Topological Sort]||
+|1|[Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
+|2|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
 
 
 
@@ -618,11 +624,13 @@ Table of Contents
  
  
  
-## Graph (2)
+## Graph (4)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)|Medium|Java|[BFS, DFS, Graph]||
 |1|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
+|2|[Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
+|3|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
 
 
 

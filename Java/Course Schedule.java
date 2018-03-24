@@ -1,5 +1,36 @@
 M
+1521928225
+tags: DFS, BFS, Graph, Topological Sort
 
+- 一堆课用int[2] pair 来表示. [1, 0] 表示要上课1的话, 必须先把课0上了. 
+- 每一个数字都是一个ndoe, 题目问是否能把所有的课排了
+- input是 numOfCourses, 还有这个prerequisites [[]]
+
+#### Topological Sort
+- 给一个graph of nodes
+- 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
+- 如果有cycle, 这个item就不会被放在最后的list 里面. 
+- 比如: 如果两个课互相是dependency, 就变成了cyclic dependency, 这样不好.
+
+#### BFS
+- Kahn algorithem:
+- 先build一个graph map: <node, list of nodes >
+- count in-degree:  inDegree就是每个node上面, 有多少个走进来的edge?
+- 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
+- 对这些 indegree == 0 的 nodes BFS
+- 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
+- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list.
+
+#### DFS
+- 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
+- 用 visited int[] 来确认是否有cycle. 1 代表 paretNode visited, -1 代表在DFS上一行的标记
+- 如果遇到-1, 说明这个node在上一级或者以上的同一个dfs path里面已经走过, 那么证明有cycle, return false.
+- 真的topo sort会在DFS的底端, 把record放进一个stack, 最后reverse, 就是真的sort order.
+
+#### Notes:
+- 还有 List[] arrayOfList = new ArrayList[]; 这样的操作啊, 代替了map<integer, integerList>
+
+#### Previous notes
 有点绕，但是做过一次就明白一点。    
 是topological sort的题目。一般都是给有dependency的东西排序。    
 
@@ -23,7 +54,8 @@ There are a total of n courses you have to take, labeled from 0 to n - 1.
 Some courses may have prerequisites, for example to take course 0 you have to first take course 1, 
 which is expressed as a pair: [0,1]
 
-Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
+Given the total number of courses and a list of prerequisite pairs, 
+is it possible for you to finish all courses?
 
 For example:
 
@@ -36,21 +68,137 @@ and to take course 0 you should also have finished course 1.
 So it is impossible.
 
 Note:
-The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices. 
+Read more about how a graph is represented.
+https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs
 
 click to show more hints.
 
 Hints:
 1. This problem is equivalent to finding if a cycle exists in a directed graph. 
 	If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.
-2. Topological Sort via DFS - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.
+2. Topological Sort via DFS - A great video tutorial (21 minutes) on Coursera 
+   explaining the basic concepts of Topological Sort.
 3. Topological sort could also be done via BFS.
-
-Hide Company Tags Zenefits
-Hide Tags Depth-first Search Breadth-first Search Graph Topological Sort
-Hide Similar Problems (M) Course Schedule II (M) Graph Valid Tree (M) Minimum Height Trees
-
 */
+
+/*
+Thoughts:
+Topological sort, BFS Kahn's algorithem.
+- build map of <node, listOfDirectedNodes>
+- count in-degree (if need to return actaul source schedule sequence, we should maintain a list)
+- start without in-degree, add to queue
+- iterate over queue, visit each directed node and decrease the in-degree on them
+- when the in-degree on a node == 0, add it to the 'final list'; in this question, no need to return course scheduel, so just add to count.
+- If size of the final list (count) == numCourse, means we scheduled all courses and there is no cycle, so return true.
+*/
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if (numCourses == 0 || prerequisites == null || prerequisites.length == 0
+            || prerequisites[0] == null || prerequisites[0].length == 0) {
+            return true;
+        }
+        List[] edges = new ArrayList[numCourses];
+        int[] inDegree = new int[numCourses];
+        
+        // Initialize
+        for (int i = 0; i < numCourses; i++) {
+            edges[i] = new ArrayList<>();
+        }
+        
+        // Build graph edges
+        for (int[] prerequisite : prerequisites) {
+            edges[prerequisite[1]].add(prerequisite[0]);
+            inDegree[prerequisite[0]]++;
+        }
+        
+        // BFS to build the final sorted list
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (inDegree[i] == 0) {
+                queue.add(i);
+            }
+        }
+        
+        int count = 0;
+        while (!queue.isEmpty()) {
+            int startNode = (int)queue.poll();
+            count++;
+            for (int i = 0; i < edges[startNode].size(); i++) {
+                int childNode = (int) edges[startNode].get(i);
+                inDegree[childNode]--;
+                if (inDegree[childNode] == 0) {
+                    queue.add(childNode);
+                }
+            }
+        }
+        
+        return count == numCourses;
+    }
+}
+
+
+/*
+Thoughts:
+DFS. This question only asks about true/false (to detect cycle),
+so there is no need to record the actual final list.
+We'll simply traverse all of the nodes via the map <node, nodeList>.
+If there is a cycle, there must be a node being visited again in one loop: 
+mark last visited node = -1
+mark visited starting node after dfs: node = 1
+*/
+class Solution {
+    int[] visited;
+    List[] edges;
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if (numCourses == 0 || prerequisites == null || prerequisites.length == 0
+            || prerequisites[0] == null || prerequisites[0].length == 0) {
+            return true;
+        }
+        edges = new ArrayList[numCourses];
+        visited = new int[numCourses];
+        
+        // Initialize
+        for (int i = 0; i < numCourses; i++) {
+            edges[i] = new ArrayList<Integer>();
+        }
+        
+        // Build graph edges
+        for (int[] prerequisite : prerequisites) {
+            edges[prerequisite[1]].add(prerequisite[0]);
+        }
+        
+        // DFS serach && marking visited
+        for (int i = 0; i < numCourses; i++) {
+            if(!dfs(i)) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    public boolean dfs(int node) {
+        if (visited[node] == 1) {
+            return true;
+        }
+        if (visited[node] == -1) { // cyclic
+            return false;
+        }
+        
+        visited[node] = -1;
+        List<Integer> childNodes = edges[node];
+        for (Integer childNode : childNodes) {
+            if (!dfs(childNode)) {
+                return false;
+            }
+        }
+        visited[node] = 1;
+        
+        return true;
+    }
+}
+
 
 /*
 	Thoughts: Try some help. make shorter version. 
