@@ -1,4 +1,5 @@
 E
+tags: BST
 
 往Binary Search Tree里面加东西，一定会找到一个合适的leaf加上去。
 

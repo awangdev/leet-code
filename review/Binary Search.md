@@ -1,7 +1,7 @@
  
  
  
-## Binary Search (22)
+## Binary Search (23)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -355,6 +355,16 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 #### Iteratively
 - See details in comments inline. 要对tree非常理解
 - binary tree one child tree nodes # = 2 ^ h - 1; 所以一个child tree + root = 2 ^ h
+
+
+
+---
+**22. [Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)**      Level: Easy
+      
+
+- Binary Search 的一种变型, LintCode无法再跑一边.
+- 考虑mid-1, mid+1.
+- 一旦没有mid = target.index。 那么target最终就narrow down在(mid-1,mid) 或者(mid,mid+1)   
 
 
 

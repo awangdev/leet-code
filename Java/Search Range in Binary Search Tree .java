@@ -1,4 +1,5 @@
 M
+tags: BST
 
 等于遍历了所有k1<= x <= k2的x node。
 

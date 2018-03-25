@@ -1,7 +1,7 @@
  
  
  
-## Stack (11)
+## Stack (12)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -252,6 +252,21 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 ##### 注意
 这些binary tree traversal的题目.常常有多个做法:recursive or iterative
+
+
+
+---
+**11. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+      
+
+#### Recursive
+- 加root, left, then right. Obvious
+- Divide and conquer
+- 其实也不需要helper function
+
+#### Iterative
+- 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
+- Stack: push curr, push right, push left.   
 
 
 

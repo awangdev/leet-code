@@ -1,7 +1,7 @@
  
  
  
-## BFS (8)
+## BFS (11)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -198,6 +198,63 @@ DFS, BFS都好理解,
 - 维持sortedList int[] 全局变量, 注意加进去的时候是 add(0, node) 加在开头这样
 - 每次到一个node的children全部DFS走完之后, 就可以把他加进final list里面
 - 如果有cycle, 也就是dfs return false的时候, 这个题目判定排课失败, return new int[] { }
+
+
+
+---
+**8. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+      
+
+给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 把 string array 变成topological sort的 graph
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
+
+
+
+---
+**9. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+      
+
+#### Recursive
+- 加root, left, then right. Obvious
+- Divide and conquer
+- 其实也不需要helper function
+
+#### Iterative
+- 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
+- Stack: push curr, push right, push left.   
+
+
+
+---
+**10. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+      
+
+#### BFS
+- 当出现了第一次有 null children的node的时候, 说明到了leaf level, mark flag = true;
+- 自此以后，queue再不该有node再有child; queue后面出现的node的left/right child应该都是null
+- 否则就是有问题, return false;
+
+#### DFS
+- Count left-most-leaf depth
+- Count right-most-leaf depth
+- 如果两个depth不一样, 就 false
+- LintCode跑不了
+
 
 
 

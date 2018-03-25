@@ -1,6 +1,6 @@
 E
 1521773643
-tags: Binary Search, Tree
+tags: Binary Search, Tree, BST
 
 给一个BST, 和一个double target, 走位找到最接近的number.
 

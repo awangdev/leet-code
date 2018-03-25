@@ -5,34 +5,35 @@ Table of Contents
 * [Sequence DP (4)](#sequence-dp-4)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
-* [String (18)](#string-18)
+* [String (19)](#string-19)
 * [Math (12)](#math-12)
 * [DP (47)](#dp-47)
-* [BFS (8)](#bfs-8)
+* [BFS (11)](#bfs-11)
 * [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
-* [DFS (24)](#dfs-24)
+* [DFS (27)](#dfs-27)
 * [Game Theory (3)](#game-theory-3)
-* [Hash Table (14)](#hash-table-14)
-* [Backtracking (8)](#backtracking-8)
+* [Hash Table (16)](#hash-table-16)
+* [Backtracking (9)](#backtracking-9)
 * [Bit Manipulation (7)](#bit-manipulation-7)
 * [Divide and Conquer (5)](#divide-and-conquer-5)
 * [Status DP (1)](#status-dp-1)
-* [Topological Sort (3)](#topological-sort-3)
+* [Topological Sort (4)](#topological-sort-4)
 * [Sort (6)](#sort-6)
-* [Tree (18)](#tree-18)
+* [Tree (20)](#tree-20)
 * [Greedy (6)](#greedy-6)
 * [Trie (6)](#trie-6)
 * [Coordinate DP (3)](#coordinate-dp-3)
+* [BST (16)](#bst-16)
 * [Binary Tree (2)](#binary-tree-2)
-* [Binary Search (22)](#binary-search-22)
+* [Binary Search (23)](#binary-search-23)
 * [Heap (6)](#heap-6)
 * [Interval DP (1)](#interval-dp-1)
-* [Stack (11)](#stack-11)
+* [Stack (12)](#stack-12)
 * [Linked List (7)](#linked-list-7)
-* [Array (42)](#array-42)
+* [Array (44)](#array-44)
 * [Binary Indexed Tree (1)](#binary-indexed-tree-1)
-* [Graph (4)](#graph-4)
+* [Graph (5)](#graph-5)
 * [Union Find (7)](#union-find-7)
 * [Memoization (5)](#memoization-5)
 * [Sweep Line (4)](#sweep-line-4)
@@ -459,7 +460,7 @@ Time: O(nLogN)
  
  
  
-## String (18)
+## String (19)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -703,6 +704,20 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - '1.0' 和 '0' 是相等的
 - 如果可以假设version integer都是valid, 直接Integer.parseInt()就可以了
 - 不然的话, 可以compare string
+
+
+
+---
+**18. [Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)**      Level: Easy
+      
+
+看StringA是不是包括所有 StringB的字符.
+
+#### Basic Implementation
+- 比较一下大小, null.
+- 然后用int[]来count chars from A, count[x]++. 再对照chars in B, count[x]--
+- 如果 count[c] < 0, 就 false.
+- O(n)
 
 
 
@@ -1750,7 +1765,7 @@ Space O(n): dp[], sum[]
  
  
  
-## BFS (8)
+## BFS (11)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -1951,6 +1966,63 @@ DFS, BFS都好理解,
 
 
 ---
+**8. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+      
+
+给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 把 string array 变成topological sort的 graph
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
+
+
+
+---
+**9. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+      
+
+#### Recursive
+- 加root, left, then right. Obvious
+- Divide and conquer
+- 其实也不需要helper function
+
+#### Iterative
+- 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
+- Stack: push curr, push right, push left.   
+
+
+
+---
+**10. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+      
+
+#### BFS
+- 当出现了第一次有 null children的node的时候, 说明到了leaf level, mark flag = true;
+- 自此以后，queue再不该有node再有child; queue后面出现的node的left/right child应该都是null
+- 否则就是有问题, return false;
+
+#### DFS
+- Count left-most-leaf depth
+- Count right-most-leaf depth
+- 如果两个depth不一样, 就 false
+- LintCode跑不了
+
+
+
+
+---
 
 
 
@@ -2144,7 +2216,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
  
  
  
-## DFS (24)
+## DFS (27)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy
       
 
@@ -2616,6 +2688,63 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+**24. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+      
+
+给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 把 string array 变成topological sort的 graph
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
+
+
+
+---
+**25. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+      
+
+#### Recursive
+- 加root, left, then right. Obvious
+- Divide and conquer
+- 其实也不需要helper function
+
+#### Iterative
+- 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
+- Stack: push curr, push right, push left.   
+
+
+
+---
+**26. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+      
+
+#### BFS
+- 当出现了第一次有 null children的node的时候, 说明到了leaf level, mark flag = true;
+- 自此以后，queue再不该有node再有child; queue后面出现的node的left/right child应该都是null
+- 否则就是有问题, return false;
+
+#### DFS
+- Count left-most-leaf depth
+- Count right-most-leaf depth
+- 如果两个depth不一样, 就 false
+- LintCode跑不了
+
+
+
+
+---
 
 
 
@@ -2725,7 +2854,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (14)
+## Hash Table (16)
 **0. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
 
@@ -2946,13 +3075,55 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 
 ---
+**14. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
+      
+
+无序数组, 找是否有重复element, return true/false.
+
+#### HashSet
+- No brain: HashSet.
+- Time O(n), Space O(n)
+
+#### Sort, Binary Search
+- Arrays.sort(x): Time O(nLogN), Space O(1)
+- 排序后, 重复数会排在一起, 然后 binary search
+
+
+
+---
+**15. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
+      
+
+Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个element的index i,j 的大小最多相差k.
+
+#### HashSet
+- 很巧妙地根据k range地条件, 把HashSet里面的值控制在[i - k, i]
+- 每次不断地往set里面加新元素, 从set里减去末尾index的元素
+- 而set.add(x)如果遇到重复, 会return false.
+- 一旦在这个length k 的 range里面, 有重复, 就符合条件. 
+- Time O(n)
+
+#### HashTable<value, List of duplicates>
+- 记录每个element value的index in the list
+- 一旦有重复element重复, 就把整个list of indexes 端出来, 查看有没有符合条件的: (index - i) <= k
+- Time O(nm), m = # of duplicates
+
+#### 这两种做法的区别很有艺术感觉
+- 方法1是限定选拔的candidate, 不合格就去掉, 那么一旦有符合条件的(duplicates), 那么一定中, 剩下的就不看了.
+- 方法2是把符合条件的index找出来, 集中处理, 但是所有candidate都会选出来
+- 就好像招人一样: 一种是遇到好的就停止; 第二种是看过所有人, 从中选拔最好的. 显然第一种更快.
+
+
+
+
+---
 
 
 
  
  
  
-## Backtracking (8)
+## Backtracking (9)
 **0. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
 
@@ -3089,6 +3260,30 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 这时, 试一试所有candidate: dfs
 
 能想到这种倒转的结构来存prefix candidates 在 Trie里面, 这个想法非常值得思考.
+
+
+
+---
+**8. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+      
+
+给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 把 string array 变成topological sort的 graph
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
 
 
 
@@ -3386,7 +3581,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
  
  
  
-## Topological Sort (3)
+## Topological Sort (4)
 **0. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
       
 
@@ -3478,6 +3673,30 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 维持sortedList int[] 全局变量, 注意加进去的时候是 add(0, node) 加在开头这样
 - 每次到一个node的children全部DFS走完之后, 就可以把他加进final list里面
 - 如果有cycle, 也就是dfs return false的时候, 这个题目判定排课失败, return new int[] { }
+
+
+
+---
+**3. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+      
+
+给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 把 string array 变成topological sort的 graph
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
 
 
 
@@ -3587,7 +3806,7 @@ HashMap
  
  
  
-## Tree (18)
+## Tree (20)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -3929,6 +4148,39 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 
 ---
+**18. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+      
+
+#### Recursive
+- 加root, left, then right. Obvious
+- Divide and conquer
+- 其实也不需要helper function
+
+#### Iterative
+- 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
+- Stack: push curr, push right, push left.   
+
+
+
+---
+**19. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+      
+
+#### BFS
+- 当出现了第一次有 null children的node的时候, 说明到了leaf level, mark flag = true;
+- 自此以后，queue再不该有node再有child; queue后面出现的node的left/right child应该都是null
+- 否则就是有问题, return false;
+
+#### DFS
+- Count left-most-leaf depth
+- Count right-most-leaf depth
+- 如果两个depth不一样, 就 false
+- LintCode跑不了
+
+
+
+
+---
 
 
 
@@ -4257,6 +4509,236 @@ TODO
  
  
  
+## BST (16)
+**0. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium
+      
+
+会iterative traverse Binary Search Tree就好（Stack && handle left-dig-down）, 然后create Doubly-ListNode 时候注意就好.
+
+注意inorder traversal在check right node的事后，    
+不论right == null or != null, 每次都要强行move to right.    
+
+如果不node = node.right,     
+很可能发生窘境：       
+node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
+
+
+
+---
+**1. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+画inorder图，发现规律.每个node的后继node(successor)有几种情况:   
+1. node.right 是个leaf到底了。那么就return.   
+2. set rightNode = node.right， 但发现rightNode has a lot left children to leaf.   
+3. 比如, node.right == null， 也就是node自己是leaf，要回头看山顶找Inorder traversal规则里的下一个。   
+	发现：其实就是每层都把路过的curr node放在stack里，最上面的，就是当下改return的那个successor:) Done.
+
+
+
+---
+**2. [Insert Node in a Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Node%20in%20a%20Binary%20Search%20Tree%20.java)**      Level: Easy
+      
+
+往Binary Search Tree里面加东西，一定会找到一个合适的leaf加上去。
+
+那么：就是说someNode.left or someNode.right是null时，就是insert node的地方。
+
+找到那个someNode就按照正常的Binary Search Tree规律。
+
+
+
+---
+**3. [Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)**      Level: Medium
+      
+
+很容想到Inorder-binary-search-tree Traversal
+Recursive 不难，然后稍微优化一下，确保rst.size() == k 时候，就可以return了。
+Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边（如果存在）； 下一个轮回，如果又左孩子，又是一顿加。
+
+
+
+---
+**4. [Minimum Absolute Difference in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Absolute%20Difference%20in%20BST.java)**      Level: Easy
+      
+
+BST: inorder-traversal: 先left node(adding to stack till left leav), 再process stack.peek (mid node), 再 add rightNode && dive to rightNode.left leaf
+
+
+
+---
+**5. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: Medium
+      
+
+再一次理解错题意. peek() 就是头顶，但是不一定是最大值啊。总是把PEEK想成了最大值，然后用2 STACK做了最大值的cache，练的一手好双stack，可惜错了。
+
+回到原题，其实不难。找一个cache来存next()的值，然后每次next()里面维护这个cache就好。
+
+
+
+---
+**6. [Remove Node in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Node%20in%20Binary%20Search%20Tree.java)**      Level: Hard
+      
+
+方法1: Brutle一点。找到target和target的parent.    
+把target remove时，把target的children nodes 重新排列组成新的BST: inorder traversal, build tree based on inorder traversal list.
+
+方法2: 分析规律,先找到target和parent, 然后根据性质，把target remove时，移动children nodes, 保证还是BST。
+
+
+
+---
+**7. [Search Range in Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Range%20in%20Binary%20Search%20Tree%20.java)**      Level: Medium
+      
+
+等于遍历了所有k1<= x <= k2的x node。
+
+如果是用Binary Search Tree搜索，那么一般是if (...) else {...}，也就是一条路走到底，直到找到target.
+
+这里, 把 left/right/match的情况全部cover了，然后把k1,k2的边框限制好，中间就全部遍历了。
+
+
+
+---
+**8. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium
+      
+
+
+
+---
+**9. [Zigzag Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Zigzag%20Iterator.java)**      Level: Medium
+      
+
+这个题目相对简单. 做的时候我先考虑起来k条怎么办. 那么用个map把index和每个listmark一下就好了。
+每次next(), 相应的list的头拿下来就好。
+然后就跑圈呗，每次刷一个list头。不难。只要把几个variable维护清楚就行。
+
+
+---
+**10. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+Not quite clear.
+根据左右分割而总结出了原理, 每次分割, 左右两边都会有一定数量的permutation, 总体上的情况数量当然是相乘.
+然后每一个不同的分割点都加一遍:
+f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
+
+然后把数学公式转换成DP的方程, 有点玄学的意思啊! 不好想.
+
+
+
+---
+**11. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
+      
+
+方法1:
+适合复习BST. 用DFS对待每个node. 注意BST的特征: 所有left nodes都小于当下node, 所有right nodes都大于当下node.
+
+根据题意用[L,R]切割.如果node.val<L, 直接连node带左边全丢掉, return node.right. 处理R也是一样.
+分制是, DFS leftNode, rightNode. 然后接在node.left, node.right.
+
+方法2: 用迭代, 还没有写.
+
+
+
+---
+**12. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
+      
+
+画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
+每次消耗TreeNode, 都看看rightNode(其实就是下一个最小的candidate), 并且一条龙stack叠上rightNode所有的left子孙.
+
+Previous Notes:
+用O(h)空间的做法：
+
+理解binary search tree inorder traversal的规律：
+   先找left.left.left ....left 到底，这里是加进stack.
+   然后考虑parent,然后再right.
+
+例如这题：
+   stack里面top，也就是tree最左下角的node先考虑,取名rst.
+   其实这个rst拿出来以后, 它也同时是最底层left null的parent，算考虑过了最底层的parent。
+   最后就考虑最底层的parent.right, 也就是rst.right.
+
+注意:
+   next()其实有个while loop, 很可能是O(h).题目要求average O(1),所以也是okay的.
+
+
+用O(1)空间的做法：不存stack, 时刻update current为最小值。
+
+找下一个最小值,如果current有right child：   
+   和用stack时的iteration类似,那么再找一遍current.right的left-most child,就是最小值了。
+   
+如果current没有right child:    
+    那么就要找current node的右上parent, search in BinarySearchTree from root.
+
+注意：
+   一定要确保找到的parent满足parent.left == current.
+   反而言之，如果current是parent的 right child, 那么下一轮就会重新process parent。
+   但是有错:binary search tree里面parent是小于right child的，也就是在之前一步肯定visit过，如此便会死循环。
+
+
+
+
+---
+**13. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
+
+Note: min/max需要时long type. 
+如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
+
+
+
+---
+**14. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
+      
+
+给一个BST, 和一个double target, 走位找到最接近的number.
+
+#### Recursive
+- when less than curr val, consider left
+- when greater than curr val, consider right
+- dfs到底, 然后每一层比较, 再return
+
+#### Binary Search
+- 记录找到过的closest
+- Binary Search, 根据current node走位,
+- 找到 node.val == target, 或者走位走完, return closest
+
+
+
+---
+**15. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium
+      
+
+给一个unsorted array, 问, 是否有两个element, value相差最大为t,  而两个element的index 相差最大为k.
+
+Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element不是duplicate, 而是Math.abs(value1 - value2) <= t.
+
+#### TreeSet
+- TreeSet还是一个set, 我们用来装已经visit过得item
+- 如果window大小超过K, 那么把nums[i - k - 1] 去掉, 并且加上新的element
+- 这里有个公式推算: (Math.abs(A-B) <= t) =>>>>> (-t <= A - B <= t) =>>>>>> A >= B - t, A <= B + t
+- 也就是说, 如果对于 B = nums[i], 来说, 能找到一个target A, 满足上面的公式, 那么就可以 return true.
+- Time O(nLogk), treeSet的大小不会超过k,  而 treeSet.ceiling(), treeSet.add(), treeSet.remove() 都是 O(logK)
+- Space O(k)
+
+#### Note
+- 与Contains Duplicate II 类似概念. TreeSet有BST 因此可以直接用, 而不用自己构建BST
+- 简化题目里面的重要条件 Math.abs(A-B) <= t 而推断出 A >= B - t, A <= B + t
+- 并且需要需要用 TreeSet.ceiling(x): return number greater or equal to x. 这个用法要记住吧, 没别的捷径.
+
+
+
+---
+
+
+
+ 
+ 
+ 
 ## Binary Tree (2)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
       
@@ -4292,7 +4774,7 @@ Recursive:分叉. dfs.
  
  
  
-## Binary Search (22)
+## Binary Search (23)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -4650,6 +5132,16 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 
 ---
+**22. [Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)**      Level: Easy
+      
+
+- Binary Search 的一种变型, LintCode无法再跑一边.
+- 考虑mid-1, mid+1.
+- 一旦没有mid = target.index。 那么target最终就narrow down在(mid-1,mid) 或者(mid,mid+1)   
+
+
+
+---
 
 
 
@@ -4828,7 +5320,7 @@ HashHeap?
  
  
  
-## Stack (11)
+## Stack (12)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -5083,6 +5575,21 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 ---
+**11. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+      
+
+#### Recursive
+- 加root, left, then right. Obvious
+- Divide and conquer
+- 其实也不需要helper function
+
+#### Iterative
+- 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
+- Stack: push curr, push right, push left.   
+
+
+
+---
 
 
 
@@ -5216,7 +5723,7 @@ pre.next.next 保证了至少有一次swap.
  
  
  
-## Array (42)
+## Array (44)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -5925,6 +6432,48 @@ Space O(n): dp[], sum[]
 
 
 ---
+**42. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
+      
+
+无序数组, 找是否有重复element, return true/false.
+
+#### HashSet
+- No brain: HashSet.
+- Time O(n), Space O(n)
+
+#### Sort, Binary Search
+- Arrays.sort(x): Time O(nLogN), Space O(1)
+- 排序后, 重复数会排在一起, 然后 binary search
+
+
+
+---
+**43. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
+      
+
+Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个element的index i,j 的大小最多相差k.
+
+#### HashSet
+- 很巧妙地根据k range地条件, 把HashSet里面的值控制在[i - k, i]
+- 每次不断地往set里面加新元素, 从set里减去末尾index的元素
+- 而set.add(x)如果遇到重复, 会return false.
+- 一旦在这个length k 的 range里面, 有重复, 就符合条件. 
+- Time O(n)
+
+#### HashTable<value, List of duplicates>
+- 记录每个element value的index in the list
+- 一旦有重复element重复, 就把整个list of indexes 端出来, 查看有没有符合条件的: (index - i) <= k
+- Time O(nm), m = # of duplicates
+
+#### 这两种做法的区别很有艺术感觉
+- 方法1是限定选拔的candidate, 不合格就去掉, 那么一旦有符合条件的(duplicates), 那么一定中, 剩下的就不看了.
+- 方法2是把符合条件的index找出来, 集中处理, 但是所有candidate都会选出来
+- 就好像招人一样: 一种是遇到好的就停止; 第二种是看过所有人, 从中选拔最好的. 显然第一种更快.
+
+
+
+
+---
 
 
 
@@ -5964,7 +6513,7 @@ HashHeap?
  
  
  
-## Graph (4)
+## Graph (5)
 **0. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 
@@ -6077,6 +6626,30 @@ initialize map with (node, newNode)
 - 维持sortedList int[] 全局变量, 注意加进去的时候是 add(0, node) 加在开头这样
 - 每次到一个node的children全部DFS走完之后, 就可以把他加进final list里面
 - 如果有cycle, 也就是dfs return false的时候, 这个题目判定排课失败, return new int[] { }
+
+
+
+---
+**4. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+      
+
+给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 把 string array 变成topological sort的 graph
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
 
 
 

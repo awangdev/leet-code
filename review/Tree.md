@@ -1,7 +1,7 @@
  
  
  
-## Tree (18)
+## Tree (20)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -339,6 +339,39 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 #### Iteratively
 - See details in comments inline. 要对tree非常理解
 - binary tree one child tree nodes # = 2 ^ h - 1; 所以一个child tree + root = 2 ^ h
+
+
+
+---
+**18. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+      
+
+#### Recursive
+- 加root, left, then right. Obvious
+- Divide and conquer
+- 其实也不需要helper function
+
+#### Iterative
+- 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
+- Stack: push curr, push right, push left.   
+
+
+
+---
+**19. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+      
+
+#### BFS
+- 当出现了第一次有 null children的node的时候, 说明到了leaf level, mark flag = true;
+- 自此以后，queue再不该有node再有child; queue后面出现的node的left/right child应该都是null
+- 否则就是有问题, return false;
+
+#### DFS
+- Count left-most-leaf depth
+- Count right-most-leaf depth
+- 如果两个depth不一样, 就 false
+- LintCode跑不了
+
 
 
 

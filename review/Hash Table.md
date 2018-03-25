@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (14)
+## Hash Table (16)
 **0. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
 
@@ -218,6 +218,48 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 #### HashMap
 ? How?
+
+
+
+---
+**14. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
+      
+
+无序数组, 找是否有重复element, return true/false.
+
+#### HashSet
+- No brain: HashSet.
+- Time O(n), Space O(n)
+
+#### Sort, Binary Search
+- Arrays.sort(x): Time O(nLogN), Space O(1)
+- 排序后, 重复数会排在一起, 然后 binary search
+
+
+
+---
+**15. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
+      
+
+Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个element的index i,j 的大小最多相差k.
+
+#### HashSet
+- 很巧妙地根据k range地条件, 把HashSet里面的值控制在[i - k, i]
+- 每次不断地往set里面加新元素, 从set里减去末尾index的元素
+- 而set.add(x)如果遇到重复, 会return false.
+- 一旦在这个length k 的 range里面, 有重复, 就符合条件. 
+- Time O(n)
+
+#### HashTable<value, List of duplicates>
+- 记录每个element value的index in the list
+- 一旦有重复element重复, 就把整个list of indexes 端出来, 查看有没有符合条件的: (index - i) <= k
+- Time O(nm), m = # of duplicates
+
+#### 这两种做法的区别很有艺术感觉
+- 方法1是限定选拔的candidate, 不合格就去掉, 那么一旦有符合条件的(duplicates), 那么一定中, 剩下的就不看了.
+- 方法2是把符合条件的index找出来, 集中处理, 但是所有candidate都会选出来
+- 就好像招人一样: 一种是遇到好的就停止; 第二种是看过所有人, 从中选拔最好的. 显然第一种更快.
+
 
 
 

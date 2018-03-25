@@ -108,6 +108,11 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - Use DFS to traverse: divide and conquer. Similarly, usually can convert the DFS solution to interative solution.
 - Use stack to traverse iteratively
 
+##### TreeSet
+- 如果BST treenode没给, 可以用TreeSet
+- TreeSet还是一个set, 存values, 而好处是可以用 treeSet.ceiling(x)找到 最小的大于x的值
+- 其实就是这个value/node的parent
+
 #### Binary Tree
 - Complete binary tree: all levels are filled, except maybe the last level. 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
 - Balenced bianry tree: has the minimum posible maximum height(depth) for left nodes; for given leaf nodes, the leaf nodes will be placed at greatest height possible.

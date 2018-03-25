@@ -1,7 +1,7 @@
  
  
  
-## String (18)
+## String (19)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -245,6 +245,20 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - '1.0' 和 '0' 是相等的
 - 如果可以假设version integer都是valid, 直接Integer.parseInt()就可以了
 - 不然的话, 可以compare string
+
+
+
+---
+**18. [Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)**      Level: Easy
+      
+
+看StringA是不是包括所有 StringB的字符.
+
+#### Basic Implementation
+- 比较一下大小, null.
+- 然后用int[]来count chars from A, count[x]++. 再对照chars in B, count[x]--
+- 如果 count[c] < 0, 就 false.
+- O(n)
 
 
 

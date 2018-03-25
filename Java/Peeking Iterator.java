@@ -1,3 +1,6 @@
+M
+tags: BST
+
 再一次理解错题意. peek() 就是头顶，但是不一定是最大值啊。总是把PEEK想成了最大值，然后用2 STACK做了最大值的cache，练的一手好双stack，可惜错了。
 
 回到原题，其实不难。找一个cache来存next()的值，然后每次next()里面维护这个cache就好。

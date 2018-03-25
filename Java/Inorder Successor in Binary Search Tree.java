@@ -1,4 +1,5 @@
 M
+tags: BST
 
 画inorder图，发现规律.每个node的后继node(successor)有几种情况:   
 1. node.right 是个leaf到底了。那么就return.   

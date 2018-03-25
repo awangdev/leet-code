@@ -1,6 +1,6 @@
 M
 1516865694
-tags: DP, Tree
+tags: DP, Tree, BST
 
 Not quite clear.
 根据左右分割而总结出了原理, 每次分割, 左右两边都会有一定数量的permutation, 总体上的情况数量当然是相乘.

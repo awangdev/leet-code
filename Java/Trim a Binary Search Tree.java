@@ -1,6 +1,6 @@
 E
 1516868090
-tags: Tree
+tags: Tree, BST
 
 方法1:
 适合复习BST. 用DFS对待每个node. 注意BST的特征: 所有left nodes都小于当下node, 所有right nodes都大于当下node.

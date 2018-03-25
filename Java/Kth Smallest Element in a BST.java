@@ -1,3 +1,6 @@
+M
+tags: BST
+
 很容想到Inorder-binary-search-tree Traversal
 Recursive 不难，然后稍微优化一下，确保rst.size() == k 时候，就可以return了。
 Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边（如果存在）； 下一个轮回，如果又左孩子，又是一顿加。
