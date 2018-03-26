@@ -3,16 +3,17 @@ Table of Contents
 =================
 
 * [Sequence DP (4)](#sequence-dp-4)
+* [Range DP (1)](#range-dp-1)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
 * [String (19)](#string-19)
 * [Math (12)](#math-12)
-* [DP (47)](#dp-47)
+* [DP (48)](#dp-48)
 * [BFS (11)](#bfs-11)
 * [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
 * [DFS (27)](#dfs-27)
-* [Game Theory (3)](#game-theory-3)
+* [Game Theory (4)](#game-theory-4)
 * [Hash Table (16)](#hash-table-16)
 * [Backtracking (9)](#backtracking-9)
 * [Bit Manipulation (7)](#bit-manipulation-7)
@@ -23,6 +24,7 @@ Table of Contents
 * [Tree (20)](#tree-20)
 * [Greedy (6)](#greedy-6)
 * [Trie (6)](#trie-6)
+* [Monotonous Stack (1)](#monotonous-stack-1)
 * [Coordinate DP (3)](#coordinate-dp-3)
 * [BST (16)](#bst-16)
 * [Binary Tree (2)](#binary-tree-2)
@@ -34,8 +36,9 @@ Table of Contents
 * [Array (44)](#array-44)
 * [Binary Indexed Tree (1)](#binary-indexed-tree-1)
 * [Graph (5)](#graph-5)
+* [Brainteaser (1)](#brainteaser-1)
 * [Union Find (7)](#union-find-7)
-* [Memoization (5)](#memoization-5)
+* [Memoization (6)](#memoization-6)
 * [Sweep Line (4)](#sweep-line-4)
 * [Two Stacks (1)](#two-stacks-1)
 * [Interval (1)](#interval-1)
@@ -129,6 +132,49 @@ Table of Contents
 - [i] only associates with [i-2], [i-1].
 - %2
 - O(1) space
+
+
+
+---
+
+
+
+ 
+ 
+ 
+## Range DP (1)
+**0. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+      
+
+一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
+
+TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for range DP.
+
+#### Range DP
+- 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
+- 最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
+- dp[i][j] represent max value on range [i, j)
+- Need to calculate dp[i][j] incrementally, starting from range size == 3 ---> n
+- Use k to divide the range [i, j) and conquer each side.
+
+##### Range DP 三把斧:
+- 中间劈开
+- 砍断首或尾
+- Range区间作为iteration的根本
+
+##### Print the calculation process
+- use pi[i][j] and print recursively.
+- Print k, using pi[i][j]: max value taken at k
+
+#### Memoization
+- 其实会做之后挺好想的一个DP
+- dp[i][j] =  balloons i~j 之间的 max. 
+- 然后找哪个点开始burst? 设为x。
+- For loop 所有的点作为x， 去burst。
+- 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
+- Note: 这个是Memoization, 而不纯是DP
+- 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
+
 
 
 
@@ -890,7 +936,7 @@ Space O(n), time O(n)
  
  
  
-## DP (47)
+## DP (48)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1363,35 +1409,7 @@ O(m)的做法:
 
 
 ---
-**26. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
-      
-
-Range DP.
-因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
-最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
-
-Range DP 三把斧:
-1. 中间劈开
-2. 砍断首或尾
-3. Range区间作为iteration的根本
-
-Note: print the process. use pi[i][j] and print recursively.
-Print k, using pi[i][j]: max value taken at k
-
-
-其实会做之后挺好想的一个DP。
-dp[i][j] =  balloons i~j 之间的sum. 然后找哪个点开始burst? 设为x。
-For loop 所有的点作为x， 去burst。
-每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
-
-
-这个是momorization, 而不纯是DP
-因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
-
-
-
----
-**27. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
+**26. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
 区间型
@@ -1406,7 +1424,7 @@ dp[i][j][w]: 从i点和j点开始, 各自走w距离, 得到的S和T是否是scra
 
 
 ---
-**28. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
+**27. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
       
 
 Sequence DP
@@ -1415,7 +1433,7 @@ Sequence DP
 
 
 ---
-**29. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
+**28. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
 经典序列型.
@@ -1429,7 +1447,7 @@ Sequence DP
 
 
 ---
-**30. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
+**29. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
       
 
 双序列DP, 从最后点考虑.
@@ -1441,7 +1459,7 @@ Sequence DP
 
 
 ---
-**31. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
+**30. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
 两个字符串变话, 找最小值, two sequence DP.
@@ -1455,7 +1473,7 @@ Sequence DP
 
 
 ---
-**32. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
+**31. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
       
 
 Double Sequence DP:
@@ -1466,13 +1484,13 @@ Double Sequence DP:
 
 
 ---
-**33. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
+**32. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
       
 
 
 
 ---
-**34. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
+**33. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
       
 
 Double sequence DP. 与regular expression 很像.
@@ -1484,7 +1502,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**35. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
+**34. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -1498,7 +1516,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**36. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
+**35. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
       
 
 两个DP一起用.解决了timeout的问题     
@@ -1521,7 +1539,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 
 ---
-**37. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+**36. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -1541,7 +1559,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 
 ---
-**38. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
+**37. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
 #### 方法1: monotonous stack
@@ -1559,7 +1577,7 @@ Coordinate DP?
 
 
 ---
-**39. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+**38. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -1581,7 +1599,7 @@ Coordinate DP?
 
 
 ---
-**40. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**39. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP
@@ -1595,7 +1613,7 @@ TODO
 
 
 ---
-**41. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
+**40. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Hard
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -1619,7 +1637,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 ---
-**42. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
+**41. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -1638,7 +1656,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 
 ---
-**43. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+**42. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -1658,7 +1676,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 
 ---
-**44. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+**43. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -1701,7 +1719,7 @@ Space O(n): dp[], sum[]
 
 
 ---
-**45. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+**44. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
       
 
 #### Recursive + Memoization
@@ -1726,7 +1744,7 @@ Space O(n): dp[], sum[]
 
 
 ---
-**46. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+**45. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
       
 
 还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
@@ -1755,6 +1773,58 @@ Space O(n): dp[], sum[]
 - loop应该基于区间的length
 - template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
 
+
+
+
+---
+**46. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+      
+
+一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
+
+TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for range DP.
+
+#### Range DP
+- 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
+- 最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
+- dp[i][j] represent max value on range [i, j)
+- Need to calculate dp[i][j] incrementally, starting from range size == 3 ---> n
+- Use k to divide the range [i, j) and conquer each side.
+
+##### Range DP 三把斧:
+- 中间劈开
+- 砍断首或尾
+- Range区间作为iteration的根本
+
+##### Print the calculation process
+- use pi[i][j] and print recursively.
+- Print k, using pi[i][j]: max value taken at k
+
+#### Memoization
+- 其实会做之后挺好想的一个DP
+- dp[i][j] =  balloons i~j 之间的 max. 
+- 然后找哪个点开始burst? 设为x。
+- For loop 所有的点作为x， 去burst。
+- 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
+- Note: 这个是Memoization, 而不纯是DP
+- 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
+
+
+
+
+---
+**47. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
+      
+
+#### Brainteaser
+- 著名Nim游戏
+- 写一些，发现n=4,5,6,7,8...etc之后的情况有规律性: 谁先手拿到4就输了.
+- 最终很简单n%4!=0就可以了,  time, space O(1)
+
+#### DP
+- 正规地找规律做, 就跟 coins in a line 一样, 按照先手后手来做
+- 可以rolling array 优化空间
+- Time O(n), 当然啦, 这个题目这样会timeout, 可以使用brainteaser的做法写出结果.
 
 
 
@@ -2751,7 +2821,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
  
  
  
-## Game Theory (3)
+## Game Theory (4)
 **0. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
       
 
@@ -2844,6 +2914,22 @@ Space O(n): dp[], sum[]
 - loop应该基于区间的length
 - template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
 
+
+
+
+---
+**3. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
+      
+
+#### Brainteaser
+- 著名Nim游戏
+- 写一些，发现n=4,5,6,7,8...etc之后的情况有规律性: 谁先手拿到4就输了.
+- 最终很简单n%4!=0就可以了,  time, space O(1)
+
+#### DP
+- 正规地找规律做, 就跟 coins in a line 一样, 按照先手后手来做
+- 可以rolling array 优化空间
+- Time O(n), 当然啦, 这个题目这样会timeout, 可以使用brainteaser的做法写出结果.
 
 
 
@@ -3408,35 +3494,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
  
  
 ## Divide and Conquer (5)
-**0. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
-      
-
-Range DP.
-因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
-最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
-
-Range DP 三把斧:
-1. 中间劈开
-2. 砍断首或尾
-3. Range区间作为iteration的根本
-
-Note: print the process. use pi[i][j] and print recursively.
-Print k, using pi[i][j]: max value taken at k
-
-
-其实会做之后挺好想的一个DP。
-dp[i][j] =  balloons i~j 之间的sum. 然后找哪个点开始burst? 设为x。
-For loop 所有的点作为x， 去burst。
-每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
-
-
-这个是momorization, 而不纯是DP
-因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
-
-
-
----
-**1. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
+**0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
       
 
 方法1: Vote 计数, vote++, vote--到最后剩下的就是winner. Time O(n), Space O(1)
@@ -3455,7 +3513,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
-**2. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
+**1. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
 
@@ -3477,7 +3535,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
-**3. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
+**2. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
 Should break down by mid row. More details:
@@ -3518,7 +3576,7 @@ O(nLogN)
 
 
 ---
-**4. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+**3. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
       
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
@@ -3540,6 +3598,42 @@ REVIEW
 Binary Indexed Tree?
 
 HashHeap?
+
+
+
+---
+**4. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+      
+
+一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
+
+TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for range DP.
+
+#### Range DP
+- 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
+- 最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
+- dp[i][j] represent max value on range [i, j)
+- Need to calculate dp[i][j] incrementally, starting from range size == 3 ---> n
+- Use k to divide the range [i, j) and conquer each side.
+
+##### Range DP 三把斧:
+- 中间劈开
+- 砍断首或尾
+- Range区间作为iteration的根本
+
+##### Print the calculation process
+- use pi[i][j] and print recursively.
+- Print k, using pi[i][j]: max value taken at k
+
+#### Memoization
+- 其实会做之后挺好想的一个DP
+- dp[i][j] =  balloons i~j 之间的 max. 
+- 然后找哪个点开始burst? 设为x。
+- For loop 所有的点作为x， 去burst。
+- 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
+- Note: 这个是Memoization, 而不纯是DP
+- 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
+
 
 
 
@@ -4436,6 +4530,39 @@ O(mn)
 
 #### 方法2: Trie
 还要做一下那.
+
+
+
+---
+
+
+
+ 
+ 
+ 
+## Monotonous Stack (1)
+**0. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
+      
+
+给n个bar,组成柱状图histogram. 求在这一排柱状图里面可以找到的面积最大的长方形.
+
+思考: 找长方形面积, 无非是找两个index, 然后底边长度 * height.
+
+#### Monotonous Stack
+- 重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
+- 在loop over indexes的时候:
+- 如果高度>= previous peek(), 那么对于那个peek, 就意味着, 往下走, 一直走高嘛, 之前的peek总可以继续抄底
+- 什么时候不能抄底了呢? 就是有一个下降趋势的时候
+- 这时候并不是calculate所有前面的peek, 而是考虑 大于 current height的之前所有的peek.
+- 把这些peek到 current height 前一格的rectangle全部找出来: stack.pop()
+- 这个stack.pop()的过程里面, 其实没有算上 current height, 因为需要留到下一轮, 把current index加进stack 再说
+- 为什么用stack? 因为需要知道连续递增的peek, stack.peek() O(1), 好用
+  而其实不用stack, 也可以用其他方式记录所有height, 只不过要 O(n)去找peek不方便
+
+#### 知识点
+- 理解monotonous stack 是如何被维护的
+- 维护monotonous stack 是题目需要, 而不是stack本身性质, 是一种借助 stack.peek() O(1)的巧妙用法.
+
 
 
 
@@ -5450,9 +5577,13 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 **6. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
 
+给n个bar,组成柱状图histogram. 求在这一排柱状图里面可以找到的面积最大的长方形.
+
+思考: 找长方形面积, 无非是找两个index, 然后底边长度 * height.
+
 #### Monotonous Stack
-重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
-在loop over indexes的时候:
+- 重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
+- 在loop over indexes的时候:
 - 如果高度>= previous peek(), 那么对于那个peek, 就意味着, 往下走, 一直走高嘛, 之前的peek总可以继续抄底
 - 什么时候不能抄底了呢? 就是有一个下降趋势的时候
 - 这时候并不是calculate所有前面的peek, 而是考虑 大于 current height的之前所有的peek.
@@ -6220,9 +6351,13 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 **32. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
 
+给n个bar,组成柱状图histogram. 求在这一排柱状图里面可以找到的面积最大的长方形.
+
+思考: 找长方形面积, 无非是找两个index, 然后底边长度 * height.
+
 #### Monotonous Stack
-重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
-在loop over indexes的时候:
+- 重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
+- 在loop over indexes的时候:
 - 如果高度>= previous peek(), 那么对于那个peek, 就意味着, 往下走, 一直走高嘛, 之前的peek总可以继续抄底
 - 什么时候不能抄底了呢? 就是有一个下降趋势的时候
 - 这时候并不是calculate所有前面的peek, 而是考虑 大于 current height的之前所有的peek.
@@ -6660,6 +6795,29 @@ initialize map with (node, newNode)
  
  
  
+## Brainteaser (1)
+**0. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
+      
+
+#### Brainteaser
+- 著名Nim游戏
+- 写一些，发现n=4,5,6,7,8...etc之后的情况有规律性: 谁先手拿到4就输了.
+- 最终很简单n%4!=0就可以了,  time, space O(1)
+
+#### DP
+- 正规地找规律做, 就跟 coins in a line 一样, 按照先手后手来做
+- 可以rolling array 优化空间
+- Time O(n), 当然啦, 这个题目这样会timeout, 可以使用brainteaser的做法写出结果.
+
+
+
+---
+
+
+
+ 
+ 
+ 
 ## Union Find (7)
 **0. [Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)**      Level: Medium
       
@@ -6759,7 +6917,7 @@ DFS, BFS都好理解,
  
  
  
-## Memoization (5)
+## Memoization (6)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
 
@@ -6899,6 +7057,42 @@ Space O(n): dp[], sum[]
 - 子问题: 砍头, 砍尾, 砍头砍尾
 - loop应该基于区间的length
 - template: 考虑len = 1, len = 2; 设定i的时候一定是 i <= n - len; 设定j的时候, j = len + i - 1;
+
+
+
+
+---
+**5. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+      
+
+一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
+
+TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for range DP.
+
+#### Range DP
+- 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
+- 最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
+- dp[i][j] represent max value on range [i, j)
+- Need to calculate dp[i][j] incrementally, starting from range size == 3 ---> n
+- Use k to divide the range [i, j) and conquer each side.
+
+##### Range DP 三把斧:
+- 中间劈开
+- 砍断首或尾
+- Range区间作为iteration的根本
+
+##### Print the calculation process
+- use pi[i][j] and print recursively.
+- Print k, using pi[i][j]: max value taken at k
+
+#### Memoization
+- 其实会做之后挺好想的一个DP
+- dp[i][j] =  balloons i~j 之间的 max. 
+- 然后找哪个点开始burst? 设为x。
+- For loop 所有的点作为x， 去burst。
+- 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
+- Note: 这个是Memoization, 而不纯是DP
+- 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
 
 
 

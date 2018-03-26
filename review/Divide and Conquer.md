@@ -2,35 +2,7 @@
  
  
 ## Divide and Conquer (5)
-**0. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
-      
-
-Range DP.
-因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
-最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
-
-Range DP 三把斧:
-1. 中间劈开
-2. 砍断首或尾
-3. Range区间作为iteration的根本
-
-Note: print the process. use pi[i][j] and print recursively.
-Print k, using pi[i][j]: max value taken at k
-
-
-其实会做之后挺好想的一个DP。
-dp[i][j] =  balloons i~j 之间的sum. 然后找哪个点开始burst? 设为x。
-For loop 所有的点作为x， 去burst。
-每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
-
-
-这个是momorization, 而不纯是DP
-因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
-
-
-
----
-**1. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
+**0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
       
 
 方法1: Vote 计数, vote++, vote--到最后剩下的就是winner. Time O(n), Space O(1)
@@ -49,7 +21,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
-**2. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
+**1. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
 
@@ -71,7 +43,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
-**3. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
+**2. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
 Should break down by mid row. More details:
@@ -112,7 +84,7 @@ O(nLogN)
 
 
 ---
-**4. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+**3. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
       
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
@@ -134,6 +106,42 @@ REVIEW
 Binary Indexed Tree?
 
 HashHeap?
+
+
+
+---
+**4. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+      
+
+一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
+
+TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for range DP.
+
+#### Range DP
+- 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
+- 最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
+- dp[i][j] represent max value on range [i, j)
+- Need to calculate dp[i][j] incrementally, starting from range size == 3 ---> n
+- Use k to divide the range [i, j) and conquer each side.
+
+##### Range DP 三把斧:
+- 中间劈开
+- 砍断首或尾
+- Range区间作为iteration的根本
+
+##### Print the calculation process
+- use pi[i][j] and print recursively.
+- Print k, using pi[i][j]: max value taken at k
+
+#### Memoization
+- 其实会做之后挺好想的一个DP
+- dp[i][j] =  balloons i~j 之间的 max. 
+- 然后找哪个点开始burst? 设为x。
+- For loop 所有的点作为x， 去burst。
+- 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
+- Note: 这个是Memoization, 而不纯是DP
+- 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
+
 
 
 

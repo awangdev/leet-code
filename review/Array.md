@@ -498,9 +498,13 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 **32. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
 
+给n个bar,组成柱状图histogram. 求在这一排柱状图里面可以找到的面积最大的长方形.
+
+思考: 找长方形面积, 无非是找两个index, 然后底边长度 * height.
+
 #### Monotonous Stack
-重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
-在loop over indexes的时候:
+- 重点是根据找Histogram里面rectangle的性质, 维持一个单调递增的Stack
+- 在loop over indexes的时候:
 - 如果高度>= previous peek(), 那么对于那个peek, 就意味着, 往下走, 一直走高嘛, 之前的peek总可以继续抄底
 - 什么时候不能抄底了呢? 就是有一个下降趋势的时候
 - 这时候并不是calculate所有前面的peek, 而是考虑 大于 current height的之前所有的peek.
