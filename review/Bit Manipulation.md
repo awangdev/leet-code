@@ -1,7 +1,7 @@
  
  
  
-## Bit Manipulation (7)
+## Bit Manipulation (9)
 **0. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
 
@@ -104,6 +104,35 @@ Related Problems:
 Majority Number II，超1/3, 那么就分三份处理，countA, countB来计算最多出现的两个。
 
 Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
+
+
+
+---
+**7. [Convert Integer A to Integer B.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Integer%20A%20to%20Integer%20B.java)**      Level: Easy
+      
+
+把Integer A 转换成 Integer B 需要改变多少bits?
+
+#### Bit Manipulation
+- a^b 显示出bit format里面有不同binary code的数位.
+- 每次 (a^b)>>i 移动i位之后, 再 & 1时其实是指留下这一位的数字.
+- count 
+- 其实用到了 ^ 找不同的bit, >> 移位, &1 mask
+
+
+
+---
+**8. [Count 1 in Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%201%20in%20Binary.java)**      Level: Easy
+      
+
+count 一个 32-bit number binary format 里面有多少1
+
+#### Bit Manipulation
+- shift >> i 
+- apply mask & 1
+
+#### Convert to string O(n) space
+可以把integer -> string -> char array.
 
 
 

@@ -1,14 +1,17 @@
 H
 1519272534
-tags: String, DP
+tags: String, DP, Double Sequence DP
 
-两个字符串变话, 找最小值, two sequence DP.
-考虑两个字符串变换的最后点: 相等, 互换, 还是缺少? 分析每种情况, 然后列出表达式.
+两个字符串, A要变成B, 可以 insert/delete/replace, 找最小变化operation count
 
-注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+#### Double Sequence
+- 考虑两个字符串变换的最后点: 需要insert/delete/replace? 分析每种情况, 然后列出表达式.
+- 先calculate最坏的情况, 3种operation count + 1; 然后在比较match的情况.
+- 注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+- 第一步, 空间时间都是O(MN)
+- 滚动数组优化, 空间O(N)
 
-第一步, 空间时间都是O(MN)
-滚动数组优化, 空间O(N)
+#### Search
 
 ```
 /*
@@ -28,6 +31,86 @@ Tags Expand
 String Dynamic Programming
 */
 
+/*
+Thoughts:
+If certain character matches, no opeation needed.
+If not matching, use the 3 operations and count of operations + 1
+dp[i][j] represents the # of changes from A[0 ~ i - 1] to B[0 ~ j - 1]
+
+init: for word1[0, 0] to change to words[0 ,j]: it has to be j add operations
+*/
+class Solution {
+    public int minDistance(String word1, String word2) {
+        if (word1 == null || word2 == null) {
+            if (word1 == null && word2 == null) {
+                return 0;
+            }
+            return word1 == null ? word2.length() : word1.length();
+        }
+        
+        int m = word1.length();
+        int n = word2.length();
+        int[][] dp = new int[m + 1][n + 1];
+        
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                    continue;
+                }
+                if (j == 0) {
+                    dp[i][j] = i;
+                    continue;
+                }
+                // Base line, worst case
+                dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i - 1][j])) + 1;
+                // If match, improvement case
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - 1]);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+}
+
+/*
+Rolling array
+*/
+class Solution {
+    public int minDistance(String word1, String word2) {
+        if (word1 == null || word2 == null) {
+            if (word1 == null && word2 == null) {
+                return 0;
+            }
+            return word1 == null ? word2.length() : word1.length();
+        }
+        
+        int m = word1.length();
+        int n = word2.length();
+        int[][] dp = new int[2][n + 1];
+        
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i == 0) {
+                    dp[i % 2][j] = j;
+                    continue;
+                }
+                if (j == 0) {
+                    dp[i % 2][j] = i;
+                    continue;
+                }
+                // Base line, worst case
+                dp[i % 2][j] = Math.min(dp[(i - 1) % 2][j - 1], Math.min(dp[i % 2][j - 1], dp[(i - 1) % 2][j])) + 1;
+                // If match, improvement case
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i % 2][j] = Math.min(dp[i % 2][j], dp[(i - 1) % 2][j - 1]);
+                }
+            }
+        }
+        return dp[m % 2][n];
+    }
+}
 
 /*
 Thoughts:

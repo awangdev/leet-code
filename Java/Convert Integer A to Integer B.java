@@ -1,15 +1,18 @@
 E
+1522132721
+tags: Bit Manipulation
 
-Bit Manipulation
+把Integer A 转换成 Integer B 需要改变多少bits?
 
-a^b 显示出bit format里面有不同binary code的数位.
-
-每次 (a^b)>>i 移动i位之后，   再 & 1时其实是指留下这一位的数字.
-
-count it up
+#### Bit Manipulation
+- a^b 显示出bit format里面有不同binary code的数位.
+- 每次 (a^b)>>i 移动i位之后, 再 & 1时其实是指留下这一位的数字.
+- count 
+- 其实用到了 ^ 找不同的bit, >> 移位, &1 mask
 
 ```
 /*
+LintCode
 Determine the number of bits required to convert integer A to integer B 
 
 Example

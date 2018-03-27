@@ -290,7 +290,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - A >> 1: divide by integer 2. Note: decimals are ignored in the result.
 - bit shift is a lot faster than reqular 'times' operation.
 - 32 bit number: leading bit = 1, negative numbjer; leading bit = 0, positive number.
-- >> add leading '1' if the 32 bit number originally has leading '1'.
+- '>>' add leading '1' if the 32 bit number originally has leading '1'.
 - Java/python: logical shift >>>, always add leading '0' regardless of the sign of the 32-bit number. That is, it may turn a negative number to positive, if the leading bit is originally '1'
 - Because with '( )', make sure to surround the desired operation
 - & 0000 = clean up; | ABC = assign ABC

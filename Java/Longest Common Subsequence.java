@@ -1,14 +1,14 @@
 M
 1519197096
-tags: DP
+tags: DP, Double Sequence DP
 
-经典序列型.
-设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
 
-双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析3种情况:
-1. A最后字符不在common sequence.
-2. B最后字符不在common sequence.
-3. A/B最后字符都在common sequence. 总体+1.
+#### Double Sequence DP
+- 设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+- 双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析2种情况:
+- 1. A最后字符不在common sequence 或者 B最后字符不在common sequence.
+- 2. A/B最后字符都在common sequence. 总体count + 1.
 
 ```
 /*
@@ -50,6 +50,13 @@ dp[i][j] = Max{dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1] + 1| A[i - 1]==B[i -
 Space: O(MN)
 Time: O(MN)
 */
+/*
+Thoughts:
+dp[i][j] represent max LCS length for A[0, i - 1], B[0, j - 1]
+Conditions:
+- A[i-1] != B[j - 1]: no action
+- A[i-1] == B[j - 1]: dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - 1] + 1);
+*/
 public class Solution {
     public int longestCommonSubsequence(String A, String B) {
         if (A == null || B == null || A.length() == 0 || B.length() == 0) {
@@ -59,19 +66,21 @@ public class Solution {
         int n = B.length();
         int[][] dp = new int[m + 1][n + 1];
         
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if(i == 0 || j == 0) {
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                // Init
+                if (i == 0 || j == 0) {
                     dp[i][j] = 0;
                     continue;
                 }
+                // Base condition: equals to previous's best
                 dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
                 if (A.charAt(i - 1) == B.charAt(j - 1)) {
+                    // match, take previous' best + 1
                     dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - 1] + 1);
                 }
             }
         }
-        
         return dp[m][n];
     }
 }

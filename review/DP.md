@@ -477,14 +477,25 @@ O(m)的做法:
 **26. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
-区间型
-降维打击
-dp[i][j][w]: 从i点和j点开始, 各自走w距离, 得到的S和T是否是scramble string.
+- 给两个string S, T. 检验他们是不是scramble string.
+- scramble string 定义: string可以被分拆成binary tree的形式, 也就是切割成substring;
+- 旋转了不是leaf的node之后, 形成新的substring, 这就是原来string的 scramble.
 
-具体思考过程看Thoughts.
 
-注意: input s1, s2 在整个题目的主要内容里面, 几乎没有用到, 只是用在initialization时候.
-很神奇, 这个initailization 打好了DP的基础, 后面一蹴而就, 用数学表达式就算出了结果.
+#### Range DP 区间型
+- 降维打击, 分割, 按照长度来dp.
+- dp[i][j][k]: 数组S从index i 开始, T从index j 开始, 长度为k的子串, 是否为scramble string
+
+##### Break down
+- 一切两半以后, 看两种情况: , 或者不rotate这两半. 对于这些substring, 各自验证他们是否scramble.
+- 不rotate分割的两半: S[part1] 对应  T[part1] && S[part2] 对应  T[part2]. 
+- rotate分割的两半: S[part1] 对应  T[part2] && S[part2] 对应  T[part1]. 
+
+##### Initialization
+- len == 1的时候, 其实无法旋转, 也就是看S,T的相对应的index是否字符相等.
+- initialization非常非常重要. 很神奇, 这个initailization 打好了DP的基础, 后面一蹴而就, 用数学表达式就算出了结果.
+- input s1, s2 在整个题目的主要内容里面, 几乎没有用到, 只是用在initialization时候.
+- More details, 看解答
 
 
 
@@ -501,13 +512,13 @@ Sequence DP
 **28. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
-经典序列型.
-设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
 
-双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析3种情况:
-1. A最后字符不在common sequence.
-2. B最后字符不在common sequence.
-3. A/B最后字符都在common sequence. 总体+1.
+#### Double Sequence DP
+- 设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+- 双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析2种情况:
+- 1. A最后字符不在common sequence 或者 B最后字符不在common sequence.
+- 2. A/B最后字符都在common sequence. 总体count + 1.
 
 
 
@@ -527,13 +538,16 @@ Sequence DP
 **30. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
-两个字符串变话, 找最小值, two sequence DP.
-考虑两个字符串变换的最后点: 相等, 互换, 还是缺少? 分析每种情况, 然后列出表达式.
+两个字符串, A要变成B, 可以 insert/delete/replace, 找最小变化operation count
 
-注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+#### Double Sequence
+- 考虑两个字符串变换的最后点: 需要insert/delete/replace? 分析每种情况, 然后列出表达式.
+- 先calculate最坏的情况, 3种operation count + 1; 然后在比较match的情况.
+- 注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+- 第一步, 空间时间都是O(MN)
+- 滚动数组优化, 空间O(N)
 
-第一步, 空间时间都是O(MN)
-滚动数组优化, 空间O(N)
+#### Search
 
 
 

@@ -3,12 +3,14 @@ Table of Contents
 =================
 
 * [Sequence DP (4)](#sequence-dp-4)
-* [Range DP (1)](#range-dp-1)
+* [Range DP (2)](#range-dp-2)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
 * [String (19)](#string-19)
+* [Basic Implementation (1)](#basic-implementation-1)
 * [Math (12)](#math-12)
 * [DP (48)](#dp-48)
+* [Double Sequence DP (2)](#double-sequence-dp-2)
 * [BFS (11)](#bfs-11)
 * [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
@@ -16,7 +18,7 @@ Table of Contents
 * [Game Theory (4)](#game-theory-4)
 * [Hash Table (16)](#hash-table-16)
 * [Backtracking (9)](#backtracking-9)
-* [Bit Manipulation (7)](#bit-manipulation-7)
+* [Bit Manipulation (9)](#bit-manipulation-9)
 * [Divide and Conquer (5)](#divide-and-conquer-5)
 * [Status DP (1)](#status-dp-1)
 * [Topological Sort (4)](#topological-sort-4)
@@ -142,8 +144,34 @@ Table of Contents
  
  
  
-## Range DP (1)
-**0. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+## Range DP (2)
+**0. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
+      
+
+- 给两个string S, T. 检验他们是不是scramble string.
+- scramble string 定义: string可以被分拆成binary tree的形式, 也就是切割成substring;
+- 旋转了不是leaf的node之后, 形成新的substring, 这就是原来string的 scramble.
+
+
+#### Range DP 区间型
+- 降维打击, 分割, 按照长度来dp.
+- dp[i][j][k]: 数组S从index i 开始, T从index j 开始, 长度为k的子串, 是否为scramble string
+
+##### Break down
+- 一切两半以后, 看两种情况: , 或者不rotate这两半. 对于这些substring, 各自验证他们是否scramble.
+- 不rotate分割的两半: S[part1] 对应  T[part1] && S[part2] 对应  T[part2]. 
+- rotate分割的两半: S[part1] 对应  T[part2] && S[part2] 对应  T[part1]. 
+
+##### Initialization
+- len == 1的时候, 其实无法旋转, 也就是看S,T的相对应的index是否字符相等.
+- initialization非常非常重要. 很神奇, 这个initailization 打好了DP的基础, 后面一蹴而就, 用数学表达式就算出了结果.
+- input s1, s2 在整个题目的主要内容里面, 几乎没有用到, 只是用在initialization时候.
+- More details, 看解答
+
+
+
+---
+**1. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -556,14 +584,25 @@ note: calculate number from characters, need to - '0' to get the correct integer
 **4. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
-区间型
-降维打击
-dp[i][j][w]: 从i点和j点开始, 各自走w距离, 得到的S和T是否是scramble string.
+- 给两个string S, T. 检验他们是不是scramble string.
+- scramble string 定义: string可以被分拆成binary tree的形式, 也就是切割成substring;
+- 旋转了不是leaf的node之后, 形成新的substring, 这就是原来string的 scramble.
 
-具体思考过程看Thoughts.
 
-注意: input s1, s2 在整个题目的主要内容里面, 几乎没有用到, 只是用在initialization时候.
-很神奇, 这个initailization 打好了DP的基础, 后面一蹴而就, 用数学表达式就算出了结果.
+#### Range DP 区间型
+- 降维打击, 分割, 按照长度来dp.
+- dp[i][j][k]: 数组S从index i 开始, T从index j 开始, 长度为k的子串, 是否为scramble string
+
+##### Break down
+- 一切两半以后, 看两种情况: , 或者不rotate这两半. 对于这些substring, 各自验证他们是否scramble.
+- 不rotate分割的两半: S[part1] 对应  T[part1] && S[part2] 对应  T[part2]. 
+- rotate分割的两半: S[part1] 对应  T[part2] && S[part2] 对应  T[part1]. 
+
+##### Initialization
+- len == 1的时候, 其实无法旋转, 也就是看S,T的相对应的index是否字符相等.
+- initialization非常非常重要. 很神奇, 这个initailization 打好了DP的基础, 后面一蹴而就, 用数学表达式就算出了结果.
+- input s1, s2 在整个题目的主要内容里面, 几乎没有用到, 只是用在initialization时候.
+- More details, 看解答
 
 
 
@@ -593,13 +632,16 @@ dp[i][j][w]: 从i点和j点开始, 各自走w距离, 得到的S和T是否是scra
 **7. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
-两个字符串变话, 找最小值, two sequence DP.
-考虑两个字符串变换的最后点: 相等, 互换, 还是缺少? 分析每种情况, 然后列出表达式.
+两个字符串, A要变成B, 可以 insert/delete/replace, 找最小变化operation count
 
-注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+#### Double Sequence
+- 考虑两个字符串变换的最后点: 需要insert/delete/replace? 分析每种情况, 然后列出表达式.
+- 先calculate最坏的情况, 3种operation count + 1; 然后在比较match的情况.
+- 注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+- 第一步, 空间时间都是O(MN)
+- 滚动数组优化, 空间O(N)
 
-第一步, 空间时间都是O(MN)
-滚动数组优化, 空间O(N)
+#### Search
 
 
 
@@ -764,6 +806,21 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 然后用int[]来count chars from A, count[x]++. 再对照chars in B, count[x]--
 - 如果 count[c] < 0, 就 false.
 - O(n)
+
+
+
+---
+
+
+
+ 
+ 
+ 
+## Basic Implementation (1)
+**0. [Cosine Similarity.java](https://github.com/awangdev/LintCode/blob/master/Java/Cosine%20Similarity.java)**      Level: Easy
+      
+
+根据 Cosine Similarity 的公式, basic implementation
 
 
 
@@ -1412,14 +1469,25 @@ O(m)的做法:
 **26. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
-区间型
-降维打击
-dp[i][j][w]: 从i点和j点开始, 各自走w距离, 得到的S和T是否是scramble string.
+- 给两个string S, T. 检验他们是不是scramble string.
+- scramble string 定义: string可以被分拆成binary tree的形式, 也就是切割成substring;
+- 旋转了不是leaf的node之后, 形成新的substring, 这就是原来string的 scramble.
 
-具体思考过程看Thoughts.
 
-注意: input s1, s2 在整个题目的主要内容里面, 几乎没有用到, 只是用在initialization时候.
-很神奇, 这个initailization 打好了DP的基础, 后面一蹴而就, 用数学表达式就算出了结果.
+#### Range DP 区间型
+- 降维打击, 分割, 按照长度来dp.
+- dp[i][j][k]: 数组S从index i 开始, T从index j 开始, 长度为k的子串, 是否为scramble string
+
+##### Break down
+- 一切两半以后, 看两种情况: , 或者不rotate这两半. 对于这些substring, 各自验证他们是否scramble.
+- 不rotate分割的两半: S[part1] 对应  T[part1] && S[part2] 对应  T[part2]. 
+- rotate分割的两半: S[part1] 对应  T[part2] && S[part2] 对应  T[part1]. 
+
+##### Initialization
+- len == 1的时候, 其实无法旋转, 也就是看S,T的相对应的index是否字符相等.
+- initialization非常非常重要. 很神奇, 这个initailization 打好了DP的基础, 后面一蹴而就, 用数学表达式就算出了结果.
+- input s1, s2 在整个题目的主要内容里面, 几乎没有用到, 只是用在initialization时候.
+- More details, 看解答
 
 
 
@@ -1436,13 +1504,13 @@ Sequence DP
 **28. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
-经典序列型.
-设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
 
-双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析3种情况:
-1. A最后字符不在common sequence.
-2. B最后字符不在common sequence.
-3. A/B最后字符都在common sequence. 总体+1.
+#### Double Sequence DP
+- 设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+- 双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析2种情况:
+- 1. A最后字符不在common sequence 或者 B最后字符不在common sequence.
+- 2. A/B最后字符都在common sequence. 总体count + 1.
 
 
 
@@ -1462,13 +1530,16 @@ Sequence DP
 **30. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
-两个字符串变话, 找最小值, two sequence DP.
-考虑两个字符串变换的最后点: 相等, 互换, 还是缺少? 分析每种情况, 然后列出表达式.
+两个字符串, A要变成B, 可以 insert/delete/replace, 找最小变化operation count
 
-注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+#### Double Sequence
+- 考虑两个字符串变换的最后点: 需要insert/delete/replace? 分析每种情况, 然后列出表达式.
+- 先calculate最坏的情况, 3种operation count + 1; 然后在比较match的情况.
+- 注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+- 第一步, 空间时间都是O(MN)
+- 滚动数组优化, 空间O(N)
 
-第一步, 空间时间都是O(MN)
-滚动数组优化, 空间O(N)
+#### Search
 
 
 
@@ -1825,6 +1896,44 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 正规地找规律做, 就跟 coins in a line 一样, 按照先手后手来做
 - 可以rolling array 优化空间
 - Time O(n), 当然啦, 这个题目这样会timeout, 可以使用brainteaser的做法写出结果.
+
+
+
+---
+
+
+
+ 
+ 
+ 
+## Double Sequence DP (2)
+**0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
+      
+
+给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
+
+#### Double Sequence DP
+- 设定dp长度为(n+1), 因为dp[i]要用来表示前i个(ith)时候的状态, 所以长度需要时i+1才可以在i位置, hold住i.
+- 双序列: 两个sequence之间的关系, 都是从末尾字符看起, 分析2种情况:
+- 1. A最后字符不在common sequence 或者 B最后字符不在common sequence.
+- 2. A/B最后字符都在common sequence. 总体count + 1.
+
+
+
+---
+**1. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
+      
+
+两个字符串, A要变成B, 可以 insert/delete/replace, 找最小变化operation count
+
+#### Double Sequence
+- 考虑两个字符串变换的最后点: 需要insert/delete/replace? 分析每种情况, 然后列出表达式.
+- 先calculate最坏的情况, 3种operation count + 1; 然后在比较match的情况.
+- 注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
+- 第一步, 空间时间都是O(MN)
+- 滚动数组优化, 空间O(N)
+
+#### Search
 
 
 
@@ -3380,7 +3489,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
  
  
  
-## Bit Manipulation (7)
+## Bit Manipulation (9)
 **0. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
 
@@ -3483,6 +3592,35 @@ Related Problems:
 Majority Number II，超1/3, 那么就分三份处理，countA, countB来计算最多出现的两个。
 
 Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
+
+
+
+---
+**7. [Convert Integer A to Integer B.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Integer%20A%20to%20Integer%20B.java)**      Level: Easy
+      
+
+把Integer A 转换成 Integer B 需要改变多少bits?
+
+#### Bit Manipulation
+- a^b 显示出bit format里面有不同binary code的数位.
+- 每次 (a^b)>>i 移动i位之后, 再 & 1时其实是指留下这一位的数字.
+- count 
+- 其实用到了 ^ 找不同的bit, >> 移位, &1 mask
+
+
+
+---
+**8. [Count 1 in Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%201%20in%20Binary.java)**      Level: Easy
+      
+
+count 一个 32-bit number binary format 里面有多少1
+
+#### Bit Manipulation
+- shift >> i 
+- apply mask & 1
+
+#### Convert to string O(n) space
+可以把integer -> string -> char array.
 
 
 

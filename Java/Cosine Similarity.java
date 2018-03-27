@@ -1,11 +1,14 @@
 E
+1522133014
+tags: Basic Implementation
 
-basic implementation
+根据 Cosine Similarity 的公式, basic implementation
 
 ```
 /*
+LintCode
 Cosine similarity is a measure of similarity between two vectors of an inner product space
- that measures the cosine of the angle between them. 
+that measures the cosine of the angle between them. 
 The cosine of 0° is 1, and it is less than 1 for any other angle.
 
 See wiki: Cosine Similarity

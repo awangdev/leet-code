@@ -1,11 +1,19 @@
 E
+1522133098
+tags: Bit Manipulation
 
-1. 可以把integer -> string -> char array.
+count 一个 32-bit number binary format 里面有多少1
 
-2. 或者就 count += num << i & 1
+#### Bit Manipulation
+- shift >> i 
+- apply mask & 1
+
+#### Convert to string O(n) space
+可以把integer -> string -> char array.
 
 ```
 /*
+LintCode
 Count how many 1 in binary representation of a 32-bit integer.
 
 Example
@@ -26,7 +34,19 @@ Thoughts:
 2. convert char[] into integer using Character.getNumericValue()
 
 */
-
+/*
+Thoughts:
+Shift the 32 bit integer and apply mask 1
+*/
+public class Solution {
+    public int countOnes(int num) {
+        int count = 0;
+        for (int i = 1; i <= 32; i++) {
+            count += num >> i & 1;
+        }
+        return count;
+    }
+};
 
 
 
