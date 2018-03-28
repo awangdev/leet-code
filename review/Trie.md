@@ -1,7 +1,7 @@
  
  
  
-## Trie (6)
+## Trie (7)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
 
@@ -141,6 +141,24 @@ O(mn)
 
 #### 方法2: Trie
 还要做一下那.
+
+
+
+---
+**6. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
+      
+
+给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+
+#### Trie
+TODO
+
+#### Double Sequence DP
+- Edit Distance的follow up.
+- 其实就是改一下 minEditDistance的function, 带入K作比较罢了.
+- 写起来跟Edit Distance 的主要逻辑是一模一样的.
+- 但是LintCode 86% test case 时候timeout. 
+- Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
 
 
 

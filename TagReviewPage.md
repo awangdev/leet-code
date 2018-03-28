@@ -6,11 +6,11 @@ Table of Contents
 * [Range DP (2)](#range-dp-2)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
-* [String (19)](#string-19)
-* [Basic Implementation (1)](#basic-implementation-1)
+* [String (21)](#string-21)
+* [Basic Implementation (2)](#basic-implementation-2)
 * [Math (12)](#math-12)
-* [DP (48)](#dp-48)
-* [Double Sequence DP (2)](#double-sequence-dp-2)
+* [DP (49)](#dp-49)
+* [Double Sequence DP (3)](#double-sequence-dp-3)
 * [BFS (11)](#bfs-11)
 * [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
@@ -25,7 +25,7 @@ Table of Contents
 * [Sort (6)](#sort-6)
 * [Tree (20)](#tree-20)
 * [Greedy (6)](#greedy-6)
-* [Trie (6)](#trie-6)
+* [Trie (7)](#trie-7)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [Coordinate DP (3)](#coordinate-dp-3)
 * [BST (16)](#bst-16)
@@ -534,7 +534,7 @@ Time: O(nLogN)
  
  
  
-## String (19)
+## String (21)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -810,17 +810,55 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 
 ---
+**19. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy
+      
+
+介绍一种count数字的方法, 然后每一行读出上一行的结果, 一行一行推算. 问nth行是啥样?
+
+#### Basic Implementation
+- 主要是题意很难理解, 非常misleading, 等到看明白题目, 其实没有什么算法要求.
+- Count duplicates and print
+
+
+
+---
+**20. [One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)**      Level: Medium
+      
+
+如果S, T只用一个operation就能变成相等, return true.
+
+#### Edit: 删除，增加，和替换
+- 换完之后，理论上换成的String 就应该全等
+- for loop, 一旦找到不一样的char, 就判断那三种可能性
+- insert/delete 对于2个string来说, 效果是类似的
+- O(n)
+
+
+
+---
 
 
 
  
  
  
-## Basic Implementation (1)
+## Basic Implementation (2)
 **0. [Cosine Similarity.java](https://github.com/awangdev/LintCode/blob/master/Java/Cosine%20Similarity.java)**      Level: Easy
       
 
 根据 Cosine Similarity 的公式, basic implementation
+
+
+
+---
+**1. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy
+      
+
+介绍一种count数字的方法, 然后每一行读出上一行的结果, 一行一行推算. 问nth行是啥样?
+
+#### Basic Implementation
+- 主要是题意很难理解, 非常misleading, 等到看明白题目, 其实没有什么算法要求.
+- Count duplicates and print
 
 
 
@@ -993,7 +1031,7 @@ Space O(n), time O(n)
  
  
  
-## DP (48)
+## DP (49)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1900,13 +1938,31 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 
 ---
+**48. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
+      
+
+给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+
+#### Trie
+TODO
+
+#### Double Sequence DP
+- Edit Distance的follow up.
+- 其实就是改一下 minEditDistance的function, 带入K作比较罢了.
+- 写起来跟Edit Distance 的主要逻辑是一模一样的.
+- 但是LintCode 86% test case 时候timeout. 
+- Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
+
+
+
+---
 
 
 
  
  
  
-## Double Sequence DP (2)
+## Double Sequence DP (3)
 **0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
@@ -1934,6 +1990,24 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 滚动数组优化, 空间O(N)
 
 #### Search
+
+
+
+---
+**2. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
+      
+
+给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+
+#### Trie
+TODO
+
+#### Double Sequence DP
+- Edit Distance的follow up.
+- 其实就是改一下 minEditDistance的function, 带入K作比较罢了.
+- 写起来跟Edit Distance 的主要逻辑是一模一样的.
+- 但是LintCode 86% test case 时候timeout. 
+- Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
 
 
 
@@ -4528,7 +4602,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
  
  
  
-## Trie (6)
+## Trie (7)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
 
@@ -4668,6 +4742,24 @@ O(mn)
 
 #### 方法2: Trie
 还要做一下那.
+
+
+
+---
+**6. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
+      
+
+给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+
+#### Trie
+TODO
+
+#### Double Sequence DP
+- Edit Distance的follow up.
+- 其实就是改一下 minEditDistance的function, 带入K作比较罢了.
+- 写起来跟Edit Distance 的主要逻辑是一模一样的.
+- 但是LintCode 86% test case 时候timeout. 
+- Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
 
 
 

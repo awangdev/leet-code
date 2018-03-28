@@ -1,7 +1,7 @@
  
  
  
-## DP (48)
+## DP (49)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -904,6 +904,24 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 正规地找规律做, 就跟 coins in a line 一样, 按照先手后手来做
 - 可以rolling array 优化空间
 - Time O(n), 当然啦, 这个题目这样会timeout, 可以使用brainteaser的做法写出结果.
+
+
+
+---
+**48. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
+      
+
+给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+
+#### Trie
+TODO
+
+#### Double Sequence DP
+- Edit Distance的follow up.
+- 其实就是改一下 minEditDistance的function, 带入K作比较罢了.
+- 写起来跟Edit Distance 的主要逻辑是一模一样的.
+- 但是LintCode 86% test case 时候timeout. 
+- Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
 
 
 

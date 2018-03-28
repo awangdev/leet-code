@@ -1,7 +1,7 @@
  
  
  
-## String (19)
+## String (21)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -272,6 +272,32 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 比较一下大小, null.
 - 然后用int[]来count chars from A, count[x]++. 再对照chars in B, count[x]--
 - 如果 count[c] < 0, 就 false.
+- O(n)
+
+
+
+---
+**19. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy
+      
+
+介绍一种count数字的方法, 然后每一行读出上一行的结果, 一行一行推算. 问nth行是啥样?
+
+#### Basic Implementation
+- 主要是题意很难理解, 非常misleading, 等到看明白题目, 其实没有什么算法要求.
+- Count duplicates and print
+
+
+
+---
+**20. [One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)**      Level: Medium
+      
+
+如果S, T只用一个operation就能变成相等, return true.
+
+#### Edit: 删除，增加，和替换
+- 换完之后，理论上换成的String 就应该全等
+- for loop, 一旦找到不一样的char, 就判断那三种可能性
+- insert/delete 对于2个string来说, 效果是类似的
 - O(n)
 
 

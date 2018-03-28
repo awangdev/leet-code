@@ -1,7 +1,7 @@
  
  
  
-## Double Sequence DP (2)
+## Double Sequence DP (3)
 **0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
@@ -29,6 +29,24 @@
 - 滚动数组优化, 空间O(N)
 
 #### Search
+
+
+
+---
+**2. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
+      
+
+给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+
+#### Trie
+TODO
+
+#### Double Sequence DP
+- Edit Distance的follow up.
+- 其实就是改一下 minEditDistance的function, 带入K作比较罢了.
+- 写起来跟Edit Distance 的主要逻辑是一模一样的.
+- 但是LintCode 86% test case 时候timeout. 
+- Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
 
 
 
