@@ -18,23 +18,7 @@ O(n) space, O(nLog(n)) time, because of sorting.
 
 
 ---
-**1. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
-      
-
-给出步数，看能不能reach to end.
-
-Status:
-DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
-    其实j in [0~i)中间只需要一个能到达i 就好了
-Function:
-DP[i] = DP[j] && (j + A[j]) ?= i, for all j in [0 ~ i)
-Return:
-    DP[dp.length - 1];
-
-
-
----
-**2. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
+**1. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
       
 
 和Stock I 的区别：可以买卖多次，求总和的最大盈利。
@@ -57,7 +41,7 @@ O(n)
 
 
 ---
-**3. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
+**2. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
       
 
 Double sequence DP. 与regular expression 很像.
@@ -69,7 +53,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**4. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
+**3. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
       
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
@@ -84,7 +68,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
-**5. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+**4. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -100,6 +84,22 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 #### Rolling Array
 空间优化O(1). Rolling array, %2
+
+
+
+---
+**5. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
+      
+
+给出步数，看能不能jump to end.
+
+#### DP
+- DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
+- 其实j in [0~i)中间只需要一个能到达i 就好了
+- Function: DP[i] = DP[j] && (A[j] >= i - j), for all j in [0 ~ i)
+- Return: DP[dp.length - 1];
+
+#### Greedy
 
 
 

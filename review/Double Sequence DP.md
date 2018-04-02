@@ -36,7 +36,7 @@
 **2. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
       
 
-给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
 
 #### Trie
 TODO

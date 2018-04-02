@@ -1,16 +1,16 @@
 M
-1516602798
-tags: Array, Greedy
+1522684902
+tags: Array, Greedy, DP
 
-给出步数，看能不能reach to end.
+给出步数，看能不能jump to end.
 
-Status:
-DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
-    其实j in [0~i)中间只需要一个能到达i 就好了
-Function:
-DP[i] = DP[j] && (j + A[j]) ?= i, for all j in [0 ~ i)
-Return:
-    DP[dp.length - 1];
+#### DP
+- DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
+- 其实j in [0~i)中间只需要一个能到达i 就好了
+- Function: DP[i] = DP[j] && (A[j] >= i - j), for all j in [0 ~ i)
+- Return: DP[dp.length - 1];
+
+#### Greedy
 
 ```
 /*
@@ -25,7 +25,8 @@ A = [2,3,1,1,4], return true.
 
 A = [3,2,1,0,4], return false.
 
-This can be done using DP. However, greedy algorithm is fast in this particular problem. Consider both solutions.
+This can be done using DP. However, greedy algorithm is fast in this particular problem.
+Consider both solutions.
 
 DP
 
@@ -34,29 +35,33 @@ DP
 /*
 Thoughts:
 Can/Cannot -> DP.
-f[x] = if able to reach f[x], store true/false
-if (f[x-1] >= 1), then able to reach f[x]
-becomes: if able to jump to f[x-1].
+dp[x] = if able to reach dp[x], store true/false
+if (dp[x-j] >= 1), then able to reach dp[x]
+becomes: if able to jump to dp[x-1].
 equation:
-f[x] = f[x-1] && A[x-1] >= x - 1
-f[0] = true
+dp[x] = dp[j] && A[j] >= x - j
+dp[0] = true
 */
 class Solution {
     public boolean canJump(int[] nums) {
         if (nums == null || nums.length == 0) {
             return false;
         }
-        final boolean[] dp = new boolean[nums.length];
+        int n = nums.length;
+        boolean[] dp = new boolean[n];
+        
         dp[0] = true;
-        for (int i = 1; i < dp.length; i++) {
+        
+        for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
-                if (dp[j] && (nums[j] + j >= i)) {
-                    dp[i] = true;    
+                if (dp[j] && nums[j] >= (i - j)) {
+                    dp[i] = true;
                     break;
                 }
             }
         }
-        return dp[dp.length - 1];
+        
+        return dp[n - 1];
     }
 }
 
@@ -64,10 +69,10 @@ class Solution {
 Same solution as above.
 Thinking Process:
 We have array A, that stores the # of steps for each index.
-State: f[i] means if previous steps can reach to i. True/False
-Function: f[i] = f[j] && (j + A[j] >= i)
-Init: f[0] = true
-Answer: f[n-1], if n is the length of A
+State: dp[i] means if previous steps can reach to i. True/False
+Function: dp[i] = dp[j] && (j + A[j] >= i)
+Init: dp[0] = true
+Answer: dp[n-1], if n is the length of A
  */
 
 /*

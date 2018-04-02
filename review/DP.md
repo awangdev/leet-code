@@ -1,20 +1,30 @@
  
  
  
-## DP (49)
+## DP (50)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
-DP. 找对方程f[x], 积累到amount x最少用多少个coin: #coin是value, index是 [0~x].
-子问题的关系是: 如果用了一个coin, 那么就应该是f[x - coinValue]那个位置的#coins + 1
+给一串不同数额的coins, 和total amount to spent. 求 最少 用多少个coin可以组合到这个amount. 每种coins个数不限量.
 
-注意initialization: 
-处理边界, 一开始0index的时候, 用value0. 
-中间利用Integer.MAX_VALUE来作比较, initialize dp[x]
-注意, 一旦 Integer.MAX_VALUE + 1 就会变成负数. 这种情况会在coin=0的时候发生.
+#### DP
+- 找对方程dp[x], 积累到amount x最少用多少个coin: #coin是value, index是 [0~x].
+- 子问题的关系是: 如果用了一个coin, 那么就应该是f[x - coinValue]那个位置的#coins + 1
 
-方法1: 用Integer.MAX_VALUE
-方法2: 用-1, 稍微简洁一点, 每次比较dp[i]和 dp[i - coin] + 1, 然后save. 不必要做多次min比较.
+##### initialization
+- 处理边界, 一开始0index的时候, 用value0. 
+- 中间利用Integer.MAX_VALUE来作比较, initialize dp[x]
+- 注意, 一旦 Integer.MAX_VALUE + 1 就会变成负数. 这种情况会在coin=0的时候发生.
+
+##### Optimization
+- 方法1: 直接用Integer.MAX_VALUE
+- 方法2: 用-1, 稍微简洁一点, 每次比较dp[i]和 dp[i - coin] + 1, 然后save. 不必要做多次min比较.
+
+#### Memoization
+- dp[i] 依然表示: min # of coints to make amount i
+- initialize dp[i] = Integer.MAX_VALUE
+- 先选最后一步(遍历coins),  然后dfs做同样的操作
+- 记录dp[amount] 如果已经给过value, 不要重复计算, 直接return.
 
 
 
@@ -911,7 +921,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 **48. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
       
 
-给一串String, target string, int k. 看string array里面有多少个candidate能在变化K次种, 变成target.
+给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
 
 #### Trie
 TODO
@@ -922,6 +932,22 @@ TODO
 - 写起来跟Edit Distance 的主要逻辑是一模一样的.
 - 但是LintCode 86% test case 时候timeout. 
 - Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
+
+
+
+---
+**49. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
+      
+
+给出步数，看能不能jump to end.
+
+#### DP
+- DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
+- 其实j in [0~i)中间只需要一个能到达i 就好了
+- Function: DP[i] = DP[j] && (A[j] >= i - j), for all j in [0 ~ i)
+- Return: DP[dp.length - 1];
+
+#### Greedy
 
 
 
