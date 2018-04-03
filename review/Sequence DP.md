@@ -1,7 +1,7 @@
  
  
  
-## Sequence DP (6)
+## Sequence DP (7)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -131,6 +131,23 @@
 - 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
 - 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 
+
+
+---
+**6. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
+      
+
+要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
+
+#### Sequence DP
+- 求知道dp[n]的min cost, 但是不知道最后一个房子选什么颜色
+- 那么就遍历最后一个房子(i - 1)的颜色
+- 选中最后一个房子的颜色同时, 来选择 (i - 2)的颜色, 来找出最低的cost
+- 考虑DP最后一个位置的情况. 发现给出了一些特殊条件, 需要附带在DP[i]上,
+- 那么就定义二维数组
+
+#### Rolling Array
+- 观察发现 index[i] 只跟 [i-1] 相关, 所以2位就足够, %2
 
 
 ---

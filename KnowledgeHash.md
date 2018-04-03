@@ -1,6 +1,6 @@
 Table of Contents
 =================
- 
+
    * [Heap](#heap)
    * [Stack](#stack)
       * [Functions](#functions)
@@ -30,7 +30,6 @@ Table of Contents
       * [Topological Sort - BFS](#topological-sort---bfs)
       * [Topological Sort - DFS](#topological-sort---dfs)
    * [Array](#array)
-      * [Array](#array-1)
    * [Two Pointers](#two-pointers)
    * [Binary Search](#binary-search)
       * [Basics](#basics)
@@ -49,10 +48,24 @@ Table of Contents
       * [String](#string)
       * [Bit Manipulation](#bit-manipulation)
    * [DP](#dp)
+      * [判断](#判断)
+      * [四个步骤](#四个步骤)
+         * [确定状态](#确定状态)
+         * [转移方程](#转移方程)
+         * [初始条件/边界情况](#初始条件边界情况)
+         * [计算顺序](#计算顺序)
       * [Technique](#technique)
+      * [基本原理](#基本原理)
       * [分类](#分类)
-      * [Sequence DP](#sequence-dp)
-      * [记忆化搜索 Memoization](#记忆化搜索-memoization)
+         * [网格坐标](#网格坐标)
+         * [序列](#序列)
+            * [特点](#特点)
+            * [关键点](#关键点)
+            * [More](#more)
+         * [划分](#划分)
+         * [区间类(range DP)](#区间类range-dp)
+            * [三把斧](#三把斧)
+         * [记忆化搜索 Memoization](#记忆化搜索-memoization)
       * [Minimax](#minimax)
       * [Optimization problems](#optimization-problems)
       * [Double Sequence](#double-sequence)
@@ -332,11 +345,12 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 ## 基本原理
 - 加法原理: 无重复, 无遗漏
+- dp = new int[n] 还是 dp = new int[n + 1]: 看角标是否表示坐标, 还是前i items的状态
 
 ## 分类
-- 网格坐标
-- 序列类
-- 划分类
+- 网格坐标 *
+- 序列类 *
+- 划分类 *
 - 区间类(range DP)
 - 背包类
 - 双序列
@@ -344,12 +358,37 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - combos
 
 ### 网格坐标
+- dp index [i][j] = coordinate (i,j)
 - 2D的初始条件: f[0][0]
 - 边界: i = 0, j = 0,  第一行和第一列
 - 计算顺序: 比如第一行, 第二行...etc. 目的: 为了保证, 需要用到的状态, 都已经算到了.
+- Example: Unique Path I, II
+
 
 ### 序列
-- 
+
+#### 特点
+- 可以选择让: DP[i]存的是以 1-based index的状态, 求前i个.
+- 那么, 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1].
+- 初始化(简单): dp[0]往往是有特殊状态的: 0 index有时候初始化就是0
+- 边界情况(简单): 0 是虚拟的位, 所以大多数时候, 就留成0, 不太有所谓.
+
+#### 关键点
+- 不关心前面n-1是怎么组合出的状态, 但是可以先确定末尾的状态
+- 及时思考的时候从结尾, 在代码写的时候, 其实是模拟末尾是i = [0 ~ n] 的情况, 一圈圈计算.
+- 最后再给出 dp[n] 的末尾解答. 
+
+#### More
+- 序列+状态:如果n-1步有多种状态, 且n步也有多种可能, 添加一种状态记录, 变成2D dp[sequence index][状态]
+- Example: Paint House
+
+
+### 划分
+- 不管怎么划, 总有最后一段! 根据题目给出的条件, 从末尾划刀
+- 也可能是看dp[i] 前 i 个item的状态 [0, i - 1]
+- Example: Decode Ways
+
+
 
 ### 区间类(range DP)
 - dp[i][j] 表示 [i~j]之间的状态
@@ -362,21 +401,13 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 砍断首或尾
 - Range区间作为iteration的根本
 
-### Sequence DP
-- DP[]存的是以 1-based index的状态
-- 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1]
-- dp[0]往往是有特殊状态的
-
-#### 关键点
-- 不关心前面n-1是怎么组合出的状态, 但是可以先确定末尾的状态
-- 及时思考的时候从结尾, 在代码写的时候, 其实是模拟末尾是i = [0 ~ n] 的情况, 一圈圈计算.
-- 最后再给出 dp[n] 的末尾解答. 
-
 
 ### 记忆化搜索 Memoization
 - 本质是DP, 所有DP也都是为了解决重复计算
 - 从大到小搜索, 其实是暴利解决的思路, 只是在深入到底的的过程中存了状态, 不需要重复计算.
 - 什么时候用记忆化搜索: 1. 状态转移特别麻烦，不是顺序性; 2. 初始化状态不是很容易找到; 3. 从大到小
+
+
 
 ## Minimax
 
