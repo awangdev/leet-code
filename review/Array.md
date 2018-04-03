@@ -85,12 +85,19 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 **5. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium
       
 
-求最值, DP.
-两个特别处:
-1. 正负数情况, 需要用两个DP array. 
-2. continuous prodct 这个条件决定了在Math.min, Math.max的时候, 
-是跟nums[x]当下值比较的, 如果当下值更适合, 会舍去之前的continous product, 然后重新开始.
-这也就注定了需要一个global variable 来hold result.
+从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
+
+#### DP
+- 求最值, 想到DP. Time/Space O (n)
+- 两个特别处: 
+- 1. 正负数情况, 需要用两个DP array. 
+- 2. continuous prodct 这个条件决定了在Math.min, Math.max的时候, 
+- 是跟nums[x]当下值比较的, 如果当下值更适合, 会舍去之前的continous product, 然后重新开始.
+- 这也就注定了需要一个global variable 来hold result.
+
+#### Space optimization, rolling array
+- maxProduct && minProduct 里面的 index i, 都只能 i - 1相关, 所以可以省去redundant operatoins
+- Time: O(n), space: O(1)
 
 
 
@@ -161,8 +168,13 @@ Previous notes:
 **10. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 
-典型的坐标型DP. 考虑最终结尾需要的状态:如何组成,写出公式.
-公式中注意处理能跳掉的block, '到不了', 即为 0 path.
+跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
+
+#### 坐标DP
+- dp[i][j]: # of paths to reach grid[i][j]
+- dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+- 考虑最终结尾需要的状态:如何组成,写出公式.
+- 公式中注意处理能跳掉的block, marked as 1. '到不了', 即为 0 path in dp[i][j].
 
 
 
@@ -752,6 +764,9 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - Return: DP[dp.length - 1];
 
 #### Greedy
+- Keep track of farest can go
+- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
+- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
 
 
 

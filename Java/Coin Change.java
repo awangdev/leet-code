@@ -22,6 +22,7 @@ tags: DP, Sequence DP, Memoization
 - initialize dp[i] = Integer.MAX_VALUE
 - 先选最后一步(遍历coins),  然后dfs做同样的操作
 - 记录dp[amount] 如果已经给过value, 不要重复计算, 直接return.
+- 但是这道题没必要强行做memoization, 普通DP的状态和方程相对来说很好找到
 
 ```
 /*

@@ -1,9 +1,14 @@
 M
 1517284913
-tags: Array, DP
+tags: Array, DP, Coordinate DP
 
-典型的坐标型DP. 考虑最终结尾需要的状态:如何组成,写出公式.
-公式中注意处理能跳掉的block, '到不了', 即为 0 path.
+跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
+
+#### 坐标DP
+- dp[i][j]: # of paths to reach grid[i][j]
+- dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+- 考虑最终结尾需要的状态:如何组成,写出公式.
+- 公式中注意处理能跳掉的block, marked as 1. '到不了', 即为 0 path in dp[i][j].
 
 ```
 /*

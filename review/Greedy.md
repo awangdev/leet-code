@@ -100,6 +100,9 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 - Return: DP[dp.length - 1];
 
 #### Greedy
+- Keep track of farest can go
+- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
+- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
 
 
 

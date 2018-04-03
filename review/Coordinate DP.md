@@ -1,8 +1,22 @@
  
  
  
-## Coordinate DP (3)
-**0. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+## Coordinate DP (4)
+**0. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
+      
+
+跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
+
+#### 坐标DP
+- dp[i][j]: # of paths to reach grid[i][j]
+- dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+- 考虑最终结尾需要的状态:如何组成,写出公式.
+- 公式中注意处理能跳掉的block, marked as 1. '到不了', 即为 0 path in dp[i][j].
+
+
+
+---
+**1. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -22,7 +36,7 @@
 
 
 ---
-**1. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+**2. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -44,7 +58,7 @@
 
 
 ---
-**2. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**3. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP

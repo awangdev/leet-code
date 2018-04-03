@@ -2,14 +2,14 @@
 Table of Contents
 =================
 
-* [Sequence DP (5)](#sequence-dp-5)
+* [Sequence DP (6)](#sequence-dp-6)
 * [Range DP (2)](#range-dp-2)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
 * [String (21)](#string-21)
 * [Basic Implementation (2)](#basic-implementation-2)
 * [Math (12)](#math-12)
-* [DP (50)](#dp-50)
+* [DP (51)](#dp-51)
 * [Double Sequence DP (3)](#double-sequence-dp-3)
 * [BFS (11)](#bfs-11)
 * [Segment Tree (1)](#segment-tree-1)
@@ -26,8 +26,8 @@ Table of Contents
 * [Tree (20)](#tree-20)
 * [Greedy (6)](#greedy-6)
 * [Trie (7)](#trie-7)
+* [Coordinate DP (4)](#coordinate-dp-4)
 * [Monotonous Stack (1)](#monotonous-stack-1)
-* [Coordinate DP (3)](#coordinate-dp-3)
 * [BST (16)](#bst-16)
 * [Binary Tree (2)](#binary-tree-2)
 * [Binary Search (23)](#binary-search-23)
@@ -50,7 +50,7 @@ Table of Contents
  
  
  
-## Sequence DP (5)
+## Sequence DP (6)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -74,6 +74,7 @@ Table of Contents
 - initialize dp[i] = Integer.MAX_VALUE
 - 先选最后一步(遍历coins),  然后dfs做同样的操作
 - 记录dp[amount] 如果已经给过value, 不要重复计算, 直接return.
+- 但是这道题没必要强行做memoization, 普通DP的状态和方程相对来说很好找到
 
 
 
@@ -161,6 +162,23 @@ Table of Contents
 - [i] only associates with [i-2], [i-1].
 - %2
 - O(1) space
+
+
+
+---
+**5. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
+      
+
+给串数字, target amount, 求总共多少种方式可以reach the amount.
+
+#### DP
+- O(MN): M, total target amount; N: size of coins
+- 状态: dp[i]: sum of ways that coins can add up to i.
+- Function: dp[j] += dp[j - coins[i]];
+- Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
+- note: 避免重复count, 所以 j = coins[i] as start
+- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 
 
 
@@ -1058,7 +1076,7 @@ Space O(n), time O(n)
  
  
  
-## DP (50)
+## DP (51)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1082,6 +1100,7 @@ Space O(n), time O(n)
 - initialize dp[i] = Integer.MAX_VALUE
 - 先选最后一步(遍历coins),  然后dfs做同样的操作
 - 记录dp[amount] 如果已经给过value, 不要重复计算, 直接return.
+- 但是这道题没必要强行做memoization, 普通DP的状态和方程相对来说很好找到
 
 
 
@@ -1089,12 +1108,19 @@ Space O(n), time O(n)
 **1. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium
       
 
-求最值, DP.
-两个特别处:
-1. 正负数情况, 需要用两个DP array. 
-2. continuous prodct 这个条件决定了在Math.min, Math.max的时候, 
-是跟nums[x]当下值比较的, 如果当下值更适合, 会舍去之前的continous product, 然后重新开始.
-这也就注定了需要一个global variable 来hold result.
+从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
+
+#### DP
+- 求最值, 想到DP. Time/Space O (n)
+- 两个特别处: 
+- 1. 正负数情况, 需要用两个DP array. 
+- 2. continuous prodct 这个条件决定了在Math.min, Math.max的时候, 
+- 是跟nums[x]当下值比较的, 如果当下值更适合, 会舍去之前的continous product, 然后重新开始.
+- 这也就注定了需要一个global variable 来hold result.
+
+#### Space optimization, rolling array
+- maxProduct && minProduct 里面的 index i, 都只能 i - 1相关, 所以可以省去redundant operatoins
+- Time: O(n), space: O(1)
 
 
 
@@ -1164,8 +1190,13 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 **6. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 
-典型的坐标型DP. 考虑最终结尾需要的状态:如何组成,写出公式.
-公式中注意处理能跳掉的block, '到不了', 即为 0 path.
+跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
+
+#### 坐标DP
+- dp[i][j]: # of paths to reach grid[i][j]
+- dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+- 考虑最终结尾需要的状态:如何组成,写出公式.
+- 公式中注意处理能跳掉的block, marked as 1. '到不了', 即为 0 path in dp[i][j].
 
 
 
@@ -2005,6 +2036,26 @@ TODO
 - Return: DP[dp.length - 1];
 
 #### Greedy
+- Keep track of farest can go
+- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
+- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
+
+
+
+---
+**50. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
+      
+
+给串数字, target amount, 求总共多少种方式可以reach the amount.
+
+#### DP
+- O(MN): M, total target amount; N: size of coins
+- 状态: dp[i]: sum of ways that coins can add up to i.
+- Function: dp[j] += dp[j - coins[i]];
+- Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
+- note: 避免重复count, 所以 j = coins[i] as start
+- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 
 
 
@@ -4645,6 +4696,9 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 - Return: DP[dp.length - 1];
 
 #### Greedy
+- Keep track of farest can go
+- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
+- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
 
 
 
@@ -4823,6 +4877,83 @@ TODO
  
  
  
+## Coordinate DP (4)
+**0. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
+      
+
+跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
+
+#### 坐标DP
+- dp[i][j]: # of paths to reach grid[i][j]
+- dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+- 考虑最终结尾需要的状态:如何组成,写出公式.
+- 公式中注意处理能跳掉的block, marked as 1. '到不了', 即为 0 path in dp[i][j].
+
+
+
+---
+**1. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+      
+
+2D array, 算走到最右下角，有多少种方式.
+
+##### DP
+- 计数DP.注意方程式前两位置加在一起: 前两种情况没有overlap, 也不会缺情况.
+- 注意initialization, 归1.
+- 需要initialize的原因是,也是一个reminder: 在方程中会出现-1index
+- Of course, row i = 0, or col j = 0, there is only 1 way to access
+- time O(mn), space O(mn)
+
+##### 滚动数组
+- [i] 只跟 [i - 1] 有关系, 用 curr/prev 建立滚动数组.
+- space O(n) 优化空间
+
+
+
+
+---
+**2. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+      
+
+只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
+
+#### DP
+- 正方形, 需要每条边都是一样长度.
+- 以右下角为考虑点, 必须满足条件: left/up/diagonal的点都是1
+- 并且, 如果三个点分别都衍生向三个方向, 那么最长的 square 边就是他们之中的最短边 (受最短边限制)
+- dp[i][j]: max square length when reached at (i, j), from the 3 possible directions
+- dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+- Space, time O(mn)
+
+##### init
+每个点都可能是边长1, 如果 matrix[i][j] == '1'
+
+##### 滚动数组
+[i] 和 [i - 1] 之间的关系, 想到滚动数组优化 space, O(n) sapce.
+
+
+
+---
+**3. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+      
+
+#### DP
+- 往右下角走, 计算最短的 path sum. 典型的坐标型.
+- 注意: init 第一行的时候, 要accumulate dp[0][j - 1] + grid[i][j], 而不是单纯assign grid[i][j]
+
+##### rolling array
+TODO
+
+
+
+
+---
+
+
+
+ 
+ 
+ 
 ## Monotonous Stack (1)
 **0. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
@@ -4845,69 +4976,6 @@ TODO
 #### 知识点
 - 理解monotonous stack 是如何被维护的
 - 维护monotonous stack 是题目需要, 而不是stack本身性质, 是一种借助 stack.peek() O(1)的巧妙用法.
-
-
-
-
----
-
-
-
- 
- 
- 
-## Coordinate DP (3)
-**0. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
-      
-
-2D array, 算走到最右下角，有多少种方式.
-
-##### DP
-- 计数DP.注意方程式前两位置加在一起: 前两种情况没有overlap, 也不会缺情况.
-- 注意initialization, 归1.
-- 需要initialize的原因是,也是一个reminder: 在方程中会出现-1index
-- Of course, row i = 0, or col j = 0, there is only 1 way to access
-- time O(mn), space O(mn)
-
-##### 滚动数组
-- [i] 只跟 [i - 1] 有关系, 用 curr/prev 建立滚动数组.
-- space O(n) 优化空间
-
-
-
-
----
-**1. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
-      
-
-只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
-
-#### DP
-- 正方形, 需要每条边都是一样长度.
-- 以右下角为考虑点, 必须满足条件: left/up/diagonal的点都是1
-- 并且, 如果三个点分别都衍生向三个方向, 那么最长的 square 边就是他们之中的最短边 (受最短边限制)
-- dp[i][j]: max square length when reached at (i, j), from the 3 possible directions
-- dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
-- Space, time O(mn)
-
-##### init
-每个点都可能是边长1, 如果 matrix[i][j] == '1'
-
-##### 滚动数组
-[i] 和 [i - 1] 之间的关系, 想到滚动数组优化 space, O(n) sapce.
-
-
-
----
-**2. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
-      
-
-#### DP
-- 往右下角走, 计算最短的 path sum. 典型的坐标型.
-- 注意: init 第一行的时候, 要accumulate dp[0][j - 1] + grid[i][j], 而不是单纯assign grid[i][j]
-
-##### rolling array
-TODO
 
 
 
@@ -6221,12 +6289,19 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 **5. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium
       
 
-求最值, DP.
-两个特别处:
-1. 正负数情况, 需要用两个DP array. 
-2. continuous prodct 这个条件决定了在Math.min, Math.max的时候, 
-是跟nums[x]当下值比较的, 如果当下值更适合, 会舍去之前的continous product, 然后重新开始.
-这也就注定了需要一个global variable 来hold result.
+从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
+
+#### DP
+- 求最值, 想到DP. Time/Space O (n)
+- 两个特别处: 
+- 1. 正负数情况, 需要用两个DP array. 
+- 2. continuous prodct 这个条件决定了在Math.min, Math.max的时候, 
+- 是跟nums[x]当下值比较的, 如果当下值更适合, 会舍去之前的continous product, 然后重新开始.
+- 这也就注定了需要一个global variable 来hold result.
+
+#### Space optimization, rolling array
+- maxProduct && minProduct 里面的 index i, 都只能 i - 1相关, 所以可以省去redundant operatoins
+- Time: O(n), space: O(1)
 
 
 
@@ -6297,8 +6372,13 @@ Previous notes:
 **10. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 
-典型的坐标型DP. 考虑最终结尾需要的状态:如何组成,写出公式.
-公式中注意处理能跳掉的block, '到不了', 即为 0 path.
+跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
+
+#### 坐标DP
+- dp[i][j]: # of paths to reach grid[i][j]
+- dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+- 考虑最终结尾需要的状态:如何组成,写出公式.
+- 公式中注意处理能跳掉的block, marked as 1. '到不了', 即为 0 path in dp[i][j].
 
 
 
@@ -6888,6 +6968,9 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - Return: DP[dp.length - 1];
 
 #### Greedy
+- Keep track of farest can go
+- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
+- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
 
 
 
@@ -7224,6 +7307,7 @@ DFS, BFS都好理解,
 - initialize dp[i] = Integer.MAX_VALUE
 - 先选最后一步(遍历coins),  然后dfs做同样的操作
 - 记录dp[amount] 如果已经给过value, 不要重复计算, 直接return.
+- 但是这道题没必要强行做memoization, 普通DP的状态和方程相对来说很好找到
 
 
 

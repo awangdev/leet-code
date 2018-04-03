@@ -11,6 +11,9 @@ tags: Array, Greedy, DP
 - Return: DP[dp.length - 1];
 
 #### Greedy
+- Keep track of farest can go
+- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
+- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
 
 ```
 /*
@@ -99,13 +102,13 @@ class Solution {
         if (nums == null || nums.length == 0) {
             return false;
         }
-        long farest = 0;
+        int farest = 0;
         for (int i = 0; i < nums.length; i++) {
             farest = Math.max(farest, i + nums[i]);
             if (farest >= nums.length - 1) {
                 return true;
             }
-            if (farest == i) {
+            if (farest <= i) {
                 return false;
             }
         }

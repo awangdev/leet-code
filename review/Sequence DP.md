@@ -1,7 +1,7 @@
  
  
  
-## Sequence DP (5)
+## Sequence DP (6)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -25,6 +25,7 @@
 - initialize dp[i] = Integer.MAX_VALUE
 - 先选最后一步(遍历coins),  然后dfs做同样的操作
 - 记录dp[amount] 如果已经给过value, 不要重复计算, 直接return.
+- 但是这道题没必要强行做memoization, 普通DP的状态和方程相对来说很好找到
 
 
 
@@ -112,6 +113,23 @@
 - [i] only associates with [i-2], [i-1].
 - %2
 - O(1) space
+
+
+
+---
+**5. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
+      
+
+给串数字, target amount, 求总共多少种方式可以reach the amount.
+
+#### DP
+- O(MN): M, total target amount; N: size of coins
+- 状态: dp[i]: sum of ways that coins can add up to i.
+- Function: dp[j] += dp[j - coins[i]];
+- Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
+- note: 避免重复count, 所以 j = coins[i] as start
+- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 
 
 
