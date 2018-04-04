@@ -358,7 +358,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - combos
 
 ### 网格坐标
-- dp index [i][j] = coordinate (i,j)
+- dp index [i][j] = coordinate (i,j), 坐标小标就是grid下标
 - 2D的初始条件: f[0][0]
 - 边界: i = 0, j = 0,  第一行和第一列
 - 计算顺序: 比如第一行, 第二行...etc. 目的: 为了保证, 需要用到的状态, 都已经算到了.

@@ -1,11 +1,18 @@
 E
-1516861466
-tags: Array, DP
+1522812393
+tags: Array, DP, Coordinate DP
 
-简单的DP:dp[i]存在i点时连续上升#. dp[i]时可能为0, 一旦断开.
+找连续的持续上升子序列的长度.
 
-方法1: dp[i], maintain max
-方法2: 用一个数存current count,  maintain max. 也是DP, 稍微简化.
+#### Coordinate DP
+- 1D coordinate, dp 的角标, 就是代表 index i 的状态
+- 求最值, dp[i] = 在index i位置的最长子序列
+- 如果 nums[i] > nums[i - 1], dp[i] = dp[i - 1] + 1
+- 如果没有持续上升, 那么dp[i] = 1, 重头来过
+- maintain max
+
+#### Basic
+- 用一个数存current count,  maintain max
 
 ```
 /*
@@ -29,33 +36,61 @@ Note: Length of the array will not exceed 10,000.
 
 /*
 Thoughts:
-'longest', could it be DP?
+'longest' => DP
 dp[i]: represents the #of the on-going continuous increasing digits up to index i.
 if (nums[i] > nums[i-1]), dp[i] = dp[i-1] + 1
-else dp[i] = 0;
+init: dp[0] = 1. If just given 1 digit, itself will count a sequence, so dp[i] = 1; 
 
-initialize: dp[0~n] = 0.
+initialize: dp[0~n] = 1.
 maintain a max.
-At result, max + 1, since base-0 was used at initialization.
 
-O(n) time, space
+Time, space: O(n) 
 */
 class Solution {
     public int findLengthOfLCIS(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        int max = 0;
-        final int[] dp = new int[nums.length];
-        for (int i = 1; i < nums.length; i++) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[0] = 1;
+        int max = 1;
+        for (int i = 1; i < n; i++) {
+            dp[i] = 1;
             if (nums[i] > nums[i - 1]) {
-                dp[i] = dp[i - 1] + 1;
+                // Below can just be dp[i] = dp[i - 1] + 1; since dp[i - 1] + 1 is always greater than 1
+                dp[i] = Math.max(dp[i], dp[i - 1] + 1);
             }
-            max = Math.max(dp[i], max);
+            max = Math.max(max, dp[i]);
         }
-        return max + 1;
+        return max;
     }
 }
+
+
+// Rolling Array
+// Spce O(1)
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int[] dp = new int[2];
+        dp[0] = 1;
+        int max = 1;
+        for (int i = 1; i < n; i++) {
+            dp[i % 2] = 1;
+            if (nums[i] > nums[i - 1]) {
+                dp[i % 2] = Math.max(dp[i % 2], dp[(i - 1) % 2] + 1);
+            }
+            max = Math.max(max, dp[i % 2]);
+        }
+        return max;
+    }
+}
+
+
 /*
 Thoughts:
 Simplify dp solution: using just 1 integer to hold current count

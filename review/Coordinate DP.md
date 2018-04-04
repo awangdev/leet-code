@@ -1,7 +1,7 @@
  
  
  
-## Coordinate DP (4)
+## Coordinate DP (5)
 **0. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 
@@ -58,16 +58,37 @@
 
 
 ---
-**3. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**3. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
+      
+
+找连续的持续上升子序列的长度.
+
+#### Coordinate DP
+- 1D coordinate, dp 的角标, 就是代表 index i 的状态
+- 求最值, dp[i] = 在index i位置的最长子序列
+- 如果 nums[i] > nums[i - 1], dp[i] = dp[i - 1] + 1
+- 如果没有持续上升, 那么dp[i] = 1, 重头来过
+- maintain max
+
+#### Basic
+- 用一个数存current count,  maintain max
+
+
+
+---
+**4. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP
+- Time, Space O(MN)
 - 往右下角走, 计算最短的 path sum. 典型的坐标型.
 - 注意: init 第一行的时候, 要accumulate dp[0][j - 1] + grid[i][j], 而不是单纯assign grid[i][j]
 
-##### rolling array
-TODO
-
+#### Rolling Array
+- Time O(MN), Space O(1)
+- 需要在同一个for loop里面完成initialization, 和使用dp[i][j]
+- 原因: dp[i % 2][j] 在被计算出来的时候, 是几乎马上在下一轮是要被用的; 被覆盖前不备用,就白算
+- 如果按照第一种方法, 在开始initialize dp, 看起来固然简单, 但是不方便空间优化
 
 
 
