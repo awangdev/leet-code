@@ -1,7 +1,7 @@
  
  
  
-## Coordinate DP (5)
+## Coordinate DP (6)
 **0. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 
@@ -16,7 +16,29 @@
 
 
 ---
-**1. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+**1. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium
+      
+
+2D grid, 每个格子里面可能是 'W' wall, 'E' enemy, 或者是 '0' empty.
+
+一个bomb可以往4个方向炸. 求在grid上面, 最大能炸掉多少个敌人.
+
+#### Corrdinate DP
+- Space, Time: O(MN)
+- dp[i][j] 就是(i, j)上最多能炸掉的enemy数量
+- dp[i][j] 需要从4个方向加起来, 也就是4个方向都要走一遍, 所以分割成 UP/Down/Left/Right 4个 int[][]
+- 最后一步的时候求max
+- 分方向考虑的方法很容易想到,但是四个方向移动的代码比较繁琐.
+- 往上炸: 要从顶向下考虑
+- 往下炸: 要从下向上考虑
+- 熟练写2D array index 的变换.
+
+似乎还有一个更简洁的方法, 用col count array: http://www.cnblogs.com/grandyang/p/5599289.html
+
+
+
+---
+**2. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -36,7 +58,7 @@
 
 
 ---
-**2. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+**3. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -58,7 +80,7 @@
 
 
 ---
-**3. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
+**4. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
       
 
 找连续的持续上升子序列的长度.
@@ -76,7 +98,7 @@
 
 
 ---
-**4. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**5. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP

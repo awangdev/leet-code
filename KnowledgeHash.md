@@ -311,6 +311,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - bits可以用来表示不同的状态, 比如2bit可以表示4种状态: 00, 01, 10, 11
 - Math.pow(2, h) = 2 << (h - 1); 2 << 1就是把所有bits往左移动一位, 也就是 * 2 
 - Also, 1 << h = 2 ^ h; 1 << h 就是 2 * 2 * 2* ....乘h次.
+- bit operation should be in parentheses
 
 # DP
 ## 判断
@@ -356,8 +357,12 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 双序列
 - 博弈
 - combos
+- Bitwise Operation动态规划
 
 ### 网格坐标
+- 可能是网格, 或者是序列
+- dp[i]: 以第i个元素结尾的某种性质
+- dp[i][j]: 到格子(i,j)的路径的某种性质.
 - dp index [i][j] = coordinate (i,j), 坐标小标就是grid下标
 - 2D的初始条件: f[0][0]
 - 边界: i = 0, j = 0,  第一行和第一列
@@ -400,6 +405,8 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 中间劈开
 - 砍断首或尾
 - Range区间作为iteration的根本
+
+### Bitwise Operation DP
 
 
 ### 记忆化搜索 Memoization

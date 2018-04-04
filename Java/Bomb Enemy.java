@@ -1,17 +1,29 @@
 M
 1517296407
-tags: DP
+tags: DP, Coordinate DP
 
-分方向考虑的方法很容易想到,但是四个方向移动的代码比较繁琐.
-往上炸: 要从顶向下考虑
-往下炸: 要从下向上考虑
+2D grid, 每个格子里面可能是 'W' wall, 'E' enemy, 或者是 '0' empty.
 
-熟练写2D array index 的变换.
+一个bomb可以往4个方向炸. 求在grid上面, 最大能炸掉多少个敌人.
+
+#### Corrdinate DP
+- Space, Time: O(MN)
+- dp[i][j] 就是(i, j)上最多能炸掉的enemy数量
+- dp[i][j] 需要从4个方向加起来, 也就是4个方向都要走一遍, 所以分割成 UP/Down/Left/Right 4个 int[][]
+- 最后一步的时候求max
+- 分方向考虑的方法很容易想到,但是四个方向移动的代码比较繁琐.
+- 往上炸: 要从顶向下考虑
+- 往下炸: 要从下向上考虑
+- 熟练写2D array index 的变换.
+
+似乎还有一个更简洁的方法, 用col count array: http://www.cnblogs.com/grandyang/p/5599289.html
 
 ```
 /*
-Given a 2D grid, each cell is either a wall 'W', an enemy 'E' or empty '0' (the number zero), return the maximum enemies you can kill using one bomb.
-The bomb kills all the enemies in the same row and column from the planted point until it hits the wall since the wall is too strong to be destroyed.
+Given a 2D grid, each cell is either a wall 'W', an enemy 'E' or empty '0' (the number zero), 
+return the maximum enemies you can kill using one bomb.
+The bomb kills all the enemies in the same row and column from the planted point
+until it hits the wall since the wall is too strong to be destroyed.
 Note that you can only put the bomb at an empty cell.
 
 Example:
