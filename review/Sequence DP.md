@@ -1,7 +1,7 @@
  
  
  
-## Sequence DP (7)
+## Sequence DP (8)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -92,7 +92,38 @@
 
 
 ---
-**4. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+**4. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Review
+      
+
+一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
+
+costs[0][1]表示涂了index是0的房子, 用了color 1.
+
+规则: 相邻的两个房子不能使同一种颜色
+
+求: 最少的cost 
+
+#### DP
+- 序列DP被加了状态变成2D. 
+- 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
+- K种颜色 => O(NK^2)
+- 如果不优化, 跟Paint House I 几乎是一模一样的代码
+
+
+#### 注意
+- 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
+- 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
+- [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
+
+#### Optimization
+- TODO, Review
+- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
+- O(NK)
+
+
+
+---
+**5. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
       
 
 #### Recursive + Memoization
@@ -117,7 +148,7 @@
 
 
 ---
-**5. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
+**6. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
@@ -134,7 +165,7 @@
 
 
 ---
-**6. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
+**7. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
       
 
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.

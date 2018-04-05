@@ -273,7 +273,7 @@
 |252|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, Greedy]||
 |253|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP]||
 |254|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP]||
-|255|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Review|Java|[DP]||
+|255|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Review|Java|[DP, Sequence DP]||
 |256|[3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)|Medium|Java|[Array, Two Pointers]||
 |257|[Array Partition I.java](https://github.com/awangdev/LintCode/blob/master/Java/Array%20Partition%20I.java)|Easy|Java|[Array]||
 |258|[1-bit and 2-bit Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/1-bit%20and%202-bit%20Characters.java)|Easy|Java|[Array]||
@@ -419,3 +419,4 @@
 |398|[Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
 |399|[Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)|Medium|Java|[Array, Coordinate DP, DP]||
 |400|[Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)|Medium|Java|[Bit Manipulation, Bitwise DP, DP]||
+|401|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||

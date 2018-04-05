@@ -1,19 +1,31 @@
 R
 1517386676
-tags: DP
+tags: DP, Sequence DP
 
-一般的DP被加了状态变成2D. 
-考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
-所以变成了O(NK^2)
+一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
 
-注意: 
-1. 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
-    然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
-2. [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
+costs[0][1]表示涂了index是0的房子, 用了color 1.
 
-Optimization:
-如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
-O(NK)
+规则: 相邻的两个房子不能使同一种颜色
+
+求: 最少的cost 
+
+#### DP
+- 序列DP被加了状态变成2D. 
+- 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
+- K种颜色 => O(NK^2)
+- 如果不优化, 跟Paint House I 几乎是一模一样的代码
+
+
+#### 注意
+- 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
+- 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
+- [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
+
+#### Optimization
+- TODO, Review
+- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
+- O(NK)
 
 ```
 
@@ -38,6 +50,7 @@ Could you solve it in O(nk) runtime?
 
 /*
 Thoughts:
+This generial approach O(nK^2) has almost identical code as Paint House I.
 Min cost, DP.
 If dp[i] represents the min cost of painting leading i-1 houses, then consider how to build dp[i]:
 It'll be dp[i - 1] + int[i][?] cost. However, we don't know what was choen on index i -1, so it may require a round of traverse. Think about storing the status.

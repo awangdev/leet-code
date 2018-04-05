@@ -2,15 +2,15 @@
 Table of Contents
 =================
 
-* [Sequence DP (7)](#sequence-dp-7)
+* [Sequence DP (8)](#sequence-dp-8)
 * [Range DP (2)](#range-dp-2)
 * [Bitwise DP (1)](#bitwise-dp-1)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
 * [String (21)](#string-21)
 * [Basic Implementation (2)](#basic-implementation-2)
-* [Math (12)](#math-12)
-* [DP (51)](#dp-51)
+* [Math (13)](#math-13)
+* [DP (52)](#dp-52)
 * [Double Sequence DP (3)](#double-sequence-dp-3)
 * [BFS (11)](#bfs-11)
 * [Segment Tree (1)](#segment-tree-1)
@@ -27,7 +27,7 @@ Table of Contents
 * [Tree (20)](#tree-20)
 * [Greedy (6)](#greedy-6)
 * [Trie (7)](#trie-7)
-* [Coordinate DP (6)](#coordinate-dp-6)
+* [Coordinate DP (7)](#coordinate-dp-7)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [BST (16)](#bst-16)
 * [Binary Tree (2)](#binary-tree-2)
@@ -52,7 +52,7 @@ Table of Contents
  
  
  
-## Sequence DP (7)
+## Sequence DP (8)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -143,7 +143,38 @@ Table of Contents
 
 
 ---
-**4. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+**4. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Review
+      
+
+一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
+
+costs[0][1]表示涂了index是0的房子, 用了color 1.
+
+规则: 相邻的两个房子不能使同一种颜色
+
+求: 最少的cost 
+
+#### DP
+- 序列DP被加了状态变成2D. 
+- 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
+- K种颜色 => O(NK^2)
+- 如果不优化, 跟Paint House I 几乎是一模一样的代码
+
+
+#### 注意
+- 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
+- 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
+- [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
+
+#### Optimization
+- TODO, Review
+- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
+- O(NK)
+
+
+
+---
+**5. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
       
 
 #### Recursive + Memoization
@@ -168,7 +199,7 @@ Table of Contents
 
 
 ---
-**5. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
+**6. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
@@ -185,7 +216,7 @@ Table of Contents
 
 
 ---
-**6. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
+**7. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
       
 
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
@@ -960,7 +991,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
  
  
  
-## Math (12)
+## Math (13)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -1116,13 +1147,31 @@ Space O(n), time O(n)
 
 
 ---
+**12. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
+      
+
+给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
+
+#### DP
+- O(n^2)
+- 需要记录在0 ~ i点(包括nums[i], 以nums[i]结尾)的sum, 坐标型动态规划.
+- dp[i] = dp[i - 1] + nums[i];
+- 最后移动, 作比较
+
+#### 直接算结果
+- 从sum = 每次[i ~ j]的所有情况
+- 验证
+
+
+
+---
 
 
 
  
  
  
-## DP (51)
+## DP (52)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1385,18 +1434,30 @@ global[i][j]就是我们所求的前i天最多进行k次交易的最大收益，
 **12. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Review
       
 
-一般的DP被加了状态变成2D. 
-考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
-所以变成了O(NK^2)
+一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
 
-注意: 
-1. 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
-    然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
-2. [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
+costs[0][1]表示涂了index是0的房子, 用了color 1.
 
-Optimization:
-如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
-O(NK)
+规则: 相邻的两个房子不能使同一种颜色
+
+求: 最少的cost 
+
+#### DP
+- 序列DP被加了状态变成2D. 
+- 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
+- K种颜色 => O(NK^2)
+- 如果不优化, 跟Paint House I 几乎是一模一样的代码
+
+
+#### 注意
+- 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
+- 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
+- [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
+
+#### Optimization
+- TODO, Review
+- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
+- O(NK)
 
 
 
@@ -2145,6 +2206,24 @@ TODO
 
 
 ---
+**51. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
+      
+
+给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
+
+#### DP
+- O(n^2)
+- 需要记录在0 ~ i点(包括nums[i], 以nums[i]结尾)的sum, 坐标型动态规划.
+- dp[i] = dp[i - 1] + nums[i];
+- 最后移动, 作比较
+
+#### 直接算结果
+- 从sum = 每次[i ~ j]的所有情况
+- 验证
+
+
+
+---
 
 
 
@@ -2235,23 +2314,25 @@ Previous Notes:
 **1. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 
+给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
+
 思想:
-Use HashMap to mark cloned nodes.    
-先能复制多少Node复制多少. 然后把neighbor 加上
+- Use HashMap to mark cloned nodes.    
+- 先能复制多少Node复制多少. 然后把neighbor 加上
 
-方法一: DFS
-1. copy the node
-2. Mark 'added' using map(old, new)
-3. for loop on the each one of the neighbors: map copy, record in map, and further dfs
-4. once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
-主要思想是: 一旦复制过了, 不必要重新复制
+#### DFS
+- copy the node
+- Mark 'added' using map(old, new)
+- for loop on the each one of the neighbors: map copy, record in map, and further dfs
+- once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
+- 主要思想是: 一旦复制过了, 不必要重新复制
 
-方法二: BFS
-1. Copy the root node, then copy all the neighbors. 
-2. Mark copied node in map.
-3. Use queue to contain the newly added neighbors. Need to work on them in the future.
+#### BFS
+_ Copy the root node, then copy all the neighbors. 
+_ Mark copied node in map.
+_ Use queue to contain the newly added neighbors. Need to work on them in the future.
 
-注意:
+#### Note
 initialize map with (node, newNode)
 
 
@@ -2838,23 +2919,25 @@ Recursive:分叉. dfs.
 **12. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 
+给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
+
 思想:
-Use HashMap to mark cloned nodes.    
-先能复制多少Node复制多少. 然后把neighbor 加上
+- Use HashMap to mark cloned nodes.    
+- 先能复制多少Node复制多少. 然后把neighbor 加上
 
-方法一: DFS
-1. copy the node
-2. Mark 'added' using map(old, new)
-3. for loop on the each one of the neighbors: map copy, record in map, and further dfs
-4. once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
-主要思想是: 一旦复制过了, 不必要重新复制
+#### DFS
+- copy the node
+- Mark 'added' using map(old, new)
+- for loop on the each one of the neighbors: map copy, record in map, and further dfs
+- once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
+- 主要思想是: 一旦复制过了, 不必要重新复制
 
-方法二: BFS
-1. Copy the root node, then copy all the neighbors. 
-2. Mark copied node in map.
-3. Use queue to contain the newly added neighbors. Need to work on them in the future.
+#### BFS
+_ Copy the root node, then copy all the neighbors. 
+_ Mark copied node in map.
+_ Use queue to contain the newly added neighbors. Need to work on them in the future.
 
-注意:
+#### Note
 initialize map with (node, newNode)
 
 
@@ -4969,7 +5052,7 @@ TODO
  
  
  
-## Coordinate DP (6)
+## Coordinate DP (7)
 **0. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 
@@ -5079,6 +5162,24 @@ TODO
 - 需要在同一个for loop里面完成initialization, 和使用dp[i][j]
 - 原因: dp[i % 2][j] 在被计算出来的时候, 是几乎马上在下一轮是要被用的; 被覆盖前不备用,就白算
 - 如果按照第一种方法, 在开始initialize dp, 看起来固然简单, 但是不方便空间优化
+
+
+
+---
+**6. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
+      
+
+给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
+
+#### DP
+- O(n^2)
+- 需要记录在0 ~ i点(包括nums[i], 以nums[i]结尾)的sum, 坐标型动态规划.
+- dp[i] = dp[i - 1] + nums[i];
+- 最后移动, 作比较
+
+#### 直接算结果
+- 从sum = 每次[i ~ j]的所有情况
+- 验证
 
 
 
@@ -7185,23 +7286,25 @@ HashHeap?
 **0. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 
+给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
+
 思想:
-Use HashMap to mark cloned nodes.    
-先能复制多少Node复制多少. 然后把neighbor 加上
+- Use HashMap to mark cloned nodes.    
+- 先能复制多少Node复制多少. 然后把neighbor 加上
 
-方法一: DFS
-1. copy the node
-2. Mark 'added' using map(old, new)
-3. for loop on the each one of the neighbors: map copy, record in map, and further dfs
-4. once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
-主要思想是: 一旦复制过了, 不必要重新复制
+#### DFS
+- copy the node
+- Mark 'added' using map(old, new)
+- for loop on the each one of the neighbors: map copy, record in map, and further dfs
+- once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
+- 主要思想是: 一旦复制过了, 不必要重新复制
 
-方法二: BFS
-1. Copy the root node, then copy all the neighbors. 
-2. Mark copied node in map.
-3. Use queue to contain the newly added neighbors. Need to work on them in the future.
+#### BFS
+_ Copy the root node, then copy all the neighbors. 
+_ Mark copied node in map.
+_ Use queue to contain the newly added neighbors. Need to work on them in the future.
 
-注意:
+#### Note
 initialize map with (node, newNode)
 
 

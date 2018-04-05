@@ -4,6 +4,7 @@ Table of Contents
 
 * [Sequence DP (7)](#sequence-dp-7)
 * [Range DP (2)](#range-dp-2)
+* [Bitwise DP (1)](#bitwise-dp-1)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
 * [String (21)](#string-21)
@@ -26,7 +27,7 @@ Table of Contents
 * [Tree (20)](#tree-20)
 * [Greedy (6)](#greedy-6)
 * [Trie (7)](#trie-7)
-* [Coordinate DP (5)](#coordinate-dp-5)
+* [Coordinate DP (6)](#coordinate-dp-6)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [BST (16)](#bst-16)
 * [Binary Tree (2)](#binary-tree-2)
@@ -51,16 +52,17 @@ Table of Contents
  
  
  
-## Sequence DP (7)
+## Sequence DP (8)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[DP, Memoization, Sequence DP]||
 |1|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, DP, Memoization, Sequence DP]||
 |2|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
 |3|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP]||
-|4|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
-|5|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[DP, Sequence DP]||
-|6|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP]||
+|4|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Review|Java|[DP, Sequence DP]||
+|5|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
+|6|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[DP, Sequence DP]||
+|7|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP]||
 
 
 
@@ -163,7 +165,7 @@ Table of Contents
  
  
  
-## Math (12)
+## Math (13)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)|Easy|Java|[Math]||
@@ -178,13 +180,14 @@ Table of Contents
 |9|[Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)|Medium|Java|[Linked List, Math]||
 |10|[Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)|Easy|Java|[Math]||
 |11|[Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)|Easy|Java|[Binary Search, Math]||
+|12|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
 
 
 
  
  
  
-## DP (51)
+## DP (52)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[DP, Memoization, Sequence DP]||
@@ -199,7 +202,7 @@ Table of Contents
 |9|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP]||
 |10|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP]||
 |11|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP]||
-|12|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Review|Java|[DP]||
+|12|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Review|Java|[DP, Sequence DP]||
 |13|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[DP]||
 |14|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math]||
 |15|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP]||
@@ -238,6 +241,7 @@ Table of Contents
 |48|[Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
 |49|[Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)|Medium|Java|[Array, Coordinate DP, DP]||
 |50|[Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)|Medium|Java|[Bit Manipulation, Bitwise DP, DP]||
+|51|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
 
 
 
@@ -525,7 +529,7 @@ Table of Contents
  
  
  
-## Coordinate DP (6)
+## Coordinate DP (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)|Medium|Java|[Array, Coordinate DP, DP]||
@@ -534,6 +538,7 @@ Table of Contents
 |3|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
 |4|[Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
 |5|[Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)|Medium|Java|[Array, Coordinate DP, DP]||
+|6|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Coordinate DP (6)
+## Coordinate DP (7)
 **0. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium
       
 
@@ -111,6 +111,24 @@
 - 需要在同一个for loop里面完成initialization, 和使用dp[i][j]
 - 原因: dp[i % 2][j] 在被计算出来的时候, 是几乎马上在下一轮是要被用的; 被覆盖前不备用,就白算
 - 如果按照第一种方法, 在开始initialize dp, 看起来固然简单, 但是不方便空间优化
+
+
+
+---
+**6. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
+      
+
+给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
+
+#### DP
+- O(n^2)
+- 需要记录在0 ~ i点(包括nums[i], 以nums[i]结尾)的sum, 坐标型动态规划.
+- dp[i] = dp[i - 1] + nums[i];
+- 最后移动, 作比较
+
+#### 直接算结果
+- 从sum = 每次[i ~ j]的所有情况
+- 验证
 
 
 

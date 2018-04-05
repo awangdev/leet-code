@@ -1,7 +1,7 @@
  
  
  
-## Math (12)
+## Math (13)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -153,6 +153,24 @@ Space O(n), time O(n)
 - 二分float number, 应该用精度来定义结尾.
 - 还是二分, 但是判断条件变成: while ( end - start > eps)
 - eps = 1e-12,也就是精度到1e-12
+
+
+
+---
+**12. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
+      
+
+给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
+
+#### DP
+- O(n^2)
+- 需要记录在0 ~ i点(包括nums[i], 以nums[i]结尾)的sum, 坐标型动态规划.
+- dp[i] = dp[i - 1] + nums[i];
+- 最后移动, 作比较
+
+#### 直接算结果
+- 从sum = 每次[i ~ j]的所有情况
+- 验证
 
 
 

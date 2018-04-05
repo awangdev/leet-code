@@ -368,9 +368,20 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 边界: i = 0, j = 0,  第一行和第一列
 - 计算顺序: 比如第一行, 第二行...etc. 目的: 为了保证, 需要用到的状态, 都已经算到了.
 - Example: Unique Path I, II
+- 可以出print path的题目
 
 
 ### 序列
+
+#### 特点
+- 变种多
+- 没有固定模板
+
+#### 性质
+- dp[i]种, 表示 '前i个元素a[0], a[1] ... a[i - 1] 的某种性质. (坐标类:dp[i]就代表a[i]结尾的性质)
+- dp[0] 表示空序列的性质 (坐标类: dp[0]表示以a[0]结尾的性质)
+- 题目中遇到 前i个, '并且': 序列 + 状态
+
 
 #### 特点
 - 可以选择让: DP[i]存的是以 1-based index的状态, 求前i个.
