@@ -1,5 +1,5 @@
 E
-1517367917
+1523329104
 tags: DP, Sequence DP
 
 搜刮房子, 相邻的不能碰. 每个房子里有value, 求max.
@@ -7,6 +7,7 @@ tags: DP, Sequence DP
 #### Sequence DP
 - 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
 - 思考的适合搞清楚当下的和之前的情况的关系
+- Sequence DP, new dp[n + 1];
 
 #### Rolling Array
 - [i]'只和前两个位子 [i-1], [i - 2]'相关
@@ -37,7 +38,22 @@ Dynamic Programming
 
 */
 
-
+// DP[i]: max value for first i items; new dp[n + 1];
+class Solution {
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        long[] dp = new long[n + 1];
+        dp[0] = 0; 
+        dp[1] = nums[0];
+        for (int i = 2; i <= n; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
+        }
+        return (int) dp[n];
+    }
+}
 /*
 Thoughts:
 MAX, think about DP.

@@ -1,5 +1,5 @@
-R
-1517386676
+H
+1523336609
 tags: DP, Sequence DP
 
 一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
@@ -11,8 +11,10 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 求: 最少的cost 
 
 #### DP
-- 序列DP被加了状态变成2D. 
+- 先考虑单纯地用dp[i]表示涂前 i 个房子的最小cost
+- 但是 dp[i] 和 dp[i-1] 两个index选什么颜色会互相影响, 难讨论, 于是加状态: 序列DP被加了状态变成2D. 
 - 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
+- 做dp[i][j]: # cost for 前 i 个房子, 所以要先pick (i-1) 房子的cost, 然后在找出 (i-2)房子的cost
 - K种颜色 => O(NK^2)
 - 如果不优化, 跟Paint House I 几乎是一模一样的代码
 
@@ -23,9 +25,13 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
 
 #### Optimization
-- TODO, Review
-- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
 - O(NK)
+- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小两个挑出来, 就不必有第三个for loop 找 min
+- 每次在数列里面找: 除去自己之外的最小值, 利用最小值/次小值的思想
+- 维持2个最值: 最小值/次小值. 
+- 计算的时候, 如果除掉的不是最小值的index, 就给出最小值; 如果除掉的是最小值的index, 就给出次小值.
+- Every loop: 1. calculate the two min vlaues for each i; 2. calcualte dp[i][j]
+- 如何想到优化: 把表达式写出来, 然后看哪里可以优化
 
 ```
 
@@ -76,9 +82,9 @@ class Solution {
         }
 
         for (int i = 1; i <= n; i++) { // iterate over house #
-            for (int j = 0; j < k; j++) { // choose color
+            for (int j = 0; j < k; j++) { // choose color j for dp[i]
                 dp[i][j] = Integer.MAX_VALUE;
-                for (int m = 0; m < k; m++) { // choose adjacent color
+                for (int m = 0; m < k; m++) { // choose adjacent color for dp[i-1]
                     if (m == j) {
                         continue;
                     }
@@ -119,23 +125,26 @@ class Solution {
         }
 
         for (int i = 1; i <= n; i++) { // iterate over house #
-            // Find minLarge and minSmall indexes
-            int minSmallIndex = -1;
-            int minLargeIndex = -1;
+            // Find minSecond and min indexes
+            // min value: dp[i - 1][minIndex]
+            // 2nd min value: dp[i - 1][minSecIndex]
+            int minIndex = -1;
+            int minSecIndex = -1;
             for (int j = 0; j < k; j++) {
-                if (minSmallIndex == -1 || dp[i - 1][j] < dp[i - 1][minSmallIndex]) {
-                    minLargeIndex = minSmallIndex;
-                    minSmallIndex = j;
-                } else if (minLargeIndex == -1 || dp[i - 1][j] < dp[i - 1][minLargeIndex]) {
-                    minLargeIndex = j;
+                if (minIndex == -1 || dp[i - 1][j] < dp[i - 1][minIndex]) {
+                    minSecIndex = minIndex;
+                    minIndex = j;
+                } else if (minSecIndex == -1 || dp[i - 1][j] < dp[i - 1][minSecIndex]) {
+                    minSecIndex = j;
                 }
             }
 
-            for (int j = 0; j < k; j++) { // choose color
-                if (j == minSmallIndex) {
-                    dp[i][j] = dp[i - 1][minLargeIndex] + costs[i - 1][j];
-                } else {
-                    dp[i][j] = dp[i - 1][minSmallIndex] + costs[i - 1][j];
+            // DP Processing
+            for (int j = 0; j < k; j++) { // choose color for house i - 1
+                if (j == minIndex) { // if color at minIndex is chosen for dp[i], then the remaining min is at minSecIndex
+                    dp[i][j] = dp[i - 1][minSecIndex] + costs[i - 1][j];
+                } else { // if color is not chosen at minIndex, minIndex will represent the overall min
+                    dp[i][j] = dp[i - 1][minIndex] + costs[i - 1][j];
                 }
                 
                 if (i == n) {

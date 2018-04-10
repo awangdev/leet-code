@@ -171,18 +171,26 @@ Previous notes:
 **10. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
       
 
-理解意思是关键:
-   每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出。
-   记录每天最小值Min是多少。O(n)
-   每天都算和当下的Min买卖，profit最大多少.
+给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
 
-这里就可以DP, memorize the min[i]: the minimum among [0 ~ i]; 然后用当天的price做减法算max.
-更进一步, 用一个min来表示min[i], 因为计算中只需要当下的min.
+#### 理解意思是关键
+- 每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出
+- 记录每天最小值Min是多少. O(n)
+- 每天都算和当下的Min买卖，profit最大多少.
 
+#### DP
+- Find min value for first i items, new dp[n + 1].
+- 然后用当天的price做减法算max profit.
+- Time, Space: O(n)
+- 更进一步, 用一个min来表示min[i], 因为计算中只需要当下的min.
 
-Brutle:
-每天都试着买进，然后之后的每一天尝试卖出. double for loop, O(n^2). timeout.
-其中很多都是没必要的计算：[7, 1, 5, 3, 6, 4]。 if we know buyin with 1 is cheapest, we don't need to buyin at 5, 3, 6, 4 later on; we'll only sell on higher prices.
+#### Rolling array
+- index i only depend on [i - 2]
+- Space O(n)
+
+#### Brutle Failed
+- 每天都试着买进，然后之后的每一天尝试卖出. double for loop, O(n^2). timeout.
+- 其中很多都是没必要的计算：[7, 1, 5, 3, 6, 4]。 if we know buyin with 1 is cheapest, we don't need to buyin at 5, 3, 6, 4 later on; we'll only sell on higher prices.
 
 
 

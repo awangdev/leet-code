@@ -1,7 +1,7 @@
  
  
  
-## Sequence DP (8)
+## Sequence DP (9)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -54,76 +54,34 @@
 
 
 ---
-**2. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy
+**2. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
       
 
-搜刮房子, 相邻的不能碰. 每个房子里有value, 求max.
+给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
 
-#### Sequence DP
-- 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
-- 思考的适合搞清楚当下的和之前的情况的关系
-
-#### Rolling Array
-- [i]'只和前两个位子 [i-1], [i - 2]'相关
-- 用%2来标记 [i], [i - 1], [i - 2]三个位置.
-- 其他滚动时惯用curr/prev来表示坐标, 这里%2虽然抽象, 但是更加实用.
-
-
-
-
----
-**3. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium
-      
-
-和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
-
-#### Sequence DP
-- 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
-- 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
-
-#### 两个状态
-- 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
-- 可以考虑用两个DP array; 也可以加一dp维度, 补充这个状态.
-- 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
-
-#### Rolling array
-与House Robber I一样, 可以用%2 来操作rolling array
-
-
-
----
-**4. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Review
-      
-
-一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
-
-costs[0][1]表示涂了index是0的房子, 用了color 1.
-
-规则: 相邻的两个房子不能使同一种颜色
-
-求: 最少的cost 
+#### 理解意思是关键
+- 每天都就交易价格，n天只让买卖一次，那就找个最低价买进，找个最高价卖出
+- 记录每天最小值Min是多少. O(n)
+- 每天都算和当下的Min买卖，profit最大多少.
 
 #### DP
-- 序列DP被加了状态变成2D. 
-- 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
-- K种颜色 => O(NK^2)
-- 如果不优化, 跟Paint House I 几乎是一模一样的代码
+- Find min value for first i items, new dp[n + 1].
+- 然后用当天的price做减法算max profit.
+- Time, Space: O(n)
+- 更进一步, 用一个min来表示min[i], 因为计算中只需要当下的min.
 
+#### Rolling array
+- index i only depend on [i - 2]
+- Space O(n)
 
-#### 注意
-- 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
-- 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
-- [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
-
-#### Optimization
-- TODO, Review
-- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小挑出来, 就不必有第三个for loop
-- O(NK)
+#### Brutle Failed
+- 每天都试着买进，然后之后的每一天尝试卖出. double for loop, O(n^2). timeout.
+- 其中很多都是没必要的计算：[7, 1, 5, 3, 6, 4]。 if we know buyin with 1 is cheapest, we don't need to buyin at 5, 3, 6, 4 later on; we'll only sell on higher prices.
 
 
 
 ---
-**5. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+**3. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
       
 
 #### Recursive + Memoization
@@ -148,7 +106,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 
 ---
-**6. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
+**4. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
@@ -165,7 +123,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 
 ---
-**7. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
+**5. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
       
 
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
@@ -179,6 +137,83 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 #### Rolling Array
 - 观察发现 index[i] 只跟 [i-1] 相关, 所以2位就足够, %2
+
+
+---
+**6. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy
+      
+
+搜刮房子, 相邻的不能碰. 每个房子里有value, 求max.
+
+#### Sequence DP
+- 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
+- 思考的适合搞清楚当下的和之前的情况的关系
+- Sequence DP, new dp[n + 1];
+
+#### Rolling Array
+- [i]'只和前两个位子 [i-1], [i - 2]'相关
+- 用%2来标记 [i], [i - 1], [i - 2]三个位置.
+- 其他滚动时惯用curr/prev来表示坐标, 这里%2虽然抽象, 但是更加实用.
+
+
+
+
+---
+**7. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium
+      
+
+和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
+
+#### Sequence DP
+- 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
+- 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
+- be careful with edge case nums = [0], only with 1 element.
+
+#### 两个状态
+- 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
+- 可以考虑用两个DP array; 也可以加一dp维度, 补充这个状态.
+- 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
+
+#### Rolling array
+与House Robber I一样, 可以用%2 来操作rolling array
+
+
+
+---
+**8. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard
+      
+
+一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
+
+costs[0][1]表示涂了index是0的房子, 用了color 1.
+
+规则: 相邻的两个房子不能使同一种颜色
+
+求: 最少的cost 
+
+#### DP
+- 先考虑单纯地用dp[i]表示涂前 i 个房子的最小cost
+- 但是 dp[i] 和 dp[i-1] 两个index选什么颜色会互相影响, 难讨论, 于是加状态: 序列DP被加了状态变成2D. 
+- 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
+- 做dp[i][j]: # cost for 前 i 个房子, 所以要先pick (i-1) 房子的cost, 然后在找出 (i-2)房子的cost
+- K种颜色 => O(NK^2)
+- 如果不优化, 跟Paint House I 几乎是一模一样的代码
+
+
+#### 注意
+- 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
+- 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
+- [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
+
+#### Optimization
+- O(NK)
+- 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小两个挑出来, 就不必有第三个for loop 找 min
+- 每次在数列里面找: 除去自己之外的最小值, 利用最小值/次小值的思想
+- 维持2个最值: 最小值/次小值. 
+- 计算的时候, 如果除掉的不是最小值的index, 就给出最小值; 如果除掉的是最小值的index, 就给出次小值.
+- Every loop: 1. calculate the two min vlaues for each i; 2. calcualte dp[i][j]
+- 如何想到优化: 把表达式写出来, 然后看哪里可以优化
+
 
 
 ---
