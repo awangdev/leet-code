@@ -1,23 +1,35 @@
 E
-1517373801
-tags: Array, Greedy
+1523511814
+tags: Array, Greedy, DP, Sequence DP
 
-和Stock I 的区别：可以买卖多次，求总和的最大盈利。
+和Stock I 的区别：可以买卖多次，求总和的最大盈利.
 
-这道题有几种其他不同的思路:
-1. Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起. 计算delta, 其实简单粗暴, 也还不错.
-2. 如下, 从低谷找peek, sell.
-3. 繁琐一点的DP. BuyOn[], SellOn[] 从末尾看起
-4. DFS计算所有(timeout).Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
+#### 几种其他不同的思路:
+- Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起. 计算delta, 其实简单粗暴, 也还不错.
+- 如下, 从低谷找peek, sell.
+- DP. (old dp solution BuyOn[], SellOn[])
+- DFS计算所有(timeout).Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
 
-找涨幅最大的区间，买卖：
-找到低谷，买进:peek = start + 1 时候，就是每次往前走一步;若没有上涨趋势，继续往低谷前进。
-涨到峰顶，卖出:一旦有上涨趋势，进一个while loop，涨到底, 再加个profit.
+#### Greedy
+- 画图, 因为可以无限买卖, 所以只要有上升, 就卖
+- 所有卖掉的, 平移加起来, 其实就是overall best profit
+- O(n)
 
-profit += prices[peek - 1] - prices[start]; 挺特别的。
-当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
+#### 找涨幅最大的区间，买卖：
+- 找到低谷，买进:peek = start + 1 时候，就是每次往前走一步;若没有上涨趋势，继续往低谷前进。
+- 涨到峰顶，卖出:一旦有上涨趋势，进一个while loop，涨到底, 再加个profit.
+- profit += prices[peek - 1] - prices[start]; 挺特别的。
+- 当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
 
-O(n)
+#### DP
+- 想知道前i天的最大profit, 那么用sequence DP
+- 当天的是否能卖, 取决于昨天是否买进, 也就是昨天买了或者卖了的状态: 加状态, 2D DP
+- 如果今天是卖的状态, 那么昨天: 要么买进了, 今天 +price 卖出; 要么昨天刚卖, 今天不可能再卖, profit等同.
+- 如果今天是买的状态, 那么昨天: 要么卖掉了, 今天 -price 买入; 要么昨天刚卖, 今天不可能再买, profit等同.
+
+#### Rolling Array
+- [i] 和 [i - 1] 相关联, roll
+
 
 ```
 /*
@@ -35,9 +47,11 @@ Tags Expand
 Greedy Enumeration Array
 */
 
+
 /*
 Thoughts:
-Draw a curve and realize that, only when prices[i] > prices[i - 1], we complete buy/sell and take the profit.
+Draw a curve and realize that, only when prices[i] > prices[i - 1], 
+we complete buy/sell and take the profit.
 Adding more slopes can be greater than 0~N overall height diff. 
 */
 class Solution {
@@ -54,6 +68,47 @@ class Solution {
         return profit;
     }
 }
+ 
+/*
+DP
+Thoughts: See details at notes above
+*/
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int n = prices.length;
+        int[][] dp = new int[n + 1][2];
+        dp[0][0] = dp[0][1] = 0;
+        dp[1][0] = - prices[0];// -2
+        for (int i = 2; i <= n; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - prices[i - 1]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + prices[i - 1]);
+        }
+        return dp[n][1]; //return Math.max(dp[n][1], dp[n][0]);
+    }
+};
+
+// Rolling array
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int n = prices.length;
+        int[][] dp = new int[2][2];
+        dp[0][0] = dp[0][1] = 0;
+        dp[1][0] = - prices[0];
+        for (int i = 2; i <= n; i++) {
+            dp[i % 2][0] = Math.max(dp[(i - 1) % 2][0], dp[(i - 1) % 2][1] - prices[i - 1]);
+            dp[i % 2][1] = Math.max(dp[(i - 1) % 2][1], dp[(i - 1) % 2][0] + prices[i - 1]);
+        }
+        return dp[n % 2][1];
+    }
+};
+
+
 /*
 Previous notes about the above solution:
 Greedy: when seeing a increase, sell, accumulate the delta benefits.

@@ -1,28 +1,32 @@
 H
-1517376279
-tags: Array, DP
+1523511824
+tags: Array, DP, Sequence DP
 
-比stock II 多了一个限制：只有2次卖出机会。
+比stock II 多了一个限制：只有2次卖出机会.
 
-方法1:
-DP加状态: 只卖2次, 把买卖分割成5个状态模块.
-在模块index 0, 2, 4: 没有持有股票. 1. 一直在此状态, max profit不变; 2. 刚卖掉, dp[i][前状态] + profit
-在模块index 1, 3: 持有股票. 1. 一直在此状态, daily profit. 2. 刚刚买进, 状态改变, 但是没有profit yet: dp[i][前状态]
+#### DP加状态
+- 只卖2次, 把买卖分割成5个状态模块.
+- 在状态index 0, 2, 4: 没有持有股票. 1. 一直在此状态, max profit不变; 2. 刚卖掉, dp[i][前状态] + profit
+- 在状态index 1, 3: 持有股票. 1. 一直在此状态, daily profit. 2. 刚刚买进, 状态改变, 但是没有profit yet: dp[i][前状态]
 
-注意: 把每天的partial profit (diff)加在一起, 最终的overall profit是一样的. 唯一更好的是, 不需要记录中间买入的时间点.
+##### Partial profit
+- 把每天的partial profit (diff)加在一起, 最终的overall profit是一样的. 唯一更好的是, 不需要记录中间买入的时间点.
+- 什么时候会积累profit呢? 
+- 1. 原本就持有股票的, 如果毫无动作, 那么状态不变, 积累profit diff. 
+- 2. 卖出了股票, 状态改变, 积累profit diff.
+- 注意: 只有在状态index: 0, 2, 4, 也就是卖掉股票的时候, 猜可以积累profit
 
-方法2:
-也就是：找峰头；然后往下再找一个峰头。
+##### Rolling Array
+- [i] 只有和 [i-1] 打交道, reduce space
+- O(1) space, O(n) time
 
-怎么样在才能Optimize两次巅峰呢？
-
-从两边同时开始找Max！（棒棒的想法）
-
-   leftProfit是从左往右，每个i点上的最大Profit。
-   rightProfit是从i点开始到结尾，每个点上的最大profit.
-   那么在i点上，就是leftProfit，和右边rightProfit的分割点。在i点，leftProfit+rightProfit相加，找最大值。
-
-三个O(n),还是O(n)
+#### 找峰头
+- 找峰头；然后往下再找一个峰头。
+- 怎么样在才能Optimize两次巅峰呢？从两边同时开始找Max！（棒棒的想法）
+- leftProfit是从左往右，每个i点上的最大Profit。
+- rightProfit是从i点开始到结尾，每个点上的最大profit.
+- 那么在i点上，就是leftProfit，和右边rightProfit的分割点。在i点，leftProfit+rightProfit相加，找最大值。
+- 三个O(n),还是O(n)
 
 ```
 /*
@@ -75,13 +79,42 @@ class Solution {
         dp[0][0] = 0; // No transaction on day 0
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < 5; j++) {
+                // Accumulate partial profit regardless of stock status.
                 int dailyPartialProfit = prices[i] - prices[i - 1];
-                if (j % 2 == 0) {
-                    dp[i][j] = Math.max(dp[i - 1][j - 1] + dailyPartialProfit, dp[i - 1][j]);
+                if (j % 2 == 0) { // j status: no stock
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] + dailyPartialProfit);
                     // Find best profit when not having stock
                     profit = Math.max(profit, dp[i][j]);
-                } else {
+                } else { // j status: have stock
                     dp[i][j] = Math.max(dp[i - 1][j] + dailyPartialProfit, dp[i - 1][j - 1]);
+                }
+            }
+        }
+        return profit;
+    }
+}
+
+// Rolling array
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int profit = 0;
+        int n = prices.length;
+        int[][] dp = new int[2][5];
+        
+        dp[0][0] = 0; // No transaction on day 0
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < 5; j++) {
+                // Accumulate partial profit regardless of stock status.
+                int dailyPartialProfit = prices[i] - prices[i - 1];
+                if (j % 2 == 0) { // j status: no stock
+                    dp[i % 2][j] = Math.max(dp[(i - 1) % 2][j], dp[(i - 1) % 2][j - 1] + dailyPartialProfit);
+                    // Find best profit when not having stock
+                    profit = Math.max(profit, dp[i % 2][j]);
+                } else { // j status: have stock
+                    dp[i % 2][j] = Math.max(dp[(i - 1) % 2][j] + dailyPartialProfit, dp[(i - 1) % 2][j - 1]);
                 }
             }
         }
