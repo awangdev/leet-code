@@ -22,6 +22,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 
 ---
+
 **1. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
       
 
@@ -65,6 +66,7 @@ Space O(n): dp[], sum[]
 
 
 ---
+
 **2. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
       
 
@@ -98,6 +100,7 @@ Space O(n): dp[], sum[]
 
 
 ---
+
 **3. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
       
 
@@ -114,3 +117,4 @@ Space O(n): dp[], sum[]
 
 
 ---
+

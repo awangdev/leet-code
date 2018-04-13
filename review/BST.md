@@ -17,6 +17,7 @@ node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍�
 
 
 ---
+
 **1. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -29,6 +30,7 @@ node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍�
 
 
 ---
+
 **2. [Insert Node in a Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Node%20in%20a%20Binary%20Search%20Tree%20.java)**      Level: Easy
       
 
@@ -41,6 +43,7 @@ node alays = stack.top(), 然后stack.top()一直是一开始把left 全部遍�
 
 
 ---
+
 **3. [Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)**      Level: Medium
       
 
@@ -51,6 +54,7 @@ Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边
 
 
 ---
+
 **4. [Minimum Absolute Difference in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Absolute%20Difference%20in%20BST.java)**      Level: Easy
       
 
@@ -59,6 +63,7 @@ BST: inorder-traversal: 先left node(adding to stack till left leav), 再process
 
 
 ---
+
 **5. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: Medium
       
 
@@ -69,6 +74,7 @@ BST: inorder-traversal: 先left node(adding to stack till left leav), 再process
 
 
 ---
+
 **6. [Remove Node in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Node%20in%20Binary%20Search%20Tree.java)**      Level: Hard
       
 
@@ -80,6 +86,7 @@ BST: inorder-traversal: 先left node(adding to stack till left leav), 再process
 
 
 ---
+
 **7. [Search Range in Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Range%20in%20Binary%20Search%20Tree%20.java)**      Level: Medium
       
 
@@ -92,12 +99,14 @@ BST: inorder-traversal: 先left node(adding to stack till left leav), 再process
 
 
 ---
+
 **8. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium
       
 
 
 
 ---
+
 **9. [Zigzag Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Zigzag%20Iterator.java)**      Level: Medium
       
 
@@ -107,6 +116,7 @@ BST: inorder-traversal: 先left node(adding to stack till left leav), 再process
 
 
 ---
+
 **10. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -120,6 +130,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 
 ---
+
 **11. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
@@ -134,6 +145,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 
 ---
+
 **12. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -173,6 +185,7 @@ Previous Notes:
 
 
 ---
+
 **13. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -184,6 +197,7 @@ Note: min/max需要时long type.
 
 
 ---
+
 **14. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
       
 
@@ -202,6 +216,7 @@ Note: min/max需要时long type.
 
 
 ---
+
 **15. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium
       
 
@@ -225,3 +240,4 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 
 ---
+

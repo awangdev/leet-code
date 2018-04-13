@@ -22,6 +22,7 @@ mask = mask | (1 << i); // prefix mask
 
 
 ---
+
 **1. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
       
 
@@ -44,6 +45,7 @@ node里的char在这是optional. 只要在每个TrieNode里面用map存储向下
 
 
 ---
+
 **2. [Add and Search Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word.java)**      Level: Medium
       
 
@@ -59,6 +61,7 @@ Search word:没有node就报错. 到结尾return true
 
 
 ---
+
 **3. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard
       
 
@@ -93,6 +96,7 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 
 
 ---
+
 **4. [Word Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Squares.java)**      Level: Hard
       
 
@@ -116,6 +120,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 
 ---
+
 **5. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
       
 
@@ -145,6 +150,7 @@ O(mn)
 
 
 ---
+
 **6. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
       
 
@@ -163,3 +169,4 @@ TODO
 
 
 ---
+

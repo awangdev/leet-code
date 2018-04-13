@@ -20,6 +20,7 @@
 
 
 ---
+
 **1. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium
       
 
@@ -37,6 +38,7 @@
 
 
 ---
+
 **2. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
       
 
@@ -52,6 +54,7 @@
 
 
 ---
+
 **3. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
       
 
@@ -78,3 +81,4 @@ HashHeap?
 
 
 ---
+

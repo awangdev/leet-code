@@ -14,6 +14,7 @@
 
 
 ---
+
 **1. [Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)**      Level: Easy
       
 
@@ -30,3 +31,4 @@ Recursive:分叉. dfs.
 
 
 ---
+

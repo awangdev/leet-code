@@ -15,6 +15,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 
 ---
+
 **1. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
@@ -29,6 +30,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 
 ---
+
 **2. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -68,6 +70,7 @@ Previous Notes:
 
 
 ---
+
 **3. [Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)**      Level: Easy
       
 
@@ -79,6 +82,7 @@ Populate next level by nodes at current level.
 
 
 ---
+
 **4. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
@@ -88,6 +92,7 @@ Binary Search Tree特点: 左边的node都比右边的node小.
 
 
 ---
+
 **5. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Review
       
 
@@ -118,6 +123,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **6. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
       
 
@@ -128,6 +134,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **7. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy
       
 
@@ -139,6 +146,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **8. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
       
 
@@ -152,6 +160,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **9. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
       
 
@@ -170,6 +179,7 @@ process每层queue时, 注意把next pointer加上去就好.
 
 
 ---
+
 **10. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -181,6 +191,7 @@ Note: min/max需要时long type.
 
 
 ---
+
 **11. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Medium
       
 
@@ -214,6 +225,7 @@ Stack里，最大的值在下面。利用此性质，有这样几个step:
 
 
 ---
+
 **12. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
       
 
@@ -241,6 +253,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 
 ---
+
 **13. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
       
 
@@ -252,6 +265,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+
 **14. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
       
 
@@ -280,6 +294,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 ---
+
 **15. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
       
 
@@ -298,6 +313,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 ---
+
 **16. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
       
 
@@ -319,6 +335,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 
 ---
+
 **17. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
       
 
@@ -334,6 +351,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 
 ---
+
 **18. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 
@@ -352,6 +370,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 
 ---
+
 **19. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
       
 
@@ -384,3 +403,4 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 ---
+

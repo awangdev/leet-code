@@ -41,6 +41,7 @@ Previous Notes:
 
 
 ---
+
 **1. [Flatten Nested List Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Nested%20List%20Iterator.java)**      Level: Medium
       
 
@@ -50,6 +51,7 @@ Previous Notes:
 
 
 ---
+
 **2. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
       
 
@@ -72,6 +74,7 @@ node里的char在这是optional. 只要在每个TrieNode里面用map存储向下
 
 
 ---
+
 **3. [Add and Search Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word.java)**      Level: Medium
       
 
@@ -87,6 +90,7 @@ Search word:没有node就报错. 到结尾return true
 
 
 ---
+
 **4. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard
       
 
@@ -102,6 +106,7 @@ Search word:没有node就报错. 到结尾return true
 
 
 ---
+
 **5. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard
       
 
@@ -122,6 +127,7 @@ findMedian: O(1)
 
 
 ---
+
 **6. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy
       
 
@@ -132,6 +138,7 @@ findMedian: O(1)
 
 
 ---
+
 **7. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy
       
 
@@ -149,3 +156,4 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 ---
+

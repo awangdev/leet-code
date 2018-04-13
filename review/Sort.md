@@ -23,6 +23,7 @@ O(n)
 
 
 ---
+
 **1. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
       
 
@@ -36,6 +37,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 
 ---
+
 **2. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy
       
 
@@ -44,6 +46,7 @@ HashMap
 
 
 ---
+
 **3. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy
       
 
@@ -62,6 +65,7 @@ HashMap
 
 
 ---
+
 **4. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium
       
 
@@ -79,6 +83,7 @@ HashMap
 
 
 ---
+
 **5. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium
       
 
@@ -94,3 +99,4 @@ HashMap
 
 
 ---
+

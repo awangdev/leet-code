@@ -9,6 +9,7 @@ tags: Array, Greedy, DP
 - 其实j in [0~i)中间只需要一个能到达i 就好了
 - Function: DP[i] = DP[j] && (A[j] >= i - j), for all j in [0 ~ i)
 - Return: DP[dp.length - 1];
+- It timesout, O(n^2)
 
 #### Greedy
 - Keep track of farest can go

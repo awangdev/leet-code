@@ -1,4 +1,6 @@
 H
+1523601576
+tags: Array, Greedy, DP, Coordinate DP
 
 Greedy, 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
 
@@ -32,6 +34,28 @@ Tags Expand
 Greedy Array
 
 */
+
+// DP, coordinate DP, timeout, O(n^2)
+class Solution {
+    public int jump(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int[] dp = new int[n];
+        for (int i = 1; i < n; i++) {
+            dp[i] = Integer.MAX_VALUE;
+        }
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] != Integer.MAX_VALUE && j + nums[j] >= i) {
+                    dp[i] = Math.min(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+}
 
 /*
     3.18 recap. 

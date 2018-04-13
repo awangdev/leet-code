@@ -19,6 +19,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 
 ---
+
 **1. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium
       
 
@@ -36,6 +37,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 
 ---
+
 **2. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium
       
 
@@ -54,6 +56,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 
 ---
+
 **3. [3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)**      Level: Medium
       
 
@@ -66,6 +69,7 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 
 
 ---
+
 **4. [3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)**      Level: Medium
       
 
@@ -94,6 +98,7 @@ Previous notes:
 
 
 ---
+
 **5. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium
       
 
@@ -104,6 +109,7 @@ Previous notes:
 
 
 ---
+
 **6. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
       
 
@@ -117,6 +123,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 
 ---
+
 **7. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
       
 
@@ -140,6 +147,7 @@ Not done yet
 
 
 ---
+
 **8. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium
       
 
@@ -166,6 +174,7 @@ Previous verison of two pointers:
 
 
 ---
+
 **9. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard
       
 
@@ -177,6 +186,7 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 
 ---
+
 **10. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy
       
 
@@ -187,6 +197,7 @@ O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然�
 
 
 ---
+
 **11. [Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)**      Level: Medium
       
 
@@ -196,6 +207,7 @@ O(n), one pace, no extra space
 
 
 ---
+
 **12. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium
       
 
@@ -225,6 +237,7 @@ HashMap, O(n) space
 
 
 ---
+
 **13. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard
       
 
@@ -254,6 +267,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 
 ---
+
 **14. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
       
 
@@ -266,3 +280,4 @@ Time: O(nLogN)
 
 
 ---
+

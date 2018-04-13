@@ -1,7 +1,7 @@
  
  
  
-## Binary Search (23)
+## Binary Search (24)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -10,6 +10,7 @@ binary search 公式
 
 
 ---
+
 **1. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium
       
 
@@ -27,6 +28,7 @@ binary search 公式
 
 
 ---
+
 **2. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium
       
 
@@ -45,16 +47,18 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 
 ---
+
 **3. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
 
 无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
 
 #### DP, double for loop, O(n^2)
-- 考虑nums[i]的时候, 在[0, i) 里count有多少小于nums[i]
+- 考虑nums[i]结尾的时候, 在[0, i) 里count有多少小于nums[i]
 - 对于所有 i in [0, n), 最常的increasing序列有多少length?
 - max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
 - 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
+- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
 - 时间复杂度  O(n^2)
 
 
@@ -69,6 +73,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 
 ---
+
 **4. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
       
 
@@ -86,6 +91,7 @@ Review: 为什么有i level的iteration? Chapter4.1
 
 
 ---
+
 **5. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review
       
 
@@ -95,6 +101,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 
 ---
+
 **6. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
       
 
@@ -108,6 +115,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 
 ---
+
 **7. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium
       
 
@@ -125,6 +133,7 @@ Note:
 
 
 ---
+
 **8. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium
       
 
@@ -138,6 +147,7 @@ Note:
 
 
 ---
+
 **9. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium
       
 
@@ -161,6 +171,7 @@ Not done yet
 
 
 ---
+
 **10. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium
       
 
@@ -178,6 +189,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 
 
 ---
+
 **11. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium
       
 
@@ -190,6 +202,7 @@ O(nlogn)
 
 
 ---
+
 **12. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard
       
 
@@ -201,6 +214,7 @@ O(nlogn)
 
 
 ---
+
 **13. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
@@ -242,6 +256,7 @@ O(nLogN)
 
 
 ---
+
 **14. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
       
 
@@ -258,6 +273,7 @@ O(nLogN)
 
 
 ---
+
 **15. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Easy
       
 
@@ -269,6 +285,7 @@ isBadVersion 是有方向的嘛，一个点错了，后面全错。
 
 
 ---
+
 **16. [Wood Cut.java](https://github.com/awangdev/LintCode/blob/master/Java/Wood%20Cut.java)**      Level: Medium
       
 
@@ -281,6 +298,7 @@ Overall time: O(nLogM), where M = largest wood length
 
 
 ---
+
 **17. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium
       
 
@@ -293,6 +311,7 @@ Time: O(nLogN)
 
 
 ---
+
 **18. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review
       
 
@@ -307,6 +326,7 @@ Time: O(nLogN)
 
 
 ---
+
 **19. [Classical Binary Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Classical%20Binary%20Search.java)**      Level: Easy
       
 
@@ -320,6 +340,7 @@ Time: O(nLogN)
 
 
 ---
+
 **20. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
       
 
@@ -338,6 +359,7 @@ Time: O(nLogN)
 
 
 ---
+
 **21. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
       
 
@@ -359,6 +381,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 
 ---
+
 **22. [Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)**      Level: Easy
       
 
@@ -369,3 +392,33 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 
 ---
+
+**23. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard
+      
+
+俄罗斯套娃, 这里用envelope来表现. 给一串array, 每一个[x, y] 是envelope 长宽. [[5,4],[6,4],[6,7],[2,3]]. 
+
+看用这些套娃, 可以最多套几个.
+
+#### DP: 1D Coordinate
+- envelopes没有顺序, 先排序 (主要根据第一个index排序)
+- 然后观察: 排序过后, 就变成了1D的坐标动态规划.
+- max number 取决于上一个成功Russian doll的 max value + 1
+- 上一个index不知道, 所以遍历找上一个index. 
+- 当下index i 的状态, 取决于前面index j 的状态, 所以遍历两个index.
+- O(n^2)的DP, n = envelopes.length;
+
+#### DP: 2D Coordinate
+- 这个方法是自己想出来的, 但是时间复杂度太大, timeout
+- 把envelop标记在2D grid上面, 然后像走机器人一样, 求到最右下角的最大 count max.
+- count 当下能存在多少Russian doll
+- 两种情况: 当下coordinate 没有target, 当下coordinate有target
+- 当下coordinate 没有target: 如同机器人走法, Math.max(dp[i - 1][j], dp[i][j - 1])
+- 当下coordinate 有target: dp[i - 1][j - 1] + dp[i][j]
+- timeout: O(n^2), n = largest coordinate.
+
+
+
+
+---
+

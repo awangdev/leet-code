@@ -1,14 +1,15 @@
 M
 1516863852
-tags: Binary Search, DP, Sequence DP, Memoization
+tags: Binary Search, DP, Sequence DP, Coordinate DP, Memoization
 
 无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
 
 #### DP, double for loop, O(n^2)
-- 考虑nums[i]的时候, 在[0, i) 里count有多少小于nums[i]
+- 考虑nums[i]结尾的时候, 在[0, i) 里count有多少小于nums[i]
 - 对于所有 i in [0, n), 最常的increasing序列有多少length?
 - max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
 - 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
+- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
 - 时间复杂度  O(n^2)
 
 
@@ -27,7 +28,9 @@ Given an unsorted array of integers, find the length of longest increasing subse
 
 For example,
 Given [10, 9, 2, 5, 3, 7, 101, 18],
-The longest increasing subsequence is [2, 3, 7, 101], therefore the length is 4. Note that there may be more than one LIS combination, it is only necessary for you to return the length.
+The longest increasing subsequence is [2, 3, 7, 101], therefore the length is 4. 
+Note that there may be more than one LIS combination, 
+it is only necessary for you to return the length.
 
 Your algorithm should run in O(n2) complexity.
 

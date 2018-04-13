@@ -29,6 +29,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **1. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
       
 
@@ -44,6 +45,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **2. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium
       
 
@@ -95,6 +97,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **3. [Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)**      Level: Medium
       
 
@@ -120,6 +123,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **4. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 
@@ -144,3 +148,4 @@ initialize map with (node, newNode)
 
 
 ---
+

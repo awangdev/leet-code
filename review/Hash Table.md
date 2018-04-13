@@ -11,6 +11,7 @@ O(n)
 
 
 ---
+
 **1. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy
       
 
@@ -27,6 +28,7 @@ O(n)
 
 
 ---
+
 **2. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy
       
 
@@ -37,6 +39,7 @@ O(n)
 
 
 ---
+
 **3. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium
       
 
@@ -46,6 +49,7 @@ O(n)
 
 
 ---
+
 **4. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy
       
 
@@ -62,6 +66,7 @@ O(n) space, O(nlogn) time.
 
 
 ---
+
 **5. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium
       
 
@@ -79,6 +84,7 @@ O(n) space, O(nlogn) time.
 
 
 ---
+
 **6. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
       
 
@@ -92,6 +98,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 
 ---
+
 **7. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy
       
 
@@ -100,6 +107,7 @@ HashMap
 
 
 ---
+
 **8. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium
       
 
@@ -126,6 +134,7 @@ Previous verison of two pointers:
 
 
 ---
+
 **9. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard
       
 
@@ -137,6 +146,7 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 
 ---
+
 **10. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium
       
 
@@ -148,6 +158,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 ---
+
 **11. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
       
 
@@ -177,6 +188,7 @@ O(mn)
 
 
 ---
+
 **12. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
@@ -195,6 +207,7 @@ Coordinate DP?
 
 
 ---
+
 **13. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
       
 
@@ -222,6 +235,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 
 ---
+
 **14. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
       
 
@@ -238,6 +252,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 
 ---
+
 **15. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
       
 
@@ -264,3 +279,4 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 
 ---
+

@@ -41,6 +41,7 @@ Previous Notes:
 
 
 ---
+
 **1. [Flatten Nested List Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Nested%20List%20Iterator.java)**      Level: Medium
       
 
@@ -50,6 +51,7 @@ Previous Notes:
 
 
 ---
+
 **2. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard
       
 
@@ -79,6 +81,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 
 ---
+
 **3. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy
       
 
@@ -89,6 +92,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 
 ---
+
 **4. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy
       
 
@@ -106,6 +110,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 ---
+
 **5. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
@@ -128,6 +133,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 ---
+
 **6. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard
       
 
@@ -154,6 +160,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 ---
+
 **7. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Medium
       
 
@@ -187,6 +194,7 @@ Stack里，最大的值在下面。利用此性质，有这样几个step:
 
 
 ---
+
 **8. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
@@ -205,6 +213,7 @@ Coordinate DP?
 
 
 ---
+
 **9. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
       
 
@@ -232,6 +241,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 
 ---
+
 **10. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
       
 
@@ -260,6 +270,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 ---
+
 **11. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
       
 
@@ -275,3 +286,4 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 
 ---
+

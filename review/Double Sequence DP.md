@@ -16,6 +16,7 @@
 
 
 ---
+
 **1. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
@@ -33,6 +34,7 @@
 
 
 ---
+
 **2. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
       
 
@@ -51,3 +53,4 @@ TODO
 
 
 ---
+

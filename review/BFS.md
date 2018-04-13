@@ -26,6 +26,7 @@ Previous Notes:
 
 
 ---
+
 **1. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 
@@ -53,6 +54,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **2. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium
       
 
@@ -66,6 +68,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **3. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
       
 
@@ -81,6 +84,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **4. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review
       
 
@@ -96,6 +100,7 @@ DFS, BFS都好理解,
 
 
 ---
+
 **5. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard
       
 
@@ -128,6 +133,7 @@ DFS, BFS都好理解,
 
 
 ---
+
 **6. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium
       
 
@@ -179,6 +185,7 @@ DFS, BFS都好理解,
 
 
 ---
+
 **7. [Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)**      Level: Medium
       
 
@@ -204,6 +211,7 @@ DFS, BFS都好理解,
 
 
 ---
+
 **8. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 
@@ -228,6 +236,7 @@ DFS, BFS都好理解,
 
 
 ---
+
 **9. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
       
 
@@ -243,6 +252,7 @@ DFS, BFS都好理解,
 
 
 ---
+
 **10. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 
@@ -261,3 +271,4 @@ DFS, BFS都好理解,
 
 
 ---
+

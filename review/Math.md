@@ -18,6 +18,7 @@ Power of 3:  3 ^ x == n ?
 
 
 ---
+
 **1. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -26,6 +27,7 @@ Power of 3:  3 ^ x == n ?
 
 
 ---
+
 **2. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
 
@@ -34,6 +36,7 @@ Power of 3:  3 ^ x == n ?
 
 
 ---
+
 **3. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium
       
 
@@ -43,6 +46,7 @@ Power of 3:  3 ^ x == n ?
 
 
 ---
+
 **4. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -67,6 +71,7 @@ Previous Notes:
 
 
 ---
+
 **5. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review
       
 
@@ -76,6 +81,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 
 ---
+
 **6. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium
       
 
@@ -89,6 +95,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 
 ---
+
 **7. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy
       
 
@@ -100,6 +107,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 
 ---
+
 **8. [Add Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Digits.java)**      Level: Easy
       
 
@@ -110,6 +118,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 
 ---
+
 **9. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
       
 
@@ -126,6 +135,7 @@ Linked List 没有天然size.
 
 
 ---
+
 **10. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy
       
 
@@ -141,6 +151,7 @@ Space O(n), time O(n)
 
 
 ---
+
 **11. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy
       
 
@@ -157,6 +168,7 @@ Space O(n), time O(n)
 
 
 ---
+
 **12. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
       
 
@@ -175,3 +187,4 @@ Space O(n), time O(n)
 
 
 ---
+

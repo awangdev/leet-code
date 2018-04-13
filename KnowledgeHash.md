@@ -370,6 +370,11 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - Example: Unique Path I, II
 - 可以出print path的题目
 
+#### 特殊
+- 最长序列型动态规划: 恰恰是坐标类
+- 以i点结束, 很可能可以考虑坐标型
+- Longest Increasing Subsequence (祖师爷级别老题目)
+
 
 ### 序列
 
@@ -382,7 +387,6 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - dp[0] 表示空序列的性质 (坐标类: dp[0]表示以a[0]结尾的性质)
 - 题目中遇到 前i个, '并且': 序列 + 状态
 
-
 #### 特点
 - 可以选择让: DP[i]存的是以 1-based index的状态, 求前i个.
 - 那么, 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1].
@@ -394,7 +398,8 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 及时思考的时候从结尾, 在代码写的时候, 其实是模拟末尾是i = [0 ~ n] 的情况, 一圈圈计算.
 - 最后再给出 dp[n] 的末尾解答. 
 
-#### More
+#### 序列+状态
+- 当思考动态规划最后一步时, 这一步的选择依赖于 前一步 的某种状态: 一维 + 状态
 - 序列+状态:如果n-1步有多种状态, 且n步也有多种可能, 添加一种状态记录, 变成2D dp[sequence index][状态]
 - Example: Paint House
 

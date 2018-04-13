@@ -10,6 +10,7 @@
 
 
 ---
+
 **1. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy
       
 
@@ -22,3 +23,4 @@
 
 
 ---
+

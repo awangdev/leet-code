@@ -10,6 +10,7 @@
 
 
 ---
+
 **1. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy
       
 
@@ -20,6 +21,7 @@
 
 
 ---
+
 **2. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -37,6 +39,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 
 ---
+
 **3. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
@@ -63,6 +66,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 
 ---
+
 **4. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
       
 
@@ -75,6 +79,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 
 ---
+
 **5. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
 
@@ -85,6 +90,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 
 ---
+
 **6. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
@@ -102,6 +108,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 
 ---
+
 **7. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
       
 
@@ -113,12 +120,14 @@ Double Sequence DP:
 
 
 ---
+
 **8. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
       
 
 
 
 ---
+
 **9. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
       
 
@@ -131,6 +140,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
+
 **10. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy
       
 
@@ -142,6 +152,7 @@ Double sequence DP. 与regular expression 很像.
 
 
 ---
+
 **11. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium
       
 
@@ -168,6 +179,7 @@ Previous verison of two pointers:
 
 
 ---
+
 **12. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard
       
 
@@ -179,6 +191,7 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 
 ---
+
 **13. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium
       
 
@@ -190,6 +203,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 
 ---
+
 **14. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
       
 
@@ -219,6 +233,7 @@ O(mn)
 
 
 ---
+
 **15. [Change to Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Change%20to%20Anagram.java)**      Level: Easy
       
 
@@ -233,6 +248,7 @@ HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要
 
 
 ---
+
 **16. [Compare Version Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Version%20Numbers.java)**      Level: Medium
       
 
@@ -252,6 +268,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 
 ---
+
 **17. [Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)**      Level: Easy
       
 
@@ -266,6 +283,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 
 ---
+
 **18. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy
       
 
@@ -278,6 +296,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 
 ---
+
 **19. [One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)**      Level: Medium
       
 
@@ -292,6 +311,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 
 ---
+
 **20. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium
       
 
@@ -307,3 +327,4 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 
 ---
+

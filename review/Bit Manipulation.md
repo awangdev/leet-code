@@ -10,6 +10,7 @@
 
 
 ---
+
 **1. [Sum of Two Integers.java](https://github.com/awangdev/LintCode/blob/master/Java/Sum%20of%20Two%20Integers.java)**      Level: Easy
       
 
@@ -37,6 +38,7 @@ Steps:
 
 
 ---
+
 **2. [Swap Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Bits.java)**      Level: Easy
       
 
@@ -48,6 +50,7 @@ Steps:
 
 
 ---
+
 **3. [Update Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Update%20Bits.java)**      Level: Medium
       
 
@@ -60,6 +63,7 @@ Steps:
 
 
 ---
+
 **4. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
 
@@ -80,6 +84,7 @@ mask = mask | (1 << i); // prefix mask
 
 
 ---
+
 **5. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
       
 
@@ -99,6 +104,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
+
 **6. [Convert Integer A to Integer B.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Integer%20A%20to%20Integer%20B.java)**      Level: Easy
       
 
@@ -113,6 +119,7 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 ---
+
 **7. [Count 1 in Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%201%20in%20Binary.java)**      Level: Easy
       
 
@@ -128,6 +135,7 @@ count 一个 32-bit number binary format 里面有多少1
 
 
 ---
+
 **8. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium
       
 
@@ -144,3 +152,4 @@ count 一个 32-bit number binary format 里面有多少1
 
 
 ---
+

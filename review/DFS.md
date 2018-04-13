@@ -11,6 +11,7 @@
 
 
 ---
+
 **1. [Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)**      Level: Easy
       
 
@@ -22,6 +23,7 @@ Populate next level by nodes at current level.
 
 
 ---
+
 **2. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
@@ -31,6 +33,7 @@ Binary Search Tree特点: 左边的node都比右边的node小.
 
 
 ---
+
 **3. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Review
       
 
@@ -61,6 +64,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **4. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
       
 
@@ -71,6 +75,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **5. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy
       
 
@@ -82,6 +87,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **6. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
       
 
@@ -95,6 +101,7 @@ combo的三种情况：(root可能小于0)
 
 
 ---
+
 **7. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
       
 
@@ -113,6 +120,7 @@ process每层queue时, 注意把next pointer加上去就好.
 
 
 ---
+
 **8. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -124,6 +132,7 @@ Note: min/max需要时long type.
 
 
 ---
+
 **9. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
@@ -150,6 +159,7 @@ sortedListToBST(head); //从头开始的前半段
 
 
 ---
+
 **10. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
       
 
@@ -162,6 +172,7 @@ sortedListToBST(head); //从头开始的前半段
 
 
 ---
+
 **11. [Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)**      Level: Easy
       
 
@@ -178,6 +189,7 @@ Recursive:分叉. dfs.
 
 
 ---
+
 **12. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium
       
 
@@ -205,6 +217,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **13. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium
       
 
@@ -218,6 +231,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **14. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
       
 
@@ -233,6 +247,7 @@ initialize map with (node, newNode)
 
 
 ---
+
 **15. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review
       
 
@@ -248,6 +263,7 @@ DFS, BFS都好理解,
 
 
 ---
+
 **16. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard
       
 
@@ -282,6 +298,7 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 
 
 ---
+
 **17. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
@@ -304,6 +321,7 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 
 
 ---
+
 **18. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
@@ -345,6 +363,7 @@ O(nLogN)
 
 
 ---
+
 **19. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
       
 
@@ -364,6 +383,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 
 ---
+
 **20. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
       
 
@@ -375,6 +395,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+
 **21. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium
       
 
@@ -426,6 +447,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+
 **22. [Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)**      Level: Medium
       
 
@@ -451,6 +473,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+
 **23. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 
@@ -475,6 +498,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+
 **24. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
       
 
@@ -490,6 +514,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+
 **25. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 
@@ -508,6 +533,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 
 ---
+
 **26. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
       
 
@@ -540,3 +566,4 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 
 ---
+

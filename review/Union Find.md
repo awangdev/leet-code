@@ -11,6 +11,7 @@ Document了每个环节的计算原理/思想.
 
 
 ---
+
 **1. [Connecting Graph II.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20II.java)**      Level: Medium
       
 
@@ -19,6 +20,7 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 
 ---
+
 **2. [Connecting Graph III.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20III.java)**      Level: Medium
       
 
@@ -28,6 +30,7 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 
 ---
+
 **3. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium
       
 
@@ -41,6 +44,7 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 
 ---
+
 **4. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard
       
 
@@ -64,6 +68,7 @@ https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%9
 
 
 ---
+
 **5. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
       
 
@@ -79,6 +84,7 @@ https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%9
 
 
 ---
+
 **6. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review
       
 
@@ -94,3 +100,4 @@ DFS, BFS都好理解,
 
 
 ---
+
