@@ -1,7 +1,7 @@
  
  
  
-## DFS (27)
+## DFS (28)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy
       
 
@@ -562,6 +562,26 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 每一个dfs都return一个based on status的 dp array.
 - 等于一次性dfs计算到底, 然后back track, 计算顶部的每一层.
 - DP 并不一定要是以n为base的. 也可以是局部的去memorize状态->value.
+
+
+
+---
+
+**27. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium
+      
+
+#### DFS
+- 在遍历str的时候，考虑从每个curr spot 到 str 结尾，是能有多少种palindorme?
+- 那就从curr spot当个字符开始算，开始back tracing.
+- 如果所选不是palindrome， 那move on.
+- 若所选的确是palindrome,　加到path里面，DFS去下个level，等遍历到了结尾，这就产生了一种分割成palindrome的串。
+- 每次DFS结尾，要把这一层加的所选palindrome删掉，backtracking嘛
+
+#### Optimization
+- 可以再每一个dfs level 算 isPalindrome(S), 但是可以先把 boolean[][] isPalin 算出来, 每次O(1) 来用
+- 注意: isPalin[i][j] 是 inclusive的, 所以用的时候要认准坐标
+- Overall Space O(n^2): 存 isPlain[][]
+- Time O(n!), 每一层的for loop spawn n * (n - 1) * (n - 2)
 
 
 

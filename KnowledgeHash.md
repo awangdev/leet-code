@@ -267,12 +267,19 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 ## ArrayList
 - Integer[] array = {1, 2, 3};
 - new ArrayList(Arrays.asList(array))
+- O(1) insertion on average. 
+- Underneath, the insertion cause the arrayList to doubles the size and copy all contents to a new array. Over time, the cost is 1 + 2 + 4 + ... n/8 + n/4 + n/2 = O(n), over time
+- Therefore, the average insertion time is O(1)
 
 # Hash
 
 # Map
 
 # Hash Table
+
+## HashTable
+- Ex: when searching unsorted array(if you try to avoid sort O(nlogN)), probably can index with HashMap
+- Can be used to store character/string frequency
 
 ## HashSet
 - contains: O(1)
@@ -281,11 +288,20 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 # Basics
 
+## Sum, Presum
+- Presum: sum of [0 ~ i] items
+- 找 sum[i, j] = preSum[i] - preSum[j - 1];
+- 根据题目具体情况 (ex: Copy Books), sum[i, j] 也可以倒序加出来, 存在int  sum 里面
+
 ## Math
 - 转换成string
 - % mod, 除法
 - Integer.MAX_VALUE, Integer.MIN_VALUE; if overflow, use long
 - Integer.valueOf(number), where number is int
+
+### Math Functions
+- Math.pow(x, 3) = x ^ 3; Math.pow(x, 1/3) = x ^ (1/3)
+
 
 
 ## String
@@ -349,9 +365,9 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - dp = new int[n] 还是 dp = new int[n + 1]: 看角标是否表示坐标, 还是前i items的状态
 
 ## 分类
-- 网格坐标 *
-- 序列类 *
-- 划分类 *
+- 网格坐标 * 20%
+- 序列类 * 20%
+- 划分类 * 20%
 - 区间类(range DP)
 - 背包类
 - 双序列
@@ -405,6 +421,16 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 
 ### 划分
+
+#### 性质
+- 给长度是N的序列或者字符串, 要求分成若干段
+- 段数不限, 或者指定K段
+- 每一段买组一定性质
+- 类似于序列型动态规划, 但是通常要加上 段数信息
+- 一般用 dp[i][j]记录, 前i个元素(元素是 0 ~ i - 1) 分成 j 段的性质, 比如, 最小cost
+
+#### 经验
+- '分/ partion/ several segment', 求最值 => 划分型动态规划
 - 不管怎么划, 总有最后一段! 根据题目给出的条件, 从末尾划刀
 - 也可能是看dp[i] 前 i 个item的状态 [0, i - 1]
 - Example: Decode Ways
@@ -502,12 +528,20 @@ Track queue size, use the queue as in rotation
 
 # Problem Sets
 
+## Permudation
+- Find small string's permudation in large string: time O(n), using a HashSet of missingString: when the set.length == 0, that is a match of small string.
+
 ## Two Pointer
 
 ## Min/Max Heap
 - 见到需要维护一个集合的最小值/最大值的时候要想到用堆
 - 第k小的元素，Heap用来维护当前候选集合
 - 见到数组要想到先排序
+
+## 回文串 Palindrome
+- 奇数串, 中间有个unique字符
+- 偶数, 中间开始有两个相同的字符
+- 找到所有的回文串, 只需要 O(n^2): isPalin[i][j]表示 S[i...j] 是否是palindrome
 
 ## Stack
 - Monotonous stack的运用: 找左边和右边第一个比它大的元素
