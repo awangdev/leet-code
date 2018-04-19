@@ -1,7 +1,7 @@
  
  
  
-## Backtracking (10)
+## Backtracking (11)
 **0. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
 
@@ -190,6 +190,46 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 - 注意: isPalin[i][j] 是 inclusive的, 所以用的时候要认准坐标
 - Overall Space O(n^2): 存 isPlain[][]
 - Time O(n!), 每一层的for loop spawn n * (n - 1) * (n - 2)
+
+
+
+---
+
+**10. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium
+      
+
+给一串数组, 找出所有permutation数组. 注意: 给出的nums里面有重复数字, 而permutation的结果需要无重复.
+
+#### Backtracking
+- 排序, 
+- Mark visited. 通过permutation规律查看是否排出了重复结果
+- 并且要检查上一层recursive时有没有略过重复element
+- time O(n!)
+
+##### 背景1
+- 在recursive call里面有for loop, 每次从i=0开始, 试着在当下list上加上nums里面的每一个。    
+- 从i=0开始，所以会依次recursive每一个nums：
+- 因此，例如i=2,肯定比i=3先被访问。也就是:取i=2的那个list permutation肯定先排出来。   
+
+##### 背景2
+- 重复的例子：给出Input[x, y1, y2], 假设y的值是一样的。那么，{x,y1,y2}和{x,y2,y1}是相同结果。
+
+##### Note
+- 综上，y1肯定比y2先被访问,{x,y1,y2}先出。 紧随其后，在另一个recursive循环里，{x,y2...}y2被先访问，跳过了y1。    
+- 重点:规律在此，如果跳过y1，也就是visited[y1] == false, 而num[y2] == num[y1]，那么这就是一个重复的结果，没必要做，越过。
+- 结果:那么，我们需要input像{x,y1,y2}这样数值放一起，那么必须排序。
+
+#### Non-recursive, manuall swap
+- Idea from: https://www.sigmainfy.com/blog/leetcode-permutations-i-and-ii.html
+- 用到 sublist sort
+- 用 swap function, 在原数组上调节出来新的permutation
+- 注意: 每次拿到新的candidate, 都要把没有permutate的数位sort, 然后再开始swap.
+- 这是为了确保, [j]和[j-1]在重复时候, 不用重新记录.
+
+#### Queue
+- 给一个visited queue
+- 和queue在所有的地方一同populate. 
+- 然后visited里面存得时visited indexes。 (Not efficient code. check again)
 
 
 

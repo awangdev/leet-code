@@ -1,20 +1,43 @@
 H
 1518424818
-tags: DP, Binary Search
+tags: DP, Binary Search, Partition DP
 
-#### 方法1: Binary Search
+#### Partition DP
+- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成, n本书, 让k个人来copy, 也就是分割成k段.
+- 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
+- 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
+- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
+- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
+- Time: O(kn^2), space O(nk)
+
+##### Init
+- Init: dp[0][0] = 0, 0个人0本书
+- Integer.MAX_VALUE的运用:
+- 当 i = 1, k = 1, 表达式: dp[i][k] = Math.min(dp[i][k], Math.max(dp[j][k - 1], sum));
+- 唯一可行的情况就只有一种: i=0, k=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
+- 其他情况, i = 1, k = 0, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
+- 当 i=0, k=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[i][k]
+- 这道题的init是非常重要而tricky的
+
+##### 计算顺序
+- k个人, 需要一个for loop; 
+- k个人, 从copy1本书开始, 2, 3, ... n-1,所以 i=[1, n], 需要第二个for loop
+- 在每一个i上, 切割的方式可以有[0 ~ i] 中, 我们要计算每一种的worst time
+
+##### 滚动数组
+- [k] 只有和 [k - 1] 相关
+- Space: O(n)
+
+#### Binary Search
 - 根据: 每个人花的多少时间(time)来做binary search: 每个人花多久时间, 可以在K个人之内, 用最少的时间完成?
 - time variable的范围不是index, 也不是page大小. 而是[minPage, pageSum]
 - validation 的时候注意3种情况: 人够用 k>=0, 人不够所以结尾减成k<0, 还有一种是time(每个人最多花的时间)小于当下的页面, return -1
 - O(nLogM). n = pages.length; m = sum of pages.
 
-#### 方法2: DP
-k个人copy完i本书.
-定义Integer.MAX_VALUE的地方需要注意.
-Review: 为什么有i level的iteration? Chapter4.1
 
 ```
 /*
+LintCode
 Given n books and the ith book has A[i] pages. 
 You are given k people to copy the n books.
 
@@ -26,6 +49,140 @@ They start copying books at the same time and they all cost 1 minute to copy 1 p
 What's the best strategy to assign books so that the slowest copier can finish at earliest time?
 
 */
+
+/*
+// A easier/consistent way to write the dp:
+Thoughts:
+1. dp[i][k]: divide i books into k dividions, for k people to read.
+2. Within each division, we need to know where the cut will be. 
+   Use j [0 ~ i] to loop all possible division spots.
+*/
+public class Solution {
+    public int copyBooks(int[] pages, int K) {
+        if (pages == null || pages.length == 0) {
+            return 0;
+        }
+
+        int n = pages.length;
+        if (K > n) {
+            K = n;
+        }
+        int[][] dp = new int[n + 1][K + 1];
+
+        //dp[0][0~n] = Integer.MAX_VALUE; // 0 people read n books
+        dp[0][0] = 0; // 0 people read 0 book
+        for (int i = 1; i <= n; i++) {
+            dp[i][0] = Integer.MAX_VALUE;
+        }
+        
+        for (int i = 1; i <= n; i++) {// read i books
+            for (int k = 1; k <= K; k++) { // k people
+                int sum = 0;
+                dp[i][k] = Integer.MAX_VALUE;
+                for (int j = i; j >= 0; j--) { // person k read from j -> i
+                    dp[i][k] = Math.min(dp[i][k], Math.max(dp[j][k - 1], sum));
+                    if (j > 0) {
+                        sum += pages[j - 1];
+                    }
+                }
+            }
+        }
+
+        return dp[n][K];
+    }
+}
+
+/*
+Thoughts:
+Considering k people finishing i books.
+If last person read some books, then all the rest people just need to:
+k - 1 people to finish j books, and the kth person read [j, j + 1, ..., i-1] books
+
+Overall possible time spent is determined by the slowest person(bucket theory):
+Either dp[k - 1][j] or (pages[j] + pages[j + 1] + ... + pages[i - 1])
+= Max{dp[k - 1][j], pages[j] + pages[j + 1] + ... + pages[i - 1]}
+
+Of course we weant to minimize the overall time spent:
+take min of the above equation, where j = 0 ~ i
+
+dp[k][i]: time spent for k people to read i books.
+dp[k][i] = Min{Max{dp[k - 1][j] + sum(pages[j ~ i-1])}}, where j = 0 ~ i
+
+Return dp[k][i]
+
+init: dp[0][0] = 0;  time spent for 0 people copy 0 books
+
+*/
+public class Solution {
+    public int copyBooks(int[] pages, int K) {
+        if (pages == null || pages.length == 0) {
+            return 0;
+        }
+
+        int n = pages.length;
+        if (K > n) {
+            K = n;
+        }
+        int[][] dp = new int[K + 1][n + 1];
+
+        //dp[0][0~n] = Integer.MAX_VALUE; // 0 people read n books
+        dp[0][0] = 0; // 0 people read 0 book
+        for (int i = 1; i <= n; i++) {
+            dp[0][i] = Integer.MAX_VALUE;
+        }
+        
+        for (int k = 1; k <= K; k++) { // k people
+            for (int i = 1; i <= n; i++) {// read i books
+                int sum = 0;
+                dp[k][i] = Integer.MAX_VALUE;
+                for (int j = i; j >= 0; j--) { // person k read from j -> i
+                    dp[k][i] = Math.min(dp[k][i], Math.max(dp[k - 1][j], sum));
+                    if (j > 0) {
+                        sum += pages[j - 1];
+                    }
+                }
+            }
+        }
+
+        return dp[K][n];
+    }
+}
+
+// Rolling array
+public class Solution {
+    public int copyBooks(int[] pages, int K) {
+        if (pages == null || pages.length == 0) {
+            return 0;
+        }
+
+        int n = pages.length;
+        if (K > n) {
+            K = n;
+        }
+        int[][] dp = new int[2][n + 1];
+
+        //dp[0][0~n] = Integer.MAX_VALUE; // 0 people read n books
+        dp[0][0] = 0; // 0 people read 0 book
+        for (int i = 1; i <= n; i++) {
+            dp[0][i] = Integer.MAX_VALUE;
+        }
+        
+        for (int k = 1; k <= K; k++) { // k people
+            for (int i = 1; i <= n; i++) {// read i books
+                int sum = 0;
+                dp[k % 2][i] = Integer.MAX_VALUE;
+                for (int j = i; j >= 0; j--) { // person k read from j -> i
+                    dp[k % 2][i] = Math.min(dp[k % 2][i], Math.max(dp[(k - 1) % 2][j], sum));
+                    if (j > 0) {
+                        sum += pages[j - 1];
+                    }
+                }
+            }
+        }
+
+        return dp[K % 2][n];
+    }
+}
 
 /*
 Thoughts:
@@ -107,59 +264,4 @@ public class Solution {
     }
 }
 
-/*
-Thoughts:
-Considering k people finishing i books.
-If last person read some books, then all the rest people just need to:
-k - 1 people to finish j books, and the kth person read [j, j + 1, ..., i-1] books
-
-Overall possible time spent is determined by the slowest person(bucket theory):
-Either dp[k - 1][j] or (pages[j] + pages[j + 1] + ... + pages[i - 1])
-= Max{dp[k - 1][j], pages[j] + pages[j + 1] + ... + pages[i - 1]}
-
-Of course we weant to minimize the overall time spent:
-take min of the above equation, where j = 0 ~ i
-
-dp[k][i]: time spent for k people to read i books.
-dp[k][i] = Min{Max{dp[k - 1][j] + sum(pages[j ~ i-1])}}, where j = 0 ~ i
-
-Return dp[k][i]
-
-init: dp[0][0] = 0;  time spent for 0 people copy 0 books
-
-*/
-public class Solution {
-    public int copyBooks(int[] pages, int K) {
-        if (pages == null || pages.length == 0) {
-            return 0;
-        }
-
-        int n = pages.length;
-        if (K > n) {
-            K = n;
-        }
-        int[][] dp = new int[K + 1][n + 1];
-
-        //dp[0][0~n] = Integer.MAX_VALUE; // 0 people read n books
-        dp[0][0] = 0; // 0 people read 0 book
-        for (int i = 1; i <= n; i++) {
-            dp[0][i] = Integer.MAX_VALUE;
-        }
-        
-        for (int k = 1; k <= K; k++) { // k people
-            for (int i = 1; i <= n; i++) {// read i books
-                int sum = 0;
-                dp[k][i] = Integer.MAX_VALUE;
-                for (int j = i; j >= 0; j--) { // person k read from j -> i
-                    dp[k][i] = Math.min(dp[k][i], Math.max(dp[k - 1][j], sum));
-                    if (j > 0) {
-                        sum += pages[j - 1];
-                    }
-                }
-            }
-        }
-
-        return dp[K][n];
-    }
-}
 ```

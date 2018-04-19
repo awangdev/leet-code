@@ -1,6 +1,7 @@
 Table of Contents
 =================
 
+   * [Table of Contents](#table-of-contents)
    * [Heap](#heap)
    * [Stack](#stack)
       * [Functions](#functions)
@@ -8,11 +9,15 @@ Table of Contents
       * [Monotonous Stack](#monotonous-stack)
       * [Expample](#expample)
    * [Queue](#queue)
+      * [Functions](#functions-1)
+      * [思想](#思想)
    * [Linked List](#linked-list)
    * [Tree](#tree)
+      * [Tree itself](#tree-itself)
+      * [Binary Tree](#binary-tree)
       * [Binary Search Tree](#binary-search-tree)
          * [TreeSet](#treeset)
-      * [Binary Tree](#binary-tree)
+      * [Binary Tree](#binary-tree-1)
       * [Binary Indexed Tree](#binary-indexed-tree)
       * [Segment Tree](#segment-tree)
    * [Union Find](#union-find)
@@ -42,9 +47,12 @@ Table of Contents
    * [Hash](#hash)
    * [Map](#map)
    * [Hash Table](#hash-table)
+      * [HashTable](#hashtable)
       * [HashSet](#hashset)
    * [Basics](#basics-1)
+      * [Sum, Presum](#sum-presum)
       * [Math](#math)
+         * [Math Functions](#math-functions)
       * [String](#string)
       * [Bit Manipulation](#bit-manipulation)
    * [DP](#dp)
@@ -58,13 +66,20 @@ Table of Contents
       * [基本原理](#基本原理)
       * [分类](#分类)
          * [网格坐标](#网格坐标)
+            * [特殊](#特殊)
          * [序列](#序列)
             * [特点](#特点)
+            * [性质](#性质)
+            * [特点](#特点-1)
             * [关键点](#关键点)
-            * [More](#more)
+            * [序列 状态](#序列状态)
          * [划分](#划分)
+            * [性质](#性质-1)
+            * [经验](#经验)
+            * [解决方法](#解决方法)
          * [区间类(range DP)](#区间类range-dp)
             * [三把斧](#三把斧)
+         * [Bitwise Operation DP](#bitwise-operation-dp)
          * [记忆化搜索 Memoization](#记忆化搜索-memoization)
       * [Minimax](#minimax)
       * [Optimization problems](#optimization-problems)
@@ -83,10 +98,16 @@ Table of Contents
       * [Divide and Conquer](#divide-and-conquer)
       * [Recursion](#recursion)
    * [Design](#design)
+   * [BigO](#bigo)
+      * [Specials](#specials)
    * [Data Structure](#data-structure)
    * [Problem Sets](#problem-sets)
+      * [permutation](#permutation)
+         * [原理](#原理)
+         * [Example](#example)
       * [Two Pointer](#two-pointer)
       * [Min/Max Heap](#minmax-heap)
+      * [回文串 Palindrome](#回文串-palindrome)
       * [Stack](#stack-1)
       * [Windows Problem](#windows-problem)
       * [Sweep Line](#sweep-line)
@@ -103,6 +124,7 @@ Table of Contents
 - 用来暂且保存有效信息
 - 翻转stack
 - stack优化DFS, 变成非递归
+- Stack can be implemented with LinkedList, adding/removing from same side of the list
 
 ## Monotonous Stack
 - 找每个元素左边或者右边 第一个比它自身小/大的元素
@@ -114,9 +136,13 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 
 # Queue
-- Functions: peek(), poll(), add()/offer(), remove(object)
+## Functions
+- peek(), poll(), add()/offer(), remove(object)
 - queue = new LinkedList<...>()
 - PriorityQueue: new Comparator 很重要
+- Queue 可以用 LinkedList 实现. Add from the last/end of the list; Return/remove from the head of the list. 
+
+## 思想
 - 看到Min/Max就要想到heap. 如果给出的数组没有排序, 先排序, 然后用heap. PrioirtyQueue是用Binary Heap做出来的
 - 看到median 想到heap
 
@@ -127,6 +153,15 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - Don't get mixed up with Java LinkedList. Here we are talking about linked list concept, not the Java data structure LinkedList
 
 # Tree
+## Tree itself
+- A simple version of graph
+- CAN NOT have cycle
+- Can have a list of children
+- 一般不会用Tree class 来实现tree, 一般都是用 TreeNode root as reference
+- leaf: very end, 没孩子
+
+## Binary Tree
+- 一定要问清楚, 是Binary Tree (双孩子而已), 还是 Binary Search Tree. 非常重要!!!
 
 ## Binary Search Tree
 - If BST not given, can use TreeSet
@@ -236,6 +271,8 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 # Array
 - Arrays.asList([1,2,3]);
+- Partial sort: Arrays.sort(arr, 0, arr.length())
+- Copy: Arrays.copyOf(arr, arr.length())
 
 # Two Pointers
 
@@ -263,6 +300,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 ## methods
 - Collections.sort()
+- Sort sub list: Collections.sort(list.subList(x, y)). [x, y), exclusive at index y.
 
 ## ArrayList
 - Integer[] array = {1, 2, 3};
@@ -435,6 +473,12 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 也可能是看dp[i] 前 i 个item的状态 [0, i - 1]
 - Example: Decode Ways
 
+#### 解决方法
+- 最后一步 => 考虑最后一段
+- 枚举最后一段的起点
+- 如果不指定段数, 用dp[i]表示前i个元素分段后的最值/可行性/ways. Perfect Squares, Palindrome Partition II
+- 入股指定段数, 用dp[i][j]表示前i个元素分成j段后的最值/可行性/ways. Copy Books
+
 
 
 ### 区间类(range DP)
@@ -510,13 +554,19 @@ Track queue size, use the queue as in rotation
 ## Divide and Conquer
 
 ## Recursion
+- Recursion 至少用O(n) space, n = depth of recursive call.
+- 所有recursive problem 都可以 interatively 解决, 但是有可能代码更复杂
 - ex: dfs
 - always find the entry point or terminating point
 - watch out for the return or result of recursed function
 
 # Design
 
-
+# BigO
+## Specials
+- logN Runtime: when space gets halved each time, it indicates runtime of O(logN)
+- Recursive Runtime: When the recursive call makes x branches, the runtime is likely to be O(x ^ N).  [it's not always]
+- Note: the base x of the recursive runtime DOES MATTER! 2^n is very different from 8^n = 2^3n
 
 # Data Structure
 - Union Find
@@ -528,8 +578,15 @@ Track queue size, use the queue as in rotation
 
 # Problem Sets
 
-## Permudation
+## permutation
+### 原理
+- Permutation的核心: 对于某一个index, 取, 或者不取
+- DFS的时候, 注意, 可能要从 index = 0 重新开始permutate
+- 用 boolean visited[] 来track, 上一轮visited过得index
+
+### Example
 - Find small string's permudation in large string: time O(n), using a HashSet of missingString: when the set.length == 0, that is a match of small string.
+
 
 ## Two Pointer
 

@@ -8,7 +8,7 @@ Table of Contents
 * [Bitwise DP (1)](#bitwise-dp-1)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
-* [String (21)](#string-21)
+* [String (22)](#string-22)
 * [Basic Implementation (2)](#basic-implementation-2)
 * [Math (13)](#math-13)
 * [DP (55)](#dp-55)
@@ -18,8 +18,8 @@ Table of Contents
 * [Design (8)](#design-8)
 * [DFS (28)](#dfs-28)
 * [Game Theory (4)](#game-theory-4)
-* [Hash Table (16)](#hash-table-16)
-* [Backtracking (10)](#backtracking-10)
+* [Hash Table (18)](#hash-table-18)
+* [Backtracking (11)](#backtracking-11)
 * [Bit Manipulation (9)](#bit-manipulation-9)
 * [Divide and Conquer (5)](#divide-and-conquer-5)
 * [Status DP (1)](#status-dp-1)
@@ -28,11 +28,13 @@ Table of Contents
 * [Tree (20)](#tree-20)
 * [Greedy (7)](#greedy-7)
 * [Trie (7)](#trie-7)
+* [Hash Map (1)](#hash-map-1)
 * [Coordinate DP (10)](#coordinate-dp-10)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [BST (16)](#bst-16)
+* [Permutation (1)](#permutation-1)
 * [Binary Tree (2)](#binary-tree-2)
-* [Partition DP (2)](#partition-dp-2)
+* [Partition DP (3)](#partition-dp-3)
 * [Binary Search (24)](#binary-search-24)
 * [Heap (6)](#heap-6)
 * [Interval DP (1)](#interval-dp-1)
@@ -871,7 +873,7 @@ Time: O(nLogN)
  
  
  
-## String (21)
+## String (22)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -1192,6 +1194,29 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
+
+
+
+
+---
+
+**21. [Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)**      Level: Medium
+      
+
+给一串string, return list of list, 把anagram 放在一起.
+
+#### Hash Map, key 是 character frequency
+- 存anagram
+- 用 character frequency 来做unique key
+- 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
+- 因为每个位子上的frequency的变化，就能构建一个unique的string
+- O(nk), k = max word length
+
+
+#### Hash Map, key 是 sorted string
+- 和check anagram 想法一样：转化并sort char array，用来作为key。
+- 把所有anagram 存在一起。注意结尾Collections.sort().
+- O(NKlog(K)), N = string[] length, k = longest word length    
 
 
 
@@ -1693,16 +1718,38 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 **11. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
       
 
-#### 方法1: Binary Search
+#### Partition DP
+- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时
+- 最后需要求出 dp[k][n]. 开: int[k+1][n+1]
+- 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
+- 木桶原理, 因为K个人公式开始, 最坏的情况决定结果
+- dp[k][n] = Math.max(dp[k - 1][j], sum[j+1, n-1])
+- Time: O(kn^2), space O(nk)
+
+##### Init
+- Init: dp[0][0] = 0, 0个人0本书
+- Integer.MAX_VALUE的运用:
+- 当 k = 1, i = 1, 表达式: dp[k][i] = Math.min(dp[k][i], Math.max(dp[k - 1][j], sum));
+- 唯一可行的情况就只有一种: k=0,i=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
+- 其他情况,  k = 0, i = 1, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
+- 当 k=0, i=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[k][i]
+- 这道题的init是非常重要而tricky的
+
+##### 计算顺序
+- k个人, 需要一个for loop; 
+- k个人, 从copy1本书开始, 2, 3, ... n-1,所以 i=[1, n], 需要第二个for loop
+- 在每一个i上, 切割的方式可以有[0 ~ i] 中, 我们要计算每一种的worst time
+
+##### 滚动数组
+- [k] 只有和 [k - 1] 相关
+- Space: O(n)
+
+#### Binary Search
 - 根据: 每个人花的多少时间(time)来做binary search: 每个人花多久时间, 可以在K个人之内, 用最少的时间完成?
 - time variable的范围不是index, 也不是page大小. 而是[minPage, pageSum]
 - validation 的时候注意3种情况: 人够用 k>=0, 人不够所以结尾减成k<0, 还有一种是time(每个人最多花的时间)小于当下的页面, return -1
 - O(nLogM). n = pages.length; m = sum of pages.
 
-#### 方法2: DP
-k个人copy完i本书.
-定义Integer.MAX_VALUE的地方需要注意.
-Review: 为什么有i level的iteration? Chapter4.1
 
 
 
@@ -3933,8 +3980,20 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (16)
-**0. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
+## Hash Table (18)
+**0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
+      
+1524017454
+
+给J 和 S两个string. J里的character是unique 的珠宝, S 里面的character包含珠宝和石头. 找S里面有多少珠宝
+
+#### Basic HashSet
+
+
+
+---
+
+**1. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy
       
 
 比较简单, 用HashMap 存index list. 最后再遍历一遍数组A, 列举出所有元素.
@@ -3944,7 +4003,7 @@ O(n)
 
 ---
 
-**1. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy
+**2. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy
       
 
 最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
@@ -3961,7 +4020,7 @@ O(n)
 
 ---
 
-**2. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy
+**3. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy
       
 
 方法1: 按照题意, 找到第一个 first index == last index的字母.
@@ -3972,7 +4031,7 @@ O(n)
 
 ---
 
-**3. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium
+**4. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium
       
 
 其实想到了切入点, 是个可难可简单的题目. 这里的encode就是想办法把url存起来, 然后给个 key.
@@ -3982,7 +4041,7 @@ O(n)
 
 ---
 
-**4. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy
+**5. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy
       
 
 tutorial:https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be
@@ -3999,7 +4058,7 @@ O(n) space, O(nlogn) time.
 
 ---
 
-**5. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium
+**6. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium
       
 
 方法1：  
@@ -4017,7 +4076,7 @@ O(n) space, O(nlogn) time.
 
 ---
 
-**6. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
+**7. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy
       
 
 方法1:
@@ -4031,7 +4090,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 ---
 
-**7. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy
+**8. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy
       
 
 HashMap
@@ -4040,7 +4099,7 @@ HashMap
 
 ---
 
-**8. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium
+**9. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium
       
 
 方法1:
@@ -4067,7 +4126,7 @@ Previous verison of two pointers:
 
 ---
 
-**9. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard
+**10. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard
       
 
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
@@ -4079,7 +4138,7 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 ---
 
-**10. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium
+**11. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium
       
 
 大清洗 O(nk)   
@@ -4091,7 +4150,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 ---
 
-**11. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
+**12. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard
       
 
 Obvious的做法是全部试一遍, 判断, 变成 O(n^2) * O(m) = O(mn^2). O(m): isPalindrome() time.
@@ -4121,7 +4180,7 @@ O(mn)
 
 ---
 
-**12. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
+**13. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
 #### 方法1: monotonous stack
@@ -4140,7 +4199,7 @@ Coordinate DP?
 
 ---
 
-**13. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
+**14. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
       
 
 Inorder traverse Binary Tree
@@ -4168,7 +4227,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 ---
 
-**14. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
+**15. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy
       
 
 无序数组, 找是否有重复element, return true/false.
@@ -4185,7 +4244,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 ---
 
-**15. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
+**16. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy
       
 
 Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个element的index i,j 的大小最多相差k.
@@ -4212,13 +4271,30 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
+**17. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy
+      
+
+跟 Permutation in String 很像. 给短string p， 长string s.
+
+找所有p的 anagram (permutation) 在s 里面的起始index.
+
+#### HashTable
+- count character apperance 就想到hashtable
+- 注意countS, countP 的技巧: 作比较只需要O(26)
+- Overall timeO(n)
+- 小心不要用一个int[] count 来技术 查0, 复杂度是O(n)
+
+
+
+---
+
 
 
 
  
  
  
-## Backtracking (10)
+## Backtracking (11)
 **0. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
 
@@ -4407,6 +4483,46 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 - 注意: isPalin[i][j] 是 inclusive的, 所以用的时候要认准坐标
 - Overall Space O(n^2): 存 isPlain[][]
 - Time O(n!), 每一层的for loop spawn n * (n - 1) * (n - 2)
+
+
+
+---
+
+**10. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium
+      
+
+给一串数组, 找出所有permutation数组. 注意: 给出的nums里面有重复数字, 而permutation的结果需要无重复.
+
+#### Backtracking
+- 排序, 
+- Mark visited. 通过permutation规律查看是否排出了重复结果
+- 并且要检查上一层recursive时有没有略过重复element
+- time O(n!)
+
+##### 背景1
+- 在recursive call里面有for loop, 每次从i=0开始, 试着在当下list上加上nums里面的每一个。    
+- 从i=0开始，所以会依次recursive每一个nums：
+- 因此，例如i=2,肯定比i=3先被访问。也就是:取i=2的那个list permutation肯定先排出来。   
+
+##### 背景2
+- 重复的例子：给出Input[x, y1, y2], 假设y的值是一样的。那么，{x,y1,y2}和{x,y2,y1}是相同结果。
+
+##### Note
+- 综上，y1肯定比y2先被访问,{x,y1,y2}先出。 紧随其后，在另一个recursive循环里，{x,y2...}y2被先访问，跳过了y1。    
+- 重点:规律在此，如果跳过y1，也就是visited[y1] == false, 而num[y2] == num[y1]，那么这就是一个重复的结果，没必要做，越过。
+- 结果:那么，我们需要input像{x,y1,y2}这样数值放一起，那么必须排序。
+
+#### Non-recursive, manuall swap
+- Idea from: https://www.sigmainfy.com/blog/leetcode-permutations-i-and-ii.html
+- 用到 sublist sort
+- 用 swap function, 在原数组上调节出来新的permutation
+- 注意: 每次拿到新的candidate, 都要把没有permutate的数位sort, 然后再开始swap.
+- 这是为了确保, [j]和[j-1]在重复时候, 不用重新记录.
+
+#### Queue
+- 给一个visited queue
+- 和queue在所有的地方一同populate. 
+- 然后visited里面存得时visited indexes。 (Not efficient code. check again)
 
 
 
@@ -5742,6 +5858,36 @@ TODO
  
  
  
+## Hash Map (1)
+**0. [Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)**      Level: Medium
+      
+
+给一串string, return list of list, 把anagram 放在一起.
+
+#### Hash Map, key 是 character frequency
+- 存anagram
+- 用 character frequency 来做unique key
+- 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
+- 因为每个位子上的frequency的变化，就能构建一个unique的string
+- O(nk), k = max word length
+
+
+#### Hash Map, key 是 sorted string
+- 和check anagram 想法一样：转化并sort char array，用来作为key。
+- 把所有anagram 存在一起。注意结尾Collections.sort().
+- O(NKlog(K)), N = string[] length, k = longest word length    
+
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Coordinate DP (10)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
@@ -6242,6 +6388,35 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
  
  
  
+## Permutation (1)
+**0. [Shuffle an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Shuffle%20an%20Array.java)**      Level: Medium
+      
+
+像shuffle music 一样, 做一套shuffle array的functions: 
+
+shuffle() 给出random的permutation
+
+reset() 给出最初的nums
+
+#### Permutation
+- Permutation 实际上就是在list/array/... 上面给元素换位置
+- 硬换位置, 每次换的位置不同, 用random来找到要换的index
+- 维持同一个random seed
+- O(n)
+
+##### Note
+- compute all permutations 太慢, 不可行.
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Binary Tree (2)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
       
@@ -6279,8 +6454,48 @@ Recursive:分叉. dfs.
  
  
  
-## Partition DP (2)
-**0. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium
+## Partition DP (3)
+**0. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
+      
+
+#### Partition DP
+- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时
+- 最后需要求出 dp[k][n]. 开: int[k+1][n+1]
+- 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
+- 木桶原理, 因为K个人公式开始, 最坏的情况决定结果
+- dp[k][n] = Math.max(dp[k - 1][j], sum[j+1, n-1])
+- Time: O(kn^2), space O(nk)
+
+##### Init
+- Init: dp[0][0] = 0, 0个人0本书
+- Integer.MAX_VALUE的运用:
+- 当 k = 1, i = 1, 表达式: dp[k][i] = Math.min(dp[k][i], Math.max(dp[k - 1][j], sum));
+- 唯一可行的情况就只有一种: k=0,i=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
+- 其他情况,  k = 0, i = 1, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
+- 当 k=0, i=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[k][i]
+- 这道题的init是非常重要而tricky的
+
+##### 计算顺序
+- k个人, 需要一个for loop; 
+- k个人, 从copy1本书开始, 2, 3, ... n-1,所以 i=[1, n], 需要第二个for loop
+- 在每一个i上, 切割的方式可以有[0 ~ i] 中, 我们要计算每一种的worst time
+
+##### 滚动数组
+- [k] 只有和 [k - 1] 相关
+- Space: O(n)
+
+#### Binary Search
+- 根据: 每个人花的多少时间(time)来做binary search: 每个人花多久时间, 可以在K个人之内, 用最少的时间完成?
+- time variable的范围不是index, 也不是page大小. 而是[minPage, pageSum]
+- validation 的时候注意3种情况: 人够用 k>=0, 人不够所以结尾减成k<0, 还有一种是time(每个人最多花的时间)小于当下的页面, return -1
+- O(nLogM). n = pages.length; m = sum of pages.
+
+
+
+
+---
+
+**1. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -6296,7 +6511,7 @@ Recursive:分叉. dfs.
 
 ---
 
-**1. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
+**2. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
       
 
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
@@ -6406,16 +6621,38 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 **4. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
       
 
-#### 方法1: Binary Search
+#### Partition DP
+- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时
+- 最后需要求出 dp[k][n]. 开: int[k+1][n+1]
+- 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
+- 木桶原理, 因为K个人公式开始, 最坏的情况决定结果
+- dp[k][n] = Math.max(dp[k - 1][j], sum[j+1, n-1])
+- Time: O(kn^2), space O(nk)
+
+##### Init
+- Init: dp[0][0] = 0, 0个人0本书
+- Integer.MAX_VALUE的运用:
+- 当 k = 1, i = 1, 表达式: dp[k][i] = Math.min(dp[k][i], Math.max(dp[k - 1][j], sum));
+- 唯一可行的情况就只有一种: k=0,i=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
+- 其他情况,  k = 0, i = 1, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
+- 当 k=0, i=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[k][i]
+- 这道题的init是非常重要而tricky的
+
+##### 计算顺序
+- k个人, 需要一个for loop; 
+- k个人, 从copy1本书开始, 2, 3, ... n-1,所以 i=[1, n], 需要第二个for loop
+- 在每一个i上, 切割的方式可以有[0 ~ i] 中, 我们要计算每一种的worst time
+
+##### 滚动数组
+- [k] 只有和 [k - 1] 相关
+- Space: O(n)
+
+#### Binary Search
 - 根据: 每个人花的多少时间(time)来做binary search: 每个人花多久时间, 可以在K个人之内, 用最少的时间完成?
 - time variable的范围不是index, 也不是page大小. 而是[minPage, pageSum]
 - validation 的时候注意3种情况: 人够用 k>=0, 人不够所以结尾减成k<0, 还有一种是time(每个人最多花的时间)小于当下的页面, return -1
 - O(nLogM). n = pages.length; m = sum of pages.
 
-#### 方法2: DP
-k个人copy完i本书.
-定义Integer.MAX_VALUE的地方需要注意.
-Review: 为什么有i level的iteration? Chapter4.1
 
 
 

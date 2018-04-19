@@ -1,7 +1,7 @@
  
  
  
-## String (21)
+## String (22)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -322,6 +322,29 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
+
+
+
+
+---
+
+**21. [Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)**      Level: Medium
+      
+
+给一串string, return list of list, 把anagram 放在一起.
+
+#### Hash Map, key 是 character frequency
+- 存anagram
+- 用 character frequency 来做unique key
+- 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
+- 因为每个位子上的frequency的变化，就能构建一个unique的string
+- O(nk), k = max word length
+
+
+#### Hash Map, key 是 sorted string
+- 和check anagram 想法一样：转化并sort char array，用来作为key。
+- 把所有anagram 存在一起。注意结尾Collections.sort().
+- O(NKlog(K)), N = string[] length, k = longest word length    
 
 
 
