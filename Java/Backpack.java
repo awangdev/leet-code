@@ -1,27 +1,39 @@
 M
-1517903196
-tags: DP
+1524200994
+tags: DP, Backpack DP
 
-考虑: 用i个item (可跳过地取), 是否能装到weight w?
-需要从'可能性'的角度考虑, 不要搞成单一的最大值问题.
+给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
 
-1. 背包可装的物品大小和总承重有关.
-2. 不要去找dp[i]前i个物品的最大总重, 找的不是这个. 
+#### Backpack DP 1
+- 简单直白的思考 dp[i][m]: 前i本书, 背包大小为M的时候, 最多能装多种的书?
+- **注意**: 背包问题, 重量weight一定要是一维.
+- dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - A[i - 1]] + A[i - 1]);
+- 每一步都track 最大值
+- 最后return dp[n][m]
+- 时间空间  O(mn)
+- Rolling array, 空间O(m)
+
+#### Backpack DP 2
+- true/false求解, 稍微曲线救国: 重点是, 最后, 按照weight从大到小遍历, 第一个遇到true的, index就是最大值.  
+- 考虑: 用i个item (可跳过地取), 是否能装到weight w?
+- 需要从'可能性'的角度考虑, 不要搞成单一的最大值问题.
+- 1. 背包可装的物品大小和总承重有关.
+- 2. 不要去找dp[i]前i个物品的最大总重, 找的不是这个. 
     dp[i]及时找到可放的最大sum, 但是i+1可能有更好的值, 把dp[i+1]变得更大更合适.
 
-boolean[][] dp[i][j]表示: 有前i个item, 用他们可否组成size为j的背包? true/false.
-(反过来考虑了，不是想是否超过size j, 而是考虑是否能拼出exact size == j)
-**注意**: 虽然dp里面一直存在i的位置, 实际上考虑的是在i位置的时候, 看前i-1个item.
+##### 做法
+- boolean[][] dp[i][j]表示: 有前i个item, 用他们可否组成size为j的背包? true/false.
+- (反过来考虑了，不是想是否超过size j, 而是考虑是否能拼出exact size == j)
+- **注意**: 虽然dp里面一直存在i的位置, 实际上考虑的是在i位置的时候, 看前i-1个item.
 
-多项式规律:
-1. picked A[i-1]: 就是A[i-1]被用过, weight j 应该减去A[i-1]. 那么dp[i][j]就取决于dp[i-1][j-A[i-1]]的结果.
-2. did not pick A[i-1]: 那就是说, 没用过A[i-1], 那么dp[i][j]就取决于上一行d[i-1][j]
-dp[i][j] = dp[i - 1][j] || dp[i - 1][j - A[i - 1]]
+##### 多项式规律
+- 1. picked A[i-1]: 就是A[i-1]被用过, weight j 应该减去A[i-1]. 那么dp[i][j]就取决于dp[i-1][j-A[i-1]]的结果.
+- 2. did not pick A[i-1]: 那就是说, 没用过A[i-1], 那么dp[i][j]就取决于上一行d[i-1][j]
+- dp[i][j] = dp[i - 1][j] || dp[i - 1][j - A[i - 1]]
 
-结尾:
-跑一遍dp 最下面一个row. 从末尾开始找, 最末尾的一个j (能让dp[i][j] == true)的, 就是最多能装的大小 :)   
-
-时间，空间都是：O(mn)
+##### 结尾
+- 跑一遍dp 最下面一个row. 从末尾开始找, 最末尾的一个j (能让dp[i][j] == true)的, 就是最多能装的大小 :)   
+- 时间，空间都是：O(mn)
 
 
 ```
@@ -49,6 +61,66 @@ LintCode Copyright Dynamic Programming Backpack
 
 
 */
+
+/*
+Thoughts:
+Backpack problem, always consider a dimension with weight/size.
+int dp[i][j]: with i items and backpack size/weight-limit of j, what's max weight can we put in?
+
+dp[i][j] depends on last item's size && what's the state with [i-1] items.
+
+dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - A[i - 1]] + A[i - 1]);
+
+dp[0][0] = 0; no book, 0 weight limit
+dp[0][j] = 0; no book, can't fill bag
+dp[i][0] = 0; i books, but weight-limit = 0, can't fill
+*/
+public class Solution {
+    public int backPack(int m, int[] A) {
+    	if (A == null || A.length < 0) {
+    	    return 0;
+    	}
+    	int n = A.length;
+    	int[][] dp = new int[n + 1][m + 1];
+    	
+    	// Calculcate possibility for i items to fill up w weight
+    	for (int i = 1; i <= n; i++) {
+    	    for (int j = 0; j <= m; j++) {
+    	        // default: item(i-1) not used:
+    	        dp[i][j] = dp[i - 1][j];
+    	        if (j - A[i - 1] >= 0) { // possible to use item(i-1)
+    	            dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - A[i - 1]] + A[i - 1]); // use item(i-1)
+    	        }
+    	    }
+    	}
+    	
+    	return dp[n][m];
+    }
+}
+
+// Rolling array
+public class Solution {
+    public int backPack(int m, int[] A) {
+    	if (A == null || A.length < 0) {
+    	    return 0;
+    	}
+    	int n = A.length;
+    	int[][] dp = new int[2][m + 1];
+    	
+    	// Calculcate possibility for i items to fill up w weight
+    	for (int i = 1; i <= n; i++) {
+    	    for (int j = 0; j <= m; j++) {
+    	        // default: item(i-1) not used:
+    	        dp[i % 2][j] = dp[(i - 1) % 2][j];
+    	        if (j - A[i - 1] >= 0) { // possible to use item(i-1)
+    	            dp[i % 2][j] = Math.max(dp[i % 2][j], dp[(i - 1) % 2][j - A[i - 1]] + A[i - 1]); // use item(i-1)
+    	        }
+    	    }
+    	}
+    	return dp[n % 2][m];
+    }
+}
+
 /*
 Thoughts:
 DO NOT try to find the maxSum using given values: this approach f[i] only returns max sum, 

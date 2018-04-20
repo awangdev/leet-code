@@ -479,6 +479,26 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 如果不指定段数, 用dp[i]表示前i个元素分段后的最值/可行性/ways. Perfect Squares, Palindrome Partition II
 - 入股指定段数, 用dp[i][j]表示前i个元素分成j段后的最值/可行性/ways. Copy Books
 
+### 博弈类
+- 常常问: 先手必胜的情况
+- 通常从第一步分析, 从简单的来分析
+- 必胜: 在当下局面走出一步, 让对手无路可逃. 只要对手有一种输的可能, 就是我必胜.
+
+### 背包类
+
+#### 多种问法
+- 填一个什么包, 有一个条件, 重量不超过M
+- 不撑爆背包的前提下:
+- 装下最多重量物品
+- 装下最大价值的物品
+- 有多少种方式带走满满一书包物品
+
+#### 方法策略 
+- 还有几个物品
+- 还剩多少跟**总承重**有关
+- 用总承重M的大小来开数组. 
+- 不管几维数组, 总有一维是总承重M
+- 比如: dp[i][w] = 能否用前i个物品, 拼出重量W (true/false)
 
 
 ### 区间类(range DP)
@@ -559,6 +579,10 @@ Track queue size, use the queue as in rotation
 - ex: dfs
 - always find the entry point or terminating point
 - watch out for the return or result of recursed function
+
+### 特征
+- "compute nth ...", "list the first n ...", "compute all ..." 常常是recursive solution.
+- space inefficient. 占用空间, at least O(n)
 
 # Design
 

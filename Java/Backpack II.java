@@ -1,16 +1,17 @@
 M
-1518497606
-tags: DP
+1524202756
+tags: DP, Backpack DP
 
-做了Backpack I, 这个就如出一辙, 只不过: dp存的不是w可否存成功true/false. dp存的是加上sum value的最大值.
-想法还是，选了A[i - 1] 或者没选A[i - 1]时候不同的value值.
+#### Backpack DP
+- 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是max weight, 而是 value的最大值.
+- 想法还是，选了A[i - 1] 或者没选A[i - 1]时候不同的value值.
+- 时间空间O(mn)
+- Rolling Array, 空间O(m)
 
-O(m)的做法:   
-想想，的确我们只care 最后一行，所以一个存value的就够了.
-注意：和bakcpackI的 O(m)一样的，j是倒序的。如果没有更好的j，就不要更新。就是这个道理.
-
-注意: 如果无法达到的w, 应该mark as impossible. 一种简单做法是mark as -1 in dp. 
-如果有负数value, 就不能这样, 而是要开一个can[i][w]数组, 也就是backpack I 的原型.
+#### Previous DP Solution
+- 如果无法达到的w, 应该mark as impossible. 一种简单做法是mark as -1 in dp. 
+- 如果有负数value, 就不能这样, 而是要开一个can[i][w]数组, 也就是backpack I 的原型.
+- 这样做似乎要多一些代码, 好像并不是非常需要
 
 
 ```
@@ -32,6 +33,57 @@ O(n x m) memory is acceptable, can you do it in O(m) memory?
 Tags Expand 
 LintCode Copyright Dynamic Programming Backpack
 */
+
+/**
+Thoughts:
+dp[i][j]: 前i item, 放进weight/size = j 的袋子里的最大value.
+constraint: weight
+result: aggregate item value
+ */
+public class Solution {
+    public int backPackII(int m, int[] A, int V[]) {
+        if (A == null || V == null || A.length != V.length) {
+            return 0;
+        }
+        int n = A.length;
+        int[][] dp = new int[n + 1][m + 1];
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j - A[i - 1] >= 0) {
+                   dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - A[i - 1]] + V[i - 1]); 
+                }
+                
+            }
+        }
+        
+        return dp[n][m];
+    }
+}
+
+// Rolling array:
+public class Solution {
+    public int backPackII(int m, int[] A, int V[]) {
+        if (A == null || V == null || A.length != V.length) {
+            return 0;
+        }
+        int n = A.length;
+        int[][] dp = new int[2][m + 1];
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+                dp[i % 2][j] = dp[(i - 1) % 2][j];
+                if (j - A[i - 1] >= 0) {
+                   dp[i % 2][j] = Math.max(dp[i % 2][j], dp[(i - 1) % 2][j - A[i - 1]] + V[i - 1]); 
+                }
+                
+            }
+        }
+        
+        return dp[n % 2][m];
+    }
+}
 
 /*
 Thoughts:

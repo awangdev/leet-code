@@ -1,25 +1,63 @@
  
  
  
-## Partition DP (3)
-**0. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
+## Partition DP (4)
+**0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
+给一个数字n, 找到这个数字 最少能用多少个 平方数组成. 
+
+平方数比如: 1, 4, 9, 16 ... etc
+
 #### Partition DP
-- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时
-- 最后需要求出 dp[k][n]. 开: int[k+1][n+1]
+- 遇到最值, 想到DP.
+- 看到分割字眼, 想到分割型 DP. 
+- 考虑最后的数字: 要是12割个1出来, 剩下11怎么考虑? 割个4出来,剩下8怎么考虑?
+- partion的方式: 在考虑dp[i - x]的时候,  x 不是1, 而是 x = j*j.
+- 就变成了dp = Min{dp[i - j^2] + 1}
+
+#### 时间复杂度
+- 乍一看是O(n*sqrt(n)). 实际也是. 但如何推导?
+- 考虑上限: 把小的数字变成大的 推导上限; 考虑下限: 把数字整合归小, 找到下限.
+- 考虑sqrt(1) + sqrt(2) + ....sqrt(n):找这个的upper bound and lower bound.
+- 最后发现它的两边是 A*n*sqrt(n) <= actual time complexity <= B*n*sqrt(n)
+- 那么就是O(n*sqrt(n))啦
+
+#### Previous Notes
+- 一开始没clue.看了一下提示
+- １.　第一步想到了，从数学角度，可能是从最大的perfect square number开始算起。
+- ２.　然后想法到了dp， 假设最后一步用了最大的maxSqrNum, 那么就在剩下的 dp[i - maxSqrNum^2] +１　不就好了？
+- ３.　做了，发现有个问题．．．最后一步选不选maxSqrNum?  比如12就是个例子。
+- 然后就根据提示，想到BFS。顺的。 把1～maxSqrNum 都试一试。找个最小的。
+- 看我把12拆分的那个example. 那很形象的就是BFS了。
+- 面试时候，如果拆分到这个阶段不确定，那跟面试官陶瓷一下，说不定也就提示BFS了。
+
+
+
+---
+
+**1. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
+      
+
+给一串书pages[i], k个人, pages[i] 代表每本书的页数. k个人从不同的点同时开始抄书. 
+
+问, 最快什么时候可以抄完?
+
+#### Partition DP
+- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成, n本书, 让k个人来copy, 也就是分割成k段.
+- 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
-- 木桶原理, 因为K个人公式开始, 最坏的情况决定结果
-- dp[k][n] = Math.max(dp[k - 1][j], sum[j+1, n-1])
+- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
+- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
 - Time: O(kn^2), space O(nk)
 
 ##### Init
 - Init: dp[0][0] = 0, 0个人0本书
 - Integer.MAX_VALUE的运用:
-- 当 k = 1, i = 1, 表达式: dp[k][i] = Math.min(dp[k][i], Math.max(dp[k - 1][j], sum));
-- 唯一可行的情况就只有一种: k=0,i=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
-- 其他情况,  k = 0, i = 1, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
-- 当 k=0, i=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[k][i]
+- 当 i = 1, k = 1, 表达式: dp[i][k] = Math.min(dp[i][k], Math.max(dp[j][k - 1], sum));
+- 唯一可行的情况就只有一种: i=0, k=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
+- 其他情况, i = 1, k = 0, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
+- 当 i=0, k=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[i][k]
 - 这道题的init是非常重要而tricky的
 
 ##### 计算顺序
@@ -42,7 +80,7 @@
 
 ---
 
-**1. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium
+**2. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -58,7 +96,7 @@
 
 ---
 
-**2. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
+**3. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
       
 
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome

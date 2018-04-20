@@ -1,6 +1,6 @@
 M
 1518159874
-tags: Math, DP, BFS, Partion DP
+tags: Math, DP, BFS, Partition DP
 
 给一个数字n, 找到这个数字 最少能用多少个 平方数组成. 
 

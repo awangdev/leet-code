@@ -2,6 +2,10 @@ H
 1518424818
 tags: DP, Binary Search, Partition DP
 
+给一串书pages[i], k个人, pages[i] 代表每本书的页数. k个人从不同的点同时开始抄书. 
+
+问, 最快什么时候可以抄完?
+
 #### Partition DP
 - 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成, n本书, 让k个人来copy, 也就是分割成k段.
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 

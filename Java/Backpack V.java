@@ -1,31 +1,22 @@
 M
-1518416934
-tags: DP
+1524205822
+tags: DP, Backpack DP
 
-与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
+#### Backpack DP
+- 与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
+- 对于末尾, 还是两种情况:
+- 1. i-1位置没有加bag
+- 2. i-1位置加了bag
+- 两种情况可以fill满w的情况加起来, 就是我们要的结果.
+- 如常: dp[n + 1][w + 1]
+- Space, time: O(MN)
+- Rolling array, 空间优化, 滚动数组. Space: O(M)
 
-对于末尾, 还是两种情况:
-1. i-1位置没有加bag
-2. i-1位置加了bag
-
-两种情况可以fill满w的情况加起来, 就是我们要的结果.
-
-如常: dp[n + 1][w + 1]
-
-方法1:
-Space: O(MN)
-Time: O(MN)
-
-方法2:
-空间优化, 滚动数组
-Space: O(M) * 2 = O(M)
-Time: O(MN)
-
-方法3:
-降维打击, 终极优化: 分析row(i-1)的规律, 发现所有row(i)的值, 都跟row(i-1)的左边element相关, 而右边element是没用的.
-所以可以被override.
-Space: O(M), 真*一维啊!
-Time: O(MN)
+#### 降维打击, 终极优化
+- 分析row(i-1)的规律, 发现所有row(i)的值, 都跟row(i-1)的左边element相关, 而右边element是没用的.
+- 所以可以被override.
+- Space: O(M), 真*一维啊!
+- Time: O(MN)
 
 ```
 /*

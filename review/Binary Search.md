@@ -77,21 +77,25 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 **4. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard
       
 
+给一串书pages[i], k个人, pages[i] 代表每本书的页数. k个人从不同的点同时开始抄书. 
+
+问, 最快什么时候可以抄完?
+
 #### Partition DP
-- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时
-- 最后需要求出 dp[k][n]. 开: int[k+1][n+1]
+- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成, n本书, 让k个人来copy, 也就是分割成k段.
+- 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
-- 木桶原理, 因为K个人公式开始, 最坏的情况决定结果
-- dp[k][n] = Math.max(dp[k - 1][j], sum[j+1, n-1])
+- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
+- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
 - Time: O(kn^2), space O(nk)
 
 ##### Init
 - Init: dp[0][0] = 0, 0个人0本书
 - Integer.MAX_VALUE的运用:
-- 当 k = 1, i = 1, 表达式: dp[k][i] = Math.min(dp[k][i], Math.max(dp[k - 1][j], sum));
-- 唯一可行的情况就只有一种: k=0,i=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
-- 其他情况,  k = 0, i = 1, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
-- 当 k=0, i=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[k][i]
+- 当 i = 1, k = 1, 表达式: dp[i][k] = Math.min(dp[i][k], Math.max(dp[j][k - 1], sum));
+- 唯一可行的情况就只有一种: i=0, k=0, 刚好 0 个人 copy 0 本书, dp[0][0] = 0.
+- 其他情况, i = 1, k = 0, 0 个人读 1本书, 不可能发生: 所以用Integer.MAX_VALUE来冲破 Math.max, 维持荒谬值.
+- 当 i=0, k=0 的情况被讨论时候, 上面的方程式才会按照实际情况计算出 dp[i][k]
 - 这道题的init是非常重要而tricky的
 
 ##### 计算顺序
