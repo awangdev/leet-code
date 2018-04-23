@@ -346,6 +346,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - s.toCharArray()
 - String.valueOf(charArrary)
 - sb = new StringBuffer()
+- sb.replace(i, j, "replacement string")
 - sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length(), sb.setCharAt(index, char)
 - Character.isDigit(x)
 - 遇到找string的相关问题: 考虑string的重复性
@@ -482,7 +483,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 ### 博弈类
 - 常常问: 先手必胜的情况
 - 通常从第一步分析, 从简单的来分析
-- 必胜: 在当下局面走出一步, 让对手无路可逃. 只要对手有一种输的可能, 就是我必胜.
+- 必胜: 在当下局面走出一步, 让对手无路可逃. 只要对手有一种必败的路线, 就是我必胜.
 
 ### 背包类
 

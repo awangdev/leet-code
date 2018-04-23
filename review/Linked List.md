@@ -1,7 +1,7 @@
  
  
  
-## Linked List (7)
+## Linked List (8)
 **0. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
       
 
@@ -124,6 +124,19 @@ pre -> A -> B -> C -> ...
 用dummy = pre作为head前一格.
 用 `pre.next == null && pre.next.next` 来check是否为NULL.
 pre.next.next 保证了至少有一次swap.
+
+
+
+---
+
+**7. [Delete Node in a Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20a%20Linked%20List.java)**      Level: Easy
+      
+
+Given Singlely linked list, 删除一个任意node (不能是head node)
+
+#### Basic
+- update node.val
+- Link curr.next to curr.next.next
 
 
 

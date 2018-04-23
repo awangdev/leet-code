@@ -1,14 +1,25 @@
 E
+1524458579
+tags: String
 
-这个题目是很寂寞的. 2 pointer可以做, 在网上又搜了一下，貌似可以有很多牛逼的优化，我暂时还没去看。
-很郁闷的就是条件不明，原来只需要从'++'转到'--'的情况，反过来没必要关注...搞了我半天啊
+#### String
+- 可以用 sb.replace(i, j, "replacement string")
+- 简单按 window=2 来扫描
+- 原来只需要从'++'转到'--'的情况
+- O(n)
+
 ```
 /*
-You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move and therefore the other person will be the winner.
+You are playing the following Flip Game with your friend: 
+Given a string that contains only these two characters: + and -, 
+you and your friend take turns to flip two consecutive "++" into "--". 
+The game ends when a person can no longer make a move and 
+therefore the other person will be the winner.
 
 Write a function to compute all possible states of the string after one valid move.
 
-For example, given s = "++++", after one move, it may become one of the following states:
+For example, given s = "++++", after one move, 
+it may become one of the following states:
 
 [
   "--++",
@@ -16,6 +27,26 @@ For example, given s = "++++", after one move, it may become one of the followin
   "++--"
 ]
 */
+
+// 99.83
+class Solution {
+    public List<String> generatePossibleNextMoves(String s) {
+        List<String> rst = new ArrayList<>();
+        if (s == null || s.length() < 2) {
+            return rst;
+        }
+        StringBuffer sb = new StringBuffer(s);
+        for (int i = 0; i < s.length() - 1; i++) {
+            String str = s.substring(i, i + 2);
+            if (str.equals("++")) {
+                sb.replace(i, i + 2, "--");
+                rst.add(sb.toString());
+                sb.replace(i, i + 2, "++");
+            }
+        }
+        return rst;
+    }
+}
 
 // 12.06.2015, slower than the previous one 
 public class Solution {

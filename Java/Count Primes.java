@@ -1,15 +1,19 @@
 E
+1524450592
+tags: Hash Table, Math
 
-什么是prime number: >=2的没有除自己和1以外公约数的数。   
+计数: 所有小于n的prime number.
 
-还有另外一个定义方法!!    
-这个n,有没有小于n的一个i,而达到： i*i + # of i = n. 如果有，那就不是 prime。     
+#### prime number定义
+- >=2的没有除自己和1以外公约数的数。   
+- 还有另外一个定义方法: 这个n,有没有小于n的一个i, 而达到： i * i + # of i = n. 如果有，那就不是 prime   
 
-方法很牛逼也很数学。没做的时候可能想不到。做了之后就觉得，哎，我去，有道理啊。   
-简而言之：简历一个boolean长条，存isPrime[]。 然后从i=2， 全部变true.    
-然后利用这个因子的性质，非prime满足条件： self*self, self * self + self ... etc.     
-所以就check每一个j, j+i, j+i+i, 然后把所有non-prime全部mark成false.     
-最后，数一遍还剩下的true个数就好了   
+#### Steps
+- 一个boolean长条，存isPrime[]。 然后从i=2， 全部变true.
+- hash key: the number itself
+- 然后利用这个因子的性质，非prime满足条件： self*self, self * self + self ... etc.     
+- 所以就check每一个j, j+i, j+i+i, 然后把所有non-prime全部mark成false.     
+- 最后，数一遍还剩下的true个数就好了   
 
 ```
 /*
@@ -36,12 +40,12 @@ public class Solution {
     	if (n <= 1) {
     		return 0;
     	}
-    	boolean[] primes = new boolean[n];
+    	boolean[] primes = new boolean[n]; // less than n, end prime[n-1]
     	for (int i = 2; i < primes.length; i++) {
     		primes[i] = true;
     	}
 
-    	for (int i = 2; i * i< n; i++) {
+    	for (int i = 2; i * i < n; i++) {
 			if (!primes[i]) {
 				continue;
 			}

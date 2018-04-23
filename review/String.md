@@ -1,7 +1,7 @@
  
  
  
-## String (22)
+## String (23)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -346,6 +346,19 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 把所有anagram 存在一起。注意结尾Collections.sort().
 - O(NKlog(K)), N = string[] length, k = longest word length    
 
+
+
+
+---
+
+**22. [Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)**      Level: Easy
+      
+
+#### String
+- 可以用 sb.replace(i, j, "replacement string")
+- 简单按 window=2 来扫描
+- 原来只需要从'++'转到'--'的情况
+- O(n)
 
 
 

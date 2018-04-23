@@ -1,7 +1,7 @@
  
  
  
-## Math (13)
+## Math (16)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -192,6 +192,53 @@ Space O(n), time O(n)
 #### 直接算结果
 - 从sum = 每次[i ~ j]的所有情况
 - 验证
+
+
+
+---
+
+**13. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy
+      
+
+计数: 所有小于n的prime number.
+
+#### prime number定义
+- >=2的没有除自己和1以外公约数的数。   
+- 还有另外一个定义方法: 这个n,有没有小于n的一个i, 而达到： i * i + # of i = n. 如果有，那就不是 prime   
+
+#### Steps
+- 一个boolean长条，存isPrime[]。 然后从i=2， 全部变true.
+- hash key: the number itself
+- 然后利用这个因子的性质，非prime满足条件： self*self, self * self + self ... etc.     
+- 所以就check每一个j, j+i, j+i+i, 然后把所有non-prime全部mark成false.     
+- 最后，数一遍还剩下的true个数就好了   
+
+
+
+---
+
+**14. [Excel Sheet Column Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Number.java)**      Level: Easy
+      
+
+#### Math
+- 26位的运算, 根据10位运算去思考
+- 'A' - 'A' = 0. 所以 char - 'A' + 1 = 题目里的对应数位
+- 或者: 26位运算和10位一样:num += 每位的digit * Math.pow(26, 数位号)
+
+
+
+
+---
+
+**15. [Excel Sheet Column Title.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Title.java)**      Level: Easy
+      
+
+#### 基本换算
+- 26位
+- 从末尾开始, mod %26 可以拿到 末尾数字 remain = n % 26
+- 特殊: remain = 0 的时候, 也就是说n是26的倍数, 末尾应该是 'Z'
+- 记录'Z'了之后, n--
+
 
 
 

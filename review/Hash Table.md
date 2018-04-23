@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (18)
+## Hash Table (19)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -304,6 +304,26 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - 注意countS, countP 的技巧: 作比较只需要O(26)
 - Overall timeO(n)
 - 小心不要用一个int[] count 来技术 查0, 复杂度是O(n)
+
+
+
+---
+
+**18. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy
+      
+
+计数: 所有小于n的prime number.
+
+#### prime number定义
+- >=2的没有除自己和1以外公约数的数。   
+- 还有另外一个定义方法: 这个n,有没有小于n的一个i, 而达到： i * i + # of i = n. 如果有，那就不是 prime   
+
+#### Steps
+- 一个boolean长条，存isPrime[]。 然后从i=2， 全部变true.
+- hash key: the number itself
+- 然后利用这个因子的性质，非prime满足条件： self*self, self * self + self ... etc.     
+- 所以就check每一个j, j+i, j+i+i, 然后把所有non-prime全部mark成false.     
+- 最后，数一遍还剩下的true个数就好了   
 
 
 
