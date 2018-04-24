@@ -107,6 +107,8 @@ public class GenerateCodeTable {
             gct.printTable("TagREADME.md", outputContent);
             outputContent = gct.generateTagReviewPage(listOfFiles);
             gct.printTable("TagReviewPage.md", outputContent);
+            outputContent = gct.generateLevelReviewPage(listOfFiles);
+            gct.printTable("LevelReviewPage.md", outputContent);
         }
 
         System.out.println("Mission Accomplished. Now go ahead and commit");
@@ -221,8 +223,8 @@ public class GenerateCodeTable {
         return outputContent;
     }
 
+    // Generate review files by tags
     public String generateTagReviewPage(File[] listOfFiles) {
-        String outputContent = generateTableOfContent("TagREADME.md") + "\n\n";
         final List<TableRow> tableRows = getTableRows(listOfFiles);
         final HashMap<String, List<TableRow>> tagToRows = new HashMap<>();
         // Group by tags:
@@ -238,11 +240,38 @@ public class GenerateCodeTable {
             }
         });
         // Build View
+        String outputContent = "";
         for (Map.Entry<String, List<TableRow>> entry : tagToRows.entrySet()) {
             StringBuffer sb = new StringBuffer(" \n \n \n## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
             sb.append(buildReviewSection(entry.getValue()));
             outputContent += sb.toString() + "\n\n\n";
             printTable("review/" + entry.getKey() + ".md", sb.toString());
+        }
+        return outputContent;
+    }
+
+    // Generate review files by levels
+    public String generateLevelReviewPage(File[] listOfFiles) {
+        final List<TableRow> tableRows = getTableRows(listOfFiles);
+        final HashMap<String, List<TableRow>> levelToRows = new HashMap<>();
+        // Group by levels:
+        tableRows.forEach(tableRow -> {
+            String level = tableRow.getLevel();
+            if (NOT_AVAILABLE.equals(tableRow.getLevel())) {
+                level = "NA";
+            }
+            if (!levelToRows.containsKey(level)) {
+                levelToRows.put(level, new ArrayList<TableRow>());
+            }
+            levelToRows.get(level).add(tableRow);
+        });
+        // Build View
+        String outputContent = "";
+        for (Map.Entry<String, List<TableRow>> entry : levelToRows.entrySet()) {
+            StringBuffer sb = new StringBuffer(" \n \n \n## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
+            sb.append(buildReviewSection(entry.getValue()));
+            outputContent += sb.toString() + "\n\n\n";
+            printTable("review/level/" + entry.getKey() + ".md", sb.toString());
         }
         return outputContent;
     }
