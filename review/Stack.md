@@ -1,7 +1,7 @@
  
  
  
-## Stack (12)
+## Stack (17)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -161,33 +161,35 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**7. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Medium
+**7. [Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)**      Level: Medium
       
 
-#### Monotonous Stack
-用到bottom->top递减的stack: 最底下的root维持成最大的element.
-过程当中, 一旦遇到currNode.val > stack.peek(), 就意味着需要把这个currNode放在 stack的底层位置.
-也就是说, 遇到这个条件, process, pop()所有 currNode.val > stack.peek(), 最后把currNode加进去.
+给一串数字, 做一个 maximum binary tree: 最顶上的root最大; 左child也是一个max tree, 右child也必须是max tree.
 
-maxTree题目本身的要求是: 大的在最中间, 左右两边的subTree也要是maxTree:
+#### Monotonous Stack
+- 用到bottom->top递减的stack: 最底下的root维持成最大的element.
+- 过程当中, 一旦遇到currNode.val > stack.peek(), 就意味着需要把这个currNode放在 stack的底层位置.
+- 也就是说, 遇到这个条件, process, pop()所有 currNode.val > stack.peek(), 最后把currNode加进去.
+
+- maxTree题目本身的要求是: 大的在最中间, 左右两边的subTree也要是maxTree:
 - Monotonous Stack在这里帮助 keep/track of max value, 但是left/right tree的logic是MaxTree独有的.
 - left/right node的assignment是根据题目要求: 中间最大值分开后, 左边的是左边subTree, 右边的作为右边subTree.
 
 #### Previous notes
-Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
+- Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
+- Stack里，最大的值在下面。利用此性质，有这样几个step:
 
-Stack里，最大的值在下面。利用此性质，有这样几个step:
-1   
-把所有小于curr node的，全Pop出来, while loop, keep it going.    
-最后pop出的这个小于Curr的node：它同时也是stack里面pop出来小于curr的最大的一个，最接近curr大小。（因为这个stack最大值靠下面）    
-把这个最大的小于curr的node放在curr.left.    
+##### Step1
+- 把所有小于curr node的，全Pop出来, while loop, keep it going.    
+- 最后pop出的这个小于Curr的node：它同时也是stack里面pop出来小于curr的最大的一个，最接近curr大小。（因为这个stack最大值靠下面）    
+- 把这个最大的小于curr的node放在curr.left.    
 
-2   
-那么，接下去stack里面的一定是大于curr：   
-那就变成curr的left parent. set stack.peek().right = curr.
+##### Step2   
+- 那么，接下去stack里面的一定是大于curr：   
+- 那就变成curr的left parent. set stack.peek().right = curr.
 
-3   
-结尾：stack底部一定是最大的那个，也就是max tree的头。
+##### Step3   
+- 结尾：stack底部一定是最大的那个，也就是max tree的头。
 
 
 
@@ -282,6 +284,96 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 #### Iterative
 - 先加root, 然后push上需要末尾process的在stack垫底(root.right), 然后push root.left
 - Stack: push curr, push right, push left.   
+
+
+
+---
+
+**12. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
+      
+
+给一串字符, 表示的是 公式 expression. 把公式变成expression tree
+
+#### Monotonous Stack
+- 和Max-tree一样，https://leetcode.com/problems/maximum-binary-tree
+- 用到bottom->top递增的stack: 最底下的root维持成最小的element.
+- 这个题目是Min-tree， 头上最小，Logic 和max-tree如出一辙   
+- Space: O(n) 
+- Time on average: O(n).
+
+#### 特点
+- TreeNode: 用一个并不是最终结果的TreeNode, 存weight, 用来排序
+- 用base weight的概念权衡同一个层面的 符号, 数字 顺序
+- 每一个character都是一个节点, 都有自己的weight. 用一个TreeNode来存weight value, 利用用weight来判断: 
+- 1. (while loop) 如果node.val <= stack.peek().nodeValue, 把当前stack.peek() 变成 left child. 
+- 2. (if condition) 如果stack有残余, 把当前node变成 stack.peek().rightChild 
+
+
+
+
+---
+
+**13. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
+      
+
+给一个公式 expression, 然后evaluate结果.
+
+#### DFS on Expression Tree
+- 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- build好Min Tree以后，做PostTraversal. 
+- Divde and Conquer: 先recursively找到 left和right的大小， 然后evaluate中间的符号
+- Time, Space O(n), n = # expression nodes
+
+### Note
+- 1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
+- 2. 若有个child是null,那就return另外一个node。    
+- 3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.
+
+
+
+---
+
+**14. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
+      
+
+给一串字符, 用来表示公式expression. 把这个expression转换成 Polish Notation (PN).
+
+#### Expression Tree
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- 根据题意做出Expression Tree出来以后: 来个Pre-order-traversal 就能记录下 Polish Notation
+- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
+- Note: label需要是String. 虽然 Operator是长度为1的char, 但是数字可为多位
+
+
+
+---
+
+**15. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
+      
+
+给一串字符, 用来表示公式expression. 把这个expression转换成 Reverse Polish Notation (RPN).
+
+#### Expression Tree
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- 根据题意做出Expression Tree出来以后: 来个Post-order-traversal 就能记录下 Reverse Polish Notation
+- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
+
+
+
+---
+
+**16. [Evaluate Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Reverse%20Polish%20Notation.java)**      Level: Medium
+      
+
+给一个 RPN string list, 根据这个list, 计算结果.
+
+#### Stack
+- stack 里面 存数字
+- 每次遇到operator, 都拿前2个数字计算
+- 计算结果存回到stack里面, 方便下一轮使用.
+- Time,Space O(n)
+
 
 
 

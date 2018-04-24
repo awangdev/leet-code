@@ -13,24 +13,40 @@ Table of Contents
       * [思想](#思想)
    * [Linked List](#linked-list)
    * [Tree](#tree)
-      * [Tree itself](#tree-itself)
-      * [Binary Tree](#binary-tree)
-      * [Binary Search Tree](#binary-search-tree)
-         * [TreeSet](#treeset)
-      * [Binary Tree](#binary-tree-1)
-      * [Binary Indexed Tree](#binary-indexed-tree)
-      * [Segment Tree](#segment-tree)
-   * [Union Find](#union-find)
-      * [UnionFind基础操作](#unionfind基础操作)
-      * [UnionFind follow up](#unionfind-follow-up)
+   * [Binary Search Tree](#binary-search-tree)
+      * [TreeSet](#treeset)
+   * [Binary Tree](#binary-tree)
+      * [Type of Tree](#type-of-tree)
+         * [Balenced bianry tree](#balenced-bianry-tree)
+         * [Complete binary tree](#complete-binary-tree)
+         * [Full Binary Tree](#full-binary-tree)
+         * [Perfect Binary Tree](#perfect-binary-tree)
+      * [Binary Tree Traversal](#binary-tree-traversal)
+   * [Min-Heap &amp;&amp; Max-Heap](#min-heap--max-heap)
+      * [Insert](#insert)
+      * [Extract Minimum Element](#extract-minimum-element)
+   * [Expression Tree](#expression-tree)
+      * [Example](#example)
+      * [Build Tree](#build-tree)
    * [Trie](#trie)
       * [applications](#applications)
       * [why not using a hashmap to store string](#why-not-using-a-hashmap-to-store-string)
       * [Model](#model)
       * [sample peoblems](#sample-peoblems)
       * [考点](#考点)
-   * [Deque](#deque)
+   * [Binary Indexed Tree](#binary-indexed-tree)
+   * [Segment Tree](#segment-tree)
    * [Graph](#graph)
+      * [Adjacency List](#adjacency-list)
+      * [Adjacency Matrices](#adjacency-matrices)
+      * [Graph Search](#graph-search)
+         * [DFS](#dfs)
+         * [BFS](#bfs)
+         * [Bidirectional Search](#bidirectional-search)
+   * [Union Find](#union-find)
+      * [UnionFind基础操作](#unionfind基础操作)
+      * [UnionFind follow up](#unionfind-follow-up)
+   * [Deque](#deque)
    * [Topological Sort](#topological-sort)
       * [Topological Sort - BFS](#topological-sort---bfs)
       * [Topological Sort - DFS](#topological-sort---dfs)
@@ -53,6 +69,7 @@ Table of Contents
       * [Sum, Presum](#sum-presum)
       * [Math](#math)
          * [Math Functions](#math-functions)
+      * [Numbers](#numbers)
       * [String](#string)
       * [Bit Manipulation](#bit-manipulation)
    * [DP](#dp)
@@ -77,6 +94,10 @@ Table of Contents
             * [性质](#性质-1)
             * [经验](#经验)
             * [解决方法](#解决方法)
+         * [博弈类](#博弈类)
+         * [背包类](#背包类)
+            * [多种问法](#多种问法)
+            * [方法策略](#方法策略)
          * [区间类(range DP)](#区间类range-dp)
             * [三把斧](#三把斧)
          * [Bitwise Operation DP](#bitwise-operation-dp)
@@ -97,6 +118,7 @@ Table of Contents
       * [Greedy](#greedy)
       * [Divide and Conquer](#divide-and-conquer)
       * [Recursion](#recursion)
+         * [特征](#特征)
    * [Design](#design)
    * [BigO](#bigo)
       * [Specials](#specials)
@@ -104,7 +126,7 @@ Table of Contents
    * [Problem Sets](#problem-sets)
       * [permutation](#permutation)
          * [原理](#原理)
-         * [Example](#example)
+         * [Example](#example-1)
       * [Two Pointer](#two-pointer)
       * [Min/Max Heap](#minmax-heap)
       * [回文串 Palindrome](#回文串-palindrome)
@@ -132,7 +154,8 @@ Table of Contents
 - 维护monotonous stack 是题目需要, 而不是stack本身性质. 比如, 题目需要stack.peek() O(1), 加上需要单调递增/递减的性质, 就用起来了stack.
 
 ## Expample
-MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
+- Maximum Binary Tree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
+- Expression Tree (Minimum Binary Tree)
 
 
 # Queue
@@ -143,7 +166,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - Queue 可以用 LinkedList 实现. Add from the last/end of the list; Return/remove from the head of the list. 
 
 ## 思想
-- 看到Min/Max就要想到heap. 如果给出的数组没有排序, 先排序, 然后用heap. PrioirtyQueue是用Binary Heap做出来的
+- 看到Min/Max就要想到heap. 如果给出的数组没有排序, 先排序, 然后用heap. PrioirtyQueue是用Binary Heap做出来的 (看Binary Tree section)
 - 看到median 想到heap
 
 # Linked List
@@ -153,53 +176,108 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - Don't get mixed up with Java LinkedList. Here we are talking about linked list concept, not the Java data structure LinkedList
 
 # Tree
-## Tree itself
 - A simple version of graph
 - CAN NOT have cycle
 - Can have a list of children
 - 一般不会用Tree class 来实现tree, 一般都是用 TreeNode root as reference
 - leaf: very end, 没孩子
 
-## Binary Tree
-- 一定要问清楚, 是Binary Tree (双孩子而已), 还是 Binary Search Tree. 非常重要!!!
 
-## Binary Search Tree
+# Binary Search Tree
 - If BST not given, can use TreeSet
 - All left nodes are less than current node.val; all right nodes are greater than curr node.val
 - Use DFS to traverse: divide and conquer. Similarly, usually can convert the DFS solution to interative solution.
 - Use stack to traverse iteratively
 
-### TreeSet
+## TreeSet
 - 如果BST treenode没给, 可以用TreeSet
 - TreeSet还是一个set, 存values, 而好处是可以用 treeSet.ceiling(x)找到 最小的大于x的值
 - 其实就是这个value/node的parent
 
-## Binary Tree
-- Complete binary tree: all levels are filled, except maybe the last level. 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
-- Balenced bianry tree: has the minimum posible maximum height(depth) for left nodes; for given leaf nodes, the leaf nodes will be placed at greatest height possible.
+# Binary Tree
+- 一定要问清楚, 是Binary Tree (双孩子而已), 还是 Binary Search Tree. 非常重要!!!
 - 一个child tree的nodes总量是 2 ^ h - 1; 那么一个child tree + root 的nodes 总量就是 2 ^ h了.
 
-## Binary Indexed Tree
+## Type of Tree
 
-## Segment Tree
+### Balenced bianry tree
+- has the minimum posible maximum height(depth) for left nodes; for given leaf nodes, the leaf nodes will be placed at greatest height possible.
+- More like 'not terriably imbalanced'; NOT super balanced like 'perfect binary tree'
+- can support O(logn) times for insert and find
 
-# Union Find
-- 集合合并，查找元素在集合里面
-- Find and Union functions
-- Time Complexity: log(n)
-- 在UnionFind function里维护不同的状态, expose with public helper functions
+### Complete binary tree
+- all levels are filled, except maybe the last level. 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
+- Nodes are filled from left to right on the last level
 
-## UnionFind基础操作
-- 查询两个元素是否在同一个集合内
-- 合并两个元素所在的集合
+### Full Binary Tree
+- node has 0 or 2 children
+- NO node will have 1 child
 
-## UnionFind follow up
-- 查询某个元素所在集合的元素个数
-- 查询当前集合的个数
+### Perfect Binary Tree
+- Both Complete and Full
+- Have all nodes
+- Last level has maximum nodes
+- DO NOT assume tree is pefect tree; very rare in life/interview
 
+## Binary Tree Traversal
+- preorder, inorder, post-order
+- inorder more often
+- draw the map
+- can implement with dfs, bfs
+
+
+# Min-Heap && Max-Heap
+- min-heap && max-heap has same concept
+- min-heap is complete binary tree (right-most elements on last level may not be filled)
+- each node is smaller than it's children
+- root is the minimum value of tree
+- Maintaing min-heap is about swaping node values
+- Insert/extract min value both take O(logn) time
+
+## Insert
+- insert at bottom right-most spot
+- swap with parent if value not fitting min-heap
+- swapping until min value reaches root
+- O(logn) to bubble up to top
+
+## Extract Minimum Element
+- extract root value (easy)
+- set the the root value to be bottom-right-most element, also remove that bottom element
+- bubble down the root value if not fitting min-heap
+- overal efforts to bubble down: O(logn)
+
+# Expression Tree
+- Binary tree, used to evaluate certain expression
+- All leaf nodes of the expression tree have a number/string value.
+- All non-leaf node of the expression tree have an operation string value.
+
+## Example
+```
+Example
+For the expression (2*6-(23+7)/(1+2)) 
+which can be represented by ["2" "*" "6" "-" "(" "23" "+" "7" ")" "/" "(" "1" "+" "2" ")"]. 
+The expression tree will be like
+
+                 [ - ]
+             /          \
+        [ * ]              [ / ]
+      /     \           /         \
+    [ 2 ]  [ 6 ]      [ + ]        [ + ]
+                     /    \       /      \
+                   [ 23 ][ 7 ] [ 1 ]   [ 2 ] .
+
+```
+
+## Build Tree
+- Use Monotonous Stack to build Minimum Binary Tree
+- Use weight to associate parentheses, signs, numbers
+- Write getWeight(base, String s) function to calculate the weight.
 
 # Trie
 - 一个字母一个字母查找，快速判断前缀
+- Prefix Tree
+- n-ary tree
+- Can tell if string is a valid prefix in O(K) time, k = str.length
 
 ## applications
 - Autocomplete
@@ -210,9 +288,10 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 
 ## why not using a hashmap to store string
 - Trie can help find all strings with prefix
+- Trie can validate a list of words
 - Trie can enumerate a data set of strings in lexicographical order
 - Trie saves space because of the prefix
-- Trie can potentially faster than hashMap, when there are logs collisions for the map.
+- Trie can potentially faster than hashMap, when there are lots collisions for the map.
 
 ## Model
 - children map: Map<Character, TrieNode>. Also can use char[26], but it's more scalable to us a map.
@@ -230,6 +309,62 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 查找前缀
 
 
+# Binary Indexed Tree
+
+# Segment Tree
+
+# Graph
+- Tree is a type of graph: connected graph, without cycles
+- Graph is a collection of nodes, with edges between (some of, not all of) them
+- Can be directed (one-way street), or undirected (two-way street)
+- May contain multiple isolated subgraphs.
+- If there is a path between every pair of ndoes, it's a 'connected graph'
+- graph can have cycle
+- If no cycle, it's called 'acyclic'
+
+## Adjacency List
+- Use a graph class, which is just a list of node 
+- each node has it's own propety, and a list of adjacent nodes
+- This graph can be directed, or undirected (modeled by adjacent node list in each Node)
+
+## Adjacency Matrices
+- matrix[i][j] = true, indicate an edge from node i t node j
+
+## Graph Search
+- DFS: start at root, explore each branch competely (go deep first)
+- BFS: start at root, explore each neighbor before going to the children (go wide first)
+
+### DFS
+- is preferred when visiting every node in the graph, a bit simplier to write
+- IMPORTANT: in graph, must mark node 'visited', otherwise can be infinite loop
+
+### BFS
+- Better when finding shortest path (or any path) betwen 2 nodes
+- Use a queue, of course
+
+### Bidirectional Search
+- Find shortest path between a sourcea and destination node
+- Running 2 simultaneous BFS
+- when two searches collide, a path if found
+- It's faster than one BFS
+- Regular BFS time O(k^d), k = nodes at one level, d = seach for d times
+- Bidirectional search time: O(k^(d/2)). Faster by K^(d/2)
+
+
+# Union Find
+- 集合合并，查找元素在集合里面
+- Find and Union functions
+- Time Complexity: log(n)
+- 在UnionFind function里维护不同的状态, expose with public helper functions
+
+## UnionFind基础操作
+- 查询两个元素是否在同一个集合内
+- 合并两个元素所在的集合
+
+## UnionFind follow up
+- 查询某个元素所在集合的元素个数
+- 查询当前集合的个数
+
 # Deque
 - linear collection that supports insertion and removal at both ends. Pronounced 'deck'
 - It's a queue && stack
@@ -239,7 +374,7 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 - 双端queue: 维护一个候选可能的最大值集合
 - ex: Sliding WIndow Maximum
 
-# Graph
+
 
 
 # Topological Sort
@@ -340,6 +475,9 @@ MaxTree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
 ### Math Functions
 - Math.pow(x, 3) = x ^ 3; Math.pow(x, 1/3) = x ^ (1/3)
 
+## Numbers
+- Long a = 10; a.intValue() => int
+- Integer: Integer.parseInt("123")
 
 
 ## String

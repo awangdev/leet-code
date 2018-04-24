@@ -1,18 +1,30 @@
 H
+1524551317
+tags: Stack, Binary Tree, DFS, Expression Tree
 
-还是Expression Tree (Min-Tree).
+给一串字符, 用来表示公式expression. 把这个expression转换成 Polish Notation (PN).
 
-根据题意，Tree出来以后，来个Pre-order-traversal.
-
-Note: label需要是String.虽然 Operator是长度为1的char, 但是数字可为多位。
+#### Expression Tree
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- 根据题意做出Expression Tree出来以后: 来个Pre-order-traversal 就能记录下 Polish Notation
+- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
+- Note: label需要是String. 虽然 Operator是长度为1的char, 但是数字可为多位
 
 ```
 /*
-Given an expression string array, return the Polish notation of this expression. (remove the parentheses)
+LintCode Exercise
+
+Given an expression string array, 
+return the Polish notation of this expression. 
+(remove the parentheses)
 
 Have you met this question in a real interview? Yes
 Example
-For the expression [(5 − 6) * 7] (which represented by ["(", "5", "−", "6", ")", "*", "7"]), the corresponding polish notation is [* - 5 6 7] (which the return value should be ["*", "−", "5", "6", "7"]).
+For the expression [(5 − 6) * 7] 
+(which represented by ["(", "5", "−", "6", ")", "*", "7"]), 
+
+the corresponding polish notation is [* - 5 6 7] 
+(which the return value should be ["*", "−", "5", "6", "7"]).
 
 Clarification
 Definition of Polish Notation:
@@ -25,12 +37,14 @@ LintCode Copyright Stack
 
 /*
 Thoughts:
-Build the expression tree, and do a pre-order-traversal, and record all nodes in the array list.
+Build the expression tree, and do a pre-order-traversal, 
+and record all nodes in the array list.
 
 Let's practice expression tree build again.
 */
 
 public class Solution {
+    /********* Build Expression Tree *********/
     class TreeNode {
         String s;
         int val;
@@ -63,6 +77,8 @@ public class Solution {
             }
             val = getWeight(base, expression[i]);
             TreeNode node = new TreeNode(val, expression[i]);
+            
+            // Use monotonous stack to build minimum binary tree
             while (!stack.isEmpty() && node.val <= stack.peek().val) {
                 node.left = stack.pop();
             }
@@ -74,6 +90,8 @@ public class Solution {
         if (stack.isEmpty()) {
             return null;
         }
+
+        // Find root, witch is the minimum value
         TreeNode rst = stack.pop(); 
         while (!stack.isEmpty()) {
             rst = stack.pop();
@@ -90,6 +108,8 @@ public class Solution {
         }
         return Integer.MAX_VALUE;
     }
+    /********* Build Expression Tree *********/
+
 
     /**
      * @param expression: A string array

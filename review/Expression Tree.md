@@ -1,38 +1,8 @@
  
  
  
-## Binary Tree (6)
-**0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
-      
-
-分析题意后, 按照题意: Flatten it with in-place order
-1. reserve right child
-2. DFS flatten部分
-3. 移花接木
-4. flatten 剩下的.
-
-
-
----
-
-**1. [Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)**      Level: Easy
-      
-
-返回所有root-to-leaf path
-
-#### 方法1：   
-Recursive:分叉. dfs.
-
-#### 方法2:
-- Iterative, 非递归练习了一下   
-- 因为要每次切短list, 所以再加了一个Stack 来存level   
-
-
-
-
----
-
-**2. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
+## Expression Tree (4)
+**0. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
       
 
 给一串字符, 表示的是 公式 expression. 把公式变成expression tree
@@ -56,7 +26,7 @@ Recursive:分叉. dfs.
 
 ---
 
-**3. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
+**1. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 
 给一个公式 expression, 然后evaluate结果.
@@ -77,7 +47,7 @@ Recursive:分叉. dfs.
 
 ---
 
-**4. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
+**2. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
       
 
 给一串字符, 用来表示公式expression. 把这个expression转换成 Polish Notation (PN).
@@ -92,7 +62,7 @@ Recursive:分叉. dfs.
 
 ---
 
-**5. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
+**3. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
       
 
 给一串字符, 用来表示公式expression. 把这个expression转换成 Reverse Polish Notation (RPN).

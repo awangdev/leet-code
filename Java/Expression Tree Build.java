@@ -1,13 +1,23 @@
 H
+1524548535
+tags: Stack, Binary Tree, Expression Tree
 
-和Max-tree一样，感谢http://blog.welkinlan.com/2015/06/29/max-tree-lintcode-java/
+给一串字符, 表示的是 公式 expression. 把公式变成expression tree
 
-这个题目是Min-tree， 头上最小，Logic 和max-tree如出一辙   
+#### Monotonous Stack
+- 和Max-tree一样，https://leetcode.com/problems/maximum-binary-tree
+- 用到bottom->top递增的stack: 最底下的root维持成最小的element.
+- 这个题目是Min-tree， 头上最小，Logic 和max-tree如出一辙   
+- Space: O(n) 
+- Time on average: O(n).
 
-注意treeNode,为了帮助ExpressionTreeNode 排序。它加了一个weight based on expression，协助build Min-Tree 排序。
+#### 特点
+- TreeNode: 用一个并不是最终结果的TreeNode, 存weight, 用来排序
+- 用base weight的概念权衡同一个层面的 符号, 数字 顺序
+- 每一个character都是一个节点, 都有自己的weight. 用一个TreeNode来存weight value, 利用用weight来判断: 
+- 1. (while loop) 如果node.val <= stack.peek().nodeValue, 把当前stack.peek() 变成 left child. 
+- 2. (if condition) 如果stack有残余, 把当前node变成 stack.peek().rightChild 
 
-Space: O(n) 
-Time on average: O(n).
 
 ```
 /*
@@ -16,10 +26,12 @@ The structure of Expression Tree is a binary tree to evaluate certain expression
 All leaves of the Expression Tree have an number string value. 
 All non-leaves of the Expression Tree have an operator string value.
 
-Now, given an expression array, build the expression tree of this expression, return the root of this expression tree.
+Now, given an expression array, build the expression tree of this expression, 
+return the root of this expression tree.
 
 Example
-For the expression (2*6-(23+7)/(1+2)) (which can be represented by ["2" "*" "6" "-" "(" "23" "+" "7" ")" "/" "(" "1" "+" "2" ")"]). 
+For the expression (2*6-(23+7)/(1+2)) 
+which can be represented by ["2" "*" "6" "-" "(" "23" "+" "7" ")" "/" "(" "1" "+" "2" ")"]. 
 The expression tree will be like
 
                  [ - ]
@@ -53,7 +65,6 @@ LintCode Copyright Stack Binary Tree
  * }
  */
 
-
 public class Solution {
     class TreeNode {
         int val;
@@ -77,7 +88,7 @@ public class Solution {
 
         for (int i = 0; i < expression.length; i++) {
             if (expression[i].equals("(")) {
-                base += 10;
+                base += 10      ;
                 continue;
             }
             if (expression[i].equals(")")) {
@@ -86,6 +97,8 @@ public class Solution {
             }
             val = getWeight(base, expression[i]);
             TreeNode node = new TreeNode(val, expression[i]);
+
+            // Monotonous stack: building minimum binary tree
             while (!stack.isEmpty() && node.val <= stack.peek().val) {
                 node.eNode.left = stack.pop().eNode;
             }
@@ -97,6 +110,8 @@ public class Solution {
         if (stack.isEmpty()) {
             return null;
         }
+
+        // Find the root, which will be the minimum value
         TreeNode rst = stack.pop();
         while (!stack.isEmpty()) {
             rst = stack.pop();

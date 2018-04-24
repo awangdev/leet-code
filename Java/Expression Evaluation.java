@@ -1,14 +1,20 @@
 H
+1524550668
+tags: Stack, Binary Tree, DFS, Expression Tree
 
-Build Expression Tree的另外一个变形，依然Min Tree.
+给一个公式 expression, 然后evaluate结果.
 
-build好Min Tree以后，做PostTraversal. Divde and Conquer：   
-先recursively找到 left和right的大小， 然后evaluate中间的符号。
+#### DFS on Expression Tree
+- 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- build好Min Tree以后，做PostTraversal. 
+- Divde and Conquer: 先recursively找到 left和right的大小， 然后evaluate中间的符号
+- Time, Space O(n), n = # expression nodes
 
-Note:
-1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
-2. 若有个child是null,那就return另外一个node。    
-3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.
+### Note
+- 1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
+- 2. 若有个child是null,那就return另外一个node。    
+- 3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.
 
 ```
 /*

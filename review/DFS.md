@@ -1,7 +1,7 @@
  
  
  
-## DFS (29)
+## DFS (32)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy
       
 
@@ -615,6 +615,56 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 #### O(N^2) 的 DP
 - 需要Game Theory的功底, Nim game. https://www.jiuzhang.com/qa/941/
 - http://www.1point3acres.com/bbs/thread-137953-1-1.html
+
+
+
+---
+
+**29. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
+      
+
+给一个公式 expression, 然后evaluate结果.
+
+#### DFS on Expression Tree
+- 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- build好Min Tree以后，做PostTraversal. 
+- Divde and Conquer: 先recursively找到 left和right的大小， 然后evaluate中间的符号
+- Time, Space O(n), n = # expression nodes
+
+### Note
+- 1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
+- 2. 若有个child是null,那就return另外一个node。    
+- 3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.
+
+
+
+---
+
+**30. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
+      
+
+给一串字符, 用来表示公式expression. 把这个expression转换成 Polish Notation (PN).
+
+#### Expression Tree
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- 根据题意做出Expression Tree出来以后: 来个Pre-order-traversal 就能记录下 Polish Notation
+- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
+- Note: label需要是String. 虽然 Operator是长度为1的char, 但是数字可为多位
+
+
+
+---
+
+**31. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
+      
+
+给一串字符, 用来表示公式expression. 把这个expression转换成 Reverse Polish Notation (RPN).
+
+#### Expression Tree
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- 根据题意做出Expression Tree出来以后: 来个Post-order-traversal 就能记录下 Reverse Polish Notation
+- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
 
 
 

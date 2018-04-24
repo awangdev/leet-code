@@ -1,17 +1,25 @@
 H
+1524551537
+tags: Stack, Binary Tree, DFS, Expression Tree
 
-build expression tree。
+给一串字符, 用来表示公式expression. 把这个expression转换成 Reverse Polish Notation (RPN).
 
-这个里面把TreeNode就当做成我们需要的node,里面扩展成有left/right child的node.
-
-建造Expression Tree,然后根据　Reverse Polish Notation 的定义，来个post-traversal就行了。
+#### Expression Tree
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- 根据题意做出Expression Tree出来以后: 来个Post-order-traversal 就能记录下 Reverse Polish Notation
+- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
 
 ```
 /*
-Given an expression string array, return the Reverse Polish notation of this expression. (remove the parentheses)
+LintCode Exercise
+
+Given an expression string array, 
+return the Reverse Polish notation of this expression. 
+(remove the parentheses)
 
 Example
-For the expression [3 - 4 + 5] (which denote by ["3", "-", "4", "+", "5"]), return [3 4 - 5 +] (which denote by ["3", "4", "-", "5", "+"])
+For the expression [3 - 4 + 5] (which denote by ["3", "-", "4", "+", "5"]), 
+return [3 4 - 5 +] (which denote by ["3", "4", "-", "5", "+"])
 
 Tags:
 LintCode Copyright Stack
@@ -98,9 +106,6 @@ public class Solution {
             return rst;
         }
         TreeNode root = build(expression);
-        if (root == null) {
-        	return rst;
-        }
     	postTraversal(rst, root);
     	return rst;
     }
@@ -109,12 +114,8 @@ public class Solution {
     	if (node == null) {
     		return;
     	}
-    	if (node.left != null) {
-			postTraversal(rst, node.left);    		
-    	}
-    	if (node.right != null) {
-    		postTraversal(rst, node.right);
-    	}
+		postTraversal(rst, node.left);    		
+    	postTraversal(rst, node.right);
 		rst.add(node.s);
     }
 }

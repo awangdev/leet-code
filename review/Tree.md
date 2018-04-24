@@ -192,33 +192,35 @@ Note: min/max需要时long type.
 
 ---
 
-**11. [Max Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Tree.java)**      Level: Medium
+**11. [Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)**      Level: Medium
       
 
-#### Monotonous Stack
-用到bottom->top递减的stack: 最底下的root维持成最大的element.
-过程当中, 一旦遇到currNode.val > stack.peek(), 就意味着需要把这个currNode放在 stack的底层位置.
-也就是说, 遇到这个条件, process, pop()所有 currNode.val > stack.peek(), 最后把currNode加进去.
+给一串数字, 做一个 maximum binary tree: 最顶上的root最大; 左child也是一个max tree, 右child也必须是max tree.
 
-maxTree题目本身的要求是: 大的在最中间, 左右两边的subTree也要是maxTree:
+#### Monotonous Stack
+- 用到bottom->top递减的stack: 最底下的root维持成最大的element.
+- 过程当中, 一旦遇到currNode.val > stack.peek(), 就意味着需要把这个currNode放在 stack的底层位置.
+- 也就是说, 遇到这个条件, process, pop()所有 currNode.val > stack.peek(), 最后把currNode加进去.
+
+- maxTree题目本身的要求是: 大的在最中间, 左右两边的subTree也要是maxTree:
 - Monotonous Stack在这里帮助 keep/track of max value, 但是left/right tree的logic是MaxTree独有的.
 - left/right node的assignment是根据题目要求: 中间最大值分开后, 左边的是左边subTree, 右边的作为右边subTree.
 
 #### Previous notes
-Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
+- Should memorize MaxTree. 依次类推，会做Min-Tree, Expression Tree
+- Stack里，最大的值在下面。利用此性质，有这样几个step:
 
-Stack里，最大的值在下面。利用此性质，有这样几个step:
-1   
-把所有小于curr node的，全Pop出来, while loop, keep it going.    
-最后pop出的这个小于Curr的node：它同时也是stack里面pop出来小于curr的最大的一个，最接近curr大小。（因为这个stack最大值靠下面）    
-把这个最大的小于curr的node放在curr.left.    
+##### Step1
+- 把所有小于curr node的，全Pop出来, while loop, keep it going.    
+- 最后pop出的这个小于Curr的node：它同时也是stack里面pop出来小于curr的最大的一个，最接近curr大小。（因为这个stack最大值靠下面）    
+- 把这个最大的小于curr的node放在curr.left.    
 
-2   
-那么，接下去stack里面的一定是大于curr：   
-那就变成curr的left parent. set stack.peek().right = curr.
+##### Step2   
+- 那么，接下去stack里面的一定是大于curr：   
+- 那就变成curr的left parent. set stack.peek().right = curr.
 
-3   
-结尾：stack底部一定是最大的那个，也就是max tree的头。
+##### Step3   
+- 结尾：stack底部一定是最大的那个，也就是max tree的头。
 
 
 
