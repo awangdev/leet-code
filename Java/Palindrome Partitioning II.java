@@ -1,15 +1,23 @@
 H
-1523832548
+1524717518
 tags: DP, Partition DP
 
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
 
 #### Partition DP
 - Find minimum cut: 分割型DP
+- dp[i]: 最少cut多少刀, 使得前 i 长度的string, 割出来都是palindrome
+- 最终要得到 dp[n], 所以 int[n + 1]
+- 移动切刀, 看在哪里切, index j in [0 ~ i]
 - 考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min(dp[i], d[j] + 1).
+- note: 估计遍历 j 的时候, 反过来遍历也可以.
 
 #### 计算Palindrome的优化
 - 利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
+- 找一个任意mid point:
+- 1. 假设palindrome是奇数长度, 那么 mid 是单独的字符, 而两边的字符 [mid-1], [mid+1] 应该完全相等.
+- 2. 假设palindrome是偶数长度, 那么 [mid] 和 [mid + 1] 这样位置的字符应该相等.
+- 这样做出来 palindrome[i, j]: 从字符 i 到 字符 j 的 substring 是否是 palindrome
 - 这样就给我们的问题合理降维, 目前是time: O(n^2). 
 - 不然求一次palindrome, 就是n, 会变成O(n^3)
 
@@ -61,7 +69,7 @@ class Solution {
 
         for (int i = 1; i <= len; i++) {
             dp[i] = Integer.MAX_VALUE;
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) { // this works too: (int j = i - 1; j >= 0; j--)
                 if (palindrome[j][i - 1]) { // check if [j , i - 1]
                     dp[i] = Math.min(dp[i], dp[j] + 1); // move cursor to j
                 }

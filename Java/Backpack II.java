@@ -2,6 +2,10 @@ M
 1524202756
 tags: DP, Backpack DP
 
+给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
+
+背包有自己的大小M, 看最多能放多少value的书?
+
 #### Backpack DP
 - 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是max weight, 而是 value的最大值.
 - 想法还是，选了A[i - 1] 或者没选A[i - 1]时候不同的value值.

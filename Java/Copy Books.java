@@ -11,7 +11,7 @@ tags: DP, Binary Search, Partition DP
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
 - 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
-- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
+- dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
 - Time: O(kn^2), space O(nk)
 
 ##### Init
@@ -83,7 +83,7 @@ public class Solution {
             for (int k = 1; k <= K; k++) { // k people
                 int sum = 0;
                 dp[i][k] = Integer.MAX_VALUE;
-                for (int j = i; j >= 0; j--) { // person k read from j -> i
+                for (int j = i; j >= 0; j--) { // last person k read from [j ~ i] which uses 'sum' time
                     dp[i][k] = Math.min(dp[i][k], Math.max(dp[j][k - 1], sum));
                     if (j > 0) {
                         sum += pages[j - 1];

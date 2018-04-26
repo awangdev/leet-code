@@ -4,11 +4,13 @@ tags: DP, Backpack DP
 
 #### Backpack DP
 - 与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
+- dp[i][w]: 用前i本书, 正好fill到 w weight的可能性.
 - 对于末尾, 还是两种情况:
 - 1. i-1位置没有加bag
 - 2. i-1位置加了bag
 - 两种情况可以fill满w的情况加起来, 就是我们要的结果.
 - 如常: dp[n + 1][w + 1]
+- 重点: dp[0][0] 表示0本书装满weight=0的包, 这里我们必须 dp[0][0] = 1, 给后面的 dp function 做base
 - Space, time: O(MN)
 - Rolling array, 空间优化, 滚动数组. Space: O(M)
 

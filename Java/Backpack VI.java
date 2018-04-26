@@ -1,13 +1,21 @@
 M
 1518420788
-tags: DP
+tags: DP, Backpack DP
 
-拼背包时, 可以有重复item, 所以考虑'最后被放入的哪个unique item' 就没有意义了.
-背包问题, 永远和weight分不开关系.
-这里很像coin chagne: 考虑最后被放入的东西的value/weigth, 而不考虑是哪个.
+给一个数组nums, 全正数, 无重复数字; 找: # of 拼出m的方法.
 
-1维: dp[w]: fill了weigth w 有多少种方法. 前面有多少种可能性, 就sum多少个:
-dp[w] = sum{dp[w - nums[i]]}, i = 0~n
+nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法.
+
+#### Backpack DP
+- dp[i] 表示: # of ways to fill weight i
+- 1维: dp[w]: fill weigth w 有多少种方法. 前面有多少种可能性, 就sum多少个:
+- dp[w] = sum{dp[w - nums[i]]}, i = 0~n
+
+##### 分析
+- 拼背包时, 可以有重复item, 所以考虑'最后被放入的哪个unique item' 就没有意义了.
+- 背包问题, 永远和weight分不开关系.
+- 这里很像coin chagne: 考虑最后被放入的东西的value/weigth, 而不考虑是哪个.
+
 
 
 
@@ -16,7 +24,7 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 Given an integer array nums with all positive numbers and no duplicates, 
 find the number of possible combinations that add up to a positive integer target.
 
- Notice
+Notice
 A number in the array can be used multiple times in the combination. 
 Different orders are counted as different combinations.
 */

@@ -1,6 +1,6 @@
 M
 1518540216
-tags: DP
+tags: DP, Range DP
 
 区间型动态规划. 
 1. 用[i][j]表示区间的首尾

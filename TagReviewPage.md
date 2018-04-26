@@ -1,8 +1,22 @@
  
  
  
-## Range DP (2)
-**0. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
+## Range DP (3)
+**0. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
+      
+
+区间型动态规划. 
+1. 用[i][j]表示区间的首尾
+2. 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
+3. Iteration一定是以i ~ j 之间的len来看的. len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+
+注意考虑len == 1, len == 2是的特殊情况.
+
+
+
+---
+
+**1. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
 - 给两个string S, T. 检验他们是不是scramble string.
@@ -29,7 +43,7 @@
 
 ---
 
-**1. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+**2. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -391,6 +405,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 #### Partition DP
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
 
@@ -497,6 +512,7 @@ Power of 3:  3 ^ x == n ?
 #### Partition DP
 - 遇到最值, 想到DP.
 - 看到分割字眼, 想到分割型 DP. 
+- 思考, 如果 j * j = 9, 那么 j = 3 就是最少的一步; 但是如果是10呢? 就会分割成1 + 9 = 1 + j * j 
 - 考虑最后的数字: 要是12割个1出来, 剩下11怎么考虑? 割个4出来,剩下8怎么考虑?
 - partion的方式: 在考虑dp[i - x]的时候,  x 不是1, 而是 x = j*j.
 - 就变成了dp = Min{dp[i - j^2] + 1}
@@ -690,7 +706,7 @@ Space O(n), time O(n)
  
  
  
-## DP (55)
+## DP (56)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -844,6 +860,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 #### Partition DP
 - 遇到最值, 想到DP.
 - 看到分割字眼, 想到分割型 DP. 
+- 思考, 如果 j * j = 9, 那么 j = 3 就是最少的一步; 但是如果是10呢? 就会分割成1 + 9 = 1 + j * j 
 - 考虑最后的数字: 要是12割个1出来, 剩下11怎么考虑? 割个4出来,剩下8怎么考虑?
 - partion的方式: 在考虑dp[i - x]的时候,  x 不是1, 而是 x = j*j.
 - 就变成了dp = Min{dp[i - j^2] + 1}
@@ -871,12 +888,20 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 **8. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium
       
 
-拼背包时, 可以有重复item, 所以考虑'最后被放入的哪个unique item' 就没有意义了.
-背包问题, 永远和weight分不开关系.
-这里很像coin chagne: 考虑最后被放入的东西的value/weigth, 而不考虑是哪个.
+给一个数组nums, 全正数, 无重复数字; 找: # of 拼出m的方法.
 
-1维: dp[w]: fill了weigth w 有多少种方法. 前面有多少种可能性, 就sum多少个:
-dp[w] = sum{dp[w - nums[i]]}, i = 0~n
+nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法.
+
+#### Backpack DP
+- dp[i] 表示: # of ways to fill weight i
+- 1维: dp[w]: fill weigth w 有多少种方法. 前面有多少种可能性, 就sum多少个:
+- dp[w] = sum{dp[w - nums[i]]}, i = 0~n
+
+##### 分析
+- 拼背包时, 可以有重复item, 所以考虑'最后被放入的哪个unique item' 就没有意义了.
+- 背包问题, 永远和weight分不开关系.
+- 这里很像coin chagne: 考虑最后被放入的东西的value/weigth, 而不考虑是哪个.
+
 
 
 
@@ -896,7 +921,7 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
 - 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
-- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
+- dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
 - Time: O(kn^2), space O(nk)
 
 ##### Init
@@ -928,27 +953,7 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 
 ---
 
-**10. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Review
-      
-
-可以无限使用物品, 就失去了last i, last unique item的意义: 因为可以重复使用.
-
-1. 所以可以转换一个角度: 用i种物品, 拼出w, 并且满足题目条件(max value).
-这里因为item i可以无限次使用, 所以要遍历使用了多少次K.
-
-2. K虽然可以无限, 但是也被 k*A[i]所限制: 最大不能超过背包大小.
-
-这样一来, 就close loop, 可以做了.
-
-优化: Review
-降维: 需要画图review
-变成1个一位数组: 看双行的左右计算方向
-
-
-
----
-
-**11. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
+**10. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
       
 
 区间型动态规划. 
@@ -962,7 +967,7 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 
 ---
 
-**12. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
+**11. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
 - 给两个string S, T. 检验他们是不是scramble string.
@@ -989,7 +994,7 @@ dp[w] = sum{dp[w - nums[i]]}, i = 0~n
 
 ---
 
-**13. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
+**12. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium
       
 
 Sequence DP
@@ -999,7 +1004,7 @@ Sequence DP
 
 ---
 
-**14. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
+**13. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
 给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
@@ -1014,7 +1019,7 @@ Sequence DP
 
 ---
 
-**15. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
+**14. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard
       
 
 双序列DP, 从最后点考虑.
@@ -1027,7 +1032,7 @@ Sequence DP
 
 ---
 
-**16. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
+**15. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard
       
 
 两个字符串, A要变成B, 可以 insert/delete/replace, 找最小变化operation count
@@ -1045,7 +1050,7 @@ Sequence DP
 
 ---
 
-**17. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
+**16. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard
       
 
 Double Sequence DP:
@@ -1057,14 +1062,14 @@ Double Sequence DP:
 
 ---
 
-**18. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
+**17. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review
       
 
 
 
 ---
 
-**19. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
+**18. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard
       
 
 Double sequence DP. 与regular expression 很像.
@@ -1077,7 +1082,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**20. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
+**19. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -1092,7 +1097,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**21. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
+**20. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review
       
 
 两个DP一起用.解决了timeout的问题     
@@ -1116,7 +1121,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 ---
 
-**22. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
+**21. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -1137,7 +1142,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 ---
 
-**23. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
+**22. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard
       
 
 #### 方法1: monotonous stack
@@ -1156,7 +1161,7 @@ Coordinate DP?
 
 ---
 
-**24. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
+**23. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -1179,7 +1184,7 @@ Coordinate DP?
 
 ---
 
-**25. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
+**24. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -1199,7 +1204,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**26. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
+**25. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -1220,7 +1225,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**27. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
+**26. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -1264,7 +1269,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**28. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
+**27. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy
       
 
 #### Recursive + Memoization
@@ -1290,7 +1295,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**29. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
+**28. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
       
 
 还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
@@ -1324,7 +1329,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**30. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+**29. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -1361,7 +1366,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**31. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
+**30. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy
       
 
 #### Brainteaser
@@ -1378,7 +1383,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**32. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
+**31. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard
       
 
 给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
@@ -1397,7 +1402,7 @@ TODO
 
 ---
 
-**33. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
+**32. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium
       
 
 给出步数，看能不能jump to end.
@@ -1418,7 +1423,7 @@ TODO
 
 ---
 
-**34. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
+**33. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
@@ -1436,7 +1441,7 @@ TODO
 
 ---
 
-**35. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
+**34. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy
       
 
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
@@ -1454,7 +1459,7 @@ TODO
 
 ---
 
-**36. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium
+**35. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -1462,6 +1467,7 @@ TODO
 #### Partition DP
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
 
@@ -1470,7 +1476,7 @@ TODO
 
 ---
 
-**37. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
+**36. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy
       
 
 找连续的持续上升子序列的长度.
@@ -1489,7 +1495,7 @@ TODO
 
 ---
 
-**38. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
+**37. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium
       
 
 #### DP
@@ -1507,7 +1513,7 @@ TODO
 
 ---
 
-**39. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium
+**38. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium
       
 
 给一个数组, 算里面有多少bit 1. 
@@ -1524,7 +1530,7 @@ TODO
 
 ---
 
-**40. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
+**39. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -1543,7 +1549,7 @@ TODO
 
 ---
 
-**41. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy
+**40. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy
       
 
 搜刮房子, 相邻的不能碰. 每个房子里有value, 求max.
@@ -1563,7 +1569,7 @@ TODO
 
 ---
 
-**42. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium
+**41. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium
       
 
 和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
@@ -1585,7 +1591,7 @@ TODO
 
 ---
 
-**43. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
+**42. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -1618,7 +1624,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**44. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard
+**43. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard
       
 
 一排n个房子, 每个房子可涂成k种颜色, 涂每个房子的价钱不一样, 用costs[][]表示. 
@@ -1656,7 +1662,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**45. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
+**44. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -1684,7 +1690,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**46. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
+**45. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy
       
 
 和Stock I 的区别：可以买卖多次，求总和的最大盈利.
@@ -1720,7 +1726,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**47. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard
+**46. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -1753,7 +1759,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**48. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard
+**47. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard
       
 
 #### DP
@@ -1796,7 +1802,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**49. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard
+**48. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard
       
 
 俄罗斯套娃, 这里用envelope来表现. 给一串array, 每一个[x, y] 是envelope 长宽. [[5,4],[6,4],[6,7],[2,3]]. 
@@ -1825,7 +1831,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**50. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard
+**49. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -1848,35 +1854,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**51. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
-      
-
-给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
-
-#### Partition DP
-- Find minimum cut: 分割型DP
-- 考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min(dp[i], d[j] + 1).
-
-#### 计算Palindrome的优化
-- 利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
-- 这样就给我们的问题合理降维, 目前是time: O(n^2). 
-- 不然求一次palindrome, 就是n, 会变成O(n^3)
-
-#### Previous Notes
-- Double for loop 检查每种substring string (i~j). 若i,j相邻或者同点，那么肯定isPal；否则，i,j之间的（i+1, j-1）一定得isPal。
-- 看上去，在检查i,j的时候，中间按的（i+1, j-1）怎么可能先知道？ 其实不然..在j慢慢长大的时候，所有的0~j的substring都检查过。所以isPal[i+1][j-1]一定是已经知道结果的。
-- okay.那么假如以上任意一种情况成立，也就是说isPal[i][j] == true。那就要判断，切到第一层循环参数j的末尾点时，有多少种切法？
-- 想法很顺：我们naturally会想到，把i之前的cut加上i~j之间发生的不就好了。
-- 反正现在j不变，现在就看吧i定在哪里，cut[i - 1]是否更小/最小； 再在cut[i-1]基础上+1就完了。
-- 当然，如果i==0, 而 i~j又是isPal,那没啥好谈的，不必切，0刀。
-- 最终，刷到cut[s.length() - 1] 也就是最后一点。 return的理所应当。
-
-
-
-
----
-
-**52. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium
+**50. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium
       
 
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
@@ -1917,8 +1895,12 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**53. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium
+**51. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium
       
+
+给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
+
+背包有自己的大小M, 看最多能放多少value的书?
 
 #### Backpack DP
 - 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是max weight, 而是 value的最大值.
@@ -1936,16 +1918,18 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**54. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium
+**52. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium
       
 
 #### Backpack DP
 - 与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
+- dp[i][w]: 用前i本书, 正好fill到 w weight的可能性.
 - 对于末尾, 还是两种情况:
 - 1. i-1位置没有加bag
 - 2. i-1位置加了bag
 - 两种情况可以fill满w的情况加起来, 就是我们要的结果.
 - 如常: dp[n + 1][w + 1]
+- 重点: dp[0][0] 表示0本书装满weight=0的包, 这里我们必须 dp[0][0] = 1, 给后面的 dp function 做base
 - Space, time: O(MN)
 - Rolling array, 空间优化, 滚动数组. Space: O(M)
 
@@ -1954,6 +1938,105 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - 所以可以被override.
 - Space: O(M), 真*一维啊!
 - Time: O(MN)
+
+
+
+---
+
+**53. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard
+      
+
+给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
+
+其中字符可能是 "*", 可以代表 [1 - 9]
+
+#### DP
+- 跟decode way I 一样, 加法原理, 切割点时: 当下是取了 1 digit 还是 2 digits 来decode
+- 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 不同的情况是: 每一个partition里面, 如果有"*", 就会在自身延伸出很多不同的可能
+- 那么: dp[i] = dp[i - 1] * (#variations of ss[i]) + dp[i - 2] * (#variations of ss[i,i+1])
+
+##### 特点
+- 枚举的能力: 具体分析 '*' 出现的位置, 枚举出数字, 基本功. 注意!!题目说 * in [1, 9].   (如果 0 ~ 9 会更难一些)
+- 理解取MOD的原因: 数字太大, 取mod来给最终结果: 其实在 10^9 + 7 这么大的 mod 下, 大部分例子是能通过的.
+- 枚举好以后, 其实这个题目的写法和思考过程都不难
+
+
+
+
+---
+
+**54. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
+      
+
+给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
+
+#### Partition DP
+- Find minimum cut: 分割型DP
+- dp[i]: 最少cut多少刀, 使得前 i 长度的string, 割出来都是palindrome
+- 最终要得到 dp[n], 所以 int[n + 1]
+- 移动切刀, 看在哪里切, index j in [0 ~ i]
+- 考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min(dp[i], d[j] + 1).
+- note: 估计遍历 j 的时候, 反过来遍历也可以.
+
+#### 计算Palindrome的优化
+- 利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
+- 找一个任意mid point:
+- 1. 假设palindrome是奇数长度, 那么 mid 是单独的字符, 而两边的字符 [mid-1], [mid+1] 应该完全相等.
+- 2. 假设palindrome是偶数长度, 那么 [mid] 和 [mid + 1] 这样位置的字符应该相等.
+- 这样做出来 palindrome[i, j]: 从字符 i 到 字符 j 的 substring 是否是 palindrome
+- 这样就给我们的问题合理降维, 目前是time: O(n^2). 
+- 不然求一次palindrome, 就是n, 会变成O(n^3)
+
+#### Previous Notes
+- Double for loop 检查每种substring string (i~j). 若i,j相邻或者同点，那么肯定isPal；否则，i,j之间的（i+1, j-1）一定得isPal。
+- 看上去，在检查i,j的时候，中间按的（i+1, j-1）怎么可能先知道？ 其实不然..在j慢慢长大的时候，所有的0~j的substring都检查过。所以isPal[i+1][j-1]一定是已经知道结果的。
+- okay.那么假如以上任意一种情况成立，也就是说isPal[i][j] == true。那就要判断，切到第一层循环参数j的末尾点时，有多少种切法？
+- 想法很顺：我们naturally会想到，把i之前的cut加上i~j之间发生的不就好了。
+- 反正现在j不变，现在就看吧i定在哪里，cut[i - 1]是否更小/最小； 再在cut[i-1]基础上+1就完了。
+- 当然，如果i==0, 而 i~j又是isPal,那没啥好谈的，不必切，0刀。
+- 最终，刷到cut[s.length() - 1] 也就是最后一点。 return的理所应当。
+
+
+
+
+---
+
+**55. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard
+      
+
+给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
+
+问最大多少value可以装进size是 m 的包?
+
+#### DP
+- 可以无限使用物品, 就失去了last i, last unique item的意义: 因为可以重复使用.
+- 所以可以转换一个角度:
+- 1. 用i **种** 物品, 拼出w, 并且满足题目条件(max value). 这里因为item i可以无限次使用, 所以考虑使用了多少次K.
+- 2. K虽然可以无限, 但是也被 k*A[i]所限制: 最大不能超过背包大小.
+- dp[i][w]: 前i种物品, fill weight w 的背包, 最大价值是多少.
+- dp[i][w] = max {dp[i - 1][w - k*A[i-1]] + kV[i-1]}, k >= 0
+- Time O(nmk)
+- 如果k = 0 或者 1, 其实就是 Backpack II: 拿或者不拿
+
+#### 优化
+- 优化时间复杂度, 画图发现:
+- 所计算的 (dp[i - 1][j - k*A[i - 1]] + k * V[i - 1]) 
+- 其实跟同一行的 dp[i][j-A[i-1]] 那个格子, 就多出了 V[i-1]
+- 所以没必要每次都 loop over k times
+- 简化: dp[i][j] 其中一个可能就是: dp[i][j - A[i - 1]] + V[i - 1]
+- Time O(mn)
+
+#### 空间优化到1维数组
+- 根据上一个优化的情况, 画出 2 rows 网格
+- 发现 dp[i][j] 取决于: 1. dp[i - 1][j], 2. dp[i][j - A[i - 1]]
+- 其中: dp[i - 1][j] 是上一轮 (i-1) 的结算结果, 一定是已经算好, ready to be used 的
+- 然而, 当我们 i++,j++ 之后, 在之前 row = i - 1, col < j的格子, 全部不需要.
+- 降维简化: 只需要留着 weigth 这个 dimension, 而i这个dimension 可以省略: 
+- (i - 1) row 不过是需要用到之前算出的旧value: 每一轮, j = [0 ~ m], 那么dp[j]本身就有记录旧值的功能.
+- 变成1个一位数组
+- 降维优化的重点: 看双行的左右计算方向
+- Time(mn). Space(m)
 
 
 
@@ -2035,6 +2118,7 @@ TODO
 #### Partition DP
 - 遇到最值, 想到DP.
 - 看到分割字眼, 想到分割型 DP. 
+- 思考, 如果 j * j = 9, 那么 j = 3 就是最少的一步; 但是如果是10呢? 就会分割成1 + 9 = 1 + j * j 
 - 考虑最后的数字: 要是12割个1出来, 剩下11怎么考虑? 割个4出来,剩下8怎么考虑?
 - partion的方式: 在考虑dp[i - x]的时候,  x 不是1, 而是 x = j*j.
 - 就变成了dp = Min{dp[i - j^2] + 1}
@@ -4844,7 +4928,7 @@ reset() 给出最初的nums
  
  
  
-## Partition DP (4)
+## Partition DP (5)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -4855,6 +4939,7 @@ reset() 给出最初的nums
 #### Partition DP
 - 遇到最值, 想到DP.
 - 看到分割字眼, 想到分割型 DP. 
+- 思考, 如果 j * j = 9, 那么 j = 3 就是最少的一步; 但是如果是10呢? 就会分割成1 + 9 = 1 + j * j 
 - 考虑最后的数字: 要是12割个1出来, 剩下11怎么考虑? 割个4出来,剩下8怎么考虑?
 - partion的方式: 在考虑dp[i - x]的时候,  x 不是1, 而是 x = j*j.
 - 就变成了dp = Min{dp[i - j^2] + 1}
@@ -4891,7 +4976,7 @@ reset() 给出最初的nums
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
 - 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
-- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
+- dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
 - Time: O(kn^2), space O(nk)
 
 ##### Init
@@ -4931,6 +5016,7 @@ reset() 给出最初的nums
 #### Partition DP
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
 
@@ -4939,17 +5025,48 @@ reset() 给出最初的nums
 
 ---
 
-**3. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
+**3. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard
+      
+
+给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
+
+其中字符可能是 "*", 可以代表 [1 - 9]
+
+#### DP
+- 跟decode way I 一样, 加法原理, 切割点时: 当下是取了 1 digit 还是 2 digits 来decode
+- 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 不同的情况是: 每一个partition里面, 如果有"*", 就会在自身延伸出很多不同的可能
+- 那么: dp[i] = dp[i - 1] * (#variations of ss[i]) + dp[i - 2] * (#variations of ss[i,i+1])
+
+##### 特点
+- 枚举的能力: 具体分析 '*' 出现的位置, 枚举出数字, 基本功. 注意!!题目说 * in [1, 9].   (如果 0 ~ 9 会更难一些)
+- 理解取MOD的原因: 数字太大, 取mod来给最终结果: 其实在 10^9 + 7 这么大的 mod 下, 大部分例子是能通过的.
+- 枚举好以后, 其实这个题目的写法和思考过程都不难
+
+
+
+
+---
+
+**4. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
       
 
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
 
 #### Partition DP
 - Find minimum cut: 分割型DP
+- dp[i]: 最少cut多少刀, 使得前 i 长度的string, 割出来都是palindrome
+- 最终要得到 dp[n], 所以 int[n + 1]
+- 移动切刀, 看在哪里切, index j in [0 ~ i]
 - 考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min(dp[i], d[j] + 1).
+- note: 估计遍历 j 的时候, 反过来遍历也可以.
 
 #### 计算Palindrome的优化
 - 利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
+- 找一个任意mid point:
+- 1. 假设palindrome是奇数长度, 那么 mid 是单独的字符, 而两边的字符 [mid-1], [mid+1] 应该完全相等.
+- 2. 假设palindrome是偶数长度, 那么 [mid] 和 [mid + 1] 这样位置的字符应该相等.
+- 这样做出来 palindrome[i, j]: 从字符 i 到 字符 j 的 substring 是否是 palindrome
 - 这样就给我们的问题合理降维, 目前是time: O(n^2). 
 - 不然求一次palindrome, 就是n, 会变成O(n^3)
 
@@ -6847,8 +6964,32 @@ Time: O(nLogN)
  
  
  
-## Backpack DP (3)
-**0. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium
+## Backpack DP (5)
+**0. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium
+      
+
+给一个数组nums, 全正数, 无重复数字; 找: # of 拼出m的方法.
+
+nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法.
+
+#### Backpack DP
+- dp[i] 表示: # of ways to fill weight i
+- 1维: dp[w]: fill weigth w 有多少种方法. 前面有多少种可能性, 就sum多少个:
+- dp[w] = sum{dp[w - nums[i]]}, i = 0~n
+
+##### 分析
+- 拼背包时, 可以有重复item, 所以考虑'最后被放入的哪个unique item' 就没有意义了.
+- 背包问题, 永远和weight分不开关系.
+- 这里很像coin chagne: 考虑最后被放入的东西的value/weigth, 而不考虑是哪个.
+
+
+
+
+
+
+---
+
+**1. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium
       
 
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
@@ -6889,8 +7030,12 @@ Time: O(nLogN)
 
 ---
 
-**1. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium
+**2. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium
       
+
+给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
+
+背包有自己的大小M, 看最多能放多少value的书?
 
 #### Backpack DP
 - 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是max weight, 而是 value的最大值.
@@ -6908,16 +7053,18 @@ Time: O(nLogN)
 
 ---
 
-**2. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium
+**3. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium
       
 
 #### Backpack DP
 - 与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
+- dp[i][w]: 用前i本书, 正好fill到 w weight的可能性.
 - 对于末尾, 还是两种情况:
 - 1. i-1位置没有加bag
 - 2. i-1位置加了bag
 - 两种情况可以fill满w的情况加起来, 就是我们要的结果.
 - 如常: dp[n + 1][w + 1]
+- 重点: dp[0][0] 表示0本书装满weight=0的包, 这里我们必须 dp[0][0] = 1, 给后面的 dp function 做base
 - Space, time: O(MN)
 - Rolling array, 空间优化, 滚动数组. Space: O(M)
 
@@ -6926,6 +7073,46 @@ Time: O(nLogN)
 - 所以可以被override.
 - Space: O(M), 真*一维啊!
 - Time: O(MN)
+
+
+
+---
+
+**4. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard
+      
+
+给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
+
+问最大多少value可以装进size是 m 的包?
+
+#### DP
+- 可以无限使用物品, 就失去了last i, last unique item的意义: 因为可以重复使用.
+- 所以可以转换一个角度:
+- 1. 用i **种** 物品, 拼出w, 并且满足题目条件(max value). 这里因为item i可以无限次使用, 所以考虑使用了多少次K.
+- 2. K虽然可以无限, 但是也被 k*A[i]所限制: 最大不能超过背包大小.
+- dp[i][w]: 前i种物品, fill weight w 的背包, 最大价值是多少.
+- dp[i][w] = max {dp[i - 1][w - k*A[i-1]] + kV[i-1]}, k >= 0
+- Time O(nmk)
+- 如果k = 0 或者 1, 其实就是 Backpack II: 拿或者不拿
+
+#### 优化
+- 优化时间复杂度, 画图发现:
+- 所计算的 (dp[i - 1][j - k*A[i - 1]] + k * V[i - 1]) 
+- 其实跟同一行的 dp[i][j-A[i-1]] 那个格子, 就多出了 V[i-1]
+- 所以没必要每次都 loop over k times
+- 简化: dp[i][j] 其中一个可能就是: dp[i][j - A[i - 1]] + V[i - 1]
+- Time O(mn)
+
+#### 空间优化到1维数组
+- 根据上一个优化的情况, 画出 2 rows 网格
+- 发现 dp[i][j] 取决于: 1. dp[i - 1][j], 2. dp[i][j - A[i - 1]]
+- 其中: dp[i - 1][j] 是上一轮 (i-1) 的结算结果, 一定是已经算好, ready to be used 的
+- 然而, 当我们 i++,j++ 之后, 在之前 row = i - 1, col < j的格子, 全部不需要.
+- 降维简化: 只需要留着 weigth 这个 dimension, 而i这个dimension 可以省略: 
+- (i - 1) row 不过是需要用到之前算出的旧value: 每一轮, j = [0 ~ m], 那么dp[j]本身就有记录旧值的功能.
+- 变成1个一位数组
+- 降维优化的重点: 看双行的左右计算方向
+- Time(mn). Space(m)
 
 
 
@@ -8139,7 +8326,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
 - 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
-- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
+- dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
 - Time: O(kn^2), space O(nk)
 
 ##### Init

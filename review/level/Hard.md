@@ -1,7 +1,7 @@
  
  
  
-## Hard (48)
+## Hard (50)
 **0. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard
       
 首先要分两半解决，断点是'.': str.split("\\.");
@@ -200,7 +200,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
 - 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
-- dp[n][k] = Math.max(dp[j][k - 1], sum[j+1, n-1])
+- dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
 - Time: O(kn^2), space O(nk)
 
 ##### Init
@@ -956,35 +956,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**43. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
-      
-
-给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
-
-#### Partition DP
-- Find minimum cut: 分割型DP
-- 考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min(dp[i], d[j] + 1).
-
-#### 计算Palindrome的优化
-- 利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
-- 这样就给我们的问题合理降维, 目前是time: O(n^2). 
-- 不然求一次palindrome, 就是n, 会变成O(n^3)
-
-#### Previous Notes
-- Double for loop 检查每种substring string (i~j). 若i,j相邻或者同点，那么肯定isPal；否则，i,j之间的（i+1, j-1）一定得isPal。
-- 看上去，在检查i,j的时候，中间按的（i+1, j-1）怎么可能先知道？ 其实不然..在j慢慢长大的时候，所有的0~j的substring都检查过。所以isPal[i+1][j-1]一定是已经知道结果的。
-- okay.那么假如以上任意一种情况成立，也就是说isPal[i][j] == true。那就要判断，切到第一层循环参数j的末尾点时，有多少种切法？
-- 想法很顺：我们naturally会想到，把i之前的cut加上i~j之间发生的不就好了。
-- 反正现在j不变，现在就看吧i定在哪里，cut[i - 1]是否更小/最小； 再在cut[i-1]基础上+1就完了。
-- 当然，如果i==0, 而 i~j又是isPal,那没啥好谈的，不必切，0刀。
-- 最终，刷到cut[s.length() - 1] 也就是最后一点。 return的理所应当。
-
-
-
-
----
-
-**44. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
+**43. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
       
 
 给一串字符, 表示的是 公式 expression. 把公式变成expression tree
@@ -1008,7 +980,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**45. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
+**44. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 
 给一个公式 expression, 然后evaluate结果.
@@ -1029,7 +1001,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**46. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
+**45. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
       
 
 给一串字符, 用来表示公式expression. 把这个expression转换成 Polish Notation (PN).
@@ -1044,7 +1016,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**47. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
+**46. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
       
 
 给一串字符, 用来表示公式expression. 把这个expression转换成 Reverse Polish Notation (RPN).
@@ -1053,6 +1025,105 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
 - 根据题意做出Expression Tree出来以后: 来个Post-order-traversal 就能记录下 Reverse Polish Notation
 - 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
+
+
+
+---
+
+**47. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard
+      
+
+给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
+
+其中字符可能是 "*", 可以代表 [1 - 9]
+
+#### DP
+- 跟decode way I 一样, 加法原理, 切割点时: 当下是取了 1 digit 还是 2 digits 来decode
+- 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 不同的情况是: 每一个partition里面, 如果有"*", 就会在自身延伸出很多不同的可能
+- 那么: dp[i] = dp[i - 1] * (#variations of ss[i]) + dp[i - 2] * (#variations of ss[i,i+1])
+
+##### 特点
+- 枚举的能力: 具体分析 '*' 出现的位置, 枚举出数字, 基本功. 注意!!题目说 * in [1, 9].   (如果 0 ~ 9 会更难一些)
+- 理解取MOD的原因: 数字太大, 取mod来给最终结果: 其实在 10^9 + 7 这么大的 mod 下, 大部分例子是能通过的.
+- 枚举好以后, 其实这个题目的写法和思考过程都不难
+
+
+
+
+---
+
+**48. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard
+      
+
+给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
+
+#### Partition DP
+- Find minimum cut: 分割型DP
+- dp[i]: 最少cut多少刀, 使得前 i 长度的string, 割出来都是palindrome
+- 最终要得到 dp[n], 所以 int[n + 1]
+- 移动切刀, 看在哪里切, index j in [0 ~ i]
+- 考虑[j, i - 1] 是否是回文串, 如果是, 那么: dp[i]= min(dp[i], d[j] + 1).
+- note: 估计遍历 j 的时候, 反过来遍历也可以.
+
+#### 计算Palindrome的优化
+- 利用palindrome的性质, 可以算出 boolean palindrome[i, j]的情况. 
+- 找一个任意mid point:
+- 1. 假设palindrome是奇数长度, 那么 mid 是单独的字符, 而两边的字符 [mid-1], [mid+1] 应该完全相等.
+- 2. 假设palindrome是偶数长度, 那么 [mid] 和 [mid + 1] 这样位置的字符应该相等.
+- 这样做出来 palindrome[i, j]: 从字符 i 到 字符 j 的 substring 是否是 palindrome
+- 这样就给我们的问题合理降维, 目前是time: O(n^2). 
+- 不然求一次palindrome, 就是n, 会变成O(n^3)
+
+#### Previous Notes
+- Double for loop 检查每种substring string (i~j). 若i,j相邻或者同点，那么肯定isPal；否则，i,j之间的（i+1, j-1）一定得isPal。
+- 看上去，在检查i,j的时候，中间按的（i+1, j-1）怎么可能先知道？ 其实不然..在j慢慢长大的时候，所有的0~j的substring都检查过。所以isPal[i+1][j-1]一定是已经知道结果的。
+- okay.那么假如以上任意一种情况成立，也就是说isPal[i][j] == true。那就要判断，切到第一层循环参数j的末尾点时，有多少种切法？
+- 想法很顺：我们naturally会想到，把i之前的cut加上i~j之间发生的不就好了。
+- 反正现在j不变，现在就看吧i定在哪里，cut[i - 1]是否更小/最小； 再在cut[i-1]基础上+1就完了。
+- 当然，如果i==0, 而 i~j又是isPal,那没啥好谈的，不必切，0刀。
+- 最终，刷到cut[s.length() - 1] 也就是最后一点。 return的理所应当。
+
+
+
+
+---
+
+**49. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard
+      
+
+给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
+
+问最大多少value可以装进size是 m 的包?
+
+#### DP
+- 可以无限使用物品, 就失去了last i, last unique item的意义: 因为可以重复使用.
+- 所以可以转换一个角度:
+- 1. 用i **种** 物品, 拼出w, 并且满足题目条件(max value). 这里因为item i可以无限次使用, 所以考虑使用了多少次K.
+- 2. K虽然可以无限, 但是也被 k*A[i]所限制: 最大不能超过背包大小.
+- dp[i][w]: 前i种物品, fill weight w 的背包, 最大价值是多少.
+- dp[i][w] = max {dp[i - 1][w - k*A[i-1]] + kV[i-1]}, k >= 0
+- Time O(nmk)
+- 如果k = 0 或者 1, 其实就是 Backpack II: 拿或者不拿
+
+#### 优化
+- 优化时间复杂度, 画图发现:
+- 所计算的 (dp[i - 1][j - k*A[i - 1]] + k * V[i - 1]) 
+- 其实跟同一行的 dp[i][j-A[i-1]] 那个格子, 就多出了 V[i-1]
+- 所以没必要每次都 loop over k times
+- 简化: dp[i][j] 其中一个可能就是: dp[i][j - A[i - 1]] + V[i - 1]
+- Time O(mn)
+
+#### 空间优化到1维数组
+- 根据上一个优化的情况, 画出 2 rows 网格
+- 发现 dp[i][j] 取决于: 1. dp[i - 1][j], 2. dp[i][j - A[i - 1]]
+- 其中: dp[i - 1][j] 是上一轮 (i-1) 的结算结果, 一定是已经算好, ready to be used 的
+- 然而, 当我们 i++,j++ 之后, 在之前 row = i - 1, col < j的格子, 全部不需要.
+- 降维简化: 只需要留着 weigth 这个 dimension, 而i这个dimension 可以省略: 
+- (i - 1) row 不过是需要用到之前算出的旧value: 每一轮, j = [0 ~ m], 那么dp[j]本身就有记录旧值的功能.
+- 变成1个一位数组
+- 降维优化的重点: 看双行的左右计算方向
+- Time(mn). Space(m)
 
 
 

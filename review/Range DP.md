@@ -1,8 +1,22 @@
  
  
  
-## Range DP (2)
-**0. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
+## Range DP (3)
+**0. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
+      
+
+区间型动态规划. 
+1. 用[i][j]表示区间的首尾
+2. 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
+3. Iteration一定是以i ~ j 之间的len来看的. len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+
+注意考虑len == 1, len == 2是的特殊情况.
+
+
+
+---
+
+**1. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard
       
 
 - 给两个string S, T. 检验他们是不是scramble string.
@@ -29,7 +43,7 @@
 
 ---
 
-**1. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
+**2. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?

@@ -320,6 +320,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 #### Partition DP
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
 

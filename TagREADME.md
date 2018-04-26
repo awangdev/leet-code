@@ -58,11 +58,12 @@ Table of Contents
  
  
  
-## Range DP (2)
+## Range DP (3)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Range DP, String]||
-|1|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Memoization, Range DP]||
+|0|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DP, Range DP]||
+|1|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Range DP, String]||
+|2|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Memoization, Range DP]||
 
 
 
@@ -126,7 +127,7 @@ Table of Contents
  
  
  
-## DP (55)
+## DP (56)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[DP, Memoization, Sequence DP]||
@@ -137,53 +138,54 @@ Table of Contents
 |5|[Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)|Medium|Java|[Array, Coordinate DP, DP]||
 |6|[Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)|Medium|Java|[Coordinate DP, DP]||
 |7|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math, Partition DP]||
-|8|[Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)|Medium|Java|[DP]||
+|8|[Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)|Medium|Java|[Backpack DP, DP]||
 |9|[Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)|Hard|Java|[Binary Search, DP, Partition DP]||
-|10|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Review|Java|[DP]||
-|11|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DP]||
-|12|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Range DP, String]||
-|13|[Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)|Medium|Java|[DP]||
-|14|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP]||
-|15|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|Hard|Java|[DP, String]||
-|16|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, String]||
-|17|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java|[DP, String]||
-|18|[Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)|Review|Java|[Backtracking, DP, String]||
-|19|[Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)|Hard|Java|[Backtracking, DP, Greedy, String]||
-|20|[Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)|Hard|Java|[DP]||
-|21|[Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)|Review|Java|[Backtracking, DP]||
-|22|[Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)|Medium|Java|[Array, Coordinate DP, DP]||
-|23|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
-|24|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
-|25|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[DFS, DP, Memoization, Topological Sort]||
-|26|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
-|27|[Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)|Medium|Java|[Array, DP, Game Theory, Memoization, MiniMax]||
-|28|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
-|29|[Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)|Hard|Java|[Array, DP, Game Theory, Interval DP, Memoization]||
-|30|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Memoization, Range DP]||
-|31|[Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)|Easy|Java|[Brainteaser, DP, Game Theory]||
-|32|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Trie]||
-|33|[Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)|Medium|Java|[Array, DP, Greedy]||
-|34|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[DP, Sequence DP]||
-|35|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP]||
-|36|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
-|37|[Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
-|38|[Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)|Medium|Java|[Array, Coordinate DP, DP]||
-|39|[Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)|Medium|Java|[Bit Manipulation, Bitwise DP, DP]||
-|40|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
-|41|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
-|42|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP]||
-|43|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
-|44|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP]||
-|45|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
-|46|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP]||
-|47|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
-|48|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP, Sequence DP]||
-|49|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
-|50|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
-|51|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
-|52|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
-|53|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
-|54|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
+|10|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DP, Range DP]||
+|11|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Range DP, String]||
+|12|[Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)|Medium|Java|[DP]||
+|13|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP]||
+|14|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|Hard|Java|[DP, String]||
+|15|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, String]||
+|16|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java|[DP, String]||
+|17|[Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)|Review|Java|[Backtracking, DP, String]||
+|18|[Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)|Hard|Java|[Backtracking, DP, Greedy, String]||
+|19|[Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)|Hard|Java|[DP]||
+|20|[Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)|Review|Java|[Backtracking, DP]||
+|21|[Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)|Medium|Java|[Array, Coordinate DP, DP]||
+|22|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
+|23|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
+|24|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[DFS, DP, Memoization, Topological Sort]||
+|25|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
+|26|[Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)|Medium|Java|[Array, DP, Game Theory, Memoization, MiniMax]||
+|27|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
+|28|[Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)|Hard|Java|[Array, DP, Game Theory, Interval DP, Memoization]||
+|29|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Memoization, Range DP]||
+|30|[Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)|Easy|Java|[Brainteaser, DP, Game Theory]||
+|31|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Trie]||
+|32|[Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)|Medium|Java|[Array, DP, Greedy]||
+|33|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[DP, Sequence DP]||
+|34|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP]||
+|35|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
+|36|[Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
+|37|[Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)|Medium|Java|[Array, Coordinate DP, DP]||
+|38|[Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)|Medium|Java|[Bit Manipulation, Bitwise DP, DP]||
+|39|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
+|40|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
+|41|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP]||
+|42|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
+|43|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP]||
+|44|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
+|45|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP]||
+|46|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
+|47|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP, Sequence DP]||
+|48|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
+|49|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
+|50|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
+|51|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
+|52|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
+|53|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
+|54|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
+|55|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Hard|Java|[Backpack DP, DP]||
 
 
 
@@ -446,13 +448,14 @@ Table of Contents
  
  
  
-## Partition DP (4)
+## Partition DP (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math, Partition DP]||
 |1|[Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)|Hard|Java|[Binary Search, DP, Partition DP]||
 |2|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
-|3|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
+|3|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
+|4|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
 
 
 
@@ -676,12 +679,14 @@ Table of Contents
  
  
  
-## Backpack DP (3)
+## Backpack DP (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
-|1|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
-|2|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
+|0|[Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)|Medium|Java|[Backpack DP, DP]||
+|1|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
+|2|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
+|3|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
+|4|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Hard|Java|[Backpack DP, DP]||
 
 
 

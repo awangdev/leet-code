@@ -7,6 +7,7 @@ tags: String, DP, Partition DP
 #### Partition DP
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
 
@@ -38,7 +39,7 @@ class Solution {
         int n = s.length();
         char[] ss = s.toCharArray();
         int[] dp = new int[n + 1];
-        dp[0] = 1; // 1 to help build dp
+        dp[0] = 1; // 1 to help build dp, can be: no digit, means there is only 1 way to decode: no message
         dp[1] = s.charAt(0) != '0' ? 1 : 0; // only has s.charAt(0);
         for (int i = 2; i <= n; i++) {
             int oneDigit = ss[i - 1] - '0';
