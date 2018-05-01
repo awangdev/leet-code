@@ -1,19 +1,19 @@
 H
 1522042382
-tags: Divide and Conquer, DP, Range DP, Memoization
+tags: Divide and Conquer, DP, Interval DP, Memoization
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
 
-TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for range DP.
+TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for interval DP.
 
-#### Range DP
+#### Interval DP
 - 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
 - 最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
 - dp[i][j] represent max value on range [i, j)
 - Need to calculate dp[i][j] incrementally, starting from range size == 3 ---> n
 - Use k to divide the range [i, j) and conquer each side.
 
-##### Range DP 三把斧:
+##### Interval DP 三把斧:
 - 中间劈开
 - 砍断首或尾
 - Range区间作为iteration的根本
@@ -64,7 +64,7 @@ Divide and Conquer Dynamic Programming
 
 /*
 Thoughts:
-Range DP. Think about it: it's really hard to find which ballon burst first; 
+Interval DP. Think about it: it's really hard to find which ballon burst first; 
 how about which ballon burst last?
 
 If it burst last, the value will be left * lastItem * right.

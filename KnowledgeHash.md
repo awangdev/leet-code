@@ -38,6 +38,7 @@ Table of Contents
    * [Segment Tree](#segment-tree)
    * [Graph](#graph)
       * [Adjacency List](#adjacency-list)
+         * [Example](#example-1)
       * [Adjacency Matrices](#adjacency-matrices)
       * [Graph Search](#graph-search)
          * [DFS](#dfs)
@@ -98,14 +99,21 @@ Table of Contents
          * [背包类](#背包类)
             * [多种问法](#多种问法)
             * [方法策略](#方法策略)
-         * [区间类(range DP)](#区间类range-dp)
+            * [放入的物品没有顺序](#放入的物品没有顺序)
+         * [区间类(Interval DP)](#区间类interval-dp)
+            * [特点](#特点-2)
             * [三把斧](#三把斧)
+            * [难点](#难点)
          * [Bitwise Operation DP](#bitwise-operation-dp)
-         * [记忆化搜索 Memoization](#记忆化搜索-memoization)
-      * [Minimax](#minimax)
+         * [优化](#优化)
+      * [Minimax/MaxiMin](#minimaxmaximin)
       * [Optimization problems](#optimization-problems)
       * [Double Sequence](#double-sequence)
       * [存状态](#存状态)
+   * [记忆化搜索 Memoization DP](#记忆化搜索-memoization-dp)
+      * [什么时候用记忆化搜索](#什么时候用记忆化搜索)
+      * [特点](#特点-3)
+      * [缺点](#缺点)
    * [Search](#search)
       * [Breadth-first Search](#breadth-first-search)
       * [Depth-first Search](#depth-first-search)
@@ -126,13 +134,17 @@ Table of Contents
    * [Problem Sets](#problem-sets)
       * [permutation](#permutation)
          * [原理](#原理)
-         * [Example](#example-1)
+         * [Example](#example-2)
       * [Two Pointer](#two-pointer)
       * [Min/Max Heap](#minmax-heap)
       * [回文串 Palindrome](#回文串-palindrome)
       * [Stack](#stack-1)
       * [Windows Problem](#windows-problem)
       * [Sweep Line](#sweep-line)
+   * [Pain Point](#pain-point)
+      * [Basics](#basics-2)
+      * [Edge case](#edge-case)
+      * [Advanced](#advanced)
 
 # Heap
 
@@ -316,16 +328,33 @@ The expression tree will be like
 # Graph
 - Tree is a type of graph: connected graph, without cycles
 - Graph is a collection of nodes, with edges between (some of, not all of) them
+- It can be presented as ** map of Nodes **
+- Each node should be able to lead to a list of children nodes
 - Can be directed (one-way street), or undirected (two-way street)
 - May contain multiple isolated subgraphs.
 - If there is a path between every pair of ndoes, it's a 'connected graph'
 - graph can have cycle
 - If no cycle, it's called 'acyclic'
+- Two popular ways to store graph: Adjacency List, Adjacency Matrices
 
 ## Adjacency List
-- Use a graph class, which is just a list of node 
+- The graph can be presented with a graph class, which is just a list of node, a map of nodes
+- Or it can me an array (or a hash table) of lists (arrays, arraylists, linked lists ... etc)
 - each node has it's own propety, and a list of adjacent nodes
 - This graph can be directed, or undirected (modeled by adjacent node list in each Node)
+
+### Example
+```
+
+class Graph {
+	public Node[] nodes;
+}
+
+class Node {
+	public String name; // property of the node
+	public Node[] children; // children nodes
+}
+```
 
 ## Adjacency Matrices
 - matrix[i][j] = true, indicate an edge from node i t node j
@@ -335,15 +364,15 @@ The expression tree will be like
 - BFS: start at root, explore each neighbor before going to the children (go wide first)
 
 ### DFS
-- is preferred when visiting every node in the graph, a bit simplier to write
-- IMPORTANT: in graph, must mark node 'visited', otherwise can be infinite loop
+- is preferred when visiting **every node** in the graph, a bit simplier to write
+- IMPORTANT: in graph, must mark node **'visited'**, otherwise can be infinite loop
 
 ### BFS
-- Better when finding shortest path (or any path) betwen 2 nodes
+- Better when finding **shortest path** (or any path) betwen 2 nodes
 - Use a queue, of course
 
 ### Bidirectional Search
-- Find shortest path between a sourcea and destination node
+- Find shortest path between a source and destination node
 - Running 2 simultaneous BFS
 - when two searches collide, a path if found
 - It's faster than one BFS
@@ -511,6 +540,7 @@ The expression tree will be like
 - 计数: how many. 加法原理
 - 求最大/最小值: min/max
 - 求存在性: 能否, AND/OR dp=true/false
+- 主要cover 递推(recurrence)的DP, 从小到大计算
 
 ## 四个步骤
 - 确定状态
@@ -545,7 +575,7 @@ The expression tree will be like
 - 网格坐标 * 20%
 - 序列类 * 20%
 - 划分类 * 20%
-- 区间类(range DP)
+- 区间类(interval DP)
 - 背包类
 - 双序列
 - 博弈
@@ -648,31 +678,51 @@ The expression tree will be like
 - 1. 最后一个背包内的物品是哪个 
 - 2. 最后一个物品有没有进背包
 
-### 区间类(range DP)
+### 区间类(Interval DP)
+- 要么砍头, 要么砍尾
 - dp[i][j] 表示 [i~j]之间的状态
 - 求一段区间的解: max/min/count
 - 转移方程通过区间更新: len = x
 - 从大到小的更新
+
+#### 特点
+- 给定一个序列/字符串, 进行操作
+- 最右一步会把 序列/字符串 去头/去尾
+- 剩下的是一个区间 [i, j]
+- 状态自然定义为dp[i][j], 表示面对子序列 [i, ....., j]时的最优性质
+- 坐标型的下标模式
+- 切割后的三种情况: 首字母不相关, 末尾字母不相干, 首字母和末尾字母都相干.
 
 #### 三把斧
 - 中间劈开
 - 砍断首或尾
 - Range区间作为iteration的根本
 
+#### 难点
+- 计算顺序: 不能按照i的顺序去算!!! 掐头/去尾的时候, 有 [i+1], 也有[i], 所以不能按照i
+- 应该: 按照 **区间长度从小到大** 的顺序去算:
+- 按照区间: 长度, 长度, 长度!
+```
+for (len = ..; len <= n; len++) {
+	for (int i = 0; i <= n; i++) {
+		int j = i + len - 1;
+		...
+		...
+	}
+}
+```
+
 ### Bitwise Operation DP
 
-
-### 记忆化搜索 Memoization
-- 本质是DP, 所有DP也都是为了解决重复计算
-- 从大到小搜索, 其实是暴利解决的思路, 只是在深入到底的的过程中存了状态, 不需要重复计算.
-- 什么时候用记忆化搜索: 1. 状态转移特别麻烦，不是顺序性; 2. 初始化状态不是很容易找到; 3. 从大到小
 
 ### 优化
 - 空间优化: 1. Rolling array (easy) . 2. 观察dp的计算顺序, 看双行的左右计算方向, 找是否有舍弃不用的格子, 可以降维
 - 考虑空间降维优化时, 不必要死记硬背, 画一画, 看有没有优化的可能
 - 时间优化: 分析重复计算, 争取减少.
 
-## Minimax
+
+## Minimax/MaxiMin
+
 
 
 ## Optimization problems
@@ -692,8 +742,31 @@ The expression tree will be like
 - 通常加上一个维度
 
 
-# Search
+# 记忆化搜索 Memoization DP
+- 本质是DP, 所有DP也都是为了解决重复计算
+- 计算 f(0, N-1), 递归, recursive: 你要求什么, 直接上!
+- 走过的老路, 就不要走了. f(i, j) 结束后, 存在数组 f[i][j]里.
+- **从大到小**搜索, **自顶向下**, 其实是暴利解决的思路, 只是在深入到底的的过程中存了状态, 不需要重复计算.
+- 时间复杂度跟递推的DP一样: O((n^2)/2)
 
+## 什么时候用记忆化搜索
+- 1. 状态转移特别麻烦，不是顺序性; 
+- 2. 初始化状态不是很容易找到; 
+- 3. 从大到小
+- 区间搜索(Interval dp), 适合用 memoization, 因为计算顺序稍微比较难
+
+## 特点
+- 需要开全局变量
+- 需要初始化: Mark算过的, 和没算过的
+- 递归里面: 第一行, 一定要记得查visited, 记忆化搜索的精髓. 算过了, 直接返回
+
+## 缺点
+- 不能空间优化, 所有值必须记下来
+
+## 时间空间复杂度的节省
+- 比如一个binary tree, 全部traverse 下来, 有将近 O(2^n) nodes; 如果存结果, 可能只需要visit unique的 O(n) nodes
+
+# Search
 
 ## Breadth-first Search
 Track queue size, use the queue as in rotation
@@ -792,4 +865,20 @@ Track queue size, use the queue as in rotation
 
 # Pain Point
 - For any array access, make sure to check the boundary!!!
-- 
+
+## Basics
+- Coding, speeding, readability
+- Data structure: given a problem, how to model it into data structure? What type of class interface to use? 这个很重要, 如果不能很好地model一个问题, 后面就不知道该怎么写, 一定懵逼.
+- Algorithm: How do we solve the problem.
+- communication: think, and communicate ideas
+
+## Edge case
+- consider edge case
+- 解释edge case的原因; 也可以throw exception呀
+
+## Advanced
+- 写出的function, 加入要解决更大scale的问题, 比如说call 10k 遍, 是否有冗余计算或者空间? 如何优化?
+
+
+
+

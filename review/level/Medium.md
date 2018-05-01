@@ -1,7 +1,7 @@
  
  
  
-## Medium (159)
+## Medium (160)
 **0. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium
       
 
@@ -1374,12 +1374,20 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 **91. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium
       
 
-区间型动态规划. 
-1. 用[i][j]表示区间的首尾
-2. 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
-3. Iteration一定是以i ~ j 之间的len来看的. len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+#### Interval DP
+- 用[i][j]表示区间的首尾
+- 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
+- Iteration一定是以i ~ j 之间的len来看的. 
+- len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+- 注意考虑len == 1, len == 2是的特殊情况.
 
-注意考虑len == 1, len == 2是的特殊情况.
+#### Memoization
+- 同样的方式model dp[i][j]: range [i, j] 之间的  max palindromic length
+- 三种情况: 
+- 1. 首尾match 继而 dfs[i+1, j-1]
+- 2. 首尾不match,dfs[i+1,j] 
+- 3. 首尾不match,dfs[i,j-1] 
+- 注意: init dp[i][j]=-1, dfs的时候查dp[i][j] 是否算过
 
 
 
@@ -2137,21 +2145,22 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
-每次只能拿1个或者2个棋子, 最后看谁拿的总值最大.
+每次只能 按照从左到右的顺序, 拿1个或者2个棋子, 最后看谁拿的总值最大.
 
 MiniMax的思考方法很神奇, 最后写出来的表达式很简单
 
-##### DP, Game Theory 自考过程比较长
+#### DP, Game Theory 自考过程比较长
 - 跟Coins in a line I 不一样: 每个coin的value不同.
 - 用到MiniMax的思想, 这里其实是MaxiMin. Reference: http://www.cnblogs.com/grandyang/p/5864323.html
-- Goal: 使得player拿到的coins value 最大化. 
+- Goal: 使得player拿到的coins value 最大化.
+- 设定dp[i]: 从index i 到 index n的最大值. 所以dp[0]就是我们先手在[0 ~ n]的最大取值 
 - 于此同时, 你的对手playerB也想最大化, 而你的选择又不得不被对手的选择所牵制.
 - 用MaxiMin的思想, 我们假设一个当下的状态, 假想对手playerB会做什么反应(从对手角度, 如何让我输)
 - 在劣势中(对手让我输的目标下)找到最大的coins value sum
-- 设定dp[i]: 从index i 到 index n的最大值. 所以dp[0]就是我们先手在[0 ~ n]的最大取值
+
 
 ##### 推算表达式
-Reference里面详细介绍了表达式如何推到出来, 简而言之:
+- Reference里面详细介绍了表达式如何推到出来, 简而言之:
 - 如果我选了i, 那么对手就只能选(i+1), (i+2) 两个位置, 而我在对方掌控时的局面就是min(dp[i+2], dp[i+3])
 - 如果我选了i和(i+1), 那么对手就只能选(i+2), (i+3) 两个位置, 而我在对方掌控时的局面就是min(dp[i+3], dp[i+4])
 - 大家都是可选1个或者2个coins
@@ -2631,7 +2640,7 @@ reset() 给出最初的nums
 
 给一串string, return list of list, 把anagram 放在一起.
 
-#### Hash Map, key 是 character frequency
+#### Hash Table, key 是 character frequency
 - 存anagram
 - 用 character frequency 来做unique key
 - 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
@@ -2639,7 +2648,7 @@ reset() 给出最初的nums
 - O(nk), k = max word length
 
 
-#### Hash Map, key 是 sorted string
+#### Hash Table, key 是 sorted string
 - 和check anagram 想法一样：转化并sort char array，用来作为key。
 - 把所有anagram 存在一起。注意结尾Collections.sort().
 - O(NKlog(K)), N = string[] length, k = longest word length    
@@ -2749,6 +2758,29 @@ reset() 给出最初的nums
 - 计算结果存回到stack里面, 方便下一轮使用.
 - Time,Space O(n)
 
+
+
+
+---
+
+**159. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium
+      
+
+给一串gas station array, 每个index里面有一定数量gas.
+
+给一串cost array, 每个index有一个值, 是reach下一个gas station的油耗.
+
+array的结尾地方, 再下一个点是开头, 形成一个circle route.
+
+找一个index, 作为starting point: 让车子从这个点, 拿上油, 开出去, 还能开回到这个starting point
+
+#### Greedy
+- 不论从哪一个点开始, 都可以记录总油耗, total = {gas[i] - cost[i]}. 最后如果total < 0, 必然不能走回来
+- 可以记录每一步的油耗积累, remain = {gas[i] - cost[i]}; 一旦 remain < 0, 说明之前的starting point 不合适, 重设: start = i + 1
+
+#### NOT DP
+- 看似有点像 House Robber II, 但是问题要求的是: 一个起始点的index
+- 而不是求: 最后点可否走完/最值/计数
 
 
 

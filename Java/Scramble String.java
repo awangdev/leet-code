@@ -1,13 +1,13 @@
 H
 1518594579
-tags: DP, String, Range DP
+tags: DP, String, Interval DP
 
 - 给两个string S, T. 检验他们是不是scramble string.
 - scramble string 定义: string可以被分拆成binary tree的形式, 也就是切割成substring;
 - 旋转了不是leaf的node之后, 形成新的substring, 这就是原来string的 scramble.
 
 
-#### Range DP 区间型
+#### Interval DP 区间型
 - 降维打击, 分割, 按照长度来dp.
 - dp[i][j][k]: 数组S从index i 开始, T从index j 开始, 长度为k的子串, 是否为scramble string
 
@@ -24,7 +24,8 @@ tags: DP, String, Range DP
 
 ```
 /*
-Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.
+Given a string s1, we may represent it as a binary tree by partitioning it 
+to two non-empty substrings recursively.
 
 Below is one possible representation of s1 = "great":
 
@@ -37,7 +38,8 @@ g   r  e   at
           a   t
 To scramble the string, we may choose any non-leaf node and swap its two children.
 
-For example, if we choose the node "gr" and swap its two children, it produces a scrambled string "rgeat".
+For example, if we choose the node "gr" and swap its two children, 
+it produces a scrambled string "rgeat".
 
     rgeat
    /    \
@@ -48,7 +50,8 @@ r   g  e   at
           a   t
 We say that "rgeat" is a scrambled string of "great".
 
-Similarly, if we continue to swap the children of nodes "eat" and "at", it produces a scrambled string "rgtae".
+Similarly, if we continue to swap the children of nodes "eat" and "at", 
+it produces a scrambled string "rgtae".
 
     rgtae
    /    \
@@ -70,7 +73,8 @@ If all substrings can be in scrambled format, it'll return true.
 
 dp[i][j][h][k]: can S(i, j) be scrambled to T(h, k)?
 
-Reduce it to dp[i][j][k]: starting from index i for S, index j for T, with length k. Can the substrings be scramble?
+Reduce it to dp[i][j][k]: starting from index i for S, index j for T, with length k. 
+Can the substrings be scramble?
 End: want dp[0][0][n] to be srambled.
 
 Need size to be boolean dp[n][n][n + 1]

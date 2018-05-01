@@ -48,7 +48,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 - 旋转了不是leaf的node之后, 形成新的substring, 这就是原来string的 scramble.
 
 
-#### Range DP 区间型
+#### Interval DP 区间型
 - 降维打击, 分割, 按照长度来dp.
 - dp[i][j][k]: 数组S从index i 开始, T从index j 开始, 长度为k的子串, 是否为scramble string
 
@@ -334,7 +334,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 给一串string, return list of list, 把anagram 放在一起.
 
-#### Hash Map, key 是 character frequency
+#### Hash Table, key 是 character frequency
 - 存anagram
 - 用 character frequency 来做unique key
 - 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
@@ -342,7 +342,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - O(nk), k = max word length
 
 
-#### Hash Map, key 是 sorted string
+#### Hash Table, key 是 sorted string
 - 和check anagram 想法一样：转化并sort char array，用来作为key。
 - 把所有anagram 存在一起。注意结尾Collections.sort().
 - O(NKlog(K)), N = string[] length, k = longest word length    

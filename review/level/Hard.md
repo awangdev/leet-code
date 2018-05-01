@@ -1,7 +1,7 @@
  
  
  
-## Hard (50)
+## Hard (51)
 **0. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard
       
 首先要分两半解决，断点是'.': str.split("\\.");
@@ -240,7 +240,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 - 旋转了不是leaf的node之后, 形成新的substring, 这就是原来string的 scramble.
 
 
-#### Range DP 区间型
+#### Interval DP 区间型
 - 降维打击, 分割, 按照长度来dp.
 - dp[i][j][k]: 数组S从index i 开始, T从index j 开始, 长度为k的子串, 是否为scramble string
 
@@ -678,27 +678,46 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 **34. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard
       
 
-还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
+还是2个人拿n个coin, coin可以有不同的value. 
+
+只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
 
 #### Memoization + Search
-- 跟Coins in a Line II 一样, MiniMax的思想: 找到我的掠视中的最大值
-- dp[i][j] 代表在[i,j]区间上的先手最多能取的value 总和
+- 跟Coins in a Line II 一样, MaxiMin的思想: 找到我的劣势中的最大值
+- dp[i][j] 代表在[i,j]区间上 选手最多能取的value 总和
 - 同样, sum[i][j]表示[i] 到 [j]间的value总和
+- 对手的最差情况, 也就是先手的最好情况:
 - dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
 - 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
 
 #### 博弈 + 区间DP
-(这个方法需要复习, 跟数学表达式的推断相关联)
-- S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
-- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+- 因为是看区间[i,j]的情况, 所以可以想到是区间 DP
+- 这个方法需要复习, 跟数学表达式的推断相关联: S(x) = - S(y) + m. 参考下面的公式推导.
+- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x).
+- 其中一个S(x) = dp[i][j] = a[i] - dp[i + 1][j]
+- m 取在开头, m 取在末尾的两种情况:
 - dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
-- 最后判断 dp[0][n] >= 0
+- len = 1, 积分就是values[i]
+- 最后判断 dp[0][n] >= 0, 最大数字和之差大于0, 就赢.
+- 时间/空间 O(n^2)
 
-#### 注意
+##### 公式推导
+- S(x) = X - Y, 找最大数字和之差, 这里X和Y是选手X的总分, 选手Y的总分. 
+- 对于选手X而言: 如果S(x)最大值大于0, 就是赢了; 如果最大值都小于0, 就一定是输了. 
+- 选手Y: S(y)来表示 对于Y,  最大数字和之差. S(y) = Y - X
+- 根据S(x) 来看, 如果从 数字和X里面, 拿出一个数字 m, 也就是 X = m + Xwithout(m)
+- S(x) = m + Xwithout(m) - Y = m + (Xwithout(m) - Y). 
+- 如果我们从全局里面索性去掉m, 那么 S(y'') = Y - Xwithout(m)
+- 那么推算下来: S(x) = m + (Xwithout(m) - Y) = m - (Y - Xwithout(m)) = m - S(y'')
+- 在这个问题里面, 我们model X 和 Y的时候, 其实都是 dp[i][j], 而区别在于先手/后手.
+- 将公式套用, 某一个S(x) = a[i] - dp[i + 1][j],  也就是m=a[i], 而 S(y'') = dp[i + 1][j]
+
+##### 注意
 - 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
 - 我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
+- Trick: 利用差值公式, 推导有点难想到.
 
-#### 区间型动态规划
+##### 区间型动态规划
 - 找出[i, j]区间内的性质: dp[i][j]下标表示区间范围 [i, j]
 - 子问题: 砍头, 砍尾, 砍头砍尾
 - loop应该基于区间的length
@@ -739,16 +758,16 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
 
-TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for range DP.
+TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n][n] for interval DP.
 
-#### Range DP
+#### Interval DP
 - 因为数组规律会变, 所以很难找'第一个burst的球'. 反之, 想哪一个是最后burst?
 - 最后burst的那个变成一堵墙: 分开两边, 分开考虑, 加法原理; 最后再把中间的加上.
 - dp[i][j] represent max value on range [i, j)
 - Need to calculate dp[i][j] incrementally, starting from range size == 3 ---> n
 - Use k to divide the range [i, j) and conquer each side.
 
-##### Range DP 三把斧:
+##### Interval DP 三把斧:
 - 中间劈开
 - 砍断首或尾
 - Range区间作为iteration的根本
@@ -1124,6 +1143,29 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - 变成1个一位数组
 - 降维优化的重点: 看双行的左右计算方向
 - Time(mn). Space(m)
+
+
+
+---
+
+**50. [First Missing Positive.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Missing%20Positive.java)**      Level: Hard
+      
+
+给一串无序数字, 有负数: 找这个array里面第一个 missing的 positive integer
+
+missing positive integer 其实是以 [1, n] 来做比较的.
+
+#### Array分析, index 技巧
+- 用while loop, 不断地尝试把 number 送到该放的地方
+- 如果 index = nums[i] 超过了nums.length, 当然就不移动了
+- 注意: 检查 val != nums[val], avoid infinitely loop
+- 检验: nums[i] 是否等于 i, 如果不对, 就找到了结果
+
+#### Edge Case
+- 如果nums==null, 其实missing positive integer 自然而然是 1
+- validation时, 有可能这串数字里没有断开的integer, 但是最大的integer在首位 (因为index超标, 无法被放到正确的地方)
+- 这种时候, n被放在 index 0, 其实就是说, 下一个integer应该是 n + 1
+- 最终, 如果array本来就是完全sorted, 也不缺, 还符合角标的条件, 那么唯一下一个就是array范围外的第一个positive number: n
 
 
 

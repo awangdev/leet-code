@@ -1,7 +1,31 @@
-/*
-There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
+M
+1525189421
+tags: Greedy
 
-You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.
+给一串gas station array, 每个index里面有一定数量gas.
+
+给一串cost array, 每个index有一个值, 是reach下一个gas station的油耗.
+
+array的结尾地方, 再下一个点是开头, 形成一个circle route.
+
+找一个index, 作为starting point: 让车子从这个点, 拿上油, 开出去, 还能开回到这个starting point
+
+#### Greedy
+- 不论从哪一个点开始, 都可以记录总油耗, total = {gas[i] - cost[i]}. 最后如果total < 0, 必然不能走回来
+- 可以记录每一步的油耗积累, remain = {gas[i] - cost[i]}; 一旦 remain < 0, 说明之前的starting point 不合适, 重设: start = i + 1
+
+#### NOT DP
+- 看似有点像 House Robber II, 但是问题要求的是: 一个起始点的index
+- 而不是求: 最后点可否走完/最值/计数
+
+```
+/*
+There are N gas stations along a circular route, 
+where the amount of gas at station i is gas[i].
+
+You have a car with an unlimited gas tank and it costs cost[i] of gas 
+to travel from station i to its next station (i+1). 
+You begin the journey with an empty tank at one of the gas stations.
 
 Return the starting gas station's index if you can travel around the circuit once, otherwise return -1.
 
@@ -17,6 +41,11 @@ O(n) time and O(1) extra space
 Tags Expand 
 Greedy
 
+*/
+
+/**
+
+Previous Notes:
 Thoughts:
 Loop through the gas station, and track the possible starting index.
 Start from i = 0 ~ gas.length, and use a second pointer move to track how far we are travelling
@@ -25,8 +54,7 @@ Start from i = 0 ~ gas.length, and use a second pointer move to track how far we
 		Thus, once i's station failed to get to x, set index = x + 1: we are moving on to next possible starting point.
 
 'total':simply indicates if we can make it a circle
-*/
-
+ */
 public class Solution {
     /**
      * @param gas: an array of integers
@@ -54,3 +82,5 @@ public class Solution {
     	return start;
     }
 }
+
+```

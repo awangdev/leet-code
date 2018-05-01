@@ -1,10 +1,10 @@
 M
 1524109143
-tags: String, Hash Map
+tags: String, Hash Table
 
 给一串string, return list of list, 把anagram 放在一起.
 
-#### Hash Map, key 是 character frequency
+#### Hash Table, key 是 character frequency
 - 存anagram
 - 用 character frequency 来做unique key
 - 用固定长度的char[26] arr 存每个字母的frequency; 然后再 new string(arr).   
@@ -12,7 +12,7 @@ tags: String, Hash Map
 - O(nk), k = max word length
 
 
-#### Hash Map, key 是 sorted string
+#### Hash Table, key 是 sorted string
 - 和check anagram 想法一样：转化并sort char array，用来作为key。
 - 把所有anagram 存在一起。注意结尾Collections.sort().
 - O(NKlog(K)), N = string[] length, k = longest word length    

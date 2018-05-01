@@ -2,27 +2,46 @@ H
 1521702603
 tags: Array, DP, Game Theory, Interval DP, Memoization
 
-还是2个人拿n个coin, coin可以有不同的value. 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
+还是2个人拿n个coin, coin可以有不同的value. 
+
+只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
 
 #### Memoization + Search
-- 跟Coins in a Line II 一样, MiniMax的思想: 找到我的掠视中的最大值
-- dp[i][j] 代表在[i,j]区间上的先手最多能取的value 总和
+- 跟Coins in a Line II 一样, MaxiMin的思想: 找到我的劣势中的最大值
+- dp[i][j] 代表在[i,j]区间上 选手最多能取的value 总和
 - 同样, sum[i][j]表示[i] 到 [j]间的value总和
+- 对手的最差情况, 也就是先手的最好情况:
 - dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
 - 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
 
 #### 博弈 + 区间DP
-(这个方法需要复习, 跟数学表达式的推断相关联)
-- S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
-- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+- 因为是看区间[i,j]的情况, 所以可以想到是区间 DP
+- 这个方法需要复习, 跟数学表达式的推断相关联: S(x) = - S(y) + m. 参考下面的公式推导.
+- dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x).
+- 其中一个S(x) = dp[i][j] = a[i] - dp[i + 1][j]
+- m 取在开头, m 取在末尾的两种情况:
 - dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
-- 最后判断 dp[0][n] >= 0
+- len = 1, 积分就是values[i]
+- 最后判断 dp[0][n] >= 0, 最大数字和之差大于0, 就赢.
+- 时间/空间 O(n^2)
 
-#### 注意
+##### 公式推导
+- S(x) = X - Y, 找最大数字和之差, 这里X和Y是选手X的总分, 选手Y的总分. 
+- 对于选手X而言: 如果S(x)最大值大于0, 就是赢了; 如果最大值都小于0, 就一定是输了. 
+- 选手Y: S(y)来表示 对于Y,  最大数字和之差. S(y) = Y - X
+- 根据S(x) 来看, 如果从 数字和X里面, 拿出一个数字 m, 也就是 X = m + Xwithout(m)
+- S(x) = m + Xwithout(m) - Y = m + (Xwithout(m) - Y). 
+- 如果我们从全局里面索性去掉m, 那么 S(y'') = Y - Xwithout(m)
+- 那么推算下来: S(x) = m + (Xwithout(m) - Y) = m - (Y - Xwithout(m)) = m - S(y'')
+- 在这个问题里面, 我们model X 和 Y的时候, 其实都是 dp[i][j], 而区别在于先手/后手.
+- 将公式套用, 某一个S(x) = a[i] - dp[i + 1][j],  也就是m=a[i], 而 S(y'') = dp[i + 1][j]
+
+##### 注意
 - 如果考虑计算先手[i, j]之间的最大值, 然后可能还需要两个数组, 最后用于比较先手和opponent的得分大小 => 那么就要多开维.
 - 我们这里考虑的数字差, 刚好让人不需要计算先手的得分总值, 非常巧妙.
+- Trick: 利用差值公式, 推导有点难想到.
 
-#### 区间型动态规划
+##### 区间型动态规划
 - 找出[i, j]区间内的性质: dp[i][j]下标表示区间范围 [i, j]
 - 子问题: 砍头, 砍尾, 砍头砍尾
 - loop应该基于区间的length
@@ -32,7 +51,7 @@ tags: Array, DP, Game Theory, Interval DP, Memoization
 ```
 /*
 There are n coins in a line. Two players take turns to take a coin from one of the ends of the line
- until there are no more coins left. The player with the larger amount of money wins.
+until there are no more coins left. The player with the larger amount of money wins.
 
 Could you please decide the first player will win or lose?
 
