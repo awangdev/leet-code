@@ -1,7 +1,7 @@
  
  
  
-## Coordinate DP (10)
+## Coordinate DP (12)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium
       
 
@@ -213,6 +213,40 @@
 - 然后更新 range = maxRange
 - 其中step也是跟index是一样, 一步一步走.
 - 最后check的condition是，我们最远你能走的range >= nums.length - 1, 说明以最少的Step就到达了重点。Good.
+
+
+
+---
+
+**10. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy
+      
+
+https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
+
+O(n)跑2遍for.
+O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足条件所有的longestIncreasingContinuousSubsequence.
+特点：返跑一回，ans还是继续和left轮的ans作比较；求的所有情况的最大值嘛。
+
+
+
+---
+
+**11. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium
+      
+
+#### Coordinate DP
+- due to access permission, not test
+- dp[i][j]: longest continuous subsequence length at coordinate (i, j)
+- dp[i][j] should come from (i-1,j) and (i, j-1).
+- dp[0][0] = 1
+- condition: from up/left, must be increasing
+- return dp[m-1][n-1]
+
+#### Memoization
+- O(mn) space for dp and flag.
+- O(mn) runtime because each spot will be marked once visited. 
+- 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
+
 
 
 

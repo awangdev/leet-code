@@ -1,3 +1,20 @@
+M
+1525244424
+tags: Array, Hash Table
+
+给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
+
+#### HashSet
+- 要想看连续元素, 必须要num++, num--这样搜索
+- 1. 需要O(1)找到元素
+- 2. 需要简单快速找到 num - 1, num + 1.
+- 如果用min,max开array, 耗费空间
+- 用HashSet来存, 用set.contains() 来查找 num - 1, num + 1 存在与否
+- for loop. O(n) 
+- 里面的while loop 一般不会有O(n); 一旦O(n), 也意味着set 清零, for loop也不会有更多 inner while 的衍生.
+- overall O(n) 时间复杂度
+
+```
 /*
 Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
 
@@ -8,7 +25,55 @@ The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
 Your algorithm should run in O(n) complexity.
 
 Hide Tags Array
+*/
 
+/*
+Thoughts:
+Find a way to:
+1. directly check existance of a number
+2. quickly gets to the num-1, num+1, if exist.
+
+One way: find min,max of the number, and set up a long array. That will be waste of space, not applicable.
+
+Instead: use a set and put all numbers in. 
+
+Iterate all nums: if one num exist, find all of the num++, num-- and track the length
+*/
+public class Solution {
+    /**
+     * @param num: A list of integers
+     * @return: An integer
+     */
+    public int longestConsecutive(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        
+        int longest = 0;
+        for (int num : nums) {
+            int start = num;
+            while (set.contains(start - 1)) {
+                start--;
+                set.remove(start);
+            }
+            
+            int end = num;
+            while (set.contains(end + 1)) {
+                end++;
+                set.remove(end);
+            }
+            longest = Math.max(longest, end - start + 1);
+        }
+        return longest;
+    }
+}
+
+/**
+Previous notes:
 Thinking process:
 0. This problem can be done using sorting, but time complexity of sorting is O(nlogn). This problem requires O(n).
 1. Want to check if a number's left and right is consecutive to itself, but cannot do it due to the given unsorted array: think about a Hashmap.
@@ -18,8 +83,7 @@ Thinking process:
 	If a number exist in the hashmap and its value is 'true', then we need to skip this number beacuse it has been checked.
 4. Track the total number consecutives of 1 perticular number, compare it with the maxL. Save the Math.max to maxL.
 5. Depending on the problem, we can store a consecutive sequence or simply just its length: maxL. This problem wants the maxL.
-*/
-
+ */
 public class Solution {
     public int longestConsecutive(int[] num) {
         if (num == null || num.length == 0) {
@@ -97,3 +161,5 @@ public class Solution {
         return max;
     }
 }
+
+```

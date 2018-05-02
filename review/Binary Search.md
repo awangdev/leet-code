@@ -1,7 +1,7 @@
  
  
  
-## Binary Search (24)
+## Binary Search (25)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy
       
 
@@ -443,6 +443,17 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 - 当下coordinate 有target: dp[i - 1][j - 1] + dp[i][j]
 - timeout: O(n^2), n = largest coordinate.
 
+
+
+
+---
+
+**24. [Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)**      Level: Easy
+      
+
+给一个sorted integer array, 找target出现的最后的index. array 里有重复数字
+
+有重复,不是末尾点，继续binary search
 
 
 

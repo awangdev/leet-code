@@ -458,6 +458,13 @@ class Node {
 
 # Sort
 
+## Comparator for Arrays, Collections
+```
+public int compare(x, y) {
+	return x - y; // or x.compareTo(y)
+}
+```
+
 ## Quick Sort
 
 # Collections
@@ -510,12 +517,21 @@ class Node {
 
 
 ## String
+### Functions
 - s.toCharArray()
 - String.valueOf(charArrary)
+- String.compareTo( "XXX" ): 排序按照字典(lexicographically)顺序
+- Character.isDigit(x)
+- split: str.split("\\ "); 需要用 "\\" regular expression
+- s.trim() 去掉 space
+
+### StringBuffer
 - sb = new StringBuffer()
 - sb.replace(i, j, "replacement string")
 - sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length(), sb.setCharAt(index, char)
-- Character.isDigit(x)
+- sb.insert(0, xxx): 在开头加element
+
+### 其他
 - 遇到找string的相关问题: 考虑string的重复性
 
 ## Bit Manipulation

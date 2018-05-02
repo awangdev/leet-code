@@ -2,56 +2,54 @@
 Table of Contents
 =================
 
-* [Range DP (3)](#range-dp-3)
-* [String (23)](#string-23)
-* [Math (16)](#math-16)
-* [DP (56)](#dp-56)
-* [Double Sequence DP (3)](#double-sequence-dp-3)
-* [BFS (11)](#bfs-11)
-* [Segment Tree (1)](#segment-tree-1)
-* [Design (8)](#design-8)
-* [DFS (32)](#dfs-32)
-* [Game Theory (4)](#game-theory-4)
-* [Hash Table (19)](#hash-table-19)
-* [Backtracking (11)](#backtracking-11)
-* [Sort (6)](#sort-6)
-* [Tree (20)](#tree-20)
-* [Trie (7)](#trie-7)
-* [BST (16)](#bst-16)
-* [Permutation (1)](#permutation-1)
-* [Partition DP (5)](#partition-dp-5)
-* [Heap (6)](#heap-6)
-* [Interval DP (1)](#interval-dp-1)
-* [Stack (17)](#stack-17)
-* [Linked List (8)](#linked-list-8)
-* [Binary Indexed Tree (1)](#binary-indexed-tree-1)
-* [Graph (5)](#graph-5)
-* [Brainteaser (1)](#brainteaser-1)
-* [Union Find (7)](#union-find-7)
-* [Sweep Line (4)](#sweep-line-4)
-* [Interval (1)](#interval-1)
 * [Sequence DP (12)](#sequence-dp-12)
 * [Bitwise DP (1)](#bitwise-dp-1)
 * [MiniMax (1)](#minimax-1)
 * [Two Pointers (15)](#two-pointers-15)
+* [String (23)](#string-23)
 * [Basic Implementation (2)](#basic-implementation-2)
+* [Math (16)](#math-16)
+* [DP (56)](#dp-56)
+* [Double Sequence DP (3)](#double-sequence-dp-3)
+* [BFS (11)](#bfs-11)
 * [Backpack DP (5)](#backpack-dp-5)
+* [Segment Tree (1)](#segment-tree-1)
+* [Design (8)](#design-8)
+* [DFS (32)](#dfs-32)
+* [Game Theory (4)](#game-theory-4)
+* [Hash Table (20)](#hash-table-20)
+* [Backtracking (11)](#backtracking-11)
 * [Bit Manipulation (9)](#bit-manipulation-9)
 * [Divide and Conquer (5)](#divide-and-conquer-5)
 * [Status DP (1)](#status-dp-1)
 * [Topological Sort (4)](#topological-sort-4)
-* [Greedy (7)](#greedy-7)
-* [Hash Map (1)](#hash-map-1)
+* [Sort (6)](#sort-6)
+* [Tree (20)](#tree-20)
+* [Greedy (8)](#greedy-8)
+* [Trie (7)](#trie-7)
 * [Coordinate DP (10)](#coordinate-dp-10)
 * [Monotonous Stack (1)](#monotonous-stack-1)
+* [BST (16)](#bst-16)
+* [Permutation (1)](#permutation-1)
 * [Binary Tree (6)](#binary-tree-6)
+* [Partition DP (5)](#partition-dp-5)
 * [Expression Tree (4)](#expression-tree-4)
 * [Binary Search (24)](#binary-search-24)
-* [Array (45)](#array-45)
-* [Memoization (7)](#memoization-7)
+* [Interval DP (4)](#interval-dp-4)
+* [Heap (6)](#heap-6)
+* [Stack (17)](#stack-17)
+* [Linked List (8)](#linked-list-8)
+* [Array (46)](#array-46)
+* [Binary Indexed Tree (1)](#binary-indexed-tree-1)
+* [Graph (5)](#graph-5)
+* [Brainteaser (1)](#brainteaser-1)
+* [Union Find (7)](#union-find-7)
+* [Memoization (8)](#memoization-8)
+* [Sweep Line (4)](#sweep-line-4)
 * [Two Stacks (1)](#two-stacks-1)
 * [backtracking (1)](#backtracking-1)
 * [Two Pointer (1)](#two-pointer-1)
+* [Interval (1)](#interval-1)
 
 
 
@@ -99,7 +97,7 @@ Table of Contents
  
  
  
-## Two Pointers (15)
+## Two Pointers (17)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)|Easy|Java|[String, Two Pointers]||
@@ -117,13 +115,15 @@ Table of Contents
 |12|[Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)|Medium|Java|[Linked List, Two Pointers]||
 |13|[Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)|Hard|Java|[Array, Stack, Two Pointers]||
 |14|[Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)|Medium|Java|[Array, Binary Search, Two Pointers]||
+|15|[Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)|Easy|Java|[String, Two Pointers]||
+|16|[Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)|Medium|Java|[Two Pointers]||
 
 
 
  
  
  
-## String (23)
+## String (27)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)|Easy|Java|[String]||
@@ -149,6 +149,10 @@ Table of Contents
 |20|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
 |21|[Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)|Medium|Java|[Hash Table, String]||
 |22|[Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)|Easy|Java|[String]||
+|23|[Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)|Easy|Java|[String, Two Pointers]||
+|24|[Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)|Hard|Java|[Math, String]||
+|25|[Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)|Easy|Java|[String]||
+|26|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, String]||
 
 
 
@@ -166,7 +170,7 @@ Table of Contents
  
  
  
-## Math (16)
+## Math (17)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)|Easy|Java|[Math]||
@@ -185,13 +189,14 @@ Table of Contents
 |13|[Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)|Easy|Java|[Hash Table, Math]||
 |14|[Excel Sheet Column Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Number.java)|Easy|Java|[Math]||
 |15|[Excel Sheet Column Title.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Title.java)|Easy|Java|[Math]||
+|16|[Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)|Hard|Java|[Math, String]||
 
 
 
  
  
  
-## DP (56)
+## DP (59)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[DP, Memoization, Sequence DP]||
@@ -250,18 +255,22 @@ Table of Contents
 |53|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
 |54|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
 |55|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Hard|Java|[Backpack DP, DP]||
+|56|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, String]||
+|57|[Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
+|58|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|Medium|Java|[Array, Coordinate DP, DP, Memoization]||
 
 
 
  
  
  
-## Double Sequence DP (3)
+## Double Sequence DP (4)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP]||
 |1|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, String]||
 |2|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Trie]||
+|3|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, String]||
 
 
 
@@ -383,7 +392,7 @@ Table of Contents
  
  
  
-## Hash Table (20)
+## Hash Table (21)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)|Easy|Java|[Hash Table]||
@@ -406,6 +415,7 @@ Table of Contents
 |17|[Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)|Easy|Java|[Hash Table]||
 |18|[Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)|Medium|Java|[Hash Table, String]||
 |19|[Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)|Easy|Java|[Hash Table, Math]||
+|20|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|Medium|Java|[Array, Hash Table]||
 
 
 
@@ -487,7 +497,7 @@ Table of Contents
  
  
  
-## Sort (6)
+## Sort (8)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)|Medium|Java|[Array, Sort]||
@@ -496,6 +506,8 @@ Table of Contents
 |3|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[Sort, Sweep Line]||
 |4|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, Sort, Sweep Line]||
 |5|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
+|6|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|Medium|Java|[Linked List, Sort]||
+|7|[Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)|Medium|Java|[Sort]||
 
 
 
@@ -564,7 +576,7 @@ Table of Contents
  
  
  
-## Coordinate DP (10)
+## Coordinate DP (12)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization, Sequence DP]||
@@ -577,6 +589,8 @@ Table of Contents
 |7|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
 |8|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
 |9|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
+|10|[Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
+|11|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|Medium|Java|[Array, Coordinate DP, DP, Memoization]||
 
 
 
@@ -670,7 +684,7 @@ Table of Contents
  
  
  
-## Binary Search (24)
+## Binary Search (25)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)|Easy|Java|[Binary Search]||
@@ -697,6 +711,7 @@ Table of Contents
 |21|[Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)|Medium|Java|[Binary Search, Tree]||
 |22|[Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)|Easy|Java|[Binary Search]||
 |23|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
+|24|[Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)|Easy|Java|[Binary Search]||
 
 
 
@@ -757,7 +772,7 @@ Table of Contents
  
  
  
-## Linked List (8)
+## Linked List (9)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)|Medium|Java|[Linked List, Math]||
@@ -768,13 +783,14 @@ Table of Contents
 |5|[Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)|Medium|Java|[Linked List, Two Pointers]||
 |6|[Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)|Medium|Java|[Linked List]||
 |7|[Delete Node in a Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20a%20Linked%20List.java)|Easy|Java|[Linked List]||
+|8|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|Medium|Java|[Linked List, Sort]||
 
 
 
  
  
  
-## Array (46)
+## Array (49)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)|Easy|Java|[Array, Math]||
@@ -823,6 +839,9 @@ Table of Contents
 |43|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
 |44|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
 |45|[First Missing Positive.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Missing%20Positive.java)|Hard|Java|[Array]||
+|46|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|Medium|Java|[Array, Hash Table]||
+|47|[Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
+|48|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|Medium|Java|[Array, Coordinate DP, DP, Memoization]||
 
 
 
@@ -879,7 +898,7 @@ Table of Contents
  
  
  
-## Memoization (8)
+## Memoization (9)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[DP, Memoization, Sequence DP]||
@@ -890,6 +909,7 @@ Table of Contents
 |5|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
 |6|[Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)|Hard|Java|[Array, DP, Game Theory, Interval DP, Memoization]||
 |7|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
+|8|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|Medium|Java|[Array, Coordinate DP, DP, Memoization]||
 
 
 

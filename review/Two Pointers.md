@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (15)
+## Two Pointers (17)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -276,6 +276,43 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 - 再次用到validate() function
 
 Time: O(nLogN)
+
+
+
+---
+
+**15. [Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)**      Level: Easy
+      
+
+给两个string A, B, 找一个 B 在 A 种的起始位置.
+
+#### Two Pointer
+- 找到B在A中的起始位置, 然后看一下从这个点开始的substring是否等于B就可以了
+- 还挺多坑的, 这些可以帮助优化:
+- 1. 当B是“”的时候，也就是能在A的其实位置找到B....index = 0.
+- 2. edge condition: 如果 haystack.length() < needle.length() 的话, 必须错, return -1
+- 3. 如果在某个index, A后面剩下的长度, 比B的长度短, 也是误解, return -1
+
+
+
+---
+
+**16. [Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)**      Level: Medium
+      
+
+给一串数组 有正负数. 重新排列, 让数组里面 正数 和 负数 相隔开. 原来的order无所谓
+
+#### Two pointer
+- 需要知道正负的位置, 所以排序 O(nlogN)
+- 考虑: 正数多还是负数多的问题, 举栗子就看出来端倪了
+- 然后Two Pointer, swap 
+- Time O(nlogn), space O(n)
+
+#### extra space
+- 用extra O(n) space, 把正负分成两个list
+- 然后分别按照index填回去
+- time O(n). space O(n)
+- 但是就么有用到Two pointer了
 
 
 

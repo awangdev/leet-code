@@ -1,7 +1,7 @@
  
  
  
-## Hard (51)
+## Hard (52)
 **0. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard
       
 首先要分两半解决，断点是'.': str.split("\\.");
@@ -1166,6 +1166,29 @@ missing positive integer 其实是以 [1, n] 来做比较的.
 - validation时, 有可能这串数字里没有断开的integer, 但是最大的integer在首位 (因为index超标, 无法被放到正确的地方)
 - 这种时候, n被放在 index 0, 其实就是说, 下一个integer应该是 n + 1
 - 最终, 如果array本来就是完全sorted, 也不缺, 还符合角标的条件, 那么唯一下一个就是array范围外的第一个positive number: n
+
+
+
+---
+
+**51. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- 分类讨论: thounsand, million, billion.  3个数字一格.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率
+- 注意加 " " 的时候, 如果多余, 要trim()
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
+
 
 
 

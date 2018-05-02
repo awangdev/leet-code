@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (20)
+## Hash Table (21)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -347,6 +347,25 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - 然后利用这个因子的性质，非prime满足条件： self*self, self * self + self ... etc.     
 - 所以就check每一个j, j+i, j+i+i, 然后把所有non-prime全部mark成false.     
 - 最后，数一遍还剩下的true个数就好了   
+
+
+
+---
+
+**20. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Medium
+      
+
+给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
+
+#### HashSet
+- 要想看连续元素, 必须要num++, num--这样搜索
+- 1. 需要O(1)找到元素
+- 2. 需要简单快速找到 num - 1, num + 1.
+- 如果用min,max开array, 耗费空间
+- 用HashSet来存, 用set.contains() 来查找 num - 1, num + 1 存在与否
+- for loop. O(n) 
+- 里面的while loop 一般不会有O(n); 一旦O(n), 也意味着set 清零, for loop也不会有更多 inner while 的衍生.
+- overall O(n) 时间复杂度
 
 
 

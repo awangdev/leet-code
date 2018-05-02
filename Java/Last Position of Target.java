@@ -1,7 +1,16 @@
-```
+E
+1525238120
+tags: Binary Search
+
+给一个sorted integer array, 找target出现的最后的index. array 里有重复数字
+
 有重复,不是末尾点，继续binary search
+
+```
+
 /*
-Find the last position of a target number in a sorted array. Return -1 if target does not exist.
+Find the last position of a target number in a sorted array. 
+Return -1 if target does not exist.
 
 Example
 Given [1, 2, 2, 4, 5, 5].

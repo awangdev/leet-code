@@ -1,7 +1,7 @@
  
  
  
-## Memoization (8)
+## Memoization (9)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -254,6 +254,27 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
 - Note: 这个是Memoization, 而不纯是DP
 - 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
+
+
+
+
+---
+
+**8. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium
+      
+
+#### Coordinate DP
+- due to access permission, not test
+- dp[i][j]: longest continuous subsequence length at coordinate (i, j)
+- dp[i][j] should come from (i-1,j) and (i, j-1).
+- dp[0][0] = 1
+- condition: from up/left, must be increasing
+- return dp[m-1][n-1]
+
+#### Memoization
+- O(mn) space for dp and flag.
+- O(mn) runtime because each spot will be marked once visited. 
+- 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
 
 
 

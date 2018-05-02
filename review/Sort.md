@@ -1,7 +1,7 @@
  
  
  
-## Sort (6)
+## Sort (8)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
 
@@ -95,6 +95,47 @@ HashMap
 
 #### 方法2: 尝试了一下用一个sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+
+
+
+---
+
+**6. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium
+      
+
+input一串数字, 需要出sorted output. 每次insert一个数字时, 都要放到正确的sorted的位置
+
+每次insertion的时候, 都从input里面减掉这个数字
+
+#### Linked List
+- 把list里面每个元素都拿出来，scan and insert一遍
+- Time O(n^2), worst case, 每次放入n个数字里面的element, 刚好都是最大的
+- 所以每次要traverse n nodes, 然后走n次
+
+##### 思考方法
+- 如果已经有个sorted list, insert一个element进去。怎么做？
+- while 里面每个元素都小于 curr, keep going
+- 一旦curr在某个点小了，加进去当下这个空隙。
+
+
+
+---
+
+**7. [Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)**      Level: Medium
+      
+
+给一串数字, 非负数, 把所有数字串联起来, 组成最大数字.
+
+因为结果很大, 所以用string表示 
+
+#### Sort, Comparator
+- 考虑 more significant spot 应该拿到更大的值
+- 如果sort number,  comparator 会比较难写: 每个digit的weight不同, 要分别讨论个位数和多位数.
+- goal: 让较大的组合数排在前面, 让较小的组合数排在后面
+- 不如: 组合两种情况, 用String比较一下大小 (也可以用 integer来比较组合数, 但是为保险不超Integer.MAX_VALUE, 这里比较String)
+- String.compareTo() 是按照 lexicographically, 字典顺序排列的
+- 利用compareTo, 来倒序排列 string, 刚好就得到我们要的结果.
+- O(nlogn), 排序
 
 
 

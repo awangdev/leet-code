@@ -1,7 +1,7 @@
  
  
  
-## String (23)
+## String (27)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -360,6 +360,82 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 简单按 window=2 来扫描
 - 原来只需要从'++'转到'--'的情况
 - O(n)
+
+
+
+---
+
+**23. [Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)**      Level: Easy
+      
+
+给两个string A, B, 找一个 B 在 A 种的起始位置.
+
+#### Two Pointer
+- 找到B在A中的起始位置, 然后看一下从这个点开始的substring是否等于B就可以了
+- 还挺多坑的, 这些可以帮助优化:
+- 1. 当B是“”的时候，也就是能在A的其实位置找到B....index = 0.
+- 2. edge condition: 如果 haystack.length() < needle.length() 的话, 必须错, return -1
+- 3. 如果在某个index, A后面剩下的长度, 比B的长度短, 也是误解, return -1
+
+
+
+---
+
+**24. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- 分类讨论: thounsand, million, billion.  3个数字一格.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率
+- 注意加 " " 的时候, 如果多余, 要trim()
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
+
+
+
+
+---
+
+**25. [Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)**      Level: Easy
+      
+
+给一个String, 里面有lower case character 和 ' '. 找最后一个单个word的长度
+
+#### basics
+- 从末尾找' ', 找到了计算长度
+- 记得要s.trim(), 把首尾的space去掉
+
+
+
+---
+
+**26. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium
+      
+
+#### Double Sequence DP
+- 两个string, 找最值: longest common string length
+- 序列型, 并且是双序列, 找两个序列 (两维的某种性质)
+- dp[i][j]: 对于 A 的前i个字母, 对于 B 的前j个字母, 找最长公共substring的长度
+- dp = new int[m + 1][n + 1]
+- dp[i][j] = dp[i - 1][j - 1] + 1; only if A.charAt(i - 1) == B.charAt(j - 1)
+- 注意track max, 最后return
+- space O(n^2), time(n^2)
+
+##### Rolling array
+- 空间优化, [i] 只有和 [i - 1] 相关, 空间优化成 O(n)
+
+#### String
+- 找所有A的substring, 然后B.contains()
+- track max substring length
+- O(n^2) time
 
 
 

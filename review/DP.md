@@ -1,7 +1,7 @@
  
  
  
-## DP (56)
+## DP (59)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1360,6 +1360,64 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - 变成1个一位数组
 - 降维优化的重点: 看双行的左右计算方向
 - Time(mn). Space(m)
+
+
+
+---
+
+**56. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium
+      
+
+#### Double Sequence DP
+- 两个string, 找最值: longest common string length
+- 序列型, 并且是双序列, 找两个序列 (两维的某种性质)
+- dp[i][j]: 对于 A 的前i个字母, 对于 B 的前j个字母, 找最长公共substring的长度
+- dp = new int[m + 1][n + 1]
+- dp[i][j] = dp[i - 1][j - 1] + 1; only if A.charAt(i - 1) == B.charAt(j - 1)
+- 注意track max, 最后return
+- space O(n^2), time(n^2)
+
+##### Rolling array
+- 空间优化, [i] 只有和 [i - 1] 相关, 空间优化成 O(n)
+
+#### String
+- 找所有A的substring, 然后B.contains()
+- track max substring length
+- O(n^2) time
+
+
+
+---
+
+**57. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy
+      
+
+https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
+
+O(n)跑2遍for.
+O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足条件所有的longestIncreasingContinuousSubsequence.
+特点：返跑一回，ans还是继续和left轮的ans作比较；求的所有情况的最大值嘛。
+
+
+
+---
+
+**58. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium
+      
+
+#### Coordinate DP
+- due to access permission, not test
+- dp[i][j]: longest continuous subsequence length at coordinate (i, j)
+- dp[i][j] should come from (i-1,j) and (i, j-1).
+- dp[0][0] = 1
+- condition: from up/left, must be increasing
+- return dp[m-1][n-1]
+
+#### Memoization
+- O(mn) space for dp and flag.
+- O(mn) runtime because each spot will be marked once visited. 
+- 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
+
 
 
 

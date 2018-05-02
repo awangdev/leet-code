@@ -1,7 +1,7 @@
  
  
  
-## Math (16)
+## Math (17)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -239,6 +239,29 @@ Space O(n), time O(n)
 - 从末尾开始, mod %26 可以拿到 末尾数字 remain = n % 26
 - 特殊: remain = 0 的时候, 也就是说n是26的倍数, 末尾应该是 'Z'
 - 记录'Z'了之后, n--
+
+
+
+
+---
+
+**16. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- 分类讨论: thounsand, million, billion.  3个数字一格.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率
+- 注意加 " " 的时候, 如果多余, 要trim()
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
 
 
 

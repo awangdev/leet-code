@@ -1,8 +1,13 @@
 E
+1525244964
+tags: Array, DP, Coordinate DP
+
+https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
 
 O(n)跑2遍for.
 O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足条件所有的longestIncreasingContinuousSubsequence.
 特点：返跑一回，ans还是继续和left轮的ans作比较；求的所有情况的最大值嘛。
+
 ```
 //LintCode
 //跟LeetCode的 LCIS 几乎一样. https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
@@ -54,13 +59,14 @@ public class Solution {
         return ans;
     }
 }
-```
 
 
+/** 
 九章的DP，没有用O(1)space,但是应该是为这道题的followup做准备的模式。
 用dp和dfs.
 每次dfs左右时都要mark一下flag,防止重跑
-```
+*/
+
 /*
 Thoughts: JiuZhang's DP.
 dp[i]: longest increasing continous subsequence on i, regardless if the sequence is incresing from left or right.
@@ -111,17 +117,7 @@ public class Solution {
 
 
 
-
-```
-
-
-
-
-
-
-
-老码
-```
+// Previous
 /*
 Older approach. Longer code :（
 Thoughts:

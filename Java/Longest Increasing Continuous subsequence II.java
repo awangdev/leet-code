@@ -1,9 +1,30 @@
-O(mn) space for dp and flag.
-O(mn) runtime because each spot will be marked once visited. 
-这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
+M
+1525245193
+tags: Array, DP, Coordinate DP, Memoization
+
+#### Coordinate DP
+- due to access permission, not test
+- dp[i][j]: longest continuous subsequence length at coordinate (i, j)
+- dp[i][j] should come from (i-1,j) and (i, j-1).
+- dp[0][0] = 1
+- condition: from up/left, must be increasing
+- return dp[m-1][n-1]
+
+#### Memoization
+- O(mn) space for dp and flag.
+- O(mn) runtime because each spot will be marked once visited. 
+- 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
+
+
 ```
 /*
-Give you an integer matrix (with row size n, column size m)，find the longest increasing continuous subsequence in this matrix. (The definition of the longest increasing continuous subsequence here can start at any row or column and go up/down/right/left any direction).
+LintCode, only available in algorithm2.
+
+Give you an integer matrix (with row size n, column size m)，
+find the longest increasing continuous subsequence in this matrix. 
+
+(The definition of the longest increasing continuous subsequence here 
+can start at any row or column and go up/down/right/left any direction).
 
 Example
 Given a matrix:

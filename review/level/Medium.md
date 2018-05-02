@@ -1,7 +1,7 @@
  
  
  
-## Medium (160)
+## Medium (166)
 **0. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium
       
 
@@ -2781,6 +2781,132 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 #### NOT DP
 - 看似有点像 House Robber II, 但是问题要求的是: 一个起始点的index
 - 而不是求: 最后点可否走完/最值/计数
+
+
+
+---
+
+**160. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium
+      
+
+input一串数字, 需要出sorted output. 每次insert一个数字时, 都要放到正确的sorted的位置
+
+每次insertion的时候, 都从input里面减掉这个数字
+
+#### Linked List
+- 把list里面每个元素都拿出来，scan and insert一遍
+- Time O(n^2), worst case, 每次放入n个数字里面的element, 刚好都是最大的
+- 所以每次要traverse n nodes, 然后走n次
+
+##### 思考方法
+- 如果已经有个sorted list, insert一个element进去。怎么做？
+- while 里面每个元素都小于 curr, keep going
+- 一旦curr在某个点小了，加进去当下这个空隙。
+
+
+
+---
+
+**161. [Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)**      Level: Medium
+      
+
+给一串数组 有正负数. 重新排列, 让数组里面 正数 和 负数 相隔开. 原来的order无所谓
+
+#### Two pointer
+- 需要知道正负的位置, 所以排序 O(nlogN)
+- 考虑: 正数多还是负数多的问题, 举栗子就看出来端倪了
+- 然后Two Pointer, swap 
+- Time O(nlogn), space O(n)
+
+#### extra space
+- 用extra O(n) space, 把正负分成两个list
+- 然后分别按照index填回去
+- time O(n). space O(n)
+- 但是就么有用到Two pointer了
+
+
+
+---
+
+**162. [Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)**      Level: Medium
+      
+
+给一串数字, 非负数, 把所有数字串联起来, 组成最大数字.
+
+因为结果很大, 所以用string表示 
+
+#### Sort, Comparator
+- 考虑 more significant spot 应该拿到更大的值
+- 如果sort number,  comparator 会比较难写: 每个digit的weight不同, 要分别讨论个位数和多位数.
+- goal: 让较大的组合数排在前面, 让较小的组合数排在后面
+- 不如: 组合两种情况, 用String比较一下大小 (也可以用 integer来比较组合数, 但是为保险不超Integer.MAX_VALUE, 这里比较String)
+- String.compareTo() 是按照 lexicographically, 字典顺序排列的
+- 利用compareTo, 来倒序排列 string, 刚好就得到我们要的结果.
+- O(nlogn), 排序
+
+
+
+---
+
+**163. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium
+      
+
+#### Double Sequence DP
+- 两个string, 找最值: longest common string length
+- 序列型, 并且是双序列, 找两个序列 (两维的某种性质)
+- dp[i][j]: 对于 A 的前i个字母, 对于 B 的前j个字母, 找最长公共substring的长度
+- dp = new int[m + 1][n + 1]
+- dp[i][j] = dp[i - 1][j - 1] + 1; only if A.charAt(i - 1) == B.charAt(j - 1)
+- 注意track max, 最后return
+- space O(n^2), time(n^2)
+
+##### Rolling array
+- 空间优化, [i] 只有和 [i - 1] 相关, 空间优化成 O(n)
+
+#### String
+- 找所有A的substring, 然后B.contains()
+- track max substring length
+- O(n^2) time
+
+
+
+---
+
+**164. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Medium
+      
+
+给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
+
+#### HashSet
+- 要想看连续元素, 必须要num++, num--这样搜索
+- 1. 需要O(1)找到元素
+- 2. 需要简单快速找到 num - 1, num + 1.
+- 如果用min,max开array, 耗费空间
+- 用HashSet来存, 用set.contains() 来查找 num - 1, num + 1 存在与否
+- for loop. O(n) 
+- 里面的while loop 一般不会有O(n); 一旦O(n), 也意味着set 清零, for loop也不会有更多 inner while 的衍生.
+- overall O(n) 时间复杂度
+
+
+
+---
+
+**165. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium
+      
+
+#### Coordinate DP
+- due to access permission, not test
+- dp[i][j]: longest continuous subsequence length at coordinate (i, j)
+- dp[i][j] should come from (i-1,j) and (i, j-1).
+- dp[0][0] = 1
+- condition: from up/left, must be increasing
+- return dp[m-1][n-1]
+
+#### Memoization
+- O(mn) space for dp and flag.
+- O(mn) runtime because each spot will be marked once visited. 
+- 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
+
 
 
 

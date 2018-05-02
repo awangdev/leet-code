@@ -1,7 +1,7 @@
  
  
  
-## Double Sequence DP (3)
+## Double Sequence DP (4)
 **0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium
       
 
@@ -49,6 +49,30 @@ TODO
 - 写起来跟Edit Distance 的主要逻辑是一模一样的.
 - 但是LintCode 86% test case 时候timeout. 
 - Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
+
+
+
+---
+
+**3. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium
+      
+
+#### Double Sequence DP
+- 两个string, 找最值: longest common string length
+- 序列型, 并且是双序列, 找两个序列 (两维的某种性质)
+- dp[i][j]: 对于 A 的前i个字母, 对于 B 的前j个字母, 找最长公共substring的长度
+- dp = new int[m + 1][n + 1]
+- dp[i][j] = dp[i - 1][j - 1] + 1; only if A.charAt(i - 1) == B.charAt(j - 1)
+- 注意track max, 最后return
+- space O(n^2), time(n^2)
+
+##### Rolling array
+- 空间优化, [i] 只有和 [i - 1] 相关, 空间优化成 O(n)
+
+#### String
+- 找所有A的substring, 然后B.contains()
+- track max substring length
+- O(n^2) time
 
 
 

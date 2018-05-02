@@ -1,7 +1,7 @@
  
  
  
-## Array (46)
+## Array (49)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -911,6 +911,59 @@ missing positive integer 其实是以 [1, n] 来做比较的.
 - validation时, 有可能这串数字里没有断开的integer, 但是最大的integer在首位 (因为index超标, 无法被放到正确的地方)
 - 这种时候, n被放在 index 0, 其实就是说, 下一个integer应该是 n + 1
 - 最终, 如果array本来就是完全sorted, 也不缺, 还符合角标的条件, 那么唯一下一个就是array范围外的第一个positive number: n
+
+
+
+---
+
+**46. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Medium
+      
+
+给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
+
+#### HashSet
+- 要想看连续元素, 必须要num++, num--这样搜索
+- 1. 需要O(1)找到元素
+- 2. 需要简单快速找到 num - 1, num + 1.
+- 如果用min,max开array, 耗费空间
+- 用HashSet来存, 用set.contains() 来查找 num - 1, num + 1 存在与否
+- for loop. O(n) 
+- 里面的while loop 一般不会有O(n); 一旦O(n), 也意味着set 清零, for loop也不会有更多 inner while 的衍生.
+- overall O(n) 时间复杂度
+
+
+
+---
+
+**47. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy
+      
+
+https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
+
+O(n)跑2遍for.
+O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足条件所有的longestIncreasingContinuousSubsequence.
+特点：返跑一回，ans还是继续和left轮的ans作比较；求的所有情况的最大值嘛。
+
+
+
+---
+
+**48. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium
+      
+
+#### Coordinate DP
+- due to access permission, not test
+- dp[i][j]: longest continuous subsequence length at coordinate (i, j)
+- dp[i][j] should come from (i-1,j) and (i, j-1).
+- dp[0][0] = 1
+- condition: from up/left, must be increasing
+- return dp[m-1][n-1]
+
+#### Memoization
+- O(mn) space for dp and flag.
+- O(mn) runtime because each spot will be marked once visited. 
+- 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
+
 
 
 
