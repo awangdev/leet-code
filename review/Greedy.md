@@ -1,7 +1,7 @@
  
  
  
-## Greedy (8)
+## Greedy (9)
 **0. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
       
 
@@ -167,6 +167,23 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 #### NOT DP
 - 看似有点像 House Robber II, 但是问题要求的是: 一个起始点的index
 - 而不是求: 最后点可否走完/最值/计数
+
+
+
+---
+
+**8. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
+      
+
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
+- 但是不够, 需要找maxLeft[] 和 maxRight[] 
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+
+#### prefix sum.
+- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
+- 我们需要的那部分prefix sum，其实就是一段数字的总和。
+- 所以从右边累计上来的。也是一样可以的。
 
 
 

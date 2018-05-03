@@ -1,7 +1,7 @@
  
  
  
-## Hard (52)
+## Hard (54)
 **0. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard
       
 首先要分两半解决，断点是'.': str.split("\\.");
@@ -1189,6 +1189,44 @@ missing positive integer 其实是以 [1, n] 来做比较的.
 - 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
 - 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
 
+
+
+
+---
+
+**52. [N-Queens.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens.java)**      Level: Hard
+      
+
+N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
+
+#### Backtracking
+- 用dfs找所有情况, 每一个iteration, 从找一行里挑合适的点, dfs
+- 选中的点加进candidate list 里面, 记得要backtracking.
+- 每一个candidate都需要validation, 检查 row, col, 2 diagnal 有没有queen
+
+#### validate n queue at certain (x, y)
+- 1. array 里面不能有 target row#
+- 2. diagnal. 记得公式：
+- row1 - row2 == col1 - col2.     Diagnal elelment.fail
+- row1 - row2 == - (col1 - col2). Diagnal element. fail
+- Draw a 3x3 board to test the 2 scanarios:
+- (0,0) and (3,3) are diagnal
+- (0,2) and (2,0) are diagnal
+
+
+
+
+---
+
+**53. [N-Queens II.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens%20II.java)**      Level: Hard
+      
+
+跟 N-Queens 一样, 不是找所有结果, 而是count多少结果.
+
+#### Backtracking
+- 当list.size() == n 的时候，说明找到了一个Solution。
+- 1. dfs function (List<Integer>, n)
+- 2. validate function
 
 
 

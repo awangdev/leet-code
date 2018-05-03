@@ -1,7 +1,7 @@
  
  
  
-## Medium (166)
+## Medium (167)
 **0. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium
       
 
@@ -2907,6 +2907,23 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 - O(mn) runtime because each spot will be marked once visited. 
 - 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
 
+
+
+
+---
+
+**166. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
+      
+
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
+- 但是不够, 需要找maxLeft[] 和 maxRight[] 
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+
+#### prefix sum.
+- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
+- 我们需要的那部分prefix sum，其实就是一段数字的总和。
+- 所以从右边累计上来的。也是一样可以的。
 
 
 

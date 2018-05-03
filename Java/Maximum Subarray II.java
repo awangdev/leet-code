@@ -1,9 +1,20 @@
-新的解法还是用到了prefix sum.
-注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-我们需要的那部分prefix sum，其实就是一段数字的总和。
-所以从右边累计上来的。也是一样可以的。
+M
+1525363049
+tags: Greedy, Array, DP, Sequence DP
+
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
+- 但是不够, 需要找maxLeft[] 和 maxRight[] 
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+
+#### prefix sum.
+- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
+- 我们需要的那部分prefix sum，其实就是一段数字的总和。
+- 所以从右边累计上来的。也是一样可以的。
+
 ```
 /*
+LintCode: https://lintcode.com/en/problem/maximum-subarray-ii/#
 Given an array of integers, find two non-overlapping subarrays which have the largest sum.
 
 The number in each subarray should be contiguous.
@@ -14,7 +25,9 @@ Note
 The subarray should contain at least one number
 
 Example
-For given [1, 3, -1, 2, -1, 2], the two subarrays are [1, 3] and [2, -1, 2] or [1, 3, -1, 2] and [2], they both have the largest sum 7.
+For given [1, 3, -1, 2, -1, 2], 
+the two subarrays are [1, 3] and [2, -1, 2] 
+or [1, 3, -1, 2] and [2], they both have the largest sum 7.
 
 Challenge
 Can you do it in time complexity O(n) ?
@@ -23,6 +36,61 @@ Tags Expand
 Greedy Enumeration Array LintCode Copyright SubArray Forward-Backward Traversal
 
 */
+
+/*
+Thoughts:
+Similar to Maximum Subarray, from one side:
+dp[i]: for first i items, the max subarray sum containing nums[i - 1]
+
+Should process the dp from both left and right side, 
+with index i being the division point
+
+Note that we need to track the max for left and right, 
+so we need maxLeft[], maxRight[]
+*/
+public class Solution {
+    /*
+     * @param nums: A list of integers
+     * @return: An integer denotes the sum of max two non-overlapping subarrays
+     */
+    public int maxTwoSubArrays(List<Integer> nums) {
+        if (nums == null || nums.size() == 0) {
+            return 0;
+        }
+        int n = nums.size();
+        int[] dpLeft = new int[n + 1];
+        int[] dpRight = new int[n + 1];
+        dpLeft[0] = 0;
+        dpRight[n] = 0;
+
+        int[] maxLeft = new int[n + 1];;
+        int[] maxRight = new int[n + 1];
+        maxLeft[0] = Integer.MIN_VALUE;
+        maxRight[n] = Integer.MIN_VALUE;
+        
+        // Left
+        for (int i = 1; i <= n; i++) {
+            dpLeft[i] = Math.max(dpLeft[i - 1] + nums.get(i - 1), nums.get(i - 1));
+            maxLeft[i] = Math.max(maxLeft[i - 1], dpLeft[i]);
+        }
+
+        // Right
+        for (int j = n - 1; j >= 0; j--) {
+            dpRight[j] = Math.max(dpRight[j + 1] + nums.get(j), nums.get(j));
+            maxRight[j] = Math.max(maxRight[j + 1], dpRight[j]);
+        }
+        
+        // Combine
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i < n; i++) {
+            max = Math.max(max, maxLeft[i] + maxRight[i]);
+        }
+        
+        return max;
+    }
+}
+
+
 /*
     Thoughts： 11.23.2015
     Similar to Maximum Subarray。 Now just try to build 2 maximum subbary, from left/right.

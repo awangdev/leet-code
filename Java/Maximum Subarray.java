@@ -1,16 +1,94 @@
 E
+1525331164
+tags: DP, Sequence DP, Array, Divide and Conquer
 
-方法1
-比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
-那么就assign: sums[i]=nums[i]
-这个做法比较中规中矩, makes sense
+#### Sequence DP
+- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init dp[0] = 0; max = MIN_VALUE 因为有负数
+- Time, space O(n)
+- Rolling array, space O(1)
 
-方法2(better)
-想着用一用prefix sum. 把值一个个叠加。
-然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
+
+#### Previous Notes
+##### 方法1
+- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
+- 那么就assign: sums[i]=nums[i]
+- 这个做法比较中规中矩, makes sense
+
+##### 方法2(better)
+- 想着用一用prefix sum. 把值一个个叠加。
+- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
 
 ```
+/**
+LeetCode:
+Given an integer array nums, find the contiguous subarray (containing at least one number) 
+which has the largest sum and return its sum.
+
+Example:
+
+Input: [-2,1,-3,4,-1,2,1,-5,4],
+Output: 6
+Explanation: [4,-1,2,1] has the largest sum = 6.
+Follow up:
+
+If you have figured out the O(n) solution, 
+try coding another solution using the divide and conquer approach, 
+which is more subtle.
+
+ */
+
 /*
+Thoughts:
+sequence dp
+continous subarray: cannot skip element
+dp[i]: for first i items, what's the largest sum that containts nums[i]?
+dp[i] = Math.max(dp[i - 1] + nums[i - 1], nums[i - 1])
+
+record max globally
+
+dp[i]: 0 items, max = 0
+*/
+class Solution {
+    public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i <= n; i++) {
+            dp[i] = Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]);
+            max = Math.max(max, dp[i]);
+        }
+        
+        return max;
+    }
+}
+
+// Rolling array:
+class Solution {
+    public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+        int[] dp = new int[2];
+        dp[0] = 0;
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i <= n; i++) {
+            dp[i % 2] = Math.max(dp[(i - 1) % 2] + nums[i - 1], nums[i - 1]);
+            max = Math.max(max, dp[i % 2]);
+        }
+        
+        return max;
+    }
+}
+
+/*
+LintCode
 Maximum Subarray Show Result My Submissions
 
 35% Accepted

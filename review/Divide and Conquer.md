@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (5)
+## Divide and Conquer (6)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
       
 
@@ -146,6 +146,31 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - Note: 这个是Memoization, 而不纯是DP
 - 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
 
+
+
+
+---
+
+**5. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
+      
+
+#### Sequence DP
+- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init dp[0] = 0; max = MIN_VALUE 因为有负数
+- Time, space O(n)
+- Rolling array, space O(1)
+
+
+#### Previous Notes
+##### 方法1
+- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
+- 那么就assign: sums[i]=nums[i]
+- 这个做法比较中规中矩, makes sense
+
+##### 方法2(better)
+- 想着用一用prefix sum. 把值一个个叠加。
+- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
 
 
 

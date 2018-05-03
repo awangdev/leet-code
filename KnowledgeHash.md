@@ -458,6 +458,19 @@ class Node {
 
 # Sort
 
+## 常用
+- Merge Sort. Runtime: O(nlogn) average/worst. Memory: depends.
+- Quick Sort. Runtime: O(nlogn) average, O(n^2) worst. Memory: O(nlogn).
+- Radix Sort. Runtime: O(nk)
+- Insertion Sort
+- Heap Sort
+- Bubble Sort. Runtime: O(n^2) average/worst. Memory: O(1)
+- Selection Sort. Runtime: O(n^2) average/worst. Memory: O(1)
+
+### Merge Sort
+
+### Quick Sort
+
 ## Comparator for Arrays, Collections
 ```
 public int compare(x, y) {
@@ -465,7 +478,6 @@ public int compare(x, y) {
 }
 ```
 
-## Quick Sort
 
 # Collections
 
@@ -796,7 +808,6 @@ Track queue size, use the queue as in rotation
 - It attemps to build/find all candidates and abandon partial candidate when the candidates appears not to be suitable(backtracking, backing off from wrong candidates)
 
 
-
 # Reservoir Sampling
 
 # Geometry
@@ -805,6 +816,10 @@ Track queue size, use the queue as in rotation
 
 # Red Black Tree
 
+# Threads
+## Two approaches
+- Implement the java.lang.Runnable interface
+- Extend the java.lang.Thread class
 
 # Approach
 

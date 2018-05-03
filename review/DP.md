@@ -1,7 +1,7 @@
  
  
  
-## DP (59)
+## DP (61)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1418,6 +1418,48 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - O(mn) runtime because each spot will be marked once visited. 
 - 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
 
+
+
+
+---
+
+**59. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
+      
+
+#### Sequence DP
+- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init dp[0] = 0; max = MIN_VALUE 因为有负数
+- Time, space O(n)
+- Rolling array, space O(1)
+
+
+#### Previous Notes
+##### 方法1
+- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
+- 那么就assign: sums[i]=nums[i]
+- 这个做法比较中规中矩, makes sense
+
+##### 方法2(better)
+- 想着用一用prefix sum. 把值一个个叠加。
+- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
+
+
+
+---
+
+**60. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
+      
+
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
+- 但是不够, 需要找maxLeft[] 和 maxRight[] 
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+
+#### prefix sum.
+- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
+- 我们需要的那部分prefix sum，其实就是一段数字的总和。
+- 所以从右边累计上来的。也是一样可以的。
 
 
 

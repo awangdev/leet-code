@@ -1,7 +1,7 @@
  
  
  
-## String (27)
+## String (28)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -436,6 +436,19 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 找所有A的substring, 然后B.contains()
 - track max substring length
 - O(n^2) time
+
+
+
+---
+
+**27. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy
+      
+
+给一串String, 找到最长的长度, 把最长的String全都return
+
+#### HashMap
+- <Integer,List<String>>
+- 存最长值, 最后map.get(max) 
 
 
 
