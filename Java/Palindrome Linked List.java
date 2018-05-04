@@ -1,3 +1,5 @@
+E
+
 Palindrome都是要两边回溯相等。
 linkedlist不能reverse iterating， 那么就reverse the list, 从中间开花作比较。
 ```

@@ -1,7 +1,7 @@
  
  
  
-## Design (8)
+## Design (9)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -152,6 +152,15 @@ push()里面做stack和reverseStack的来回倾倒.
 Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再backfill.
 写一下例子就知道，如果提早backfill，stack.peek()就不是queue的head了.
 
+
+
+
+---
+
+**8. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy
+      
+
+让一个class 是 singleton
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Array (51)
+## Array (53)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -972,6 +972,8 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 **49. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
       
 
+给一串数组, 找数组中间 subarray 数字之和的最大值
+
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
 - 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
@@ -997,15 +999,55 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 **50. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
       
 
-#### DP
-- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
-- 但是不够, 需要找maxLeft[] 和 maxRight[] 
-- 最后比较maxLeft[i] + maxRight[i] 最大值
+给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
 
-#### prefix sum.
-- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-- 我们需要的那部分prefix sum，其实就是一段数字的总和。
-- 所以从右边累计上来的。也是一样可以的。
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum. 
+- dp[i] 的特点是: 如果上一个 dp[i - 1] + nums[i - 1] 小于 nums[i-1], 那么就舍弃之前, 从头再来:
+- dp[i] = Math.max(dp[i - 1] + nums.get(i - 1), nums.get(i - 1));
+- 缺点: 无法track全局max, 需要记录max.
+- 因为我们现在要考虑从左边/右边来的所有max, 所以要记录maxLeft[] 和 maxRight[] 
+- maxLeft[i]: 前i个元素的最大sum是多少 (不断递增); maxRight反之, 从右边向左边
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+- Space, Time O(n)
+- Rolling array, reduce some space, but can not reduce maxLeft/maxRight
+
+#### preSum, minPreSum
+- preSum是[0, i] 每个数字一次加起来的值
+- 如果维持一个minPreSum, 就是记录[0, i]sum的最小值(因为有可能有负数)
+- preSum - minPreSum 就是在 [0, i]里, subarray的最大sum值
+- 把这个最大subarray sum 记录在array, left[] 里面
+- right[] 是一样的道理
+- enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
+
+
+
+---
+
+**51. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy
+      
+
+给一串无序数组, 找到median(sort之后 位置在中间的数字).
+
+#### Quick Select
+- 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
+- quickSelect 可以找到 kth 最小的元素
+- 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
+- quick select 的template要熟悉一下, 一下子可能想得到, 但写不出来
+- 主要步骤: partition, dfs, only recur on one part of the array 
+
+
+
+---
+
+**52. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
+      
+
+给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
+
+#### Basics
+- A够长，那么可以从A的尾部开始加新元素。     
+- 注意，从尾部，是大数字优先排末尾的.  
 
 
 

@@ -1,3 +1,6 @@
+M
+
+```
 /*
 Given a sorted integer array without duplicates, return the summary of its ranges.
 
@@ -35,3 +38,4 @@ public class Solution {
 }
 
 //O(n)
+```

@@ -15,11 +15,18 @@ tags: Two Pointers, String
 /*
 Implement strStr().
 
-Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+Returns the index of the first occurrence of needle in haystack, 
+or -1 if needle is not part of haystack.
 
 Hide Company Tags Facebook
 Hide Tags Two Pointers String
 Hide Similar Problems (H) Shortest Palindrome
+
+Clarification
+Do I need to implement KMP Algorithm in an interview?
+
+    - Not necessary. When this problem occurs in an interview, 
+    the interviewer just want to test your basic implementation ability.
 
 */
 

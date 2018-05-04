@@ -1,3 +1,5 @@
+M
+
 斩草除根。
 多个node，check node.next ?= node.next.next
 ```

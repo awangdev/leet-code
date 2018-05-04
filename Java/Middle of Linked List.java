@@ -1,10 +1,13 @@
-快慢指针
+E
+1525413850
+tags:
 
-不在乎slow是不是到底，因为fast肯定先到。
-确保fast, fast.next不是Null就好
+找Linked List的中间node
 
+- 快慢指针
+- 不在乎slow是不是到底，因为fast肯定先到。
+- 确保fast, fast.next不是Null就好
 
-return slow
 ```
 /*
 Find the middle node of a linked list.

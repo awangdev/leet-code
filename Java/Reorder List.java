@@ -1,3 +1,7 @@
+M
+
+```
+
 /*
 24% 通过
 Given a singly linked list L: L0→L1→…→Ln-1→Ln,
@@ -91,3 +95,5 @@ public class Solution {
     }
 }
 
+
+```

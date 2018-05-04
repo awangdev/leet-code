@@ -2,15 +2,26 @@ M
 1525363049
 tags: Greedy, Array, DP, Sequence DP
 
-#### DP
-- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
-- 但是不够, 需要找maxLeft[] 和 maxRight[] 
-- 最后比较maxLeft[i] + maxRight[i] 最大值
+给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
 
-#### prefix sum.
-- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-- 我们需要的那部分prefix sum，其实就是一段数字的总和。
-- 所以从右边累计上来的。也是一样可以的。
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum. 
+- dp[i] 的特点是: 如果上一个 dp[i - 1] + nums[i - 1] 小于 nums[i-1], 那么就舍弃之前, 从头再来:
+- dp[i] = Math.max(dp[i - 1] + nums.get(i - 1), nums.get(i - 1));
+- 缺点: 无法track全局max, 需要记录max.
+- 因为我们现在要考虑从左边/右边来的所有max, 所以要记录maxLeft[] 和 maxRight[] 
+- maxLeft[i]: 前i个元素的最大sum是多少 (不断递增); maxRight反之, 从右边向左边
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+- Space, Time O(n)
+- Rolling array, reduce some space, but can not reduce maxLeft/maxRight
+
+#### preSum, minPreSum
+- preSum是[0, i] 每个数字一次加起来的值
+- 如果维持一个minPreSum, 就是记录[0, i]sum的最小值(因为有可能有负数)
+- preSum - minPreSum 就是在 [0, i]里, subarray的最大sum值
+- 把这个最大subarray sum 记录在array, left[] 里面
+- right[] 是一样的道理
+- enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
 
 ```
 /*
@@ -78,6 +89,94 @@ public class Solution {
         for (int j = n - 1; j >= 0; j--) {
             dpRight[j] = Math.max(dpRight[j + 1] + nums.get(j), nums.get(j));
             maxRight[j] = Math.max(maxRight[j + 1], dpRight[j]);
+        }
+        
+        // Combine
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i < n; i++) {
+            max = Math.max(max, maxLeft[i] + maxRight[i]);
+        }
+        
+        return max;
+    }
+}
+
+
+// Rolling array
+public class Solution {
+    /*
+     * @param nums: A list of integers
+     * @return: An integer denotes the sum of max two non-overlapping subarrays
+     */
+    public int maxTwoSubArrays(List<Integer> nums) {
+        if (nums == null || nums.size() == 0) {
+            return 0;
+        }
+        int n = nums.size();
+        int[] dpLeft = new int[2];
+        int[] dpRight = new int[2];
+        dpLeft[0] = 0;
+        dpRight[n % 2] = 0;
+
+        int[] maxLeft = new int[n + 1];;
+        int[] maxRight = new int[n + 1];
+        maxLeft[0] = Integer.MIN_VALUE;
+        maxRight[n] = Integer.MIN_VALUE;
+        
+        // Left
+        for (int i = 1; i <= n; i++) {
+            dpLeft[i % 2] = Math.max(dpLeft[(i - 1) % 2] + nums.get(i - 1), nums.get(i - 1));
+            maxLeft[i] = Math.max(maxLeft[i - 1], dpLeft[i % 2]);
+        }
+
+        // Right
+        for (int j = n - 1; j >= 0; j--) {
+            dpRight[j % 2] = Math.max(dpRight[(j + 1) % 2] + nums.get(j), nums.get(j));
+            maxRight[j] = Math.max(maxRight[j + 1], dpRight[j % 2]);
+        }
+        
+        // Combine
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i < n; i++) {
+            max = Math.max(max, maxLeft[i] + maxRight[i]);
+        }
+        
+        return max;
+    }
+}
+
+// Futher simplify: 
+// use 1 for loop for both left and right
+public class Solution {
+    /*
+     * @param nums: A list of integers
+     * @return: An integer denotes the sum of max two non-overlapping subarrays
+     */
+    public int maxTwoSubArrays(List<Integer> nums) {
+        if (nums == null || nums.size() == 0) {
+            return 0;
+        }
+        int n = nums.size();
+        int[] dpLeft = new int[2];
+        int[] dpRight = new int[2];
+        dpLeft[0] = 0;
+        dpRight[n % 2] = 0;
+
+        int[] maxLeft = new int[n + 1];;
+        int[] maxRight = new int[n + 1];
+        maxLeft[0] = Integer.MIN_VALUE;
+        maxRight[n] = Integer.MIN_VALUE;
+        
+        
+        for (int i = 1; i <= n; i++) {
+            // Left
+            dpLeft[i % 2] = Math.max(dpLeft[(i - 1) % 2] + nums.get(i - 1), nums.get(i - 1));
+            maxLeft[i] = Math.max(maxLeft[i - 1], dpLeft[i % 2]);
+            
+            // Right
+            int j = n - i;
+            dpRight[j % 2] = Math.max(dpRight[(j + 1) % 2] + nums.get(j), nums.get(j));
+            maxRight[j] = Math.max(maxRight[j + 1], dpRight[j % 2]);
         }
         
         // Combine

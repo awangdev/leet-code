@@ -2158,6 +2158,8 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 **59. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
       
 
+给一串数组, 找数组中间 subarray 数字之和的最大值
+
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
 - 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
@@ -2183,15 +2185,26 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 **60. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
       
 
-#### DP
-- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
-- 但是不够, 需要找maxLeft[] 和 maxRight[] 
-- 最后比较maxLeft[i] + maxRight[i] 最大值
+给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
 
-#### prefix sum.
-- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-- 我们需要的那部分prefix sum，其实就是一段数字的总和。
-- 所以从右边累计上来的。也是一样可以的。
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum. 
+- dp[i] 的特点是: 如果上一个 dp[i - 1] + nums[i - 1] 小于 nums[i-1], 那么就舍弃之前, 从头再来:
+- dp[i] = Math.max(dp[i - 1] + nums.get(i - 1), nums.get(i - 1));
+- 缺点: 无法track全局max, 需要记录max.
+- 因为我们现在要考虑从左边/右边来的所有max, 所以要记录maxLeft[] 和 maxRight[] 
+- maxLeft[i]: 前i个元素的最大sum是多少 (不断递增); maxRight反之, 从右边向左边
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+- Space, Time O(n)
+- Rolling array, reduce some space, but can not reduce maxLeft/maxRight
+
+#### preSum, minPreSum
+- preSum是[0, i] 每个数字一次加起来的值
+- 如果维持一个minPreSum, 就是记录[0, i]sum的最小值(因为有可能有负数)
+- preSum - minPreSum 就是在 [0, i]里, subarray的最大sum值
+- 把这个最大subarray sum 记录在array, left[] 里面
+- right[] 是一样的道理
+- enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
 
 
 
@@ -2607,7 +2620,7 @@ HashHeap?
  
  
  
-## Design (8)
+## Design (9)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -2758,6 +2771,15 @@ push()里面做stack和reverseStack的来回倾倒.
 Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再backfill.
 写一下例子就知道，如果提早backfill，stack.peek()就不是queue的head了.
 
+
+
+
+---
+
+**8. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy
+      
+
+让一个class 是 singleton
 
 
 
@@ -6078,7 +6100,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
  
  
  
-## Linked List (9)
+## Linked List (10)
 **0. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
       
 
@@ -6235,6 +6257,19 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 - 如果已经有个sorted list, insert一个element进去。怎么做？
 - while 里面每个元素都小于 curr, keep going
 - 一旦curr在某个点小了，加进去当下这个空隙。
+
+
+
+---
+
+**9. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy
+      
+
+从linked list 里面去掉所有的 target
+
+#### Basics
+- 如果match: node.next = head.next;
+- 如果不match, node 和 head 一起移动
 
 
 
@@ -7017,6 +7052,8 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 **12. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
       
 
+给一串数组, 找数组中间 subarray 数字之和的最大值
+
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
 - 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
@@ -7042,15 +7079,26 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 **13. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
       
 
-#### DP
-- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
-- 但是不够, 需要找maxLeft[] 和 maxRight[] 
-- 最后比较maxLeft[i] + maxRight[i] 最大值
+给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
 
-#### prefix sum.
-- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-- 我们需要的那部分prefix sum，其实就是一段数字的总和。
-- 所以从右边累计上来的。也是一样可以的。
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum. 
+- dp[i] 的特点是: 如果上一个 dp[i - 1] + nums[i - 1] 小于 nums[i-1], 那么就舍弃之前, 从头再来:
+- dp[i] = Math.max(dp[i - 1] + nums.get(i - 1), nums.get(i - 1));
+- 缺点: 无法track全局max, 需要记录max.
+- 因为我们现在要考虑从左边/右边来的所有max, 所以要记录maxLeft[] 和 maxRight[] 
+- maxLeft[i]: 前i个元素的最大sum是多少 (不断递增); maxRight反之, 从右边向左边
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+- Space, Time O(n)
+- Rolling array, reduce some space, but can not reduce maxLeft/maxRight
+
+#### preSum, minPreSum
+- preSum是[0, i] 每个数字一次加起来的值
+- 如果维持一个minPreSum, 就是记录[0, i]sum的最小值(因为有可能有负数)
+- preSum - minPreSum 就是在 [0, i]里, subarray的最大sum值
+- 把这个最大subarray sum 记录在array, left[] 里面
+- right[] 是一样的道理
+- enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
 
 
 
@@ -7138,7 +7186,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Two Pointers (17)
+## Two Pointers (18)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -7450,6 +7498,19 @@ Time: O(nLogN)
 - 然后分别按照index填回去
 - time O(n). space O(n)
 - 但是就么有用到Two pointer了
+
+
+
+---
+
+**17. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
+      
+
+给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
+
+#### Basics
+- A够长，那么可以从A的尾部开始加新元素。     
+- 注意，从尾部，是大数字优先排末尾的.  
 
 
 
@@ -7808,6 +7869,29 @@ count 一个 32-bit number binary format 里面有多少1
  
  
  
+## Quick Select (1)
+**0. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy
+      
+
+给一串无序数组, 找到median(sort之后 位置在中间的数字).
+
+#### Quick Select
+- 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
+- quickSelect 可以找到 kth 最小的元素
+- 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
+- quick select 的template要熟悉一下, 一下子可能想得到, 但写不出来
+- 主要步骤: partition, dfs, only recur on one part of the array 
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Divide and Conquer (6)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
       
@@ -7960,6 +8044,8 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 **5. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
       
+
+给一串数组, 找数组中间 subarray 数字之和的最大值
 
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
@@ -8159,6 +8245,29 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
  
  
  
+## Quick Sort (1)
+**0. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy
+      
+
+给一串无序数组, 找到median(sort之后 位置在中间的数字).
+
+#### Quick Select
+- 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
+- quickSelect 可以找到 kth 最小的元素
+- 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
+- quick select 的template要熟悉一下, 一下子可能想得到, 但写不出来
+- 主要步骤: partition, dfs, only recur on one part of the array 
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Greedy (9)
 **0. [Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)**      Level: Medium
       
@@ -8333,15 +8442,26 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 **8. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
       
 
-#### DP
-- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
-- 但是不够, 需要找maxLeft[] 和 maxRight[] 
-- 最后比较maxLeft[i] + maxRight[i] 最大值
+给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
 
-#### prefix sum.
-- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-- 我们需要的那部分prefix sum，其实就是一段数字的总和。
-- 所以从右边累计上来的。也是一样可以的。
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum. 
+- dp[i] 的特点是: 如果上一个 dp[i - 1] + nums[i - 1] 小于 nums[i-1], 那么就舍弃之前, 从头再来:
+- dp[i] = Math.max(dp[i - 1] + nums.get(i - 1), nums.get(i - 1));
+- 缺点: 无法track全局max, 需要记录max.
+- 因为我们现在要考虑从左边/右边来的所有max, 所以要记录maxLeft[] 和 maxRight[] 
+- maxLeft[i]: 前i个元素的最大sum是多少 (不断递增); maxRight反之, 从右边向左边
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+- Space, Time O(n)
+- Rolling array, reduce some space, but can not reduce maxLeft/maxRight
+
+#### preSum, minPreSum
+- preSum是[0, i] 每个数字一次加起来的值
+- 如果维持一个minPreSum, 就是记录[0, i]sum的最小值(因为有可能有负数)
+- preSum - minPreSum 就是在 [0, i]里, subarray的最大sum值
+- 把这个最大subarray sum 记录在array, left[] 里面
+- right[] 是一样的道理
+- enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
 
 
 
@@ -9320,7 +9440,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
  
  
  
-## Array (51)
+## Array (53)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -10291,6 +10411,8 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 **49. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
       
 
+给一串数组, 找数组中间 subarray 数字之和的最大值
+
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
 - 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
@@ -10316,15 +10438,55 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 **50. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium
       
 
-#### DP
-- 考虑两个方向的dp[i]: 包括i在内的subarray max sum 
-- 但是不够, 需要找maxLeft[] 和 maxRight[] 
-- 最后比较maxLeft[i] + maxRight[i] 最大值
+给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
 
-#### prefix sum.
-- 注意：右边算prefix sum， 看上去好像是什么postfix sum? 其实不是。其实都和prefix一样。
-- 我们需要的那部分prefix sum，其实就是一段数字的总和。
-- 所以从右边累计上来的。也是一样可以的。
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum. 
+- dp[i] 的特点是: 如果上一个 dp[i - 1] + nums[i - 1] 小于 nums[i-1], 那么就舍弃之前, 从头再来:
+- dp[i] = Math.max(dp[i - 1] + nums.get(i - 1), nums.get(i - 1));
+- 缺点: 无法track全局max, 需要记录max.
+- 因为我们现在要考虑从左边/右边来的所有max, 所以要记录maxLeft[] 和 maxRight[] 
+- maxLeft[i]: 前i个元素的最大sum是多少 (不断递增); maxRight反之, 从右边向左边
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+- Space, Time O(n)
+- Rolling array, reduce some space, but can not reduce maxLeft/maxRight
+
+#### preSum, minPreSum
+- preSum是[0, i] 每个数字一次加起来的值
+- 如果维持一个minPreSum, 就是记录[0, i]sum的最小值(因为有可能有负数)
+- preSum - minPreSum 就是在 [0, i]里, subarray的最大sum值
+- 把这个最大subarray sum 记录在array, left[] 里面
+- right[] 是一样的道理
+- enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
+
+
+
+---
+
+**51. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy
+      
+
+给一串无序数组, 找到median(sort之后 位置在中间的数字).
+
+#### Quick Select
+- 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
+- quickSelect 可以找到 kth 最小的元素
+- 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
+- quick select 的template要熟悉一下, 一下子可能想得到, 但写不出来
+- 主要步骤: partition, dfs, only recur on one part of the array 
+
+
+
+---
+
+**52. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
+      
+
+给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
+
+#### Basics
+- A够长，那么可以从A的尾部开始加新元素。     
+- 注意，从尾部，是大数字优先排末尾的.  
 
 
 

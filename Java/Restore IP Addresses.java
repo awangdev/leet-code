@@ -1,3 +1,5 @@
+M
+
 递归的终点:list.zie() == 4
 递归在一个index上面（具体问题，具体分析的情况）
 validate string要注意leading '0'

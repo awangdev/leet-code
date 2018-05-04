@@ -1,7 +1,7 @@
  
  
  
-## Linked List (9)
+## Linked List (10)
 **0. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
       
 
@@ -158,6 +158,19 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 - 如果已经有个sorted list, insert一个element进去。怎么做？
 - while 里面每个元素都小于 curr, keep going
 - 一旦curr在某个点小了，加进去当下这个空隙。
+
+
+
+---
+
+**9. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy
+      
+
+从linked list 里面去掉所有的 target
+
+#### Basics
+- 如果match: node.next = head.next;
+- 如果不match, node 和 head 一起移动
 
 
 

@@ -1,3 +1,5 @@
+M
+
 不能像partitioin array一样从两边遍历。
 
 那就最普通的，建造两个list

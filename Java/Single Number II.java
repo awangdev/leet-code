@@ -1,3 +1,6 @@
+M
+
+```
 /*
 Given 3*n + 1 numbers, every numbers occurs triple times except one, find it.
 Example
@@ -35,3 +38,5 @@ public class Solution {
     }
 }
 
+
+```

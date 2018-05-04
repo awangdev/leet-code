@@ -1,3 +1,5 @@
+M
+
 前后跑2个while loop。 找first/last occurance
 ```
 /*

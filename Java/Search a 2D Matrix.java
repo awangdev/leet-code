@@ -1,3 +1,5 @@
+M
+
 一行一行是从小到大，连续的：
 2D转1D。
 Binary Search

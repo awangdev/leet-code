@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (17)
+## Two Pointers (18)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -313,6 +313,19 @@ Time: O(nLogN)
 - 然后分别按照index填回去
 - time O(n). space O(n)
 - 但是就么有用到Two pointer了
+
+
+
+---
+
+**17. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
+      
+
+给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
+
+#### Basics
+- A够长，那么可以从A的尾部开始加新元素。     
+- 注意，从尾部，是大数字优先排末尾的.  
 
 
 

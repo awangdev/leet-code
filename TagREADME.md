@@ -2,54 +2,55 @@
 Table of Contents
 =================
 
-* [Sequence DP (12)](#sequence-dp-12)
-* [Bitwise DP (1)](#bitwise-dp-1)
-* [MiniMax (1)](#minimax-1)
-* [Two Pointers (17)](#two-pointers-17)
-* [String (27)](#string-27)
-* [Basic Implementation (2)](#basic-implementation-2)
+* [String (28)](#string-28)
 * [Math (17)](#math-17)
-* [DP (59)](#dp-59)
+* [DP (61)](#dp-61)
 * [Double Sequence DP (4)](#double-sequence-dp-4)
 * [BFS (11)](#bfs-11)
-* [Backpack DP (5)](#backpack-dp-5)
 * [Segment Tree (1)](#segment-tree-1)
 * [Design (8)](#design-8)
 * [DFS (32)](#dfs-32)
 * [Game Theory (4)](#game-theory-4)
 * [Hash Table (21)](#hash-table-21)
-* [Backtracking (11)](#backtracking-11)
-* [Bit Manipulation (9)](#bit-manipulation-9)
-* [Divide and Conquer (5)](#divide-and-conquer-5)
-* [Status DP (1)](#status-dp-1)
-* [Topological Sort (4)](#topological-sort-4)
+* [Backtracking (13)](#backtracking-13)
 * [Sort (8)](#sort-8)
 * [Tree (20)](#tree-20)
-* [Greedy (8)](#greedy-8)
 * [Trie (7)](#trie-7)
-* [Coordinate DP (12)](#coordinate-dp-12)
-* [Monotonous Stack (1)](#monotonous-stack-1)
 * [BST (16)](#bst-16)
 * [Permutation (1)](#permutation-1)
-* [Binary Tree (6)](#binary-tree-6)
 * [Partition DP (5)](#partition-dp-5)
-* [Expression Tree (4)](#expression-tree-4)
-* [Binary Search (25)](#binary-search-25)
 * [Interval DP (4)](#interval-dp-4)
 * [Heap (6)](#heap-6)
 * [Stack (17)](#stack-17)
 * [Linked List (9)](#linked-list-9)
-* [Array (49)](#array-49)
 * [Binary Indexed Tree (1)](#binary-indexed-tree-1)
 * [Graph (5)](#graph-5)
 * [Brainteaser (1)](#brainteaser-1)
 * [Union Find (7)](#union-find-7)
-* [Memoization (9)](#memoization-9)
 * [Sweep Line (4)](#sweep-line-4)
+* [Interval (1)](#interval-1)
+* [Sequence DP (14)](#sequence-dp-14)
+* [Bitwise DP (1)](#bitwise-dp-1)
+* [MiniMax (1)](#minimax-1)
+* [Two Pointers (17)](#two-pointers-17)
+* [Basic Implementation (2)](#basic-implementation-2)
+* [Backpack DP (5)](#backpack-dp-5)
+* [Bit Manipulation (9)](#bit-manipulation-9)
+* [Divide and Conquer (6)](#divide-and-conquer-6)
+* [Status DP (1)](#status-dp-1)
+* [Topological Sort (4)](#topological-sort-4)
+* [Greedy (9)](#greedy-9)
+* [Hash Map (1)](#hash-map-1)
+* [Coordinate DP (12)](#coordinate-dp-12)
+* [Monotonous Stack (1)](#monotonous-stack-1)
+* [Binary Tree (6)](#binary-tree-6)
+* [Expression Tree (4)](#expression-tree-4)
+* [Binary Search (25)](#binary-search-25)
+* [Array (51)](#array-51)
+* [Memoization (9)](#memoization-9)
 * [Two Stacks (1)](#two-stacks-1)
 * [backtracking (1)](#backtracking-1)
 * [Two Pointer (1)](#two-pointer-1)
-* [Interval (1)](#interval-1)
 
 
 
@@ -232,7 +233,7 @@ Table of Contents
  
  
  
-## Design (8)
+## Design (9)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)|Medium|Java|[BST, Design, Stack, Tree]||
@@ -243,6 +244,7 @@ Table of Contents
 |5|[Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)|Hard|Java|[Design, Heap]||
 |6|[Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)|Easy|Java|[Design, Stack]||
 |7|[Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)|Easy|Java|[Design, Stack]||
+|8|[Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)|Easy|Java|[Design]||
 
 
 
@@ -520,7 +522,7 @@ Table of Contents
  
  
  
-## Linked List (9)
+## Linked List (10)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)|Medium|Java|[Linked List, Math]||
@@ -532,6 +534,7 @@ Table of Contents
 |6|[Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)|Medium|Java|[Linked List]||
 |7|[Delete Node in a Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20a%20Linked%20List.java)|Easy|Java|[Linked List]||
 |8|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|Medium|Java|[Linked List, Sort]||
+|9|[Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)|Easy|Java|[Linked List]||
 
 
 
@@ -654,7 +657,7 @@ Table of Contents
  
  
  
-## Two Pointers (17)
+## Two Pointers (18)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)|Easy|Java|[String, Two Pointers]||
@@ -674,6 +677,7 @@ Table of Contents
 |14|[Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)|Medium|Java|[Array, Binary Search, Two Pointers]||
 |15|[Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)|Easy|Java|[String, Two Pointers]||
 |16|[Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)|Medium|Java|[Two Pointers]||
+|17|[Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
 
 
 
@@ -723,6 +727,16 @@ Table of Contents
  
  
  
+## Quick Select (1)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)|Easy|Java|[Array, Quick Select, Quick Sort]||
+
+
+
+ 
+ 
+ 
 ## Divide and Conquer (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -755,6 +769,16 @@ Table of Contents
 |1|[Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
 |2|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
 |3|[Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)|Hard|Java|[BFS, Backtracking, DFS, Graph, Topological Sort]||
+
+
+
+ 
+ 
+ 
+## Quick Sort (1)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)|Easy|Java|[Array, Quick Select, Quick Sort]||
 
 
 
@@ -882,7 +906,7 @@ Table of Contents
  
  
  
-## Array (51)
+## Array (53)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)|Easy|Java|[Array, Math]||
@@ -936,6 +960,8 @@ Table of Contents
 |48|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|Medium|Java|[Array, Coordinate DP, DP, Memoization]||
 |49|[Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)|Easy|Java|[Array, DP, Divide and Conquer, Sequence DP]||
 |50|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, Sequence DP]||
+|51|[Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)|Easy|Java|[Array, Quick Select, Quick Sort]||
+|52|[Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
 
 
 

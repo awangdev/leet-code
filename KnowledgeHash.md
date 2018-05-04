@@ -470,6 +470,51 @@ class Node {
 ### Merge Sort
 
 ### Quick Sort
+- pick random pivot, all elements smaller sits before pivot, and all elements larger sits after the pivot
+- while loop (and two inner while loop) to find the 2 indexes to swap, comparing with pivot
+- use the left pointer to partition the array, and keeps sorting left part and right part
+
+#### Quick Select
+- quick sort 的变形
+- A selection algorithm to find the k-th smallest element in an unordered list.
+- 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
+- still worst case O(n^2)
+- 用 end index作为pivot, 每次根据nums[pivot]排序之后, 在 < low的位置, 都小于 nums[pivot]
+- 把nums[pivot]换到low的位置, 那么换好之后, 所有在low前面的值, 都是小于 nums[pivot]了
+- 那么其实 nums[low]也就是 kth 最小值
+- 主要步骤: partition, dfs, only recur on one part of the array
+
+```
+private int quickSelect(int[] nums, int start, int end, int target) {
+    int index = partition(nums, start, end);
+    if (index == target) {
+        return nums[index];
+    } else if (index < target) {
+        return quickSelect(nums, index + 1, end, target);
+    } else {
+        return quickSelect(nums, start, index - 1, target);
+    }
+}
+
+private int partition(int[] nums, int low, int high) {
+    int pivot = high; // end
+    int pivotValue = nums[pivot];
+
+    while (low < high) {
+        while (low < high && nums[low] < pivotValue) {
+            low++;
+        }
+        while (low < high && nums[high] >= pivotValue) {
+            high--;
+        }
+        swap(nums, low, high);
+    }
+    
+    swap(nums, low, pivot);
+
+    return low;
+}
+```
 
 ## Comparator for Arrays, Collections
 ```
