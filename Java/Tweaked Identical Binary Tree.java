@@ -1,10 +1,18 @@
 E
+tags: DFS, Tree
+1525670127
 
-Recursive 比对左左,左右,右左，右右
+检查binary tree是否 identical. 
+
+特点: subtree如果是有旋转的, 只要tree node value相等, 就可以算是identical
+
+#### DFS
+- 在DFS的基础上, 比对左左,左右,右左,右右
 
 ```
 /*
-Check two given binary trees are identical or not. Assuming any number of tweaks are allowed. 
+Check two given binary trees are identical or not. 
+Assuming any number of tweaks are allowed. 
 A tweak is defined as a swap of the children of one node in the tree.
 
 Example

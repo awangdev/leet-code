@@ -1,6 +1,15 @@
 E
+1525668228
+tags: Tree, DFS, BFS
 
-non-recursive: BFS with queue。 或者regular recurisve - divide and conquer.
+#### DFS
+- 简单处理swap
+- recursively swap children
+
+#### BFS
+- BFS with Queue
+- 每次process一个node, swap children; 然后把child加进queue里面
+- 直到queue process完
 
 ```
 /*
@@ -18,11 +27,6 @@ Do it in recursion is acceptable, can you do it without recursion?
 Tags Expand 
 Binary Tree
 
-Thoughts:
-1. Swap every node's left and right child. Recursion seems good.
-
-2. If not recursion, can use a queue to keep track of nodes. Keep swapping until the queue
-is processed.
 */
 
 
@@ -36,53 +40,53 @@ is processed.
  *         this.left = this.right = null;
  *     }
  * }
- */
+*/
+
+
+/*
+Thoughts:
+Use a queue to keep track of nodes. Keep swapping until the queue is processed.
+*/
 public class Solution {
-    /**
-     * @param root: a TreeNode, the root of the binary tree
-     * @return: nothing
-     */
     public void invertBinaryTree(TreeNode root) {
         if (root == null) {
-          return;
+            return;
         }
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.offer(root);
         while(!queue.isEmpty()) {
-          TreeNode node = queue.poll();
-          TreeNode temp = node.left;
-          node.left = node.right;
-          node.right = temp;
-          if (node.left != null) {
-            queue.offer(node.left);
-          }
-          if (node.right != null) {
-            queue.offer(node.right);
-          }
+            TreeNode node = queue.poll();
+            TreeNode temp = node.left;
+            node.left = node.right;
+            node.right = temp;
+            if (node.left != null) {
+                queue.offer(node.left);
+            }
+            if (node.right != null) {
+                queue.offer(node.right);
+            }
         }
     }
 }
 
 
-//Now, solution 2, try recursion.
-public class Solution {
-    /**
-     * @param root: a TreeNode, the root of the binary tree
-     * @return: nothing
-     */
-    public void invertBinaryTree(TreeNode root) {
+/*
+Thoughts: swap every left && right
+*/
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
         if (root == null) {
-          return;
+            return root;
         }
-      TreeNode temp = root.left;
-      root.left = root.right;
-      root.right = temp;
-
-      invertBinaryTree(root.left);
-      invertBinaryTree(root.right);   
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        invertTree(root.left);
+        invertTree(root.right);
+        
+        return root;
     }
 }
-
 
 
 

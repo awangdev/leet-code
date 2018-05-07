@@ -1,6 +1,6 @@
 M
 1523946802
-tags: Two Pointer
+tags: Two Pointers
 
 #### Two Pointer
 - 如果做s1的permudation, 时间复杂度是O(n!) 肯定不可以

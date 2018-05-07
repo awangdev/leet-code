@@ -1,8 +1,14 @@
 E
+tags: Linked List
+1525664839
 
-长短list，找重合点。
-长度不同的话，切掉长的list那个的extra length。 那么起点一样后，重合点就会同时到达。
+给两个 linked list, 问从哪个node开始, 两个 linked list 开始有重复?
 
+#### Basics
+- 长短list，找重合点
+- 长度不同的话，切掉长的list那个的extra length
+- 那么起点一样后，重合点就会同时到达
+- Time O(n) * 2, constant space
 
 ```
 /*
@@ -28,6 +34,51 @@ Your code should preferably run in O(n) time and use only O(1) memory.
 Tags Expand 
 Linked List
 */
+// Count list length for headA, headB
+// Shift the longer list and compare
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+    		return null;
+    	}
+    	int countA = calcListLength(headA);
+    	int countB = calcListLength(headB);
+    	int diff = Math.abs(countA - countB);
+        
+        if (countA > countB) {
+            headA = shiftNode(headA, diff);
+        } else {
+            headB = shiftNode(headB, diff);
+        }
+
+        while (headA != null && headB != null) {
+    		if (headA == headB) {
+    			return headA;
+    		}
+    		headA = headA.next;
+    		headB = headB.next;
+    	}
+    	
+    	return null;
+    }
+    
+    private int calcListLength(ListNode node) {
+        int count = 0;
+        while (node != null) {
+            count++;
+            node = node.next;
+        }
+        return count;
+    }
+    
+    private ListNode shiftNode(ListNode node, int shift) {
+        while (shift != 0) {
+    		shift--;
+    		node = node.next;
+    	}
+        return node;
+    }
+}
 
 /*
 	Thoughts:

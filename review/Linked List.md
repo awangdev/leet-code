@@ -1,8 +1,24 @@
  
  
  
-## Linked List (10)
-**0. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
+## Linked List (15)
+**0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
+      
+1525664839
+
+给两个 linked list, 问从哪个node开始, 两个 linked list 开始有重复?
+
+#### Basics
+- 长短list，找重合点
+- 长度不同的话，切掉长的list那个的extra length
+- 那么起点一样后，重合点就会同时到达
+- Time O(n) * 2, constant space
+
+
+
+---
+
+**1. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium
       
 
 LinkedList都已经反转好了，直接做.
@@ -19,7 +35,7 @@ Linked List 没有天然size.
 
 ---
 
-**1. [Add Two Numbers II.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers%20II.java)**      Level: Medium
+**2. [Add Two Numbers II.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers%20II.java)**      Level: Medium
       
 
 Singly-linked list需要reverse, 用stack.
@@ -34,7 +50,7 @@ Singly-linked list需要reverse, 用stack.
 
 ---
 
-**2. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
+**3. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
 Divide and Conquer   
@@ -61,7 +77,7 @@ sortedListToBST(head); //从头开始的前半段
 
 ---
 
-**3. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy
+**4. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy
       
 
 O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
@@ -72,7 +88,7 @@ O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然�
 
 ---
 
-**4. [Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)**      Level: Medium
+**5. [Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)**      Level: Medium
       
 
 O(n), one pace, no extra space
@@ -82,7 +98,7 @@ O(n), one pace, no extra space
 
 ---
 
-**5. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium
+**6. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium
       
 
 方法1:
@@ -112,7 +128,7 @@ HashMap, O(n) space
 
 ---
 
-**6. [Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)**      Level: Medium
+**7. [Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)**      Level: Medium
       
 
 #### enumurate 
@@ -129,7 +145,7 @@ pre.next.next 保证了至少有一次swap.
 
 ---
 
-**7. [Delete Node in a Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20a%20Linked%20List.java)**      Level: Easy
+**8. [Delete Node in a Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20a%20Linked%20List.java)**      Level: Easy
       
 
 Given Singlely linked list, 删除一个任意node (不能是head node)
@@ -142,7 +158,7 @@ Given Singlely linked list, 删除一个任意node (不能是head node)
 
 ---
 
-**8. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium
+**9. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium
       
 
 input一串数字, 需要出sorted output. 每次insert一个数字时, 都要放到正确的sorted的位置
@@ -163,7 +179,20 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**9. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy
+**10. [Middle of Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Middle%20of%20Linked%20List.java)**      Level: Easy
+      
+
+找Linked List的中间node
+
+- 快慢指针
+- 不在乎slow是不是到底，因为fast肯定先到。
+- 确保fast, fast.next不是Null就好
+
+
+
+---
+
+**11. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy
       
 
 从linked list 里面去掉所有的 target
@@ -171,6 +200,59 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 #### Basics
 - 如果match: node.next = head.next;
 - 如果不match, node 和 head 一起移动
+
+
+
+---
+
+**12. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy
+      
+
+#### Reverse Linked List
+- Palindrome概念很简单, 但是要在Linkde List random access坐标, 是很难得: 所以需要把一半 ListNode 翻转
+- reverse linked list: 遍历接开头
+- 用快慢指正找到mid point
+- Time O(n), 而且不需要用额外的空间(只是调换半个list的内部顺序), 所以空间O(1)
+
+#### Previous Note
+- Palindrome都是要两边回溯相等
+- linkedlist不能reverse iterating， 那么就reverse the list, 从中间开花作比较。
+
+
+
+---
+
+**13. [Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)**      Level: Easy
+      
+
+#### Reverse List
+- Linked List的基本操作: 每次insert在开头
+- 用head来循环所有node
+- 不需要额外空间
+- Time O(n), Space O(1)
+
+
+
+---
+
+**14. [Reverse Linked List II .java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List%20II%20.java)**      Level: Medium
+      
+
+reverse 一个 linked list 中  [m ~ n] 的一部分.
+
+#### Reverse linked list
+- 在基本的reverse linked list 上面 多了一层: 找到front node,  接下来的 [m ~ n] node 需要被reverse
+- 只需要reverse中间的部分.
+- Reverse的时候: 用一个dummyNode, 这道题里面, 其实就用 nodeFront, 那么 dummy.next 就是整个reversed list.
+
+##### 注意
+- 一定要Mark开头的那个mth node, 最后用它接上 剩下node tail. 不然后面的node会断掉
+
+#### Previous notes
+- 遍历到M前，
+- 存一下那个点，
+- 从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
+
 
 
 

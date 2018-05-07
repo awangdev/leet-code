@@ -1,13 +1,17 @@
 E
+1525646182
+tags: Linked List
 
-建立新list。每次把newList append 在current node的后面。   
-用head来循环所有node。
+#### Reverse List
+- Linked List的基本操作: 每次insert在开头
+- 用head来循环所有node
+- 不需要额外空间
+- Time O(n), Space O(1)
 
 ```
 /*
 Reverse a linked list.
 
-Have you met this question in a real interview? Yes
 Example
 For linked list 1->2->3, the reversed linked list is 3->2->1
 
@@ -18,21 +22,54 @@ Tags Expand
 Linked List Facebook Uber
 */
 
-//Use empty node, add to tail, append empty node to next node. keep going like that
-public class Solution {
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+// This is cleaner, and save all reversed result in dummy.next
+class Solution {
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode newList = null;
-
+        // dummy 保持不动, 不断把新的node insert到 dummy.next
+        ListNode dummy = new ListNode(-1);
         while (head != null) {
             ListNode temp = head.next;
-            head.next = newList;
-            newList = head;
+            head.next = dummy.next;
+            dummy.next = head;
             head = temp;
         }
-        return newList;
+        return dummy.next;
     }
 }
+
+
+/**
+Alternatively, we can start from using head as first node of the reversed list.
+NOTE: have to mark the headNode, and mark headdNode.next = null at the end.
+*/
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode headNode = head;
+        ListNode reversedList = head;
+        head = head.next;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = reversedList;
+            reversedList = head;
+            head = temp;
+        }
+        headNode.next = null;
+        return reversedList;
+    }
+}
+
 ```

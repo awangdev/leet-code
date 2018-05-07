@@ -1,6 +1,14 @@
 E
+1525666192
+tags: Hash Table
 
-注意，条件里面没说是否全是lower case letter
+给String, 看permutation是否能是palindrome
+
+#### Hash, or ASCII array
+- count occurrance
+- 只可以接受一个odd # appearance.
+- 考虑所有 256 ASCII code, 如果还要拓展, 就用HashMap<Character, Integer>
+- 注意, 不能assum lower case letter. 应该至少是所有ASCII code
 
 ```
 /*
@@ -20,6 +28,31 @@ Similar Problems: (M) Longest Palindromic Substring, (E) Valid Anagram, (M) Pali
 
 */
 
+
+//LeetCode. Made assumption on ASCII code, so use int[256]
+/*
+Toughts:
+count characters. Can have up to 1 odd number
+*/
+class Solution {
+    public boolean canPermutePalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return false;
+        }
+        int[] chars = new int[256];
+        for (char c : s.toCharArray()) {
+            chars[c]++;
+        }
+        int countOdd = 0;
+        for (int i = 0; i < chars.length; i++) {
+            countOdd += chars[i] % 2;
+            if (countOdd > 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 
 /*
 Add each char into map.
@@ -56,30 +89,6 @@ public class Solution {
     }
 }
 
-//LeetCode. Made assumption on ASCII code, so use int[256]
-public class Solution {
-    public boolean canPermutePalindrome(String s) {
-        if (s == null || s.length() == 0) {
-            return false;
-        }
-        
-        int[] map = new int[256];
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            map[c] += 1;
-        }
-        int countOdd = 0;
-        for (int i = 0; i < map.length; i++) {
-            if (map[i] % 2 == 1) {
-                countOdd++;
-            }
-            if (countOdd > 1) {
-                return false;
-            }
-        }
-        return true;
-    }
-}
 
 /*
 Invalid solution. Assumption made on lowercase letter.

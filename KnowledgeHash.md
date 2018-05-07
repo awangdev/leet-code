@@ -187,6 +187,11 @@ Table of Contents
 - iterate over linked list
 - Don't get mixed up with Java LinkedList. Here we are talking about linked list concept, not the Java data structure LinkedList
 
+## 操作
+- Reverse Linked List: 不断地在开头加上新node. 比较方便的方式: 用一个dummy node, 然后把reversed list 存在dummy.next
+- Reverse linked list 注意: 有时候一开始的1st node, 最后还有tail 要接在上面; 所以先把1st node可以额外存下来, 用来接 tail
+- 找到mid node: 快慢指针(slow = head; fast=head.next); 快指针每次走2步; 快指针到底的时候, slow指针就是mid
+
 # Tree
 - A simple version of graph
 - CAN NOT have cycle

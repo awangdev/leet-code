@@ -1,7 +1,7 @@
  
  
  
-## Stack (17)
+## Stack (19)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -374,6 +374,44 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 - 计算结果存回到stack里面, 方便下一轮使用.
 - Time,Space O(n)
 
+
+
+
+---
+
+**17. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy
+      
+
+如题.
+
+#### Queue, 倒水
+- 两个Queue,交互倒水
+- 用一个Temp做swap
+
+##### 做法1
+- 逻辑在push里面:
+- 1. x 放q2。
+- 2. q1全部offer/append到q2.
+- 3. 用一个Temp做swap q1, q2.
+- q1的头，就一直是最后加进去的值.
+
+
+##### 做法2
+- 逻辑在top()/pop()里, 每次换水，查看末尾项.
+
+
+
+
+---
+
+**18. [Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)**      Level: Easy
+      
+
+随便用一个data structure, implement stack.
+
+#### Stack, 先入, 后出
+- ArrayList: return/remove ArrayList的末尾项。
+- 2 Queues
 
 
 

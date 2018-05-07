@@ -1,12 +1,21 @@
 E
+1525666944
+tags: Two Pointers, String
 
-tutorial:https://www.youtube.com/watch?v=2hNK0Yz53LQ&list=PLZn-UvluQZuNedn1hDzTmNLE8MQWXjKVb
+验证string是不是 palindrome. 只考虑 alphanumeric, 其他字符可以忽略
 
-过滤alphanumeric，其他字母掠过
+#### Check Palindrome
+- 前后两个指针, 往中间移动, 查看是否字母重合
+
+#### 过滤 alphanumeric
+- 可以用 ASCII code 来手动过滤, 只要 '0' ~ '9', 'a' ~ 'z', 'A' - 'Z' 之间的
+- 也可以用 regular expression: match 所有这些字母, 是 [a-zA-Z0-9]
+- 那凡是不是这些字母的 match, 就是取反: "[^a-zA-Z0-9]". 测试: https://regex101.com/
 
 ```
 /*
-Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+Given a string, determine if it is a palindrome, 
+considering only alphanumeric characters and ignoring cases.
 
 Example
 "A man, a plan, a canal: Panama" is a palindrome.
@@ -14,7 +23,8 @@ Example
 "race a car" is not a palindrome.
 
 Note
-Have you consider that the string might be empty? This is a good question to ask during an interview.
+Have you consider that the string might be empty? 
+This is a good question to ask during an interview.
 
 For the purpose of this problem, we define empty string as valid palindrome.
 

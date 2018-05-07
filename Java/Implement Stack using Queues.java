@@ -1,17 +1,24 @@
 E
+1525667621
+tags: Stack, Design
 
-两个Queue,交互倒水
-用一个Temp做swap
+如题.
 
-做法1:
-逻辑在top()/pop()里, 每次换水，查看末尾项.
+#### Queue, 倒水
+- 两个Queue,交互倒水
+- 用一个Temp做swap
 
-做法2:
-逻辑在push里面:
-1. x 放q2。
-2. q1全部offer/append到q2.
-3. 用一个Temp做swap q1, q2.
-q1的头，就一直是最后加进去的值.
+##### 做法1
+- 逻辑在push里面:
+- 1. x 放q2。
+- 2. q1全部offer/append到q2.
+- 3. 用一个Temp做swap q1, q2.
+- q1的头，就一直是最后加进去的值.
+
+
+##### 做法2
+- 逻辑在top()/pop()里, 每次换水，查看末尾项.
+
 
 ```
 /*
@@ -22,16 +29,61 @@ push(x) -- Push element x onto stack.
 pop() -- Removes the element on top of the stack.
 top() -- Get the top element.
 empty() -- Return whether the stack is empty.
+
 Notes:
-You must use only standard operations of a queue -- which means only push to back, peek/pop from front, size, and is empty operations are valid.
-Depending on your language, queue may not be supported natively. You may simulate a queue by using a list or deque (double-ended queue), as long as you use only standard operations of a queue.
-You may assume that all operations are valid (for example, no pop or top operations will be called on an empty stack).
+You must use only standard operations of a queue -- 
+which means only push to back, peek/pop from front, size, and is empty operations are valid.
+
+Depending on your language, queue may not be supported natively. 
+You may simulate a queue by using a list or deque (double-ended queue), 
+as long as you use only standard operations of a queue.
+
+You may assume that all operations are valid 
+(for example, no pop or top operations will be called on an empty stack).
 Credits:
 Special thanks to @jianchao.li.fighter for adding this problem and all test cases.
 */
+
+class MyStack {
+    Queue<Integer> queue;
+    Queue<Integer> tempQueue;
+    /** Initialize your data structure here. */
+    public MyStack() {
+        queue = new LinkedList<>();
+        tempQueue = new LinkedList<>();
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        tempQueue = queue;
+        queue = new LinkedList<>();
+        queue.offer(x);
+        while (!tempQueue.isEmpty()) {
+            queue.offer(tempQueue.poll());
+        }
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        return queue.poll();
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        return queue.peek();
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+}
+
+
 /*
 Thoughts:
-1. When top()/pop() on the queue, we need to consume all the items on that queue first, then return the last item.
+1. When top()/pop() on the queue, we need to consume all the items on that queue first, 
+then return the last item.
 2. Need to save the consumed items back to the queue.
 */
 class MyStack {

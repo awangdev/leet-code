@@ -1,12 +1,18 @@
 E
+1525667761
+tags: Stack
 
-stack 后入先出. 
-Data Structure: ArrayList 
-return/remove ArrayList的末尾项。
+随便用一个data structure, implement stack.
+
+#### Stack, 先入, 后出
+- ArrayList: return/remove ArrayList的末尾项。
+- 2 Queues
 
 ```
 /*
- Implement Stack
+LintCode
+
+Implement Stack
 
 Implement a stack. You can use any data structure inside a stack except stack itself to implement it.
 

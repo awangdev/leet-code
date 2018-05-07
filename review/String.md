@@ -1,7 +1,7 @@
  
  
  
-## String (28)
+## String (29)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -449,6 +449,23 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 #### HashMap
 - <Integer,List<String>>
 - 存最长值, 最后map.get(max) 
+
+
+
+---
+
+**28. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy
+      
+
+验证string是不是 palindrome. 只考虑 alphanumeric, 其他字符可以忽略
+
+#### Check Palindrome
+- 前后两个指针, 往中间移动, 查看是否字母重合
+
+#### 过滤 alphanumeric
+- 可以用 ASCII code 来手动过滤, 只要 '0' ~ '9', 'a' ~ 'z', 'A' - 'Z' 之间的
+- 也可以用 regular expression: match 所有这些字母, 是 [a-zA-Z0-9]
+- 那凡是不是这些字母的 match, 就是取反: "[^a-zA-Z0-9]". 测试: https://regex101.com/
 
 
 

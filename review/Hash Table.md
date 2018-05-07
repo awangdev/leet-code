@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (21)
+## Hash Table (22)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -366,6 +366,21 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - for loop. O(n) 
 - 里面的while loop 一般不会有O(n); 一旦O(n), 也意味着set 清零, for loop也不会有更多 inner while 的衍生.
 - overall O(n) 时间复杂度
+
+
+
+---
+
+**21. [Palindrome Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation.java)**      Level: Easy
+      
+
+给String, 看permutation是否能是palindrome
+
+#### Hash, or ASCII array
+- count occurrance
+- 只可以接受一个odd # appearance.
+- 考虑所有 256 ASCII code, 如果还要拓展, 就用HashMap<Character, Integer>
+- 注意, 不能assum lower case letter. 应该至少是所有ASCII code
 
 
 

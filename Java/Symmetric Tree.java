@@ -1,13 +1,19 @@
 E
+1525669668
+tags: Tree, DFS, BFS
 
-Symmetric Tree
+检查tree是否symmetric
 
 注意Symmetric Binary Tree的例子和定义: 是镜面一样的对称. 并不是说左右两个sub-tree相等。
 
-方法1: Recursively check symmetrically相对应的Node.  每个node的children都和镜面另外一边相对的node的children刚好成镜面反射位置。
+#### DFS
+- Recursively check symmetrically相对应的Node.  
+- 每个node的children都和镜面另外一边相对的node的children刚好成镜面反射位置。
 
-方法2: 用stack. 左手边sub-tree先加left,再加right child; 右手边sub-tree先加right child, 再加left child。   
-process时，若symmetric，所有stack里面出来的node会一一对应。
+#### Stack
+- stack1: 左手边sub-tree先加left, 再加right child; 
+- stack2: 右手边sub-tree先加right child, 再加left child。   
+- process时，若symmetric，所有stack里面出来的node会一一对应。
 
 ```
 /*
@@ -59,17 +65,14 @@ class Solution {
         if (root == null) {
             return true;
         }
-        return checkChild(root.left, root.right);
+        return dfs(root.left, root.right);
     }
     
-    public boolean checkChild(TreeNode leftNode, TreeNode rightNode) {
-        if (leftNode == null && rightNode == null) {
-            return true;
-        }
+    public boolean dfs(TreeNode leftNode, TreeNode rightNode) {
         if (leftNode == null || rightNode == null) {
-            return false;
+            return leftNode == null && rightNode == null;
         }
-        return leftNode.val == rightNode.val && checkChild(leftNode.left, rightNode.right) && checkChild(leftNode.right, rightNode.left);
+        return leftNode.val == rightNode.val && dfs(leftNode.left, rightNode.right) && dfs(leftNode.right, rightNode.left);
     }
 }
 

@@ -1,8 +1,21 @@
 M
+1525661850
+tags: Linked List
 
-遍历到M前，
-存一下那个点，
-从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
+reverse 一个 linked list 中  [m ~ n] 的一部分.
+
+#### Reverse linked list
+- 在基本的reverse linked list 上面 多了一层: 找到front node,  接下来的 [m ~ n] node 需要被reverse
+- 只需要reverse中间的部分.
+- Reverse的时候: 用一个dummyNode, 这道题里面, 其实就用 nodeFront, 那么 dummy.next 就是整个reversed list.
+
+##### 注意
+- 一定要Mark开头的那个mth node, 最后用它接上 剩下node tail. 不然后面的node会断掉
+
+#### Previous notes
+- 遍历到M前，
+- 存一下那个点，
+- 从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
 
 
 ```
@@ -21,8 +34,58 @@ Reverse it in-place and in one-pass
 
 Tags Expand 
 Linked List
+*/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+/*
+Thoughts:
+- Find last node before m
+- reverse mth node because it will be the end of the reversed list
+- reverse [m ~ n] nodes
+- link the 3 parts: front, reversed list, and the tail
 
-Thinking process:
+*/
+
+public class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        if (head == null || m >= n) {
+            return head;
+        }
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode node = dummy;
+        
+        for (int i = 1; i < m; i++) {
+            node = node.next;
+        }
+        ListNode nodeFront = node;
+        ListNode mNode = node.next; //This is the mth node. Reserve it for post-linking
+
+        node = node.next;
+        for (int i = m; i <= n; i++) {
+            ListNode temp = node.next;
+            node.next = nodeFront.next;
+            nodeFront.next = node;
+            node = temp;
+        }
+        // the previous 1st should link the tail
+        mNode.next = node;
+
+        return dummy.next;
+    }
+}
+
+
+
+/** 
+Previous notes:
 0. Use dummy node to store head
 1. Find mNode, store the front nodes
 2. Reverse from mNode to nNode
@@ -31,60 +94,41 @@ Note, when doing reverse, always:
     - reversedList = 1st item
     - postNode = 2nd item   
     - store 3rd item in temp: temp = postNode.next
-*/
+**/
 
-/**
- * Definition for ListNode
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
+
 public class Solution {
-    /**
-     * @param ListNode head is the head of the linked list 
-     * @oaram m and n
-     * @return: The head of the reversed ListNode
-     */
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if (head == null || m >= n) {
             return head;
         }
 
-        ListNode dummyNode = new ListNode(0);
-        dummyNode.next = head;
-        head = dummyNode;
-        ListNode nodeFront = null;
-    
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode node = dummy;
         
-        for (int countM = 1; countM < m; countM++) {
-            if (head == null) {
-                return head;
-            }
-            head = head.next;
+        for (int i = 1; i < m; i++) {
+            node = node.next;
         }
-        nodeFront = head;
-        ListNode mNode = head.next; //Head is Mth node. Reserve it
+        ListNode nodeFront = node;
+        
+        ListNode mNode = node.next; //This isthe mth node. Reserve it for post-processing
+        node = mNode.next; // (m+1)th node
         ListNode reversedList = mNode;
-        ListNode postNode = mNode.next;
-        for (int countN = m; countN < n; countN++) {
-            ListNode temp = postNode.next;
-            postNode.next = reversedList;
-            reversedList = postNode;
-            postNode = temp;
-        }
-        //List front, middle and end section
-        nodeFront.next = reversedList;
-        mNode.next = postNode;
         
-        return dummyNode.next;
+        for (int countN = m; countN < n; countN++) {
+            ListNode temp = node.next;
+            node.next = reversedList;
+            reversedList = node;
+            node = temp;
+        }
+        // List front and reversed list
+        nodeFront.next = reversedList;
+        // the current node is the tail
+        mNode.next = node;
+        
+        return dummy.next;
     }
 }
-
-
 
 ```

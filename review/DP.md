@@ -1,7 +1,7 @@
  
  
  
-## DP (61)
+## DP (62)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1473,6 +1473,23 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - 把这个最大subarray sum 记录在array, left[] 里面
 - right[] 是一样的道理
 - enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
+
+
+
+---
+
+**61. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy
+      
+
+#### Memoization
+- fib[n] = fibonacci(n - 1) + fibonacci(n - 2);
+
+#### DP array.
+- 滚动数组, 简化DP
+
+#### recursively calculate
+- recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
+
 
 
 

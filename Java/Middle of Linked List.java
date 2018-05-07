@@ -1,6 +1,6 @@
 E
 1525413850
-tags:
+tags: Linked List
 
 找Linked List的中间node
 

@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (18)
+## Two Pointers (21)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -281,7 +281,21 @@ Time: O(nLogN)
 
 ---
 
-**15. [Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)**      Level: Easy
+**15. [Permutation in String.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutation%20in%20String.java)**      Level: Medium
+      
+
+#### Two Pointer
+- 如果做s1的permudation, 时间复杂度是O(n!) 肯定不可以
+- 这里用HashTable的做法 (因为26字母, 所以用int[26]简化) 来记录window内的 character count
+- 如果window内的character count 相等, 那么就是permudation
+- 更进一步优化: 找两个map相互对应, 不如用一个 int[26]: s1对遇到的character做加法, s2对遇到的character做减法
+- two pointer 运用在 n1, n2 的把控; 以及 s2.charAt(i - n1) 这一步
+
+
+
+---
+
+**16. [Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)**      Level: Easy
       
 
 给两个string A, B, 找一个 B 在 A 种的起始位置.
@@ -297,7 +311,7 @@ Time: O(nLogN)
 
 ---
 
-**16. [Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)**      Level: Medium
+**17. [Interleaving Positive and Negative Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20Positive%20and%20Negative%20Numbers.java)**      Level: Medium
       
 
 给一串数组 有正负数. 重新排列, 让数组里面 正数 和 负数 相隔开. 原来的order无所谓
@@ -318,7 +332,7 @@ Time: O(nLogN)
 
 ---
 
-**17. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
+**18. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy
       
 
 给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
@@ -326,6 +340,40 @@ Time: O(nLogN)
 #### Basics
 - A够长，那么可以从A的尾部开始加新元素。     
 - 注意，从尾部，是大数字优先排末尾的.  
+
+
+
+---
+
+**19. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy
+      
+
+#### Reverse Linked List
+- Palindrome概念很简单, 但是要在Linkde List random access坐标, 是很难得: 所以需要把一半 ListNode 翻转
+- reverse linked list: 遍历接开头
+- 用快慢指正找到mid point
+- Time O(n), 而且不需要用额外的空间(只是调换半个list的内部顺序), 所以空间O(1)
+
+#### Previous Note
+- Palindrome都是要两边回溯相等
+- linkedlist不能reverse iterating， 那么就reverse the list, 从中间开花作比较。
+
+
+
+---
+
+**20. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy
+      
+
+验证string是不是 palindrome. 只考虑 alphanumeric, 其他字符可以忽略
+
+#### Check Palindrome
+- 前后两个指针, 往中间移动, 查看是否字母重合
+
+#### 过滤 alphanumeric
+- 可以用 ASCII code 来手动过滤, 只要 '0' ~ '9', 'a' ~ 'z', 'A' - 'Z' 之间的
+- 也可以用 regular expression: match 所有这些字母, 是 [a-zA-Z0-9]
+- 那凡是不是这些字母的 match, 就是取反: "[^a-zA-Z0-9]". 测试: https://regex101.com/
 
 
 

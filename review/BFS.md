@@ -1,7 +1,7 @@
  
  
  
-## BFS (11)
+## BFS (14)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -277,6 +277,58 @@ DFS, BFS都好理解,
 - 如果两个depth不一样, 就 false
 - LintCode跑不了
 
+
+
+
+---
+
+**11. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
+      
+
+#### DFS
+- 简单处理swap
+- recursively swap children
+
+#### BFS
+- BFS with Queue
+- 每次process一个node, swap children; 然后把child加进queue里面
+- 直到queue process完
+
+
+
+---
+
+**12. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+      
+
+#### DFS
+- Divide and Conquery一个最小值. 
+- 注意处理Leaf的null: null leaf 出现的时候, 就忽略这个leaf, 直接return算有leaf
+- 另一种count的方法: 用Integer.MAX_VALUE代替 null leaf，这样可以避免错误counting. (不能直接recursive)
+- 这个无论如何都要走所有node, 所以dfs应该比较适合.
+
+#### BFS
+- 还没做
+
+
+
+---
+
+**13. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy
+      
+
+检查tree是否symmetric
+
+注意Symmetric Binary Tree的例子和定义: 是镜面一样的对称. 并不是说左右两个sub-tree相等。
+
+#### DFS
+- Recursively check symmetrically相对应的Node.  
+- 每个node的children都和镜面另外一边相对的node的children刚好成镜面反射位置。
+
+#### Stack
+- stack1: 左手边sub-tree先加left, 再加right child; 
+- stack2: 右手边sub-tree先加right child, 再加left child。   
+- process时，若symmetric，所有stack里面出来的node会一一对应。
 
 
 

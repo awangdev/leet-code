@@ -1,7 +1,7 @@
  
  
  
-## Memoization (9)
+## Memoization (10)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -275,6 +275,23 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - O(mn) space for dp and flag.
 - O(mn) runtime because each spot will be marked once visited. 
 - 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
+
+
+
+
+---
+
+**9. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy
+      
+
+#### Memoization
+- fib[n] = fibonacci(n - 1) + fibonacci(n - 2);
+
+#### DP array.
+- 滚动数组, 简化DP
+
+#### recursively calculate
+- recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
 
 
 

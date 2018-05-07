@@ -1,7 +1,7 @@
  
  
  
-## Math (17)
+## Math (18)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -262,6 +262,23 @@ Space O(n), time O(n)
 - 注意加 " " 的时候, 如果多余, 要trim()
 - 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
 - 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
+
+
+
+
+---
+
+**17. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy
+      
+
+#### Memoization
+- fib[n] = fibonacci(n - 1) + fibonacci(n - 2);
+
+#### DP array.
+- 滚动数组, 简化DP
+
+#### recursively calculate
+- recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
 
 
 

@@ -1,7 +1,17 @@
 E
+1525645137
+tags: Linked List, Two Pointers
 
-Palindrome都是要两边回溯相等。
-linkedlist不能reverse iterating， 那么就reverse the list, 从中间开花作比较。
+#### Reverse Linked List
+- Palindrome概念很简单, 但是要在Linkde List random access坐标, 是很难得: 所以需要把一半 ListNode 翻转
+- reverse linked list: 遍历接开头
+- 用快慢指正找到mid point
+- Time O(n), 而且不需要用额外的空间(只是调换半个list的内部顺序), 所以空间O(1)
+
+#### Previous Note
+- Palindrome都是要两边回溯相等
+- linkedlist不能reverse iterating， 那么就reverse the list, 从中间开花作比较。
+
 ```
 /*
 Implement a function to check if a linked list is a palindrome.
@@ -50,7 +60,6 @@ Linked List
  * }
  */
 public class Solution {
-
     public boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) {
             return true;
@@ -58,21 +67,21 @@ public class Solution {
         //Find middle
         ListNode mid = findMiddle(head);
         //Reverse and return right side
-        ListNode right = reverse(mid.next);
+        ListNode rightNode = reverse(mid.next);
         mid.next = null;
-        ListNode left = head;
-        while (left != null && right != null) {
-            if (left.val != right.val) {
+        ListNode leftNode = head;
+        while (leftNode != null && rightNode != null) {
+            if (leftNode.val != rightNode.val) {
                 return false;
             }
-            left = left.next;
-            right = right.next;
+            leftNode = leftNode.next;
+            rightNode = rightNode.next;
         }
-        //It's possible that left&&right both finishes; or just right finishes. Both cases are returnning true.
-        return right == null;
+        
+        return true;
     }
     
-    public ListNode findMiddle(ListNode head) {
+    private ListNode findMiddle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head.next;
         while (fast != null && fast.next != null) {
@@ -82,7 +91,7 @@ public class Solution {
         return slow;
     }
     
-    public ListNode reverse(ListNode head) {
+    private ListNode reverse(ListNode head) {
         ListNode dummy = new ListNode(0);
         ListNode reversedList = dummy;
         while (head != null) {
@@ -97,19 +106,6 @@ public class Solution {
         return dummy.next;
     } 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

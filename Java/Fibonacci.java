@@ -1,10 +1,15 @@
 E
+1525416805
+tags: Math, DP, Memoization
 
-方法1: DP array.
+#### Memoization
+- fib[n] = fibonacci(n - 1) + fibonacci(n - 2);
 
-方法1.1: 滚动数组, 简化DP。
+#### DP array.
+- 滚动数组, 简化DP
 
-方法2: recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
+#### recursively calculate
+- recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
 
 
 ```
@@ -35,6 +40,24 @@ Enumeration Mathematics Non Recursion
 
 
 */
+
+// Memoization
+class Solution {
+    int[] fib = null;
+    public int fibonacci(int n) {
+        if (fib == null) {
+            fib = new int[n + 1];
+        }
+        if (n <= 2) {
+            return n - 1;
+        }
+        if (fib[n] != 0) {
+            return fib[n];
+        }
+        return fib[n] = fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+
 /*
     Recap 3.28.2016.
     Rolling array, instead of initiating array.

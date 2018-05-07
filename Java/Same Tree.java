@@ -2,16 +2,22 @@ E
 1519629098
 tags: Tree, DFS
 
-DFS. 确定leaf条件, && with all sub problems.
+给两个 binary tree, 看两个tree是否identical.
 
-如果用BFS: 两个queue存每个tree的所有current level node. Check equality, check queue size.
-Populate next level by nodes at current level.
+#### DFS
+- DFS. 确定leaf条件, && with all dfs(sub1, sub2).
+- 这里无论如何都要走过所有的node, 所以dfs更加合适, 好写.
+
+#### BFS
+- 两个queue存每个tree的所有current level node. Check equality, check queue size.
+- Populate next level by nodes at current level.
 
 ```
 /*
 Given two binary trees, write a function to check if they are the same or not.
 
-Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+Two binary trees are considered the same if they are structurally identical 
+and the nodes have the same value.
 
 
 Example 1:
