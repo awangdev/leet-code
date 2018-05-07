@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (22)
+## Hash Table (23)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -381,6 +381,28 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - 只可以接受一个odd # appearance.
 - 考虑所有 256 ASCII code, 如果还要拓展, 就用HashMap<Character, Integer>
 - 注意, 不能assum lower case letter. 应该至少是所有ASCII code
+
+
+
+---
+
+**22. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy
+      
+
+给一个Binary Tree root, 以及两个node A, B. 特点: node里面存了parent pointer. 找 lowest common ancestor
+
+
+#### Hash Set
+- 这个题有个奇葩的地方, 每个node还有一个parent, 所以可以自底向上.
+- save visited in hashset. 第一个duplicate, 就是A B 的 lowest common ancestor
+
+#### Save in lists
+- 自底向上。利用parent往root方向返回
+- 把所有parent存下来, 然后在两个list里面找最后一个 common node
+
+#### 注意
+- 无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
+
 
 
 

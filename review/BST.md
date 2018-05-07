@@ -1,7 +1,7 @@
  
  
  
-## BST (16)
+## BST (17)
 **0. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium
       
 
@@ -236,6 +236,24 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 与Contains Duplicate II 类似概念. TreeSet有BST 因此可以直接用, 而不用自己构建BST
 - 简化题目里面的重要条件 Math.abs(A-B) <= t 而推断出 A >= B - t, A <= B + t
 - 并且需要需要用 TreeSet.ceiling(x): return number greater or equal to x. 这个用法要记住吧, 没别的捷径.
+
+
+
+---
+
+**16. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
+
+
+#### Find path with BST
+- 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
+- 然后很简单找到LCA 
+
+#### DFS
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
 
 
 

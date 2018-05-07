@@ -2723,7 +2723,7 @@ HashHeap?
  
  
  
-## DFS (39)
+## DFS (41)
 **0. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
       
 1525670127
@@ -3505,6 +3505,42 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
+**39. [Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)**      Level: Medium
+      
+
+给一个Binary Tree root, 以及两个node p, q. 找 p 和 q 的 lowest common ancestor
+
+#### DFS
+- 因为是 binary tree, 所以直接盲目搜索搜索path不efficient. 巧用DFS来找每一个node的common ancestor
+- 当root == null或者 p q 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
+- 三种情况:
+- 1. A,B都找到，那么这个level的node就是其中一层的ancestor: 其实，最先recursively return到的那个，就是最底的LCA parent.   
+- 2. A 或者 B 找到，那就还没有公共parent, return 非null得那个。   
+- 3. A B 都null, 那就找错了没有呗, return null
+- Worst case, visit all nodes to find p q at last level, last two leaves: time/space O(n)
+
+
+
+---
+
+**40. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
+
+
+#### Find path with BST
+- 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
+- 然后很简单找到LCA 
+
+#### DFS
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+
+
+
+---
+
 
 
 
@@ -3850,7 +3886,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (22)
+## Hash Table (23)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -4235,6 +4271,28 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
+**22. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy
+      
+
+给一个Binary Tree root, 以及两个node A, B. 特点: node里面存了parent pointer. 找 lowest common ancestor
+
+
+#### Hash Set
+- 这个题有个奇葩的地方, 每个node还有一个parent, 所以可以自底向上.
+- save visited in hashset. 第一个duplicate, 就是A B 的 lowest common ancestor
+
+#### Save in lists
+- 自底向上。利用parent往root方向返回
+- 把所有parent存下来, 然后在两个list里面找最后一个 common node
+
+#### 注意
+- 无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
+
+
+
+
+---
+
 
 
 
@@ -4519,7 +4577,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
  
  
  
-## Tree (27)
+## Tree (30)
 **0. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
       
 1525670127
@@ -5037,6 +5095,64 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
+**27. [Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)**      Level: Medium
+      
+
+给一个Binary Tree root, 以及两个node p, q. 找 p 和 q 的 lowest common ancestor
+
+#### DFS
+- 因为是 binary tree, 所以直接盲目搜索搜索path不efficient. 巧用DFS来找每一个node的common ancestor
+- 当root == null或者 p q 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
+- 三种情况:
+- 1. A,B都找到，那么这个level的node就是其中一层的ancestor: 其实，最先recursively return到的那个，就是最底的LCA parent.   
+- 2. A 或者 B 找到，那就还没有公共parent, return 非null得那个。   
+- 3. A B 都null, 那就找错了没有呗, return null
+- Worst case, visit all nodes to find p q at last level, last two leaves: time/space O(n)
+
+
+
+---
+
+**28. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy
+      
+
+给一个Binary Tree root, 以及两个node A, B. 特点: node里面存了parent pointer. 找 lowest common ancestor
+
+
+#### Hash Set
+- 这个题有个奇葩的地方, 每个node还有一个parent, 所以可以自底向上.
+- save visited in hashset. 第一个duplicate, 就是A B 的 lowest common ancestor
+
+#### Save in lists
+- 自底向上。利用parent往root方向返回
+- 把所有parent存下来, 然后在两个list里面找最后一个 common node
+
+#### 注意
+- 无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
+
+
+
+
+---
+
+**29. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
+
+
+#### Find path with BST
+- 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
+- 然后很简单找到LCA 
+
+#### DFS
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+
+
+
+---
+
 
 
 
@@ -5364,7 +5480,7 @@ TODO
  
  
  
-## BST (16)
+## BST (17)
 **0. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium
       
 
@@ -5599,6 +5715,24 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 与Contains Duplicate II 类似概念. TreeSet有BST 因此可以直接用, 而不用自己构建BST
 - 简化题目里面的重要条件 Math.abs(A-B) <= t 而推断出 A >= B - t, A <= B + t
 - 并且需要需要用 TreeSet.ceiling(x): return number greater or equal to x. 这个用法要记住吧, 没别的捷径.
+
+
+
+---
+
+**16. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
+
+
+#### Find path with BST
+- 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
+- 然后很简单找到LCA 
+
+#### DFS
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
 
 
 

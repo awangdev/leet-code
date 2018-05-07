@@ -1,14 +1,20 @@
 E
+1525708351
+tags: Tree, Hash Table
 
-这个题有个奇葩的地方，每个node还有一个parent。 所以可以自底向上.
-
-1. 曾经做的hashset的优化，找到的都存hashset. exist就return那个duplicate.
+给一个Binary Tree root, 以及两个node A, B. 特点: node里面存了parent pointer. 找 lowest common ancestor
 
 
-2. 普通做法：2 lists。
-   自底向上。利用parent往root方向返回。   
+#### Hash Set
+- 这个题有个奇葩的地方, 每个node还有一个parent, 所以可以自底向上.
+- save visited in hashset. 第一个duplicate, 就是A B 的 lowest common ancestor
 
-注意：无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
+#### Save in lists
+- 自底向上。利用parent往root方向返回
+- 把所有parent存下来, 然后在两个list里面找最后一个 common node
+
+#### 注意
+- 无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
 
 
 ```

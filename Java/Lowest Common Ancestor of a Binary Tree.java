@@ -1,24 +1,47 @@
-E
+M
+1525707446
+tags: Tree, DFS
 
-普通的Binary Tree，node child 自顶向下蔓延。
+给一个Binary Tree root, 以及两个node p, q. 找 p 和 q 的 lowest common ancestor
 
-方法1：O(1) sapce O(h). Recursive. 循环的截点是：      
-当root == null或者 A B 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
-
-三种情况：   
-1. A,B都找到，那么这个level的node就是其中一层的parent。其实，最先recursively return到的那个，就是最底的LCA parent.   
-2. A 或者 B 找到，那就还没有公共parent,return 非null得那个。   
-3. A B 都null, 那就找错了没有呗, return null
-
-
-//无法找到target element, 因为不是Binary Search Tree    
-//[Not Working]：O(n) space O(h) time。把两条线binary search出来。找第一个不同的parent. 代码长。 Iterative       
+#### DFS
+- 因为是 binary tree, 所以直接盲目搜索搜索path不efficient. 巧用DFS来找每一个node的common ancestor
+- 当root == null或者 p q 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
+- 三种情况:
+- 1. A,B都找到，那么这个level的node就是其中一层的ancestor: 其实，最先recursively return到的那个，就是最底的LCA parent.   
+- 2. A 或者 B 找到，那就还没有公共parent, return 非null得那个。   
+- 3. A B 都null, 那就找错了没有呗, return null
+- Worst case, visit all nodes to find p q at last level, last two leaves: time/space O(n)
 
 ```
+/**
+LeetCode: Lowest Common Ancestor of a Binary Tree
+
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+
+According to the definition of LCA on Wikipedia: 
+“The lowest common ancestor is defined between two nodes v and w 
+as the lowest node in T that has both v and w as descendants 
+(where we allow a node to be a descendant of itself).”
+
+        _______3______
+       /              \
+    ___5__          ___1__
+   /      \        /      \
+   6      _2       0       8
+         /  \
+         7   4
+For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. 
+
+Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself 
+according to the LCA definition.
+
+*/
 
 /*
 
-Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
+Given the root and two nodes in a Binary Tree. 
+Find the lowest common ancestor(LCA) of the two nodes.
 
 The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
 
@@ -44,6 +67,29 @@ Binary Tree LintCode Copyright
 
 
 */
+
+/*
+Thoughts:
+Use the 'lowestCommonAncestor' to track the ancestor for at least 1 node.
+At any node, if it's a ancestor, the ancestor of left node && ancestor of right node must both exist.
+Only return root when p or q is matched; other cases, return null
+*/
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || q == root || p == root) {
+            return root;
+        }
+        TreeNode leftChildAncestor = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightChildAncestor = lowestCommonAncestor(root.right, p, q);
+        
+        if (leftChildAncestor != null && rightChildAncestor != null) {
+            return root;
+        } else if (leftChildAncestor != null || rightChildAncestor != null) {
+            return leftChildAncestor != null ? leftChildAncestor : rightChildAncestor;
+        }
+        return null;
+    }
+}
 
 /*
   Thoughts:

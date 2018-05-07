@@ -1,7 +1,17 @@
 M
+1525708793
+tags: Tree, DFS, BST
 
-方法1: 利用 BST的性质，可以直接搜到target node，而做成两个长度不一定相等的list。然后很简单找到LCA 
-方法2: Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
+
+
+#### Find path with BST
+- 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
+- 然后很简单找到LCA 
+
+#### DFS
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
 
 ```
 /*
@@ -92,14 +102,5 @@ class Solution {
     }
 }
 
-/*
-Thoughts:
-Create 2 path: l1, l2.
-First different node's parent, will be the LCA
-Do binary search to generate the path l1,l2
-
-Note:
-When one of the target is root, make sure parent = root, and return root at the end. This is because: the if statement (l1.get(i).val != l2.get(i).val) won't capture this case; instead, the for loop ends by i == size. So, be careful here.
-*/
 
 ```
