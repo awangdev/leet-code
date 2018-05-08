@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (23)
+## Hash Table (24)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -403,6 +403,28 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 #### 注意
 - 无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
 
+
+
+
+---
+
+**23. [Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)**      Level: Easy
+      
+
+#### Hash Function
+- 解释Hash怎么做. 
+- Hash function例子：    
+- hashcode("abcd") = (ascii(a) * 33^3 + ascii(b) * 33^2 + ascii(c) *33^1 + ascii(d)*33^0) % HASH_SIZE 
+- 用到的参数比如: magic number 33, HASH_SIZE.
+
+- Hash的意义是：给一个string key, 转换成数字，从而把size变得更小。    
+- 真实的implementation还要处理collision, 可能需要design hash function 等等。
+
+
+- 每一步都:
+- hashRst = hashRst * 33 + (int)(key[i]);       
+- hashRst = hashRst % HASH_SIZE;       
+- 原因是，hashRst会变得太大，所以不能算完和 再 %...
 
 
 

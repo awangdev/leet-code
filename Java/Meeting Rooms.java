@@ -84,11 +84,11 @@ class Solution {
 
 /*
 Thought:
-Use scan line.
+Use Sweep Line.
 Note: special care for edge point: make sure to process all connecting point before shuouting the result.
 */
 
- //use scan line
+ //use Sweep Line
 public class Solution {
     class Point {
         int pos, flag;

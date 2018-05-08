@@ -1,7 +1,7 @@
  
  
  
-## Linked List (15)
+## Linked List (16)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -253,6 +253,20 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - 存一下那个点，
 - 从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
 
+
+
+
+---
+
+**15. [Merge Two Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Sorted%20Lists.java)**      Level: Easy
+      
+
+如题
+
+#### Basics
+- 小的放前。每次比head大小 
+- while过后，把没完的list一口气接上。   
+- 一开始建一个node用来跑路, 每次都存node.next = xxx。存一个dummy。用来return dummy.next.
 
 
 

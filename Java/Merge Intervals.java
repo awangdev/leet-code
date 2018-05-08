@@ -1,28 +1,32 @@
-E
+M
+1525758861
+tags: Array, Sort, Sweep Line
 
-方法1：O(nlogn)         
-扫描线+Count无敌手。注意start end把interval给合起来。   
-count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+给一串int[Interval]. 把所以Interval merge起来.
 
-空间：O(2n) -> O(n)   
-时间,priorityqueue: O(nlogn)   
+#### Sweep Line
+- O(nlogn)         
+- 扫描线+Count无敌手。注意start end把interval给合起来。   
+- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+- 空间：O(2n) -> O(n)   
+- 时间,priorityqueue: O(nlogn)   
+- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
+- 在 LeetCode里面，Sweep Line比方法2要快很多.
 
-记得怎么写comparator    
+#### Sort Interval 
+- Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- (不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
+- Collections.sort(..., new comparator): sort by Interval.start.
 
-在 LeetCode里面，Scan line比方法2要快很多.
+- 画两个相连的Interval， prev, curr:
+- prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
+- 记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
+- 若没有重合，就继续iteration: prev = curr. move on.
 
-方法2：    
-Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
-
-(不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
-
-Collections.sort(..., new comparator): sort by Interval.start.
-
-画两个相连的Interval， prev, curr:
-prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
-记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
-
-若没有重合，就继续iteration: prev = curr. move on.
+#### Sort Intervals and append end logically
+- Sort intervals: O(nlogn)
+- 找到结尾 interval, 满足条件就可以save
+- 如果不到return的条件, 就继续延伸 interval.end
 
 /*
     new Comparator<Object>(){
@@ -31,6 +35,8 @@ prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, m
         }
 
     }
+
+    PriorityQueue<Point> queue = new PriorityQueue<>(Comparator.comparing(p -> p.val));
 */
 
 
@@ -47,9 +53,54 @@ Similar Problems: (H) Insert Interval, (E) Meeting Rooms (M) Meeting Rooms II
 
 */
 
+class Solution {
+    class Point {
+        int val, flag;
+        public Point(int val, int flag) {
+            this.val = val;
+            this.flag = flag;
+        }
+    }
+
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> rst = new ArrayList<>();
+        if (intervals == null || intervals.size() == 0) {
+            return rst;
+        }
+        PriorityQueue<Point> queue = new PriorityQueue<>(Comparator.comparing(p -> p.val));
+        
+        for (Interval interval : intervals) {
+            queue.offer(new Point(interval.start, 1));
+            queue.offer(new Point(interval.end, -1));
+        }
+        
+        int count = 0;
+        Interval interval = new Interval();
+        while (!queue.isEmpty()) {
+            Point p = queue.poll();
+            if (count == 0) {//detect start
+                interval.start = p.val;
+            }    
+            count += p.flag;
+            //proces all points on same position p.val
+            while (!queue.isEmpty() && p.val == queue.peek().val) {
+                p = queue.poll();
+                count += p.flag;
+            }
+            if (count == 0) {//detect end
+                interval.end = p.val;
+                rst.add(interval);
+                interval = new Interval();
+            }
+        }
+        
+        return rst;
+    }
+}
+
 /*
 Thoughts:
-Again use scan line. Quite similar to Meeting Rooms, flight schedules... etc
+Again use Sweep Line. Quite similar to Meeting Rooms, flight schedules... etc
 This one: when count ==0, make sure to keep track start and end, add into the rst
 When writing out example, whenever count==0, that indicates an end of a interval.
 
@@ -112,7 +163,30 @@ public class Solution {
     }
 }
 
+class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> rst = new ArrayList<>();
+        if (intervals == null || intervals.size() == 0) {
+            return rst;
+        }
+        // Sort intervals
+        intervals.sort(Comparator.comparing(i -> i.start));
+        
+        Interval last = null;
+        for (Interval item : intervals) {
+            if (last == null || last.end < item.start) {// Found on item, add.
+                rst.add(item);
+                last = item;
+            } else {
+                // Keep the last item to have longest end index possible, 
+                // so to merge all visited index
+                last.end = Math.max(last.end, item.end);
+            }
+        }
 
+        return rst;
+    }
+}
 
 /*
     Thoughts: 12.09.2015

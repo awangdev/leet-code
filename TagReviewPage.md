@@ -3528,14 +3528,17 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
 
-
 #### Find path with BST
 - 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
 - 然后很简单找到LCA 
 
 #### DFS
-- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right
 - 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+- 几种情况:
+- 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
+- 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
+- 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
 
 
 
@@ -3886,7 +3889,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (23)
+## Hash Table (24)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -4288,6 +4291,28 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 #### 注意
 - 无法从root去直接搜target node 而做成两个list. 因为根本不是Binary Search Tree！
 
+
+
+
+---
+
+**23. [Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)**      Level: Easy
+      
+
+#### Hash Function
+- 解释Hash怎么做. 
+- Hash function例子：    
+- hashcode("abcd") = (ascii(a) * 33^3 + ascii(b) * 33^2 + ascii(c) *33^1 + ascii(d)*33^0) % HASH_SIZE 
+- 用到的参数比如: magic number 33, HASH_SIZE.
+
+- Hash的意义是：给一个string key, 转换成数字，从而把size变得更小。    
+- 真实的implementation还要处理collision, 可能需要design hash function 等等。
+
+
+- 每一步都:
+- hashRst = hashRst * 33 + (int)(key[i]);       
+- hashRst = hashRst % HASH_SIZE;       
+- 原因是，hashRst会变得太大，所以不能算完和 再 %...
 
 
 
@@ -5140,14 +5165,17 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
 
-
 #### Find path with BST
 - 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
 - 然后很简单找到LCA 
 
 #### DFS
-- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right
 - 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+- 几种情况:
+- 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
+- 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
+- 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
 
 
 
@@ -5159,7 +5187,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
  
  
  
-## Sort (8)
+## Sort (9)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
 
@@ -5294,6 +5322,39 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 - String.compareTo() 是按照 lexicographically, 字典顺序排列的
 - 利用compareTo, 来倒序排列 string, 刚好就得到我们要的结果.
 - O(nlogn), 排序
+
+
+
+---
+
+**8. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium
+      
+
+给一串int[Interval]. 把所以Interval merge起来.
+
+#### Sweep Line
+- O(nlogn)         
+- 扫描线+Count无敌手。注意start end把interval给合起来。   
+- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+- 空间：O(2n) -> O(n)   
+- 时间,priorityqueue: O(nlogn)   
+- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
+- 在 LeetCode里面，Sweep Line比方法2要快很多.
+
+#### Sort Interval 
+- Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- (不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
+- Collections.sort(..., new comparator): sort by Interval.start.
+
+- 画两个相连的Interval， prev, curr:
+- prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
+- 记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
+- 若没有重合，就继续iteration: prev = curr. move on.
+
+#### Sort Intervals and append end logically
+- Sort intervals: O(nlogn)
+- 找到结尾 interval, 满足条件就可以save
+- 如果不到return的条件, 就继续延伸 interval.end
 
 
 
@@ -5725,14 +5786,17 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
 
-
 #### Find path with BST
 - 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
 - 然后很简单找到LCA 
 
 #### DFS
-- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right
 - 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+- 几种情况:
+- 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
+- 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
+- 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
 
 
 
@@ -6219,7 +6283,7 @@ HashHeap?
  
  
  
-## Linked List (15)
+## Linked List (16)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -6471,6 +6535,20 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - 存一下那个点，
 - 从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
 
+
+
+
+---
+
+**15. [Merge Two Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Sorted%20Lists.java)**      Level: Easy
+      
+
+如题
+
+#### Basics
+- 小的放前。每次比head大小 
+- while过后，把没完的list一口气接上。   
+- 一开始建一个node用来跑路, 每次都存node.next = xxx。存一个dummy。用来return dummy.next.
 
 
 
@@ -7222,7 +7300,7 @@ DFS, BFS都好理解,
  
  
  
-## Sweep Line (4)
+## Sweep Line (5)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy
       
 
@@ -7298,6 +7376,39 @@ REVIEW
 Binary Indexed Tree?
 
 HashHeap?
+
+
+
+---
+
+**4. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium
+      
+
+给一串int[Interval]. 把所以Interval merge起来.
+
+#### Sweep Line
+- O(nlogn)         
+- 扫描线+Count无敌手。注意start end把interval给合起来。   
+- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+- 空间：O(2n) -> O(n)   
+- 时间,priorityqueue: O(nlogn)   
+- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
+- 在 LeetCode里面，Sweep Line比方法2要快很多.
+
+#### Sort Interval 
+- Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- (不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
+- Collections.sort(..., new comparator): sort by Interval.start.
+
+- 画两个相连的Interval， prev, curr:
+- prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
+- 记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
+- 若没有重合，就继续iteration: prev = curr. move on.
+
+#### Sort Intervals and append end logically
+- Sort intervals: O(nlogn)
+- 找到结尾 interval, 满足条件就可以save
+- 如果不到return的条件, 就继续延伸 interval.end
 
 
 
@@ -10111,7 +10222,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
  
  
  
-## Array (53)
+## Array (54)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -11158,6 +11269,39 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 #### Basics
 - A够长，那么可以从A的尾部开始加新元素。     
 - 注意，从尾部，是大数字优先排末尾的.  
+
+
+
+---
+
+**53. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium
+      
+
+给一串int[Interval]. 把所以Interval merge起来.
+
+#### Sweep Line
+- O(nlogn)         
+- 扫描线+Count无敌手。注意start end把interval给合起来。   
+- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+- 空间：O(2n) -> O(n)   
+- 时间,priorityqueue: O(nlogn)   
+- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
+- 在 LeetCode里面，Sweep Line比方法2要快很多.
+
+#### Sort Interval 
+- Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- (不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
+- Collections.sort(..., new comparator): sort by Interval.start.
+
+- 画两个相连的Interval， prev, curr:
+- prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
+- 记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
+- 若没有重合，就继续iteration: prev = curr. move on.
+
+#### Sort Intervals and append end logically
+- Sort intervals: O(nlogn)
+- 找到结尾 interval, 满足条件就可以save
+- 如果不到return的条件, 就继续延伸 interval.end
 
 
 

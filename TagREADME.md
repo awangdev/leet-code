@@ -8,15 +8,15 @@ Table of Contents
 * [Double Sequence DP (4)](#double-sequence-dp-4)
 * [BFS (14)](#bfs-14)
 * [Segment Tree (1)](#segment-tree-1)
-* [DFS (39)](#dfs-39)
+* [DFS (41)](#dfs-41)
 * [Design (10)](#design-10)
 * [Game Theory (4)](#game-theory-4)
-* [Hash Table (22)](#hash-table-22)
+* [Hash Table (23)](#hash-table-23)
 * [Backtracking (13)](#backtracking-13)
-* [Tree (27)](#tree-27)
+* [Tree (30)](#tree-30)
 * [Sort (8)](#sort-8)
 * [Trie (7)](#trie-7)
-* [BST (16)](#bst-16)
+* [BST (17)](#bst-17)
 * [Permutation (1)](#permutation-1)
 * [Partition DP (5)](#partition-dp-5)
 * [Interval DP (4)](#interval-dp-4)
@@ -322,7 +322,7 @@ Table of Contents
  
  
  
-## Hash Table (23)
+## Hash Table (24)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)|Easy|Java|[Hash Table]||
@@ -348,6 +348,7 @@ Table of Contents
 |20|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|Medium|Java|[Array, Hash Table]||
 |21|[Palindrome Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation.java)|Easy|Java|[Hash Table]||
 |22|[Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)|Easy|Java|[Hash Table, Tree]||
+|23|[Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)|Easy|Java|[Hash Table]||
 
 
 
@@ -415,7 +416,7 @@ Table of Contents
  
  
  
-## Sort (8)
+## Sort (9)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)|Medium|Java|[Array, Sort]||
@@ -426,6 +427,7 @@ Table of Contents
 |5|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
 |6|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|Medium|Java|[Linked List, Sort]||
 |7|[Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)|Medium|Java|[Sort]||
+|8|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, Sort, Sweep Line]||
 
 
 
@@ -526,7 +528,7 @@ Table of Contents
  
  
  
-## Linked List (15)
+## Linked List (16)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)|Easy|Java|[Linked List]||
@@ -544,6 +546,7 @@ Table of Contents
 |12|[Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)|Easy|Java|[Linked List, Two Pointers]||
 |13|[Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)|Easy|Java|[Linked List]||
 |14|[Reverse Linked List II .java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List%20II%20.java)|Medium|Java|[Linked List]||
+|15|[Merge Two Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Sorted%20Lists.java)|Easy|Java|[Linked List]||
 
 
 
@@ -628,13 +631,14 @@ Table of Contents
  
  
  
-## Sweep Line (4)
+## Sweep Line (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[Sort, Sweep Line]||
 |1|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, Sort, Sweep Line]||
 |2|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
 |3|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
+|4|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, Sort, Sweep Line]||
 
 
 
@@ -946,7 +950,7 @@ Table of Contents
  
  
  
-## Array (53)
+## Array (54)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)|Easy|Java|[Array, Math]||
@@ -1002,6 +1006,7 @@ Table of Contents
 |50|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, Sequence DP]||
 |51|[Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)|Easy|Java|[Array, Quick Select, Quick Sort]||
 |52|[Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
+|53|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, Sort, Sweep Line]||
 
 
 

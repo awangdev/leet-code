@@ -1,7 +1,7 @@
 E
 
 
-方法1：Scan Line    
+方法1：Sweep Line
 Interval 拆点，PriorityQueue排点。     
 Merge时用count==0作判断点。    
 

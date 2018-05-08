@@ -564,14 +564,17 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
 
-
 #### Find path with BST
 - 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
 - 然后很简单找到LCA 
 
 #### DFS
-- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right
 - 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+- 几种情况:
+- 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
+- 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
+- 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
 
 
 

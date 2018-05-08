@@ -1,7 +1,7 @@
  
  
  
-## Medium (186)
+## Medium (187)
 **0. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium
       
 
@@ -3133,14 +3133,50 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
 
-
 #### Find path with BST
 - 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
 - 然后很简单找到LCA 
 
 #### DFS
-- Brutly寻找p和q的common ancestor, 然后recursively drive left/right. 
+- Brutly寻找p和q的common ancestor, 然后recursively drive left/right
 - 非常巧妙, 但是也比较局限; 稍微变条件, 就很难recursive.
+- 几种情况:
+- 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
+- 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
+- 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
+
+
+
+---
+
+**186. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium
+      
+
+给一串int[Interval]. 把所以Interval merge起来.
+
+#### Sweep Line
+- O(nlogn)         
+- 扫描线+Count无敌手。注意start end把interval给合起来。   
+- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+- 空间：O(2n) -> O(n)   
+- 时间,priorityqueue: O(nlogn)   
+- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
+- 在 LeetCode里面，Sweep Line比方法2要快很多.
+
+#### Sort Interval 
+- Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- (不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
+- Collections.sort(..., new comparator): sort by Interval.start.
+
+- 画两个相连的Interval， prev, curr:
+- prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
+- 记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
+- 若没有重合，就继续iteration: prev = curr. move on.
+
+#### Sort Intervals and append end logically
+- Sort intervals: O(nlogn)
+- 找到结尾 interval, 满足条件就可以save
+- 如果不到return的条件, 就继续延伸 interval.end
 
 
 

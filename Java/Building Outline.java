@@ -177,7 +177,7 @@ Hide Tags Divide and Conquer Binary Indexed Tree Heap Segment Tree
     Based idea here:http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
     Here is the thinking process, 3.15.2016
 
-    The class HeightPoint{int x, int height} is very similar to scan line Point{int x, int flag}. However the usage is a bit different.
+    The class HeightPoint{int x, int height} is very similar to Sweep Line Point{int x, int flag}. However the usage is a bit different.
         Sort all of the heightPoints by index && by height. 
         Use nagtive height for start point to make sure start appears before end point, tho they share same height
     We use an extra priorityQueue to store the height being processed (note, this queue, decending order, max in front)
