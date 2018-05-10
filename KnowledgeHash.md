@@ -152,7 +152,7 @@ Table of Contents
 
 ## Functions
 - peek(), pop(), push()
-- Stack<XXX> stack = new Stack<>();
+- Stack<object> stack = new Stack<>();
 
 ## 基本用法
 - 用来暂且保存有效信息
@@ -164,6 +164,25 @@ Table of Contents
 - 找每个元素左边或者右边 第一个比它自身小/大的元素
 - 用单调栈来维护
 - 维护monotonous stack 是题目需要, 而不是stack本身性质. 比如, 题目需要stack.peek() O(1), 加上需要单调递增/递减的性质, 就用起来了stack.
+```
+// Use monotonous stack to build minimum binary tree
+while (!stack.isEmpty() && node.val <= stack.peek().val) {
+    node.left = stack.pop();
+}
+if (!stack.isEmpty()) {//build right node of the tree
+    stack.peek().right = node;
+}
+stack.push(node);
+```
+```
+// Plain monotonous stack template:
+item = someItem; // ex: item in for loop
+while (!stack.isEmpty() && (item.property compareTo stack.peek().property)) {
+    topItem = stack.pop();
+    // Do something with the topItem
+}
+stack.push(item);
+```
 
 ## Expample
 - Maximum Binary Tree, Largest Rectangle In Histogram, Maximal Rectangle (in 2D array)
@@ -325,10 +344,45 @@ The expression tree will be like
 - 需要节约空间
 - 查找前缀
 
-
 # Binary Indexed Tree
 
 # Segment Tree
+
+# Red-Black Tree
+
+
+# B-Tree
+## 基本知识
+- 是generalization of Binary Search Tree. 每个node可以有超过2个children
+- 'B' stands for nothing: actually noboday knows lol.
+- Search/Insert/Delete O(log n)
+- 每个children node 里面都是range of keys, 那么就不需要太多self-balancing operation
+- 可能会浪费一些空间, 因为并不是每一个child node里面都full
+- 根据root node 来分割child node 里面的range
+```
+            [7,               16]
+          /           |         \
+  [1,2,5,6]        [9, 12]       [18, 21]
+```
+- 每个node的这些keys, 其实就是是seperation values, 他们决定了subTree 如何divide.
+- 也就是说, 如果 有 3 个subTree, 至少需要2个root key, 这样才能分成三份, 如上example.
+- 通常: 大家会选 [d, 2d] keys, d = minimum number of keys
+- 那么就至少有 (d + 1) 个subTree, 那么这个tree minimum degree 就是 (d+1). 也就是(d+1)个edge嘛, 简单.
+
+
+### 更多细节特点
+- 1) All leaves are at same level. root一层, leaf一层.
+- 2) A B-Tree is defined by the term minimum degree ‘t’. The value of t depends upon disk block size.
+- 3) Every node except root must contain at least t-1 keys. Root may contain minimum 1 key.
+- 4) All nodes (including root) may contain at most 2t – 1 keys.
+- 5) Number of children of a node is equal to the number of keys in it plus 1.
+- 6) All keys of a node are sorted in increasing order. The child between two keys k1 and k2 contains all keys in range from k1 and k2.
+- 7) B-Tree grows and shrinks from root which is unlike Binary Search Tree. Binary Search Trees grow downward and also shrink from downward.
+- 8) Like other balanced Binary Search Trees, time complexity to search, insert and delete is O(Logn).
+
+## 用途
+- Storage system than read/write large blocks of data.
+- Commonly used in database, filesystem
 
 # Graph
 - Tree is a type of graph: connected graph, without cycles
@@ -864,7 +918,6 @@ Track queue size, use the queue as in rotation
 
 # Brainteaser
 
-# Red Black Tree
 
 # Threads
 ## Two approaches
@@ -952,6 +1005,7 @@ Track queue size, use the queue as in rotation
 - Data structure: given a problem, how to model it into data structure? What type of class interface to use? 这个很重要, 如果不能很好地model一个问题, 后面就不知道该怎么写, 一定懵逼.
 - Algorithm: How do we solve the problem.
 - communication: think, and communicate ideas
+- : colon | ; semicolon | ! exclamation mark | { curly bracket } | [ square bracket] | ( parentheses )
 
 ## Edge case
 - consider edge case
