@@ -1,7 +1,7 @@
  
  
  
-## Easy (132)
+## Easy (133)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -1932,6 +1932,34 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - 小的放前。每次比head大小 
 - while过后，把没完的list一口气接上。   
 - 一开始建一个node用来跑路, 每次都存node.next = xxx。存一个dummy。用来return dummy.next.
+
+
+
+---
+
+**132. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy
+      
+
+给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
+
+#### Swap 
+- 跟First Missing Positive 非常像, 只有一行代码的区别.
+- swap 所有的数字, 到自己的correct position
+- 最后一个for loop找到错位的index, 也就是缺的数字.
+
+#### Bit Manipulation
+- XOR will only retain bits that are different 1 ^ 0 = 1, but 0^0, 1^1 == 0
+- Use that feature, 把所有value都和index XOR了
+- 剩下的多余的数字, 其实是那个index无法被XOR消掉, 也就是那个缺的number value.
+- 注意: 题目告诉数字是 [0 ~ n], 然而缺一个数字, 那么在[0 ~ n - 1] 里面, 最大的数字(不管缺没缺), 一定是 n = nums.length.
+
+#### HastSet
+- 全存, 找missing
+- O(n) space, 不合题意
+
+#### sorting
+- sort, 找1st missing
+- O(n log n) 太慢, 不合题意
 
 
 

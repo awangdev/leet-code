@@ -477,7 +477,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
  
  
  
-## Math (18)
+## Math (19)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -756,6 +756,34 @@ Space O(n), time O(n)
 #### recursively calculate
 - recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
 
+
+
+
+---
+
+**18. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy
+      
+
+给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
+
+#### Swap 
+- 跟First Missing Positive 非常像, 只有一行代码的区别.
+- swap 所有的数字, 到自己的correct position
+- 最后一个for loop找到错位的index, 也就是缺的数字.
+
+#### Bit Manipulation
+- XOR will only retain bits that are different 1 ^ 0 = 1, but 0^0, 1^1 == 0
+- Use that feature, 把所有value都和index XOR了
+- 剩下的多余的数字, 其实是那个index无法被XOR消掉, 也就是那个缺的number value.
+- 注意: 题目告诉数字是 [0 ~ n], 然而缺一个数字, 那么在[0 ~ n - 1] 里面, 最大的数字(不管缺没缺), 一定是 n = nums.length.
+
+#### HastSet
+- 全存, 找missing
+- O(n) space, 不合题意
+
+#### sorting
+- sort, 找1st missing
+- O(n log n) 太慢, 不合题意
 
 
 
@@ -3550,7 +3578,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
  
  
  
-## Design (10)
+## Design (11)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -3734,6 +3762,33 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ##### 做法2
 - 逻辑在top()/pop()里, 每次换水，查看末尾项.
+
+
+
+
+---
+
+**10. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard
+      
+
+#### Double Linked List
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- Overall O(1)
+
+##### 巧妙点
+- 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
+- 2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+- 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
+- 一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
+- moveToHead()    
+- insertHead()    
+- remove()      
+
+#### O(n) 检查重复
+- timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
+- 一个map<key,value>存数值。一个queue<key>来存排位。     
+- 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
 
 
 
@@ -6283,7 +6338,7 @@ HashHeap?
  
  
  
-## Linked List (16)
+## Linked List (17)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -6549,6 +6604,33 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - 小的放前。每次比head大小 
 - while过后，把没完的list一口气接上。   
 - 一开始建一个node用来跑路, 每次都存node.next = xxx。存一个dummy。用来return dummy.next.
+
+
+
+---
+
+**16. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard
+      
+
+#### Double Linked List
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- Overall O(1)
+
+##### 巧妙点
+- 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
+- 2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+- 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
+- 一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
+- moveToHead()    
+- insertHead()    
+- remove()      
+
+#### O(n) 检查重复
+- timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
+- 一个map<key,value>存数值。一个queue<key>来存排位。     
+- 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
+
 
 
 
@@ -8493,7 +8575,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
  
  
  
-## Bit Manipulation (9)
+## Bit Manipulation (10)
 **0. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy
       
 
@@ -8640,6 +8722,34 @@ count 一个 32-bit number binary format 里面有多少1
 - 计算你顺序从 0 -> num, count过的数字就可以重复利用.
 - Bit题目 用num的数值本身表示DP的状态.
 - 这里, dp[i] 并不是和 dp[i-1]有逻辑关系; 而是dp[i] 和dp[i>>1], 从binary representation看出有直接关系.
+
+
+
+---
+
+**9. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy
+      
+
+给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
+
+#### Swap 
+- 跟First Missing Positive 非常像, 只有一行代码的区别.
+- swap 所有的数字, 到自己的correct position
+- 最后一个for loop找到错位的index, 也就是缺的数字.
+
+#### Bit Manipulation
+- XOR will only retain bits that are different 1 ^ 0 = 1, but 0^0, 1^1 == 0
+- Use that feature, 把所有value都和index XOR了
+- 剩下的多余的数字, 其实是那个index无法被XOR消掉, 也就是那个缺的number value.
+- 注意: 题目告诉数字是 [0 ~ n], 然而缺一个数字, 那么在[0 ~ n - 1] 里面, 最大的数字(不管缺没缺), 一定是 n = nums.length.
+
+#### HastSet
+- 全存, 找missing
+- O(n) space, 不合题意
+
+#### sorting
+- sort, 找1st missing
+- O(n log n) 太慢, 不合题意
 
 
 
@@ -10222,7 +10332,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
  
  
  
-## Array (54)
+## Array (55)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -11302,6 +11412,34 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - Sort intervals: O(nlogn)
 - 找到结尾 interval, 满足条件就可以save
 - 如果不到return的条件, 就继续延伸 interval.end
+
+
+
+---
+
+**54. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy
+      
+
+给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
+
+#### Swap 
+- 跟First Missing Positive 非常像, 只有一行代码的区别.
+- swap 所有的数字, 到自己的correct position
+- 最后一个for loop找到错位的index, 也就是缺的数字.
+
+#### Bit Manipulation
+- XOR will only retain bits that are different 1 ^ 0 = 1, but 0^0, 1^1 == 0
+- Use that feature, 把所有value都和index XOR了
+- 剩下的多余的数字, 其实是那个index无法被XOR消掉, 也就是那个缺的number value.
+- 注意: 题目告诉数字是 [0 ~ n], 然而缺一个数字, 那么在[0 ~ n - 1] 里面, 最大的数字(不管缺没缺), 一定是 n = nums.length.
+
+#### HastSet
+- 全存, 找missing
+- O(n) space, 不合题意
+
+#### sorting
+- sort, 找1st missing
+- O(n log n) 太慢, 不合题意
 
 
 

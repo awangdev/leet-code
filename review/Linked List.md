@@ -1,7 +1,7 @@
  
  
  
-## Linked List (16)
+## Linked List (17)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -267,6 +267,33 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - 小的放前。每次比head大小 
 - while过后，把没完的list一口气接上。   
 - 一开始建一个node用来跑路, 每次都存node.next = xxx。存一个dummy。用来return dummy.next.
+
+
+
+---
+
+**16. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard
+      
+
+#### Double Linked List
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- Overall O(1)
+
+##### 巧妙点
+- 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
+- 2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+- 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
+- 一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
+- moveToHead()    
+- insertHead()    
+- remove()      
+
+#### O(n) 检查重复
+- timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
+- 一个map<key,value>存数值。一个queue<key>来存排位。     
+- 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
+
 
 
 

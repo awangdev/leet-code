@@ -1,33 +1,55 @@
 H
+1526021243
+tags: Design, Linked List
 
+#### Double Linked List
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- Overall O(1)
 
-timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
-一个map<key,value>存数值。一个queue<key>来存排位。     
-每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
+##### 巧妙点
+- 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
+- 2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+- 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
+- 一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
+- moveToHead()    
+- insertHead()    
+- remove()      
 
-于是就来了第二个做法。其实还是跟方法一是类似的。     
-用了一个特别的双向的LinkNode，有了head和tail，这样就大大加快了速度。     
-主要加快的就是那个‘更新排位’的过程，过去我是O(n),现在O(1)就好了。    
+#### O(n) 检查重复
+- timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
+- 一个map<key,value>存数值。一个queue<key>来存排位。     
+- 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
 
-巧妙点：     
-1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
-2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
-直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
-
-一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
-moveToHead()    
-insertHead()    
-remove()      
 
 ```
 /*
 Design and implement a data structure for Least Recently Used (LRU) cache. 
-It should support the following operations: get and set.
+It should support the following operations: get and put.
 
-get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
-set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+get(key) - Get the value (will always be positive) of the key 
+if the key exists in the cache, otherwise return -1.
 
-Tags: Design
+put(key, value) - Set or insert the value if the key is not already present. 
+When the cache reached its capacity, it should invalidate the least recently used item 
+before inserting a new item.
+
+Follow up:
+Could you do both operations in O(1) time complexity?
+
+Example:
+
+LRUCache cache = new LRUCache( 2 ); //capacity 
+
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // returns 1
+cache.put(3, 3);    // evicts key 2
+cache.get(2);       // returns -1 (not found)
+cache.put(4, 4);    // evicts key 1
+cache.get(1);       // returns -1 (not found)
+cache.get(3);       // returns 3
+cache.get(4);       // returns 4
 
 */
 /*
@@ -61,7 +83,7 @@ public class LRUCache {
     public DoubleLinkedListNode head, tail;
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        this.map = new HashMap<Integer, DoubleLinkedListNode>();
+        this.map = new HashMap<>();
         this.head = new DoubleLinkedListNode(-1, -1);
         this.tail = new DoubleLinkedListNode(-1, -1);
         head.next = tail;
@@ -71,16 +93,15 @@ public class LRUCache {
     }
     
     public int get(int key) {
-        if (map.containsKey(key)) {
-            DoubleLinkedListNode node = map.get(key);
-            moveToHead(node);
-            return node.val;
-        } else {
+        if(!map.containsKey(key)) {
             return -1;
         }
+        DoubleLinkedListNode node = map.get(key);
+        moveToHead(node);
+        return node.val;
     }
     
-    public void set(int key, int value) {
+    public void put(int key, int value) {
         if (map.containsKey(key)) {
             map.get(key).val = value;
             moveToHead(map.get(key));
@@ -102,6 +123,9 @@ public class LRUCache {
     }
     
     //Helper functions
+    /*
+        Put node to front, where the latest item is at.
+     */
     public void insertHead(DoubleLinkedListNode node) {
         DoubleLinkedListNode next = head.next;
         head.next = node;
@@ -110,6 +134,9 @@ public class LRUCache {
         next.prev = node;
     }
 
+    /*
+        Find front and end, link them.
+     */
     public void remove(DoubleLinkedListNode node) {
         DoubleLinkedListNode front = node.prev;
         DoubleLinkedListNode end = node.next;
@@ -117,6 +144,8 @@ public class LRUCache {
         end.prev = front;
     }  
 }
+
+
 /*
 First Attempt: time exceeds
 

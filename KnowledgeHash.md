@@ -349,10 +349,32 @@ The expression tree will be like
 # Segment Tree
 
 # Red-Black Tree
+## 基本知识
+- one kind of self-balancing binary search tree
+- Each node of the binary tree has an extra bit, and that bit is often interpreted as the color (red or black) of the node
+- search O(logn), n = total # of nodes in the tree
+- deletion/insertion/tree rearrangement && coloring: O(logn)
+
+## 特点
+- Each node is either red or black.
+- The root is black. (This rule is sometimes omitted)
+- All leaves (NIL) are black.
+- If a node is red, then both its children are black.
+- Every path from a given node to any of its descendant NIL nodes contains the same number of black nodes.
+
+## 引申特点
+- the path from the root to the farthest leaf is no more than twice as long as the path from the root to the nearest leaf.
+
+## 用途
+- offer worst-case guarantees for insertion time, deletion time, and search time
+- used in time-sensitive application, real-time application
+- valuble building block in other data structures
+- valuble in functional programming: most common `persistent data structure`
 
 
 # B-Tree
 ## 基本知识
+- https://en.wikipedia.org/wiki/B-tree
 - 是generalization of Binary Search Tree. 每个node可以有超过2个children
 - 'B' stands for nothing: actually noboday knows lol.
 - Search/Insert/Delete O(log n)
@@ -383,6 +405,12 @@ The expression tree will be like
 ## 用途
 - Storage system than read/write large blocks of data.
 - Commonly used in database, filesystem
+
+## 优点
+- keeps keys in sorted order for sequential traversing
+- uses a hierarchical index to minimize the number of disk reads
+- uses partially full blocks to speed insertions and deletions
+- keeps the index balanced with a recursive algorithm
 
 # Graph
 - Tree is a type of graph: connected graph, without cycles
@@ -520,13 +548,16 @@ class Node {
 ## 常用
 - Merge Sort. Runtime: O(nlogn) average/worst. Memory: depends.
 - Quick Sort. Runtime: O(nlogn) average, O(n^2) worst. Memory: O(nlogn).
+- Heap Sort
 - Radix Sort. Runtime: O(nk)
 - Insertion Sort
-- Heap Sort
 - Bubble Sort. Runtime: O(n^2) average/worst. Memory: O(1)
 - Selection Sort. Runtime: O(n^2) average/worst. Memory: O(1)
 
 ### Merge Sort
+
+### Heap Sort
+
 
 ### Quick Sort
 - pick random pivot, all elements smaller sits before pivot, and all elements larger sits after the pivot
@@ -627,10 +658,15 @@ public int compare(x, y) {
 ### Math Functions
 - Math.pow(x, 3) = x ^ 3; Math.pow(x, 1/3) = x ^ (1/3)
 
-## Numbers
+
+### Numbers
 - Long a = 10; a.intValue() => int
 - Integer: Integer.parseInt("123")
 
+### Probability theory
+
+### Combinatorics
+- ex: study n-choose-k problems
 
 ## String
 ### Functions
@@ -918,6 +954,18 @@ Track queue size, use the queue as in rotation
 
 # Brainteaser
 
+# Operating system
+- processes
+- threads
+- concurrency issues
+- locks
+- mutexes
+- semaphores
+- monitors
+- deadlock, livelock and how to avoid
+- what resources a process and a thread needs. 
+- how context switching works, how it's initiated by the operating system and underlying hardware. 
+- scheduling and the fundamentals of "modern" concurrency constructs.
 
 # Threads
 ## Two approaches
@@ -999,6 +1047,8 @@ Track queue size, use the queue as in rotation
 
 # Pain Point
 - For any array access, make sure to check the boundary!!!
+
+## NP-Complete problems
 
 ## Basics
 - Coding, speeding, readability
