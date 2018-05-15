@@ -55,19 +55,28 @@ Previous Notes:
 **2. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
       
 
-Tire, 也即是 Prefix Tree. 
+Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startWith
 
-HashMap构建Trie。 Trie三个Method:　   
-1. Inset: 加 word   
-2. Search: 找word    
-3. StartWith: 找prefix    
+#### Trie
+- HashMap构建Trie. Trie三个Method:
+- 1. Inset: 加 word   
+- 2. Search: 找word    
+- 3. StartWith: 找prefix    
 
-只有两条children的是binary tree. 那么多个children就是Trie。 那么没有left/right pointer怎么找孩子？   
-用HashMap，以child的label为Key，value就是child node。 HashMap走位   
+##### 特点
+- 只有两条children的是binary tree. 那么多个children就是Trie
+- 那么没有left/right pointer怎么找孩子？   
+- 用HashMap，以child的label为Key，value就是child node。 HashMap走位   
 
-Note:    
-node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
-另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+##### 其他
+- node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
+- 另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+
+##### Previous Note
+- 如果是遇到一个一个字查询的题，可以考虑一下。
+- 构建TrieNode的时候要注意：如何找孩子？如果是个map的话，其实就挺好走位的。
+- 而且，每个node里面的 char 或者string有时候用处不大，
+- 可以为空。但是有些题目，比如在结尾要return一些什么String，就可以在end string那边存一个真的String。
 
 
 

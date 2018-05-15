@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (24)
+## Hash Table (26)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -425,6 +425,61 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - hashRst = hashRst * 33 + (int)(key[i]);       
 - hashRst = hashRst % HASH_SIZE;       
 - 原因是，hashRst会变得太大，所以不能算完和 再 %...
+
+
+
+---
+
+**24. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard
+      
+
+#### Double Linked List
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- Overall O(1)
+
+##### 巧妙点
+- 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
+- 2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+- 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
+- 一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
+- moveToHead()    
+- insertHead()    
+- remove()      
+
+#### O(n) 检查重复
+- timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
+- 一个map<key,value>存数值。一个queue<key>来存排位。     
+- 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
+
+
+
+
+---
+
+**25. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy
+      
+
+#### Sort, HashSet
+- 先排序, 排序以后才能逐个看是否partial string已经存在
+- 用 set.contains(substring(0, n - 1)) 来查看上一步的 substring 是否存在
+- 如果找到, 因为已经按照字母表排序, 找到的这个肯定是这个长度里面最符合的解答.
+- 然后brutally找下一个更大的.
+- Sort O(n log n), O(n) set space
+
+#### Trie
+- 可以先sort words Array: 1. 长 string 排在前; 2. 相等length, 按照dictionary order 排序
+- 全部放入Trie. Trie.insert()
+- 针对sorted words array, 从最长的开始找 Trie.startWith.
+- 一旦找到, 就是符合题意的, 直接return.
+- 注意: startWith 必须每一个node都是 isEnd, 才满足'逐个字母拼出' 的条件.
+- Time: build Trie O(mn) + sort:O(nlogn) => O(nlogn)
+- Space: O(mn)
+
+#### 
+- 按大小排序 -> 从最大的开始做contains()的比较 -> 结果再按照字母表顺序(lexicographically) sort一下.
+- 但是Collections.sort()了两次, 而且再list.contains(), 比较慢
+
 
 
 

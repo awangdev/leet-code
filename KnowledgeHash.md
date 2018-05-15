@@ -348,7 +348,7 @@ The expression tree will be like
 
 # Segment Tree
 
-# Red-Black Tree
+# Red Black Tree
 ## 基本知识
 - one kind of self-balancing binary search tree
 - Each node of the binary tree has an extra bit, and that bit is often interpreted as the color (red or black) of the node
@@ -391,6 +391,10 @@ The expression tree will be like
 - 通常: 大家会选 [d, 2d] keys, d = minimum number of keys
 - 那么就至少有 (d + 1) 个subTree, 那么这个tree minimum degree 就是 (d+1). 也就是(d+1)个edge嘛, 简单.
 
+# AVL Tree
+## 基本知识
+- The sub-trees of every node differ in height by at most one.
+- Every sub-tree is an AVL tree
 
 ### 更多细节特点
 - 1) All leaves are at same level. root一层, leaf一层.

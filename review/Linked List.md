@@ -1,7 +1,7 @@
  
  
  
-## Linked List (17)
+## Linked List (19)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -293,6 +293,53 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
 - 一个map<key,value>存数值。一个queue<key>来存排位。     
 - 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
+
+
+
+
+---
+
+**17. [Remove Duplicates from Sorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List.java)**      Level: Easy
+      
+
+从Linked list 里面摘掉重复元素, 只留下unique元素.
+
+#### Linked List
+- sorted list, 重复元素都在一起
+- 知道如何构建Linked List.
+- 一点遇到重复元素: node.val == node.next.val, 就去掉.
+- 用一个dummy node 来跑路
+- 注意:
+- 只有当没有重复的时候, 才node = node.next; 
+- 有重复的时候, 当后面第三个元素被提上来之后, 还是可能跟当下元素重复, 所以不能前移node.
+- ex: A -> A -> A
+- while loop 里面check node 和 node.next 比较好, 这样ending position会非常清晰
+
+
+
+---
+
+**18. [Remove Duplicates from Sorted List II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List%20II.java)**      Level: Medium
+      
+
+从Linked list 里面摘掉重复元素: 只要重复过, 全部都删掉; 重复出现过得元素一个不留.
+
+#### Linked List
+- sorted list, 重复元素都在一起
+- 运用 dummyHead: 如果要去掉所有重复元素, 就要有个dummyHead作为局外人在开头牵线
+- 只要发现一个 node.val == node.next.val, 就记下这个duplicated val, move forward, 过掉所有重复过的元素
+- 思想:
+- 用第二个 inner while loop, 把所有的重复元素都处理干净, 然后再move forward
+- 优点: outter while loop 不需要考虑太多case, 在inner loop 都把主要的business logic 解决了.
+
+##### 注意DummyHead 的使用
+- 当我们有了DummyHead 作为Linked List 的局外线头, 其实可以选择每次遇到duplicate, 就把更加后面的元素 强行assign 给 dummyHead.next 
+- 下面还尝试过一种做法: 但是需要考虑的edge case 太多了: 不断移动node, 知道不重复, assign prev.next = node. 
+- 这样的做法比较直白, 但是需要考虑很多edge case, 而且并没有很好利用到 dummy head, 注意规避.
+
+##### Previous Note
+- 斩草除根。
+- 多个node，check node.next ?= node.next.next
 
 
 

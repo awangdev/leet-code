@@ -3632,19 +3632,28 @@ Previous Notes:
 **2. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
       
 
-Tire, 也即是 Prefix Tree. 
+Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startWith
 
-HashMap构建Trie。 Trie三个Method:　   
-1. Inset: 加 word   
-2. Search: 找word    
-3. StartWith: 找prefix    
+#### Trie
+- HashMap构建Trie. Trie三个Method:
+- 1. Inset: 加 word   
+- 2. Search: 找word    
+- 3. StartWith: 找prefix    
 
-只有两条children的是binary tree. 那么多个children就是Trie。 那么没有left/right pointer怎么找孩子？   
-用HashMap，以child的label为Key，value就是child node。 HashMap走位   
+##### 特点
+- 只有两条children的是binary tree. 那么多个children就是Trie
+- 那么没有left/right pointer怎么找孩子？   
+- 用HashMap，以child的label为Key，value就是child node。 HashMap走位   
 
-Note:    
-node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
-另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+##### 其他
+- node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
+- 另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+
+##### Previous Note
+- 如果是遇到一个一个字查询的题，可以考虑一下。
+- 构建TrieNode的时候要注意：如何找孩子？如果是个map的话，其实就挺好走位的。
+- 而且，每个node里面的 char 或者string有时候用处不大，
+- 可以为空。但是有些题目，比如在结尾要return一些什么String，就可以在end string那边存一个真的String。
 
 
 
@@ -3944,7 +3953,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (24)
+## Hash Table (26)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy
       
 1524017454
@@ -4368,6 +4377,61 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 - hashRst = hashRst * 33 + (int)(key[i]);       
 - hashRst = hashRst % HASH_SIZE;       
 - 原因是，hashRst会变得太大，所以不能算完和 再 %...
+
+
+
+---
+
+**24. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard
+      
+
+#### Double Linked List
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- Overall O(1)
+
+##### 巧妙点
+- 1. head和tail特别巧妙：除掉头和尾，和加上头和尾，就都特别快。    
+- 2. 用双向的pointer: pre和next, 当需要除掉任何一个node的时候，只要知道要除掉哪一个，     
+- 直接把node.pre和node.next耐心连起来就好了，node就自然而然的断开不要了。     
+- 一旦知道怎么解决了，就不是很特别，并不是难写的算法:    
+- moveToHead()    
+- insertHead()    
+- remove()      
+
+#### O(n) 检查重复
+- timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
+- 一个map<key,value>存数值。一个queue<key>来存排位。     
+- 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
+
+
+
+
+---
+
+**25. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy
+      
+
+#### Sort, HashSet
+- 先排序, 排序以后才能逐个看是否partial string已经存在
+- 用 set.contains(substring(0, n - 1)) 来查看上一步的 substring 是否存在
+- 如果找到, 因为已经按照字母表排序, 找到的这个肯定是这个长度里面最符合的解答.
+- 然后brutally找下一个更大的.
+- Sort O(n log n), O(n) set space
+
+#### Trie
+- 可以先sort words Array: 1. 长 string 排在前; 2. 相等length, 按照dictionary order 排序
+- 全部放入Trie. Trie.insert()
+- 针对sorted words array, 从最长的开始找 Trie.startWith.
+- 一旦找到, 就是符合题意的, 直接return.
+- 注意: startWith 必须每一个node都是 isEnd, 才满足'逐个字母拼出' 的条件.
+- Time: build Trie O(mn) + sort:O(nlogn) => O(nlogn)
+- Space: O(mn)
+
+#### 
+- 按大小排序 -> 从最大的开始做contains()的比较 -> 结果再按照字母表顺序(lexicographically) sort一下.
+- 但是Collections.sort()了两次, 而且再list.contains(), 比较慢
+
 
 
 
@@ -5242,7 +5306,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
  
  
  
-## Sort (9)
+## Sort (11)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
 
@@ -5415,13 +5479,43 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
+**9. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium
+      
+
+implement quick sort.
+
+#### Quick Sort
+- 首先partition. 返还一个partition的那个中间点的位置: 这个时候, 所有小于nums[partitionIndex] 都应该在 partitionIndex左边
+- 然后劈开两半
+- 前后各自 quick sort, recursively
+- 注意：在partition里面, 比较的时候nums[start] < pivot, nums[end]>pivot, 如果写成了 <= 会 stack overflow.
+- Time O(nlogn), Space: O(1)
+
+
+
+---
+
+**10. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium
+      
+
+#### Merge Sort
+- Divide and conquer, recursively
+- 先从中间分段, merge sort 左边 (dfs), merge sort 右边
+- 最后merge起来
+- merge的时候因为是做int[], 所以没办法必须要O(n) space
+- Time O(nlogn), Space O(n)
+
+
+
+---
+
 
 
 
  
  
  
-## Trie (7)
+## Trie (8)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
 
@@ -5446,19 +5540,28 @@ mask = mask | (1 << i); // prefix mask
 **1. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
       
 
-Tire, 也即是 Prefix Tree. 
+Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startWith
 
-HashMap构建Trie。 Trie三个Method:　   
-1. Inset: 加 word   
-2. Search: 找word    
-3. StartWith: 找prefix    
+#### Trie
+- HashMap构建Trie. Trie三个Method:
+- 1. Inset: 加 word   
+- 2. Search: 找word    
+- 3. StartWith: 找prefix    
 
-只有两条children的是binary tree. 那么多个children就是Trie。 那么没有left/right pointer怎么找孩子？   
-用HashMap，以child的label为Key，value就是child node。 HashMap走位   
+##### 特点
+- 只有两条children的是binary tree. 那么多个children就是Trie
+- 那么没有left/right pointer怎么找孩子？   
+- 用HashMap，以child的label为Key，value就是child node。 HashMap走位   
 
-Note:    
-node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
-另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+##### 其他
+- node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
+- 另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+
+##### Previous Note
+- 如果是遇到一个一个字查询的题，可以考虑一下。
+- 构建TrieNode的时候要注意：如何找孩子？如果是个map的话，其实就挺好走位的。
+- 而且，每个node里面的 char 或者string有时候用处不大，
+- 可以为空。但是有些题目，比如在结尾要return一些什么String，就可以在end string那边存一个真的String。
 
 
 
@@ -5585,6 +5688,34 @@ TODO
 - 写起来跟Edit Distance 的主要逻辑是一模一样的.
 - 但是LintCode 86% test case 时候timeout. 
 - Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
+
+
+
+---
+
+**7. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy
+      
+
+#### Sort, HashSet
+- 先排序, 排序以后才能逐个看是否partial string已经存在
+- 用 set.contains(substring(0, n - 1)) 来查看上一步的 substring 是否存在
+- 如果找到, 因为已经按照字母表排序, 找到的这个肯定是这个长度里面最符合的解答.
+- 然后brutally找下一个更大的.
+- Sort O(n log n), O(n) set space
+
+#### Trie
+- 可以先sort words Array: 1. 长 string 排在前; 2. 相等length, 按照dictionary order 排序
+- 全部放入Trie. Trie.insert()
+- 针对sorted words array, 从最长的开始找 Trie.startWith.
+- 一旦找到, 就是符合题意的, 直接return.
+- 注意: startWith 必须每一个node都是 isEnd, 才满足'逐个字母拼出' 的条件.
+- Time: build Trie O(mn) + sort:O(nlogn) => O(nlogn)
+- Space: O(mn)
+
+#### 
+- 按大小排序 -> 从最大的开始做contains()的比较 -> 结果再按照字母表顺序(lexicographically) sort一下.
+- 但是Collections.sort()了两次, 而且再list.contains(), 比较慢
+
 
 
 
@@ -6338,7 +6469,7 @@ HashHeap?
  
  
  
-## Linked List (17)
+## Linked List (19)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -6630,6 +6761,53 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - timeout method, 天真的来了一个O(n) 的解法，结果果然timeout.     
 - 一个map<key,value>存数值。一个queue<key>来存排位。     
 - 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
+
+
+
+
+---
+
+**17. [Remove Duplicates from Sorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List.java)**      Level: Easy
+      
+
+从Linked list 里面摘掉重复元素, 只留下unique元素.
+
+#### Linked List
+- sorted list, 重复元素都在一起
+- 知道如何构建Linked List.
+- 一点遇到重复元素: node.val == node.next.val, 就去掉.
+- 用一个dummy node 来跑路
+- 注意:
+- 只有当没有重复的时候, 才node = node.next; 
+- 有重复的时候, 当后面第三个元素被提上来之后, 还是可能跟当下元素重复, 所以不能前移node.
+- ex: A -> A -> A
+- while loop 里面check node 和 node.next 比较好, 这样ending position会非常清晰
+
+
+
+---
+
+**18. [Remove Duplicates from Sorted List II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List%20II.java)**      Level: Medium
+      
+
+从Linked list 里面摘掉重复元素: 只要重复过, 全部都删掉; 重复出现过得元素一个不留.
+
+#### Linked List
+- sorted list, 重复元素都在一起
+- 运用 dummyHead: 如果要去掉所有重复元素, 就要有个dummyHead作为局外人在开头牵线
+- 只要发现一个 node.val == node.next.val, 就记下这个duplicated val, move forward, 过掉所有重复过的元素
+- 思想:
+- 用第二个 inner while loop, 把所有的重复元素都处理干净, 然后再move forward
+- 优点: outter while loop 不需要考虑太多case, 在inner loop 都把主要的business logic 解决了.
+
+##### 注意DummyHead 的使用
+- 当我们有了DummyHead 作为Linked List 的局外线头, 其实可以选择每次遇到duplicate, 就把更加后面的元素 强行assign 给 dummyHead.next 
+- 下面还尝试过一种做法: 但是需要考虑的edge case 太多了: 不断移动node, 知道不重复, assign prev.next = node. 
+- 这样的做法比较直白, 但是需要考虑很多edge case, 而且并没有很好利用到 dummy head, 注意规避.
+
+##### Previous Note
+- 斩草除根。
+- 多个node，check node.next ?= node.next.next
 
 
 
@@ -8002,7 +8180,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Two Pointers (21)
+## Two Pointers (23)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -8375,6 +8553,51 @@ Time: O(nLogN)
 - 可以用 ASCII code 来手动过滤, 只要 '0' ~ '9', 'a' ~ 'z', 'A' - 'Z' 之间的
 - 也可以用 regular expression: match 所有这些字母, 是 [a-zA-Z0-9]
 - 那凡是不是这些字母的 match, 就是取反: "[^a-zA-Z0-9]". 测试: https://regex101.com/
+
+
+
+---
+
+**21. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy
+      
+
+给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
+
+return unique item 的长度.
+
+#### Two Pointers
+- sorted array, 重复元素都在一起
+- Two pointers 其实也可以是一个 for loop pointer, 另一个 dynamic variable.
+- track unique index
+- skip duplicated items
+- O(n)
+
+#### 思考模式:
+- Remove Duplicate from Array 不同于remove from linked list.
+- LinkedList里面我们是最好不要动node.val的，直接把node去掉。
+- 而array我们很难直接把node去掉，又不能用新array，那么就要：
+- 把不重复的element一个个放到最前面。
+- 这个思想跟merge two sorted array （其中一个后续非常长的array可以放下arr1,arr2） 类似。
+- 就是找个不会事后mess up，不会去动得index,把满足条件的element 填进去。这样保证了in place.
+- *反向思维*：remove duplicate, 实际上也是找unique elements, and insert into original array
+
+
+
+---
+
+**22. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium
+      
+
+给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
+
+最多可重复出元素的数量不超过2个. return unique item 的长度.
+
+#### Two Pointers
+- sorted array, 重复元素都在一起
+- 跟 `Remove Duplicates from Sorted Array` 几乎一模一样, 只不过unique index现在可以 validate 2 位
+- 其余一模一样, use index to track unique item; skip if duplicated for more than 2 times
+- O(n) time, O(1) space
+- 这里也可以真的用2个pointers 写while loop, 但是没有必要, 只是单纯地走一个for loop其实就足够.
 
 
 
@@ -10332,7 +10555,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
  
  
  
-## Array (55)
+## Array (57)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -11440,6 +11663,51 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 #### sorting
 - sort, 找1st missing
 - O(n log n) 太慢, 不合题意
+
+
+
+---
+
+**55. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy
+      
+
+给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
+
+return unique item 的长度.
+
+#### Two Pointers
+- sorted array, 重复元素都在一起
+- Two pointers 其实也可以是一个 for loop pointer, 另一个 dynamic variable.
+- track unique index
+- skip duplicated items
+- O(n)
+
+#### 思考模式:
+- Remove Duplicate from Array 不同于remove from linked list.
+- LinkedList里面我们是最好不要动node.val的，直接把node去掉。
+- 而array我们很难直接把node去掉，又不能用新array，那么就要：
+- 把不重复的element一个个放到最前面。
+- 这个思想跟merge two sorted array （其中一个后续非常长的array可以放下arr1,arr2） 类似。
+- 就是找个不会事后mess up，不会去动得index,把满足条件的element 填进去。这样保证了in place.
+- *反向思维*：remove duplicate, 实际上也是找unique elements, and insert into original array
+
+
+
+---
+
+**56. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium
+      
+
+给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
+
+最多可重复出元素的数量不超过2个. return unique item 的长度.
+
+#### Two Pointers
+- sorted array, 重复元素都在一起
+- 跟 `Remove Duplicates from Sorted Array` 几乎一模一样, 只不过unique index现在可以 validate 2 位
+- 其余一模一样, use index to track unique item; skip if duplicated for more than 2 times
+- O(n) time, O(1) space
+- 这里也可以真的用2个pointers 写while loop, 但是没有必要, 只是单纯地走一个for loop其实就足够.
 
 
 

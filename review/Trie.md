@@ -1,7 +1,7 @@
  
  
  
-## Trie (7)
+## Trie (8)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium
       
 
@@ -26,19 +26,28 @@ mask = mask | (1 << i); // prefix mask
 **1. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium
       
 
-Tire, 也即是 Prefix Tree. 
+Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startWith
 
-HashMap构建Trie。 Trie三个Method:　   
-1. Inset: 加 word   
-2. Search: 找word    
-3. StartWith: 找prefix    
+#### Trie
+- HashMap构建Trie. Trie三个Method:
+- 1. Inset: 加 word   
+- 2. Search: 找word    
+- 3. StartWith: 找prefix    
 
-只有两条children的是binary tree. 那么多个children就是Trie。 那么没有left/right pointer怎么找孩子？   
-用HashMap，以child的label为Key，value就是child node。 HashMap走位   
+##### 特点
+- 只有两条children的是binary tree. 那么多个children就是Trie
+- 那么没有left/right pointer怎么找孩子？   
+- 用HashMap，以child的label为Key，value就是child node。 HashMap走位   
 
-Note:    
-node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
-另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+##### 其他
+- node里的char在这是optional. 只要在每个TrieNode里面用map存储向下分布的children就好了.  
+- 另外有种题目，比如是跟其他种类的search相关，在结尾要return whole string，就可以在node里存一个up-to-this-point的String。
+
+##### Previous Note
+- 如果是遇到一个一个字查询的题，可以考虑一下。
+- 构建TrieNode的时候要注意：如何找孩子？如果是个map的话，其实就挺好走位的。
+- 而且，每个node里面的 char 或者string有时候用处不大，
+- 可以为空。但是有些题目，比如在结尾要return一些什么String，就可以在end string那边存一个真的String。
 
 
 
@@ -165,6 +174,34 @@ TODO
 - 写起来跟Edit Distance 的主要逻辑是一模一样的.
 - 但是LintCode 86% test case 时候timeout. 
 - Time O(mnh), where h = words.length, 如果 n ~ m, Time 就几乎是 O(n^2), 太慢.
+
+
+
+---
+
+**7. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy
+      
+
+#### Sort, HashSet
+- 先排序, 排序以后才能逐个看是否partial string已经存在
+- 用 set.contains(substring(0, n - 1)) 来查看上一步的 substring 是否存在
+- 如果找到, 因为已经按照字母表排序, 找到的这个肯定是这个长度里面最符合的解答.
+- 然后brutally找下一个更大的.
+- Sort O(n log n), O(n) set space
+
+#### Trie
+- 可以先sort words Array: 1. 长 string 排在前; 2. 相等length, 按照dictionary order 排序
+- 全部放入Trie. Trie.insert()
+- 针对sorted words array, 从最长的开始找 Trie.startWith.
+- 一旦找到, 就是符合题意的, 直接return.
+- 注意: startWith 必须每一个node都是 isEnd, 才满足'逐个字母拼出' 的条件.
+- Time: build Trie O(mn) + sort:O(nlogn) => O(nlogn)
+- Space: O(mn)
+
+#### 
+- 按大小排序 -> 从最大的开始做contains()的比较 -> 结果再按照字母表顺序(lexicographically) sort一下.
+- 但是Collections.sort()了两次, 而且再list.contains(), 比较慢
+
 
 
 

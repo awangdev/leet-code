@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (21)
+## Two Pointers (23)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -374,6 +374,51 @@ Time: O(nLogN)
 - 可以用 ASCII code 来手动过滤, 只要 '0' ~ '9', 'a' ~ 'z', 'A' - 'Z' 之间的
 - 也可以用 regular expression: match 所有这些字母, 是 [a-zA-Z0-9]
 - 那凡是不是这些字母的 match, 就是取反: "[^a-zA-Z0-9]". 测试: https://regex101.com/
+
+
+
+---
+
+**21. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy
+      
+
+给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
+
+return unique item 的长度.
+
+#### Two Pointers
+- sorted array, 重复元素都在一起
+- Two pointers 其实也可以是一个 for loop pointer, 另一个 dynamic variable.
+- track unique index
+- skip duplicated items
+- O(n)
+
+#### 思考模式:
+- Remove Duplicate from Array 不同于remove from linked list.
+- LinkedList里面我们是最好不要动node.val的，直接把node去掉。
+- 而array我们很难直接把node去掉，又不能用新array，那么就要：
+- 把不重复的element一个个放到最前面。
+- 这个思想跟merge two sorted array （其中一个后续非常长的array可以放下arr1,arr2） 类似。
+- 就是找个不会事后mess up，不会去动得index,把满足条件的element 填进去。这样保证了in place.
+- *反向思维*：remove duplicate, 实际上也是找unique elements, and insert into original array
+
+
+
+---
+
+**22. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium
+      
+
+给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
+
+最多可重复出元素的数量不超过2个. return unique item 的长度.
+
+#### Two Pointers
+- sorted array, 重复元素都在一起
+- 跟 `Remove Duplicates from Sorted Array` 几乎一模一样, 只不过unique index现在可以 validate 2 位
+- 其余一模一样, use index to track unique item; skip if duplicated for more than 2 times
+- O(n) time, O(1) space
+- 这里也可以真的用2个pointers 写while loop, 但是没有必要, 只是单纯地走一个for loop其实就足够.
 
 
 

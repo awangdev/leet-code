@@ -1,7 +1,7 @@
  
  
  
-## Sort (9)
+## Sort (11)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium
       
 
@@ -169,6 +169,36 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 - Sort intervals: O(nlogn)
 - 找到结尾 interval, 满足条件就可以save
 - 如果不到return的条件, 就继续延伸 interval.end
+
+
+
+---
+
+**9. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium
+      
+
+implement quick sort.
+
+#### Quick Sort
+- 首先partition. 返还一个partition的那个中间点的位置: 这个时候, 所有小于nums[partitionIndex] 都应该在 partitionIndex左边
+- 然后劈开两半
+- 前后各自 quick sort, recursively
+- 注意：在partition里面, 比较的时候nums[start] < pivot, nums[end]>pivot, 如果写成了 <= 会 stack overflow.
+- Time O(nlogn), Space: O(1)
+
+
+
+---
+
+**10. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium
+      
+
+#### Merge Sort
+- Divide and conquer, recursively
+- 先从中间分段, merge sort 左边 (dfs), merge sort 右边
+- 最后merge起来
+- merge的时候因为是做int[], 所以没办法必须要O(n) space
+- Time O(nlogn), Space O(n)
 
 
 

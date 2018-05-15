@@ -1,6 +1,6 @@
 H
 1526021243
-tags: Design, Linked List
+tags: Design, Linked List, Hash Table
 
 #### Double Linked List
 - 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
