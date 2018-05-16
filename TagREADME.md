@@ -11,17 +11,17 @@ Table of Contents
 * [DFS (41)](#dfs-41)
 * [Design (11)](#design-11)
 * [Game Theory (4)](#game-theory-4)
-* [Hash Table (24)](#hash-table-24)
+* [Hash Table (26)](#hash-table-26)
 * [Backtracking (13)](#backtracking-13)
 * [Tree (30)](#tree-30)
-* [Sort (9)](#sort-9)
-* [Trie (7)](#trie-7)
+* [Sort (11)](#sort-11)
+* [Trie (8)](#trie-8)
 * [BST (17)](#bst-17)
 * [Permutation (1)](#permutation-1)
 * [Partition DP (5)](#partition-dp-5)
 * [Interval DP (4)](#interval-dp-4)
 * [Heap (6)](#heap-6)
-* [Linked List (17)](#linked-list-17)
+* [Linked List (19)](#linked-list-19)
 * [Stack (19)](#stack-19)
 * [Binary Indexed Tree (1)](#binary-indexed-tree-1)
 * [Graph (5)](#graph-5)
@@ -32,7 +32,7 @@ Table of Contents
 * [Sequence DP (14)](#sequence-dp-14)
 * [Bitwise DP (1)](#bitwise-dp-1)
 * [MiniMax (1)](#minimax-1)
-* [Two Pointers (21)](#two-pointers-21)
+* [Two Pointers (23)](#two-pointers-23)
 * [Basic Implementation (2)](#basic-implementation-2)
 * [Backpack DP (5)](#backpack-dp-5)
 * [Bit Manipulation (10)](#bit-manipulation-10)
@@ -48,7 +48,7 @@ Table of Contents
 * [Binary Tree (6)](#binary-tree-6)
 * [Expression Tree (4)](#expression-tree-4)
 * [Binary Search (25)](#binary-search-25)
-* [Array (55)](#array-55)
+* [Array (57)](#array-57)
 * [Memoization (10)](#memoization-10)
 * [Two Stacks (1)](#two-stacks-1)
 * [backtracking (1)](#backtracking-1)
@@ -208,7 +208,7 @@ Table of Contents
  
  
  
-## BFS (14)
+## BFS (16)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math, Partition DP]||
@@ -225,6 +225,8 @@ Table of Contents
 |11|[Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
 |12|[Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
 |13|[Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
+|14|[Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)|Medium|Java|[BFS, DFS, Tree]||
+|15|[Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)|Medium|Java|[BFS, Tree]||
 
 
 
@@ -241,7 +243,7 @@ Table of Contents
  
  
  
-## DFS (41)
+## DFS (42)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
@@ -285,6 +287,7 @@ Table of Contents
 |38|[Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)|Easy|Java|[DFS, Tree]||
 |39|[Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
 |40|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
+|41|[Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)|Medium|Java|[BFS, DFS, Tree]||
 
 
 
@@ -381,39 +384,43 @@ Table of Contents
  
  
  
-## Tree (30)
+## Tree (34)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
-|1|[Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DP, Tree]||
-|2|[Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)|Easy|Java|[BST, Tree]||
-|3|[Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)|Medium|Java|[BST, Design, Stack, Tree]||
-|4|[Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)|Easy|Java|[DFS, Tree]||
-|5|[Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)|Easy|Java|[DFS, Tree]||
-|6|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Review|Java|[DFS, Tree]||
-|7|[Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)|Medium|Java|[Array, DFS, Tree]||
-|8|[Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)|Easy|Java|[DFS, Tree]||
-|9|[Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
-|10|[Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)|Medium|Java|[DFS, Tree]||
-|11|[Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
-|12|[Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)|Medium|Java|[Stack, Tree]||
-|13|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java|[Hash Table, Stack, Tree]||
-|14|[Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)|Easy|Java|[DFS, Tree]||
-|15|[Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)|Medium|Java|[Stack, Tree, Two Stacks]||
-|16|[Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)|Easy|Java|[BST, Binary Search, Tree]||
-|17|[Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)|Medium|Java|[Binary Search, Tree]||
-|18|[Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)|Easy|Java|[BFS, DFS, Stack, Tree]||
-|19|[Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
-|20|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
-|21|[Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
-|22|[Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
-|23|[Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
-|24|[Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
-|25|[Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)|Easy|Java|[DFS, Tree]||
-|26|[Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)|Easy|Java|[DFS, Tree]||
-|27|[Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
-|28|[Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)|Easy|Java|[Hash Table, Tree]||
-|29|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
+|0|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java|[Tree, dfs]||
+|1|[Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
+|2|[Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DP, Tree]||
+|3|[Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)|Easy|Java|[BST, Tree]||
+|4|[Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)|Medium|Java|[BST, Design, Stack, Tree]||
+|5|[Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)|Easy|Java|[DFS, Tree]||
+|6|[Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)|Easy|Java|[DFS, Tree]||
+|7|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Review|Java|[DFS, Tree]||
+|8|[Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)|Medium|Java|[Array, DFS, Tree]||
+|9|[Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)|Easy|Java|[DFS, Tree]||
+|10|[Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
+|11|[Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)|Medium|Java|[DFS, Tree]||
+|12|[Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
+|13|[Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)|Medium|Java|[Stack, Tree]||
+|14|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java|[Hash Table, Stack, Tree]||
+|15|[Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)|Easy|Java|[DFS, Tree]||
+|16|[Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)|Medium|Java|[Stack, Tree, Two Stacks]||
+|17|[Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)|Easy|Java|[BST, Binary Search, Tree]||
+|18|[Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)|Medium|Java|[Binary Search, Tree]||
+|19|[Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)|Easy|Java|[BFS, DFS, Stack, Tree]||
+|20|[Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
+|21|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
+|22|[Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
+|23|[Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
+|24|[Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
+|25|[Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)|Easy|Java|[BFS, DFS, Tree]||
+|26|[Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)|Easy|Java|[DFS, Tree]||
+|27|[Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)|Easy|Java|[DFS, Tree]||
+|28|[Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
+|29|[Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)|Easy|Java|[Hash Table, Tree]||
+|30|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
+|31|[Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)|Medium|Java|[BFS, DFS, Tree]||
+|32|[Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)|Medium|Java|[BFS, Tree]||
+|33|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[Tree]||
 
 
 
@@ -585,6 +592,16 @@ Table of Contents
 |16|[Evaluate Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Reverse%20Polish%20Notation.java)|Medium|Java|[Stack]||
 |17|[Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)|Easy|Java|[Design, Stack]||
 |18|[Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)|Easy|Java|[Stack]||
+
+
+
+ 
+ 
+ 
+## dfs (1)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java|[Tree, dfs]||
 
 
 
@@ -860,10 +877,11 @@ Table of Contents
  
  
  
-## Hash Map (1)
+## Hash Map (2)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)|Easy|Java|[Hash Map, String]||
+|1|[Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)|Medium|Java|[Array, Hash Map]||
 
 
 
@@ -963,7 +981,7 @@ Table of Contents
  
  
  
-## Array (57)
+## Array (58)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)|Easy|Java|[Array, Math]||
@@ -1023,6 +1041,7 @@ Table of Contents
 |54|[Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)|Easy|Java|[Array, Bit Manipulation, Math]||
 |55|[Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
 |56|[Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)|Medium|Java|[Array, Two Pointers]||
+|57|[Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)|Medium|Java|[Array, Hash Map]||
 
 
 

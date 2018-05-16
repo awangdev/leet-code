@@ -1,12 +1,17 @@
 M
+1526453393
+tags: Tree, BFS, DFS
 
-方法1. 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
-   或者用两个queue. 当常规queue empty，把backup queue贴上去。
+如题.
 
-方法2. Recursive with dfs:   
-   每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
-   如果没有，就加上一层。    
-   之后每次都通过DFS在相应的level上面加数字。
+#### BFS
+- 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
+- 或者用两个queue. 当常规queue empty，把backup queue贴上去
+
+#### DFS
+- 每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
+- 如果没有，就加上一层。    
+- 之后每次都通过DFS在相应的level上面加数字。
 
 
 ```
@@ -51,7 +56,31 @@ Queue Binary Tree Breadth First Search Binary Tree Traversal Uber LinkedIn Faceb
  *     }
  * }
  */
-  
+
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> rst = new ArrayList<>();
+	    if (root == null) {
+            return rst;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>();
+            while (size > 0) {
+                size--;
+                TreeNode node = queue.poll();
+                list.add(node.val);
+                if(node.left != null) queue.offer(node.left);
+                if(node.right != null) queue.offer(node.right);
+            }
+            rst.add(list);
+        }
+	    return rst;
+    }
+}
+
 /*
 Thoughts:
 1. Non-recursive

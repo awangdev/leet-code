@@ -528,6 +528,7 @@ class Node {
 - Arrays.asList([1,2,3]);
 - Partial sort: Arrays.sort(arr, 0, arr.length())
 - Copy: Arrays.copyOf(arr, arr.length())
+- Arrays.toString(int[] arr) => string representation: "[1,2,3,4]"
 
 # Two Pointers
 

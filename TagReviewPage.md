@@ -2378,7 +2378,7 @@ TODO
  
  
  
-## BFS (14)
+## BFS (16)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -2711,6 +2711,42 @@ DFS, BFS都好理解,
 
 ---
 
+**14. [Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)**      Level: Medium
+      
+
+如题.
+
+#### BFS
+- 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
+- 或者用两个queue. 当常规queue empty，把backup queue贴上去
+
+#### DFS
+- 每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
+- 如果没有，就加上一层。    
+- 之后每次都通过DFS在相应的level上面加数字。
+
+
+
+
+---
+
+**15. [Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)**      Level: Medium
+      
+
+如题, 但是output要倒序.
+
+#### BFS
+- 跟Binary Tree Level Order Traversal一样,只不过存result一直存在存在0位.
+
+
+#### DFS
+- 根据level来append每个list
+- rst里面add(0,...)每次都add在list开头
+
+
+
+---
+
 
 
 
@@ -2751,7 +2787,7 @@ HashHeap?
  
  
  
-## DFS (41)
+## DFS (42)
 **0. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
       
 1525670127
@@ -3567,6 +3603,25 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
 - 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
 - 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
+
+
+
+---
+
+**41. [Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)**      Level: Medium
+      
+
+如题.
+
+#### BFS
+- 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
+- 或者用两个queue. 当常规queue empty，把backup queue贴上去
+
+#### DFS
+- 每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
+- 如果没有，就加上一层。    
+- 之后每次都通过DFS在相应的level上面加数字。
+
 
 
 
@@ -4721,8 +4776,24 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
  
  
  
-## Tree (30)
-**0. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
+## Tree (34)
+**0. [Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)**      Level: Medium
+      
+
+找到binary tree 里的最长 consecutive sequence.
+
+#### DFS
+- Divide and Conquer. dfs
+- 分开 看左边/右边
+- 如果左边满足连续递增的规则, dfs (depth + 1), 如果不满足规则, dfs(depth = 1)
+- 右边也是一样
+- 对结果跟max作比较, return
+
+
+
+---
+
+**1. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
       
 1525670127
 
@@ -4737,7 +4808,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 
 ---
 
-**1. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
+**2. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
 Not quite clear.
@@ -4751,7 +4822,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**2. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
+**3. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
 方法1:
@@ -4766,7 +4837,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**3. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
+**4. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
@@ -4806,7 +4877,7 @@ Previous Notes:
 
 ---
 
-**4. [Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)**      Level: Easy
+**5. [Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)**      Level: Easy
       
 
 给两个 binary tree, 看两个tree是否identical.
@@ -4823,7 +4894,7 @@ Previous Notes:
 
 ---
 
-**5. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy
+**6. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
 Binary Search Tree特点: 左边的node都比右边的node小. 
@@ -4833,7 +4904,7 @@ Binary Search Tree特点: 左边的node都比右边的node小.
 
 ---
 
-**6. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Review
+**7. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Review
       
 
 LeetCode: H
@@ -4864,7 +4935,7 @@ combo的三种情况：(root可能小于0)
 
 ---
 
-**7. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
+**8. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
       
 
 和Construct from Inorder && Postorder 想法一样。
@@ -4875,7 +4946,7 @@ combo的三种情况：(root可能小于0)
 
 ---
 
-**8. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy
+**9. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy
       
 
 确定好结尾的条件, DFS
@@ -4887,7 +4958,7 @@ combo的三种情况：(root可能小于0)
 
 ---
 
-**9. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
+**10. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
       
 
 1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
@@ -4901,7 +4972,7 @@ combo的三种情况：(root可能小于0)
 
 ---
 
-**10. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
+**11. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
       
 
 方法1：   
@@ -4920,7 +4991,7 @@ process每层queue时, 注意把next pointer加上去就好.
 
 ---
 
-**11. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
+**12. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
 查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
@@ -4932,7 +5003,7 @@ Note: min/max需要时long type.
 
 ---
 
-**12. [Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)**      Level: Medium
+**13. [Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)**      Level: Medium
       
 
 给一串数字, 做一个 maximum binary tree: 最顶上的root最大; 左child也是一个max tree, 右child也必须是max tree.
@@ -4968,7 +5039,7 @@ Note: min/max需要时long type.
 
 ---
 
-**13. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
+**14. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
       
 
 Inorder traverse Binary Tree
@@ -4996,7 +5067,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 ---
 
-**14. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
+**15. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
       
 
 Binary Tree的一个基本题: 找到所有满足条件的path
@@ -5008,7 +5079,7 @@ Binary Tree的一个基本题: 找到所有满足条件的path
 
 ---
 
-**15. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
+**16. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
       
 
 如题, POST-ORDER traversal.
@@ -5037,7 +5108,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 ---
 
-**16. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
+**17. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
       
 
 给一个BST, 和一个double target, 走位找到最接近的number.
@@ -5056,7 +5127,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 ---
 
-**17. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
+**18. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
       
 
 Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
@@ -5078,7 +5149,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**18. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+**19. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
       
 
 #### Recursive
@@ -5094,7 +5165,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**19. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+**20. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 
 #### BFS
@@ -5113,7 +5184,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**20. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
+**21. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -5146,7 +5217,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**21. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
+**22. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
       
 
 #### DFS
@@ -5162,7 +5233,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**22. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+**23. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
       
 
 给一个binary tree, 找最深depth
@@ -5177,7 +5248,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**23. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+**24. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
       
 
 #### DFS
@@ -5193,7 +5264,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**24. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy
+**25. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy
       
 
 检查tree是否symmetric
@@ -5213,7 +5284,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**25. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy
+**26. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy
       
 
 #### DFS
@@ -5223,7 +5294,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**26. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy
+**27. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy
       
 
 给一个binary tree s, 和一个binary tree t, 检查t是不是s的subtree.
@@ -5239,7 +5310,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**27. [Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)**      Level: Medium
+**28. [Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)**      Level: Medium
       
 
 给一个Binary Tree root, 以及两个node p, q. 找 p 和 q 的 lowest common ancestor
@@ -5257,7 +5328,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**28. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy
+**29. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy
       
 
 给一个Binary Tree root, 以及两个node A, B. 特点: node里面存了parent pointer. 找 lowest common ancestor
@@ -5279,7 +5350,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**29. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+**30. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
@@ -5295,6 +5366,55 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
 - 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
 - 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
+
+
+
+---
+
+**31. [Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)**      Level: Medium
+      
+
+如题.
+
+#### BFS
+- 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
+- 或者用两个queue. 当常规queue empty，把backup queue贴上去
+
+#### DFS
+- 每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
+- 如果没有，就加上一层。    
+- 之后每次都通过DFS在相应的level上面加数字。
+
+
+
+
+---
+
+**32. [Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)**      Level: Medium
+      
+
+如题, 但是output要倒序.
+
+#### BFS
+- 跟Binary Tree Level Order Traversal一样,只不过存result一直存在存在0位.
+
+
+#### DFS
+- 根据level来append每个list
+- rst里面add(0,...)每次都add在list开头
+
+
+
+---
+
+**33. [Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)**      Level: Medium
+      
+
+TODO:
+- maybe use a object to catch? like in: https://www.jianshu.com/p/571b93217ee3
+- my way is similar, should find out why not working.
+- simple code: http://www.cnblogs.com/grandyang/p/6864398.html
+
 
 
 
@@ -7231,6 +7351,29 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 #### Stack, 先入, 后出
 - ArrayList: return/remove ArrayList的末尾项。
 - 2 Queues
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
+## dfs (1)
+**0. [Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)**      Level: Medium
+      
+
+找到binary tree 里的最长 consecutive sequence.
+
+#### DFS
+- Divide and Conquer. dfs
+- 分开 看左边/右边
+- 如果左边满足连续递增的规则, dfs (depth + 1), 如果不满足规则, dfs(depth = 1)
+- 右边也是一样
+- 对结果跟max作比较, return
 
 
 
@@ -9588,7 +9731,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
  
  
  
-## Hash Map (1)
+## Hash Map (2)
 **0. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy
       
 
@@ -9597,6 +9740,40 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 #### HashMap
 - <Integer,List<String>>
 - 存最长值, 最后map.get(max) 
+
+
+
+---
+
+**1. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium
+      
+
+把anagram找到并output
+
+#### HashMap
+- 存在int[26], Arrays.toString(arr) 就是 string key
+- anagram都有一样的key, 存进hashmap<string, list of anagrams>
+- output anagrams
+
+#### HashMap + Sort
+- HashMap 的做法. sort每个string, 存进HashMap, 重复的就是anagrams,最后输出。   
+- toCharArray
+- Arrays.sort
+- Stirng.valueOf(char[])
+- 时间n*L*O(logL),L是最长string的长度。
+
+#### Previous Notes
+- Arrays.toString(arr)的做法。arr是int[26], assuming only have 26 lowercase letters.    
+- Count occurrance, 然后convert to String，作为map的key.
+- Time complexity: nO(L)
+- 另一种做法：http://www.jiuzhang.com/solutions/anagrams/   
+- 1. take each string, count the occurrance of the 26 letters. save in int[]count.   
+- 2. hash the int[] count and output a unique hash value; hash = hash * a + num; a = a * b.   
+- 3. save to hashmap in the same way as we do. 
+- 这一步把for s: strs 里面的时间复杂度降到了O(L). L = s.length().   
+- Need to work on the getHash() function.
+- 时间变成n*O(L). Better.
+
 
 
 
@@ -10555,7 +10732,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
  
  
  
-## Array (57)
+## Array (58)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy
       
 
@@ -11708,6 +11885,40 @@ return unique item 的长度.
 - 其余一模一样, use index to track unique item; skip if duplicated for more than 2 times
 - O(n) time, O(1) space
 - 这里也可以真的用2个pointers 写while loop, 但是没有必要, 只是单纯地走一个for loop其实就足够.
+
+
+
+---
+
+**57. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium
+      
+
+把anagram找到并output
+
+#### HashMap
+- 存在int[26], Arrays.toString(arr) 就是 string key
+- anagram都有一样的key, 存进hashmap<string, list of anagrams>
+- output anagrams
+
+#### HashMap + Sort
+- HashMap 的做法. sort每个string, 存进HashMap, 重复的就是anagrams,最后输出。   
+- toCharArray
+- Arrays.sort
+- Stirng.valueOf(char[])
+- 时间n*L*O(logL),L是最长string的长度。
+
+#### Previous Notes
+- Arrays.toString(arr)的做法。arr是int[26], assuming only have 26 lowercase letters.    
+- Count occurrance, 然后convert to String，作为map的key.
+- Time complexity: nO(L)
+- 另一种做法：http://www.jiuzhang.com/solutions/anagrams/   
+- 1. take each string, count the occurrance of the 26 letters. save in int[]count.   
+- 2. hash the int[] count and output a unique hash value; hash = hash * a + num; a = a * b.   
+- 3. save to hashmap in the same way as we do. 
+- 这一步把for s: strs 里面的时间复杂度降到了O(L). L = s.length().   
+- Need to work on the getHash() function.
+- 时间变成n*O(L). Better.
+
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## BFS (14)
+## BFS (16)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium
       
 
@@ -329,6 +329,42 @@ DFS, BFS都好理解,
 - stack1: 左手边sub-tree先加left, 再加right child; 
 - stack2: 右手边sub-tree先加right child, 再加left child。   
 - process时，若symmetric，所有stack里面出来的node会一一对应。
+
+
+
+---
+
+**14. [Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)**      Level: Medium
+      
+
+如题.
+
+#### BFS
+- 最普通,Non-recursive: BFS, queue, 用个queue.size()来end for loop:换行。   
+- 或者用两个queue. 当常规queue empty，把backup queue贴上去
+
+#### DFS
+- 每个level都应该有个ArrayList. 那么用一个int level来查看：是否每一层都有了相应的ArrayList。   
+- 如果没有，就加上一层。    
+- 之后每次都通过DFS在相应的level上面加数字。
+
+
+
+
+---
+
+**15. [Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)**      Level: Medium
+      
+
+如题, 但是output要倒序.
+
+#### BFS
+- 跟Binary Tree Level Order Traversal一样,只不过存result一直存在存在0位.
+
+
+#### DFS
+- 根据level来append每个list
+- rst里面add(0,...)每次都add在list开头
 
 
 
