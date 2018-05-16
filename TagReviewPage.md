@@ -2787,7 +2787,7 @@ HashHeap?
  
  
  
-## DFS (42)
+## DFS (43)
 **0. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
       
 1525670127
@@ -3622,6 +3622,37 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 如果没有，就加上一层。    
 - 之后每次都通过DFS在相应的level上面加数字。
 
+
+
+
+---
+
+**42. [Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)**      Level: Medium
+      
+
+找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
+
+#### DFS
+- Similar to Binary Tree Longest Consecutive Sequence I
+- 只不过可以递增递减, 还有连接上parent的方向.
+- 对于任何一个节点, 都可能: 
+- 1. 自己跟两个child链接, 成为一个sequence
+- 2. 左边孩子, 右边孩子各自是一个consecutive sequence, 但是不跟root相连
+- main function 一开始就divide成这三份, 然后dfs
+- dfs take diff == 1, diff == -1, 来做递增递减的校对.
+- dfs rules:
+- 1. if node == null, leaf depth = 0
+- 2. if not consecutive, reset the depth = 0 (same for both left child, and right child)
+- 3. compare the leftDepth && rightDepth to find the maximum
+- 4. diff is the same in the same dfs loop to maintain consistant increase/decrease
+
+##### 注意
+- dfs的结果很可能是0, 如果没有任何结果, 那么上一层的caller depth = dfs() + 1 = 1
+- 那么回归到root, dfs的结果很可能就是1.
+- 可能会问: 那么在tree里面的partial sequence (不连接到root)的被忽略了?
+- 这里 `longestConsecutive(root.left)` 就很重要了
+- 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
+- 最后, 任何一层的孩子都会被照顾到.
 
 
 
@@ -5410,11 +5441,29 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 **33. [Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)**      Level: Medium
       
 
-TODO:
-- maybe use a object to catch? like in: https://www.jianshu.com/p/571b93217ee3
-- my way is similar, should find out why not working.
-- simple code: http://www.cnblogs.com/grandyang/p/6864398.html
+找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
 
+#### DFS
+- Similar to Binary Tree Longest Consecutive Sequence I
+- 只不过可以递增递减, 还有连接上parent的方向.
+- 对于任何一个节点, 都可能: 
+- 1. 自己跟两个child链接, 成为一个sequence
+- 2. 左边孩子, 右边孩子各自是一个consecutive sequence, 但是不跟root相连
+- main function 一开始就divide成这三份, 然后dfs
+- dfs take diff == 1, diff == -1, 来做递增递减的校对.
+- dfs rules:
+- 1. if node == null, leaf depth = 0
+- 2. if not consecutive, reset the depth = 0 (same for both left child, and right child)
+- 3. compare the leftDepth && rightDepth to find the maximum
+- 4. diff is the same in the same dfs loop to maintain consistant increase/decrease
+
+##### 注意
+- dfs的结果很可能是0, 如果没有任何结果, 那么上一层的caller depth = dfs() + 1 = 1
+- 那么回归到root, dfs的结果很可能就是1.
+- 可能会问: 那么在tree里面的partial sequence (不连接到root)的被忽略了?
+- 这里 `longestConsecutive(root.left)` 就很重要了
+- 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
+- 最后, 任何一层的孩子都会被照顾到.
 
 
 
@@ -9150,7 +9199,7 @@ count 一个 32-bit number binary format 里面有多少1
  
  
  
-## Divide and Conquer (6)
+## Divide and Conquer (7)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy
       
 
@@ -9322,6 +9371,37 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 ##### 方法2(better)
 - 想着用一用prefix sum. 把值一个个叠加。
 - 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
+
+
+
+---
+
+**6. [Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)**      Level: Medium
+      
+
+找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
+
+#### DFS
+- Similar to Binary Tree Longest Consecutive Sequence I
+- 只不过可以递增递减, 还有连接上parent的方向.
+- 对于任何一个节点, 都可能: 
+- 1. 自己跟两个child链接, 成为一个sequence
+- 2. 左边孩子, 右边孩子各自是一个consecutive sequence, 但是不跟root相连
+- main function 一开始就divide成这三份, 然后dfs
+- dfs take diff == 1, diff == -1, 来做递增递减的校对.
+- dfs rules:
+- 1. if node == null, leaf depth = 0
+- 2. if not consecutive, reset the depth = 0 (same for both left child, and right child)
+- 3. compare the leftDepth && rightDepth to find the maximum
+- 4. diff is the same in the same dfs loop to maintain consistant increase/decrease
+
+##### 注意
+- dfs的结果很可能是0, 如果没有任何结果, 那么上一层的caller depth = dfs() + 1 = 1
+- 那么回归到root, dfs的结果很可能就是1.
+- 可能会问: 那么在tree里面的partial sequence (不连接到root)的被忽略了?
+- 这里 `longestConsecutive(root.left)` 就很重要了
+- 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
+- 最后, 任何一层的孩子都会被照顾到.
 
 
 

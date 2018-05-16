@@ -6,14 +6,14 @@ Table of Contents
 * [Math (19)](#math-19)
 * [DP (62)](#dp-62)
 * [Double Sequence DP (4)](#double-sequence-dp-4)
-* [BFS (14)](#bfs-14)
+* [BFS (16)](#bfs-16)
 * [Segment Tree (1)](#segment-tree-1)
-* [DFS (41)](#dfs-41)
+* [DFS (42)](#dfs-42)
 * [Design (11)](#design-11)
 * [Game Theory (4)](#game-theory-4)
 * [Hash Table (26)](#hash-table-26)
 * [Backtracking (13)](#backtracking-13)
-* [Tree (30)](#tree-30)
+* [Tree (34)](#tree-34)
 * [Sort (11)](#sort-11)
 * [Trie (8)](#trie-8)
 * [BST (17)](#bst-17)
@@ -23,6 +23,7 @@ Table of Contents
 * [Heap (6)](#heap-6)
 * [Linked List (19)](#linked-list-19)
 * [Stack (19)](#stack-19)
+* [dfs (1)](#dfs-1)
 * [Binary Indexed Tree (1)](#binary-indexed-tree-1)
 * [Graph (5)](#graph-5)
 * [Brainteaser (1)](#brainteaser-1)
@@ -42,13 +43,13 @@ Table of Contents
 * [Topological Sort (4)](#topological-sort-4)
 * [Quick Sort (1)](#quick-sort-1)
 * [Greedy (9)](#greedy-9)
-* [Hash Map (1)](#hash-map-1)
+* [Hash Map (2)](#hash-map-2)
 * [Coordinate DP (12)](#coordinate-dp-12)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [Binary Tree (6)](#binary-tree-6)
 * [Expression Tree (4)](#expression-tree-4)
 * [Binary Search (25)](#binary-search-25)
-* [Array (57)](#array-57)
+* [Array (58)](#array-58)
 * [Memoization (10)](#memoization-10)
 * [Two Stacks (1)](#two-stacks-1)
 * [backtracking (1)](#backtracking-1)
@@ -243,7 +244,7 @@ Table of Contents
  
  
  
-## DFS (42)
+## DFS (43)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
@@ -288,6 +289,7 @@ Table of Contents
 |39|[Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
 |40|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
 |41|[Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)|Medium|Java|[BFS, DFS, Tree]||
+|42|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
 
 
 
@@ -420,7 +422,7 @@ Table of Contents
 |30|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
 |31|[Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)|Medium|Java|[BFS, DFS, Tree]||
 |32|[Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)|Medium|Java|[BFS, Tree]||
-|33|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[Tree]||
+|33|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
 
 
 
@@ -811,7 +813,7 @@ Table of Contents
  
  
  
-## Divide and Conquer (6)
+## Divide and Conquer (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)|Easy|Java|[Array, Bit Manipulation, Divide and Conquer]||
@@ -820,6 +822,7 @@ Table of Contents
 |3|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
 |4|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
 |5|[Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)|Easy|Java|[Array, DP, Divide and Conquer, Sequence DP]||
+|6|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
 
 
 
