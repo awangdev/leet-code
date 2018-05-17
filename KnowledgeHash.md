@@ -12,6 +12,7 @@ Table of Contents
       * [Functions](#functions-1)
       * [思想](#思想)
    * [Linked List](#linked-list)
+      * [操作](#操作)
    * [Tree](#tree)
    * [Binary Search Tree](#binary-search-tree)
       * [TreeSet](#treeset)
@@ -36,6 +37,18 @@ Table of Contents
       * [考点](#考点)
    * [Binary Indexed Tree](#binary-indexed-tree)
    * [Segment Tree](#segment-tree)
+   * [Red Black Tree](#red-black-tree)
+      * [基本知识](#基本知识)
+      * [特点](#特点)
+      * [引申特点](#引申特点)
+      * [用途](#用途)
+   * [B-Tree](#b-tree)
+      * [基本知识](#基本知识-1)
+   * [AVL Tree](#avl-tree)
+      * [基本知识](#基本知识-2)
+         * [更多细节特点](#更多细节特点)
+      * [用途](#用途-1)
+      * [优点](#优点)
    * [Graph](#graph)
       * [Adjacency List](#adjacency-list)
          * [Example](#example-1)
@@ -57,7 +70,12 @@ Table of Contents
       * [Basics](#basics)
       * [二分思想](#二分思想)
    * [Sort](#sort)
-      * [Quick Sort](#quick-sort)
+      * [常用](#常用)
+         * [Merge Sort](#merge-sort)
+         * [Heap Sort](#heap-sort)
+         * [Quick Sort](#quick-sort)
+            * [Quick Select](#quick-select)
+      * [Comparator for Arrays, Collections](#comparator-for-arrays-collections)
    * [Collections](#collections)
       * [methods](#methods)
       * [ArrayList](#arraylist)
@@ -70,8 +88,13 @@ Table of Contents
       * [Sum, Presum](#sum-presum)
       * [Math](#math)
          * [Math Functions](#math-functions)
-      * [Numbers](#numbers)
+         * [Numbers](#numbers)
+         * [Probability theory](#probability-theory)
+         * [Combinatorics](#combinatorics)
       * [String](#string)
+         * [Functions](#functions-2)
+         * [StringBuffer](#stringbuffer)
+         * [其他](#其他)
       * [Bit Manipulation](#bit-manipulation)
    * [DP](#dp)
       * [判断](#判断)
@@ -86,9 +109,9 @@ Table of Contents
          * [网格坐标](#网格坐标)
             * [特殊](#特殊)
          * [序列](#序列)
-            * [特点](#特点)
-            * [性质](#性质)
             * [特点](#特点-1)
+            * [性质](#性质)
+            * [特点](#特点-2)
             * [关键点](#关键点)
             * [序列 状态](#序列状态)
          * [划分](#划分)
@@ -101,7 +124,7 @@ Table of Contents
             * [方法策略](#方法策略)
             * [放入的物品没有顺序](#放入的物品没有顺序)
          * [区间类(Interval DP)](#区间类interval-dp)
-            * [特点](#特点-2)
+            * [特点](#特点-3)
             * [三把斧](#三把斧)
             * [难点](#难点)
          * [Bitwise Operation DP](#bitwise-operation-dp)
@@ -112,16 +135,24 @@ Table of Contents
       * [存状态](#存状态)
    * [记忆化搜索 Memoization DP](#记忆化搜索-memoization-dp)
       * [什么时候用记忆化搜索](#什么时候用记忆化搜索)
-      * [特点](#特点-3)
+      * [特点](#特点-4)
       * [缺点](#缺点)
+      * [时间空间复杂度的节省](#时间空间复杂度的节省)
    * [Search](#search)
       * [Breadth-first Search](#breadth-first-search)
       * [Depth-first Search](#depth-first-search)
+         * [void dfs](#void-dfs)
+         * [object dfs](#object-dfs)
+            * [Regular Premitives](#regular-premitives)
+            * [Customized Object](#customized-object)
+         * [Tree DFS](#tree-dfs)
    * [Backtracking](#backtracking)
    * [Reservoir Sampling](#reservoir-sampling)
    * [Geometry](#geometry)
    * [Brainteaser](#brainteaser)
-   * [Red Black Tree](#red-black-tree)
+   * [Operating system](#operating-system)
+   * [Threads](#threads)
+      * [Two approaches](#two-approaches)
    * [Approach](#approach)
       * [Greedy](#greedy)
       * [Divide and Conquer](#divide-and-conquer)
@@ -142,6 +173,7 @@ Table of Contents
       * [Windows Problem](#windows-problem)
       * [Sweep Line](#sweep-line)
    * [Pain Point](#pain-point)
+      * [NP-Complete problems](#np-complete-problems)
       * [Basics](#basics-2)
       * [Edge case](#edge-case)
       * [Advanced](#advanced)
@@ -685,7 +717,8 @@ public int compare(x, y) {
 ### StringBuffer
 - sb = new StringBuffer()
 - sb.replace(i, j, "replacement string")
-- sb.reverse(), sb.append(), sb.deleteCharAt(), sb.length(), sb.setCharAt(index, char)
+- sb.reverse(), sb.append(), sb.length(), sb.setCharAt(index, char)
+- sb.deleteCharAt(),
 - sb.insert(0, xxx): 在开头加element
 
 ### 其他
@@ -947,6 +980,42 @@ Track queue size, use the queue as in rotation
 ## Depth-first Search
 - backtracking: do not repeatly visit a node
 - DFS traverse O(n)
+- 注意结束condition
+
+### void dfs
+- Pass around result object, and build into it
+- `result` 是一个object (usually list)
+- 每个dfs里面, 都会填充这个result object.
+
+### object dfs
+
+#### Regular Premitives
+- usually object = int, string
+- 每次dfs都会 build on 这个return value
+
+#### Customized Object
+- 有时候单个value不足以track dfs的情况
+- 比如Binary Tree Maximum Path Sum: 要track single path, 又要track combinded path
+- 这样就把每一个node的结果status, 存在一个 customized object 里面, pass around
+- 这样做, 其实跟return一个premitive type并无不同, 但是能存更多information.
+```
+private class PathSum {
+    int singlePathMax;
+    int combinedPathMax;
+    PathSum(int singlePathMax, int combinedPathMax) {
+        this.singlePathMax = singlePathMax;
+        this.combinedPathMax = combinedPathMax;
+    }
+}
+```
+
+### Tree DFS
+- 有时候要考虑: 包括root, 不包括root. 有个technique: 
+- 1. 写一个helper function dfs(always deal with root, never skip)
+- 2. 在main function 自己身上recursive: call dfs(..), mainFunc(skip root)
+- ex: `Path Sum III`, `Binary Tree Longest Consecutive Sequence II`
+
+
 
 # Backtracking
 - Finding all (or some) solutions to some computational problems, notebaly constraint satisfaction problems
@@ -1061,6 +1130,7 @@ Track queue size, use the queue as in rotation
 - Algorithm: How do we solve the problem.
 - communication: think, and communicate ideas
 - : colon | ; semicolon | ! exclamation mark | { curly bracket } | [ square bracket] | ( parentheses )
+- 写思路, 写skeleton guide (even on the side), 然后再开始coding
 
 ## Edge case
 - consider edge case

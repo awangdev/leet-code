@@ -1,7 +1,7 @@
  
  
  
-## Medium (190)
+## Medium (191)
 **0. [Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)**      Level: Medium
       
 
@@ -3282,6 +3282,29 @@ implement quick sort.
 - 这里 `longestConsecutive(root.left)` 就很重要了
 - 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
 - 最后, 任何一层的孩子都会被照顾到.
+
+
+
+---
+
+**190. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium
+      
+
+给一串3-digit 的数组. 每个数字的表达一个TreeNode, 3 digit分别代表: depth.position.value
+
+这串数字已经从小到大排列. 求: 所有可能的 root->leaf path 的所有可能的 path sum 总和. 
+
+#### DFS, Hash Map
+- 因为前两个digit可以locate一个node, 所以可以把前两个digit作为key, 定位node.
+- 特点: 比如考虑root, 有 n 个leaf, 就会加 n 遍root, 因为有 n 个 unique path嘛.
+- 对于每一个node也是一样: 只要有child, 到这个node位置的以上path sum 就要被重加一次.
+- format: depth.position.value. (on same level, position may not be continuous)
+- approach: map each number into: <depth.position, value>, and dfs. 
+- Start from dfs(map, rootKey, sum):
+- 1. add node value to sum
+- 2. compute potential child.
+- 3. check child existence, if exist, add sum to result (for both left/right child). Check existence using the map.
+= 4. also, if child exist, dfs into next level
 
 
 

@@ -1,9 +1,19 @@
 E
-1521648080
-tags: Tree, DFS
+1526525774
+tags: Tree, DFS, Backtracking
 
-Binary Tree的一个基本题: 找到所有满足条件的path
+给一个inputSum, 然后dfs, 找到所有path, 满足: path sum 跟 inputSum 一样.
 
+#### DFS, Backtracking
+- 用remaining sum 来检测是否满足 input path sum 条件
+- 满足的时候add to result list
+- 两种backtracking:
+- 1. backtrack 当下node, 加进list, 然后dfs. dfs结束后删掉之前加进去的元素. 非常clean.
+- 2. backtrack 下一个dfs level增加的value. dfs return 之后, 删掉list里面的末尾元素: 但是删掉的dfs余下的value.
+- 第一种backtrack更加好掌握.
+
+#### Previous Notes:
+- Binary Tree的一个基本题: 找到所有满足条件的path
 - 遍历到底，比较sum vs. target
 - 注意divide的情况。要把遍历的例子写写
 
@@ -27,6 +37,89 @@ return
    [5,8,4,5]
 ]
 */
+
+// Back tracking current node whenever after use
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        dfs(result, new ArrayList<>(), root, sum);
+        return result;
+    }
+    
+    private void dfs(List<List<Integer>> result, List<Integer> list, TreeNode node, int sum) {
+        if (node == null) {
+            return;
+        }
+
+        // check leaf
+        if (node.left == null && node.right == null) {
+            if (node.val == sum) {
+                list.add(node.val);
+                result.add(new ArrayList<>(list)); 
+                list.remove(list.size() - 1);
+            }
+            return;
+        }
+        
+        list.add(node.val);
+
+        if (node.left != null) {
+            dfs(result, list, node.left, sum - node.val);
+        }
+
+        if (node.right != null) {
+            dfs(result, list, node.right, sum - node.val);
+        }
+
+        // backtracking
+        list.remove(list.size() - 1);
+    }
+}
+
+
+// Backtracking the next level, whenever after dfs
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        dfs(result, new ArrayList<>(), root, sum);
+        return result;
+    }
+    
+    private void dfs(List<List<Integer>> result, List<Integer> list, TreeNode node, int sum) {
+        if (node == null) {
+            return;
+        }
+        list.add(node.val);
+        
+        // leaf
+        if (node.left == null && node.right == null) {
+            if (node.val == sum) {
+                result.add(new ArrayList<>(list)); 
+            }
+            return;
+        }
+
+        if (node.left != null) {
+            dfs(result, list, node.left, sum - node.val);
+            list.remove(list.size() - 1);
+        }
+        if (node.right != null) { // 2
+            dfs(result, list, node.right, sum - node.val);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+
+
+
 
 
 

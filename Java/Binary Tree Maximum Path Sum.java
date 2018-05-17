@@ -1,28 +1,30 @@
-R
-1519634117
+H
+1526524522
 tags: Tree, DFS
 
-LeetCode: H
-用 PathSumType 比较特别. 没有 data structure的时候, 写起来比较繁琐.
+找max path sum,  可以从任意treeNode 到任意 treeNode.
 
-第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
-   single path max 的计算是为了给后面的comboMax用的。
-   如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
-
-combo的三种情况：(root可能小于0)   
-   1. 只有left    
-   2。 只有右边   
-   3. root大于0，那么就left,right,curr全部加起来。
-
-情况1和情况2取一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
+#### DFS, PathSum object
 
 
-12.11.2015 recap:   
-   So totally, 5 conditions:   
-   (save in single)    
-        left + curr.val OR right + curr.val   
-   (save in combo:)    
-   left, right, OR left + curr.val + right   
+
+#### Previous Notes
+##### Note1
+- 用 PathSum 比较特别. 没有 data structure的时候, 写起来比较繁琐.
+- 第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
+- single path max 的计算是为了给后面的comboMax用的。
+- 如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
+- combo的三种情况：(root可能小于0)   
+- 1. 只有left    
+- 2. 只有right
+- 3. root大于0，那么就left,right,curr全部加起来。
+- 情况1和情况2取一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
+
+##### Note2
+- 12.11.2015 recap
+- totally 5 conditions:   
+- (save in single): left + curr.val OR right + curr.val   
+- (save in combo):left, right, OR left + curr.val + right   
 
 
 
@@ -58,6 +60,49 @@ Divide and Conquer Dynamic Programming Recursion
  * }
  */
 
+public class Solution {
+    // Class used to carry sum in recursive dfs
+    private class PathSum {
+        int singlePathMax;
+        int combinedPathMax;
+        PathSum(int singlePathMax, int combinedPathMax) {
+            this.singlePathMax = singlePathMax;
+            this.combinedPathMax = combinedPathMax;
+        }
+    }
+    
+    // Goal: find the combined path value, if applicable
+    public int maxPathSum(TreeNode root) {
+        PathSum result = dfs(root);
+        return result.combinedPathMax;
+    }
+    
+    public PathSum dfs(TreeNode root) {
+        if (root == null) {
+            return new PathSum(0, Integer.MIN_VALUE);
+        }
+        //Divide
+        PathSum left = dfs(root.left);
+        PathSum right = dfs(root.right);
+        
+        //Conquer
+
+        //Step 1: build single path max (continuous path sum including curr root)
+        int singlePathMax = Math.max(left.singlePathMax, right.singlePathMax) + root.val;
+        //If less than 0, set to 0. It'll be dropped for combinedPathMax, so leave it to 0.
+        singlePathMax = Math.max(singlePathMax, 0);
+        
+        //Step2: build combined path max.
+        // Compare leftChild.combo vs. rightChild.combo
+        int combinedPathMax = Math.max(left.combinedPathMax, right.combinedPathMax);
+        // Compare with left.single + right.single + root.val
+        combinedPathMax = Math.max(combinedPathMax, left.singlePathMax + right.singlePathMax + root.val);
+        
+        // Return the summary for the current node.
+        return new PathSum(singlePathMax, combinedPathMax);
+    }
+    
+}
 
 
 /*
@@ -115,63 +160,5 @@ public class Solution {
     }
     
 }
-
-
-// Incorrect:
-/*
-[9,6,-3,null,null,-6,2,null,null,2,null,-6,-6,-6]
-Output:
-15
-Expected:
-16
- */
-class Solution {
-    public int maxPathSum(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int result = 0;
-        int leftMaxDirectPathSum = Integer.MIN_VALUE;
-        int rightMaxDirectPathSum = Integer.MIN_VALUE;
-        int leftMaxComboPathSum = Integer.MIN_VALUE;
-        int rightMaxComboPathSum = Integer.MIN_VALUE;
-        if (root.left != null) {
-            leftMaxDirectPathSum = maxDirectPathSum(root.left);
-            leftMaxComboPathSum = maxPathSum(root.left);
-        }
-        if (root.right != null) {
-            rightMaxDirectPathSum = maxDirectPathSum(root.right);
-            rightMaxComboPathSum = maxPathSum(root.right);
-        }
-        int maxComboPathSum = root.val;
-        if (root.left != null) {
-            maxComboPathSum += leftMaxDirectPathSum;
-        }
-        if (root.right != null) {
-            maxComboPathSum += rightMaxDirectPathSum;
-        }
-        int partResultA = Math.max(root.val, Math.max(leftMaxDirectPathSum, rightMaxDirectPathSum));
-        int partResultB = maxComboPathSum;
-        if (root.left == null || root.right == null) {
-            leftMaxDirectPathSum = leftMaxDirectPathSum == Integer.MIN_VALUE ? 0 : leftMaxDirectPathSum;
-            rightMaxDirectPathSum = rightMaxDirectPathSum == Integer.MIN_VALUE ? 0 : rightMaxDirectPathSum;
-        }
-        partResultB = Math.max(partResultB, Math.max(leftMaxDirectPathSum, rightMaxDirectPathSum) + root.val);
-        result = Math.max(partResultA, partResultB);
-
-        return Math.max(Math.max(leftMaxComboPathSum, rightMaxComboPathSum), result);
-    }
-    
-    /*
-    Path that start with root and end with a leaf
-    */
-    public int maxDirectPathSum(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        return root.val + Math.max(maxDirectPathSum(root.left), maxDirectPathSum(root.right));
-    }
-}
-
 
 ```

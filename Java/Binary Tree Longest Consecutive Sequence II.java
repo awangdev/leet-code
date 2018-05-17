@@ -1,6 +1,6 @@
 M
 1526453838
-tags: Tree, DFS, Divide and Conquer
+tags: Tree, DFS, Divide and Conquer, Double Recursive
 
 找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
 

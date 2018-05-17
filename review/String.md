@@ -1,7 +1,7 @@
  
  
  
-## String (29)
+## String (30)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -466,6 +466,27 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 可以用 ASCII code 来手动过滤, 只要 '0' ~ '9', 'a' ~ 'z', 'A' - 'Z' 之间的
 - 也可以用 regular expression: match 所有这些字母, 是 [a-zA-Z0-9]
 - 那凡是不是这些字母的 match, 就是取反: "[^a-zA-Z0-9]". 测试: https://regex101.com/
+
+
+
+---
+
+**29. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: Easy
+      
+
+给两个String, 看A rotate之后 能不能变成B
+
+#### LeetCode
+- Basics
+- StringBuffer.deleteCharAt(xx), StringBuffer.append(xx)
+- O(n)
+
+
+#### LintCode
+- Different problem: 给一个char[], 要rotate offset times.
+- *三步rotate*
+- 有个坑：offset可能很长，那么要%length，才能得到真正需要rotate的部分。
+- Note: rotate 一个 full length之后，是string 不变
 
 
 

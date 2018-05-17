@@ -1,7 +1,7 @@
  
  
  
-## Review (8)
+## Review (7)
 **0. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review
       
 
@@ -43,38 +43,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 ---
 
-**3. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Review
-      
-
-LeetCode: H
-用 PathSumType 比较特别. 没有 data structure的时候, 写起来比较繁琐.
-
-第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
-   single path max 的计算是为了给后面的comboMax用的。
-   如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
-
-combo的三种情况：(root可能小于0)   
-   1. 只有left    
-   2。 只有右边   
-   3. root大于0，那么就left,right,curr全部加起来。
-
-情况1和情况2取一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
-
-
-12.11.2015 recap:   
-   So totally, 5 conditions:   
-   (save in single)    
-        left + curr.val OR right + curr.val   
-   (save in combo:)    
-   left, right, OR left + curr.val + right   
-
-
-
-
-
----
-
-**4. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review
+**3. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review
       
 
 从四个边的edge出发, 像感染僵尸病毒一样扩散, 把靠边的node全部mark, 然后将还是'O'的改成X, 最后回复marks -> 'O'
@@ -90,7 +59,7 @@ DFS, BFS都好理解,
 
 ---
 
-**5. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review
+**4. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
@@ -105,7 +74,7 @@ DFS, BFS都好理解,
 
 ---
 
-**6. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
+**5. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review
       
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
@@ -132,7 +101,7 @@ HashHeap?
 
 ---
 
-**7. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Review
+**6. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Review
       
 
 #### Backtracking
