@@ -1,31 +1,47 @@
 M
+1526768652
+tags: Array, Backtracking, DFS, BFS
 
-递归：找准需要pass along的几个数据结构。    
+给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
 
-和SubsetI类似，先sort input, 然后递归。但是input可能有duplicates. 
+#### DFS
+- DFS, 找准需要pass along的几个数据结构. 先sort input, 然后DFS
+- Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
+- 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
+- srot O(nlogn), subset: O(2^n)
 
-Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
-为了除去duplicated result, 如果在递归里面用rst.contains(),就是O(n), which makes overall O(n^2). 
+#### BFS
+- Regular BFS, 注意考虑如果让one level to generate next level
+- skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
+- 1. 用queue来存每一次的candidate indexes
+- 2. 每一次打开一层candiates, add them all to result
+- 3. 并且用每一轮的candidates, populate next level, back into queue.
+- srot O(nlogn), subset: O(2^n)
+- should be same O(2^n). slower than dfs
 
-这里有个基于sorted array的技巧：    
-因为我们有mark index。 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],说明x=nums[i-1]已经用过，不需要再用一次：     
-[a,x1,x2]，x1==x2    
-i == index -> [a,x1]    
-i == index + 1 -> [a,x2]. 我们要skip这一种。
+#### Previous notes:
+- 在DFS种skip duplicate candidates, 基于sorted array的技巧：    
+- 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],
+- 说明x=nums[i-1]已经在curr level 用过，不需要再用一次: [a,x1,x2]，x1==x2    
+- i == index -> [a,x1]    
+- i == index + 1 -> [a,x2]. 我们要skip这一种
+- 如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
 
-如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
+#### 注意
+- 不能去用result.contains(), 这本身非常costly O(nlogn)
 
-
-Iterative: 写一写，用个Queue. Not recommended, Again, rst.contains() cost too much.
 
 ```
 /*
-Given a list of numbers that may has duplicate numbers, return all possible subsets
+Given a collection of integers that might contain duplicates, nums, 
+return all possible subsets (the power set).
 
-Have you met this question in a real interview? Yes
-Example
-If S = [1,2,2], a solution is:
+Note: The solution set must not contain duplicate subsets.
 
+Example:
+
+Input: [1,2,2]
+Output:
 [
   [2],
   [1],
@@ -34,16 +50,135 @@ If S = [1,2,2], a solution is:
   [1,2],
   []
 ]
-Note
-Each element in a subset must be in non-descending order.
-The ordering between two subsets is free.
-The solution set must not contain duplicate subsets.
-Challenge
-Can you do it in both recursively and iteratively?
 
-Tags Expand 
-Recursion
+
 */
+
+/*
+Thoughts:
+- have to sort the list, in order to skip items
+- using the for loop approach: pick ONE item from the list at a time, with index i, then dfs with i + 1
+- skip case: if we've picked an item for once at (i - 1), then in this particular for loop, we should not pick the same item
+- thought, important: it can be picked in the next level of dfs
+- subset, either take or not take : 2^n space, 2^n time
+*/
+class Solution {
+    Set<String> set = new HashSet<>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        // edge case, init result
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        List<Integer> list = new ArrayList<>();
+
+        // dfs with depth = 0
+        result.add(new ArrayList<>(list));
+        dfs(result, list, nums, 0);    
+        return result;
+    }
+
+    private void dfs(List<List<Integer>> result, List<Integer> list, int[] nums, int depth) {
+        for (int i = depth; i < nums.length; i++) {
+            if (i > depth && nums[i] == nums[i - 1]) continue;
+            list.add(nums[i]);
+            result.add(new ArrayList<>(list));
+            dfs(result, list, nums, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+}
+
+// BFS, Queue
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        // edge, init result
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        // init queue
+        Queue<List<Integer>> queue = new LinkedList<>();
+        List<Integer> initialList = new ArrayList<>();
+        queue.offer(initialList);
+
+        // while queue not empty
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            while (size > 0) {
+                List<Integer> indexRow = queue.poll();
+                // add result
+                List<Integer> list = new ArrayList<>();
+                for (int index : indexRow) {
+                    list.add(nums[index]);
+                }
+                result.add(list);
+
+                // populate queue with index
+                int endIndex = indexRow.size() == 0 ?
+                    0 : indexRow.get(indexRow.size() - 1) + 1;
+                for (int i = endIndex; i < nums.length; i++) {
+					if (i > endIndex && nums[i] == nums[i - 1]) { // skip duplicated records
+						continue;
+					}
+                    indexRow.add(i);
+                    queue.offer(new ArrayList<>(indexRow));
+                    indexRow.remove(indexRow.size() - 1);
+                }
+                size--;
+            }
+        }
+        return result;
+    }
+}
+
+
+/*
+Thoughts:
+- Convert list to key, and validate before adding into the result
+- to remove duplicates, make sure nums is sorted at beginning.
+- Sort: O(nlogn), 2^n possible subsets => overall time, O(2^n)
+- using extra space O(2^n)
+*/
+class Solution {
+    Set<String> set = new HashSet<>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        // edge case, init result
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        List<Integer> list = new ArrayList<>();
+
+        // dfs with depth = 0
+        dfs(result, list, nums, 0);    
+        return result;
+    }
+
+    private void dfs(List<List<Integer>> result, List<Integer> list, int[] nums, int depth) {
+        // check closure case
+        if (depth >= nums.length) {
+            String key = list.toString();
+            if (!set.contains(key)) {
+                result.add(new ArrayList<>(list));
+                set.add(key);
+            }
+            return;
+        }
+
+        // pick
+        list.add(nums[depth]);
+        dfs(result, list, nums, depth + 1);
+
+        // backtracking, and move to the not-pick option
+        list.remove(list.size() - 1);
+        dfs(result, list, nums, depth + 1);
+    }
+}
 
 /*
 03.10.2016

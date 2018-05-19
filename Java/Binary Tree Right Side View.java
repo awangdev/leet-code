@@ -1,27 +1,110 @@
 M
+1526769889
+tags: Tree, DFS, BFS
 
-最右:即level traversal每一行的最末尾.   
+给一个binary tree, 从右边看过来, return all visible nodes
 
-BFS，用queue.size()来出发saving result.
+#### BFS
+- 最右:即level traversal每一行的最末尾.   
+- BFS, queue 来存每一行的内容, save end node into list
+
+#### DFS
+- Use Map<Level, Integer> 来存每一个level的结果
+- dfs(node.right), 然后 dfs(node.left)
 
 ```
 /*
 Given a binary tree, imagine yourself standing on the right side of it, 
 return the values of the nodes you can see ordered from top to bottom.
 
-For example:
-Given the following binary tree,
+Example:
+
+Input: [1,2,3,null,5,null,4]
+Output: [1, 3, 4]
+Explanation:
+
    1            <---
- /   \\
+ /   \
 2     3         <---
- \\     \\
+ \     \
   5     4       <---
-You should return [1, 3, 4].
-
-Tags: Tree, Depth-first Search, Breadth-first Search
-Similar Problems: (M) Populating Next Right Pointers in Each Node
-
 */
+
+/*
+right side view:
+- the tree may not be complete
+- always find right-most. if right child not available, dfs into left child
+- tracking back is hard for dfs
+- bfs: on each level, record the last item of the queue
+*/
+
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        // check edge case
+        if (root == null) {
+            return result;
+        }
+
+        // init queue, result list
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        // loop over queue with while loop; inner while loop to complete level
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size > 0) {
+                size--;
+                TreeNode node = queue.poll();
+                if (size == 0) {
+                    result.add(node.val);
+                }
+                if(node.left != null) queue.offer(node.left);
+                if(node.right != null) queue.offer(node.right);
+            }
+        }
+        return result;
+    }
+}
+
+
+/*
+DFS: mark each level with map<level, node>
+1. dfs right side first, then left side at each level
+2. if candidate not exist, add to map, if exist, skip.
+*/
+
+class Solution {
+	public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        // check edge case
+        if (root == null) {
+            return result;
+        }
+        // init map, dfs
+        Map<Integer, Integer> map = new HashMap<>();
+        int depth = dfs(map, root, 0);
+        // output result 
+        for (int i = 0; i <= depth; i++) {
+            if (map.containsKey(i))
+                result.add(map.get(i));
+        }
+        return result;
+    }
+
+    private int dfs(Map<Integer, Integer> map, TreeNode node, int depth) {
+        if(node == null) {
+            return 0;
+        }
+        if (!map.containsKey(depth)) {
+            map.put(depth, node.val);
+        }
+        int rightDepth = dfs(map, node.right, depth + 1);
+        int leftDepth = dfs(map, node.left, depth + 1);
+        return Math.max(leftDepth, rightDepth) + depth;
+    }
+}
+
 
 /**
  * Definition for a binary tree node.

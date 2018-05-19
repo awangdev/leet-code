@@ -5,7 +5,17 @@ tags: Tree, DFS
 找max path sum,  可以从任意treeNode 到任意 treeNode.
 
 #### DFS, PathSum object
-
+- that just solves everything
+```
+private class PathSum {
+    int singlePathMax;
+    int combinedPathMax;
+    PathSum(int singlePathMax, int combinedPathMax) {
+        this.singlePathMax = singlePathMax;
+        this.combinedPathMax = combinedPathMax;
+    }
+}
+```
 
 
 #### Previous Notes

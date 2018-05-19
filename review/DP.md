@@ -1,7 +1,7 @@
  
  
  
-## DP (62)
+## DP (63)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium
       
 
@@ -1490,6 +1490,34 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 #### recursively calculate
 - recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
 
+
+
+
+---
+
+**62. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium
+      
+
+给一串数字candidates (no duplicates), 和一个target. 
+
+找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
+
+注意: 同一个candidate integer, 可以用任意多次.
+
+#### Backpack DP
+- 计数问题, 可以想到DP. 其实就是Backpack VI.
+- 从x个数字里面找candidate(可以重复用同一个数字), 来sum up to target. 找: # of ways to form the sequence.
+- Backpack VI: 给一个数组nums, 全正数, 无重复数字; 找: # of 拼出m的方法
+- dp[i]: # of ways to build up to target i
+- consider last step: 如果上一步取的是 candidate A, 那么就该加到dp[i]:
+- dp[i] += dp[i - A]
+- 要找overall dp[i], 就做一个for loop: dp[i] = sum{dp[i - num]}, where for (num: nums)
+- Time: O(mn). m = size of nums, n = target
+- If we optimize dp for loop, 需要Sort nums. O(mlogm). will efficient 如果m是constant或者relatively small. Overall: O(n)
+
+#### DFS, backtracking
+- 尽管思考方式是对的, 但是 times out
+- 可以重复使用数字的时候, 比如用1 来拼出 999, 这里用1就可以走999 dfs level, 不efficient
 
 
 

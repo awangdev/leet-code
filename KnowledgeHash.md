@@ -703,7 +703,11 @@ public int compare(x, y) {
 ### Probability theory
 
 ### Combinatorics
-- ex: study n-choose-k problems
+- a selection of items from a collection, and order does not matter
+- The complexity is O(C(n,k)): O(min(n^k, n^(n-k)))
+
+#### subset time&&space
+- independent choice of either pick&&not pick. You pick n times: O(2^n)
 
 ## String
 ### Functions
@@ -982,6 +986,10 @@ Track queue size, use the queue as in rotation
 - DFS traverse O(n)
 - 注意结束condition
 
+### for loop dfs vs. pick&&skip dfs
+- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list.
+- 2. for loop dfs: for loop + backtracking. (ex: Combination Sum, Subset)
+
 ### void dfs
 - Pass around result object, and build into it
 - `result` 是一个object (usually list)
@@ -1015,7 +1023,23 @@ private class PathSum {
 - 2. 在main function 自己身上recursive: call dfs(..), mainFunc(skip root)
 - ex: `Path Sum III`, `Binary Tree Longest Consecutive Sequence II`
 
+### Combinatorics DFS
+- ex: study n-choose-k problems
 
+#### 思想
+- 在每个index上面都要面临: pick/not pick的选择
+- 每次pick以后, 就生成一条新的routine, from this index
+- 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
+- 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
+- 注意2: Backtracking在success case && dfs case 后都要做, 因为backtrack 是为了之前上一层dfs.
+
+#### 注意
+- input 有duplicate的时候, 必须sort
+- 考虑candidate重复使用的规则(不可以重复使用):
+- 1. for loop里面dfs的时候, 使用curr index + 1
+- 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
+- 因为在同一个level里面重复的数字在下一个dfslevel里面是会被考虑到的, 这里必须skip (这个就记住吧)
+- 考虑candidate重复使用的规则(可以重复使用): 那么for loop里面dfs的时候, 使用curr index
 
 # Backtracking
 - Finding all (or some) solutions to some computational problems, notebaly constraint satisfaction problems

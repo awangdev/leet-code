@@ -1,14 +1,14 @@
 M
+1526771382
+tags: Tree, DFS
 
-比Binary Tree Maximum Path Sum I 简单许多. 因为条件给的更多：at least 1 node + have to start from root => have to have root.
+找到从max path sum from root. 条件: 至少有一个node.
 
-方法1:   
-维持一个global或者recursive里的sum。traversal entire tree via DFS. 简单明了。
-
-
-方法2:   
-Single path: either left or right.   
-If the path sum < 0, just skip it.   
+#### DFS
+- 比Binary Tree Maximum Path Sum I 简单许多. 因为条件给的更多：at least 1 node + have to start from root
+- root一定用到
+- 3种情况: curr node, curr+left, curr+right
+- 因为一定包括root, 说以从 `dfs(root, sum=0)` 开始, 每个level先加root, sum += root.val
 
 ```
 /*

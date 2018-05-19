@@ -1256,29 +1256,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 找max path sum,  可以从任意treeNode 到任意 treeNode.
 
 #### DFS, PathSum object
-
-
-
-#### Previous Notes
-##### Note1
-- 用 PathSum 比较特别. 没有 data structure的时候, 写起来比较繁琐.
-- 第一次做有点难理解，复杂原因是：因为可能有负值啊。不能乱assume正数。   
-- single path max 的计算是为了给后面的comboMax用的。
-- 如果single path max小于0，那没有什么加到parent上面的意义，所以就被再次刷为0.
-- combo的三种情况：(root可能小于0)   
-- 1. 只有left    
-- 2. 只有right
-- 3. root大于0，那么就left,right,curr全部加起来。
-- 情况1和情况2取一个最大值，然后和情况三比较。做了两个Math.max(). 然后就有了这一层的comboMax
-
-##### Note2
-- 12.11.2015 recap
-- totally 5 conditions:   
-- (save in single): left + curr.val OR right + curr.val   
-- (save in combo):left, right, OR left + curr.val + right   
-
-
-
+- that just solves everything
 
 
 ---
