@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (23)
+## Two Pointers (24)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -419,6 +419,20 @@ return unique item 的长度.
 - 其余一模一样, use index to track unique item; skip if duplicated for more than 2 times
 - O(n) time, O(1) space
 - 这里也可以真的用2个pointers 写while loop, 但是没有必要, 只是单纯地走一个for loop其实就足够.
+
+
+
+---
+
+**23. [Rotate List.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20List.java)**      Level: Medium
+      
+
+给一个single linked list, 右移k steps. k non-negative.
+
+#### Linked List basics
+- 记得用dummy.next来存head.
+- 特殊: 这里k可能大于list总长. 写一写linked node 移动的步数, 然后 k = k % n.
+- 找到newTail, newHead, 然后利用dummy, 换位子
 
 
 

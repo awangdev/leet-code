@@ -1,8 +1,8 @@
 H
 1524550668
-tags: Stack, Binary Tree, DFS, Expression Tree
+tags: Stack, Binary Tree, DFS, Expression Tree, Minimum Binary Tree
 
-给一个公式 expression, 然后evaluate结果.
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
 
 #### DFS on Expression Tree
 - 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果

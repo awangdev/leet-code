@@ -351,17 +351,11 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - Time, space O(n)
 - Rolling array, space O(1)
 
-
-#### Previous Notes
-##### 方法1
-- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
-- 那么就assign: sums[i]=nums[i]
-- 这个做法比较中规中矩, makes sense
-
-##### 方法2(better)
-- 想着用一用prefix sum. 把值一个个叠加。
-- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
-
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
 
 
 ---

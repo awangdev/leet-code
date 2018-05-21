@@ -2,6 +2,11 @@ M
 1520800825
 tags: Divide and Conquer, Stack, DFS
 
+给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
+
+括号里面可以是String, 也可能是expression.
+
+目的: 把expression展开成一个正常的String.
 
 #### DFS
 - 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**

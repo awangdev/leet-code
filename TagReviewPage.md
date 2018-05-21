@@ -498,7 +498,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
  
  
  
-## Math (19)
+## Math (20)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -805,6 +805,29 @@ Space O(n), time O(n)
 #### sorting
 - sort, 找1st missing
 - O(n log n) 太慢, 不合题意
+
+
+
+---
+
+**19. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+      
+
+给一个expression String, 要evaluate这个expression的值.
+
+Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
+
+#### Expression Tree
+- Expression Tree是一个 weight-based的 min-tree 
+- 基于 运算符号 + 数字的 tree: 数字永远在leaf, 然后符号是tree node,  括号不出现在tree里面
+- 用 monotonuous stack 来构建这个tree
+
+##### Thinking points
+- Understand Expression Tree
+- Use stack to build the expression tree + understand the weight system
+- Use post-order traversal to evaluate the tree
+- 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
+- 整个题目的做法, 可以参照 `Expression Evaluation`
 
 
 
@@ -2250,17 +2273,11 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - Time, space O(n)
 - Rolling array, space O(1)
 
-
-#### Previous Notes
-##### 方法1
-- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
-- 那么就assign: sums[i]=nums[i]
-- 这个做法比较中规中矩, makes sense
-
-##### 方法2(better)
-- 想着用一用prefix sum. 把值一个个叠加。
-- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
-
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
 
 
 ---
@@ -2923,7 +2940,7 @@ HashHeap?
  
  
  
-## DFS (53)
+## DFS (54)
 **0. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
       
 1525670127
@@ -3201,6 +3218,11 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 **16. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
+给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
+
+括号里面可以是String, 也可能是expression.
+
+目的: 把expression展开成一个正常的String.
 
 #### DFS
 - 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
@@ -3510,7 +3532,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 **27. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 
-给一个公式 expression, 然后evaluate结果.
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
 
 #### DFS on Expression Tree
 - 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
@@ -3557,7 +3579,28 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**30. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
+**30. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy
+      
+
+给一串数组, 找数组中间 subarray 数字之和的最大值
+
+#### Sequence DP
+- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init dp[0] = 0; max = MIN_VALUE 因为有负数
+- Time, space O(n)
+- Rolling array, space O(1)
+
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
+
+
+---
+
+**31. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
       
 
 #### DFS
@@ -3573,7 +3616,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**31. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+**32. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
       
 
 给一个binary tree, 找最深depth
@@ -3588,7 +3631,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**32. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+**33. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
       
 
 #### DFS
@@ -3604,7 +3647,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**33. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy
+**34. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy
       
 
 检查tree是否symmetric
@@ -3624,7 +3667,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**34. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy
+**35. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy
       
 
 #### DFS
@@ -3634,7 +3677,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**35. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy
+**36. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy
       
 
 给一个binary tree s, 和一个binary tree t, 检查t是不是s的subtree.
@@ -3650,7 +3693,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**36. [Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)**      Level: Medium
+**37. [Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)**      Level: Medium
       
 
 给一个Binary Tree root, 以及两个node p, q. 找 p 和 q 的 lowest common ancestor
@@ -3668,7 +3711,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**37. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+**38. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
@@ -3689,7 +3732,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**38. [Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)**      Level: Medium
+**39. [Binary Tree Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal.java)**      Level: Medium
       
 
 如题.
@@ -3708,7 +3751,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**39. [Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)**      Level: Medium
+**40. [Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)**      Level: Medium
       
 
 找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
@@ -3739,7 +3782,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**40. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard
+**41. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard
       
 
 找max path sum,  可以从任意treeNode 到任意 treeNode.
@@ -3750,7 +3793,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**41. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy
+**42. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy
       
 
 给一个inputSum, 然后dfs, 找到是否有一条path, 得出的path sum 跟 inputSum 一样.
@@ -3765,7 +3808,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**42. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
+**43. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
       
 
 给一个inputSum, 然后dfs, 找到所有path, 满足: path sum 跟 inputSum 一样.
@@ -3787,7 +3830,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**43. [Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)**      Level: Easy
+**44. [Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)**      Level: Easy
       
 
 count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
@@ -3808,7 +3851,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是�
 
 ---
 
-**44. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium
+**45. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium
       
 
 给一串3-digit 的数组. 每个数字的表达一个TreeNode, 3 digit分别代表: depth.position.value
@@ -3831,7 +3874,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是�
 
 ---
 
-**45. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium
+**46. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium
       
 
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
@@ -3846,7 +3889,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**46. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium
+**47. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -3873,7 +3916,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**47. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium
+**48. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -3897,7 +3940,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**48. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium
+**49. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium
       
 
 给一个integer k, 和一个target n. 
@@ -3916,7 +3959,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**49. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium
+**50. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium
       
 
 给一串unique integers, 找到所有可能的subset. result里面不能有重复.
@@ -3950,7 +3993,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**50. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium
+**51. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium
       
 
 给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
@@ -3986,7 +4029,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**51. [Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)**      Level: Medium
+**52. [Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)**      Level: Medium
       
 
 给一个binary tree, 从右边看过来, return all visible nodes
@@ -4003,7 +4046,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**52. [Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)**      Level: Medium
+**53. [Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)**      Level: Medium
       
 
 找到从max path sum from root. 条件: 至少有一个node.
@@ -7395,7 +7438,7 @@ HashHeap?
  
  
  
-## Linked List (19)
+## Linked List (20)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -7740,13 +7783,27 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 
 ---
 
+**19. [Rotate List.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20List.java)**      Level: Medium
+      
+
+给一个single linked list, 右移k steps. k non-negative.
+
+#### Linked List basics
+- 记得用dummy.next来存head.
+- 特殊: 这里k可能大于list总长. 写一写linked node 移动的步数, 然后 k = k % n.
+- 找到newTail, newHead, 然后利用dummy, 换位子
+
+
+
+---
+
 
 
 
  
  
  
-## Stack (19)
+## Stack (20)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -7859,6 +7916,11 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 **5. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
+给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
+
+括号里面可以是String, 也可能是expression.
+
+目的: 把expression展开成一个正常的String.
 
 #### DFS
 - 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
@@ -8061,7 +8123,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 **13. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 
-给一个公式 expression, 然后evaluate结果.
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
 
 #### DFS on Expression Tree
 - 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
@@ -8157,6 +8219,29 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 #### Stack, 先入, 后出
 - ArrayList: return/remove ArrayList的末尾项。
 - 2 Queues
+
+
+
+---
+
+**19. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+      
+
+给一个expression String, 要evaluate这个expression的值.
+
+Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
+
+#### Expression Tree
+- Expression Tree是一个 weight-based的 min-tree 
+- 基于 运算符号 + 数字的 tree: 数字永远在leaf, 然后符号是tree node,  括号不出现在tree里面
+- 用 monotonuous stack 来构建这个tree
+
+##### Thinking points
+- Understand Expression Tree
+- Use stack to build the expression tree + understand the weight system
+- Use post-order traversal to evaluate the tree
+- 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
+- 整个题目的做法, 可以参照 `Expression Evaluation`
 
 
 
@@ -9004,17 +9089,11 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - Time, space O(n)
 - Rolling array, space O(1)
 
-
-#### Previous Notes
-##### 方法1
-- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
-- 那么就assign: sums[i]=nums[i]
-- 这个做法比较中规中矩, makes sense
-
-##### 方法2(better)
-- 想着用一用prefix sum. 把值一个个叠加。
-- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
-
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
 
 
 ---
@@ -9042,6 +9121,81 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - 把这个最大subarray sum 记录在array, left[] 里面
 - right[] 是一样的道理
 - enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
+## Minimum Binary Tree (3)
+**0. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
+      
+
+给一串字符, 表示的是 公式 expression. 把公式变成expression tree
+
+#### Monotonous Stack
+- 和Max-tree一样，https://leetcode.com/problems/maximum-binary-tree
+- 用到bottom->top递增的stack: 最底下的root维持成最小的element.
+- 这个题目是Min-tree， 头上最小，Logic 和max-tree如出一辙   
+- Space: O(n) 
+- Time on average: O(n).
+
+#### 特点
+- TreeNode: 用一个并不是最终结果的TreeNode, 存weight, 用来排序
+- 用base weight的概念权衡同一个层面的 符号, 数字 顺序
+- 每一个character都是一个节点, 都有自己的weight. 用一个TreeNode来存weight value, 利用用weight来判断: 
+- 1. (while loop) 如果node.val <= stack.peek().nodeValue, 把当前stack.peek() 变成 left child. 
+- 2. (if condition) 如果stack有残余, 把当前node变成 stack.peek().rightChild 
+
+
+
+
+---
+
+**1. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
+      
+
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
+
+#### DFS on Expression Tree
+- 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- build好Min Tree以后，做PostTraversal. 
+- Divde and Conquer: 先recursively找到 left和right的大小， 然后evaluate中间的符号
+- Time, Space O(n), n = # expression nodes
+
+### Note
+- 1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
+- 2. 若有个child是null,那就return另外一个node。    
+- 3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.
+
+
+
+---
+
+**2. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+      
+
+给一个expression String, 要evaluate这个expression的值.
+
+Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
+
+#### Expression Tree
+- Expression Tree是一个 weight-based的 min-tree 
+- 基于 运算符号 + 数字的 tree: 数字永远在leaf, 然后符号是tree node,  括号不出现在tree里面
+- 用 monotonuous stack 来构建这个tree
+
+##### Thinking points
+- Understand Expression Tree
+- Use stack to build the expression tree + understand the weight system
+- Use post-order traversal to evaluate the tree
+- 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
+- 整个题目的做法, 可以参照 `Expression Evaluation`
 
 
 
@@ -9129,7 +9283,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Two Pointers (23)
+## Two Pointers (24)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy
       
 
@@ -9547,6 +9701,20 @@ return unique item 的长度.
 - 其余一模一样, use index to track unique item; skip if duplicated for more than 2 times
 - O(n) time, O(1) space
 - 这里也可以真的用2个pointers 写while loop, 但是没有必要, 只是单纯地走一个for loop其实就足够.
+
+
+
+---
+
+**23. [Rotate List.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20List.java)**      Level: Medium
+      
+
+给一个single linked list, 右移k steps. k non-negative.
+
+#### Linked List basics
+- 记得用dummy.next来存head.
+- 特殊: 这里k可能大于list总长. 写一写linked node 移动的步数, 然后 k = k % n.
+- 找到newTail, newHead, 然后利用dummy, 换位子
 
 
 
@@ -10042,6 +10210,11 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 **1. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
+给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
+
+括号里面可以是String, 也可能是expression.
+
+目的: 把expression展开成一个正常的String.
 
 #### DFS
 - 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
@@ -10180,17 +10353,11 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - Time, space O(n)
 - Rolling array, space O(1)
 
-
-#### Previous Notes
-##### 方法1
-- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
-- 那么就assign: sums[i]=nums[i]
-- 这个做法比较中规中矩, makes sense
-
-##### 方法2(better)
-- 想着用一用prefix sum. 把值一个个叠加。
-- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
-
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
 
 
 ---
@@ -10998,7 +11165,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
  
  
  
-## Binary Tree (6)
+## Binary Tree (7)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
       
 
@@ -11056,7 +11223,7 @@ Recursive:分叉. dfs.
 **3. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 
-给一个公式 expression, 然后evaluate结果.
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
 
 #### DFS on Expression Tree
 - 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
@@ -11103,13 +11270,36 @@ Recursive:分叉. dfs.
 
 ---
 
+**6. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+      
+
+给一个expression String, 要evaluate这个expression的值.
+
+Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
+
+#### Expression Tree
+- Expression Tree是一个 weight-based的 min-tree 
+- 基于 运算符号 + 数字的 tree: 数字永远在leaf, 然后符号是tree node,  括号不出现在tree里面
+- 用 monotonuous stack 来构建这个tree
+
+##### Thinking points
+- Understand Expression Tree
+- Use stack to build the expression tree + understand the weight system
+- Use post-order traversal to evaluate the tree
+- 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
+- 整个题目的做法, 可以参照 `Expression Evaluation`
+
+
+
+---
+
 
 
 
  
  
  
-## Expression Tree (4)
+## Expression Tree (5)
 **0. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
       
 
@@ -11137,7 +11327,7 @@ Recursive:分叉. dfs.
 **1. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 
-给一个公式 expression, 然后evaluate结果.
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
 
 #### DFS on Expression Tree
 - 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
@@ -11179,6 +11369,29 @@ Recursive:分叉. dfs.
 - Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
 - 根据题意做出Expression Tree出来以后: 来个Post-order-traversal 就能记录下 Reverse Polish Notation
 - 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
+
+
+
+---
+
+**4. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+      
+
+给一个expression String, 要evaluate这个expression的值.
+
+Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
+
+#### Expression Tree
+- Expression Tree是一个 weight-based的 min-tree 
+- 基于 运算符号 + 数字的 tree: 数字永远在leaf, 然后符号是tree node,  括号不出现在tree里面
+- 用 monotonuous stack 来构建这个tree
+
+##### Thinking points
+- Understand Expression Tree
+- Use stack to build the expression tree + understand the weight system
+- Use post-order traversal to evaluate the tree
+- 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
+- 整个题目的做法, 可以参照 `Expression Evaluation`
 
 
 
@@ -12634,17 +12847,11 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - Time, space O(n)
 - Rolling array, space O(1)
 
-
-#### Previous Notes
-##### 方法1
-- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
-- 那么就assign: sums[i]=nums[i]
-- 这个做法比较中规中矩, makes sense
-
-##### 方法2(better)
-- 想着用一用prefix sum. 把值一个个叠加。
-- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
-
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
 
 
 ---

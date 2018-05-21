@@ -195,16 +195,32 @@ Table of Contents
 ## Monotonous Stack
 - 找每个元素左边或者右边 第一个比它自身小/大的元素
 - 用单调栈来维护
-- 维护monotonous stack 是题目需要, 而不是stack本身性质. 比如, 题目需要stack.peek() O(1), 加上需要单调递增/递减的性质, 就用起来了stack.
+- 维护monotonous stack 是题目需要, 而不是stack本身性质. 
+- 比如, 题目需要stack.peek() O(1), 加上需要单调递增/递减的性质, 就用起来了stack.
 ```
 // Use monotonous stack to build minimum binary tree
-while (!stack.isEmpty() && node.val <= stack.peek().val) {
+// 1. Create that new node
+TreeNode ndoe = new TreeNode(val); 
+// 2. The stack is monotonous, so loop all items >= node.val, and set as left child.
+// monotonous: continuous increasing or decreasing, so the loop will end at some point.
+while (!stack.isEmpty() && node.val <= stack.peek().val) { 
     node.left = stack.pop();
 }
+// 3. The item left in stack is < node.val, so node should be a child.
 if (!stack.isEmpty()) {//build right node of the tree
     stack.peek().right = node;
 }
+// 4. Every new node needs to be tested. push to stack.
 stack.push(node);
+
+// End result: parentheses will not be in the tree
+             [ - ]
+         /          \
+    [ * ]              [ / ]
+  /     \           /         \
+[ 2 ]  [ 6 ]      [ + ]        [ + ]
+                 /    \       /      \
+               [ 23 ][ 7 ] [ 1 ]   [ 2 ] .
 ```
 ```
 // Plain monotonous stack template:
@@ -335,6 +351,8 @@ The expression tree will be like
                    [ 23 ][ 7 ] [ 1 ]   [ 2 ] .
 
 ```
+- Expression Evaluation, Expression Tree Build
+- Basic Calculator
 
 ## Build Tree
 - Use Monotonous Stack to build Minimum Binary Tree

@@ -1,7 +1,7 @@
  
  
  
-## Expression Tree (5)
+## Minimum Binary Tree (3)
 **0. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard
       
 
@@ -47,36 +47,7 @@
 
 ---
 
-**2. [Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)**      Level: Hard
-      
-
-给一串字符, 用来表示公式expression. 把这个expression转换成 Polish Notation (PN).
-
-#### Expression Tree
-- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
-- 根据题意做出Expression Tree出来以后: 来个Pre-order-traversal 就能记录下 Polish Notation
-- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
-- Note: label需要是String. 虽然 Operator是长度为1的char, 但是数字可为多位
-
-
-
----
-
-**3. [Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)**      Level: Hard
-      
-
-给一串字符, 用来表示公式expression. 把这个expression转换成 Reverse Polish Notation (RPN).
-
-#### Expression Tree
-- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
-- 根据题意做出Expression Tree出来以后: 来个Post-order-traversal 就能记录下 Reverse Polish Notation
-- 本题没有给'ExpressionTreeNode', 所以把TreeNode就当做成我们需要的node, 里面扩展成有left/right child就可以了.
-
-
-
----
-
-**4. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+**2. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
       
 
 给一个expression String, 要evaluate这个expression的值.

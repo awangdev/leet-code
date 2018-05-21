@@ -1,6 +1,6 @@
 H
 1524548535
-tags: Stack, Binary Tree, Expression Tree
+tags: Stack, Binary Tree, Expression Tree, Minimum Binary Tree
 
 给一串字符, 表示的是 公式 expression. 把公式变成expression tree
 

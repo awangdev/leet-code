@@ -60,6 +60,46 @@ public class Solution {
     }
 }
 
+/*
+Whether 1st hand could win or not, depend on what’s left on the opponent’s last move.
+dp[i]: true/false if left with i stones.
+dp[i] can win, if one of dp[i - 1], dp[i - 2] or dp[i - 3] could lose.
+dp[0] = true.
+*/
+
+class Solution {
+    public boolean canWinNim(int n ) {
+        if (n <= 3) {
+            return true;
+        }
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+        dp[1] = dp[2] = dp[3] = true;
+        for (int i = 4; i <= n; i++) {
+            dp[i] = !(dp[i - 1] && dp[i - 2] && dp[i - 3]);
+        }
+        return dp[n];
+    }
+}
+
+// Rolling stone
+class Solution {
+    public boolean canWinNim(int n ) {
+        if (n <= 3) {
+            return true;
+        }
+        boolean[] dp = new boolean[4];
+        dp[0] = true;
+        dp[1] = dp[2] = dp[3] = true;
+        for (int i = 4; i <= n; i++) {
+            dp[i % 4] = !(dp[(i - 1) % 4] && dp[(i - 2) % 4] && dp[(i - 3) % 4]);
+        }
+        return dp[n % 4];
+    }
+}
+
+
+
 
 
 /*

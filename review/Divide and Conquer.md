@@ -25,6 +25,11 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 **1. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
+给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
+
+括号里面可以是String, 也可能是expression.
+
+目的: 把expression展开成一个正常的String.
 
 #### DFS
 - 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
@@ -163,17 +168,11 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - Time, space O(n)
 - Rolling array, space O(1)
 
-
-#### Previous Notes
-##### 方法1
-- 比较像DP, 维持一个sums[i]: 从i向前位数, 所有正数的和. 一旦sums[i - 1]<0, 意味着sums[i-1]对maxSum没有好处,
-- 那么就assign: sums[i]=nums[i]
-- 这个做法比较中规中矩, makes sense
-
-##### 方法2(better)
-- 想着用一用prefix sum. 把值一个个叠加。
-- 然后presum[j] - presum[i- 1] 就是 (i,j)之间的和。
-
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
 
 
 ---

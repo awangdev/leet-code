@@ -1,7 +1,7 @@
  
  
  
-## Stack (19)
+## Stack (20)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
@@ -114,6 +114,11 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 **5. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium
       
 
+给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
+
+括号里面可以是String, 也可能是expression.
+
+目的: 把expression展开成一个正常的String.
 
 #### DFS
 - 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
@@ -316,7 +321,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 **13. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard
       
 
-给一个公式 expression, 然后evaluate结果.
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
 
 #### DFS on Expression Tree
 - 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
@@ -412,6 +417,29 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 #### Stack, 先入, 后出
 - ArrayList: return/remove ArrayList的末尾项。
 - 2 Queues
+
+
+
+---
+
+**19. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+      
+
+给一个expression String, 要evaluate这个expression的值.
+
+Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
+
+#### Expression Tree
+- Expression Tree是一个 weight-based的 min-tree 
+- 基于 运算符号 + 数字的 tree: 数字永远在leaf, 然后符号是tree node,  括号不出现在tree里面
+- 用 monotonuous stack 来构建这个tree
+
+##### Thinking points
+- Understand Expression Tree
+- Use stack to build the expression tree + understand the weight system
+- Use post-order traversal to evaluate the tree
+- 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
+- 整个题目的做法, 可以参照 `Expression Evaluation`
 
 
 

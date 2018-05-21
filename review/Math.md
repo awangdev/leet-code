@@ -1,7 +1,7 @@
  
  
  
-## Math (19)
+## Math (20)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy
       
 
@@ -308,6 +308,29 @@ Space O(n), time O(n)
 #### sorting
 - sort, 找1st missing
 - O(n log n) 太慢, 不合题意
+
+
+
+---
+
+**19. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard
+      
+
+给一个expression String, 要evaluate这个expression的值.
+
+Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
+
+#### Expression Tree
+- Expression Tree是一个 weight-based的 min-tree 
+- 基于 运算符号 + 数字的 tree: 数字永远在leaf, 然后符号是tree node,  括号不出现在tree里面
+- 用 monotonuous stack 来构建这个tree
+
+##### Thinking points
+- Understand Expression Tree
+- Use stack to build the expression tree + understand the weight system
+- Use post-order traversal to evaluate the tree
+- 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
+- 整个题目的做法, 可以参照 `Expression Evaluation`
 
 
 

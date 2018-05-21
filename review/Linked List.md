@@ -1,7 +1,7 @@
  
  
  
-## Linked List (19)
+## Linked List (20)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy
       
 1525664839
@@ -341,6 +341,20 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - 斩草除根。
 - 多个node，check node.next ?= node.next.next
 
+
+
+
+---
+
+**19. [Rotate List.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20List.java)**      Level: Medium
+      
+
+给一个single linked list, 右移k steps. k non-negative.
+
+#### Linked List basics
+- 记得用dummy.next来存head.
+- 特殊: 这里k可能大于list总长. 写一写linked node 移动的步数, 然后 k = k % n.
+- 找到newTail, newHead, 然后利用dummy, 换位子
 
 
 

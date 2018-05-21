@@ -1,6 +1,6 @@
 E
 1525331164
-tags: DP, Sequence DP, Array, Divide and Conquer
+tags: DP, Sequence DP, Array, Divide and Conquer, DFS
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
 
@@ -11,6 +11,22 @@ tags: DP, Sequence DP, Array, Divide and Conquer
 - Time, space O(n)
 - Rolling array, space O(1)
 
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
+```
+// handle cross-mid case
+int tempSum = 0, continuousLeftSumMax = 0;
+// find continuous max going towards left
+for (int i = mid - 1; i >= left; i--) {
+    // always continous summing up
+    tempSum += nums[i]; 
+    // from one direction, take the best
+    continuousLeftSumMax = Math.max(continuousLeftSumMax, tempSum); 
+}
+```
 
 #### Previous Notes
 ##### 方法1
@@ -88,6 +104,98 @@ class Solution {
         return max;
     }
 }
+
+// checking dp[i-1] >= 0.   Same as Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]);
+class Solution {
+    public int maxSubArray(int[] nums) {
+        //check edge case
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        // init dp, global max
+        int n = nums.length;
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+
+        // calculate dp over for loop
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i <= n; i++) {
+            dp[i] = nums[i - 1] + (dp[i - 1] >= 0 ? dp[i - 1] : 0);
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
+}
+// Rolling array
+class Solution {
+    public int maxSubArray(int[] nums) {
+        //check edge case
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        // init dp, global max
+        int n = nums.length;
+        int[] dp = new int[2];
+        dp[0] = 0;
+
+        // calculate dp over for loop
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i <= n; i++) {
+            dp[i % 2] = nums[i - 1] + (dp[(i - 1) % 2] >= 0 ? dp[(i - 1) % 2] : 0);
+            max = Math.max(max, dp[i % 2]);
+        }
+        return max;
+    }
+}
+
+
+/*
+divide and conquer, dfs
+3 conditions: left of mid, right of mid, or cross-mid
+use dfs to calculate left case, right case
+carefully handle cross-mid case
+*/
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        //check edge case
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        return dfs(nums, 0, nums.length - 1, Integer.MIN_VALUE);
+    }
+
+    private int dfs(int[] nums, int left, int right, int sum) {
+        if (left > right) return Integer.MIN_VALUE;
+
+        // dfs on left, right range. Mid point is skipped
+        int mid = left + (right - left) / 2;
+        int leftMax = dfs(nums, left, mid - 1, sum);
+        int rightMax = dfs(nums, mid + 1, right, sum);
+        int maxSum = Math.max(sum, Math.max(leftMax, rightMax));
+
+        // handle cross-mid case
+        int tempSum = 0, continuousLeftSumMax = 0, continuousRightSumMax = 0;
+        // find continuous max going towards left
+        for (int i = mid - 1; i >= left; i--) {
+            tempSum += nums[i];
+            continuousLeftSumMax = Math.max(continuousLeftSumMax, tempSum);
+        }
+        // find continuous max going towards right
+        tempSum = 0;
+        for (int i = mid + 1; i <= right; i++) {
+            tempSum += nums[i];
+            continuousRightSumMax = Math.max(continuousRightSumMax, tempSum);
+        }
+        maxSum = Math.max(maxSum, nums[mid] + continuousLeftSumMax + continuousRightSumMax);
+        return maxSum;
+    }
+}
+
+
 
 /*
 LintCode
