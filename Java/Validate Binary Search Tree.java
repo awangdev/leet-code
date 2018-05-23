@@ -1,11 +1,16 @@
 M
 1519720374
-tags: Tree, DFS, BST
+tags: Tree, DFS, BST, Divide and Conquer
 
-查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
+如题, 验证是否是BST.
 
-Note: min/max需要时long type. 
-如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
+#### DFS
+- 查看每个parent-child关系: leftchild < root < rightChild
+- 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+
+##### Note: 
+- min/max需要时long type. 
+- 如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
 
 ```
 

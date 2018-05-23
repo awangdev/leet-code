@@ -53,25 +53,23 @@ Singly-linked list需要reverse, 用stack.
 **3. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
-Divide and Conquer   
-找到mid node
+如题, 把一个sorted singly linked list 转换成一个 height balanced BST
 
-方法1:
-用长度来定位mid, 每次找中间点做root, 然后前半段, 后半段分别dfs with length.
+#### DFS
+- Divide and Conquer   
+- 找到mid node
+- 然后分割两半, 分别dfs做各自两个subtree: node.left,node.right
+- 用长度来定位mid, 每次找中间点做root, 然后前半段, 后半段分别dfs with length.
+- 用快慢pointer 找到mid. Better: 不用traverse entire linked list
 
-方法2: 用快慢pointer
-Better: 不用traverse entire linked list
-
-slowPointer = node;
-fastPointer = node.next;
-
-然后把root = mid.next     
-
-然后开始sortedListToBST(mid.next.next); //后半段    
-mid.next = null;//非常重要，要把后面拍过序的断掉    
-sortedListToBST(head); //从头开始的前半段     
-
-最后root.left, root.right merge一下。   
+#### Details
+- slowPointer = node;
+- fastPointer = node.next;
+- 然后把root = mid.next     
+- 然后开始sortedListToBST(mid.next.next); //后半段    
+- mid.next = null;//非常重要，要把后面拍过序的断掉    
+- sortedListToBST(head); //从头开始的前半段     
+- 最后root.left, root.right merge一下。   
 
 
 

@@ -2,22 +2,7 @@
  
  
 ## Tree (38)
-**0. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
-      
-1525670127
-
-检查binary tree是否 identical. 
-
-特点: subtree如果是有旋转的, 只要tree node value相等, 就可以算是identical
-
-#### DFS
-- 在DFS的基础上, 比对左左,左右,右左,右右
-
-
-
----
-
-**1. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
+**0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
 Not quite clear.
@@ -31,7 +16,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**2. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
+**1. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
 方法1:
@@ -46,7 +31,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**3. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
+**2. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium
       
 
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
@@ -86,7 +71,7 @@ Previous Notes:
 
 ---
 
-**4. [Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)**      Level: Easy
+**3. [Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)**      Level: Easy
       
 
 给两个 binary tree, 看两个tree是否identical.
@@ -103,73 +88,98 @@ Previous Notes:
 
 ---
 
-**5. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy
+**4. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy
       
 
-Binary Search Tree特点: 左边的node都比右边的node小. 
-如果要height相差<1, 必须左右sub tree均分. 做DFS.
+如题
+
+#### DFS
+- Binary Search Tree特点: 左边的node都比右边的node小. 
+- 如果要height相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
+- 在每一个level, 找到中间点, 然后分割2办, 继续dfs
+- Divide and Conquer
 
 
 
 ---
 
-**6. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
+**5. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
       
 
-和Construct from Inorder && Postorder 想法一样。
+如题
 
-写出Preorder和Inorder的字母例子，发现Preorder的开头总是这Level的root。依此写helper,注意处理index。
+#### DFS
+- 和Construct from Inorder && Postorder 想法一样。
+- 写出Preorder和Inorder的字母例子，发现Preorder的开头总是这Level的root。依此写helper,注意处理index。
+- 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
+- node.left = dfs(...), node.right = dfs(...)
+- Divide and Conquer
 
 
 
 ---
 
-**7. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
+**6. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
       
 
-1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
-   一旦有 <0 或者差值大于1， 就全部返回Integer.MIN_VALUE. Integer.MIN_VALUE比较极端, 确保结果的正确性。
-   最后比较返回结果是不是<0. 是<0，那就false.
-   Traverse 整个tree, O(n)
+给一个binary tree, 看是否是height-balanced
 
-2. Only calculate depth using maxDepth function. Same concept as in 1, but cost more traversal efforts.
+#### DFS
+- DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
+- 一旦有 <0 或者差值大于1， 就全部返回Integer.MIN_VALUE. Integer.MIN_VALUE比较极端, 确保结果的正确性。
+- 最后比较返回结果是不是<0. 是<0，那就false.
+- Traverse 整个tree, O(n)
+
+
+#### DFS, maxDepth function
+- Same concept as in 1, but cost more traversal efforts.
 
 
 
 ---
 
-**8. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
+**7. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
       
 
-方法1：   
-题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
-其实basic implementation, 每次处理next链接:
-1. node.left.next = node.right
-2. If node.next != null, link node.right.next = node.next.left;
+给一个特殊的binary tree, treeNode里面有一个 next pointer.
 
-方法2:   
-不和题意，用了queue space，与Input成正比。太大。
+写一个function, 把所有node都更同level的node 连在一起. 最右边的node.next = NULL
 
-BFS over Tree。 用Queue 和 queue.size()，老规矩。   
-process每层queue时, 注意把next pointer加上去就好. 
+#### DFS
+- 题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
+- 对于一个root来说, 只有几个点可以顾忌到: root.left, root.right, root.next. 
+- 想办法把这三个方向的点, 能连起来的都连起来:
+- 1. node.left.next = node.right
+- 2. If node.next != null, link node.right.next = node.next.left;
+- 然后在dfs(root.left), dfs(root.right)
+
+#### BFS
+- 不和题意，用了queue space，与Input成正比。太大。
+- BFS over Tree。 用Queue 和 queue.size()，老规矩。   
+- process每层queue时, 注意把next pointer加上去就好. 
 
 
 
 ---
 
-**9. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
+**8. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
-查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
+如题, 验证是否是BST.
 
-Note: min/max需要时long type. 
-如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
+#### DFS
+- 查看每个parent-child关系: leftchild < root < rightChild
+- 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+
+##### Note: 
+- min/max需要时long type. 
+- 如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
 
 
 
 ---
 
-**10. [Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)**      Level: Medium
+**9. [Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)**      Level: Medium
       
 
 给一串数字, 做一个 maximum binary tree: 最顶上的root最大; 左child也是一个max tree, 右child也必须是max tree.
@@ -205,7 +215,7 @@ Note: min/max需要时long type.
 
 ---
 
-**11. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
+**10. [Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)**      Level: Easy
       
 
 Inorder traverse Binary Tree
@@ -233,7 +243,7 @@ curr下一轮还是去找自己的left-most child，不断重复curr and curr.le
 
 ---
 
-**12. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
+**11. [Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)**      Level: Medium
       
 
 如题, POST-ORDER traversal.
@@ -262,7 +272,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 ---
 
-**13. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
+**12. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
       
 
 给一个BST, 和一个double target, 走位找到最接近的number.
@@ -281,7 +291,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 
 ---
 
-**14. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
+**13. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium
       
 
 Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
@@ -303,7 +313,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**15. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
+**14. [Binary Tree Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Preorder%20Traversal.java)**      Level: Easy
       
 
 #### Recursive
@@ -319,7 +329,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**16. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
+**15. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 
 #### BFS
@@ -338,7 +348,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**17. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
+**16. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -371,7 +381,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**18. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
+**17. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy
       
 
 #### DFS
@@ -387,7 +397,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**19. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+**18. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
       
 
 给一个binary tree, 找最深depth
@@ -402,7 +412,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**20. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
+**19. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy
       
 
 #### DFS
@@ -418,7 +428,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**21. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy
+**20. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy
       
 
 检查tree是否symmetric
@@ -433,6 +443,20 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - stack1: 左手边sub-tree先加left, 再加right child; 
 - stack2: 右手边sub-tree先加right child, 再加left child。   
 - process时，若symmetric，所有stack里面出来的node会一一对应。
+
+
+
+---
+
+**21. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy
+      
+
+检查binary tree是否 identical. 
+
+特点: subtree如果是有旋转的, 只要tree node value相等, 就可以算是identical
+
+#### DFS
+- 在DFS的基础上, 比对左左,左右,右左,右右
 
 
 

@@ -1,15 +1,16 @@
 E
 1519797926
-tags: Binary Tree, DFS
+tags: Binary Tree, DFS, Backtracking
 
-返回所有root-to-leaf path
+给一个binary tree, 返回所有root-to-leaf path
 
-#### 方法1：   
-Recursive:分叉. dfs.
+#### DFS
+- Recursive:分叉. dfs.
 
-#### 方法2:
-- Iterative, 非递归练习了一下   
-- 因为要每次切短list, 所以再加了一个Stack 来存level   
+#### Iterative
+- Iterative, 非递归练习了一下
+- 因为要每次切短list, 所以再加了一个Stack 来存level
+- 单这道题用dfs更简单, 因为找的就是从头到尾的path, 是dfs的pattern
 
 
 ```

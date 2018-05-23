@@ -1452,9 +1452,14 @@ Note:
 **101. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium
       
 
-和Construct from Inorder && Postorder 想法一样。
+如题
 
-写出Preorder和Inorder的字母例子，发现Preorder的开头总是这Level的root。依此写helper,注意处理index。
+#### DFS
+- 和Construct from Inorder && Postorder 想法一样。
+- 写出Preorder和Inorder的字母例子，发现Preorder的开头总是这Level的root。依此写helper,注意处理index。
+- 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
+- node.left = dfs(...), node.right = dfs(...)
+- Divide and Conquer
 
 
 
@@ -1495,12 +1500,17 @@ Singly-linked list需要reverse, 用stack.
 **104. [Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)**      Level: Medium
       
 
-1. DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
-   一旦有 <0 或者差值大于1， 就全部返回Integer.MIN_VALUE. Integer.MIN_VALUE比较极端, 确保结果的正确性。
-   最后比较返回结果是不是<0. 是<0，那就false.
-   Traverse 整个tree, O(n)
+给一个binary tree, 看是否是height-balanced
 
-2. Only calculate depth using maxDepth function. Same concept as in 1, but cost more traversal efforts.
+#### DFS
+- DFS using depth marker: 每个depth都存一下。然后如果有不符合条件的，存为-1.
+- 一旦有 <0 或者差值大于1， 就全部返回Integer.MIN_VALUE. Integer.MIN_VALUE比较极端, 确保结果的正确性。
+- 最后比较返回结果是不是<0. 是<0，那就false.
+- Traverse 整个tree, O(n)
+
+
+#### DFS, maxDepth function
+- Same concept as in 1, but cost more traversal efforts.
 
 
 
@@ -1509,17 +1519,22 @@ Singly-linked list需要reverse, 用stack.
 **105. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium
       
 
-方法1：   
-题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
-其实basic implementation, 每次处理next链接:
-1. node.left.next = node.right
-2. If node.next != null, link node.right.next = node.next.left;
+给一个特殊的binary tree, treeNode里面有一个 next pointer.
 
-方法2:   
-不和题意，用了queue space，与Input成正比。太大。
+写一个function, 把所有node都更同level的node 连在一起. 最右边的node.next = NULL
 
-BFS over Tree。 用Queue 和 queue.size()，老规矩。   
-process每层queue时, 注意把next pointer加上去就好. 
+#### DFS
+- 题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
+- 对于一个root来说, 只有几个点可以顾忌到: root.left, root.right, root.next. 
+- 想办法把这三个方向的点, 能连起来的都连起来:
+- 1. node.left.next = node.right
+- 2. If node.next != null, link node.right.next = node.next.left;
+- 然后在dfs(root.left), dfs(root.right)
+
+#### BFS
+- 不和题意，用了queue space，与Input成正比。太大。
+- BFS over Tree。 用Queue 和 queue.size()，老规矩。   
+- process每层queue时, 注意把next pointer加上去就好. 
 
 
 
@@ -1528,10 +1543,15 @@ process每层queue时, 注意把next pointer加上去就好.
 **106. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
-查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
+如题, 验证是否是BST.
 
-Note: min/max需要时long type. 
-如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
+#### DFS
+- 查看每个parent-child关系: leftchild < root < rightChild
+- 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+
+##### Note: 
+- min/max需要时long type. 
+- 如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
 
 
 
@@ -1540,25 +1560,23 @@ Note: min/max需要时long type.
 **107. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
-Divide and Conquer   
-找到mid node
+如题, 把一个sorted singly linked list 转换成一个 height balanced BST
 
-方法1:
-用长度来定位mid, 每次找中间点做root, 然后前半段, 后半段分别dfs with length.
+#### DFS
+- Divide and Conquer   
+- 找到mid node
+- 然后分割两半, 分别dfs做各自两个subtree: node.left,node.right
+- 用长度来定位mid, 每次找中间点做root, 然后前半段, 后半段分别dfs with length.
+- 用快慢pointer 找到mid. Better: 不用traverse entire linked list
 
-方法2: 用快慢pointer
-Better: 不用traverse entire linked list
-
-slowPointer = node;
-fastPointer = node.next;
-
-然后把root = mid.next     
-
-然后开始sortedListToBST(mid.next.next); //后半段    
-mid.next = null;//非常重要，要把后面拍过序的断掉    
-sortedListToBST(head); //从头开始的前半段     
-
-最后root.left, root.right merge一下。   
+#### Details
+- slowPointer = node;
+- fastPointer = node.next;
+- 然后把root = mid.next     
+- 然后开始sortedListToBST(mid.next.next); //后半段    
+- mid.next = null;//非常重要，要把后面拍过序的断掉    
+- sortedListToBST(head); //从头开始的前半段     
+- 最后root.left, root.right merge一下。   
 
 
 
@@ -1567,11 +1585,18 @@ sortedListToBST(head); //从头开始的前半段
 **108. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium
       
 
-分析题意后, 按照题意: Flatten it with in-place order
+给一个binary tree, 把tree做成 linked list的形式, in-place.
+
+#### DFS
+- 分析题意后, 按照题意: Flatten the tree, no extra space.
 1. reserve right child
 2. DFS flatten部分
 3. 移花接木
 4. flatten 剩下的.
+
+##### 注意
+- 顺序一定要清楚, 不能写错, 写几个example可以看出来
+- 移动的那些node, 要把node.left = null, 清扫干净
 
 
 
@@ -1606,7 +1631,7 @@ Not done yet
 
 给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
 
-思想:
+#### 思想
 - Use HashMap to mark cloned nodes.    
 - 先能复制多少Node复制多少. 然后把neighbor 加上
 

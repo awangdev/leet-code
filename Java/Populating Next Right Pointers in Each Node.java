@@ -2,17 +2,22 @@ M
 1519715027
 tags: Tree, DFS
 
-方法1：   
-题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
-其实basic implementation, 每次处理next链接:
-1. node.left.next = node.right
-2. If node.next != null, link node.right.next = node.next.left;
+给一个特殊的binary tree, treeNode里面有一个 next pointer.
 
-方法2:   
-不和题意，用了queue space，与Input成正比。太大。
+写一个function, 把所有node都更同level的node 连在一起. 最右边的node.next = NULL
 
-BFS over Tree。 用Queue 和 queue.size()，老规矩。   
-process每层queue时, 注意把next pointer加上去就好. 
+#### DFS
+- 题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
+- 对于一个root来说, 只有几个点可以顾忌到: root.left, root.right, root.next. 
+- 想办法把这三个方向的点, 能连起来的都连起来:
+- 1. node.left.next = node.right
+- 2. If node.next != null, link node.right.next = node.next.left;
+- 然后在dfs(root.left), dfs(root.right)
+
+#### BFS
+- 不和题意，用了queue space，与Input成正比。太大。
+- BFS over Tree。 用Queue 和 queue.size()，老规矩。   
+- process每层queue时, 注意把next pointer加上去就好. 
 
 ```
 /*
@@ -23,14 +28,17 @@ Given a binary tree
       TreeLinkNode *right;
       TreeLinkNode *next;
     }
-Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+Populate each next pointer to point to its next right node. 
+If there is no next right node, the next pointer should be set to NULL.
 
 Initially, all next pointers are set to NULL.
 
 Note:
 
 You may only use constant extra space.
-You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
+You may assume that it is a perfect binary tree 
+(ie, all leaves are at the same level, and every parent has two children).
+
 For example,
 Given the following perfect binary tree,
          1

@@ -1,9 +1,14 @@
 E
 1519630976
-tags: Tree, DFS
+tags: Tree, DFS, Divide and Conquer
 
-Binary Search Tree特点: 左边的node都比右边的node小. 
-如果要height相差<1, 必须左右sub tree均分. 做DFS.
+如题
+
+#### DFS
+- Binary Search Tree特点: 左边的node都比右边的node小. 
+- 如果要height相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
+- 在每一个level, 找到中间点, 然后分割2办, 继续dfs
+- Divide and Conquer
 
 ```
 /*

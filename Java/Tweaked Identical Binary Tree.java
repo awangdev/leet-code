@@ -1,6 +1,6 @@
 E
-tags: DFS, Tree
 1525670127
+tags: DFS, Tree
 
 检查binary tree是否 identical. 
 

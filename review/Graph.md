@@ -7,7 +7,7 @@
 
 给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
 
-思想:
+#### 思想
 - Use HashMap to mark cloned nodes.    
 - 先能复制多少Node复制多少. 然后把neighbor 加上
 

@@ -1,7 +1,7 @@
  
  
  
-## BST (17)
+## BST (18)
 **0. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium
       
 
@@ -189,16 +189,46 @@ Previous Notes:
 **13. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
-查看每个parent-child关系。同时把root level上面传下来max,min界限定住。
+如题, 验证是否是BST.
 
-Note: min/max需要时long type. 
-如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
+#### DFS
+- 查看每个parent-child关系: leftchild < root < rightChild
+- 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+
+##### Note: 
+- min/max需要时long type. 
+- 如果题目真的给node.val = Integer.MAX_VALUE, 我们需要能够与之比较, long就可以.
 
 
 
 ---
 
-**14. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
+**14. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium
+      
+
+如题, 把一个sorted singly linked list 转换成一个 height balanced BST
+
+#### DFS
+- Divide and Conquer   
+- 找到mid node
+- 然后分割两半, 分别dfs做各自两个subtree: node.left,node.right
+- 用长度来定位mid, 每次找中间点做root, 然后前半段, 后半段分别dfs with length.
+- 用快慢pointer 找到mid. Better: 不用traverse entire linked list
+
+#### Details
+- slowPointer = node;
+- fastPointer = node.next;
+- 然后把root = mid.next     
+- 然后开始sortedListToBST(mid.next.next); //后半段    
+- mid.next = null;//非常重要，要把后面拍过序的断掉    
+- sortedListToBST(head); //从头开始的前半段     
+- 最后root.left, root.right merge一下。   
+
+
+
+---
+
+**15. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy
       
 
 给一个BST, 和一个double target, 走位找到最接近的number.
@@ -217,7 +247,7 @@ Note: min/max需要时long type.
 
 ---
 
-**15. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium
+**16. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium
       
 
 给一个unsorted array, 问, 是否有两个element, value相差最大为t,  而两个element的index 相差最大为k.
@@ -241,7 +271,7 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 ---
 
-**16. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
+**17. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium
       
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor

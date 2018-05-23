@@ -1,9 +1,14 @@
 E
 1519628010
-tags: DFS
+tags: DFS, BFS
 
-方法1: 简单的处理nested structure, dfs增加depth.
-方法2: bfs, queue, 处理queue.size().
+给一串integers, list里面可能有nest list. 算总的sum. 规则, 如果是nested list, 每深一个depth, sum要乘以depth.
+
+#### DFS
+- 简单的处理nested structure, dfs增加depth.
+
+#### BFS
+- bfs, queue, 处理queue.size().
 
 ```
 /*

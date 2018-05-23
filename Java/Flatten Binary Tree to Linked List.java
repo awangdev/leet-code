@@ -2,11 +2,18 @@ M
 1519794111
 tags: Binary Tree, DFS
 
-分析题意后, 按照题意: Flatten it with in-place order
+给一个binary tree, 把tree做成 linked list的形式, in-place.
+
+#### DFS
+- 分析题意后, 按照题意: Flatten the tree, no extra space.
 1. reserve right child
 2. DFS flatten部分
 3. 移花接木
 4. flatten 剩下的.
+
+##### 注意
+- 顺序一定要清楚, 不能写错, 写几个example可以看出来
+- 移动的那些node, 要把node.left = null, 清扫干净
 
 ```
 /*
@@ -35,13 +42,12 @@ The flattened tree should look like:
 click to show hints.
 
 Hints:
-If you notice carefully in the flattened tree, each node's right child points to the next node of a pre-order traversal.
+If you notice carefully in the flattened tree, each node's right child points to 
+the next node of a pre-order traversal.
 
 Challenge
 Do it in-place without any extra memory.
 
-Tags Expand 
-Binary Tree Depth First Search
 */
 
 /**

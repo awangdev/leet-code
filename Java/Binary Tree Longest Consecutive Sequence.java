@@ -1,6 +1,6 @@
 M
 1527054989
-tags: Tree, DFS
+tags: Tree, DFS, Divide and Conquer
 
 找到binary tree 里的最长 consecutive sequence.
 
