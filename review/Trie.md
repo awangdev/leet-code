@@ -74,32 +74,36 @@ Search word:没有node就报错. 到结尾return true
 **3. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard
       
 
-相比之前的implementation, 有一些地方可以优化:
-1. Backtracking时候, 在board[][] 上面mark就可以, 不需要开一个visited[][]
-2. 不需要implement trie的所有方程, 用不到: 这里只需要insert.
-   普通的trie题目会让你search a word, 但是这里是用一个board, 看board的每一个字母能不能走出个Word.
-   也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
-3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
+给一串words, 还有一个2D character matrix. 找到所有可以形成的words. 条件: 2D matrix 只可以相邻走位.
 
-Previous Notes:
-Big improvement: use boolean visited on TrieNode!     
-不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
-在Trie search() method 里面，凡是visit过的，mark一下。  
+#### Trie, DFS
+- 相比之前的implementation, 有一些地方可以优化:
+- 1. Backtracking时候, 在board[][] 上面mark就可以, 不需要开一个visited[][]
+- 2. 不需要implement trie的所有方程, 用不到: 这里只需要insert.
+- 普通的trie题目会让你search a word, 但是这里是用一个board, 看board的每一个字母能不能走出个Word.
+- 也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
+- 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
-Regular:   
-for loop on words: inside, do board DFS based on each word.     
-Time cpmplexity: word[].length * boardWidth * boardHeight * (4^wordMaxLength)
+##### 关于Trie
+- Build Trie with target words: insert, search, startWith.    
+- 依然要对board matrix做DFS。
+- no for loop on words. 直接对board DFS:   
+- 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
+- 若不存在，就不必继续DFS下去了。
+- Trie solution time complexity, much better:      
+- build Trie:   n * wordMaxLength
+- search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search])
 
-Build Trie with target words: insert, search, startWith.    
-依然要对board matrix做DFS。
 
-no for loop on words. 直接对board DFS:   
-每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
-若不存在，就不必继续DFS下去了。
+#### Regular DFS
+- for loop on words: inside, do board DFS based on each word.     
+- Time cpmplexity: word[].length * boardWidth * boardHeight * (4^wordMaxLength)
 
-Trie solution time complexity, much better:      
-build Trie:   n * wordMaxLength
-search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search])
+#### Previous Notes
+- Big improvement: use boolean visited on TrieNode!     
+- 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
+- 在Trie search() method 里面，凡是visit过的，mark一下。  
+
 
 
 

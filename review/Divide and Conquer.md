@@ -126,40 +126,35 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 **6. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
+2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
+
 Should break down by mid row. More details:
-http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
-http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
+- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
+- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
 
-#### 方法1
+#### DFS
+
 ##### 基本原理
-我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
-根据这个点, 再往剩下两个方向移动
-
-1. 在中间的一行, 找到peak所在的y.
-
-2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
-
-3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
-
-4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+- 我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
+- 根据这个点, 再往剩下两个方向移动
+- 1. 在中间的一行, 找到peak所在的y.
+- 2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+- 3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+- 4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
 
 ##### 剪枝/切分象限
-每次只是找到一个row/col里面的peak而已!
-
-找到这个点, 就等于把board切成了两半.
-
-然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
-
-切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+- 每次只是找到一个row/col里面的peak而已!
+- 找到这个点, 就等于把board切成了两半.
+- 然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
+- 切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
 
 ##### 时间复杂度
-每一个level都减一半
-T(n) = n + T(n/2) = n + n/2 + n/4 + ... + 1 = n(1 + 1/2 + .... + 1/n) = 2n = O(n)
+- 每一个level都减一半
+- T(n) = n + T(n/2) = n + n/2 + n/4 + ... + 1 = n(1 + 1/2 + .... + 1/n) = 2n = O(n)
 
-#### 方法2
-Binary Search
-还没有写 : )
-O(nLogN)
+#### Binary Search
+- TODO
+- O(nLogN)
 
 
 

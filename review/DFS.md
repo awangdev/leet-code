@@ -219,28 +219,45 @@ initialize map with (node, newNode)
 **11. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium
       
 
-方法1: 两个for loop brutle force。 DFS把每个跟1相关的都Mark一遍.生成一个island.
+给一个2Dmatrix, 里面是1和0, 找#of island.
 
-方法2:
-可以用union-find， 就像Number of island II 一样。
-只不过这个不Return list, 而只是# of islands
-记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
+
+#### DFS
+- top level 有一个 double for loop, 查看每一个点.
+- 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
+- 这样确保每个visited 过得island都被清扫干净
+
+#### Union Find
+- 可以用union-find， 就像Number of island II 一样。
+- 只不过这个不Return list, 而只是# of islands
+- 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 
 
 ---
 
-**12. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
+**12. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Review
       
 
-复习Union-Find的另外一个种形式。   
-题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
-存储的关键都是：元素相对的index上存着他的root parent.    
+M 
 
-注意: 结尾要检查, 是否只剩下1个union. Tree必须连接到所有给出的node.
+给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 检查这些edge是否能合成一个 valid tree
 
-另一个union-find， 用hashmap的：http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
+#### Union Find
+- 复习Union-Find的另外一个种形式, track union size
+- 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 存储的关键都是：元素相对的index上存着他的root parent.    
+- 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
+- 另一个union-find, 用hashmap的:
+- http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
 
+#### DFS
+- (还没做, 可以写一写)
+- 检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+#### BFS
+- (还没做, 可以写一写)
+- 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
 
 
 
@@ -249,13 +266,20 @@ initialize map with (node, newNode)
 **13. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review
       
 
+给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
+
 从四个边的edge出发, 像感染僵尸病毒一样扩散, 把靠边的node全部mark, 然后将还是'O'的改成X, 最后回复marks -> 'O'
 
-方法1:
-UnionFind里面这次用到了一个rank的概念, 需要review
+#### Union Find
+- UnionFind里面这次用到了一个rank的概念, 需要review. rank[] 也就是在tracking每一个node所在union的size.
+- 目的是: always并到大的union里面
+- note: 将2D coordinate (x,y) 转换成1D: index = x * n + y
 
-方法2,3:
-DFS, BFS都好理解, 
+#### DFS
+- TODO
+
+#### BFS
+- TODO
 
 
 
@@ -265,32 +289,36 @@ DFS, BFS都好理解,
 **14. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard
       
 
-相比之前的implementation, 有一些地方可以优化:
-1. Backtracking时候, 在board[][] 上面mark就可以, 不需要开一个visited[][]
-2. 不需要implement trie的所有方程, 用不到: 这里只需要insert.
-   普通的trie题目会让你search a word, 但是这里是用一个board, 看board的每一个字母能不能走出个Word.
-   也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
-3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
+给一串words, 还有一个2D character matrix. 找到所有可以形成的words. 条件: 2D matrix 只可以相邻走位.
 
-Previous Notes:
-Big improvement: use boolean visited on TrieNode!     
-不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
-在Trie search() method 里面，凡是visit过的，mark一下。  
+#### Trie, DFS
+- 相比之前的implementation, 有一些地方可以优化:
+- 1. Backtracking时候, 在board[][] 上面mark就可以, 不需要开一个visited[][]
+- 2. 不需要implement trie的所有方程, 用不到: 这里只需要insert.
+- 普通的trie题目会让你search a word, 但是这里是用一个board, 看board的每一个字母能不能走出个Word.
+- 也就是: 这里的search是自己手动写, 不是传统的trie search() funcombination
+- 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
-Regular:   
-for loop on words: inside, do board DFS based on each word.     
-Time cpmplexity: word[].length * boardWidth * boardHeight * (4^wordMaxLength)
+##### 关于Trie
+- Build Trie with target words: insert, search, startWith.    
+- 依然要对board matrix做DFS。
+- no for loop on words. 直接对board DFS:   
+- 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
+- 若不存在，就不必继续DFS下去了。
+- Trie solution time complexity, much better:      
+- build Trie:   n * wordMaxLength
+- search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search])
 
-Build Trie with target words: insert, search, startWith.    
-依然要对board matrix做DFS。
 
-no for loop on words. 直接对board DFS:   
-每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
-若不存在，就不必继续DFS下去了。
+#### Regular DFS
+- for loop on words: inside, do board DFS based on each word.     
+- Time cpmplexity: word[].length * boardWidth * boardHeight * (4^wordMaxLength)
 
-Trie solution time complexity, much better:      
-build Trie:   n * wordMaxLength
-search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search])
+#### Previous Notes
+- Big improvement: use boolean visited on TrieNode!     
+- 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
+- 在Trie search() method 里面，凡是visit过的，mark一下。  
+
 
 
 
@@ -328,40 +356,35 @@ search: boardWidth * boardHeight * (4^wordMaxLength + wordMaxLength[Trie Search]
 **16. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard
       
 
+2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
+
 Should break down by mid row. More details:
-http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
-http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
+- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
+- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
 
-#### 方法1
+#### DFS
+
 ##### 基本原理
-我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
-根据这个点, 再往剩下两个方向移动
-
-1. 在中间的一行, 找到peak所在的y.
-
-2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
-
-3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
-
-4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+- 我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
+- 根据这个点, 再往剩下两个方向移动
+- 1. 在中间的一行, 找到peak所在的y.
+- 2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+- 3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+- 4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
 
 ##### 剪枝/切分象限
-每次只是找到一个row/col里面的peak而已!
-
-找到这个点, 就等于把board切成了两半.
-
-然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
-
-切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+- 每次只是找到一个row/col里面的peak而已!
+- 找到这个点, 就等于把board切成了两半.
+- 然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
+- 切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
 
 ##### 时间复杂度
-每一个level都减一半
-T(n) = n + T(n/2) = n + n/2 + n/4 + ... + 1 = n(1 + 1/2 + .... + 1/n) = 2n = O(n)
+- 每一个level都减一半
+- T(n) = n + T(n/2) = n + n/2 + n/4 + ... + 1 = n(1 + 1/2 + .... + 1/n) = 2n = O(n)
 
-#### 方法2
-Binary Search
-还没有写 : )
-O(nLogN)
+#### Binary Search
+- TODO
+- O(nLogN)
 
 
 

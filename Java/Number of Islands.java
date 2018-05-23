@@ -2,12 +2,18 @@ M
 1520355237
 tags: DFS, BFS, Union Find
 
-方法1: 两个for loop brutle force。 DFS把每个跟1相关的都Mark一遍.生成一个island.
+给一个2Dmatrix, 里面是1和0, 找#of island.
 
-方法2:
-可以用union-find， 就像Number of island II 一样。
-只不过这个不Return list, 而只是# of islands
-记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
+
+#### DFS
+- top level 有一个 double for loop, 查看每一个点.
+- 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
+- 这样确保每个visited 过得island都被清扫干净
+
+#### Union Find
+- 可以用union-find， 就像Number of island II 一样。
+- 只不过这个不Return list, 而只是# of islands
+- 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 ```
 /*in

@@ -2,13 +2,20 @@ R
 1520479490
 tags: DFS, BFS, Union Find
 
+给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
+
 从四个边的edge出发, 像感染僵尸病毒一样扩散, 把靠边的node全部mark, 然后将还是'O'的改成X, 最后回复marks -> 'O'
 
-方法1:
-UnionFind里面这次用到了一个rank的概念, 需要review
+#### Union Find
+- UnionFind里面这次用到了一个rank的概念, 需要review. rank[] 也就是在tracking每一个node所在union的size.
+- 目的是: always并到大的union里面
+- note: 将2D coordinate (x,y) 转换成1D: index = x * n + y
 
-方法2,3:
-DFS, BFS都好理解, 
+#### DFS
+- TODO
+
+#### BFS
+- TODO
 
 
 ```

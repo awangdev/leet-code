@@ -1,6 +1,6 @@
 M
 1526363774
-tags: Sort
+tags: Sort, Merge Sort
 
 #### Merge Sort
 - Divide and conquer, recursively

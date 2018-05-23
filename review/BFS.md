@@ -83,28 +83,45 @@ initialize map with (node, newNode)
 **3. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium
       
 
-方法1: 两个for loop brutle force。 DFS把每个跟1相关的都Mark一遍.生成一个island.
+给一个2Dmatrix, 里面是1和0, 找#of island.
 
-方法2:
-可以用union-find， 就像Number of island II 一样。
-只不过这个不Return list, 而只是# of islands
-记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
+
+#### DFS
+- top level 有一个 double for loop, 查看每一个点.
+- 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
+- 这样确保每个visited 过得island都被清扫干净
+
+#### Union Find
+- 可以用union-find， 就像Number of island II 一样。
+- 只不过这个不Return list, 而只是# of islands
+- 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 
 
 ---
 
-**4. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium
+**4. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Review
       
 
-复习Union-Find的另外一个种形式。   
-题目类型：查找2个元素是不是在一个set里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
-存储的关键都是：元素相对的index上存着他的root parent.    
+M 
 
-注意: 结尾要检查, 是否只剩下1个union. Tree必须连接到所有给出的node.
+给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 检查这些edge是否能合成一个 valid tree
 
-另一个union-find， 用hashmap的：http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
+#### Union Find
+- 复习Union-Find的另外一个种形式, track union size
+- 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 存储的关键都是：元素相对的index上存着他的root parent.    
+- 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
+- 另一个union-find, 用hashmap的:
+- http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
 
+#### DFS
+- (还没做, 可以写一写)
+- 检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+#### BFS
+- (还没做, 可以写一写)
+- 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
 
 
 
@@ -113,13 +130,20 @@ initialize map with (node, newNode)
 **5. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review
       
 
+给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
+
 从四个边的edge出发, 像感染僵尸病毒一样扩散, 把靠边的node全部mark, 然后将还是'O'的改成X, 最后回复marks -> 'O'
 
-方法1:
-UnionFind里面这次用到了一个rank的概念, 需要review
+#### Union Find
+- UnionFind里面这次用到了一个rank的概念, 需要review. rank[] 也就是在tracking每一个node所在union的size.
+- 目的是: always并到大的union里面
+- note: 将2D coordinate (x,y) 转换成1D: index = x * n + y
 
-方法2,3:
-DFS, BFS都好理解, 
+#### DFS
+- TODO
+
+#### BFS
+- TODO
 
 
 
