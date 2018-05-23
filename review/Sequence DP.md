@@ -299,6 +299,8 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 **11. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard
       
 
+有int[] price of stock, 最多做 k transactions.  求最大profit.
+
 #### DP
 - 根据StockIII, 不难发现StockIV就是把状态划分为2k+1份. 那么同样的代码, 移植.
 

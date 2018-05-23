@@ -1,6 +1,6 @@
-M
-1525244424
-tags: Array, Hash Table
+H
+1527002881
+tags: Array, Hash Table, Union Find
 
 给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
 
@@ -13,6 +13,18 @@ tags: Array, Hash Table
 - for loop. O(n) 
 - 里面的while loop 一般不会有O(n); 一旦O(n), 也意味着set 清零, for loop也不会有更多 inner while 的衍生.
 - overall O(n) 时间复杂度
+
+
+#### Union Find
+- 最终是要把相连的元素算一下总长, 其实也就是把元素group起来, 相连的group在一起, 于是想到UnionFind
+- 这里用到了一个`int[] size` 来帮助处理 `合并的时候parent是哪个`的问题: 永远往group大的union里去
+- main function 里面, 有一个map来track, 每个元素, 只处理1遍.
+- union的内容: current number - 1, current number + 1
+- https://www.jianshu.com/p/e6b955ca208f
+
+##### 特点
+- Union Find 在index上做好像更加容易
+- 其他union find function: `boolean connected(a,b){return find(a) == find(b)}`
 
 ```
 /*
@@ -71,6 +83,83 @@ public class Solution {
         return longest;
     }
 }
+
+
+
+// Union Find
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        // edge case
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        // init union find and union all numbers
+        int n = nums.length;
+        Map<Integer, Integer> visited = new HashMap<Integer, Integer>();
+        UnionFind uf = new UnionFind(n);
+        for (int i = 0; i < n; i++) {
+            if(visited.containsKey(nums[i])) {
+                continue;
+            }
+            visited.put(nums[i], i);
+            if (visited.containsKey(nums[i] - 1)) {
+                uf.union(i, visited.get(nums[i] - 1));
+            }
+            if (visited.containsKey(nums[i] + 1)) {
+                uf.union(i, visited.get(nums[i] + 1));
+            }
+        }
+
+        // use returned uf.map to find # of duplicated parent
+        return uf.maxUnion();
+    }
+}
+
+class UnionFind {
+    int[] parent;
+    int[] size;
+    // constructor
+    public UnionFind(int n) {
+        parent = new int[n];
+        size = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            size[i] = 1;
+        }
+    }
+
+    // find parent function
+    public int find(int x) {
+        if (parent[x] == x) {
+            return x;
+        }
+        
+        return parent[x] = find(parent[x]);
+    }
+
+    // union function    
+    public void union(int a, int b) {
+        a = find(a);
+        b = find(b);
+        if (size[a] > size[b]) {
+            parent[b] = a;
+            size[a] += size[b];
+        } else {
+            parent[a] = b;
+            size[b] += size[a];
+        }
+    }
+    
+    public int maxUnion() {
+        int max = 1;
+        for (int i = 0; i < size.length; i++) {
+            max = Math.max(max, size[i]);
+        }
+        return max;
+    }
+}
+
 
 /**
 Previous notes:

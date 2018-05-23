@@ -1,7 +1,7 @@
  
  
  
-## Union Find (7)
+## Union Find (8)
 **0. [Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)**      Level: Medium
       
 
@@ -96,6 +96,37 @@ UnionFind里面这次用到了一个rank的概念, 需要review
 方法2,3:
 DFS, BFS都好理解, 
 
+
+
+
+---
+
+**7. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard
+      
+
+给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
+
+#### HashSet
+- 要想看连续元素, 必须要num++, num--这样搜索
+- 1. 需要O(1)找到元素
+- 2. 需要简单快速找到 num - 1, num + 1.
+- 如果用min,max开array, 耗费空间
+- 用HashSet来存, 用set.contains() 来查找 num - 1, num + 1 存在与否
+- for loop. O(n) 
+- 里面的while loop 一般不会有O(n); 一旦O(n), 也意味着set 清零, for loop也不会有更多 inner while 的衍生.
+- overall O(n) 时间复杂度
+
+
+#### Union Find
+- 最终是要把相连的元素算一下总长, 其实也就是把元素group起来, 相连的group在一起, 于是想到UnionFind
+- 这里用到了一个`int[] size` 来帮助处理 `合并的时候parent是哪个`的问题: 永远往group大的union里去
+- main function 里面, 有一个map来track, 每个元素, 只处理1遍.
+- union的内容: current number - 1, current number + 1
+- https://www.jianshu.com/p/e6b955ca208f
+
+##### 特点
+- Union Find 在index上做好像更加容易
+- 其他union find function: `boolean connected(a,b){return find(a) == find(b)}`
 
 
 

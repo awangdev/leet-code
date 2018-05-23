@@ -526,9 +526,10 @@ class Node {
 - Find and Union functions
 - Time Complexity: log(n)
 - 在UnionFind function里维护不同的状态, expose with public helper functions
+- 似乎对index进行union find 操作 比较方便 (而并不是给实际value union find. index不重复, 而value会重复)
 
 ## UnionFind基础操作
-- 查询两个元素是否在同一个集合内
+- 查询两个元素是否在同一个集合内. connected()
 - 合并两个元素所在的集合
 
 ## UnionFind follow up
@@ -1165,6 +1166,16 @@ private class PathSum {
 - For any array access, make sure to check the boundary!!!
 
 ## NP-Complete problems
+### wiki
+- https://en.wikipedia.org/wiki/NP-completeness
+
+### Knapsack
+- Backpack problem: Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible.
+- https://en.wikipedia.org/wiki/Knapsack_problem
+
+### Travelling salesman
+- Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city
+- https://en.wikipedia.org/wiki/Travelling_salesman_problem
 
 ## Basics
 - Coding, speeding, readability

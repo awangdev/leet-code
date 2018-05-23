@@ -118,7 +118,7 @@ public class Solution {
         dpLeft[0] = 0;
         dpRight[n % 2] = 0;
 
-        int[] maxLeft = new int[n + 1];;
+        int[] maxLeft = new int[n + 1];
         int[] maxRight = new int[n + 1];
         maxLeft[0] = Integer.MIN_VALUE;
         maxRight[n] = Integer.MIN_VALUE;
