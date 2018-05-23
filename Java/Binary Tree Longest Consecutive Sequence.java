@@ -1,5 +1,6 @@
 M
-tags: Tree, dfs
+1527054989
+tags: Tree, DFS
 
 找到binary tree 里的最长 consecutive sequence.
 
