@@ -1353,10 +1353,15 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 - 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
 - 斜角方向不能走, 只能走上下左右
+- 无法按照坐标DP来做, 因为计算顺序4个方向都可以走.
+- 最终要visit所有node, 所以用DFS搜索比较合适.
 
-#### DP, DFS
+#### DFS, Memoization
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
+- Maht.max(dp[x][y], dp[nx][ny] + 1); where dp[n][ny] = dfs(matrix, nx, ny)
+- top level: O(mn), 尝试从每一个 (x,y) 出发
 - O(m * n * k), where k is the longest path
 
 #### Topological sort
@@ -2658,23 +2663,30 @@ M
 
 #### Topological Sort
 - 给一个graph of nodes
+- 至关重要: 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
 - 如果有cycle, 这个item就不会被放在最后的list 里面. 
 - 比如: 如果两个课互相是dependency, 就变成了cyclic dependency, 这样不好.
 
+
 #### BFS
 - Kahn algorithem:
-- 先build一个graph map: <node, list of nodes >
-- count in-degree:  inDegree就是每个node上面, 有多少个走进来的edge?
+- 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
+- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
-- 对这些 indegree == 0 的 nodes BFS
+- 对这些 indegree == 0 的 nodes BFS, add to queue.
 - 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list.
+
+##### Indegree 原理
+- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
+- indegree是周围的node到我这里的次数count. 
+- 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
 - 用 visited int[] 来确认是否有cycle. 1 代表 paretNode visited, -1 代表在DFS上一行的标记
 - 如果遇到-1, 说明这个node在上一级或者以上的同一个dfs path里面已经走过, 那么证明有cycle, return false.
+- 走完一个node的所有neighbor, 都没有fail, 那么backtracking, set visited[i] = 1
 - 真的topo sort会在DFS的底端, 把record放进一个stack, 最后reverse, 就是真的sort order.
 
 #### Notes:
@@ -2708,10 +2720,10 @@ M
 - 每一个数字都是一个ndoe, 题目求这个最后排好的课的list
 - 如果排不好, 就给个空就好
 - input是 numOfCourses, 还有这个prerequisites [[]]
+- 做法跟Course Schedule I 非常像, 可以参考.
 
-做法跟Course Schedule I 非常像, 可以参考.
-
-#### BFS
+#### Topological Sort, Indegree, BFS
+- 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 每个没有 inDegree==0 node, 都是可以加进 final list里面的. 比如一开始找到的那些 inDegree = 0的 node
 - 注意, 如果 prerequisites = [], 那么就是说这些课都independent, 开个int[0 ~ n-1]的数组并赋值就好.
 - 如果有cycle, 严格意义上就做不了topological sort, 也无法涵盖所有nodes,  那么return [ ]
@@ -2730,18 +2742,23 @@ M
 **9. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 
-给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
 
 有可能有多重排序的方法, 给出一种就可以.
 
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
 #### BFS
 - topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
 - 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 把 string array 变成topological sort的 graph
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样
@@ -3591,25 +3608,25 @@ M
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
 
-Should break down by mid row. More details:
-- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
-- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
-
 #### DFS
 
 ##### 基本原理
 - 我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
 - 根据这个点, 再往剩下两个方向移动
-- 1. 在中间的一行, 找到peak所在的y.
-- 2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
-- 3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+- 1. 在中间的一行i=midX, 找到peak所在的y.
+- 2. 在中间的一列j=midY, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+- 3. 根据 (x,y) 的4个neighbor check (x,y)是不是 peak, 如果不是, 像更高的位置移动一格
 - 4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+- 这个题目LintCode不给做了, 所以思路对的, 但是解答还没有再次验证.
 
 ##### 剪枝/切分象限
 - 每次只是找到一个row/col里面的peak而已!
 - 找到这个点, 就等于把board切成了两半.
 - 然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
 - 切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+- 根据mid row 切割: 
+- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
+- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
 
 ##### 时间复杂度
 - 每一个level都减一半
@@ -3630,10 +3647,15 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 - 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
 - 斜角方向不能走, 只能走上下左右
+- 无法按照坐标DP来做, 因为计算顺序4个方向都可以走.
+- 最终要visit所有node, 所以用DFS搜索比较合适.
 
-#### DP, DFS
+#### DFS, Memoization
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
+- Maht.max(dp[x][y], dp[nx][ny] + 1); where dp[n][ny] = dfs(matrix, nx, ny)
+- top level: O(mn), 尝试从每一个 (x,y) 出发
 - O(m * n * k), where k is the longest path
 
 #### Topological sort
@@ -3652,23 +3674,30 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 #### Topological Sort
 - 给一个graph of nodes
+- 至关重要: 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
 - 如果有cycle, 这个item就不会被放在最后的list 里面. 
 - 比如: 如果两个课互相是dependency, 就变成了cyclic dependency, 这样不好.
 
+
 #### BFS
 - Kahn algorithem:
-- 先build一个graph map: <node, list of nodes >
-- count in-degree:  inDegree就是每个node上面, 有多少个走进来的edge?
+- 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
+- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
-- 对这些 indegree == 0 的 nodes BFS
+- 对这些 indegree == 0 的 nodes BFS, add to queue.
 - 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list.
+
+##### Indegree 原理
+- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
+- indegree是周围的node到我这里的次数count. 
+- 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
 - 用 visited int[] 来确认是否有cycle. 1 代表 paretNode visited, -1 代表在DFS上一行的标记
 - 如果遇到-1, 说明这个node在上一级或者以上的同一个dfs path里面已经走过, 那么证明有cycle, return false.
+- 走完一个node的所有neighbor, 都没有fail, 那么backtracking, set visited[i] = 1
 - 真的topo sort会在DFS的底端, 把record放进一个stack, 最后reverse, 就是真的sort order.
 
 #### Notes:
@@ -3702,10 +3731,10 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 每一个数字都是一个ndoe, 题目求这个最后排好的课的list
 - 如果排不好, 就给个空就好
 - input是 numOfCourses, 还有这个prerequisites [[]]
+- 做法跟Course Schedule I 非常像, 可以参考.
 
-做法跟Course Schedule I 非常像, 可以参考.
-
-#### BFS
+#### Topological Sort, Indegree, BFS
+- 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 每个没有 inDegree==0 node, 都是可以加进 final list里面的. 比如一开始找到的那些 inDegree = 0的 node
 - 注意, 如果 prerequisites = [], 那么就是说这些课都independent, 开个int[0 ~ n-1]的数组并赋值就好.
 - 如果有cycle, 严格意义上就做不了topological sort, 也无法涵盖所有nodes,  那么return [ ]
@@ -3724,18 +3753,23 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 **20. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 
-给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
 
 有可能有多重排序的方法, 给出一种就可以.
 
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
 #### BFS
 - topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
 - 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 把 string array 变成topological sort的 graph
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样
@@ -5080,7 +5114,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
  
  
  
-## Backtracking (21)
+## Backtracking (22)
 **0. [Letter Combinations of a Phone Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Letter%20Combinations%20of%20a%20Phone%20Number.java)**      Level: Medium
       
 
@@ -5251,21 +5285,85 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**9. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+**9. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium
       
 
-给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+- 一堆课用int[2] pair 来表示. [1, 0] 表示要上课1的话, 必须先把课0上了. 
+- 每一个数字都是一个ndoe, 题目问是否能把所有的课排了
+- input是 numOfCourses, 还有这个prerequisites [[]]
+
+#### Topological Sort
+- 给一个graph of nodes
+- 至关重要: 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
+- 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
+- 如果有cycle, 这个item就不会被放在最后的list 里面. 
+- 比如: 如果两个课互相是dependency, 就变成了cyclic dependency, 这样不好.
+
+
+#### BFS
+- Kahn algorithem:
+- 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
+- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
+- 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
+- 对这些 indegree == 0 的 nodes BFS, add to queue.
+- 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
+
+##### Indegree 原理
+- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
+- indegree是周围的node到我这里的次数count. 
+- 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
+
+#### DFS
+- 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
+- 用 visited int[] 来确认是否有cycle. 1 代表 paretNode visited, -1 代表在DFS上一行的标记
+- 如果遇到-1, 说明这个node在上一级或者以上的同一个dfs path里面已经走过, 那么证明有cycle, return false.
+- 走完一个node的所有neighbor, 都没有fail, 那么backtracking, set visited[i] = 1
+- 真的topo sort会在DFS的底端, 把record放进一个stack, 最后reverse, 就是真的sort order.
+
+#### Notes:
+- 还有 List[] arrayOfList = new ArrayList[]; 这样的操作啊, 代替了map<integer, integerList>
+
+#### Previous notes
+有点绕，但是做过一次就明白一点。    
+是topological sort的题目。一般都是给有dependency的东西排序。    
+
+最终都会到一个sink node， 再不会有向后的dependency, 在那个点截止。    
+我就已这样子的点为map的key, 然后value是以这个node为prerequisite的 list of courses.    
+
+画个图的话，prerequisite都是指向那个sink node， 然后我们在组成map的时候，都是从sink node 发散回来到dependent nodes.    
+
+在DFS里面，我们是反向的， 然后，最先完全visited的那个node, 肯定是最左边的node了，它被mark的seq也是最高的。    
+
+而我们的sink node，当它所有的支线都visit完了，seq肯定都已经减到最小了，也就是0，它就是第一个被visit的。   
+
+
+最终结果：
+每个有pre-requisit的node都trace上去（自底向上），并且都没有发现cycle.也就说明schedule可以用了。
+
+
+
+---
+
+**10. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
+      
+
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
 
 有可能有多重排序的方法, 给出一种就可以.
 
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
 #### BFS
 - topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
 - 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 把 string array 变成topological sort的 graph
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样
@@ -5276,7 +5374,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**10. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium
+**11. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium
       
 
 #### DFS
@@ -5296,7 +5394,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**11. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium
+**12. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium
       
 
 给一串数组, 找出所有permutation数组. 注意: 给出的nums里面有重复数字, 而permutation的结果需要无重复.
@@ -5336,7 +5434,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**12. [N-Queens.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens.java)**      Level: Hard
+**13. [N-Queens.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens.java)**      Level: Hard
       
 
 N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
@@ -5360,7 +5458,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 
 ---
 
-**13. [N-Queens II.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens%20II.java)**      Level: Hard
+**14. [N-Queens II.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens%20II.java)**      Level: Hard
       
 
 跟 N-Queens 一样, 不是找所有结果, 而是count多少结果.
@@ -5374,7 +5472,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 
 ---
 
-**14. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
+**15. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy
       
 
 给一个inputSum, 然后dfs, 找到所有path, 满足: path sum 跟 inputSum 一样.
@@ -5396,7 +5494,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 
 ---
 
-**15. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium
+**16. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium
       
 
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
@@ -5411,7 +5509,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**16. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium
+**17. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -5438,7 +5536,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**17. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium
+**18. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -5462,7 +5560,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**18. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium
+**19. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium
       
 
 给一个integer k, 和一个target n. 
@@ -5481,7 +5579,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**19. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium
+**20. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium
       
 
 给一串unique integers, 找到所有可能的subset. result里面不能有重复.
@@ -5515,7 +5613,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**20. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium
+**21. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium
       
 
 给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
@@ -8578,23 +8676,30 @@ M
 
 #### Topological Sort
 - 给一个graph of nodes
+- 至关重要: 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
 - 如果有cycle, 这个item就不会被放在最后的list 里面. 
 - 比如: 如果两个课互相是dependency, 就变成了cyclic dependency, 这样不好.
 
+
 #### BFS
 - Kahn algorithem:
-- 先build一个graph map: <node, list of nodes >
-- count in-degree:  inDegree就是每个node上面, 有多少个走进来的edge?
+- 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
+- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
-- 对这些 indegree == 0 的 nodes BFS
+- 对这些 indegree == 0 的 nodes BFS, add to queue.
 - 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list.
+
+##### Indegree 原理
+- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
+- indegree是周围的node到我这里的次数count. 
+- 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
 - 用 visited int[] 来确认是否有cycle. 1 代表 paretNode visited, -1 代表在DFS上一行的标记
 - 如果遇到-1, 说明这个node在上一级或者以上的同一个dfs path里面已经走过, 那么证明有cycle, return false.
+- 走完一个node的所有neighbor, 都没有fail, 那么backtracking, set visited[i] = 1
 - 真的topo sort会在DFS的底端, 把record放进一个stack, 最后reverse, 就是真的sort order.
 
 #### Notes:
@@ -8628,10 +8733,10 @@ M
 - 每一个数字都是一个ndoe, 题目求这个最后排好的课的list
 - 如果排不好, 就给个空就好
 - input是 numOfCourses, 还有这个prerequisites [[]]
+- 做法跟Course Schedule I 非常像, 可以参考.
 
-做法跟Course Schedule I 非常像, 可以参考.
-
-#### BFS
+#### Topological Sort, Indegree, BFS
+- 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 每个没有 inDegree==0 node, 都是可以加进 final list里面的. 比如一开始找到的那些 inDegree = 0的 node
 - 注意, 如果 prerequisites = [], 那么就是说这些课都independent, 开个int[0 ~ n-1]的数组并赋值就好.
 - 如果有cycle, 严格意义上就做不了topological sort, 也无法涵盖所有nodes,  那么return [ ]
@@ -8650,18 +8755,23 @@ M
 **4. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 
-给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
 
 有可能有多重排序的方法, 给出一种就可以.
 
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
 #### BFS
 - topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
 - 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 把 string array 变成topological sort的 graph
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样
@@ -10584,25 +10694,25 @@ Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
 
-Should break down by mid row. More details:
-- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
-- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
-
 #### DFS
 
 ##### 基本原理
 - 我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
 - 根据这个点, 再往剩下两个方向移动
-- 1. 在中间的一行, 找到peak所在的y.
-- 2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
-- 3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+- 1. 在中间的一行i=midX, 找到peak所在的y.
+- 2. 在中间的一列j=midY, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+- 3. 根据 (x,y) 的4个neighbor check (x,y)是不是 peak, 如果不是, 像更高的位置移动一格
 - 4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+- 这个题目LintCode不给做了, 所以思路对的, 但是解答还没有再次验证.
 
 ##### 剪枝/切分象限
 - 每次只是找到一个row/col里面的peak而已!
 - 找到这个点, 就等于把board切成了两半.
 - 然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
 - 切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+- 根据mid row 切割: 
+- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
+- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
 
 ##### 时间复杂度
 - 每一个level都减一半
@@ -10802,10 +10912,15 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 - 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
 - 斜角方向不能走, 只能走上下左右
+- 无法按照坐标DP来做, 因为计算顺序4个方向都可以走.
+- 最终要visit所有node, 所以用DFS搜索比较合适.
 
-#### DP, DFS
+#### DFS, Memoization
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
+- Maht.max(dp[x][y], dp[nx][ny] + 1); where dp[n][ny] = dfs(matrix, nx, ny)
+- top level: O(mn), 尝试从每一个 (x,y) 出发
 - O(m * n * k), where k is the longest path
 
 #### Topological sort
@@ -10824,23 +10939,30 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 #### Topological Sort
 - 给一个graph of nodes
+- 至关重要: 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
 - 如果有cycle, 这个item就不会被放在最后的list 里面. 
 - 比如: 如果两个课互相是dependency, 就变成了cyclic dependency, 这样不好.
 
+
 #### BFS
 - Kahn algorithem:
-- 先build一个graph map: <node, list of nodes >
-- count in-degree:  inDegree就是每个node上面, 有多少个走进来的edge?
+- 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
+- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
-- 对这些 indegree == 0 的 nodes BFS
+- 对这些 indegree == 0 的 nodes BFS, add to queue.
 - 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list.
+
+##### Indegree 原理
+- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
+- indegree是周围的node到我这里的次数count. 
+- 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
 - 用 visited int[] 来确认是否有cycle. 1 代表 paretNode visited, -1 代表在DFS上一行的标记
 - 如果遇到-1, 说明这个node在上一级或者以上的同一个dfs path里面已经走过, 那么证明有cycle, return false.
+- 走完一个node的所有neighbor, 都没有fail, 那么backtracking, set visited[i] = 1
 - 真的topo sort会在DFS的底端, 把record放进一个stack, 最后reverse, 就是真的sort order.
 
 #### Notes:
@@ -10874,10 +10996,10 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 每一个数字都是一个ndoe, 题目求这个最后排好的课的list
 - 如果排不好, 就给个空就好
 - input是 numOfCourses, 还有这个prerequisites [[]]
+- 做法跟Course Schedule I 非常像, 可以参考.
 
-做法跟Course Schedule I 非常像, 可以参考.
-
-#### BFS
+#### Topological Sort, Indegree, BFS
+- 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 每个没有 inDegree==0 node, 都是可以加进 final list里面的. 比如一开始找到的那些 inDegree = 0的 node
 - 注意, 如果 prerequisites = [], 那么就是说这些课都independent, 开个int[0 ~ n-1]的数组并赋值就好.
 - 如果有cycle, 严格意义上就做不了topological sort, 也无法涵盖所有nodes,  那么return [ ]
@@ -10896,18 +11018,23 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 **3. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard
       
 
-给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
 
 有可能有多重排序的方法, 给出一种就可以.
 
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
 #### BFS
 - topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
 - 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 把 string array 变成topological sort的 graph
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样
@@ -12011,25 +12138,25 @@ O(nlogn)
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
 
-Should break down by mid row. More details:
-- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
-- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
-
 #### DFS
 
 ##### 基本原理
 - 我们不可能一口气准确定位(x,y), 但是我们可以再一个row/col里面, 找到1D array的 peak.
 - 根据这个点, 再往剩下两个方向移动
-- 1. 在中间的一行, 找到peak所在的y.
-- 2. 在中间的一列, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
-- 3. 猜一猜 (x,y) 是不是 peak, 如果不是, 像更高的位置移动一格
+- 1. 在中间的一行i=midX, 找到peak所在的y.
+- 2. 在中间的一列j=midY, 找到peak所在的x. (有可能强势override之前找到的y, 也就是放弃那一行的peak, 在midY上找peak)
+- 3. 根据 (x,y) 的4个neighbor check (x,y)是不是 peak, 如果不是, 像更高的位置移动一格
 - 4. 根据之前算的 midX, midY 把board分成4个象限, 在每一份里面再继续找
+- 这个题目LintCode不给做了, 所以思路对的, 但是解答还没有再次验证.
 
 ##### 剪枝/切分象限
 - 每次只是找到一个row/col里面的peak而已!
 - 找到这个点, 就等于把board切成了两半.
 - 然后, 再跟剩下的相邻的两个位置比较, 就知道了哪里更大, 就去哪里找peak, 也就是又切了第二刀.
 - 切第二刀的时候, 也要把(x, y) 移到需要取的象限. 进行DFS
+- 根据mid row 切割: 
+- http://www.jiuzhang.com/solution/find-peak-element-ii/#tag-highlight-lang-java
+- http://courses.csail.mit.edu/6.006/spring11/lectures/lec02.pdf
 
 ##### 时间复杂度
 - 每一个level都减一半
@@ -13687,10 +13814,15 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 - 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
 - 斜角方向不能走, 只能走上下左右
+- 无法按照坐标DP来做, 因为计算顺序4个方向都可以走.
+- 最终要visit所有node, 所以用DFS搜索比较合适.
 
-#### DP, DFS
+#### DFS, Memoization
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
+- Maht.max(dp[x][y], dp[nx][ny] + 1); where dp[n][ny] = dfs(matrix, nx, ny)
+- top level: O(mn), 尝试从每一个 (x,y) 出发
 - O(m * n * k), where k is the longest path
 
 #### Topological sort

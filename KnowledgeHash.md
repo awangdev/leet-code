@@ -496,6 +496,12 @@ class Node {
 	public Node[] children; // children nodes
 }
 ```
+- 很多题目里面都是用 `Map<node, neighbors>`, 或者 `List[] edges` 来表示graph
+- Course Schedule, Alien Dictionary
+
+### 构建Graph
+- 建立edges: 1. 创建所有node -> neighbor list; 2. 把满足条件的neighbor 填进去(每个题目不同)
+- 如果是做Topological Sort, 还要建立 `inDegree`: `Map<node, Integer>`, 或者就是 `int[]`
 
 ## Adjacency Matrices
 - matrix[i][j] = true, indicate an edge from node i t node j
@@ -554,6 +560,30 @@ class Node {
 - G graph has a cycle? If there is a back edge, there is a cycle
 - Job Schedule/ Course Schedule: should not have cycle, so acyclic
 
+## 建立Graph + InDegree
+- Graph可能是 `map<node, list of neighbors>`, 也可能是 `List[]`
+- InDegree在graph建立好的基础上, 建立起来: `map<node, integer>`, 或者简单的`int[]`
+- 记住: InDegree跟graph里面的node, 利用neibor -> node 的反向关系建立起来的:
+```
+private Map<Character, Integer> buildInDegree(Map<Character, List<Character>> graph) {
+     Map<Character, Integer> inDegree = new HashMap<>();
+
+     // Build baseline
+     for (char c : graph.keySet()) {
+         inDegree.put(c, 0);
+     }
+     
+     // Aggregate inDegree
+     for (char c: graph.keySet()) {
+         for (char edgeNode : graph.get(c)) {
+             inDegree.put(edgeNode, inDegree.get(edgeNode) + 1);
+         }
+     }
+     
+     return inDegree;
+ }
+```
+
 ## Topological Sort - BFS
 - https://www.youtube.com/watch?v=_LuIvEi_kZk
 - Can be used to return the topologically sorted list
@@ -563,6 +593,30 @@ class Node {
 - 如果有cycle, 这个item就不会被放在最后的list 里面. 比如: 如果两个课互相是dependency, 就变成了cyclic dependency.
 - 注意, 有些有cycle的题目里面要求直接fail掉, 因为有了cycle, topological sort的结果是缺element的, 也许对某个场景来说就是没有意义的.
 - 相比DFS, BFS 更容易理解和walk through
+- sort 的关键是最后用Queue, reduce inDegree, inDegree == 0 的node, 就是符合条件的candidate
+```
+// Example of Alien Dictionary:
+// Build queue with 0 indegree
+for (char c : inDegree.keySet()) {
+   if (inDegree.get(c) == 0) {
+       queue.offer(c);
+   }
+}
+
+StringBuffer sb = new StringBuffer();
+// IMPORTANT:
+while (!queue.isEmpty()) {
+   char c = queue.poll();
+   sb.append(c);
+   
+   for (char edgeNode : graph.get(c)) {
+       inDegree.put(edgeNode, inDegree.get(edgeNode) - 1);
+       if (inDegree.get(edgeNode) == 0) {
+           queue.offer(edgeNode);
+       }
+   }
+}
+```
 
 
 ## Topological Sort - DFS

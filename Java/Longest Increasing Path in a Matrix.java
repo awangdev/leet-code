@@ -6,10 +6,15 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 - 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
 - 斜角方向不能走, 只能走上下左右
+- 无法按照坐标DP来做, 因为计算顺序4个方向都可以走.
+- 最终要visit所有node, 所以用DFS搜索比较合适.
 
-#### DP, DFS
+#### DFS, Memoization
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
+- Maht.max(dp[x][y], dp[nx][ny] + 1); where dp[n][ny] = dfs(matrix, nx, ny)
+- top level: O(mn), 尝试从每一个 (x,y) 出发
 - O(m * n * k), where k is the longest path
 
 #### Topological sort

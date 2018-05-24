@@ -2,18 +2,23 @@ H
 1522007797
 tags: Graph, Topological Sort, DFS, BFS, Backtracking
 
-给一个 array of strings:  假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
 
 有可能有多重排序的方法, 给出一种就可以.
 
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
 #### BFS
 - topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
 - 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 把 string array 变成topological sort的 graph
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是  List[26], 其实更加试用超过26个字母的dictionary.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样
@@ -136,7 +141,8 @@ class Solution {
             }
         }
         
-        // Build edges
+        // Build edges: find char diff between two row, and store the order indication into graph
+        // always currentWord[index] -> nextWord[index]
         for (int i = 0; i < words.length - 1; i++) {
             int index = 0;
             while (index < words[i].length() && index < words[i + 1].length()) {
@@ -245,8 +251,6 @@ class Solution {
         }
     }
 }
-
-
 
 
 ```

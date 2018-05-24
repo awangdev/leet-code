@@ -6,10 +6,10 @@ tags: DFS, BFS, Graph, Topological Sort
 - 每一个数字都是一个ndoe, 题目求这个最后排好的课的list
 - 如果排不好, 就给个空就好
 - input是 numOfCourses, 还有这个prerequisites [[]]
+- 做法跟Course Schedule I 非常像, 可以参考.
 
-做法跟Course Schedule I 非常像, 可以参考.
-
-#### BFS
+#### Topological Sort, Indegree, BFS
+- 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 每个没有 inDegree==0 node, 都是可以加进 final list里面的. 比如一开始找到的那些 inDegree = 0的 node
 - 注意, 如果 prerequisites = [], 那么就是说这些课都independent, 开个int[0 ~ n-1]的数组并赋值就好.
 - 如果有cycle, 严格意义上就做不了topological sort, 也无法涵盖所有nodes,  那么return [ ]
@@ -42,7 +42,8 @@ So the correct course order is [0,1]
 
 4, [[1,0],[2,0],[3,1],[3,2]]
 There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. 
-Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is[0,2,1,3].
+Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. 
+Another correct ordering is[0,2,1,3].
 
 Note:
 

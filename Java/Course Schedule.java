@@ -1,6 +1,6 @@
 M
 1521928225
-tags: DFS, BFS, Graph, Topological Sort
+tags: DFS, BFS, Graph, Topological Sort, Backtracking
 
 - 一堆课用int[2] pair 来表示. [1, 0] 表示要上课1的话, 必须先把课0上了. 
 - 每一个数字都是一个ndoe, 题目问是否能把所有的课排了
@@ -8,23 +8,30 @@ tags: DFS, BFS, Graph, Topological Sort
 
 #### Topological Sort
 - 给一个graph of nodes
+- 至关重要: 用`List[] edges; edges[i] = new ArrayList<>();` 来表示graph: 就是每个node, to all its neighbors
 - 目标是根据edge 的 direction, 把这个graph 里面的 node sort 一个list
 - 如果有cycle, 这个item就不会被放在最后的list 里面. 
 - 比如: 如果两个课互相是dependency, 就变成了cyclic dependency, 这样不好.
 
+
 #### BFS
 - Kahn algorithem:
-- 先build一个graph map: <node, list of nodes >
-- count in-degree:  inDegree就是每个node上面, 有多少个走进来的edge?
+- 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
+- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
-- 对这些 indegree == 0 的 nodes BFS
+- 对这些 indegree == 0 的 nodes BFS, add to queue.
 - 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list.
+
+##### Indegree 原理
+- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
+- indegree是周围的node到我这里的次数count. 
+- 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
 - 用 visited int[] 来确认是否有cycle. 1 代表 paretNode visited, -1 代表在DFS上一行的标记
 - 如果遇到-1, 说明这个node在上一级或者以上的同一个dfs path里面已经走过, 那么证明有cycle, return false.
+- 走完一个node的所有neighbor, 都没有fail, 那么backtracking, set visited[i] = 1
 - 真的topo sort会在DFS的底端, 把record放进一个stack, 最后reverse, 就是真的sort order.
 
 #### Notes:
