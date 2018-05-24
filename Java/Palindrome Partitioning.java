@@ -2,6 +2,10 @@ M
 1523836015
 tags: DFS, Backtracking
 
+给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
+
+求所有partition palindrome组合. `list<list<string>>`
+
 #### DFS
 - 在遍历str的时候，考虑从每个curr spot 到 str 结尾，是能有多少种palindorme?
 - 那就从curr spot当个字符开始算，开始back tracing.

@@ -1053,16 +1053,14 @@ HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要
 **77. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 
+A complete binary tree is a binary tree in which every level, except possibly the last,
+
+is completely filled, and all nodes are as far left as possible
+
 #### BFS
 - 当出现了第一次有 null children的node的时候, 说明到了leaf level, mark flag = true;
 - 自此以后，queue再不该有node再有child; queue后面出现的node的left/right child应该都是null
 - 否则就是有问题, return false;
-
-#### DFS
-- Count left-most-leaf depth
-- Count right-most-leaf depth
-- 如果两个depth不一样, 就 false
-- LintCode跑不了
 
 
 

@@ -4245,16 +4245,14 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 **262. [Complete Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Complete%20Binary%20Tree.java)**      Level: Easy
       
 
+A complete binary tree is a binary tree in which every level, except possibly the last,
+
+is completely filled, and all nodes are as far left as possible
+
 #### BFS
 - 当出现了第一次有 null children的node的时候, 说明到了leaf level, mark flag = true;
 - 自此以后，queue再不该有node再有child; queue后面出现的node的left/right child应该都是null
 - 否则就是有问题, return false;
-
-#### DFS
-- Count left-most-leaf depth
-- Count right-most-leaf depth
-- 如果两个depth不一样, 就 false
-- LintCode跑不了
 
 
 
@@ -4687,7 +4685,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 如果curr node不被采用，那么下面的children有可能被采用，但也可能略过，所以这里用Math.max() 比较一下两种可能有的dfs结果。
 - dfs重复计算:每个root都有4种dive in的可能性, 假设level高度是h, 那么时间O(4^(h)), where h = logN, 也就是O(n^2)
 
-#### DP 
+#### DP, DFS
 - 并不是单纯的DP, 是在发现DFS很费劲后, 想能不能代替一些重复计算?
 - 基本思想是dfs解法一致: 取root找最大值, 或者不取root找最大值
 - 在root上DFS, 不在dfs进入前分叉; 每一个level按照状态来存相应的值: dp[0] root not picked, dp[1] root picked.
@@ -4941,6 +4939,10 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 **293. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium
       
+
+给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
+
+求所有partition palindrome组合. `list<list<string>>`
 
 #### DFS
 - 在遍历str的时候，考虑从每个curr spot 到 str 结尾，是能有多少种palindorme?
@@ -5239,6 +5241,10 @@ Given Singlely linked list, 删除一个任意node (不能是head node)
 
 **307. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Review
       
+
+String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
+
+如果其中一个人再无法翻转了, 另一个人就赢. 求: 给出string, 先手是否能赢.
 
 #### Backtracking
 - curr player 每走一步, 就生成一种新的局面, dfs on this

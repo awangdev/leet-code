@@ -12,7 +12,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 如果curr node不被采用，那么下面的children有可能被采用，但也可能略过，所以这里用Math.max() 比较一下两种可能有的dfs结果。
 - dfs重复计算:每个root都有4种dive in的可能性, 假设level高度是h, 那么时间O(4^(h)), where h = logN, 也就是O(n^2)
 
-#### DP 
+#### DP, DFS
 - 并不是单纯的DP, 是在发现DFS很费劲后, 想能不能代替一些重复计算?
 - 基本思想是dfs解法一致: 取root找最大值, 或者不取root找最大值
 - 在root上DFS, 不在dfs进入前分叉; 每一个level按照状态来存相应的值: dp[0] root not picked, dp[1] root picked.

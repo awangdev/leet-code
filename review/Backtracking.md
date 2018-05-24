@@ -5,6 +5,10 @@
 **0. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Review
       
 
+String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
+
+如果其中一个人再无法翻转了, 另一个人就赢. 求: 给出string, 先手是否能赢.
+
 #### Backtracking
 - curr player 每走一步, 就生成一种新的局面, dfs on this
 - 等到dfs结束, 不论成功与否, 都要backtracking
