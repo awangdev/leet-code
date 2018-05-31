@@ -313,7 +313,7 @@ public class GenerateCodeTable {
             sb.append("](https://github.com/awangdev/LintCode/blob/master/Java/");
             sb.append(tableRow.getFileName().replace(" ", "%20") +")**");
             
-            sb.append("      Level: " + tableRow.getLevel() + "\n");
+            sb.append("      Level: " + tableRow.getLevel() + "      Tags: " + tableRow.getTags() + "\n");
             sb.append("      " + tableRow.getTutorialLink() + "\n");
             sb.append(tableRow.getNote() + "\n");
             sb.append("\n---\n\n");

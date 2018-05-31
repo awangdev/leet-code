@@ -2,7 +2,7 @@
  
  
 ## Permutation (1)
-**0. [Shuffle an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Shuffle%20an%20Array.java)**      Level: Medium
+**0. [Shuffle an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Shuffle%20an%20Array.java)**      Level: Medium      Tags: [Permutation]
       
 
 像shuffle music 一样, 做一套shuffle array的functions: 

@@ -2,7 +2,7 @@
  
  
 ## Quick Select (1)
-**0. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy
+**0. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy      Tags: [Array, Quick Select, Quick Sort]
       
 
 给一串无序数组, 找到median(sort之后 位置在中间的数字).
