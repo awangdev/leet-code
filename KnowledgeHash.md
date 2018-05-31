@@ -485,19 +485,40 @@ The expression tree will be like
 - This graph can be directed, or undirected (modeled by adjacent node list in each Node)
 
 ### Example
+- 很多题目里面都是用 `Map<node, neighbors>`, 或者 `List[] edges` 来表示graph
+- Course Schedule, Alien Dictionary
 ```
 
 class Graph {
-	public Node[] nodes;
+   public Node[] nodes;
 }
 
 class Node {
-	public String name; // property of the node
-	public Node[] children; // children nodes
+   public String name; // property of the node
+   public Node[] children; // children nodes
 }
 ```
-- 很多题目里面都是用 `Map<node, neighbors>`, 或者 `List[] edges` 来表示graph
-- Course Schedule, Alien Dictionary
+- Also, adjacent list:
+```
+
+
+// Use Hashmap
+// Number of Connected Components in an Undirected Graph
+private Map<Integer, List<Integer>> buildGraph(int n, int[][] edges) {
+     Map<Integer, List<Integer>> graph = new HashMap<>();
+     for (int i = 0; i < n; i++) {
+         if (!graph.containsKey(i)) {
+             graph.put(i, new ArrayList<>());
+         }
+     }
+     for (int[] edge: edges) {
+         graph.get(edge[0]).add(edge[1]);
+         graph.get(edge[1]).add(edge[0]);
+     }
+     return graph;
+ }
+```
+
 
 ### 构建Graph
 - 建立edges: 1. 创建所有node -> neighbor list; 2. 把满足条件的neighbor 填进去(每个题目不同)

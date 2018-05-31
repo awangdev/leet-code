@@ -1,10 +1,10 @@
-R
-1520398072
-tags: DFS, BFS, Union Find, Graph
+M
+1527744235
+tags: DFS, BFS, Union Find, Graph 
 
-M 
+给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
 
-给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 检查这些edge是否能合成一个 valid tree
+检查这些edge是否能合成一个 valid tree
 
 #### Union Find
 - 复习Union-Find的另外一个种形式, track union size
@@ -15,8 +15,10 @@ M
 - http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
 
 #### DFS
-- (还没做, 可以写一写)
-- 检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+- Create adjacent list graph: Map<Integer, List<Integer>>
+- 检查: 
+- 1. 是否有cycle using dfs, check boolean[] visited
+- 2. 是否所有的node全部链接起来: check if any node not visited
 
 #### BFS
 - (还没做, 可以写一写)
@@ -103,6 +105,77 @@ class UnionFind {
     
     public int query() {
         return count;
+    }
+}
+
+/*
+Thoughts:
+Tree should not have cycle, which means adding each edge should connect a new node and that node should not be in the tree yet.
+If found cycle, return false.
+
+Note: need to count # of unions after merging. Count should be 1 for a tree.
+*/
+
+class Solution {
+    public boolean validTree(int n, int[][] edges) {
+        // No node, false
+        if (n == 0) {
+            return false;
+        }
+        // 1 Node without edges, true
+        if (n == 1 && (edges == null || edges.length == 0)) {
+            return true;
+        }
+        // >= 2 nodes but no edges, false;
+        if (edges == null || edges.length == 0 || edges[0] == null || edges[0].length == 0) {
+            return false;
+        }
+        
+        Map<Integer, List<Integer>> graph = buildGraph(n, edges);
+        boolean[] visited = new boolean[n];
+
+        // dfs(graph, visited, i, -1) and validate cycle
+        if (!dfs(graph, visited, 0, -1)) {
+            return false;
+        }
+        
+        // validate if all edge connected
+        for (boolean status : visited) {
+            if (!status) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    // build graph in form of adjacent list
+    private Map<Integer, List<Integer>> buildGraph(int n, int[][] edges) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            if (!graph.containsKey(i)) {
+                graph.put(i, new ArrayList<>());
+            }
+        }
+        for (int[] edge: edges) {
+            graph.get(edge[0]).add(edge[1]);
+            graph.get(edge[1]).add(edge[0]);
+        }
+        return graph;
+    }
+
+    // dfs: mark visited nodes, and keep dfs into children nodes
+    private boolean dfs(Map<Integer, List<Integer>> graph, boolean[] visited, int i, int pre) {
+        if (visited[i]) {
+            return false;
+        }
+        visited[i] = true;
+        for (int child : graph.get(i)) {
+            if (child != pre && !dfs(graph, visited, child, i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 

@@ -1,7 +1,7 @@
  
  
  
-## String (30)
+## String (31)
 **0. [Judge Route Circle.java](https://github.com/awangdev/LintCode/blob/master/Java/Judge%20Route%20Circle.java)**      Level: Easy
       
 
@@ -487,6 +487,21 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - *三步rotate*
 - 有个坑：offset可能很长，那么要%length，才能得到真正需要rotate的部分。
 - Note: rotate 一个 full length之后，是string 不变
+
+
+
+---
+
+**30. [Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)**      Level: Medium
+      
+
+给一个时间string"12:09", 用里面的4个integer组合成其他时间string, 目标找最小的next time.
+
+如果组合出的time string 在input time之前, 默认 + 24 hours.
+
+#### String
+- enumerate all candidates and filter to keep the correct ones
+- String.compareTo(string) -> gives lexicographical comparision
 
 
 

@@ -42,6 +42,40 @@ Your algorithm should run in linear runtime complexity.
 Could you implement it using only constant extra space complexity?
 */
 
+public class Solution {
+    public int missingNumber(int[] nums) {
+        // check input
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int n = nums.length;
+
+        // 1st loop, swap to correct location
+        for (int i = 0; i < n; i++) {
+            int val = nums[i];
+            while (val != i && val < n && val != nums[val]) { // val != nums[val], avoid infinitely loop
+                swap(nums, val, i);
+                val = nums[i];
+            }
+        }
+
+        // 2nd loop, find 1st missing
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i) {
+                return i;
+            }
+        }
+
+        return n;
+    }
+
+    private void swap(int[] nums, int x, int y) {
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp;
+    }
+}
+
 
 public class Solution {
     public int missingNumber(int[] nums) {

@@ -47,7 +47,21 @@ Given tree t:
  1   2
 Return false.
  */
-
+class Solution {
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (s == null || t == null) {
+            return s == null && t == null;
+        }
+        return (s.val == t.val && sameTree(s, t)) || isSubtree(s.left, t) || isSubtree(s.right, t);
+    }
+    
+    private boolean sameTree(TreeNode s, TreeNode t) {
+        if (s == null || t == null) {
+            return s == null && t == null;
+        }
+        return s.val == t.val && sameTree(s.left, t.left) && sameTree(s.right, t.right);
+    }
+}
 
 
 

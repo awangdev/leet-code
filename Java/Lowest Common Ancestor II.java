@@ -47,6 +47,51 @@ Tags Expand
 LintCode Copyright Binary Tree
 */
 
+
+/*
+    Thoughts:
+    Try to get upper-level parent, store in hashMap.
+    First time when the node duplicate in map, that will be the first common parent.
+*/
+
+/**
+ * Definition of ParentTreeNode:
+ * 
+ * class ParentTreeNode {
+ *     public ParentTreeNode parent, left, right;
+ * }
+ */
+public class Solution {
+    public ParentTreeNode lowestCommonAncestorII(ParentTreeNode root,
+                                                 ParentTreeNode A,
+                                                 ParentTreeNode B) {
+        if (root == null || (A == null && B == null)) {
+            return null;
+        } else if (A == null || B == null) {
+            return A == null ? B : A;
+        }
+
+        HashSet<ParentTreeNode> set = new HashSet<ParentTreeNode>();
+        while (A != null || B != null) {
+            if (A != null) {
+                if (set.contains(A)) {
+                    return A;
+                }
+                set.add(A);
+                A = A.parent;
+            }
+            if (B != null) {
+                if (set.contains(B)) {
+                    return B;
+                }
+                set.add(B);
+                B = B.parent;
+            }
+        }
+        return root;
+    }
+}
+
 /*
     Thoughts:
     我之前的做法也是蛮彪悍的，HashSet只存所需要的parent, 其实算是一个优化，更节省空间。
@@ -96,48 +141,5 @@ public class Solution {
 }
 
 
-/*
-	Thoughts:
-	Try to get upper-level parent, store in hashMap.
-	First time when the node duplicate in map, that will be the first common parent.
-*/
-
-/**
- * Definition of ParentTreeNode:
- * 
- * class ParentTreeNode {
- *     public ParentTreeNode parent, left, right;
- * }
- */
-public class Solution {
-    public ParentTreeNode lowestCommonAncestorII(ParentTreeNode root,
-                                                 ParentTreeNode A,
-                                                 ParentTreeNode B) {
-    	if (root == null || (A == null && B == null)) {
-    		return null;
-    	} else if (A == null || B == null) {
-    		return A == null ? B : A;
-    	}
-
-    	HashSet<ParentTreeNode> set = new HashSet<ParentTreeNode>();
-    	while (A != null || B != null) {
-    		if (A != null) {
-    			if (set.contains(A)) {
-    				return A;
-    			}
-    			set.add(A);
-    			A = A.parent;
-    		}
-    		if (B != null) {
-    			if (set.contains(B)) {
-    				return B;
-    			}
-    			set.add(B);
-    			B = B.parent;
-    		}
-    	}
- 		return root;
-    }
-}
 
 ```

@@ -12,7 +12,7 @@ tags: Hash Table
 - 真实的implementation还要处理collision, 可能需要design hash function 等等。
 
 
-- 每一步都:
+##### 每一步都%HASH_SIZE的原因
 - hashRst = hashRst * 33 + (int)(key[i]);       
 - hashRst = hashRst % HASH_SIZE;       
 - 原因是，hashRst会变得太大，所以不能算完和 再 %...

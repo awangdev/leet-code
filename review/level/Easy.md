@@ -1817,7 +1817,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - 真实的implementation还要处理collision, 可能需要design hash function 等等。
 
 
-- 每一步都:
+##### 每一步都%HASH_SIZE的原因
 - hashRst = hashRst * 33 + (int)(key[i]);       
 - hashRst = hashRst % HASH_SIZE;       
 - 原因是，hashRst会变得太大，所以不能算完和 再 %...
@@ -1917,6 +1917,10 @@ return unique item 的长度.
 
 **128. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy
       
+
+给串word[], 找最长的Word, 满足条件: 这个Word可以从 word[] 里面一个字母一个字母被build出来.
+
+如果多种答案, respect smallest lexicographical order.
 
 #### Sort, HashSet
 - 先排序, 排序以后才能逐个看是否partial string已经存在

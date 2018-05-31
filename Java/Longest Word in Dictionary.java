@@ -2,6 +2,10 @@ E
 1526368976
 tags: Hash Table, Trie
 
+给串word[], 找最长的Word, 满足条件: 这个Word可以从 word[] 里面一个字母一个字母被build出来.
+
+如果多种答案, respect smallest lexicographical order.
+
 #### Sort, HashSet
 - 先排序, 排序以后才能逐个看是否partial string已经存在
 - 用 set.contains(substring(0, n - 1)) 来查看上一步的 substring 是否存在
@@ -68,8 +72,6 @@ class Solution {
             if (set.contains(word.substring(0, word.length() - 1))) {
                 if (word.length() > result.length()) {
                     result = word;    
-                } else {
-                    result = word.compareTo(result) < 0 ? word : result;    
                 }
                 set.add(word);
             }
