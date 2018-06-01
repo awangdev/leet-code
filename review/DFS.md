@@ -1,7 +1,7 @@
  
  
  
-## DFS (56)
+## DFS (57)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy      Tags: [BFS, DFS]
       
 
@@ -1239,6 +1239,21 @@ count这个graph里面有多少个独立的component.
 - using queue. 想法直观。level-order traversal. save到一个string里面就好。
 - 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
 - BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**56. [Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+给了segment Tree, node里面有Max value, 找[start,end]里面的max
+
+#### Segment Tree, Divide and Conquer
+- 根据[start,end]跟 mid of (root.start, root.end) 做比较:
+- 简单的2个case: [start,end]全在mid左, 或者[start, end]全在mid右
+- 稍微复杂的3rd case: [start, end]包含了mid, 那么就break into 2 queries
+- [start, node.left.end], [node.right.start, end]
 
 
 

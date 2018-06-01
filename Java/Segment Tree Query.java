@@ -1,14 +1,14 @@
 M
+1527868675
+tags: Segment Tree, Binary Tree, Divide and Conquer, DFS
 
 给了segment Tree, node里面有Max value, 找[start,end]里面的max
 
-[start,end]跟mid相比，可能：   
-全在mid左   
-全在mid右   
-包含了mid： 这里要特别break into 2 query method   
-
-按定义：   
-mid = (root.start + root.end)/2
+#### Segment Tree, Divide and Conquer
+- 根据[start,end]跟 mid of (root.start, root.end) 做比较:
+- 简单的2个case: [start,end]全在mid左, 或者[start, end]全在mid右
+- 稍微复杂的3rd case: [start, end]包含了mid, 那么就break into 2 queries
+- [start, node.left.end], [node.right.start, end]
 
 ```
 /*

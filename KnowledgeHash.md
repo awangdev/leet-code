@@ -397,6 +397,35 @@ The expression tree will be like
 # Binary Indexed Tree
 
 # Segment Tree
+## 基本知识
+- Also called, Interval Tree. It support queries like:
+- which of these intervals contain a given point
+- which of these points are in a given interval
+- https://en.wikipedia.org/wiki/Segment_tree
+- https://en.wikipedia.org/wiki/Interval_tree
+```
+public class SegmentTreeNode {
+    public int start, end, max;
+    public SegmentTreeNode left, right;
+    public SegmentTreeNode(int start, int end, int max) {
+        this.start = start;
+        this.end = end;
+        this.max = max
+        this.left = this.right = null;
+    }
+}
+/*
+Given [3,2,1,4]. The segment tree will be:
+
+                 [0,  3] (max = 4)
+                  /            \
+        [0,  1] (max = 3)     [2, 3]  (max = 4)
+        /        \               /             \
+[0, 0](max = 3)  [1, 1](max = 2)[2, 2](max = 1) [3, 3] (max = 4)
+*/
+```
+- Each segment tree node needs to possess some value to be useful. 
+
 
 # Red Black Tree
 ## 基本知识

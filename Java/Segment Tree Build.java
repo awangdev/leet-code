@@ -1,8 +1,13 @@
 M
+1527867171
+tags: Segment Tree, Binary Tree, Divide and Conquer
 
-按定义：   
-左孩子：（A.left, (A.left+A.rigth)/2）   
-右孩子：（(A.left+A.rigth)/2＋1， A.right）   
+给一个区间[startIndex, endIndex], 建造segment tree structure, return root node.
+
+#### Segment Tree definition
+- Recursively build the binary tree
+- 左孩子：（A.left, (A.left+A.rigth)/2）   
+- 右孩子：（(A.left+A.rigth)/2＋1， A.right）   
 
 ```
 /*
@@ -11,12 +16,22 @@ has two attributes start and end denote an segment / interval.
 
 start and end are both integers, they should be assigned in following rules:
 
-The root's start and end is given by build method.
-The left child of node A has start=A.left, end=(A.left + A.right) / 2.
-The right child of node A has start=(A.left + A.right) / 2 + 1, end=A.right.
-if start equals to end, there will be no children for this node.
-Implement a build method with two parameters start and end, so that we can create a corresponding segment tree 
-with every node has the correct start and end value, return the root of this segment tree.
+- The root's start and end is given by build method.
+- The left child of node A has start=A.left, end=(A.left + A.right) / 2.
+- The right child of node A has start=(A.left + A.right) / 2 + 1, end=A.right.
+- if start equals to end, there will be no children for this node.
+
+Implement a build method with two parameters start and end, 
+so that we can create a corresponding segment tree 
+with every node has the correct start and end value, 
+return the root of this segment tree.
+
+Clarification
+Segment Tree (a.k.a Interval Tree) is an advanced data structure 
+which can support queries like:
+
+- which of these intervals contain a given point
+- which of these points are in a given interval
 
 Example
 Given start=0, end=3. The segment tree will be:
@@ -51,9 +66,10 @@ LintCode Copyright Binary Tree Segment Tree
 */
 
 public class Solution {
-    /**
-     *@param start, end: Denote an segment / interval
-     *@return: The root of Segment Tree
+    /*
+     * @param start: start value.
+     * @param end: end value.
+     * @return: The root of Segment Tree.
      */
     public SegmentTreeNode build(int start, int end) {
     	if (start > end) {

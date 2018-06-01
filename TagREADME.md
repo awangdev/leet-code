@@ -8,9 +8,9 @@ Table of Contents
 * [DP (65)](#dp-65)
 * [Double Sequence DP (4)](#double-sequence-dp-4)
 * [BFS (23)](#bfs-23)
-* [Segment Tree (1)](#segment-tree-1)
+* [Segment Tree (4)](#segment-tree-4)
 * [Design (13)](#design-13)
-* [DFS (56)](#dfs-56)
+* [DFS (57)](#dfs-57)
 * [Game Theory (4)](#game-theory-4)
 * [Hash Table (28)](#hash-table-28)
 * [Backtracking (22)](#backtracking-22)
@@ -37,12 +37,12 @@ Table of Contents
 * [Minimum Binary Tree (3)](#minimum-binary-tree-3)
 * [Bitwise DP (1)](#bitwise-dp-1)
 * [MiniMax (1)](#minimax-1)
-* [Two Pointers (24)](#two-pointers-24)
+* [Two Pointers (25)](#two-pointers-25)
 * [Basic Implementation (3)](#basic-implementation-3)
 * [Backpack DP (6)](#backpack-dp-6)
 * [Bit Manipulation (11)](#bit-manipulation-11)
 * [Quick Select (1)](#quick-select-1)
-* [Divide and Conquer (13)](#divide-and-conquer-13)
+* [Divide and Conquer (15)](#divide-and-conquer-15)
 * [Status DP (1)](#status-dp-1)
 * [Topological Sort (4)](#topological-sort-4)
 * [Quick Sort (2)](#quick-sort-2)
@@ -51,14 +51,14 @@ Table of Contents
 * [Coordinate DP (12)](#coordinate-dp-12)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [Enumeration (1)](#enumeration-1)
-* [Binary Tree (7)](#binary-tree-7)
+* [Binary Tree (10)](#binary-tree-10)
 * [Expression Tree (5)](#expression-tree-5)
 * [Binary Search (25)](#binary-search-25)
 * [Array (65)](#array-65)
 * [Memoization (10)](#memoization-10)
 * [Two Stacks (1)](#two-stacks-1)
 * [backtracking (1)](#backtracking-1)
-* [Two Pointer (1)](#two-pointer-1)
+* [Divide and Conquery (1)](#divide-and-conquery-1)
 
 
 
@@ -264,10 +264,13 @@ Table of Contents
  
  
  
-## Segment Tree (1)
+## Segment Tree (4)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
+|1|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|2|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|3|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
 
 
 
@@ -296,7 +299,7 @@ Table of Contents
  
  
  
-## DFS (56)
+## DFS (57)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)|Easy|Java|[BFS, DFS]||
@@ -355,6 +358,7 @@ Table of Contents
 |53|[Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
 |54|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
 |55|[Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)|Hard|Java|[BFS, DFS, Design, Tree]||
+|56|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
 
 
 
@@ -926,7 +930,7 @@ Table of Contents
  
  
  
-## Divide and Conquer (13)
+## Divide and Conquer (16)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)|Easy|Java|[Array, Bit Manipulation, Divide and Conquer]||
@@ -942,6 +946,9 @@ Table of Contents
 |10|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Double Recursive, Tree]||
 |11|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
 |12|[Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)|Medium|Java|[BST, DP, Divide and Conquer, Tree]||
+|13|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|14|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|15|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
 
 
 
@@ -1053,7 +1060,7 @@ Table of Contents
  
  
  
-## Binary Tree (7)
+## Binary Tree (10)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)|Medium|Java|[Binary Tree, DFS]||
@@ -1063,6 +1070,9 @@ Table of Contents
 |4|[Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)|Hard|Java|[Binary Tree, DFS, Expression Tree, Stack]||
 |5|[Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)|Hard|Java|[Binary Tree, DFS, Expression Tree, Stack]||
 |6|[Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)|Hard|Java|[Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]||
+|7|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|8|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|9|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
 
 
 
