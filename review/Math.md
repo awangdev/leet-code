@@ -1,7 +1,7 @@
  
  
  
-## Math (20)
+## Math (21)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy      Tags: [Math]
       
 
@@ -331,6 +331,26 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 - Use post-order traversal to evaluate the tree
 - 注意, input里面的数字不会是single digit, 所以需要一个buffer存number string
 - 整个题目的做法, 可以参照 `Expression Evaluation`
+
+
+
+---
+
+**20. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
+      
+
+LeetCode: 判断数字是否是ugly number. (definition: factor only have 2, 3, 5)
+
+#### Math
+- 看是否可以整除. 
+- 看整除最终结果是否== 1
+
+LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
+
+- 方法1: PriorityQueue排序。用ArrayList check 新的ugly Number是否出现过。
+- 方法1-1：(解释不通，不可取)用PriorityQueue排序。神奇的3，5，7走位：按照题目答案的出发，定了3，5，7以什么规律出现。但是题目并没有特殊表明。
+- 方法2: DP . Not Done yet.
+
 
 
 

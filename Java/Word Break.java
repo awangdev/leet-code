@@ -1,33 +1,94 @@
 M
+1527828369
+tags: DP, Sequence DP
 
-DP
+给一个String word, 和一个字典, 检查是否word可以被劈开, 而所有substring都应该是dictionary里面的words.
 
-方法1:（attempt3 code）
-state,rst[i]: 从[0～i] inclusive的string是否可以在dict中break开来找到？      
-function: rst[i] = true if (rst[i - j] && set.contains(s.substring(i - j, i))); j in[0~i]     
-1. rst[i - j] 记录的是[0, i-j]这一段是否可以break后在dict找到。     
-2. 若true，再加上剩下所有[i-j, i]都能在dict找到，那么rst[i] = rst[0, i - j] && rst[i-j, i] == true
+#### Sequence DP
+- true/false problem, think about dp
+- 子问题: 前i个字母, 是否可以有valid break
+- 检查dp[j] && substring(j, i)
+- dp = new boolean[n + 1]; dp[0] = true;
+- 注意, 用set代替list, 因为要用 contains().
 
-优化：找dict里面最长string, 限制j的增大。
+#### Previous notes
+##### 方法2(attempt4 code)    
+- 与Word BreakII用同样的DP。
+- valid[i]: 记录从i到valid array末尾是否valid.
 
-(attempt4 code)    
-与Word BreakII用同样的DP。
-valid[i]: 记录从i到valid array末尾是否valid.
+##### 方法1:（attempt3 code）
+- state,rst[i]: 从[0～i] inclusive的string是否可以在dict中break开来找到？      
+- function: rst[i] = true if (rst[i - j] && set.contains(s.substring(i - j, i))); j in[0~i]     
+- 1. rst[i - j] 记录的是[0, i-j]这一段是否可以break后在dict找到。     
+- 2. 若true，再加上剩下所有[i-j, i]都能在dict找到，那么rst[i] = rst[0, i - j] && rst[i-j, i] == true
+- 优化：找dict里面最长string, 限制j的增大。
+
 
 ```
 /*
-Given a string s and a dictionary of words dict, determine if s can be break into a space-separated 
-sequence of one or more dictionary words.
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, 
+determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
-Example
-Given s = "lintcode", dict = ["lint", "code"].
+Note:
 
-Return true because "lintcode" can be break as "lint code".
+The same word in the dictionary may be reused multiple times in the segmentation.
+You may assume the dictionary does not contain duplicate words.
+Example 1:
 
-Tags Expand 
-String Dynamic Programming
+Input: s = "leetcode", wordDict = ["leet", "code"]
+Output: true
+Explanation: Return true because "leetcode" can be segmented as "leet code".
+Example 2:
+
+Input: s = "applepenapple", wordDict = ["apple", "pen"]
+Output: true
+Explanation: Return true because "applepenapple" can be segmented as "apple pen apple".
+             Note that you are allowed to reuse a dictionary word.
+Example 3:
+
+Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
+Output: false
 
 */
+
+/*
+dp[i]: for first i letters, is it valid?
+for dp[i] to be valid, the substring[0 ~ i) need to be valid:
+dp[i] = dp[j] && sub(j, i); j = [0 ~ i]
+dp[0] = true; // 
+
+init dp[] = new boolean[n + 1];
+*/
+
+class Solution {
+    public boolean wordBreak(String s, List<String> dict) {
+        // check edge case
+        if (s == null || s.length() == 0 
+            || dict == null || dict.size() == 0) {
+            return false;
+        }
+        Set<String> words = new HashSet<>(dict);
+        // init dp
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+
+        // for loop from dp[1] ~ dp[n]
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                dp[i] |= dp[j] && words.contains(s.substring(j, i));
+                if (dp[i]) {
+                    break;
+                }
+            }
+        }
+        
+        return dp[n];
+    }
+}
+
+
+// Previous notes
 /*
 Attempt4: same as attempt3, but reversed how to build the validation matrix. (Same style as in Word Break II)
 valid[i]: 从i 到valid.length末尾是否valid

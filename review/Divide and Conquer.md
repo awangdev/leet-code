@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (12)
+## Divide and Conquer (13)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
       
 
@@ -287,6 +287,22 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 如果左边满足连续递增的规则, dfs (depth + 1), 如果不满足规则, dfs(depth = 1)
 - 右边也是一样
 - 对结果跟max作比较, return
+
+
+
+---
+
+**12. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+      
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
 
 
 

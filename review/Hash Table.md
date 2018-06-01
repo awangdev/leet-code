@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (26)
+## Hash Table (28)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy      Tags: [Hash Table]
       
 1524017454
@@ -496,6 +496,47 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 ##### 特点
 - Union Find 在index上做好像更加容易
 - 其他union find function: `boolean connected(a,b){return find(a) == find(b)}`
+
+
+
+---
+
+**26. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
+      
+
+
+给一个string[] dict, 和一个word. 
+
+每个word都可以缩写成固定的abbreviation `<first letter><number><last letter>`(详细看原题)
+
+检查input word是否满足unique
+
+#### HashMap<string, Set>
+- 简单算出abbreviatioin
+- 检查abbr是否存在; 如果存在, 是不是input word本身.
+
+
+
+---
+
+**27. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+      
+
+#### PriorityQueue
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+
+#### Just HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (24)
+## Two Pointers (25)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
@@ -433,6 +433,26 @@ return unique item 的长度.
 - 记得用dummy.next来存head.
 - 特殊: 这里k可能大于list总长. 写一写linked node 移动的步数, 然后 k = k % n.
 - 找到newTail, newHead, 然后利用dummy, 换位子
+
+
+
+---
+
+**24. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+      
+
+给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
+
+#### Two Pointer
+- Quick sort的基础. 
+- Partition Array根据pivot把array分成两半。
+- 从array两边开始缩进。while loop到遍历完。非常直白的implement。
+- 注意low/high,或者叫start/end不要越边界
+- O(n)
+- 注意: 这里第二个inner while `while(low <= high && nums[high] >= pivot) {..}` 采用了 `nums[high] >= pivot`
+- 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
+- 这个跟quick sort 原题有一点点不一样.
+
 
 
 

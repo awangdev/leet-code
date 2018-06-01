@@ -1,12 +1,24 @@
-Partition Array根据pivot把array分成两半。
-从array两边开始缩进。while loop到遍历完。非常直白的implement。
-注意low/high,或者叫start/end不要越边界
-O(n)
+M
+1527814146
+tags: Array, Two Pointers, Quick Sort, Sort
 
-Quick sort的基础。
+给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
+
+#### Two Pointer
+- Quick sort的基础. 
+- Partition Array根据pivot把array分成两半。
+- 从array两边开始缩进。while loop到遍历完。非常直白的implement。
+- 注意low/high,或者叫start/end不要越边界
+- O(n)
+- 注意: 这里第二个inner while `while(low <= high && nums[high] >= pivot) {..}` 采用了 `nums[high] >= pivot`
+- 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
+- 这个跟quick sort 原题有一点点不一样.
+
+
 ```
 /*
-Given an array nums of integers and an int k, partition the array (i.e move the elements in "nums") such that:
+Given an array nums of integers and an int k, 
+partition the array (i.e move the elements in "nums") such that:
 
 All elements < k are moved to the left
 All elements >= k are moved to the right
@@ -16,7 +28,8 @@ Example
 If nums=[3,2,2,1] and k=2, a valid answer is 1.
 
 Note
-You should do really partition in array nums instead of just counting the numbers of integers smaller than k.
+You should do really partition in array nums 
+instead of just counting the numbers of integers smaller than k.
 
 If all elements in nums are smaller than k, then return nums.length
 

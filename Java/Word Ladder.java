@@ -1,9 +1,20 @@
 M
+1527825811
+tags: BFS
 
-BFS Brutle: 在start string基础上，string的每个字母都遍历所有26个字母，换换。
+给一串string[], 需要找shortest distance to change from wordA -> wordB. (限制条件细节见原题)
 
-方法2:    
-用Trie。 理应更快. However implementation可能有点重复计算的地方，LeetCode timeout. 需要再做做。
+#### BFS
+- 通常, 给一个graph(这道题可以把beginWord看成一个graph的起始node), 找shortest path用BFS
+- 在start string基础上，string的每个字母都遍历所有26个字母
+- visited 过的 从wordList里去掉
+- time: word length m, there can be n candidates => O(mn)
+- 但是总是exceed time limit on LeetCode. However, it passes LintCode:
+- 原因是 LeetCode给的是list,  list.contains(), list.remove()  都是 O(logn) time!!!
+- convert to set first.
+
+#### Trie
+- timeout, overkill
 
 ```
 /*
@@ -36,7 +47,173 @@ Note:
 Be careful with queue size when trying to do for loop on it. Use a pre-fixed size = q.size(), in case queue's size changes during for loop.
 */
 
-//Solution1: nested for loop
+// Pass LeetCode. Use count to track the candidates
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        // check edge case
+        if (wordList == null || !wordList.contains(endWord)) {
+            return 0;
+        }
+
+        // build queue, visited set
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(beginWord);
+        Set<String> words = new HashSet<>(wordList);
+
+        // process one level of queue each time, count
+        int count = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            count++;
+            for (int i = 0; i < size; i++) {
+                String word = queue.poll();
+                List<String> candidates = transform(words, word);
+                for (String candidate: candidates) {
+                    if (endWord.equals(candidate)) {
+                        return count;
+                    }
+                    queue.offer(candidate);
+                }
+            }
+        }// END WHILE
+
+        return 0;
+    }
+
+    // switch each char with 26 lowercase letters, and return candidates
+    private List<String> transform(Set<String> words, String word) {
+        List<String> candidates = new ArrayList<>();
+        StringBuffer sb = new StringBuffer(word);
+        for (int i = 0; i < sb.length(); i++) {
+            char temp = sb.charAt(i);
+            for (char c = 'a'; c <= 'z'; c++) {
+                if (temp == c) {
+                    continue;
+                }
+                sb.setCharAt(i, c);
+                String newWord = sb.toString();
+                if (words.remove(newWord)) {
+                    candidates.add(newWord);
+                }
+            }
+            sb.setCharAt(i, temp);
+        }    
+        return candidates;
+    }
+}
+
+
+// Pass for Leetcode. Use wordNode class to track
+class Solution {
+    class WordNode {
+        String word;
+        int numSteps;
+
+        public WordNode(String word, int numSteps) {
+            this.word = word;
+            this.numSteps = numSteps;
+        }
+    }
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        // check edge case
+        if (wordList == null || !wordList.contains(endWord)) {
+            return 0;
+        }
+
+        // build queue, visited set
+        Queue<WordNode> queue = new LinkedList<>();
+        queue.offer(new WordNode(beginWord, 1));
+        Set<String> words = new HashSet<>(wordList);
+
+        // process one level of queue each time, count
+        while (!queue.isEmpty()) {
+            WordNode node = queue.poll();
+            String word = node.word;
+            int numSteps = node.numSteps;
+            
+            if (word.equals(endWord)) {
+                return node.numSteps;
+            }
+            //char[] arr = word.toCharArray();
+            StringBuffer sb = new StringBuffer(word);
+            for (int i = 0; i < sb.length(); i++) {
+                char temp = sb.charAt(i);
+                for (char c = 'a'; c <= 'z'; c++) {
+                    if (temp == c) {
+                        continue;
+                    }
+                    sb.setCharAt(i, c);
+                    String newWord = sb.toString();
+                    if (words.remove(newWord)) {
+                        queue.offer(new WordNode(newWord, numSteps + 1));
+                    }
+                }
+                sb.setCharAt(i, temp);
+            }
+        }// END WHILE
+
+        return 0;
+    }
+}
+
+
+
+// Pass for LintCode
+class Solution {
+    class WordNode {
+        String word;
+        int numSteps;
+
+        public WordNode(String word, int numSteps) {
+            this.word = word;
+            this.numSteps = numSteps;
+        }
+    }
+    public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+        wordList.add(endWord);
+
+        // build queue, visited set
+        Queue<WordNode> queue = new LinkedList<>();
+        queue.offer(new WordNode(beginWord, 1));
+
+        // process one level of queue each time, count
+        while (!queue.isEmpty()) {
+            WordNode node = queue.poll();
+            String word = node.word;
+            int numSteps = node.numSteps;
+            
+            if (word.equals(endWord)) {
+                return node.numSteps;
+            }
+            //char[] arr = word.toCharArray();
+            StringBuffer sb = new StringBuffer(word);
+            for (int i = 0; i < sb.length(); i++) {
+                char temp = sb.charAt(i);
+                for (char c = 'a'; c <= 'z'; c++) {
+                    if (temp == c) {
+                        continue;
+                    }
+                    sb.setCharAt(i, c);
+                    String newWord = sb.toString();
+                    if (wordList.remove(newWord)) {
+                        queue.add(new WordNode(newWord, numSteps + 1));
+                    }
+                }
+                sb.setCharAt(i, temp);
+            }
+        }// END WHILE
+
+        return 0;
+    }
+}
+
+
+
+
+
+
+// Previous notes:
+//Solution1: nested for loop, leetcode timesout
 public class Solution {
     public int ladderLength(String start, String end, Set<String> dict) {
     	if (start == null || end == null || dict == null || start.length() != end.length()) {

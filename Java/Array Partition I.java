@@ -2,8 +2,15 @@ E
 1517467099
 tags: Array
 
-从结果出发, 只需要找到加法的结果，而不强调具体配对。
-找到排列取单数位的规律，再考虑负数和正数的相同规律，即可找到排列求解的方法。
+给串数字, size=2n, 找pairs, 然后需要sum of min(pair) 最大.
+
+(a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
+
+#### Sort, basics
+- 从结果出发, 只需要找到加法的结果，而不强调具体配对.
+- 写一写example就能做
+- 找到排列取单数位的规律，再考虑负数和正数的相同规律，即可找到排列求解的方法。
+- sort, O(nlogn)
 
 
 ```

@@ -1,13 +1,22 @@
 M
+1527835239
+tags: Hash Table, Heap, Trie, PriorityQueue
 
-方法1：Brutle force用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-   注意排序时Collection.sort()的cost是O(nLogk)
+#### PriorityQueue
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
 
-方法1-1: 还是用HashMap,但create一个Node class, 然后用PriorityQueue.   
-PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+#### Just HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
 
-方法2: Trie && MinHeap屌炸天   
-   http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
 
 ```
 /*
@@ -28,7 +37,9 @@ for k = 3, return ["code", "lint", "baby"].
 for k = 4, return ["code", "lint", "baby", "yes"],
 
 Note
-You should order the words by the frequency of them in the return list, the most frequent one comes first. If two words has the same frequency, the one with lower alphabetical order come first.
+You should order the words by the frequency of them in the return list, 
+the most frequent one comes first. If two words has the same frequency, 
+the one with lower alphabetical order come first.
 
 Challenge
 Do it in O(nlogk) time and O(n) extra space.
@@ -39,9 +50,7 @@ Tags Expand
 Hash Table Heap Priority Queue
 */
 
-//2.23.2016 recap:
-//Use priorityQueue and a Class node. PriorityQueue uses String.compareTo()
-public class Solution {
+class Solution {
     class Node {
         int freq;
         String str;
@@ -50,21 +59,13 @@ public class Solution {
             this.freq = freq;
         }
     }
-    public String[] topKFrequentWords(String[] words, int k) {
-        String[] rst = new String[k];
+    public List<String> topKFrequent(String[] words, int k) {
+        List<String> rst = new ArrayList<>();
         if (words == null || words.length == 0 || k <= 0) {
             return rst;
         }
-        //map
-        HashMap<String, Node> map = new HashMap<String, Node>();
-        for (int i = 0 ; i < words.length; i++) {
-            if (!map.containsKey(words[i])) {
-                map.put(words[i], new Node(words[i], 0));
-            }
-            map.get(words[i]).freq = map.get(words[i]).freq + 1; 
-        }
         //queue
-        PriorityQueue<Node> queue = new PriorityQueue<Node>(k, new Comparator<Node>(){
+        PriorityQueue<Node> queue = new PriorityQueue<>(k, new Comparator<Node>(){
             public int compare(Node a, Node b) {
                 if (a.freq == b.freq) {
                     return a.str.compareTo(b.str);
@@ -73,19 +74,26 @@ public class Solution {
                 }
             } 
         });
+        //map
+        HashMap<String, Node> map = new HashMap<>();
+        for (String word: words) {
+            if (!map.containsKey(word)) {
+                map.put(word, new Node(word, 0));
+            }
+            map.get(word).freq = map.get(word).freq + 1;
+        }
+        
         for (Map.Entry<String, Node> entry : map.entrySet()) {
             queue.offer(entry.getValue());
         }
         //output
         for (int i = 0; i < k; i++) {
-            rst[i] = queue.poll().str;
+            rst.add(queue.poll().str);
         }
         
         return rst;
     }
 }
-
-
 /*
 	Attempt1, Thoughts:
 	Brutle force

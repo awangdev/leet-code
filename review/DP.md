@@ -1,7 +1,7 @@
  
  
  
-## DP (63)
+## DP (65)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [DP, Memoization, Sequence DP]
       
 
@@ -1519,6 +1519,51 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 #### DFS, backtracking
 - 尽管思考方式是对的, 但是 times out
 - 可以重复使用数字的时候, 比如用1 来拼出 999, 这里用1就可以走999 dfs level, 不efficient
+
+
+
+---
+
+**63. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+      
+
+给一个String word, 和一个字典, 检查是否word可以被劈开, 而所有substring都应该是dictionary里面的words.
+
+#### Sequence DP
+- true/false problem, think about dp
+- 子问题: 前i个字母, 是否可以有valid break
+- 检查dp[j] && substring(j, i)
+- dp = new boolean[n + 1]; dp[0] = true;
+- 注意, 用set代替list, 因为要用 contains().
+
+#### Previous notes
+##### 方法2(attempt4 code)    
+- 与Word BreakII用同样的DP。
+- valid[i]: 记录从i到valid array末尾是否valid.
+
+##### 方法1:（attempt3 code）
+- state,rst[i]: 从[0～i] inclusive的string是否可以在dict中break开来找到？      
+- function: rst[i] = true if (rst[i - j] && set.contains(s.substring(i - j, i))); j in[0~i]     
+- 1. rst[i - j] 记录的是[0, i-j]这一段是否可以break后在dict找到。     
+- 2. 若true，再加上剩下所有[i-j, i]都能在dict找到，那么rst[i] = rst[0, i - j] && rst[i-j, i] == true
+- 优化：找dict里面最长string, 限制j的增大。
+
+
+
+
+---
+
+**64. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+      
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
 
 
 

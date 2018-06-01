@@ -534,7 +534,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
  
  
  
-## Math (20)
+## Math (21)
 **0. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy      Tags: [Math]
       
 
@@ -869,13 +869,33 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 
 ---
 
+**20. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
+      
+
+LeetCode: 判断数字是否是ugly number. (definition: factor only have 2, 3, 5)
+
+#### Math
+- 看是否可以整除. 
+- 看整除最终结果是否== 1
+
+LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
+
+- 方法1: PriorityQueue排序。用ArrayList check 新的ugly Number是否出现过。
+- 方法1-1：(解释不通，不可取)用PriorityQueue排序。神奇的3，5，7走位：按照题目答案的出发，定了3，5，7以什么规律出现。但是题目并没有特殊表明。
+- 方法2: DP . Not Done yet.
+
+
+
+
+---
+
 
 
 
  
  
  
-## DP (63)
+## DP (65)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [DP, Memoization, Sequence DP]
       
 
@@ -2398,6 +2418,51 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
+**63. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+      
+
+给一个String word, 和一个字典, 检查是否word可以被劈开, 而所有substring都应该是dictionary里面的words.
+
+#### Sequence DP
+- true/false problem, think about dp
+- 子问题: 前i个字母, 是否可以有valid break
+- 检查dp[j] && substring(j, i)
+- dp = new boolean[n + 1]; dp[0] = true;
+- 注意, 用set代替list, 因为要用 contains().
+
+#### Previous notes
+##### 方法2(attempt4 code)    
+- 与Word BreakII用同样的DP。
+- valid[i]: 记录从i到valid array末尾是否valid.
+
+##### 方法1:（attempt3 code）
+- state,rst[i]: 从[0～i] inclusive的string是否可以在dict中break开来找到？      
+- function: rst[i] = true if (rst[i - j] && set.contains(s.substring(i - j, i))); j in[0~i]     
+- 1. rst[i - j] 记录的是[0, i-j]这一段是否可以break后在dict找到。     
+- 2. 若true，再加上剩下所有[i-j, i]都能在dict找到，那么rst[i] = rst[0, i - j] && rst[i-j, i] == true
+- 优化：找dict里面最长string, 限制j的增大。
+
+
+
+
+---
+
+**64. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+      
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
+
+
+
+---
+
 
 
 
@@ -2487,7 +2552,7 @@ TODO
  
  
  
-## BFS (21)
+## BFS (23)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
       
 
@@ -3016,6 +3081,45 @@ count这个graph里面有多少个独立的component.
 
 ---
 
+**21. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**22. [Word Ladder.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder.java)**      Level: Medium      Tags: [BFS]
+      
+
+给一串string[], 需要找shortest distance to change from wordA -> wordB. (限制条件细节见原题)
+
+#### BFS
+- 通常, 给一个graph(这道题可以把beginWord看成一个graph的起始node), 找shortest path用BFS
+- 在start string基础上，string的每个字母都遍历所有26个字母
+- visited 过的 从wordList里去掉
+- time: word length m, there can be n candidates => O(mn)
+- 但是总是exceed time limit on LeetCode. However, it passes LintCode:
+- 原因是 LeetCode给的是list,  list.contains(), list.remove()  都是 O(logn) time!!!
+- convert to set first.
+
+#### Trie
+- timeout, overkill
+
+
+
+---
+
 
 
 
@@ -3056,7 +3160,7 @@ HashHeap?
  
  
  
-## Design (11)
+## Design (13)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -3282,13 +3386,49 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
+**11. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**12. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
+      
+
+
+给一个string[] dict, 和一个word. 
+
+每个word都可以缩写成固定的abbreviation `<first letter><number><last letter>`(详细看原题)
+
+检查input word是否满足unique
+
+#### HashMap<string, Set>
+- 简单算出abbreviatioin
+- 检查abbr是否存在; 如果存在, 是不是input word本身.
+
+
+
+---
+
 
 
 
  
  
  
-## DFS (55)
+## DFS (56)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy      Tags: [BFS, DFS]
       
 
@@ -4513,6 +4653,24 @@ count这个graph里面有多少个独立的component.
 
 ---
 
+**55. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
 
 
 
@@ -4662,7 +4820,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (26)
+## Hash Table (28)
 **0. [Jewels and Stones.java](https://github.com/awangdev/LintCode/blob/master/Java/Jewels%20and%20Stones.java)**      Level: Easy      Tags: [Hash Table]
       
 1524017454
@@ -5157,6 +5315,47 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 ##### 特点
 - Union Find 在index上做好像更加容易
 - 其他union find function: `boolean connected(a,b){return find(a) == find(b)}`
+
+
+
+---
+
+**26. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
+      
+
+
+给一个string[] dict, 和一个word. 
+
+每个word都可以缩写成固定的abbreviation `<first letter><number><last letter>`(详细看原题)
+
+检查input word是否满足unique
+
+#### HashMap<string, Set>
+- 简单算出abbreviatioin
+- 检查abbr是否存在; 如果存在, 是不是input word本身.
+
+
+
+---
+
+**27. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+      
+
+#### PriorityQueue
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+
+#### Just HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
 
 
 
@@ -5864,7 +6063,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
  
  
  
-## Sort (11)
+## Sort (12)
 **0. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium      Tags: [Array, Sort]
       
 
@@ -6067,13 +6266,33 @@ implement quick sort.
 
 ---
 
+**11. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+      
+
+给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
+
+#### Two Pointer
+- Quick sort的基础. 
+- Partition Array根据pivot把array分成两半。
+- 从array两边开始缩进。while loop到遍历完。非常直白的implement。
+- 注意low/high,或者叫start/end不要越边界
+- O(n)
+- 注意: 这里第二个inner while `while(low <= high && nums[high] >= pivot) {..}` 采用了 `nums[high] >= pivot`
+- 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
+- 这个跟quick sort 原题有一点点不一样.
+
+
+
+
+---
+
 
 
 
  
  
  
-## Tree (38)
+## Tree (40)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
@@ -6826,13 +7045,47 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是�
 
 ---
 
+**38. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**39. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+      
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
+
+
+
+---
+
 
 
 
  
  
  
-## Trie (8)
+## Trie (9)
 **0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium      Tags: [Bit Manipulation, Trie]
       
 
@@ -7046,6 +7299,29 @@ TODO
 
 ---
 
+**8. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+      
+
+#### PriorityQueue
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+
+#### Just HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+
+
+---
+
 
 
 
@@ -7151,14 +7427,7 @@ BST: inorder-traversal: 先left node(adding to stack till left leav), 再process
 
 ---
 
-**8. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST]
-      
-
-
-
----
-
-**9. [Zigzag Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Zigzag%20Iterator.java)**      Level: Medium      Tags: [BST]
+**8. [Zigzag Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Zigzag%20Iterator.java)**      Level: Medium      Tags: [BST]
       
 
 这个题目相对简单. 做的时候我先考虑起来k条怎么办. 那么用个map把index和每个listmark一下就好了。
@@ -7168,7 +7437,7 @@ BST: inorder-traversal: 先left node(adding to stack till left leav), 再process
 
 ---
 
-**10. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
+**9. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
 Not quite clear.
@@ -7182,7 +7451,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**11. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy      Tags: [BST, Tree]
+**10. [Trim a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Trim%20a%20Binary%20Search%20Tree.java)**      Level: Easy      Tags: [BST, Tree]
       
 
 方法1:
@@ -7197,7 +7466,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**12. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
+**11. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
@@ -7237,7 +7506,7 @@ Previous Notes:
 
 ---
 
-**13. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Tree]
+**12. [Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Tree]
       
 
 如题, 验证是否是BST.
@@ -7254,7 +7523,7 @@ Previous Notes:
 
 ---
 
-**14. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List]
+**13. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List]
       
 
 如题, 把一个sorted singly linked list 转换成一个 height balanced BST
@@ -7279,7 +7548,7 @@ Previous Notes:
 
 ---
 
-**15. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy      Tags: [BST, Binary Search, Tree]
+**14. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy      Tags: [BST, Binary Search, Tree]
       
 
 给一个BST, 和一个double target, 走位找到最接近的number.
@@ -7298,7 +7567,7 @@ Previous Notes:
 
 ---
 
-**16. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium      Tags: [BST]
+**15. [Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)**      Level: Medium      Tags: [BST]
       
 
 给一个unsorted array, 问, 是否有两个element, value相差最大为t,  而两个element的index 相差最大为k.
@@ -7322,7 +7591,7 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 ---
 
-**17. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Tree]
+**16. [Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Tree]
       
 
 给 binary search tree root, q node, p node. 找到p q 的lowest common ancestor
@@ -7338,6 +7607,22 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
 - 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
 - 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
+
+
+
+---
+
+**17. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+      
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
 
 
 
@@ -7540,6 +7825,36 @@ reset() 给出最初的nums
  
  
  
+## PriorityQueue (1)
+**0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+      
+
+#### PriorityQueue
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+
+#### Just HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Interval DP (4)
 **0. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DP, Interval DP, Memoization]
       
@@ -7686,7 +8001,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
  
  
  
-## Heap (6)
+## Heap (7)
 **0. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
 
@@ -7813,6 +8128,29 @@ REVIEW
 Binary Indexed Tree?
 
 HashHeap?
+
+
+
+---
+
+**6. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+      
+
+#### PriorityQueue
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+
+#### Just HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
 
 
 
@@ -9226,7 +9564,7 @@ HashHeap?
  
  
  
-## Sequence DP (14)
+## Sequence DP (15)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [DP, Memoization, Sequence DP]
       
 
@@ -9615,6 +9953,35 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
+**14. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+      
+
+给一个String word, 和一个字典, 检查是否word可以被劈开, 而所有substring都应该是dictionary里面的words.
+
+#### Sequence DP
+- true/false problem, think about dp
+- 子问题: 前i个字母, 是否可以有valid break
+- 检查dp[j] && substring(j, i)
+- dp = new boolean[n + 1]; dp[0] = true;
+- 注意, 用set代替list, 因为要用 contains().
+
+#### Previous notes
+##### 方法2(attempt4 code)    
+- 与Word BreakII用同样的DP。
+- valid[i]: 记录从i到valid array末尾是否valid.
+
+##### 方法1:（attempt3 code）
+- state,rst[i]: 从[0～i] inclusive的string是否可以在dict中break开来找到？      
+- function: rst[i] = true if (rst[i - j] && set.contains(s.substring(i - j, i))); j in[0~i]     
+- 1. rst[i - j] 记录的是[0, i-j]这一段是否可以break后在dict找到。     
+- 2. 若true，再加上剩下所有[i-j, i]都能在dict找到，那么rst[i] = rst[0, i - j] && rst[i-j, i] == true
+- 优化：找dict里面最长string, 限制j的增大。
+
+
+
+
+---
+
 
 
 
@@ -9772,7 +10139,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Two Pointers (24)
+## Two Pointers (25)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
@@ -10204,6 +10571,26 @@ return unique item 的长度.
 - 记得用dummy.next来存head.
 - 特殊: 这里k可能大于list总长. 写一写linked node 移动的步数, 然后 k = k % n.
 - 找到newTail, newHead, 然后利用dummy, 换位子
+
+
+
+---
+
+**24. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+      
+
+给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
+
+#### Two Pointer
+- Quick sort的基础. 
+- Partition Array根据pivot把array分成两半。
+- 从array两边开始缩进。while loop到遍历完。非常直白的implement。
+- 注意low/high,或者叫start/end不要越边界
+- O(n)
+- 注意: 这里第二个inner while `while(low <= high && nums[high] >= pivot) {..}` 采用了 `nums[high] >= pivot`
+- 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
+- 这个跟quick sort 原题有一点点不一样.
+
 
 
 
@@ -10690,7 +11077,7 @@ count 一个 32-bit number binary format 里面有多少1
  
  
  
-## Divide and Conquer (12)
+## Divide and Conquer (13)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
       
 
@@ -10981,6 +11368,22 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
+**12. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+      
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
+
+
+
+---
+
 
 
 
@@ -11174,7 +11577,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
  
  
  
-## Quick Sort (1)
+## Quick Sort (2)
 **0. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy      Tags: [Array, Quick Select, Quick Sort]
       
 
@@ -11186,6 +11589,26 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
 - quick select 的template要熟悉一下, 一下子可能想得到, 但写不出来
 - 主要步骤: partition, dfs, only recur on one part of the array 
+
+
+
+---
+
+**1. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+      
+
+给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
+
+#### Two Pointer
+- Quick sort的基础. 
+- Partition Array根据pivot把array分成两半。
+- 从array两边开始缩进。while loop到遍历完。非常直白的implement。
+- 注意low/high,或者叫start/end不要越边界
+- O(n)
+- 注意: 这里第二个inner while `while(low <= high && nums[high] >= pivot) {..}` 采用了 `nums[high] >= pivot`
+- 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
+- 这个跟quick sort 原题有一点点不一样.
+
 
 
 
@@ -12497,7 +12920,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
  
  
  
-## Array (64)
+## Array (65)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy      Tags: [Array, Math]
       
 
@@ -12688,8 +13111,15 @@ Previous notes:
 **11. [Array Partition I.java](https://github.com/awangdev/LintCode/blob/master/Java/Array%20Partition%20I.java)**      Level: Easy      Tags: [Array]
       
 
-从结果出发, 只需要找到加法的结果，而不强调具体配对。
-找到排列取单数位的规律，再考虑负数和正数的相同规律，即可找到排列求解的方法。
+给串数字, size=2n, 找pairs, 然后需要sum of min(pair) 最大.
+
+(a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
+
+#### Sort, basics
+- 从结果出发, 只需要找到加法的结果，而不强调具体配对.
+- 写一写example就能做
+- 找到排列取单数位的规律，再考虑负数和正数的相同规律，即可找到排列求解的方法。
+- sort, O(nlogn)
 
 
 
@@ -13863,6 +14293,26 @@ return unique item 的长度.
 ##### 特点
 - Union Find 在index上做好像更加容易
 - 其他union find function: `boolean connected(a,b){return find(a) == find(b)}`
+
+
+
+---
+
+**64. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+      
+
+给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
+
+#### Two Pointer
+- Quick sort的基础. 
+- Partition Array根据pivot把array分成两半。
+- 从array两边开始缩进。while loop到遍历完。非常直白的implement。
+- 注意low/high,或者叫start/end不要越边界
+- O(n)
+- 注意: 这里第二个inner while `while(low <= high && nums[high] >= pivot) {..}` 采用了 `nums[high] >= pivot`
+- 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
+- 这个跟quick sort 原题有一点点不一样.
+
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Tree (38)
+## Tree (40)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
@@ -749,6 +749,40 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是�
 - 如果左边满足连续递增的规则, dfs (depth + 1), 如果不满足规则, dfs(depth = 1)
 - 右边也是一样
 - 对结果跟max作比较, return
+
+
+
+---
+
+**38. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**39. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+      
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
 
 
 

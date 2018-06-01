@@ -1,7 +1,7 @@
  
  
  
-## Hard (58)
+## Hard (59)
 **0. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: []
       
 首先要分两半解决，断点是'.': str.split("\\.");
@@ -1315,6 +1315,24 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 ##### 特点
 - Union Find 在index上做好像更加容易
 - 其他union find function: `boolean connected(a,b){return find(a) == find(b)}`
+
+
+
+---
+
+**58. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
 
 
 

@@ -1,5 +1,15 @@
 M
-tags: BST
+1527832674
+tags: BST, DP, Tree, Divide and Conquer
+
+给一个数字n, 找到以(1...n)为node的所有unique BST.
+
+#### BST
+- 根据BST规则, divide and conquer
+- 取一个value, 然后分两半(start, value - 1), (value + 1, end) 分别dfs
+- 然后左右两边的结果cross match
+
+#### DP? Memoization?
 
 ```
 /*
@@ -34,27 +44,28 @@ Thinking process:
  * }
  */
 public class Solution {
-    /**
-     * @paramn n: An integer
-     * @return: A list of root
-     */
     public List<TreeNode> generateTrees(int n) {
+        List<TreeNode> rst = new ArrayList<>();
+        if (n <= 0) {
+            return rst;
+        }
         return generate(1, n);
     }
-    public ArrayList<TreeNode> generate(int start, int end) {
-        ArrayList<TreeNode> rst = new ArrayList<TreeNode>();
+
+    public List<TreeNode> generate(int start, int end) {
+        List<TreeNode> rst = new ArrayList<>();
         if (start > end) {
             rst.add(null);
             return rst;
         }
         for (int i = start; i <= end; i++){
-            ArrayList<TreeNode> left = generate(start, i - 1);
-            ArrayList<TreeNode> right = generate(i +  1, end);
-            for (TreeNode l : left) {
-                for (TreeNode r : right) {
+            List<TreeNode> leftChildren = generate(start, i - 1);
+            List<TreeNode> rightChildren = generate(i + 1, end);
+            for (TreeNode left : leftChildren) {
+                for (TreeNode right : rightChildren) {
                     TreeNode root = new TreeNode(i);
-                    root.left = l;
-                    root.right = r;
+                    root.left = left;
+                    root.right = right;
                     rst.add(root);
                 }
             }
@@ -62,6 +73,7 @@ public class Solution {
         return rst;
     }
 }
+
 
 
 ```

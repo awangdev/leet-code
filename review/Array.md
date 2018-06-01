@@ -1,7 +1,7 @@
  
  
  
-## Array (64)
+## Array (65)
 **0. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy      Tags: [Array, Math]
       
 
@@ -192,8 +192,15 @@ Previous notes:
 **11. [Array Partition I.java](https://github.com/awangdev/LintCode/blob/master/Java/Array%20Partition%20I.java)**      Level: Easy      Tags: [Array]
       
 
-从结果出发, 只需要找到加法的结果，而不强调具体配对。
-找到排列取单数位的规律，再考虑负数和正数的相同规律，即可找到排列求解的方法。
+给串数字, size=2n, 找pairs, 然后需要sum of min(pair) 最大.
+
+(a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
+
+#### Sort, basics
+- 从结果出发, 只需要找到加法的结果，而不强调具体配对.
+- 写一写example就能做
+- 找到排列取单数位的规律，再考虑负数和正数的相同规律，即可找到排列求解的方法。
+- sort, O(nlogn)
 
 
 
@@ -1367,6 +1374,26 @@ return unique item 的长度.
 ##### 特点
 - Union Find 在index上做好像更加容易
 - 其他union find function: `boolean connected(a,b){return find(a) == find(b)}`
+
+
+
+---
+
+**64. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+      
+
+给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
+
+#### Two Pointer
+- Quick sort的基础. 
+- Partition Array根据pivot把array分成两半。
+- 从array两边开始缩进。while loop到遍历完。非常直白的implement。
+- 注意low/high,或者叫start/end不要越边界
+- O(n)
+- 注意: 这里第二个inner while `while(low <= high && nums[high] >= pivot) {..}` 采用了 `nums[high] >= pivot`
+- 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
+- 这个跟quick sort 原题有一点点不一样.
+
 
 
 

@@ -7,3 +7,9 @@
 - in DFS approach when initializing the adjacent list: use `map.put(x,y)`, not `add`
 
 
+#### forgot to cast int to char
+- P: wordladder
+- `sb.setCharAt(i, (char) j + 'a');`
+- Given input list: list.contains(), list.remove() are **O(logn)**!!!
+- Make sure to convert it to HashSet() if need to use contains()/remove()
+

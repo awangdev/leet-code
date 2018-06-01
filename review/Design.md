@@ -1,7 +1,7 @@
  
  
  
-## Design (11)
+## Design (13)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -222,6 +222,42 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 - 一个map<key,value>存数值。一个queue<key>来存排位。     
 - 每次有更新，就把最新的放在末尾；每次超过capaticity,就把大头干掉。很简单嘛，但是跑起来太久，失败了。     
 
+
+
+
+---
+
+**11. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**12. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
+      
+
+
+给一个string[] dict, 和一个word. 
+
+每个word都可以缩写成固定的abbreviation `<first letter><number><last letter>`(详细看原题)
+
+检查input word是否满足unique
+
+#### HashMap<string, Set>
+- 简单算出abbreviatioin
+- 检查abbr是否存在; 如果存在, 是不是input word本身.
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## BFS (21)
+## BFS (23)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
       
 
@@ -525,6 +525,45 @@ count这个graph里面有多少个独立的component.
 #### BFS
 - (还没做, 可以写一写)
 - 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+
+
+---
+
+**21. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+      
+
+#### DFS, Recursive
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**22. [Word Ladder.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder.java)**      Level: Medium      Tags: [BFS]
+      
+
+给一串string[], 需要找shortest distance to change from wordA -> wordB. (限制条件细节见原题)
+
+#### BFS
+- 通常, 给一个graph(这道题可以把beginWord看成一个graph的起始node), 找shortest path用BFS
+- 在start string基础上，string的每个字母都遍历所有26个字母
+- visited 过的 从wordList里去掉
+- time: word length m, there can be n candidates => O(mn)
+- 但是总是exceed time limit on LeetCode. However, it passes LintCode:
+- 原因是 LeetCode给的是list,  list.contains(), list.remove()  都是 O(logn) time!!!
+- convert to set first.
+
+#### Trie
+- timeout, overkill
 
 
 
