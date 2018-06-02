@@ -1,10 +1,11 @@
 M
+1527896821
+tags: Segment Tree, Binary Tree, Divide and Conquer, DFS
 
-和 Segment Tree Query I 以及其他Segment Tree问题没啥区别。这个就是return个count。
-
-这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
-那么第一步就要先clear一下。完全不在range就return 0. 有range重合就规整到root的range.
-
+#### Segment Tree
+- 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range
+- 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+- 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
 
 
 ```
@@ -59,13 +60,7 @@ LintCode Copyright Binary Tree Segment Tree
  *         this.left = this.right = null;
  *     }
  * }
- */
-public class Solution {
-    /**
-     *@param root, start, end: The root of segment tree and 
-     *                         an segment / interval
-     *@return: The count number in the interval [start, end]
-     */
+ */public class Solution {
     public int query(SegmentTreeNode root, int start, int end) {
         if (root == null || start > end) {
             return 0;
@@ -74,15 +69,17 @@ public class Solution {
     		return root.count;
     	}
       
-    	//Check if out range. If so, set border to root[start,end]
+    	//Validation1: Check if out range. If so, set border to root[start,end]
     	if ((start < root.start && end < root.start) ||
     	    (start > root.end && end > root.end)) {
     	    return 0;
     	}
-      if (start < root.start) {
+    	
+		// Validate2: if partially overlap, set correct border
+        if (start < root.start) {
     	    start = root.start;
     	}
-      if (end > root.end) {
+        if (end > root.end) {
     	    end = root.end;
     	}
 
@@ -93,7 +90,7 @@ public class Solution {
     	if (start > mid) {
     	    return query(root.right, start, end);
     	}
-      //mid in between [start, end]
+        //mid in between [start, end]
     	return query(root.left, start, root.left.end) + query(root.right, root.right.start, end);
     }
 }

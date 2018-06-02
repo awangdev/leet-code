@@ -8,9 +8,9 @@ Table of Contents
 * [DP (65)](#dp-65)
 * [Double Sequence DP (4)](#double-sequence-dp-4)
 * [BFS (23)](#bfs-23)
-* [Segment Tree (4)](#segment-tree-4)
+* [Segment Tree (7)](#segment-tree-7)
 * [Design (13)](#design-13)
-* [DFS (57)](#dfs-57)
+* [DFS (59)](#dfs-59)
 * [Game Theory (4)](#game-theory-4)
 * [Hash Table (28)](#hash-table-28)
 * [Backtracking (22)](#backtracking-22)
@@ -22,12 +22,13 @@ Table of Contents
 * [BST (18)](#bst-18)
 * [Permutation (1)](#permutation-1)
 * [Partition DP (5)](#partition-dp-5)
+* [Binary Search Tree (1)](#binary-search-tree-1)
 * [PriorityQueue (1)](#priorityqueue-1)
 * [Interval DP (4)](#interval-dp-4)
 * [Heap (7)](#heap-7)
 * [Linked List (20)](#linked-list-20)
 * [Stack (20)](#stack-20)
-* [Binary Indexed Tree (1)](#binary-indexed-tree-1)
+* [Binary Indexed Tree (2)](#binary-indexed-tree-2)
 * [Graph (6)](#graph-6)
 * [Brainteaser (1)](#brainteaser-1)
 * [Union Find (9)](#union-find-9)
@@ -42,7 +43,7 @@ Table of Contents
 * [Backpack DP (6)](#backpack-dp-6)
 * [Bit Manipulation (11)](#bit-manipulation-11)
 * [Quick Select (1)](#quick-select-1)
-* [Divide and Conquer (15)](#divide-and-conquer-15)
+* [Divide and Conquer (19)](#divide-and-conquer-19)
 * [Status DP (1)](#status-dp-1)
 * [Topological Sort (4)](#topological-sort-4)
 * [Quick Sort (2)](#quick-sort-2)
@@ -51,14 +52,13 @@ Table of Contents
 * [Coordinate DP (12)](#coordinate-dp-12)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [Enumeration (1)](#enumeration-1)
-* [Binary Tree (10)](#binary-tree-10)
+* [Binary Tree (12)](#binary-tree-12)
 * [Expression Tree (5)](#expression-tree-5)
-* [Binary Search (25)](#binary-search-25)
+* [Binary Search (26)](#binary-search-26)
 * [Array (65)](#array-65)
 * [Memoization (10)](#memoization-10)
 * [Two Stacks (1)](#two-stacks-1)
 * [backtracking (1)](#backtracking-1)
-* [Divide and Conquery (1)](#divide-and-conquery-1)
 
 
 
@@ -264,13 +264,16 @@ Table of Contents
  
  
  
-## Segment Tree (4)
+## Segment Tree (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
 |1|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
 |2|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
 |3|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|4|[Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|5|[Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|6|[Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)|Review|Java|[BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]||
 
 
 
@@ -299,7 +302,7 @@ Table of Contents
  
  
  
-## DFS (57)
+## DFS (59)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)|Easy|Java|[BFS, DFS]||
@@ -359,6 +362,8 @@ Table of Contents
 |54|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
 |55|[Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)|Hard|Java|[BFS, DFS, Design, Tree]||
 |56|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|57|[Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|58|[Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
 
 
 
@@ -558,7 +563,7 @@ Table of Contents
  
  
  
-## BST (18)
+## BST (19)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)|Medium|Java|[BST]||
@@ -579,6 +584,7 @@ Table of Contents
 |15|[Contains Duplicate III.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20III.java)|Medium|Java|[BST]||
 |16|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
 |17|[Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)|Medium|Java|[BST, DP, Divide and Conquer, Tree]||
+|18|[Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)|Review|Java|[BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]||
 
 
 
@@ -706,10 +712,11 @@ Table of Contents
  
  
  
-## Binary Indexed Tree (1)
+## Binary Indexed Tree (2)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
+|1|[Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)|Review|Java|[BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]||
 
 
 
@@ -930,7 +937,7 @@ Table of Contents
  
  
  
-## Divide and Conquer (16)
+## Divide and Conquer (19)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)|Easy|Java|[Array, Bit Manipulation, Divide and Conquer]||
@@ -949,6 +956,9 @@ Table of Contents
 |13|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
 |14|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
 |15|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|16|[Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|17|[Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|18|[Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)|Review|Java|[BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]||
 
 
 
@@ -1060,7 +1070,7 @@ Table of Contents
  
  
  
-## Binary Tree (10)
+## Binary Tree (12)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)|Medium|Java|[Binary Tree, DFS]||
@@ -1073,6 +1083,8 @@ Table of Contents
 |7|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
 |8|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
 |9|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|10|[Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|11|[Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
 
 
 
@@ -1093,7 +1105,7 @@ Table of Contents
  
  
  
-## Binary Search (25)
+## Binary Search (26)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)|Easy|Java|[Binary Search]||
@@ -1121,6 +1133,7 @@ Table of Contents
 |22|[Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)|Easy|Java|[Binary Search]||
 |23|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
 |24|[Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)|Easy|Java|[Binary Search]||
+|25|[Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)|Review|Java|[BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]||
 
 
 

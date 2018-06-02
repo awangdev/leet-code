@@ -1,7 +1,7 @@
  
  
  
-## Binary Tree (10)
+## Binary Tree (12)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium      Tags: [Binary Tree, DFS]
       
 
@@ -183,6 +183,33 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 - 简单的2个case: [start,end]全在mid左, 或者[start, end]全在mid右
 - 稍微复杂的3rd case: [start, end]包含了mid, 那么就break into 2 queries
 - [start, node.left.end], [node.right.start, end]
+
+
+
+---
+
+**10. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
+
+#### Segment Tree, Divide and Conquer
+- Recursively 在segment tree里面找index, update it with value.   
+- 每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下
+- 最后轮回到头顶，头顶一下包括头顶，就全部都是max了
+
+
+
+---
+
+**11. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+#### Segment Tree
+- 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range
+- 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+- 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
+
 
 
 

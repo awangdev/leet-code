@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (16)
+## Divide and Conquer (19)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
       
 
@@ -354,6 +354,55 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 简单的2个case: [start,end]全在mid左, 或者[start, end]全在mid右
 - 稍微复杂的3rd case: [start, end]包含了mid, 那么就break into 2 queries
 - [start, node.left.end], [node.right.start, end]
+
+
+
+---
+
+**16. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
+
+#### Segment Tree, Divide and Conquer
+- Recursively 在segment tree里面找index, update it with value.   
+- 每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下
+- 最后轮回到头顶，头顶一下包括头顶，就全部都是max了
+
+
+
+---
+
+**17. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+#### Segment Tree
+- 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range
+- 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+- 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
+
+
+
+
+---
+
+**18. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 

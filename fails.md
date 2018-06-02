@@ -13,3 +13,7 @@
 - Given input list: list.contains(), list.remove() are **O(logn)**!!!
 - Make sure to convert it to HashSet() if need to use contains()/remove()
 
+#### Check input range for SegmentTree problem
+- P: Segment Tree Query II
+- Forgot to validate [start, end] range. 
+- Need to fail if completely out of range, or override one side of the range if partial of the range is applicable

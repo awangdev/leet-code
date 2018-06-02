@@ -1,7 +1,7 @@
  
  
  
-## BST (18)
+## BST (19)
 **0. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST]
       
 
@@ -296,6 +296,28 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 然后左右两边的结果cross match
 
 #### DP? Memoization?
+
+
+
+---
+
+**18. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 

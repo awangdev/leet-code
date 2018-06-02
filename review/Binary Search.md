@@ -1,7 +1,7 @@
  
  
  
-## Binary Search (25)
+## Binary Search (26)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy      Tags: [Binary Search]
       
 
@@ -449,6 +449,28 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 给一个sorted integer array, 找target出现的最后的index. array 里有重复数字
 
 有重复,不是末尾点，继续binary search
+
+
+
+---
+
+**25. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 

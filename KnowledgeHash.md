@@ -399,8 +399,6 @@ The expression tree will be like
 # Segment Tree
 ## 基本知识
 - Also called, Interval Tree. It support queries like:
-- which of these intervals contain a given point
-- which of these points are in a given interval
 - https://en.wikipedia.org/wiki/Segment_tree
 - https://en.wikipedia.org/wiki/Interval_tree
 ```
@@ -426,6 +424,11 @@ Given [3,2,1,4]. The segment tree will be:
 ```
 - Each segment tree node needs to possess some value to be useful. 
 
+## 用法
+- which of these intervals contain a given point
+- which of these points are in a given interval
+- track max in the range
+- track count of nodes in the range
 
 # Red Black Tree
 ## 基本知识
@@ -783,6 +786,7 @@ public int compare(x, y) {
 ## ArrayList
 - Integer[] array = {1, 2, 3};
 - new ArrayList(Arrays.asList(array))
+- list.add(index, object)
 - O(1) insertion on average. 
 - Underneath, the insertion cause the arrayList to doubles the size and copy all contents to a new array. Over time, the cost is 1 + 2 + 4 + ... n/8 + n/4 + n/2 = O(n), over time
 - Therefore, the average insertion time is O(1)

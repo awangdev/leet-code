@@ -3126,7 +3126,7 @@ count这个graph里面有多少个独立的component.
  
  
  
-## Segment Tree (4)
+## Segment Tree (7)
 **0. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
       
 
@@ -3200,6 +3200,55 @@ HashHeap?
 - 简单的2个case: [start,end]全在mid左, 或者[start, end]全在mid右
 - 稍微复杂的3rd case: [start, end]包含了mid, 那么就break into 2 queries
 - [start, node.left.end], [node.right.start, end]
+
+
+
+---
+
+**4. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
+
+#### Segment Tree, Divide and Conquer
+- Recursively 在segment tree里面找index, update it with value.   
+- 每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下
+- 最后轮回到头顶，头顶一下包括头顶，就全部都是max了
+
+
+
+---
+
+**5. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+#### Segment Tree
+- 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range
+- 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+- 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
+
+
+
+
+---
+
+**6. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 
@@ -3479,7 +3528,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
  
  
  
-## DFS (57)
+## DFS (59)
 **0. [Nested List Weight Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Nested%20List%20Weight%20Sum.java)**      Level: Easy      Tags: [BFS, DFS]
       
 
@@ -4732,6 +4781,33 @@ count这个graph里面有多少个独立的component.
 - 简单的2个case: [start,end]全在mid左, 或者[start, end]全在mid右
 - 稍微复杂的3rd case: [start, end]包含了mid, 那么就break into 2 queries
 - [start, node.left.end], [node.right.start, end]
+
+
+
+---
+
+**57. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
+
+#### Segment Tree, Divide and Conquer
+- Recursively 在segment tree里面找index, update it with value.   
+- 每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下
+- 最后轮回到头顶，头顶一下包括头顶，就全部都是max了
+
+
+
+---
+
+**58. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+#### Segment Tree
+- 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range
+- 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+- 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
+
 
 
 
@@ -7394,7 +7470,7 @@ TODO
  
  
  
-## BST (18)
+## BST (19)
 **0. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST]
       
 
@@ -7689,6 +7765,28 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 然后左右两边的结果cross match
 
 #### DP? Memoization?
+
+
+
+---
+
+**18. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 
@@ -9041,7 +9139,7 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
  
  
  
-## Binary Indexed Tree (1)
+## Binary Indexed Tree (2)
 **0. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
       
 
@@ -9064,6 +9162,28 @@ REVIEW
 Binary Indexed Tree?
 
 HashHeap?
+
+
+
+---
+
+**1. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 
@@ -11143,7 +11263,7 @@ count 一个 32-bit number binary format 里面有多少1
  
  
  
-## Divide and Conquer (16)
+## Divide and Conquer (19)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
       
 
@@ -11496,6 +11616,55 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 简单的2个case: [start,end]全在mid左, 或者[start, end]全在mid右
 - 稍微复杂的3rd case: [start, end]包含了mid, 那么就break into 2 queries
 - [start, node.left.end], [node.right.start, end]
+
+
+
+---
+
+**16. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
+
+#### Segment Tree, Divide and Conquer
+- Recursively 在segment tree里面找index, update it with value.   
+- 每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下
+- 最后轮回到头顶，头顶一下包括头顶，就全部都是max了
+
+
+
+---
+
+**17. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+#### Segment Tree
+- 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range
+- 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+- 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
+
+
+
+
+---
+
+**18. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 
@@ -12332,7 +12501,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
  
  
  
-## Binary Tree (10)
+## Binary Tree (12)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium      Tags: [Binary Tree, DFS]
       
 
@@ -12519,6 +12688,33 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 
 ---
 
+**10. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
+
+#### Segment Tree, Divide and Conquer
+- Recursively 在segment tree里面找index, update it with value.   
+- 每个iteration，很可能（要么左手，要么右手）max就变了。所以每次都left.max and right.max compare一下
+- 最后轮回到头顶，头顶一下包括头顶，就全部都是max了
+
+
+
+---
+
+**11. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+      
+
+#### Segment Tree
+- 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range
+- 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
+- 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
+
+
+
+
+---
+
 
 
 
@@ -12629,7 +12825,7 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
  
  
  
-## Binary Search (25)
+## Binary Search (26)
 **0. [Guess Number Higher or Lower.java](https://github.com/awangdev/LintCode/blob/master/Java/Guess%20Number%20Higher%20or%20Lower.java)**      Level: Easy      Tags: [Binary Search]
       
 
@@ -13077,6 +13273,28 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 给一个sorted integer array, 找target出现的最后的index. array 里有重复数字
 
 有重复,不是末尾点，继续binary search
+
+
+
+---
+
+**25. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 

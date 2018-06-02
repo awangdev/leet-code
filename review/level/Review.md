@@ -1,7 +1,7 @@
  
  
  
-## Review (8)
+## Review (9)
 **0. [Maximum Subarray III.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20III.java)**      Level: Review      Tags: []
       
 
@@ -146,6 +146,28 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 #### O(N^2) 的 DP
 - 需要Game Theory的功底, Nim game. https://www.jiuzhang.com/qa/941/
 - http://www.1point3acres.com/bbs/thread-137953-1-1.html
+
+
+
+---
+
+**8. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Binary Search
+- sort and insert 进一个新list, 新的list是sorted
+- 从末尾 i = n-1 遍历nums[]
+- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
+- 每次记录下result[i]
+- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
+
+#### Binary Indexed Tree
+- TODO, have code
+
+#### Segment Tree
+- TODO, it seems too complicated for this problem.
 
 
 
