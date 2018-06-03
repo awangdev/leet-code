@@ -1,9 +1,14 @@
 M
-tags: BST
+1527998417
+tags: BST, Tree, DFS, Stack
 
-很容想到Inorder-binary-search-tree Traversal
-Recursive 不难，然后稍微优化一下，确保rst.size() == k 时候，就可以return了。
-Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边（如果存在）； 下一个轮回，如果又左孩子，又是一顿加。
+#### Iterative + stack: inorder traversal
+- 很容想到Inorder-binary-search-tree Traversal
+- Iterative 稍微难想点：先把最左边的add， pop() stack， 加上右边（如果存在）； 下一个轮回，如果又左孩子，又是一顿加。
+
+#### Recursive + DFS
+- 然后稍微优化一下，确保rst.size() == k 时候，就可以return了
+- check leaf => dfs left => add root => dfs right
 
 ```
 /*
@@ -60,7 +65,7 @@ public class Solution {
             return -1;
         }
 
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         TreeNode node = root;
         while(!stack.isEmpty()) {
@@ -80,13 +85,9 @@ public class Solution {
                 stack.push(node);
             }
          }
-
          return -1;
     }
-
 }
-
-
 
 // Recursive
 public class Solution {

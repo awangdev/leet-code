@@ -278,6 +278,9 @@ stack.push(item);
 - TreeSet还是一个set, 存values, 而好处是可以用 treeSet.ceiling(x)找到 最小的大于x的值
 - 其实就是这个value/node的parent
 
+## Traversal
+- Inorder BST traversal: 从小到大排序的ouput
+
 # Binary Tree
 - 一定要问清楚, 是Binary Tree (双孩子而已), 还是 Binary Search Tree. 非常重要!!!
 - 一个child tree的nodes总量是 2 ^ h - 1; 那么一个child tree + root 的nodes 总量就是 2 ^ h了.
@@ -308,6 +311,32 @@ stack.push(item);
 - inorder more often
 - draw the map
 - can implement with dfs, bfs
+
+### Inorder Traversal
+- DFS: check leaf => dfs left => process root => dfs right
+- stack: in while loop: deep dive to left leaf => stack.pop() => `node = node.right`
+```
+stack.push(root);
+TreeNode node = root;
+while(!stack.isEmpty()) {
+   //Left first
+   while (node != null && node.left != null) { 
+       stack.add(node.left);
+       node = node.left;
+   }
+   //Process left/curr
+   node = stack.pop();
+   
+   // do something with node
+
+   node = node.right; // VERY IMPORTANT
+   if (node != null) {
+       stack.push(node);
+   }
+}
+```
+- `node = node.right` is critical, otherwise it'll be in infinite loop
+- alternatively: we could set left = null, but that's disruptive to original structure, not recommended.
 
 
 # Min-Heap && Max-Heap
@@ -429,6 +458,10 @@ Given [3,2,1,4]. The segment tree will be:
 - which of these points are in a given interval
 - track max in the range
 - track count of nodes in the range
+
+## functions
+- build: divide and conquer; each step record necessary value: count, min, max, sum
+- query: `mid = (root.start + root.end) / 2`, and compare target start/end with mid; call query() recursively
 
 # Red Black Tree
 ## 基本知识
@@ -826,6 +859,7 @@ public int compare(x, y) {
 ### Numbers
 - Long a = 10; a.intValue() => int
 - Integer: Integer.parseInt("123")
+- parse binary string into integer: Integer.parseInt("010", 2) = 2;
 
 ### Probability theory
 

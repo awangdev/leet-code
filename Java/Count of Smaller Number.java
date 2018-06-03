@@ -1,4 +1,5 @@
-M
+R
+tags: Segment Tree, Binary Search
 
 和平时的segment tree问题不同。 0 ～ n-1代表实际数字。是造一个based on real value的segment tree.
 Modify时，把array里面的value带进去，找到特定的位子（leaf）,然后count+1. 
@@ -38,6 +39,10 @@ We suggest you finish problem Segment Tree Build and Segment Tree Query II first
 
 Challenge
 Could you use three ways to do it.
+
+1. Just loop
+2. Sort and binary search
+3. Build Segment Tree and Search.
 
 Just loop
 Sort and binary search

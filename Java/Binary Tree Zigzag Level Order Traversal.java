@@ -1,6 +1,10 @@
 M
+tags: Stack, Tree, BFS
 
-简单的level traversal.根据level奇数偶数而add到不同位子.
+#### Queue
+- 简单的level traversal.根据level奇数偶数而add到不同位子.
+- Option1: based on level % 2, insert to front/end of list
+- Option2: based on level, insert right/left of node into queue
 
 ```
 /* 

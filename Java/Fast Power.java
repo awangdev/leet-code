@@ -1,12 +1,14 @@
 M
+1527969371
+tags: DFS, Divide and Conquer
 
-a^n可以被拆解成(a*a*a*a....*a)， 是乘机形式，而%是可以把每一项都mod一下的。所以就拆开来take mod.
+如题: Calculate the a^n % b where a, b and n are all 32bit integers.
 
-这里用个二分的方法，recursively二分下去，直到n/2为0或者1，然后分别对待. 
-
-注意1: 二分后要conquer，乘积可能大于Integer.MAX_VALUE, 所以用个long.
-
-注意2: 要处理n%2==1的情况，二分时候自动省掉了一份，要乘一下。
+#### Divide and Conquer
+- a^n可以被拆解成(a*a*a*a....*a)， 是乘机形式，而%是可以把每一项都mod一下的。所以就拆开来take mod.
+- 这里用个二分的方法，recursively二分下去，直到n/2为0或者1，然后分别对待. 
+- 注意1: 二分后要conquer，乘积可能大于Integer.MAX_VALUE, 所以用个long.
+- 注意2: 要处理n%2==1的情况，二分时候自动省掉了一份 a，要乘一下。
 
 
 ```
@@ -36,10 +38,6 @@ Than mean: a ^ n can be divided into a^(n/2) * a^(n/2), that can be used for rec
 Note: when n is odd number, it cannot be evenly divided into n/2 and n/2. This case needs special treatment: n = n/2 + n/2 + 1;
 */
 class Solution {
-    /*
-     * @param a, b, n: 32bit integers
-     * @return: An integer
-     */
     public int fastPower(int a, int b, int n) {
         if (n == 0) {
             return 1 % b;

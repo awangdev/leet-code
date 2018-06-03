@@ -1,13 +1,12 @@
 M
+tags: Array, Tree, DFS
 
-写个Inorder和Postorder的例子。利用他们分left/right subtree的规律解题。
-
-Postorder array 的末尾， 就是当下层的root.   
-在Inorder array 里面找到这个root,就刚好把左右两边分割成left/right tree。
-
-这题比较tricky地用了一个helper做recursive。 特别要注意处理index的变化, precisely考虑开头结尾
-
-可惜有个不可避免的O(n) find element in array.
+#### DFS
+- 写个Inorder和Postorder的例子。利用他们分left/right subtree的规律解题。
+- Postorder array 的末尾， 就是当下层的root.   
+- 在Inorder array 里面找到这个root,就刚好把左右两边分割成left/right tree。
+- 这题比较tricky地用了一个helper做recursive。 特别要注意处理index的变化, precisely考虑开头结尾
+- 可惜有个不可避免的O(n) find element in array.
 
 ```
 /*

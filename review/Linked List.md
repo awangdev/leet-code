@@ -1,7 +1,7 @@
  
  
  
-## Linked List (20)
+## Linked List (22)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy      Tags: [Linked List]
       
 1525664839
@@ -353,6 +353,39 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - 记得用dummy.next来存head.
 - 特殊: 这里k可能大于list总长. 写一写linked node 移动的步数, 然后 k = k % n.
 - 找到newTail, newHead, 然后利用dummy, 换位子
+
+
+
+---
+
+**20. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [Linked List, Tree]
+      
+
+#### Inorder Traversal, Linked List
+- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
+- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
+
+##### Iterative inorder traversal
+- 在check right node的事后，    
+- 不论right == null or != null, 每次都要强行move to right.    
+- 如果不node = node.right,     
+- 很可能发生窘境：       
+- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
+
+
+
+---
+
+**21. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium      Tags: [Hash Table, Linked List]
+      
+
+deep copy linked list. linked list 上有random pointer to other nodes.
+
+#### HashMap
+- Basic Implementation
+- use node and dummy to hold new list, 遍历head.next .... null.    
+- 每一步都check map里面有没有head. 没有? 加上
+- 每一步都check map里面有没有head.random. 没有? 加上
 
 
 

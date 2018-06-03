@@ -1,13 +1,14 @@
 M
+1527959005
+tags: Hash Table, Design
 
-用HashMap， 理解题目规律，因为重复的计算可以被覆盖，所以是个优化题。
-
-消灭重合点:       
-如果process当下col, 其实要减去过去所有加过的row的交接点。。。     
-再分析，就是每次碰到row 取一个单点, sumRow += xxx。       
-然后process当下col时候， sum += colValue * N - sumRow. 就等于把交叉所有row（曾经Process过的row）的点减去了。很方便。
-
-最后read in 是O(P),  process也是O(P).
+#### basic implementation
+- 用HashMap， 理解题目规律，因为重复的计算可以被覆盖，所以是个优化题。没有什么太大的悬念和意义.
+- 消灭重合点:       
+- 如果process当下col, 其实要减去过去所有加过的row的交接点。。。     
+- 再分析，就是每次碰到row 取一个单点, sumRow += xxx。       
+- 然后process当下col时候， sum += colValue * N - sumRow. 就等于把交叉所有row（曾经Process过的row）的点减去了。很方便。
+- 最后read in 是O(P),  process也是O(P).
 
 
 ```
@@ -16,7 +17,9 @@ M
 HackerRank.
 You are given an N×NN×N grid. Each cell has the color white (color 0) in the beginning.
 
-Each row and column has a certain color associated with it. Filling a row or column with a new color VV means changing all the cells of that row or column to VV (thus overriding the previous colors of the cells).
+Each row and column has a certain color associated with it. 
+Filling a row or column with a new color VV means changing all the cells of 
+that row or column to VV (thus overriding the previous colors of the cells).
 
 Now, given a sequence of PP such operations, calculate the sum of the colors in the final grid.
 

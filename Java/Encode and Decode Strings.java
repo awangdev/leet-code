@@ -1,20 +1,19 @@
 M
+1527968983
+tags: String
 
-方法1:    
-用数字+"#"+string来encode.    
-基于我们自己定的规律, 在decode的里面不需要过多地去check error input, assume所有input都是规范的.    
-decode就是找"#",然后用"#"前的数字截取后面的string.
+如题.
 
-
-
-Old Solution:    
-Cast character into int. 串联起来, seperate by "LINE".   
-handle empty list [], or just null: 要把Null特别mark一下为‘NULL’, 这样decode时才能check到。      adminadmin
+#### String
+- 'word.length()#word' 这样encode, 可以避免遇到#
+- 基于我们自己定的规律, 在decode的里面不需要过多地去check error input, assume所有input都是规范的.    
+- decode就是找"#",然后用"#"前的数字截取后面的string.
 
 
 ```
 /*
-Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+Design an algorithm to encode a list of strings to a string. 
+The encoded string is then sent over the network and is decoded back to the original list of strings.
 
 Machine 1 (sender) has the function:
 
@@ -38,20 +37,19 @@ strs2 in Machine 2 should be the same as strs in Machine 1.
 Implement the encode and decode methods.
 
 Note:
-The string may contain any possible characters out of 256 valid ascii characters. Your algorithm should be generalized enough to work on any possible characters.
-Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
-Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
+The string may contain any possible characters out of 256 valid ascii characters. 
+Your algorithm should be generalized enough to work on any possible characters.
 
+Do not use class member/global/static variables to store states. 
+Your encode and decode algorithms should be stateless.
 
-Tags: String
-Similar Problems: (E) Count and Say, (M) Serialize and Deserialize Binary Tree
-
+Do not rely on any library method such as eval or serialize methods. 
+You should implement your own encode/decode algorithm.
 */
 
 
 /*
-Recap 3.28.2016
-Use number+"#" to mark a string. Append them all.
+Use word.length() + "#" + word to mark a string. Append them all.
 */
 public class Codec {
 
@@ -69,7 +67,7 @@ public class Codec {
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
-        List<String> strs = new ArrayList<String>();
+        List<String> strs = new ArrayList<>();
         if (s == null || s.length() == 0) {
             return strs;
         }
@@ -78,9 +76,9 @@ public class Codec {
             int ind = s.indexOf("#", start);
             int leng = Integer.parseInt(s.substring(start, ind));
                 
-            start = ind + 1 + leng;
-            strs.add(s.substring(ind + 1, start));
-
+            int end = ind + 1 + leng;
+            strs.add(s.substring(ind + 1, end));
+            start = end;
         }
         return strs;
     }

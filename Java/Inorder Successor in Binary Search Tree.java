@@ -1,11 +1,15 @@
 M
-tags: BST
+tags: BST, Tree
 
-画inorder图，发现规律.每个node的后继node(successor)有几种情况:   
-1. node.right 是个leaf到底了。那么就return.   
-2. set rightNode = node.right， 但发现rightNode has a lot left children to leaf.   
-3. 比如, node.right == null， 也就是node自己是leaf，要回头看山顶找Inorder traversal规则里的下一个。   
-	发现：其实就是每层都把路过的curr node放在stack里，最上面的，就是当下改return的那个successor:) Done.
+#### Iterative
+- TODO, perform search in the BST
+
+#### Recursive
+- 画inorder图，发现规律.每个node的后继node(successor)有几种情况:   
+- 1. node.right 是个leaf到底了。那么就return.   
+- 2. set rightNode = node.right， 但发现rightNode has a lot left children to leaf.   
+- 3. 比如, node.right == null， 也就是node自己是leaf，要回头看山顶找Inorder traversal规则里的下一个。   
+- 发现：其实就是每层都把路过的curr node放在stack里，最上面的，就是当下改return的那个successor:) Done.
 
 ```
 /*
@@ -56,8 +60,7 @@ Binary Search Tree Binary Tree
 
 	Stack uses O(h) space
 */
- //
- //
+
 public class Solution {
     Stack<TreeNode> stack = new Stack<TreeNode>();
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
@@ -66,8 +69,7 @@ public class Solution {
         }
         
         if (root == p) {
-            if (root.right != null) {
-            	//Hunt down rightNode's left leaf
+            if (root.right != null) { //in-order next node: Hunt down rightNode's left leaf
                 TreeNode rightNode = root.right;
                 while (rightNode.left != null) {
                     rightNode = rightNode.left;
@@ -81,10 +83,10 @@ public class Solution {
             }
         }
         
-        if (p.val < root.val && root.left != null) {
+        if (p.val < root.val && root.left != null) { // search left, with root added at bottom of stack
             stack.push(root);
             return inorderSuccessor(root.left, p);
-        } else if (p.val > root.val && root.right != null) {
+        } else if (p.val > root.val && root.right != null) { // search right
             return inorderSuccessor(root.right, p);
         }
         

@@ -1,4 +1,5 @@
 M
+tags: String, DFS, Backtracking
 
 递归。
 看thought.取或者不取(,  )

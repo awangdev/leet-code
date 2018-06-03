@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (25)
+## Two Pointers (26)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
@@ -453,6 +453,19 @@ return unique item 的长度.
 - 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
 - 这个跟quick sort 原题有一点点不一样.
 
+
+
+
+---
+
+**25. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
+      
+
+#### Two Pointers
+- 木桶理论。盛水的最高取决于最低的那面墙。
+- 左右两墙，往中间跑动。
+- 另:若一面墙已经小于另外一面，就要移动，换掉矮墙（可能下一面更高，或更低)
+- 但决不能换掉当下的高墙，因为低墙已经limit的盛水的上限，若高墙移动，导致两墙之间距离减少，就注定水量更少了。（弄啥来，不能缺心眼啊）
 
 
 

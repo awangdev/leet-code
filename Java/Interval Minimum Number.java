@@ -1,10 +1,12 @@
 M
+1527994488
+tags: Segment Tree, Binary Search, Divide and Conquer
 
-SegtmentTree, methods: Build, Query. 这题是在SegmentTreeNode里面存min.
+给一串数字 int[], 然后一个query Interval[], 每个interval是 [start, end], 找query 区间里的最小值.
 
-类似的有存:max, sum, min
-
-
+#### Segment Tree
+- SegtmentTree, methods: Build, Query. 这题是在SegmentTreeNode里面存min.
+- 类似的有存:max, sum, min
 
 ```
 /*
@@ -102,22 +104,5 @@ public class Solution {
     	return rst;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ```

@@ -1,9 +1,15 @@
 M
+tags: Hash Table, Sort
 
-例子写出来，发现可以sort以后按照定义搜索一遍。 nlogn.
-	当然，搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
+找到h-index, 给的citation int[] 并不是sorted. h-index 的definition 具体看题目.
 
-o(n)也可以，用bucket. 比较巧妙。
+#### Sort, find h from end
+- 例子写出来，发现可以sort以后按照定义搜索一遍。 nlogn.
+- 当然，搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
+
+#### Bucket count
+- o(n)也可以，用bucket. 比较巧妙
+- TODO
 
 
 ```

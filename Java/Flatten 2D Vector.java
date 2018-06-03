@@ -1,8 +1,14 @@
 M
+tags: Design
 
-大概意思就是把2D list里面的element全部遍历一遍。
-注意啊，一开始理解题意搞错：我以为是必须要排序正确，所以上来就PriorityQueue+HashMap搞得无比复杂。其实，这个跟一个nxn的matrix遍历，是没区别的拉。
-所有来个x,y，把2d list跑一变。
+Implement an iterator to flatten a 2d vector.
+
+#### Basic Implementation using x, y corrdinate
+- 就是把2D list里面的element全部遍历一遍。
+- 跟一个nxn的matrix遍历，是没区别的拉; 所有来个x,y，把2d list跑一变。
+
+#### Always return item at index 0, and remove from list?
+- list 方便remove, 考虑吧reduce input vector (就像给的是linked list 一样)
 
 ```
 /*

@@ -1,19 +1,24 @@
-M
+R
+tags: Heap
 
-Heap用的不多. 得用一下, 才好理解。   
-通常default 的PriorityQueue就是给了一个现成的min-heap：所有后面的对应element都比curr element 小。
+Turn unsorted array into a min-heap array, where for each A[i], 
 
-Heapify里面的siftdown的部分：
-	只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
+A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
 
-Heapify/SiftDown做了什么？    
-确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律。   
-比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
+#### Heap
+- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
+- 所有后面的对应element都比curr element 小。
+- Heapify里面的**siftdown**的部分:
+- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
 
-还是要记一下min-heap的判断规律:for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
+#### Heapify/SiftDown做了什么?
+- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
+- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
 
-siftdown时：在curr node和两个son里面小的比较。如果的确curr < son, 搞定，break while.   
-但若curr 并不比son小，那么就要换位子，而且继续从son的位子往下面盘查。    
+#### min-heap的判断规律:
+- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
+- siftdown时：在curr node和两个son里面小的比较。如果的确curr < son, 搞定，break while.   
+- 但若curr 并不比son小，那么就要换位子，而且继续从son的位子往下面盘查。    
 
 ```
 /*

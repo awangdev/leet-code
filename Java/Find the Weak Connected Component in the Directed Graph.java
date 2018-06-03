@@ -1,4 +1,8 @@
 M
+tags: Union Find
+
+LintCode再跑一下.
+TODO: 试一试在union find里面, 来一个 <parent, list of children>?
 
 Identify这是个union-find问题还挺巧妙。    
 看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    

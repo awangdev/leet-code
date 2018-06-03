@@ -1,6 +1,13 @@
 M
+Tags: Greedy, Priority Queue
 
-数位靠前的，权值更大. 所以硬来把靠前的相对更大的（跟following digit相比）去掉。
+#### Priority Queue
+- TODO: parse into node(index, digitValue)
+- find the top k, and remove from char array
+- O(nlogn) time
+
+#### Greedy
+- 数位靠前的，权值更大. 所以硬来把靠前的相对更大的（跟following digit相比）去掉。
 
 ```
 /*

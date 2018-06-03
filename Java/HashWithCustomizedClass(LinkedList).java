@@ -1,6 +1,18 @@
 M
+1527991732
+tags: Hash Table
 
-练习HashMap with customized class. 
+练习HashMap with customized class. functions: get(), put(), getRandom() 
+
+#### Hash Table
+- store map as array: `Entry<K,V>[] table;`
+- store entry as linked list: `public Entry(K key, V value, Entry<K,V> next)`
+- compute hashKey: `Math.abs(key.hashCode()) % this.capacity`
+- Handle collision:
+- 1. Check if duplicate (matching key), if so, replace and return
+- 2. Check through the linked list, find find duplicate (matching key), replace and return.
+- 3. If no duplicate, add the entry to the tail
+- Find item: compute hashKey -> find linked list -> iterate over list to find a matching key.
 
 ```
 /*
@@ -17,7 +29,8 @@ More about O(1) random access
     If no collision, uniform random access is easy.
 
 With collision, need to figure our how to access element on the linkedlist with O(1), but it's unlikely.
-    So, like Java HashMap, we can implement rehashing. Bascially, when map size increase to over capacity, double the capacity.
+So, like Java HashMap, we can implement rehashing. 
+Bascially, when map size increase to over capacity, double the capacity.
 
 */
 
@@ -71,7 +84,6 @@ public class CHashMap<K, V> {
         return null;
     }
     
-    
     public void put(K key, V value) {
         if (key == null) {
             return;
@@ -82,14 +94,15 @@ public class CHashMap<K, V> {
         if (table[hashedKey] == null) {
             table[hashedKey] = entry;
         } else {
+            // Handle collision
             Entry<K,V> node = table[hashedKey]; 
-            if (node.key.equals(key)) {
+            if (node.key.equals(key)) { // replace entry if key matches
                 table[hashedKey] = entry;
                 entry.next = node.next;
                 return;
             }
             while (node.next != null) {
-                if (node.next.key.equals(key)) {
+                if (node.next.key.equals(key)) { // replace entry if key matches
                     Entry<K,V> temp = node.next;
                     node.next = entry;
                     entry.next = temp.next;
@@ -131,10 +144,6 @@ public class CHashMap<K, V> {
         return table[hashedKey];
     }
   
-    
-
-    
-    
     
     public static void main(String[] args) {
         CHashMap<Character, String> map = new CHashMap<Character, String>(2);

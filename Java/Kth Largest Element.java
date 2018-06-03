@@ -1,22 +1,29 @@
-M
+R
+tags: Heap, Divide and Conquer, Quick Sort
 
-用Quick Sort 里面partion的一部分。     
-partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
-没找到继续partion recursively.
+#### Quick Sort
+- 用Quick Sort 里面partion的一部分。     
+- partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
+- 没找到继续partion recursively.
+- sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
+- Steps:
+- 每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
+- 找到一个low>pivot, high<pivot, 也就可以swap了。    
+- 得到的low就是当下的partion point了
+- Overall O(nlogN), average O(n) for this problem.
 
-sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
-
-Quick Sort:   
-每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
-找到一个low>pivot, high<pivot, 也就可以swap了。    
-得到的low就是当下的partion point了
+#### Heap
+- Learn how to build min-heap or max-heap to solve this problem.
+- O(n + kLogN)
 
 
 ```
 
 /*
 LeetCode:
-Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+Find the kth largest element in an unsorted array. 
+Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
 For example,
 Given [3,2,1,5,6,4] and k = 2, return 5.
 

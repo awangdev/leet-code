@@ -1,8 +1,18 @@
-M
+E
+1528005440
+tags: String
 
-Nested loop, 每一次比较所有string 同位是否相等。
+找一串String里面最长的公共prefix.
 
-相等，append string. 不等，return.
+#### Sort, compare string
+- Sort O(nlogn)
+- first and last string should share common prefix
+- 这里假设题目要求的是所有string的公共 prefix, 而不是部分strings
+
+#### Brutle
+- Nested loop, 每一次比较所有string 同位是否相等
+- 相等，append string. 不等，return.
+- O(mn)
 
 ```
 /*
@@ -17,6 +27,32 @@ Tags Expand
 Enumeration Basic Implementation String LintCode Copyright
 
 */
+
+/*
+Assumption: requirement is common prefix for all strings.
+Sort the strings: then head and tail should extract the common prefix
+*/
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+        
+        Arrays.sort(strs);
+        String head = strs[0];
+        String tail = strs[strs.length - 1];
+        
+        int size = head.length() < tail.length() ? head.length() : tail.length();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < size; i++) {
+            if (head.charAt(i) != tail.charAt(i)) {
+                break;
+            }
+            sb.append(head.charAt(i));
+        }
+        return sb.toString();
+    }
+}
 
 /*
 

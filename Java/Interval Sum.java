@@ -1,11 +1,13 @@
 M
+1527997211
+tags: Segment Tree, Binary Search
 
-其实是segment tree 每个node上面加个sum。   
+给一串数字 int[], 然后一个query Interval[], 每个interval是 [start, end], 找query 区间里的sum.
 
-记得Segment Tree methods: Build, Query
-
-Note: 存在SegmentTreeNode里面的是sum.  其他题目可能是min,max ... or something else.
-
+#### Segment Tree + Binary Search
+- 其实是segment tree 每个node上面加个sum
+- 记得Segment Tree methods: Build, Query
+- Note: 存在SegmentTreeNode里面的是sum.  其他题目可能是min,max,count ... or something else.
 
 ```
 /*
@@ -56,7 +58,7 @@ public class Solution {
     	if (start == end) {
     		return new SegmentSumTreeNode(start, end, A[start]);
     	}
-    	int mid = (start + end)/2;
+    	int mid = (start + end) / 2;
     	SegmentSumTreeNode leftChild = buildTree(A, start, mid);
     	SegmentSumTreeNode rightChid = buildTree(A, mid + 1, end);
 
@@ -71,7 +73,7 @@ public class Solution {
     	if (root.start == start && root.end == end) {
     		return root.sum;
     	}
-    	int mid = (root.start + root.end)/2;
+    	int mid = (root.start + root.end) / 2;
     	if (end <= mid) {
     		return searchTree(root.left, start, end);
     	} else if (start > mid) {
@@ -85,8 +87,8 @@ public class Solution {
      *@param A, queries: Given an integer array and an query list
      *@return: The result list
      */
-    public ArrayList<Long> intervalSum(int[] A, ArrayList<Interval> queries) {
-    	ArrayList<Long> rst = new ArrayList<Long>(); 
+    public List<Long> intervalSum(int[] A, List<Interval> queries) {
+    	List<Long> rst = new ArrayList<>(); 
         if (A == null || A.length == 0 || queries == null || queries.size() == 0) {
         	return rst;
         }

@@ -1,21 +1,25 @@
 M
- 
-BFS遍历，把每个node的neighbor都加进来。    
+1527969793
+tags: BFS, DFS
 
-一定注意要把visit过的node Mark一下。因为curr node也会是别人的neighbor，会无限循环。      
+给一个undirected graph, return 所有的component. (这道题找不到了)  
 
-Component的定义：所有Component内的node必须被串联起来via path (反正这里是undirected, 只要链接上就好)     
+#### BFS
+- BFS遍历，把每个node的neighbor都加进来. 
+- 一定注意要把visit过的node Mark一下。因为curr node也会是别人的neighbor，会无限循环。      
+- Component的定义：所有Component内的node必须被串联起来via path (反正这里是undirected, 只要链接上就好)     
+- 这道题：其实component在input里面都已经给好了，所有能一口气visit到的，全部加进queue里面，他们就是一个component里面的了。     
+- 而我们这里不需要判断他们是不是Component
 
-这道题：其实component在input里面都已经给好了，所有能一口气visit到的，全部加进queue里面，他们就是一个component里面的了。     
-
-而我们这里不需要判断他们是不是Component。   
+#### DFS
+- DFS 应该也可以 visit all nodes, mark visited.
 
 ```
- /*
+/*
 Find the number connected component in the undirected graph. 
 Each node in the graph contains a label and a list of its neighbors. 
-(a connected component (or just component) of an undirected graph is a subgraph in which 
-    any two vertices are connected to each other by paths, 
+(a connected component (or just component) of an undirected graph is a subgraph 
+in which any two vertices are connected to each other by paths, 
 and which is connected to no additional vertices in the supergraph.)
 
 Example
@@ -63,7 +67,7 @@ public class Solution {
             return rst;
         }
 
-        HashMap<Integer, Boolean> map = new HashMap<Integer, Boolean>();
+        HashMap<Integer, Boolean> map = new HashMap<>();
         for (UndirectedGraphNode node : nodes) {
             map.put(node.label, false);
         }

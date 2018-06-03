@@ -1,4 +1,7 @@
 M
+tags: Hash Table, Math
+
+TODO: no need of hashMap, just use set to store the existing
 
 不难想到处理除法：考虑正负，考虑小数点前后。主要是小数点以后的要着重考虑。
 很容易忽略的是integer的益处。

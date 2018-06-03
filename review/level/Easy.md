@@ -1,7 +1,7 @@
  
  
  
-## Easy (133)
+## Easy (134)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy      Tags: []
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -710,18 +710,20 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 **55. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
       
 
-方法1: Vote 计数, vote++, vote--到最后剩下的就是winner. Time O(n), Space O(1)
-Majority Number是指超半数. 超半数的数字, 最后都会至少有vote>=1: match current majority number，vote++；if not, vote--. 
-注意：assume valid input, 是一定有一个majority number的。否则此法不成。[1,1,1,2,2,2,3]是个invalid input,结果是3，当然也错了。
+#### Vote 计数
+- vote++, vote--到最后剩下的就是winner. Time O(n), Space O(1)
+- Majority Number是指超半数. 超半数的数字, 最后都会至少有vote>=1: match current majority number，vote++；if not, vote--. 
+- 注意：assume valid input, 是一定有一个majority number的。否则此法不成。[1,1,1,2,2,2,3]是个invalid input,结果是3，当然也错了。
 
-方法2: HashMap count occurance. Time, Space: O(n)
+#### HashMap count occurance
+- Time, Space: O(n)
 
-方法3: Bit manipulation. 还没有做.
+#### Bit manipulation
+- TODO
 
-Related Problems:
-Majority Number II，超1/3, 那么就分三份处理，countA, countB来计算最多出现的两个。
-
-Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
+#### Related Problems
+- Majority Number II，超1/3, 那么就分三份处理，countA, countB来计算最多出现的两个。
+- Majority Number III, 超1/k, 那么自然分k份。这里用到 HashMap。
 
 
 
@@ -2028,6 +2030,25 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是�
 - *三步rotate*
 - 有个坑：offset可能很长，那么要%length，才能得到真正需要rotate的部分。
 - Note: rotate 一个 full length之后，是string 不变
+
+
+
+---
+
+**133. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Easy      Tags: [String]
+      
+
+找一串String里面最长的公共prefix.
+
+#### Sort, compare string
+- Sort O(nlogn)
+- first and last string should share common prefix
+- 这里假设题目要求的是所有string的公共 prefix, 而不是部分strings
+
+#### Brutle
+- Nested loop, 每一次比较所有string 同位是否相等
+- 相等，append string. 不等，return.
+- O(mn)
 
 
 

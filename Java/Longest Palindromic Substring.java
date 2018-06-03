@@ -1,4 +1,9 @@
-M
+R
+tags: String, DP
+
+#### DP 
+- similar to Longest Palindromic Subsequence
+- TODO: 区间型DP; or memoization?
 
 方法1: 从中间劈开. 遍历i，从n个不同的点劈开：每次劈开都看是否可以从劈开出作为palindromic的中点延伸。   
    Worst case: 整个string都是相同字符，time complexity变成： 1 + 2 +３　＋　．．．　＋n = O(n^2)

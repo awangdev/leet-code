@@ -1,8 +1,31 @@
  
  
  
-## Quick Sort (2)
-**0. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy      Tags: [Array, Quick Select, Quick Sort]
+## Quick Sort (3)
+**0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
+      
+
+#### Quick Sort
+- 用Quick Sort 里面partion的一部分。     
+- partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
+- 没找到继续partion recursively.
+- sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
+- Steps:
+- 每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
+- 找到一个low>pivot, high<pivot, 也就可以swap了。    
+- 得到的low就是当下的partion point了
+- Overall O(nlogN), average O(n) for this problem.
+
+#### Heap
+- Learn how to build min-heap or max-heap to solve this problem.
+- O(n + kLogN)
+
+
+
+
+---
+
+**1. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy      Tags: [Array, Quick Select, Quick Sort]
       
 
 给一串无序数组, 找到median(sort之后 位置在中间的数字).
@@ -18,7 +41,7 @@
 
 ---
 
-**1. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**2. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.

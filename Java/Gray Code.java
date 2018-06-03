@@ -1,4 +1,9 @@
 M
+tags: Backtracking
+
+TODO:
+1. backtracking, using set to perform contains()
+2. BFS: use queue to keep the mutations
 
 题目蛋疼，目前只接受一种结果。
 
