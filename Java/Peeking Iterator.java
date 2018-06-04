@@ -1,13 +1,22 @@
 M
-tags: BST
+1528087487
+tags: Design
 
-再一次理解错题意. peek() 就是头顶，但是不一定是最大值啊。总是把PEEK想成了最大值，然后用2 STACK做了最大值的cache，练的一手好双stack，可惜错了。
+#### Use concept pre cache
+- 找一个cache来存next()的值, 也就是: next value的值提前存在cache里面
+- 因此peek()的时候, 就可以直接return cache, 而不用做 itt.next()
+- 然后每次真的next()的时候, 里取下一个itt.next()维护这个cache
 
-回到原题，其实不难。找一个cache来存next()的值，然后每次next()里面维护这个cache就好。
+#### Previous notes
+- 再一次理解错题意. peek() 就是头顶，但是不一定是最大值啊。
+- 总是把PEEK想成了最大值，然后用2 STACK做了最大值的cache，练的一手好双stack，可惜错了。
+
 
 ```
 /*
-Given an Iterator class interface with methods: next() and hasNext(), design and implement a PeekingIterator that support the peek() operation -- it essentially peek() at the element that will be returned by the next call to next().
+Given an Iterator class interface with methods: next() and hasNext(), 
+design and implement a PeekingIterator that support the peek() operation -- 
+it essentially peek() at the element that will be returned by the next call to next().
 
 Here is an example. Assume that the iterator is initialized to the beginning of the list: [1, 2, 3].
 
@@ -75,7 +84,42 @@ class PeekingIterator implements Iterator<Integer> {
 	}
 }
 
+// Generic and work with all types
+// Java Iterator interface reference:
+// https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
+class PeekingIterator<T> implements Iterator<T> {
+	private T cache;
+	private Iterator<T> itt;
+	private boolean notEnd;
+	public PeekingIterator(Iterator<T> iterator) {
+	    // initialize any member here.
+	    itt = iterator;
+	    cache = itt.next();
+	    notEnd = iterator.hasNext();
+	}
 
+    // Returns the next element in the iteration without advancing the iterator.
+	public T peek() {
+        return cache;
+	}
+
+	// hasNext() and next() should behave the same as in the Iterator interface.
+	// Override them if needed.
+	@Override
+	public T next() {
+		T curr = cache;
+		notEnd = itt.hasNext();
+		if (itt.hasNext()) {
+			cache = itt.next();
+		}
+	    return curr;
+	}
+
+	@Override
+	public boolean hasNext() {
+	    return notEnd;
+	}
+}
 
 
 /*

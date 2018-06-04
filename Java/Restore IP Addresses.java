@@ -1,11 +1,17 @@
 M
+1528094586
+tags: String, Backtracking, DFS
 
-递归的终点:list.zie() == 4
-递归在一个index上面（具体问题，具体分析的情况）
-validate string要注意leading '0'
+给一串数字, 检查是否是valid IP, 如果合理, 给出所有valid 的IP组合方式.
 
-注意： 递归的时候可以用一个start/level/index来跑路
-但是尽量不要去改变Input source， 会变得非常confusing.
+#### Backtracking
+- 递归的终点:list.zie() == 3, 解决最后一段
+- 递归在一个index上面, pass s.toCharArray()
+- validate string要注意leading '0'
+- 注意: 递归的时候可以用一个start/level/index来跑路
+- 但是尽量不要去改变Input source， 会变得非常confusing.
+- note: code有点messy, 因为要考虑IP的valid情况
+- 那个'remainValid', 其实是一个对于remain substring的判断优化, 不成立的就不dfs了
 
 ```
 /*
@@ -21,18 +27,8 @@ Hide Tags Backtracking String
 
 */
 
-/*
-	Thoughts:
-	NOT DONE. NEED CLEAR MIND
-	Break into 4 parts.
-	At each index, either close it as one IP spot, or not.
-		recursive down.
-		If level == 4 validate if valid IP address. If so, add it.
-	pass along: rst, list (store the 4 IP spots), level (0 ~ 3), s,
-	for (0 ~ 2): can pick 1 digit, 2 digits, or 3 digits
-*/
 public class Solution {
-   public  List<String> restoreIpAddresses(String s) {
+   public List<String> restoreIpAddresses(String s) {
         List<String> rst = new ArrayList<String>();
         if (s == null || s.length() == 0) {
             return rst;
@@ -40,35 +36,46 @@ public class Solution {
         if (s.length() < 4 || s.length() > 12) {
         	return rst;
         }
-        ArrayList<String> list = new ArrayList<String>();
-        helper(rst, list, 0, s);
+        List<String> list = new ArrayList<>();
+        helper(rst, list, 0, s.toCharArray());
 
         return rst;
     }
 
-    public  void helper(List<String> rst, ArrayList<String>list,
-        int start, String s) {
-        if (list.size() == 4) {
-        	if (start != s.length()) {
-        		return;
-        	}
+    public void helper(List<String> rst, List<String>list, int index, char[] arr) {
+        if (list.size() == 3) {
             StringBuffer sb = new StringBuffer();
-            for (String str : list) {
+            for (int i = index; i < arr.length; i++) {
+                sb.append(arr[i]);
+            }
+            
+            if (!isValid(sb.toString())) {
+                return;
+            }
+            list.add(sb.toString());
+            sb = new StringBuffer();
+            for (String str: list) {
                 sb.append(str + ".");
             }
             rst.add(sb.substring(0, sb.length() - 1).toString());
+            list.remove(list.size() - 1);
             return;
         }
         //run for loop 3 times: one IP spot has at most 3 digits
-        for (int i = start; i < s.length() && i <= start + 3; i++) {
-        	String temp = s.substring(start, i + 1);
-        	if (isValid(temp)) {
-	            list.add(temp);
-	            helper(rst, list, i + 1, s);
+        int end = index + 3;
+        StringBuffer sb = new StringBuffer();
+        for (int i = index; i < end && i < arr.length; i++) {
+        	sb.append(arr[i]);
+            int remainLength = (arr.length - i - 1);
+            boolean remainValid = remainLength > 0 && remainLength <= (4 - list.size() - 1) * 3;
+        	if (isValid(sb.toString()) && remainValid) {
+	            list.add(sb.toString());
+	            helper(rst, list, i + 1, arr);
 	            list.remove(list.size() - 1);
             }
         }
     }
+
     //Valid the IP [0,255]; cannot start with 0 if it's not 0
     public boolean isValid(String str) {
     	if (str.charAt(0) == '0') {
@@ -79,13 +86,5 @@ public class Solution {
     }
 
 }
-
-
-
-
-
-
-
-
 
 ```

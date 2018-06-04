@@ -1,7 +1,7 @@
  
  
  
-## DFS (64)
+## DFS (66)
 **0. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Tree]
       
 
@@ -1357,6 +1357,51 @@ count这个graph里面有多少个独立的component.
 #### Recursive + DFS
 - 然后稍微优化一下，确保rst.size() == k 时候，就可以return了
 - check leaf => dfs left => add root => dfs right
+
+
+
+---
+
+**64. [Permutations.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations.java)**      Level: Medium      Tags: [Backtracking, DFS, Permutation]
+      
+
+#### Recursive: Backtracking
+- Given a remaining list: 取, 或者不取
+- Improvement: maintain list (add/remove elements) instead of 'list.contains'
+- time O(n!): visit all possible outcome
+- T(n) = n * T(n-1) + O(1)
+
+#### Iterative: Insertion
+- 插入法:
+- 1. 一个一个element加进去
+- 2. 每一次把rst里面的每个list拿出来, 创建成新list, 然后选位置加上new element
+- 3. 加新元素的时候, 要在list的每个位置insert, 最终也要在原始的list末尾加上new element
+- 还是O(n!), 因为rst insert O(n!)个permutations
+- 但是比dfs要快, 因该是因为 # of checks 少: 不需要check list.size(), 不需要maintain remaining list.
+
+#### Previous Notes
+- 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍
+- Time O(n!)
+- A bit slower, possibly because of the polling and saving the entire list every time
+
+
+
+
+---
+
+**65. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
+      
+
+给一串数字, 检查是否是valid IP, 如果合理, 给出所有valid 的IP组合方式.
+
+#### Backtracking
+- 递归的终点:list.zie() == 3, 解决最后一段
+- 递归在一个index上面, pass s.toCharArray()
+- validate string要注意leading '0'
+- 注意: 递归的时候可以用一个start/level/index来跑路
+- 但是尽量不要去改变Input source， 会变得非常confusing.
+- note: code有点messy, 因为要考虑IP的valid情况
+- 那个'remainValid', 其实是一个对于remain substring的判断优化, 不成立的就不dfs了
 
 
 

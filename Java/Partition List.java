@@ -1,13 +1,15 @@
 M
+1528086917
+tags: Linked List, Two Pointers
 
-不能像partitioin array一样从两边遍历。
+#### Linked List
+- linked list 不能像partitioin array一样从两边遍历
+- 把小于value的加在前半段, 把 >= value的加在后半段
+- 做法很普通: 建造两个list, midTail pointer, post pointer
+- 把满足条件（<x, >=x）的数字分别放到两个list里面
+- 记得用dummyNode track head.
+- 最终midTail.next = post链接起来。
 
-那就最普通的，建造两个list
-
-把满足条件（<x, >=x）的数字分别放到两个list里面
-
-记得用dummyNode track head.
-最终pre.next = post链接起来。
 ```
 /*
 33% Accepted
@@ -33,51 +35,41 @@ Thinking process:
 3. Link them togeter
 4. return dummyPre.next
 */
-
 /**
- * Definition for ListNode.
+ * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
  *     ListNode next;
- *     ListNode(int val) {
- *         this.val = val;
- *         this.next = null;
- *     }
+ *     ListNode(int x) { val = x; }
  * }
- */ 
+ */
 public class Solution {
-    /**
-     * @param head: The first node of linked list.
-     * @param x: an integer
-     * @return: a ListNode 
-     */
     public ListNode partition(ListNode head, int x) {
         if (head == null) {
             return head;
         }
 
-        ListNode dummyPre = new ListNode(0);
+        ListNode dummy = new ListNode(0);
         ListNode dummyPost = new ListNode(0);
-        ListNode pre = dummyPre;
+        ListNode midTail = dummy;
         ListNode post = dummyPost;
 
         while (head != null) {
             if (head.val < x) {
-                pre.next = head;
-                pre = pre.next;
+                midTail.next = head;
+                midTail = midTail.next;
             } else {
                 post.next = head;
                 post = post.next;
             }
-             head = head.next;
+            head = head.next;
         }
         
         post.next = null;
-        pre.next = dummyPost.next;
+        midTail.next = dummyPost.next;
         
-        return dummyPre.next;
+        return dummy.next;
     }
 }
-
 
 ```

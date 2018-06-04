@@ -1,7 +1,7 @@
  
  
  
-## Design (15)
+## Design (16)
 **0. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
       
 
@@ -289,6 +289,23 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 - 再分析，就是每次碰到row 取一个单点, sumRow += xxx。       
 - 然后process当下col时候， sum += colValue * N - sumRow. 就等于把交叉所有row（曾经Process过的row）的点减去了。很方便。
 - 最后read in 是O(P),  process也是O(P).
+
+
+
+
+---
+
+**15. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: Medium      Tags: [Design]
+      
+
+#### Use concept pre cache
+- 找一个cache来存next()的值, 也就是: next value的值提前存在cache里面
+- 因此peek()的时候, 就可以直接return cache, 而不用做 itt.next()
+- 然后每次真的next()的时候, 里取下一个itt.next()维护这个cache
+
+#### Previous notes
+- 再一次理解错题意. peek() 就是头顶，但是不一定是最大值啊。
+- 总是把PEEK想成了最大值，然后用2 STACK做了最大值的cache，练的一手好双stack，可惜错了。
 
 
 

@@ -1,11 +1,21 @@
 M
+1528088505
+tags: Hash Table
 
+给一个Hash Table, 是用 linked list 做的. 问题是: capacity太小, collision太多的情况下, 需要double capacity 然后rehash.
+
+#### Hash Table
+- 明白hashCode() function的意义: 拿到hashKey的时候, 用hashKey%capacity 来做hash code
+- hashcode就是hash map里面的index
+- 明白collision handling 的方式, 和如何double capacity而rehashing
+- 都是基本操作, 概念实现
 
 ```
 /*
 The size of the hash table is not determinate at the very beginning. 
 If the total size of keys is too large (e.g. size >= capacity / 10), 
-we should double the size of the hash table and rehash every keys. Say you have a hash table looks like below:
+we should double the size of the hash table and rehash every keys. 
+Say you have a hash table looks like below:
 
 size=3, capacity=4
 
@@ -19,7 +29,9 @@ The hash function is:
 int hashcode(int key, int capacity) {
     return key % capacity;
 }
-here we have three numbers, 9, 14 and 21, where 21 and 9 share the same position as they all have the same hashcode 1 (21 % 4 = 9 % 4 = 1). We store them in the hash table by linked list.
+here we have three numbers, 9, 14 and 21, where 21 and 9 share the same position 
+as they all have the same hashcode 1 (21 % 4 = 9 % 4 = 1). 
+We store them in the hash table by linked list.
 
 rehashing this hash table, double the capacity, you will get:
 
@@ -37,7 +49,8 @@ return [null, 9->null, null, null, null, 21->null, 14->null, null]
 Note
 For negative integer in hash table, the position can be calculated as follow:
 
-C++/Java: if you directly calculate -4 % 3 you will get -1. You can use function: a % b = (a % b + b) % b to make it is a non negative integer.
+C++/Java: if you directly calculate -4 % 3 you will get -1. 
+You can use function: a % b = (a % b + b) % b to make it is a non negative integer.
 Python: you can directly use -1 % 3, you will get 2 automatically.
 Tags Expand 
 LintCode Copyright Hash Table
@@ -59,7 +72,8 @@ Thoughts:
  *     }
  * }
  */
- public class Solution {
+ 
+public class Solution {
     /**
      * @param hashTable: A list of The first node of linked list
      * @return: A list of The first node of linked list which have twice size
@@ -68,39 +82,24 @@ Thoughts:
         if (hashTable == null || hashTable.length == 0) {
             return hashTable;
         }
-        //Find longest size
-        /*
-        int longest = 0;
-        for (int i = 0; i < hashTable.length; i++) {
-            ListNode node = hashTable[i];
-            int count = 0;
-            while (node != null) {
-                count++;
-                node = node.next;
-            }
-            longest = Math.max(longest, count);
-        }*/
-        //Calculate new capacity
-        //Just to clarify, this problem asks to double the hashtable size, rather than 'longest' times longer.
+
+        //Calculate new capacity, double the hashtable size
         int capacity = hashTable.length * 2;
-        if (capacity == hashTable.length) {
-            return hashTable;
-        }
-        
+
         ListNode[] rst = new ListNode[capacity];
         for (int i = 0; i < hashTable.length; i++) {
-            ListNode node = hashTable[i];
+            ListNode node = hashTable[i]; // process one hashkey (a linked list)
             while (node != null) {
                 ListNode newNode = new ListNode(node.val);
                 int hCode = hashcode(newNode.val, capacity);
                 if (rst[hCode] == null) {
                     rst[hCode] = newNode;
                 } else {
-                    ListNode move = rst[hCode];
-                    while (move.next != null) {
-                        move = move.next;
+                    ListNode collisionNode = rst[hCode];
+                    while (collisionNode.next != null) {
+                        collisionNode = collisionNode.next;
                     }
-                    move.next = newNode;
+                    collisionNode.next = newNode;
                 }
                 node = node.next;
             }
@@ -117,18 +116,4 @@ Thoughts:
         }
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```

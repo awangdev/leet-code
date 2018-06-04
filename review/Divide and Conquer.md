@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (22)
+## Divide and Conquer (23)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -457,6 +457,36 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 #### Segment Tree
 - SegtmentTree, methods: Build, Query. 这题是在SegmentTreeNode里面存min.
 - 类似的有存:max, sum, min
+
+
+
+---
+
+**22. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+      
+
+#### Priorityqueue
+- Iterative, PQ来排列所有list的leading node.
+- 记得k lists 需要是已经sort好的
+- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
+- Note:
+- 1. 不要忘记customized priority需要一个customized new Comparator<T>()
+- 2. Given list 里面也可能有null node, 不要忘记查.
+
+#### Divide and Conquer
+- always merge 2 list at a time
+- 3 branches: 
+- 1. start == end
+- 2. start + 1 == end
+- 3. or start + 1 < end (recursive and keep merging)
+- T(k) = 2T(k/2) + O(mk), where m = longest list length
+- time complexity: O(nklogk)
+- TODO: write the recursive code.
+
+#### Followup
+- 如果k很大，一个机器上放不下所有的k list怎么办？ 
+- 如果Merge起来的很长，一个机器上放不下怎么办？
+
 
 
 

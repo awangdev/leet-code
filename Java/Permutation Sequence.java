@@ -1,4 +1,7 @@
 M
+tags: Math, Backtracking
+
+TODO: what about regular DFS/backtracking to compute the kth? dfs(rst, list, candiate list, k)
 
 k是permutation的一个数位。而permutation是有规律的。
 

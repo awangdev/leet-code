@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (26)
+## Two Pointers (27)
 **0. [Reverse Vowels of a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Vowels%20of%20a%20String.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
@@ -466,6 +466,21 @@ return unique item 的长度.
 - 左右两墙，往中间跑动。
 - 另:若一面墙已经小于另外一面，就要移动，换掉矮墙（可能下一面更高，或更低)
 - 但决不能换掉当下的高墙，因为低墙已经limit的盛水的上限，若高墙移动，导致两墙之间距离减少，就注定水量更少了。（弄啥来，不能缺心眼啊）
+
+
+
+---
+
+**26. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
+      
+
+#### Linked List
+- linked list 不能像partitioin array一样从两边遍历
+- 把小于value的加在前半段, 把 >= value的加在后半段
+- 做法很普通: 建造两个list, midTail pointer, post pointer
+- 把满足条件（<x, >=x）的数字分别放到两个list里面
+- 记得用dummyNode track head.
+- 最终midTail.next = post链接起来。
 
 
 

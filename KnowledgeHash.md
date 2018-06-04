@@ -3,6 +3,8 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Heap](#heap)
+      * [Insert](#insert)
+      * [Extract Minimum Element](#extract-minimum-element)
    * [Stack](#stack)
       * [Functions](#functions)
       * [基本用法](#基本用法)
@@ -16,6 +18,7 @@ Table of Contents
    * [Tree](#tree)
    * [Binary Search Tree](#binary-search-tree)
       * [TreeSet](#treeset)
+      * [Traversal](#traversal)
    * [Binary Tree](#binary-tree)
       * [Type of Tree](#type-of-tree)
          * [Balenced bianry tree](#balenced-bianry-tree)
@@ -23,9 +26,7 @@ Table of Contents
          * [Full Binary Tree](#full-binary-tree)
          * [Perfect Binary Tree](#perfect-binary-tree)
       * [Binary Tree Traversal](#binary-tree-traversal)
-   * [Min-Heap &amp;&amp; Max-Heap](#min-heap--max-heap)
-      * [Insert](#insert)
-      * [Extract Minimum Element](#extract-minimum-element)
+         * [Inorder Traversal](#inorder-traversal)
    * [Expression Tree](#expression-tree)
       * [Example](#example)
       * [Build Tree](#build-tree)
@@ -37,21 +38,25 @@ Table of Contents
       * [考点](#考点)
    * [Binary Indexed Tree](#binary-indexed-tree)
    * [Segment Tree](#segment-tree)
-   * [Red Black Tree](#red-black-tree)
       * [基本知识](#基本知识)
+      * [用法](#用法)
+      * [functions](#functions-2)
+   * [Red Black Tree](#red-black-tree)
+      * [基本知识](#基本知识-1)
       * [特点](#特点)
       * [引申特点](#引申特点)
       * [用途](#用途)
    * [B-Tree](#b-tree)
-      * [基本知识](#基本知识-1)
-   * [AVL Tree](#avl-tree)
       * [基本知识](#基本知识-2)
+   * [AVL Tree](#avl-tree)
+      * [基本知识](#基本知识-3)
          * [更多细节特点](#更多细节特点)
       * [用途](#用途-1)
       * [优点](#优点)
    * [Graph](#graph)
       * [Adjacency List](#adjacency-list)
          * [Example](#example-1)
+         * [构建Graph](#构建graph)
       * [Adjacency Matrices](#adjacency-matrices)
       * [Graph Search](#graph-search)
          * [DFS](#dfs)
@@ -62,6 +67,7 @@ Table of Contents
       * [UnionFind follow up](#unionfind-follow-up)
    * [Deque](#deque)
    * [Topological Sort](#topological-sort)
+      * [建立Graph   InDegree](#建立graph--indegree)
       * [Topological Sort - BFS](#topological-sort---bfs)
       * [Topological Sort - DFS](#topological-sort---dfs)
    * [Array](#array)
@@ -84,6 +90,7 @@ Table of Contents
    * [Hash Table](#hash-table)
       * [HashTable](#hashtable)
       * [HashSet](#hashset)
+      * [HashMap](#hashmap)
    * [Basics](#basics-1)
       * [Sum, Presum](#sum-presum)
       * [Math](#math)
@@ -91,8 +98,9 @@ Table of Contents
          * [Numbers](#numbers)
          * [Probability theory](#probability-theory)
          * [Combinatorics](#combinatorics)
+            * [subset time&amp;&amp;space](#subset-timespace)
       * [String](#string)
-         * [Functions](#functions-2)
+         * [Functions](#functions-3)
          * [StringBuffer](#stringbuffer)
          * [其他](#其他)
       * [Bit Manipulation](#bit-manipulation)
@@ -141,11 +149,18 @@ Table of Contents
    * [Search](#search)
       * [Breadth-first Search](#breadth-first-search)
       * [Depth-first Search](#depth-first-search)
+         * [for loop dfs vs. pick&amp;&amp;skip dfs](#for-loop-dfs-vs-pickskip-dfs)
          * [void dfs](#void-dfs)
          * [object dfs](#object-dfs)
             * [Regular Premitives](#regular-premitives)
             * [Customized Object](#customized-object)
          * [Tree DFS](#tree-dfs)
+   * [Combinatorics](#combinatorics-1)
+      * [DFS 思想](#dfs-思想)
+      * [DFS 注意](#dfs-注意)
+   * [Permutation](#permutation)
+      * [Backtracking DFS (Recursive)](#backtracking-dfs-recursive)
+      * [插入法 (iterative)](#插入法-iterative)
    * [Backtracking](#backtracking)
    * [Reservoir Sampling](#reservoir-sampling)
    * [Geometry](#geometry)
@@ -163,7 +178,7 @@ Table of Contents
       * [Specials](#specials)
    * [Data Structure](#data-structure)
    * [Problem Sets](#problem-sets)
-      * [permutation](#permutation)
+      * [permutation](#permutation-1)
          * [原理](#原理)
          * [Example](#example-2)
       * [Two Pointer](#two-pointer)
@@ -174,11 +189,33 @@ Table of Contents
       * [Sweep Line](#sweep-line)
    * [Pain Point](#pain-point)
       * [NP-Complete problems](#np-complete-problems)
+         * [wiki](#wiki)
+         * [Knapsack](#knapsack)
+         * [Travelling salesman](#travelling-salesman)
       * [Basics](#basics-2)
       * [Edge case](#edge-case)
       * [Advanced](#advanced)
 
-# Heap
+
+# Heap 
+- min-heap && max-heap has same concept
+- min-heap is complete binary tree (right-most elements on last level may not be filled)
+- each node is smaller than it's children
+- root is the minimum value of tree
+- Maintaing min-heap is about swaping node values
+- Insert/extract min value both take O(logn) time
+
+## Insert
+- insert at bottom right-most spot
+- swap with parent if value not fitting min-heap
+- swapping until min value reaches root
+- O(logn) to bubble up to top
+
+## Extract Minimum Element
+- extract root value (easy)
+- set the the root value to be bottom-right-most element, also remove that bottom element
+- bubble down the root value if not fitting min-heap
+- overal efforts to bubble down: O(logn)
 
 # Stack
 
@@ -258,6 +295,7 @@ stack.push(item);
 - Reverse Linked List: 不断地在开头加上新node. 比较方便的方式: 用一个dummy node, 然后把reversed list 存在dummy.next
 - Reverse linked list 注意: 有时候一开始的1st node, 最后还有tail 要接在上面; 所以先把1st node可以额外存下来, 用来接 tail
 - 找到mid node: 快慢指针(slow = head; fast=head.next); 快指针每次走2步; 快指针到底的时候, slow指针就是mid
+- merge two linked list: 用一个dummy head, 然后不断轮流加next (取决于merge的规则, 可能链接方法不同)
 
 # Tree
 - A simple version of graph
@@ -338,26 +376,6 @@ while(!stack.isEmpty()) {
 - `node = node.right` is critical, otherwise it'll be in infinite loop
 - alternatively: we could set left = null, but that's disruptive to original structure, not recommended.
 
-
-# Min-Heap && Max-Heap
-- min-heap && max-heap has same concept
-- min-heap is complete binary tree (right-most elements on last level may not be filled)
-- each node is smaller than it's children
-- root is the minimum value of tree
-- Maintaing min-heap is about swaping node values
-- Insert/extract min value both take O(logn) time
-
-## Insert
-- insert at bottom right-most spot
-- swap with parent if value not fitting min-heap
-- swapping until min value reaches root
-- O(logn) to bubble up to top
-
-## Extract Minimum Element
-- extract root value (easy)
-- set the the root value to be bottom-right-most element, also remove that bottom element
-- bubble down the root value if not fitting min-heap
-- overal efforts to bubble down: O(logn)
 
 # Expression Tree
 - Binary tree, used to evaluate certain expression
@@ -839,6 +857,10 @@ public int compare(x, y) {
 - set.add(...) returns false if there is duplicate. This operation won't change the existing set.
 - Build HashSet<List> set, and the set will automatically compare the equivalence of the lists within at each list element level.
 
+## HashMap
+- Use iterator: `Iterator<Map.Entry<Integer, Integer>> iter = map.entrySet().iterator();`
+- `iter.hasNext()` and `iter.next();`
+
 # Basics
 
 ## Sum, Presum
@@ -1184,17 +1206,18 @@ private class PathSum {
 - 2. 在main function 自己身上recursive: call dfs(..), mainFunc(skip root)
 - ex: `Path Sum III`, `Binary Tree Longest Consecutive Sequence II`
 
-### Combinatorics DFS
+# Combinatorics 
 - ex: study n-choose-k problems
+- 两种方法: Backtracking 或者 插入法
 
-#### 思想
+## DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
 - 每次pick以后, 就生成一条新的routine, from this index
 - 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
 - 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
 - 注意2: Backtracking在success case && dfs case 后都要做, 因为backtrack 是为了之前上一层dfs.
 
-#### 注意
+## DFS 注意
 - input 有duplicate的时候, 必须sort
 - 考虑candidate重复使用的规则(不可以重复使用):
 - 1. for loop里面dfs的时候, 使用curr index + 1
@@ -1202,10 +1225,24 @@ private class PathSum {
 - 因为在同一个level里面重复的数字在下一个dfslevel里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - 考虑candidate重复使用的规则(可以重复使用): 那么for loop里面dfs的时候, 使用curr index
 
+# Permutation 
+- 用两种方式做permutation: Backtracking(dfs, recursive), 或者是插入法(iterative)
+
+## Backtracking DFS (Recursive)
+- 把candidates 做成一个 remaining list
+- 取/不取, 并且从 remaining list 里面去掉, 继续下一层dfs
+
+## 插入法 (iterative)
+- 1. 一个一个element加进去
+- 2. 每一次把rst里面的每个list拿出来, 创建成新list, 然后选位置加上new element
+- 3. 加新元素的时候, 要在list的每个位置insert, 最终也要在原始的list末尾加上new element
+
+
 # Backtracking
 - Finding all (or some) solutions to some computational problems, notebaly constraint satisfaction problems
 - It attemps to build/find all candidates and abandon partial candidate when the candidates appears not to be suitable(backtracking, backing off from wrong candidates)
-
+- 尽量不要改变source data, 否则会变得难track
+- 注意! 在for loop 和 end condition 里面改变 buffer object (ex: list),  一定都要backtracking: ex: `list.remove(list.size() - 1)`
 
 # Reservoir Sampling
 

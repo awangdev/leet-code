@@ -1,9 +1,25 @@
 M
+1528074589
+tags: Backtracking, DFS, Permutation
 
-Recursive Backtracking: 取，或者不取.
-Improvement: maintain list (add/remove elements) instead of 'list.contains'
+#### Recursive: Backtracking
+- Given a remaining list: 取, 或者不取
+- Improvement: maintain list (add/remove elements) instead of 'list.contains'
+- time O(n!): visit all possible outcome
+- T(n) = n * T(n-1) + O(1)
 
-Iterative: 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍。 However, code is a bit massive.
+#### Iterative: Insertion
+- 插入法:
+- 1. 一个一个element加进去
+- 2. 每一次把rst里面的每个list拿出来, 创建成新list, 然后选位置加上new element
+- 3. 加新元素的时候, 要在list的每个位置insert, 最终也要在原始的list末尾加上new element
+- 还是O(n!), 因为rst insert O(n!)个permutations
+- 但是比dfs要快, 因该是因为 # of checks 少: 不需要check list.size(), 不需要maintain remaining list.
+
+#### Previous Notes
+- 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍
+- Time O(n!)
+- A bit slower, possibly because of the polling and saving the entire list every time
 
 
 ```
@@ -41,10 +57,10 @@ Slightly optimized becaue we are not using list.contains(...) which essentially 
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        if (nums == null) {
+        if (nums == null || nums.length == 0) {
             return result;
         }
-        List<Integer> numList = new ArrayList();
+        List<Integer> numList = new ArrayList<>();
         for (int num : nums) {
             numList.add(num);
         }
@@ -71,7 +87,88 @@ class Solution {
 }
 
 /*
+Build permutation by insertion:
+- Start with 1st element.
+- Add 2nd element in front/end of 1st element; and add the new layout to rst
+- Add 3rd element in front, between, end ...
+- Loop over elements in nums => rst list => each row
+*/
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> rst = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return rst;
+        }
+        rst.add(new ArrayList<>());
+       
+        for (int i = 0; i < nums.length; i++) { // Pick element
+            int currRstSize = rst.size();
+            for (int j = 0; j < currRstSize; j++) { // pick base list
+                List<Integer> baselist = rst.get(j);
+                // Pick slot to insert element
+                for (int index = 0; index < baselist.size(); index++) {
+                    baselist.add(index, nums[i]);
+                    rst.add(new ArrayList<>(baselist));
+                    baselist.remove(index);
+                }
+                baselist.add(nums[i]);
+            }
+        }
 
+        return rst;
+    }
+}
+
+
+
+// Previous notes
+
+/*
+    non-recursive.
+    Set up a queue, add all elements into it.
+    give a size/level variable to keep track of cycle.
+    Slow, because every queue iteration requires O(n) to maintain entire list
+*/
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> rst = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return rst;
+        }
+        List<Integer> numList = new ArrayList<>();
+        for (int num : nums) {
+            numList.add(num);
+        }
+        int n = nums.length;
+        
+        Queue<List<Integer>> queue = new LinkedList<>();
+        List<Integer> list;
+        for (int num : nums) {
+            list = new ArrayList<>();
+            list.add(num);
+            queue.offer(new ArrayList<>(list));
+        }
+
+        while (!queue.isEmpty()) {
+            list = queue.poll();
+            if (list.size() == n) {
+                rst.add(new ArrayList<>(list));
+                continue;
+            }
+            List<Integer> candidates = new ArrayList<>(numList);
+            candidates.removeAll(list);
+            for (int num : candidates) {
+                list.add(num);
+                queue.offer(new ArrayList<>(list));
+                list.remove(list.size() - 1);
+            }
+        }
+
+        return rst;
+    }
+}
+/*
+BAD: contains() is O(logn)
 Thinking Process:
 1. Very similar idea: choose or not choose (1 / 0)
     A key point is: when jumpped into next level of recursion, the 'list' will surely be filled up until it reach the max length.
@@ -130,58 +227,6 @@ public class Solution {
         }
     }
 }
-
-
-/*
-    Thoughts: 12.07.2015 recap
-    recursive: 
-    pass list, rst, nums.
-    when list.size() == nums.size(), add to rst and return.
-    Need to re-add all of those non-added spots. So do for loop everytime to try all possible ways.
-    note: check if !list.contains(candiate).
-*/
-
-/*
-    12.07.2015
-    Now, do a non-recursive.
-    Set up a queue, add all elements into it.
-    give a size/level variable to keep track of cycle.
-
-*/
-class Solution {
-    public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> nums) {
-        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
-        if (nums == null || nums.size() == 0) {
-            return rst;
-        }
-        Queue<ArrayList<Integer>> queue = new LinkedList<ArrayList<Integer>>();
-        ArrayList<Integer> list;
-        for (int num : nums) {
-            list = new ArrayList<Integer>();
-            list.add(num);
-            queue.offer(new ArrayList<Integer>(list));
-        }
-
-        while (!queue.isEmpty()) {
-            list = queue.poll();
-            if (list.size() == nums.size()) {
-                rst.add(new ArrayList<Integer>(list));
-                continue;
-            }
-            for (int i = 0; i < nums.size(); i++) {
-                if (!list.contains(nums.get(i))) {
-                    list.add(nums.get(i));
-                    queue.offer(new ArrayList<Integer>(list));
-                    list.remove(list.size() - 1);
-                }
-            }
-        }
-
-        return rst;
-    }
-}
-
-
 
 
 ```

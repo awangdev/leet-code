@@ -9,6 +9,7 @@
 - 分三份：a b c考虑
 - 若a: countA++; 或b: countB++
 - 或c:countA--, countB--
+- 注意: 按照if statement的顺序, valA&&countA 比valB&&countB有优先性
 - 最后出现的两个count>0的a和b,自然是potentially大于1/3的。其中有一个大于1/3.
 - 比较countA和countB哪个大，就return哪一个。
 

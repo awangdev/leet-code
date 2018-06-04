@@ -1,4 +1,7 @@
 M
+tags: Backtracking, Permutation
+
+TODO: need to review permutation
 
 permutation的综合题：    
 1. validate Input 是不是可以做palindromic permutation. 这个就是（Palindrome Permutation I）   
@@ -7,7 +10,8 @@ permutation的综合题：
 
 ```
 /*
-Given a string s, return all the palindromic permutations (without duplicates) of it. Return an empty list if no palindromic permutation could be form.
+Given a string s, return all the palindromic permutations (without duplicates) of it.
+Return an empty list if no palindromic permutation could be form.
 
 For example:
 
@@ -18,7 +22,8 @@ Given s = "abc", return [].
 Hint:
 
 If a palindromic permutation exists, we just need to generate the first half of the string.
-To generate all distinct permutations of a (half of) string, use a similar approach from: Permutations II or Next Permutation.
+To generate all distinct permutations of a (half of) string, use a similar approach from: 
+Permutations II or Next Permutation.
 Hide Tags Backtracking
 Hide Similar Problems (M) Next Permutation (M) Permutations II (E) Palindrome Permutation
 
@@ -98,42 +103,6 @@ public class Solution {
             visited[i] = false;
         }
     }
-    
-    
-        /*
-    //validation using StringBuffer
-    public boolean validate(String s) {
-        int[] map = new int[256];
-        for (int i = 0; i < s.length(); i++) {
-            map[s.charAt(i)]++;
-        }
-        StringBuffer sb = new StringBuffer();
-        int countOdd = 0;
-        for (int i = 0; i < map.length; i++) {
-            if (map[i] % 2 != 0) {
-                countOdd++;
-                oddStr += (char)i;
-            }
-            
-            map[i] = map[i] / 2;
-            while (map[i] > 0) {
-                sb.append((char)i);
-                map[i]--;
-            }
-            
-            if (countOdd > 1) {
-                return false;
-            }
-            
-        }
-        halfStr = sb.toString();
-        char[] arr = halfStr.toCharArray();
-        Arrays.sort(arr);
-        
-        halfStr = new String(arr);
-        return true;
-    }
-    */
     
 }
 ```

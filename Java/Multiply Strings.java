@@ -1,25 +1,21 @@
 M
+tags: Math, String
 
-想法不难。turn into int[], 然后每个位子乘积，然后余数carrier移位。
+给两个integer String, 求乘积
 
-但是做起来有很多坑。适合面试黑。    
+#### Basic Implementation
+- turn into int[], 然后每个位子乘积，然后余数carrier移位 (但是做起来有很多坑。适合面试黑)
+- TODO: 尝试不要reverse, 移位save product
 
-1. 数字‘123’， 在数组里面， index == 0 是 ‘1’。 但是我们平时习惯从最小位数开始乘积，就是末尾的'3'开始。
-	所以！翻转两个数字先！我去。这个是个大坑。
+#### Previous notes
+- 1. 数字‘123’， 在数组里面， index == 0 是 ‘1’。 但是我们平时习惯从最小位数开始乘积，就是末尾的'3'开始。
+- 所以！翻转两个数字先！我去。这个是个大坑。
+- 2. 乘积product，和移动Carrier都很普通。
+- 3. ！！最后不能忘了再翻转。
+- 4. 最后一个看坑。要是乘积是0，就返回‘0’。 但是这个其实可以在开头catch到没必要做到结尾catch。
 
-2. 乘积product，和移动Carrier都很普通。
-
-3. ！！最后不能忘了再翻转。
-
-4. 最后一个看坑。要是乘积是0，就返回‘0’。 但是这个其实可以在开头catch到没必要做到结尾catch。
-
-用到几个StringBuffer的好东西:   
-reverse（）；    
-sb.deleteCharAt(i)   
-
-找数字，或者26个字母，都可以：    
-s.charAt(i) - '0'; //数字    
-s.charAt(i) - 'a'; //字母   
+- 用到几个StringBuffer的好东西: reverse(), sb.deleteCharAt(i)   
+- 找数字，或者26个字母，都可以: s.charAt(i) - '0'; s.charAt(i) - 'a';
 
 ```
 /*

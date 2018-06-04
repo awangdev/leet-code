@@ -1,14 +1,11 @@
 M
+tags: Array
 
-精力旺盛症。
-自己做的时候，想的太复杂，做起了binarysearch,企图节省时间。
-下次要算清楚，是否有意义。
-binarySearch的确logn,但是在lower 和upper之间的数字，很可能还是O(n).
-因此一开始就for一遍也是O(n), 而code会相对来说简单许多。
-
-想法：
-两个pointer， 每次计较prev和curr之间的部分。
-然后prev = curr，向前移动一格。
+#### Basic Implementation
+- O(n)
+- 两个pointer， 每次计较prev和curr之间的部分.
+- 然后prev = curr，向前移动一格
+- TODO: check the edge case and make sure max/min of int are checked
 
 ```
 /*
@@ -62,10 +59,4 @@ public class Solution {
 }
 
 
-/*
-Old solution: attempted to do binary search for lower and upper, then calculate the mid range. O(logn) + O(upper - lower) = O(n)
-
-Therefore, don't have to do that; just do a run through.
-
-*/
 ```

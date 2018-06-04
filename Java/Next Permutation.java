@@ -1,6 +1,7 @@
 M
+tags: Array
 
-需斟酌。
+需斟酌: why reverse is need? why we are looking for k?
 
 Permutation的规律:     
 1. 从小的数字开始变化因为都是从小的数字开始recursive遍历。    
@@ -67,7 +68,7 @@ public class Solution {
         if (nums == null || nums.length == 0) {
             return nums;
         }
-        //Find last increasing point before decreasing. nums[k] < nums[k+1]
+        //Find the bottom: initial increasing point after decreasing. nums[k] < nums[k+1]
         int k = -1;
         for (int i = nums.length - 2; i >= 0; i--) {
             if (nums[i] < nums[i + 1]) {
@@ -78,7 +79,7 @@ public class Solution {
         if (k == -1) {
             return reverse(0, nums.length - 1, nums);
         }
-        //Find first bigger point, from right to left
+        //Find the last larger point, from right to left
         int bigIndex = -1;
         for (int i = nums.length - 1; i >= 0; i--) {
             if (nums[i] > nums[k]) {
