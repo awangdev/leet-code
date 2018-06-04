@@ -1,7 +1,7 @@
  
  
  
-## Easy (134)
+## Easy (135)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy      Tags: []
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -2049,6 +2049,18 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是�
 - Nested loop, 每一次比较所有string 同位是否相等
 - 相等，append string. 不等，return.
 - O(mn)
+
+
+
+---
+
+**134. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
+      
+
+给一个String, 里面的Word被single space split开来, 目的是reverse里面所有的Word, 但preserve Word 和 space order.
+
+#### Reverse function
+- Reverse Words in a String II 的降级版, 去掉第一个overall reverse就好了
 
 
 

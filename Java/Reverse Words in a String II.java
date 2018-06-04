@@ -1,10 +1,10 @@
 M
+1528126762
+tags: String
 
-In-place reverse.
-
-reverse用两回. 全局reverse。局部:遇到空格reverse。
-
-注意：结尾点即使没有' '也要给reverse一下最后一个词。
+#### In-place reverse
+- reverse用两回. 全局reverse。局部:遇到空格reverse
+- 注意ending index: `i == str.length - 1`, 结尾点即使没有' '也要给reverse一下最后一个词
 
 
 ```
@@ -29,24 +29,23 @@ Hide Similar Problems (M) Reverse Words in a String (E) Rotate Array
 */
 
 /*
-    Recap: 02.10.2016
     //1. reverse all. 2. reverse local with 2 pointer.
     //build reverse(start,end)
 */
 
 public class Solution {
-    public void reverseWords(char[] s) {
-        if (s == null || s.length <= 1) {
+    public void reverseWords(char[] str) {
+        if (str == null || str.length <= 1) {
             return;
         }
-        reverse(s, 0, s.length - 1);
+        reverse(str, 0, str.length - 1);
         int start = 0;
-        for (int i = 0; i < s.length; i++) {
-            if (s[i] == ' ') {
-                reverse(s, start, i - 1);
+        for (int i = 0; i < str.length; i++) {
+            if (str[i] == ' ') {
+                reverse(str, start, i - 1);
                 start = i + 1;
-            } else if (i == s.length - 1) {
-                reverse(s, start, i);
+            } else if (i == str.length - 1) {
+                reverse(str, start, i);
             }
         }//end for
     }

@@ -1,7 +1,7 @@
  
  
  
-## String (37)
+## String (40)
 **0. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
       
 
@@ -606,6 +606,47 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 - 但是尽量不要去改变Input source， 会变得非常confusing.
 - note: code有点messy, 因为要考虑IP的valid情况
 - 那个'remainValid', 其实是一个对于remain substring的判断优化, 不成立的就不dfs了
+
+
+
+---
+
+**37. [Reverse Words in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String.java)**      Level: Medium      Tags: [String]
+      
+
+#### Break by space, then flip 
+- 结尾不能有空格
+- trim() output
+- 如果Input是 ""的话，split以后就啥也没有了
+- 另个题目Reverse Words in String (char[]) 可以in-place, 条件是char[]里面是没有首尾空格.
+- Time, Space: O(n)
+
+#### Other methods
+- flip entire string, then flip each individual string (代码有点多, 这道题犯不着)
+
+
+
+---
+
+**38. [Reverse Words in a String II.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20II.java)**      Level: Medium      Tags: [String]
+      
+
+#### In-place reverse
+- reverse用两回. 全局reverse。局部:遇到空格reverse
+- 注意ending index: `i == str.length - 1`, 结尾点即使没有' '也要给reverse一下最后一个词
+
+
+
+
+---
+
+**39. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
+      
+
+给一个String, 里面的Word被single space split开来, 目的是reverse里面所有的Word, 但preserve Word 和 space order.
+
+#### Reverse function
+- Reverse Words in a String II 的降级版, 去掉第一个overall reverse就好了
 
 
 

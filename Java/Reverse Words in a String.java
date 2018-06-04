@@ -1,9 +1,16 @@
 M
+1528126427
+tags: String
 
-几种不同的方法flip：   
-坑： 1. 结尾不能有空格。 2. 注意，如果Input是 ‘ ’的话，split以后就啥也没有了。check split以后 length == 0
+#### Break by space, then flip 
+- 结尾不能有空格
+- trim() output
+- 如果Input是 ""的话，split以后就啥也没有了
+- 另个题目Reverse Words in String (char[]) 可以in-place, 条件是char[]里面是没有首尾空格.
+- Time, Space: O(n)
 
-另个题目Reverse Words in String (char[]) 可以in-place，因为条件说char[]里面是没有首尾空格,好做许多哟.
+#### Other methods
+- flip entire string, then flip each individual string (代码有点多, 这道题犯不着)
 
 ```
 /*
@@ -32,16 +39,12 @@ Hide Similar Problems (M) Reverse Words in a String II
 
 */
 
-
-
-
-
 /*
-    Thoughts:12.08.2015 
+    For simplicity of code, try the appending from behind.
+
     Have multiple two other ways to do it: 
         1. flip all,then flip each individual word; 
         2. break into parts and append from end to beginning.
-    For simplicity of code, try the appending from behind.
 */
 public class Solution {
     public String reverseWords(String s) {
@@ -49,17 +52,14 @@ public class Solution {
             return s;
         }
 
-        String[] strs = s.split(" ");
-        if (strs.length == 0) {
-            return s;
-        }
+        String[] strs = s.split("\\s+");
         StringBuffer sb = new StringBuffer();
 
-        for (int i = strs.length - 1; i >= 0; i--) {
-            sb.append(strs[i] + " ");
+        for (String str : strs) {
+            sb.insert(0, str + " ");
         }
 
-        return sb.substring(0, sb.length() - 1).toString();
+        return sb.toString().trim();
     }
 }
 

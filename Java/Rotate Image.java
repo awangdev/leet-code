@@ -1,6 +1,9 @@
 M
+tags: Array, Enumeration
 
-找到个转角度的规律公式。用一个temp。in place.
+#### 找公式规律
+- 找到个转角度的规律公式: r = c; c = (w - r)
+- 用temp variable, swap in place.
 
 ```
 /*
