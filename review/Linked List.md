@@ -1,7 +1,7 @@
  
  
  
-## Linked List (29)
+## Linked List (30)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy      Tags: [Linked List]
       
 1525664839
@@ -505,6 +505,24 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 - 先找到nth node
 - 然后head开始跑
 - node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last nth
+
+
+
+---
+
+**29. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
+      
+
+#### Merge sort
+- 1. find middle. 快慢指针
+- 2. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段
+- 3. Merge:  假设given list A, B 已经是sorted, 然后按照大小，混合。
+- 要recursively call sortList() on partial list.
+
+#### Quick sort
+- 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
+- 但是quick sort不建议用在list上面。
+- 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
 
 
 

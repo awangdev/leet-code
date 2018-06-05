@@ -1,30 +1,31 @@
 M
+1528213775
+tags: Linked List, Sort, Merge Sort, Divide and Conquer
 
-Merge sort:
-    1. find middle. 快慢指针
-    2. Merge:  假设given list A, B 已经是sorted, 然后按照大小，混合。
-    3. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段。
-        然后mege.
-        要recursively call itself.
+#### Merge sort
+- 1. find middle. 快慢指针
+- 2. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段
+- 3. Merge:  假设given list A, B 已经是sorted, 然后按照大小，混合。
+- 要recursively call sortList() on partial list.
 
-Quick sort:
-想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
-
-但是quick sort不建议用在list上面。
-
-排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
+#### Quick sort
+- 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
+- 但是quick sort不建议用在list上面。
+- 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
 
 ```
 /*
-28% Accepted
+
 Sort a linked list in O(n log n) time using constant space complexity.
 
-Example
-Given 1-3->2->null, sort it to 1->2->3->null.
+Example 1:
 
-Tags Expand 
-Linked List
+Input: 4->2->1->3
+Output: 1->2->3->4
+Example 2:
 
+Input: -1->5->3->4->0
+Output: -1->0->3->4->5
 
 */
 
@@ -40,11 +41,7 @@ Linked List
  * }
  */ 
 
-
-
-
 /*
-    Recap:12.09.2015. practice merge sort
 Thinking process:
 1.Divide and conquer
 2. can use merge sort or quick sort. Used merge sort here.
@@ -54,10 +51,18 @@ Thinking process:
 Note: when checking null, node != null should be in front of node.next != null. Because if node is alreay null, node.next gives exception.
 
 */
-
-
-
 public class Solution {
+    public ListNode sortList(ListNode head) {  
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode mid = findMiddle(head);
+        ListNode left = sortList(mid.next);
+        mid.next = null;
+        ListNode right = sortList(head);
+        return merge(left, right);
+    }
+
     public ListNode findMiddle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head.next;
@@ -88,24 +93,6 @@ public class Solution {
         }
         return dummy.next;
     }
-    
-    /*
-     * @param head: The head of linked list.
-     * @return: You should return the head of the sorted linked list,
-                    using constant space complexity.
-     */
-    public ListNode sortList(ListNode head) {  
-        if (head == null || head.next == null) {
-            return head;
-        }
-        ListNode mid = findMiddle(head);
-        ListNode left = sortList(mid.next);
-        mid.next = null;
-        ListNode right = sortList(head);
-        return merge(left, right);
-    }
-    
-
 }
 
 
@@ -122,16 +109,5 @@ public class Solution {
 
     Merge sort is prefered for list sort
 */
-
-public class Solution {
-    /*
-     * @param head: The head of linked list.
-     * @return: You should return the head of the sorted linked list,
-                    using constant space complexity.
-     */
-    public ListNode sortList(ListNode head) {  
-        // write your code here
-    }
-}
 
 ```

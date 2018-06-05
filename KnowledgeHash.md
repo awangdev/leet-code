@@ -769,6 +769,7 @@ while (!queue.isEmpty()) {
 - Selection Sort. Runtime: O(n^2) average/worst. Memory: O(1)
 
 ### Merge Sort
+- Can be used on Linked List, Array, divide and conquer
 
 ### Heap Sort
 
@@ -777,6 +778,7 @@ while (!queue.isEmpty()) {
 - pick random pivot, all elements smaller sits before pivot, and all elements larger sits after the pivot
 - while loop (and two inner while loop) to find the 2 indexes to swap, comparing with pivot
 - use the left pointer to partition the array, and keeps sorting left part and right part
+- Usually not used on Linked List, harder to perform partition
 
 #### Quick Select
 - quick sort 的变形

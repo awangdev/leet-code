@@ -1,8 +1,16 @@
 M
+tags: Math, DFS
 
+TODO: 
+1. use list, iterative? keep candidates and populating
+2. clean up the dfs code, a bit messy
+3. edge case of "0001000" is invalid, right?
+
+#### DFS
 耗了一点时间。本以为需要DP一下，把做过的n存一下。后来发现，其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
 难的case先不handle.到底之后来一次O(n) scan.
 总共的时间起码是O(n/2) + O(n), 所以还是O(n)
+
 ```
 /*
 A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
