@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (23)
+## Divide and Conquer (24)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -487,6 +487,26 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 如果k很大，一个机器上放不下所有的k list怎么办？ 
 - 如果Merge起来的很长，一个机器上放不下怎么办？
 
+
+
+
+---
+
+**23. [Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer]
+      
+
+给matrix, 每一行sorted, 每一列从上往下sorted, 找target是否存在
+
+#### Binary Search
+- 根据给定的性质, 其实点选的极端一点: x = 最下面的row, y = 当下一行里面最小的left position. 
+- (x,y)在左下角
+- 在此情况下, 只能往一个方向运行: 如果小于target, y++; 如果大于target, 那么只能x--
+- 每次操作, 都是删掉一行, 或者一列, 再也不需要回头看
+- `while (x >= 0 && y < col) {}` 确保不会跑脱
+- 同样的方式: 可以从右上角(0, col - 1) 开始, 代码稍微改一改
+
+#### Divide and Conquer?
+- TODO
 
 
 

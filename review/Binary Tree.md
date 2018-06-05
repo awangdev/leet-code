@@ -1,7 +1,7 @@
  
  
  
-## Binary Tree (12)
+## Binary Tree (13)
 **0. [Flatten Binary Tree to Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Binary%20Tree%20to%20Linked%20List.java)**      Level: Medium      Tags: [Binary Tree, DFS]
       
 
@@ -210,6 +210,20 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 - 这个题目考了validate input source：input 的start,end可能超出root[start,end]。   
 - 那么第一步就要先clear一下: 1. 完全不在range就return 0. 2. 有range重合就规整到root的range.
 
+
+
+
+---
+
+**12. [Search Range in Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Range%20in%20Binary%20Search%20Tree%20.java)**      Level: Medium      Tags: [BST, Binary Tree]
+      
+
+给一个BST, integer range (k1, k2), 找range 里面所有的integer.
+
+#### BST
+- 等于dfs遍历了所有k1<= x <= k2的x node。
+- dfs left, process root, then dfs right
+- 这里, 把 left/right/match的情况全部cover了，然后把k1,k2的边框限制好，中间就全部遍历了。
 
 
 

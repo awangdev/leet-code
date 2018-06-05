@@ -1,3 +1,10 @@
+E
+tags: Greedy, Array
+
+TODO: dp?
+
+```
+
 /*
 Given an array of integers, find the subarray with smallest sum.
 
@@ -41,3 +48,4 @@ public class Solution {
 		return minRst;
     }
 }
+```

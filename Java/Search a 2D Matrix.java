@@ -1,8 +1,13 @@
 M
+1528167745
+tags: Array, Binary Search
 
-一行一行是从小到大，连续的：
-2D转1D。
-Binary Search
+给2D matrix, 每行sorted, 每行的首位都大于上一行的末尾. goal: find target from matrix
+
+#### 2D matrix 转1D array
+- 一行一行是从小到大, sorted, 连续的, 可以看做1D sorted array
+- Binary Search
+
 ```
 /*
 Write an efficient algorithm that searches for a value in an m x n matrix.

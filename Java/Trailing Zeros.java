@@ -1,4 +1,9 @@
+E
+tags: Math
+
+```
 /*
+LintCode
 Write an algorithm which computes the number of trailing zeros in n factorial.
 
 Example
@@ -92,3 +97,4 @@ class Solution {
 };
 
 */
+```

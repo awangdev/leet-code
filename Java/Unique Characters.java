@@ -1,7 +1,16 @@
-不用额外data structure, O(n^2), double for loop.
-用hashSet, space O(n), time O(n)
+E
+1528181066
+tags: String, Array
+
+determine if characters are unique in string
+
+- 用hashSet, space O(n), time O(n)
+- 不用额外data structure, O(n^2), double for loop.
+
+
 ```
 /*
+LintCode
 Implement an algorithm to determine if a string has all unique characters.
 
 Example
@@ -15,6 +24,28 @@ What if you can not use additional data structures?
 Tags Expand 
 String Cracking The Coding Interview Array
 */
+
+/*
+	Thought:
+	1st, write hasset, there you go.
+*/
+public class Solution {
+    public boolean isUnique(String str) {
+    	if (str == null || str.length() == 0) {
+    		return true;
+    	}
+    	HashSet<Character> set = new HashSet<Character>();
+    	for (int i = 0; i < str.length(); i++) {
+    		if (!set.contains(str.charAt(i))) {
+    			set.add(str.charAt(i));
+    		} else {
+    			return false;
+    		}
+    	}//end for
+
+    	return true;
+    }
+}
 
 /*
 	Thought:
@@ -43,32 +74,5 @@ public class Solution {
     }
 }
 
-
-
-/*
-	Thought:
-	1st, write hasset, there you go.
-*/
-public class Solution {
-    /**
-     * @param str: a string
-     * @return: a boolean
-     */
-    public boolean isUnique(String str) {
-    	if (str == null || str.length() == 0) {
-    		return true;
-    	}
-    	HashSet<Character> set = new HashSet<Character>();
-    	for (int i = 0; i < str.length(); i++) {
-    		if (!set.contains(str.charAt(i))) {
-    			set.add(str.charAt(i));
-    		} else {
-    			return false;
-    		}
-    	}//end for
-
-    	return true;
-    }
-}
 
 ```

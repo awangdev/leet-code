@@ -1,5 +1,8 @@
+M
+
 想法很简单。写起来有点长。
 找total number of occurance. 首先找first occurance, 再找last occurance.
+
 ```
 /*
 Total Occurrence of Target

@@ -1,5 +1,10 @@
+M
+tags: String
+
+```
 /*
-Write a method to replace all spaces in a string with %20. The string is given in a characters array, you can assume it has enough space for replacement and you are given the true length of the string.
+Write a method to replace all spaces in a string with %20. 
+The string is given in a characters array, you can assume it has enough space for replacement and you are given the true length of the string.
 
 Example
 Given "Mr John Smith", length = 13.
@@ -53,3 +58,5 @@ public class Solution {
     	return length + count;
     }
 }
+
+```

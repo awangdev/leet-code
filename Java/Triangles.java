@@ -1,10 +1,12 @@
+M
+tags: Array, DP
+
+```
+
 /*
-Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+Given a triangle, find the minimum path sum from top to bottom. 
+Each step you may move to adjacent numbers on the row below.
 
-Note
-Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
-
-Example
 For example, given the following triangle
 
 [
@@ -15,8 +17,10 @@ For example, given the following triangle
 ]
 The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
 
-Tags Expand 
-Dynamic Programming
+Note:
+
+Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
+
 
 Thinking process:
 1. Bottom-up
@@ -96,3 +100,5 @@ public class Solution {
 
 
 
+
+```

@@ -1,3 +1,10 @@
+E
+tags: Two Pointers, Array
+
+- 更正常的start/end partition pointer类似: when condition meet, swap
+- Clean up TODO
+
+```
 /*
 Partition an integers array into odd number first and even number second.
 
@@ -49,3 +56,5 @@ public class Solution {
     	}
     }
 }
+
+```

@@ -1,7 +1,15 @@
-长度已经固定。普通做法。
+E
+1528179898
+tags: Array
+
+如题, merge two sorted array into 新的 sorted array
+
+- 长度已经固定. Basic Implementation
+- 如果一个array足够大, merge into this array, 那么就是从末尾merge.
+
 ```
 /*
-33% Accepted
+
 Merge two given sorted integer array A and B into a new sorted integer array.
 
 Example
@@ -26,10 +34,6 @@ Array Sorted Array
 */
 
 class Solution {
-    /**
-     * @param A and B: sorted integer array A and B.
-     * @return: A new sorted integer array
-     */
     public int[] mergeSortedArray(int[] A, int[] B) {
         if (A == null || B == null) {
             return A == null ? B : A;

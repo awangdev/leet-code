@@ -1,3 +1,6 @@
+M
+tags: Linked List
+
 基本方法: O(n) sapce, time
 遍历。
 遇到duplicate(可能多个),  while直到node.next不是duplicate.

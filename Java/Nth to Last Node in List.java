@@ -1,7 +1,12 @@
-先找到nth node
-然后head开始跑。
+E
+1528180250
+tags: Linked List
 
-node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last nth
+#### Linked List
+- 先找到nth node
+- 然后head开始跑
+- node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last nth
+
 ```
 /*
 Find the nth to last element of a singly linked list. 

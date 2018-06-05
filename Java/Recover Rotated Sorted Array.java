@@ -1,3 +1,6 @@
+E
+tags: Array
+
 rotate的意思，是有个点断开，把一边的array节选出来放在另外一边。
 Rotate三步：
 rotate前半

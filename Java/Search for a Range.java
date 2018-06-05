@@ -1,6 +1,15 @@
 M
+1528173258
+tags: Array, Binary Search
 
-前后跑2个while loop。 找first/last occurance
+给sorted array, 有重复数字, 找跟target重合所在的range.
+
+#### Binary Search
+- 2个while loop
+- 找first/last occurance
+- TODO: Can the code be simplified?
+
+
 ```
 /*
 Given a sorted array of integers, find the starting and ending position of a given target value.
@@ -64,10 +73,9 @@ public class Solution {
         } else {
             return rst;
         }
-        rst[0] = first;
 
         //check last occurance
-        int last = 0;
+        int last = first;
         start = first;
         end = A.length - 1;
         while (start + 1 < end) {
@@ -90,14 +98,16 @@ public class Solution {
             last = mid;
         } else if (A[start] == target) {
             last = start;
-        } else {
-            last = first;
         }
+        
+        rst[0] = first;
         rst[1] = last;
         
         return rst;
     }
 }
+
+
 
 
 

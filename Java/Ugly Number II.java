@@ -1,4 +1,5 @@
 M
+tags: Math, DP, Heap
 
 非常brutle的。
 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。

@@ -1,3 +1,7 @@
+M
+tags: Sort, Two Pointers
+
+```
 /*
 Given an array of n objects with k different colors (numbered from 1 to k), sort them so that objects of the same color are adjacent, with the colors in the order 1, 2, ... k.
 
@@ -67,18 +71,4 @@ class Solution {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```

@@ -1,11 +1,13 @@
 M
-tags: BST
+1528177257
+tags: BST, Binary Tree
 
-等于遍历了所有k1<= x <= k2的x node。
+给一个BST, integer range (k1, k2), 找range 里面所有的integer.
 
-如果是用Binary Search Tree搜索，那么一般是if (...) else {...}，也就是一条路走到底，直到找到target.
-
-这里, 把 left/right/match的情况全部cover了，然后把k1,k2的边框限制好，中间就全部遍历了。
+#### BST
+- 等于dfs遍历了所有k1<= x <= k2的x node。
+- dfs left, process root, then dfs right
+- 这里, 把 left/right/match的情况全部cover了，然后把k1,k2的边框限制好，中间就全部遍历了。
 
 ```
 /*
@@ -44,17 +46,18 @@ Find maximum and turn around.
 
 public class Solution {
     /**
-     * @param root: The root of the binary search tree.
-     * @param k1 and k2: range k1 to k2.
-     * @return: Return all keys that k1<=key<=k2 in ascending order.
+     * @param root: param root: The root of the binary search tree
+     * @param k1: An integer
+     * @param k2: An integer
+     * @return: return: Return all keys that k1<=key<=k2 in ascending order
      */
-    public ArrayList<Integer> searchRange(TreeNode root, int k1, int k2) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public List<Integer> searchRange(TreeNode root, int k1, int k2) {
+        List<Integer> result = new ArrayList<>();
         helper(result, root, k1, k2);
         return result;
     }
     
-    public void helper(ArrayList<Integer> result, TreeNode root, int k1, int k2) {
+    public void helper(List<Integer> result, TreeNode root, int k1, int k2) {
         if (root == null) {
             return;
         }
@@ -69,6 +72,5 @@ public class Solution {
         }
     }
 }
-
 
 ```
