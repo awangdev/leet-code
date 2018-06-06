@@ -1,7 +1,7 @@
  
  
  
-## Heap (12)
+## Heap (13)
 **0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap]
       
 
@@ -256,6 +256,23 @@ HashHeap?
 - 由Merge k sorted list启发。用PriorityQueue,存那k个首发element
 - PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
 - 因为array里没有 'next' pointer，只能存x,y来推next element
+
+
+
+---
+
+**12. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
+      
+
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### PriorityQueue
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
 
 
 

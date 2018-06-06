@@ -1,7 +1,16 @@
 M
+1528247446
+tags: Hash Table, Heap, PriorityQueue
 
-题目有提醒: 不能用O(nLog(n)) 也就是说明要Log(n): 首先想到就是PriorityQueue, 并且不能queue.offer on the fly.
-那么就先count, O(n); 再priorityQueue, Log(k), k是unique 数字的总量. 
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### PriorityQueue
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
 
 ```
 /**

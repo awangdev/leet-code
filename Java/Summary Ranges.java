@@ -1,4 +1,12 @@
 M
+1528247314
+tags: Array
+
+给一串sorted list, 中间有缺数字, return 所有数字的range string (example 看题目)
+
+#### Basic implementation
+- 用一个list as the buffer to store candidates
+- when: 1. end of nums; 2. not continuous integer => convert list to result
 
 ```
 /*
@@ -17,11 +25,11 @@ Detect condition, and return results.
 */
 public class Solution {
     public List<String> summaryRanges(int[] nums) {
-     List<String> rst = new ArrayList<String>();
+     List<String> rst = new ArrayList<>();
      if (nums == null || nums.length == 0) {
      	return rst;
      }   
-     ArrayList<Integer> list = new ArrayList<Integer>();
+     List<Integer> list = new ArrayList<>();
      for (int i = 0; i < nums.length; i++) {
      	list.add(nums[i]);
      	if (i + 1 == nums.length || nums[i] + 1 != nums[i + 1]) {

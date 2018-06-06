@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (35)
+## Hash Table (36)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -650,6 +650,23 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 - hashcode就是hash map里面的index
 - 明白collision handling 的方式, 和如何double capacity而rehashing
 - 都是基本操作, 概念实现
+
+
+
+---
+
+**35. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
+      
+
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### PriorityQueue
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Array (83)
+## Array (84)
 **0. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Tree]
       
 
@@ -1622,6 +1622,19 @@ determine if characters are unique in string
 - 用hashSet, space O(n), time O(n)
 - 不用额外data structure, O(n^2), double for loop.
 
+
+
+
+---
+
+**83. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: Medium      Tags: [Array]
+      
+
+给一串sorted list, 中间有缺数字, return 所有数字的range string (example 看题目)
+
+#### Basic implementation
+- 用一个list as the buffer to store candidates
+- when: 1. end of nums; 2. not continuous integer => convert list to result
 
 
 
