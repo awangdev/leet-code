@@ -193,7 +193,10 @@ Table of Contents
 - Partial sort: Arrays.sort(arr, 0, arr.length())
 - Copy: Arrays.copyOf(arr, arr.length())
 - Arrays.toString(int[] arr) => string representation: "[1,2,3,4]"
+- 见到数组要想到: 是否可以/需要先排序?
 
+## Honorable Problems
+- Median of two sorted arrays: find kth element of two sorted array where k = n/2. Recursive findKth(A[],indexA, B[], indexB, k)
 
 # String
 ## Functions
@@ -203,6 +206,7 @@ Table of Contents
 - Character.isDigit(x)
 - split: str.split("\\ "); 需要用 "\\" regular expression
 - s.trim() 去掉 space
+- count characters: int[256], 不需要 `c-'a'`
 
 ## StringBuffer
 - sb = new StringBuffer()
@@ -238,7 +242,7 @@ Table of Contents
 - root is the minimum value of tree
 - Maintaing min-heap is about swaping node values
 - Insert/extract min value both take O(logn) time
-- PriorityQueue[Java]. Made of: Binary Heap
+- PriorityQueue[Java]. Made of: Binary Heap (看Binary Tree section)
 
 ## Insert
 - insert at bottom right-most spot
@@ -252,14 +256,12 @@ Table of Contents
 - bubble down the root value if not fitting min-heap
 - overal efforts to bubble down: O(logn)
 
-## Min/Max Heap
-- 见到需要维护一个集合的最小值/最大值的时候要想到用堆
-- 第k小的元素，Heap用来维护当前候选集合
-- 见到数组要想到先排序
-
-## 如何想到
-- 看到Min/Max就要想到heap. 如果给出的数组没有排序, 先排序, 然后用heap. PrioirtyQueue是用Binary Heap做出来的 (看Binary Tree section)
+## 如何想到用 Min/Max Heap
+- 见到需要维护一个集合的最小值/最大值的时候要想到用堆 (看到Min/Max就要想到heap)
 - 看到median 想到heap
+- 第k小的元素，Heap用来维护当前候选集合
+- 如果给出的数组没有排序, 先排序, 然后用heap. 
+
 
 # Stack
 
@@ -1226,6 +1228,7 @@ private class PathSum {
 - Integer[] array = {1, 2, 3};
 - new ArrayList(Arrays.asList(array))
 - list.add(index, object)
+- list.removeRange[x, y)
 - O(1) insertion on average. 
 - Underneath, the insertion cause the arrayList to doubles the size and copy all contents to a new array. Over time, the cost is 1 + 2 + 4 + ... n/8 + n/4 + n/2 = O(n), over time
 - Therefore, the average insertion time is O(1)
@@ -1235,6 +1238,15 @@ private class PathSum {
 - logN Runtime: when space gets halved each time, it indicates runtime of O(logN)
 - Recursive Runtime: When the recursive call makes x branches, the runtime is likely to be O(x ^ N).  [it's not always]
 - Note: the base x of the recursive runtime DOES MATTER! 2^n is very different from 8^n = 2^3n
+
+## Time Complexity of graph/dfs block
+- 如果一个算法(ex: tree, or dfs)种: 每个level的每个node衍生出 x 个 child, 然后不断衍生 n 遍截止
+- 那么整个structure的所有node总和: `x^n`
+- 如果是个binary tree, 每个node出 x = 2 child, 然后 height = n, 那么node总量就是 `2^n`
+- 从公式角度: 假设T(n)是每一个level的node总数
+- T(n) = x * T(n-1), 每一个node衍生 x children
+- 那么 T(n) = x * (x * T(n - 2)) = .... = x^(n - 1) * T(1)
+- => BigO time will be `O(x^n)`
 
 ## Sum, PrefixSum
 - PrefixSum: sum of [0 ~ i] items

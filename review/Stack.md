@@ -1,7 +1,7 @@
  
  
  
-## Stack (22)
+## Stack (23)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -467,6 +467,24 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 #### Recursive + DFS
 - 然后稍微优化一下，确保rst.size() == k 时候，就可以return了
 - check leaf => dfs left => add root => dfs right
+
+
+
+---
+
+**22. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+      
+
+#### Hash Table, Greedy
+- count[] = int[256], 不需要 `c-'a'`
+- boolean visited[]: 一旦一个字母固定了位置后, 再次遇到时候, 直接跳过用过的character
+- 如果tail字母可以变小, 那就delete掉tail, 重新接上新字母 (前提条件: 去掉的字母后面还会再出现, set visited[tail] = false)
+- Space: O(1) count[], visited[].
+- Time: Go through all letters O(n)
+
+#### Stack
+- Use stack instead of stringBuffer: keep append/remove last added item
+- However, stringBuffer appears to be faster than stack.
 
 
 

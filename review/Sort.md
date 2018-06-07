@@ -1,7 +1,7 @@
  
  
  
-## Sort (19)
+## Sort (20)
 **0. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Hash Table, Sort]
       
 
@@ -305,6 +305,32 @@ implement quick sort.
 - 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
 - 但是quick sort不建议用在list上面。
 - 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
+
+
+
+---
+
+**19. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+      
+
+#### Sweep Line
+- Interval 拆点，PriorityQueue排点
+- Merge时用count==0作判断点
+- 注意, 一定要compare curr `p.x == queue.peek().x` 确保重合的点全部被process: `count+=p.x`
+- PriorityQueue: O(logN). 扫n点, 总共：O(nLogn)
+
+
+#### Basic Implementation
+- 这里已经给了sorted intervals by start point.
+- 直接找到可以insert newInterval的位子. Insert
+- 然后loop to merge entire interval array
+- 因为给的是个list, 所以方便`intervals.remove(i)`
+- remove之前都会重新assgin `pre.end`, 确保被remove的node.end 被capture
+- O(n) 
+
+#### 另外
+- 因为interval已经sort, 本想用Binary Search O(logn). 
+- 但是找到interval insert position 最后 merge还是要用 O(n), 所以不必要 binary Search
 
 
 

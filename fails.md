@@ -17,3 +17,12 @@
 - P: Segment Tree Query II
 - Forgot to validate [start, end] range. 
 - Need to fail if completely out of range, or override one side of the range if partial of the range is applicable
+
+#### Jump too fast into 1 approach
+- P: Max Points on a line
+- Jump too fast into DP, when seeing a board, but ignored the fact: it's not nxn and not applicable.
+
+#### 正数/负数
+- P: Expression Add Operators
+- dfs都对, 但是负数的地方, 忘记加符号: be consistent and mindful about negative number
+- dfs(rst, list, s, i + 1, sum - currValue, **`- currValue`**, target);

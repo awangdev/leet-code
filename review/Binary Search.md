@@ -1,7 +1,7 @@
  
  
  
-## Binary Search (34)
+## Binary Search (35)
 **0. [Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)**      Level: Review      Tags: [Binary Search, Segment Tree]
       
 
@@ -601,6 +601,31 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 - 找first/last occurance
 - TODO: Can the code be simplified?
 
+
+
+
+---
+
+**34. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+      
+
+著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
+题目要求在 log(m + n) 时间内解决
+
+- 看到log(m+n), 就想到binary search, 或者是recursive 每次砍一半
+- 两个sorted array 参差不齐, 肯定不能做简单的binary search
+
+#### Divide and Conquer, recursive
+- 这里有个数学排除思想: 考虑A, B各自的中间点.
+- 如果A[mid] < B[mid], 那么 A[0 ~ mid - 1] 就不在 median的range里面, 可以排除. divide/conquer就这么来的.
+- 具体逻辑看代码, 大致意思就是: 每次都取比较A 和 B [x + k / 2 - 1] 的位置, 然后做range 排除法
+- end cases: 
+- 1. 如果我们发现dfs()里面A或者B的start index溢出了, 那么就是最简单的case: midian一定在另外那个array里面
+- 2. 如果 k == 1: 就是找A/B 里面的1st item, 那么做个 `Math.max(A[startA], B[startB])` 就可以
+- 总共的数字长度是 (m + n) 而且每次都有一般的内容被删除, 那么time就是 O(log(m + n))
+
+#### Binary Search
+TODO:
 
 
 

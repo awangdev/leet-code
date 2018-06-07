@@ -1,29 +1,33 @@
-E
+H
+1528350453
+tags: Array, Sort, PriorityQueue
+
+#### Sweep Line
+- Interval 拆点，PriorityQueue排点
+- Merge时用count==0作判断点
+- 注意, 一定要compare curr `p.x == queue.peek().x` 确保重合的点全部被process: `count+=p.x`
+- PriorityQueue: O(logN). 扫n点, 总共：O(nLogn)
 
 
-方法1：Sweep Line
-Interval 拆点，PriorityQueue排点。     
-Merge时用count==0作判断点。    
+#### Basic Implementation
+- 这里已经给了sorted intervals by start point.
+- 直接找到可以insert newInterval的位子. Insert
+- 然后loop to merge entire interval array
+- 因为给的是个list, 所以方便`intervals.remove(i)`
+- remove之前都会重新assgin `pre.end`, 确保被remove的node.end 被capture
+- O(n) 
 
-PriorityQueue: O(logN). 扫n点，总共：O(nLogn)    
-
-
-方法2：   
-O(n) 直接找到可以insert newInterval的位子. Insert。  这里已经给了sorted intervals by start point. 所以O(n)
-
-然后loop to merge entire interval array
-
-另外: 因为interval已经sort, 本想用Binary Search O(logn). 但是找到interval insert position， merge还是要用 O(n)。      
-比如刚好newInterval cover entire  list....
-
- 
+#### 另外
+- 因为interval已经sort, 本想用Binary Search O(logn). 
+- 但是找到interval insert position 最后 merge还是要用 O(n), 所以不必要 binary Search
 
 ```
 
 /*
 Given a non-overlapping interval list which is sorted by start point.
 
-Insert a new interval into it, make sure the list is still in order and non-overlapping (merge intervals if necessary).
+Insert a new interval into it, make sure the list is still in order and non-overlapping 
+(merge intervals if necessary).
 
 Example
 Insert [2, 5] into [[1,2], [5,9]], we get [[1,9]].
@@ -54,7 +58,15 @@ What's the difference from merge intervals?
 2. sort point in min-heap
 3. when count increase and decreases to 0, that means we can close an interval
 */
-
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
 public class Solution {
 
     class Point {
@@ -66,7 +78,7 @@ public class Solution {
         }
     }
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        List<Interval> rst = new ArrayList<Interval>();
+        List<Interval> rst = new ArrayList<>();
         if (intervals == null && newInterval == null) {
             return rst;
         } else if (intervals == null) {
@@ -76,7 +88,7 @@ public class Solution {
             return intervals;
         }
 
-        PriorityQueue<Point> queue = new PriorityQueue<Point>(1, new Comparator<Point>(){
+        PriorityQueue<Point> queue = new PriorityQueue<>(1, new Comparator<Point>(){
             public int compare(Point a, Point b){
                 return a.x - b.x;
             }
@@ -129,8 +141,17 @@ Thoughts:
 
 
 */
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
 class Solution {
-    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         if (intervals == null || intervals.size() == 0 || newInterval == null) {
             if (newInterval != null) {
                 intervals.add(newInterval);
@@ -145,9 +166,8 @@ class Solution {
                 front = i;
             }
         }
-        if (front == -1) {
-            intervals.add(0, newInterval);
-        }
+
+        // if front==-1, add to front + 1 = 0
         intervals.add(front + 1, newInterval);
      
         //Merge

@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (25)
+## Divide and Conquer (27)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -525,6 +525,58 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
 - 但是quick sort不建议用在list上面。
 - 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
+
+
+
+---
+
+**25. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+      
+
+著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
+题目要求在 log(m + n) 时间内解决
+
+- 看到log(m+n), 就想到binary search, 或者是recursive 每次砍一半
+- 两个sorted array 参差不齐, 肯定不能做简单的binary search
+
+#### Divide and Conquer, recursive
+- 这里有个数学排除思想: 考虑A, B各自的中间点.
+- 如果A[mid] < B[mid], 那么 A[0 ~ mid - 1] 就不在 median的range里面, 可以排除. divide/conquer就这么来的.
+- 具体逻辑看代码, 大致意思就是: 每次都取比较A 和 B [x + k / 2 - 1] 的位置, 然后做range 排除法
+- end cases: 
+- 1. 如果我们发现dfs()里面A或者B的start index溢出了, 那么就是最简单的case: midian一定在另外那个array里面
+- 2. 如果 k == 1: 就是找A/B 里面的1st item, 那么做个 `Math.max(A[startA], B[startB])` 就可以
+- 总共的数字长度是 (m + n) 而且每次都有一般的内容被删除, 那么time就是 O(log(m + n))
+
+#### Binary Search
+TODO:
+
+
+
+---
+
+**26. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+      
+
+给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
+
+output 所有 expression
+
+#### string dfs, use list to track steps (backtracking)
+- 跟string相关, 写起来可能稍微繁琐一点
+- 数字有 dfs([1,2,3...]) 组合方法
+- operator有[`+`,`-`,`*`] 3种组合方法
+- 注意1: 乘号要特殊处理, pass along 连乘的数字, 计算下一步乘积的时候, 要 sum - preProduct + product
+- 注意2: '01' 这种数字要skip
+- 注意3: 第一个选中数字不需要加操作符, 直接加进去
+- Time: O(4^n)， Space: O(4^n)
+- T(n) = 3 * T(n-1) + 3 * T(n-2) + 3 * T(n-3) + ... + 3 *T(1);
+- T(n-1) = 3 * T(n-2) + 3 * T(n-3) + ... 3 * T(1);
+- Thus T(n) = 4T(n-1) = 4^2 * T(n - 1) = .... O(4^n)
+
+#### String dfs, use string as buffer
+- 逻辑一样, 代码更短, 只不过不做list, 直接pass `buffer + "+" + curr`
+- 因为每次都创建新string, 所以速度稍微慢一点. Time complexity 一样
 
 
 

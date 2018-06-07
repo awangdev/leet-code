@@ -1,7 +1,7 @@
  
  
  
-## PriorityQueue (4)
+## PriorityQueue (5)
 **0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
       
 
@@ -79,6 +79,32 @@
 - 再priorityQueue, (mLog(m)), m是unique 数字的总量
 - 最终find top k, O(k)
 - Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
+
+
+
+---
+
+**4. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+      
+
+#### Sweep Line
+- Interval 拆点，PriorityQueue排点
+- Merge时用count==0作判断点
+- 注意, 一定要compare curr `p.x == queue.peek().x` 确保重合的点全部被process: `count+=p.x`
+- PriorityQueue: O(logN). 扫n点, 总共：O(nLogn)
+
+
+#### Basic Implementation
+- 这里已经给了sorted intervals by start point.
+- 直接找到可以insert newInterval的位子. Insert
+- 然后loop to merge entire interval array
+- 因为给的是个list, 所以方便`intervals.remove(i)`
+- remove之前都会重新assgin `pre.end`, 确保被remove的node.end 被capture
+- O(n) 
+
+#### 另外
+- 因为interval已经sort, 本想用Binary Search O(logn). 
+- 但是找到interval insert position 最后 merge还是要用 O(n), 所以不必要 binary Search
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Hard (59)
+## Hard (64)
 **0. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: []
       
 首先要分两半解决，断点是'.': str.split("\\.");
@@ -68,9 +68,9 @@ SegmentTree大集合。记得几个Methods: Build, Query, Modify. 不难。只�
 
 ---
 
-**5. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: []
+**5. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table]
       
-Not done
+
 
 
 
@@ -1333,6 +1333,119 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 - using queue. 想法直观。level-order traversal. save到一个string里面就好。
 - 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
 - BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**59. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+      
+
+著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
+题目要求在 log(m + n) 时间内解决
+
+- 看到log(m+n), 就想到binary search, 或者是recursive 每次砍一半
+- 两个sorted array 参差不齐, 肯定不能做简单的binary search
+
+#### Divide and Conquer, recursive
+- 这里有个数学排除思想: 考虑A, B各自的中间点.
+- 如果A[mid] < B[mid], 那么 A[0 ~ mid - 1] 就不在 median的range里面, 可以排除. divide/conquer就这么来的.
+- 具体逻辑看代码, 大致意思就是: 每次都取比较A 和 B [x + k / 2 - 1] 的位置, 然后做range 排除法
+- end cases: 
+- 1. 如果我们发现dfs()里面A或者B的start index溢出了, 那么就是最简单的case: midian一定在另外那个array里面
+- 2. 如果 k == 1: 就是找A/B 里面的1st item, 那么做个 `Math.max(A[startA], B[startB])` 就可以
+- 总共的数字长度是 (m + n) 而且每次都有一般的内容被删除, 那么time就是 O(log(m + n))
+
+#### Binary Search
+TODO:
+
+
+
+---
+
+**60. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+      
+
+#### Hash Table, Greedy
+- count[] = int[256], 不需要 `c-'a'`
+- boolean visited[]: 一旦一个字母固定了位置后, 再次遇到时候, 直接跳过用过的character
+- 如果tail字母可以变小, 那就delete掉tail, 重新接上新字母 (前提条件: 去掉的字母后面还会再出现, set visited[tail] = false)
+- Space: O(1) count[], visited[].
+- Time: Go through all letters O(n)
+
+#### Stack
+- Use stack instead of stringBuffer: keep append/remove last added item
+- However, stringBuffer appears to be faster than stack.
+
+
+
+---
+
+**61. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+      
+
+给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
+
+output 所有 expression
+
+#### string dfs, use list to track steps (backtracking)
+- 跟string相关, 写起来可能稍微繁琐一点
+- 数字有 dfs([1,2,3...]) 组合方法
+- operator有[`+`,`-`,`*`] 3种组合方法
+- 注意1: 乘号要特殊处理, pass along 连乘的数字, 计算下一步乘积的时候, 要 sum - preProduct + product
+- 注意2: '01' 这种数字要skip
+- 注意3: 第一个选中数字不需要加操作符, 直接加进去
+- Time: O(4^n)， Space: O(4^n)
+- T(n) = 3 * T(n-1) + 3 * T(n-2) + 3 * T(n-3) + ... + 3 *T(1);
+- T(n-1) = 3 * T(n-2) + 3 * T(n-3) + ... 3 * T(1);
+- Thus T(n) = 4T(n-1) = 4^2 * T(n - 1) = .... O(4^n)
+
+#### String dfs, use string as buffer
+- 逻辑一样, 代码更短, 只不过不做list, 直接pass `buffer + "+" + curr`
+- 因为每次都创建新string, 所以速度稍微慢一点. Time complexity 一样
+
+
+
+---
+
+**62. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+      
+
+#### Sweep Line
+- Interval 拆点，PriorityQueue排点
+- Merge时用count==0作判断点
+- 注意, 一定要compare curr `p.x == queue.peek().x` 确保重合的点全部被process: `count+=p.x`
+- PriorityQueue: O(logN). 扫n点, 总共：O(nLogn)
+
+
+#### Basic Implementation
+- 这里已经给了sorted intervals by start point.
+- 直接找到可以insert newInterval的位子. Insert
+- 然后loop to merge entire interval array
+- 因为给的是个list, 所以方便`intervals.remove(i)`
+- remove之前都会重新assgin `pre.end`, 确保被remove的node.end 被capture
+- O(n) 
+
+#### 另外
+- 因为interval已经sort, 本想用Binary Search O(logn). 
+- 但是找到interval insert position 最后 merge还是要用 O(n), 所以不必要 binary Search
+
+
+
+---
+
+**63. [Shortest Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Palindrome.java)**      Level: Hard      Tags: [KMP, String]
+      
+
+#### Divide by mid point, Brutle
+- check (mid, mid+1), or (mid-1, mid+1).
+- If the two position matches, that is a palindrome candidate
+- 比较front string 是否是 end string 的substring
+- O(n^2)
+- timeout on last case: ["aaaaaa....aaaacdaaa...aaaaaa"]
+
+#### KMP
+- TODO
 
 
 

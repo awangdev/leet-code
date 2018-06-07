@@ -1,7 +1,7 @@
  
  
  
-## Enumeration (3)
+## Enumeration (4)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -38,6 +38,22 @@
 #### String
 - enumerate all candidates and filter to keep the correct ones
 - String.compareTo(string) -> gives lexicographical comparision
+
+
+
+---
+
+**3. [Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)**      Level: Medium      Tags: [Array, Enumeration]
+      
+
+从(0,0)坐标, 走完spiral matrix, 把结果存在list里.
+
+#### DX, DY
+- Basic implementation, array, enumeration
+- 写一下position前进的方向: RIGHT->DOWN->LEFT->UP
+- 用一个direction status 确定方向
+- 写一个compute direction function 改变方向 `(direction + 1) % 4`
+- `boolean[][] visited` 来track走过的地方
 
 
 

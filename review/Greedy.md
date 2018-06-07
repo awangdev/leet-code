@@ -1,7 +1,7 @@
  
  
  
-## Greedy (11)
+## Greedy (12)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -219,6 +219,24 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 - 把这个最大subarray sum 记录在array, left[] 里面
 - right[] 是一样的道理
 - enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
+
+
+
+---
+
+**11. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+      
+
+#### Hash Table, Greedy
+- count[] = int[256], 不需要 `c-'a'`
+- boolean visited[]: 一旦一个字母固定了位置后, 再次遇到时候, 直接跳过用过的character
+- 如果tail字母可以变小, 那就delete掉tail, 重新接上新字母 (前提条件: 去掉的字母后面还会再出现, set visited[tail] = false)
+- Space: O(1) count[], visited[].
+- Time: Go through all letters O(n)
+
+#### Stack
+- Use stack instead of stringBuffer: keep append/remove last added item
+- However, stringBuffer appears to be faster than stack.
 
 
 

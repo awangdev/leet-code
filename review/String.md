@@ -1,7 +1,7 @@
  
  
  
-## String (43)
+## String (45)
 **0. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
       
 
@@ -675,6 +675,50 @@ determine if characters are unique in string
 - 用hashSet, space O(n), time O(n)
 - 不用额外data structure, O(n^2), double for loop.
 
+
+
+
+---
+
+**43. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+      
+
+给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
+
+output 所有 expression
+
+#### string dfs, use list to track steps (backtracking)
+- 跟string相关, 写起来可能稍微繁琐一点
+- 数字有 dfs([1,2,3...]) 组合方法
+- operator有[`+`,`-`,`*`] 3种组合方法
+- 注意1: 乘号要特殊处理, pass along 连乘的数字, 计算下一步乘积的时候, 要 sum - preProduct + product
+- 注意2: '01' 这种数字要skip
+- 注意3: 第一个选中数字不需要加操作符, 直接加进去
+- Time: O(4^n)， Space: O(4^n)
+- T(n) = 3 * T(n-1) + 3 * T(n-2) + 3 * T(n-3) + ... + 3 *T(1);
+- T(n-1) = 3 * T(n-2) + 3 * T(n-3) + ... 3 * T(1);
+- Thus T(n) = 4T(n-1) = 4^2 * T(n - 1) = .... O(4^n)
+
+#### String dfs, use string as buffer
+- 逻辑一样, 代码更短, 只不过不做list, 直接pass `buffer + "+" + curr`
+- 因为每次都创建新string, 所以速度稍微慢一点. Time complexity 一样
+
+
+
+---
+
+**44. [Shortest Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Palindrome.java)**      Level: Hard      Tags: [KMP, String]
+      
+
+#### Divide by mid point, Brutle
+- check (mid, mid+1), or (mid-1, mid+1).
+- If the two position matches, that is a palindrome candidate
+- 比较front string 是否是 end string 的substring
+- O(n^2)
+- timeout on last case: ["aaaaaa....aaaacdaaa...aaaaaa"]
+
+#### KMP
+- TODO
 
 
 
