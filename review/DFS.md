@@ -706,7 +706,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**30. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, Sequence DP]
+**30. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 subarray 数字之和的最大值

@@ -1,6 +1,6 @@
 M
 1525363049
-tags: Greedy, Array, DP, Sequence DP
+tags: Greedy, Array, DP, Sequence DP, PreSum
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
 

@@ -357,8 +357,10 @@ stack.push(item);
 
 ## TreeSet
 - 如果BST treenode没给, 可以用TreeSet
-- TreeSet还是一个set, 存values, 而好处是可以用 treeSet.ceiling(x)找到 最小的大于x的值
-- 其实就是这个value/node的parent
+- TreeSet还是一个set, 存values, 而好处是可以用 `treeSet.ceiling(x)` 找到 最小 >= x的值
+- 同样, 找 <= x, 用 `treeSet.floor(x)`
+- strict less or greater: `treeSet.lower(x)`, `treeSet.higher(x)`
+- time O(nlogn)
 
 ## Traversal
 - Inorder BST traversal: 从小到大排序的ouput

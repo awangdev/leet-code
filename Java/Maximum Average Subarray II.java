@@ -1,6 +1,6 @@
 R
 1521096472
-tags: Array, Binary Search
+tags: Array, Binary Search, PreSum
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
 

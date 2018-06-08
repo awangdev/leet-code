@@ -168,7 +168,7 @@ istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里�
 
 ---
 
-**9. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search]
+**9. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.

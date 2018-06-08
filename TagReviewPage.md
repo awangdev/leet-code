@@ -1,7 +1,7 @@
  
  
  
-## Merge Sort (2)
+## Merge Sort (3)
 **0. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
       
 
@@ -29,6 +29,45 @@
 - 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
 - 但是quick sort不建议用在list上面。
 - 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
+
+
+
+---
+
+**2. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
+      
+
+TODO: Write the code + merge function
+
+#### Divide and Conquer + PreSum + MergeSort
+- 算法非常厉害就是了: 先做presum[], 那么 sum range [i,j] 就等于是preSum[j+1] - preSum[i]
+- 分治: 考虑[start, mid] range里面的结果, 再考虑[mid, end] range里面的结果. (分开来 mergeSort)
+- 最后考虑[low,high]总体的结果
+- 小技巧: PreSum 做成了 (n + 1) length, 那么求range sum [i,j] 就可以简化成 preSum[j] - preSum[i]
+- NOTE: should write merge() function, but that is minor, just use `Arrays.sort(nums, start, end)`, OJ passed
+- Every mergeSort() has a for loop => O(n log n)
+
+##### 如何 count range?
+- 这里比较特别的一个做法: 找一个 [low, mid]里面的i, mid 之后的preSum作比较 (解释源自: https://blog.csdn.net/qq508618087/article/details/51435944)
+- 即在右边数组找到两个边界, 设为`m, n`, 
+- 其中m是在右边数组中第一个使得`sum[m] - sum[i] >= lower`的位置, 
+- n是第一个使得`sum[n] - sum[i] > upper`的位置, 
+- 这样`n-m`就是与左边元素i所构成的位于`[lower, upper]`范围的区间个数. 
+
+##### 神奇的重点: 为什么要 merge and sort
+- 边界[lower, higher] 在 sorted array 好作比较, 一旦国界, 就可以停止计算, 减少不必要计算.
+- 上面这个n,m的做法可行的前提: preSum[]里面前后两个 range[low, mid], [mid, high]已经sorted了
+- 也就是说, 在recursively mergeSort()的时候, 真的需要merge sorted 2 partitions
+- 也许会问: 能不能sort呢, sort不久打乱了顺序? 对,打乱的是preSum[]的顺序.
+- 但是不要紧: 很巧妙的, 分治的时候, 前半段/后半段 都在原顺序保留的情况下 分开process完了, 最后才merge
+- 在做m,n 的range的时候, 原理如下, 比如preSum被分成这么两段: `[A,B,C]`, `[D,E,F]`
+- 每一个preSum value `A` 在跟 preSum[i] 作比较的时候 `A - preSum < lower`, 都是单一作比较, 不牵扯到 B, C
+- 因此, `[A, B, C]` 是否保留一开始 preSum的顺序在此时不重要
+- 此时最重要的是, `[A,B,C]`以及排序好, 那么在于 `lower` boundary 作比较的时候, 一旦过界, 就可以停止计算(减少不必要的计算)
+
+
+#### BST
+- TODO?
 
 
 
@@ -2698,7 +2737,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**63. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, Sequence DP]
+**63. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
@@ -2719,7 +2758,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**64. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP]
+**64. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -4467,7 +4506,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**30. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, Sequence DP]
+**30. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
@@ -5267,7 +5306,7 @@ output 所有 expression
  
  
  
-## Design (16)
+## Design (17)
 **0. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
       
 
@@ -5284,7 +5323,25 @@ Implement an iterator to flatten a 2d vector.
 
 ---
 
-**1. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
+**1. [LFU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LFU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table]
+      
+
+#### Hash Table
+- 具体看thoughts, 几种不同的方式使用map
+- `regular object map`: map of <key, item>, where `item : {int val; int count}`
+- `frequency list map`: map of <frequency count, List<item>>, where the list preserves `recency`
+- `item location in frequency map`: map of <key, int location index in list>:
+- index relative to the item in a particular list, not tracking which list here
+- Track constant capacity, and minimum frequency
+- Every get(): update all 3 data structures
+- Every put(): update all 3 data structures, with optional removal (if over capacity)
+- TODO: code it up
+
+
+
+---
+
+**2. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
@@ -5324,7 +5381,7 @@ Previous Notes:
 
 ---
 
-**2. [Flatten Nested List Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Nested%20List%20Iterator.java)**      Level: Medium      Tags: [Design, Stack]
+**3. [Flatten Nested List Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Nested%20List%20Iterator.java)**      Level: Medium      Tags: [Design, Stack]
       
 
 方法1: 用queue, 把需要的item全部打出来
@@ -5334,7 +5391,7 @@ Previous Notes:
 
 ---
 
-**3. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium      Tags: [Design, Trie]
+**4. [Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)**      Level: Medium      Tags: [Design, Trie]
       
 
 Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startWith
@@ -5366,7 +5423,7 @@ Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startW
 
 ---
 
-**4. [Add and Search Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
+**5. [Add and Search Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
       
 
 Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
@@ -5382,7 +5439,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**5. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap]
+**6. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap]
       
 
 #### 原理
@@ -5398,7 +5455,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**6. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap]
+**7. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap]
       
 
 Median还是用min-heap 和 max-heap. Time(logN)
@@ -5419,7 +5476,7 @@ findMedian: O(1)
 
 ---
 
-**7. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy      Tags: [Design, Stack]
+**8. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy      Tags: [Design, Stack]
       
 
 双Stack：一个正常stack，另一个minStack存当下level最小值. 注意维护minStack的变化
@@ -5430,7 +5487,7 @@ findMedian: O(1)
 
 ---
 
-**8. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy      Tags: [Design, Stack]
+**9. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy      Tags: [Design, Stack]
       
 
 #### 双Stack
@@ -5448,7 +5505,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**9. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy      Tags: [Design]
+**10. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy      Tags: [Design]
       
 
 让一个class 是 singleton
@@ -5457,7 +5514,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**10. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy      Tags: [Design, Stack]
+**11. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy      Tags: [Design, Stack]
       
 
 如题.
@@ -5482,7 +5539,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**11. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
+**12. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
 
 #### Double Linked List
@@ -5509,7 +5566,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**12. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+**13. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
       
 
 #### DFS, Recursive
@@ -5527,7 +5584,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**13. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
+**14. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
       
 
 
@@ -5545,7 +5602,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**14. [ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)**      Level: Medium      Tags: [Design, Hash Table]
+**15. [ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)**      Level: Medium      Tags: [Design, Hash Table]
       
 
 #### basic implementation
@@ -5561,7 +5618,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**15. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: Medium      Tags: [Design]
+**16. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: Medium      Tags: [Design]
       
 
 #### Use concept pre cache
@@ -5727,7 +5784,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (38)
+## Hash Table (39)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -5769,7 +5826,25 @@ TODO: no need of hashMap, just use set to store the existing
 
 ---
 
-**3. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium      Tags: [Hash Table, Linked List]
+**3. [LFU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LFU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table]
+      
+
+#### Hash Table
+- 具体看thoughts, 几种不同的方式使用map
+- `regular object map`: map of <key, item>, where `item : {int val; int count}`
+- `frequency list map`: map of <frequency count, List<item>>, where the list preserves `recency`
+- `item location in frequency map`: map of <key, int location index in list>:
+- index relative to the item in a particular list, not tracking which list here
+- Track constant capacity, and minimum frequency
+- Every get(): update all 3 data structures
+- Every put(): update all 3 data structures, with optional removal (if over capacity)
+- TODO: code it up
+
+
+
+---
+
+**4. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium      Tags: [Hash Table, Linked List]
       
 
 TODO: 
@@ -5788,7 +5863,7 @@ TODO:
 
 ---
 
-**4. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table]
+**5. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table]
       
 
 
@@ -5796,7 +5871,7 @@ TODO:
 
 ---
 
-**5. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy      Tags: [Hash Table]
+**6. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy      Tags: [Hash Table]
       
 
 比较简单, 用HashMap 存index list. 最后再遍历一遍数组A, 列举出所有元素.
@@ -5806,7 +5881,7 @@ O(n)
 
 ---
 
-**6. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy      Tags: [Hash Table]
+**7. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy      Tags: [Hash Table]
       
 
 最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
@@ -5823,7 +5898,7 @@ O(n)
 
 ---
 
-**7. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, String]
+**8. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 方法1: 按照题意, 找到第一个 first index == last index的字母.
@@ -5834,28 +5909,11 @@ O(n)
 
 ---
 
-**8. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
+**9. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
 其实想到了切入点, 是个可难可简单的题目. 这里的encode就是想办法把url存起来, 然后给个 key.
 那么具体怎么做这个key, 简单就可以用一个map, 然后counting. 复杂一点就可以做random letter/number组成key.
-
-
-
----
-
-**9. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
-      
-
-tutorial:https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be
-
-解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
-
-解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).     
-1. 第一步 two pointer 找 value.       
-2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
-O(n) space, O(nlogn) time.    
-
 
 
 
@@ -6419,6 +6477,25 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 #### Stack
 - Use stack instead of stringBuffer: keep append/remove last added item
 - However, stringBuffer appears to be faster than stack.
+
+
+
+---
+
+**38. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+      
+
+#### HashMap<value, index>
+- 相对暴力简洁: 找到一个value, 存一个index
+- 若在HashMap里面 match 到结果, 就return HashMap里存的index. 
+- O(n) space && time.
+
+#### Sort array, two pointer
+- 前后++, --搜索. Sort 用时O(nlogn).     
+- 1. 第一步 two pointer 找 value.       
+- 2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
+- O(n) space, O(nlogn) time.    
+
 
 
 
@@ -7252,6 +7329,35 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
+## TreeSet (1)
+**0. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
+      
+
+题目解析后: find 2 number, that: 1. k slots between the 2 number, 2. no slots taken between the two number.
+
+#### BST
+- BST structure not given, use TreeSet to build BST with each node
+- Every time find last/next inorder element 
+- `treeSet.lower(x)`, `treeSet.higher(x)`
+- 一旦位置相隔(k + 1), 就满足题目条件
+- O(nlogn), good enough
+
+#### Track slots of days
+- Reverse the array, save days index into days[], where the new index is slot.
+- days[i]: at slot i, which day a flower will be planted
+- O(n)
+- Needs to understand: http://www.cnblogs.com/grandyang/p/8415880.html
 
 
 
@@ -8716,7 +8822,7 @@ TODO
  
  
  
-## BST (17)
+## BST (19)
 **0. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, Tree]
       
 
@@ -9015,6 +9121,67 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 等于dfs遍历了所有k1<= x <= k2的x node。
 - dfs left, process root, then dfs right
 - 这里, 把 left/right/match的情况全部cover了，然后把k1,k2的边框限制好，中间就全部遍历了。
+
+
+
+---
+
+**17. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
+      
+
+题目解析后: find 2 number, that: 1. k slots between the 2 number, 2. no slots taken between the two number.
+
+#### BST
+- BST structure not given, use TreeSet to build BST with each node
+- Every time find last/next inorder element 
+- `treeSet.lower(x)`, `treeSet.higher(x)`
+- 一旦位置相隔(k + 1), 就满足题目条件
+- O(nlogn), good enough
+
+#### Track slots of days
+- Reverse the array, save days index into days[], where the new index is slot.
+- days[i]: at slot i, which day a flower will be planted
+- O(n)
+- Needs to understand: http://www.cnblogs.com/grandyang/p/8415880.html
+
+
+
+---
+
+**18. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
+      
+
+TODO: Write the code + merge function
+
+#### Divide and Conquer + PreSum + MergeSort
+- 算法非常厉害就是了: 先做presum[], 那么 sum range [i,j] 就等于是preSum[j+1] - preSum[i]
+- 分治: 考虑[start, mid] range里面的结果, 再考虑[mid, end] range里面的结果. (分开来 mergeSort)
+- 最后考虑[low,high]总体的结果
+- 小技巧: PreSum 做成了 (n + 1) length, 那么求range sum [i,j] 就可以简化成 preSum[j] - preSum[i]
+- NOTE: should write merge() function, but that is minor, just use `Arrays.sort(nums, start, end)`, OJ passed
+- Every mergeSort() has a for loop => O(n log n)
+
+##### 如何 count range?
+- 这里比较特别的一个做法: 找一个 [low, mid]里面的i, mid 之后的preSum作比较 (解释源自: https://blog.csdn.net/qq508618087/article/details/51435944)
+- 即在右边数组找到两个边界, 设为`m, n`, 
+- 其中m是在右边数组中第一个使得`sum[m] - sum[i] >= lower`的位置, 
+- n是第一个使得`sum[n] - sum[i] > upper`的位置, 
+- 这样`n-m`就是与左边元素i所构成的位于`[lower, upper]`范围的区间个数. 
+
+##### 神奇的重点: 为什么要 merge and sort
+- 边界[lower, higher] 在 sorted array 好作比较, 一旦国界, 就可以停止计算, 减少不必要计算.
+- 上面这个n,m的做法可行的前提: preSum[]里面前后两个 range[low, mid], [mid, high]已经sorted了
+- 也就是说, 在recursively mergeSort()的时候, 真的需要merge sorted 2 partitions
+- 也许会问: 能不能sort呢, sort不久打乱了顺序? 对,打乱的是preSum[]的顺序.
+- 但是不要紧: 很巧妙的, 分治的时候, 前半段/后半段 都在原顺序保留的情况下 分开process完了, 最后才merge
+- 在做m,n 的range的时候, 原理如下, 比如preSum被分成这么两段: `[A,B,C]`, `[D,E,F]`
+- 每一个preSum value `A` 在跟 preSum[i] 作比较的时候 `A - preSum < lower`, 都是单一作比较, 不牵扯到 B, C
+- 因此, `[A, B, C]` 是否保留一开始 preSum的顺序在此时不重要
+- 此时最重要的是, `[A,B,C]`以及排序好, 那么在于 `lower` boundary 作比较的时候, 一旦过界, 就可以停止计算(减少不必要的计算)
+
+
+#### BST
+- TODO?
 
 
 
@@ -10854,6 +11021,116 @@ deep copy linked list. linked list 上有random pointer to other nodes.
  
  
  
+## PreSum (4)
+**0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
+      
+
+给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
+
+- Binary Search的思想, 用在所要找的这个 average sum 上面. 大小是在[min, max]之中
+- 找k的时候, 是>=k都可以, 巧用一个 min(preSum)的概念.
+- 找k的时候, 画图, 可以看出来, 其实要的是 k window 里面的sum [x, i], 所以要用 sum[0, i] - sum[0, x]
+
+需要仔细去读下面的notes.
+
+
+
+---
+
+**1. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
+      
+
+给一串数组, 找数组中间 subarray 数字之和的最大值
+
+#### Sequence DP
+- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init dp[0] = 0; max = MIN_VALUE 因为有负数
+- Time, space O(n)
+- Rolling array, space O(1)
+
+#### Divide and Conquer
+- 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
+- left/rigth 的case, 直接 dfs
+- corss-mid case: continuous sum max from left + continous sum max from right + mid
+- continuous sum max from one direction:
+
+
+---
+
+**2. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
+      
+
+给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
+
+#### DP
+- 考虑两个方向的dp[i]: 包括i在内的subarray max sum. 
+- dp[i] 的特点是: 如果上一个 dp[i - 1] + nums[i - 1] 小于 nums[i-1], 那么就舍弃之前, 从头再来:
+- dp[i] = Math.max(dp[i - 1] + nums.get(i - 1), nums.get(i - 1));
+- 缺点: 无法track全局max, 需要记录max.
+- 因为我们现在要考虑从左边/右边来的所有max, 所以要记录maxLeft[] 和 maxRight[] 
+- maxLeft[i]: 前i个元素的最大sum是多少 (不断递增); maxRight反之, 从右边向左边
+- 最后比较maxLeft[i] + maxRight[i] 最大值
+- Space, Time O(n)
+- Rolling array, reduce some space, but can not reduce maxLeft/maxRight
+
+#### preSum, minPreSum
+- preSum是[0, i] 每个数字一次加起来的值
+- 如果维持一个minPreSum, 就是记录[0, i]sum的最小值(因为有可能有负数)
+- preSum - minPreSum 就是在 [0, i]里, subarray的最大sum值
+- 把这个最大subarray sum 记录在array, left[] 里面
+- right[] 是一样的道理
+- enumerate一下元素的排列顺位, 最后 max = Math.max(max, left[i] + right[i + 1])
+
+
+
+---
+
+**3. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
+      
+
+TODO: Write the code + merge function
+
+#### Divide and Conquer + PreSum + MergeSort
+- 算法非常厉害就是了: 先做presum[], 那么 sum range [i,j] 就等于是preSum[j+1] - preSum[i]
+- 分治: 考虑[start, mid] range里面的结果, 再考虑[mid, end] range里面的结果. (分开来 mergeSort)
+- 最后考虑[low,high]总体的结果
+- 小技巧: PreSum 做成了 (n + 1) length, 那么求range sum [i,j] 就可以简化成 preSum[j] - preSum[i]
+- NOTE: should write merge() function, but that is minor, just use `Arrays.sort(nums, start, end)`, OJ passed
+- Every mergeSort() has a for loop => O(n log n)
+
+##### 如何 count range?
+- 这里比较特别的一个做法: 找一个 [low, mid]里面的i, mid 之后的preSum作比较 (解释源自: https://blog.csdn.net/qq508618087/article/details/51435944)
+- 即在右边数组找到两个边界, 设为`m, n`, 
+- 其中m是在右边数组中第一个使得`sum[m] - sum[i] >= lower`的位置, 
+- n是第一个使得`sum[n] - sum[i] > upper`的位置, 
+- 这样`n-m`就是与左边元素i所构成的位于`[lower, upper]`范围的区间个数. 
+
+##### 神奇的重点: 为什么要 merge and sort
+- 边界[lower, higher] 在 sorted array 好作比较, 一旦国界, 就可以停止计算, 减少不必要计算.
+- 上面这个n,m的做法可行的前提: preSum[]里面前后两个 range[low, mid], [mid, high]已经sorted了
+- 也就是说, 在recursively mergeSort()的时候, 真的需要merge sorted 2 partitions
+- 也许会问: 能不能sort呢, sort不久打乱了顺序? 对,打乱的是preSum[]的顺序.
+- 但是不要紧: 很巧妙的, 分治的时候, 前半段/后半段 都在原顺序保留的情况下 分开process完了, 最后才merge
+- 在做m,n 的range的时候, 原理如下, 比如preSum被分成这么两段: `[A,B,C]`, `[D,E,F]`
+- 每一个preSum value `A` 在跟 preSum[i] 作比较的时候 `A - preSum < lower`, 都是单一作比较, 不牵扯到 B, C
+- 因此, `[A, B, C]` 是否保留一开始 preSum的顺序在此时不重要
+- 此时最重要的是, `[A,B,C]`以及排序好, 那么在于 `lower` boundary 作比较的时候, 一旦过界, 就可以停止计算(减少不必要的计算)
+
+
+#### BST
+- TODO?
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Binary Indexed Tree (2)
 **0. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
       
@@ -11845,7 +12122,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**12. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, Sequence DP]
+**12. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
@@ -11866,7 +12143,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**13. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP]
+**13. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -13125,7 +13402,7 @@ count 一个 32-bit number binary format 里面有多少1
  
  
  
-## Divide and Conquer (27)
+## Divide and Conquer (28)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -13373,7 +13650,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**10. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, Sequence DP]
+**10. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
@@ -13701,6 +13978,45 @@ output 所有 expression
 #### String dfs, use string as buffer
 - 逻辑一样, 代码更短, 只不过不做list, 直接pass `buffer + "+" + curr`
 - 因为每次都创建新string, 所以速度稍微慢一点. Time complexity 一样
+
+
+
+---
+
+**27. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
+      
+
+TODO: Write the code + merge function
+
+#### Divide and Conquer + PreSum + MergeSort
+- 算法非常厉害就是了: 先做presum[], 那么 sum range [i,j] 就等于是preSum[j+1] - preSum[i]
+- 分治: 考虑[start, mid] range里面的结果, 再考虑[mid, end] range里面的结果. (分开来 mergeSort)
+- 最后考虑[low,high]总体的结果
+- 小技巧: PreSum 做成了 (n + 1) length, 那么求range sum [i,j] 就可以简化成 preSum[j] - preSum[i]
+- NOTE: should write merge() function, but that is minor, just use `Arrays.sort(nums, start, end)`, OJ passed
+- Every mergeSort() has a for loop => O(n log n)
+
+##### 如何 count range?
+- 这里比较特别的一个做法: 找一个 [low, mid]里面的i, mid 之后的preSum作比较 (解释源自: https://blog.csdn.net/qq508618087/article/details/51435944)
+- 即在右边数组找到两个边界, 设为`m, n`, 
+- 其中m是在右边数组中第一个使得`sum[m] - sum[i] >= lower`的位置, 
+- n是第一个使得`sum[n] - sum[i] > upper`的位置, 
+- 这样`n-m`就是与左边元素i所构成的位于`[lower, upper]`范围的区间个数. 
+
+##### 神奇的重点: 为什么要 merge and sort
+- 边界[lower, higher] 在 sorted array 好作比较, 一旦国界, 就可以停止计算, 减少不必要计算.
+- 上面这个n,m的做法可行的前提: preSum[]里面前后两个 range[low, mid], [mid, high]已经sorted了
+- 也就是说, 在recursively mergeSort()的时候, 真的需要merge sorted 2 partitions
+- 也许会问: 能不能sort呢, sort不久打乱了顺序? 对,打乱的是preSum[]的顺序.
+- 但是不要紧: 很巧妙的, 分治的时候, 前半段/后半段 都在原顺序保留的情况下 分开process完了, 最后才merge
+- 在做m,n 的range的时候, 原理如下, 比如preSum被分成这么两段: `[A,B,C]`, `[D,E,F]`
+- 每一个preSum value `A` 在跟 preSum[i] 作比较的时候 `A - preSum < lower`, 都是单一作比较, 不牵扯到 B, C
+- 因此, `[A, B, C]` 是否保留一开始 preSum的顺序在此时不重要
+- 此时最重要的是, `[A,B,C]`以及排序好, 那么在于 `lower` boundary 作比较的时候, 一旦过界, 就可以停止计算(减少不必要的计算)
+
+
+#### BST
+- TODO?
 
 
 
@@ -14184,7 +14500,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**10. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP]
+**10. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -15380,7 +15696,7 @@ Time: O(nLogN)
 
 ---
 
-**20. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search]
+**20. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
@@ -15642,7 +15958,7 @@ TODO:
  
  
  
-## Array (88)
+## Array (89)
 **0. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Tree]
       
 
@@ -15826,24 +16142,7 @@ O(n)
 
 ---
 
-**15. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
-      
-
-tutorial:https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be
-
-解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
-
-解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).     
-1. 第一步 two pointer 找 value.       
-2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
-O(n) space, O(nlogn) time.    
-
-
-
-
----
-
-**16. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**15. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 升序array, 找2SUM.
@@ -15861,7 +16160,7 @@ O(n) space, O(nlogn) time.
 
 ---
 
-**17. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**16. [2 Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 与 2sum II - input array is sorted类似. 都是sort array, 然后two pointer.
@@ -15880,7 +16179,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 ---
 
-**18. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium      Tags: [Array, DP]
+**17. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium      Tags: [Array, DP]
       
 
 从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
@@ -15901,7 +16200,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 ---
 
-**19. [3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**18. [3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 3Sum 的一种简单形式, 并且都没有找index, value, 而只是找个sum罢了.
@@ -15914,7 +16213,7 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 
 ---
 
-**20. [Triangle Count.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangle%20Count.java)**      Level: Medium      Tags: [Array]
+**19. [Triangle Count.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangle%20Count.java)**      Level: Medium      Tags: [Array]
       
 
 其实也就是3sum的变形, 或者而说2sum的变形. 主要用2 pointers来做.
@@ -15927,7 +16226,7 @@ Note巧妙点:
 
 ---
 
-**21. [3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**20. [3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 方法1:
@@ -15956,7 +16255,7 @@ Previous notes:
 
 ---
 
-**22. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**21. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
@@ -15971,7 +16270,7 @@ Previous notes:
 
 ---
 
-**23. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**22. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 一般的O(n3)肯定不行。在此基础上优化。
@@ -15982,7 +16281,7 @@ Previous notes:
 
 ---
 
-**24. [Array Partition I.java](https://github.com/awangdev/LintCode/blob/master/Java/Array%20Partition%20I.java)**      Level: Easy      Tags: [Array]
+**23. [Array Partition I.java](https://github.com/awangdev/LintCode/blob/master/Java/Array%20Partition%20I.java)**      Level: Easy      Tags: [Array]
       
 
 给串数字, size=2n, 找pairs, 然后需要sum of min(pair) 最大.
@@ -16000,7 +16299,7 @@ Previous notes:
 
 ---
 
-**25. [1-bit and 2-bit Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/1-bit%20and%202-bit%20Characters.java)**      Level: Easy      Tags: [Array]
+**24. [1-bit and 2-bit Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/1-bit%20and%202-bit%20Characters.java)**      Level: Easy      Tags: [Array]
       
 
 方法1:
@@ -16017,7 +16316,7 @@ loop to end, and see if index reaches the end.
 
 ---
 
-**26. [Non-decreasing Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Non-decreasing%20Array.java)**      Level: Easy      Tags: [Array]
+**25. [Non-decreasing Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Non-decreasing%20Array.java)**      Level: Easy      Tags: [Array]
       
 
 比较升序的时候, 必须要估计到 i-1, i, i+1三个数位.
@@ -16029,7 +16328,7 @@ loop to end, and see if index reaches the end.
 
 ---
 
-**27. [Max Consecutive Ones.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Consecutive%20Ones.java)**      Level: Easy      Tags: [Array]
+**26. [Max Consecutive Ones.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Consecutive%20Ones.java)**      Level: Easy      Tags: [Array]
       
 
 Basic. Math.max track结果。
@@ -16039,7 +16338,7 @@ Basic. Math.max track结果。
 
 ---
 
-**28. [Find All Numbers Disappeared in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Numbers%20Disappeared%20in%20an%20Array.java)**      Level: Easy      Tags: [Array]
+**27. [Find All Numbers Disappeared in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Numbers%20Disappeared%20in%20an%20Array.java)**      Level: Easy      Tags: [Array]
       
 
 方法1:
@@ -16062,7 +16361,7 @@ Preserve原数的负数，这样可以继续用此负数的绝对值来寻找原
 
 ---
 
-**29. [Maximum Average Subarray I.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20I.java)**      Level: Easy      Tags: [Array]
+**28. [Maximum Average Subarray I.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20I.java)**      Level: Easy      Tags: [Array]
       
 
 简单的求sum, 同时求max, 结尾求余数就好.
@@ -16070,7 +16369,7 @@ Preserve原数的负数，这样可以继续用此负数的绝对值来寻找原
 
 ---
 
-**30. [Largest Number At Least Twice of Others.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number%20At%20Least%20Twice%20of%20Others.java)**      Level: Easy      Tags: [Array]
+**29. [Largest Number At Least Twice of Others.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number%20At%20Least%20Twice%20of%20Others.java)**      Level: Easy      Tags: [Array]
       
 
 找最大值, 和第二大的值, 看是否符合题意, 就行了.
@@ -16081,7 +16380,7 @@ Preserve原数的负数，这样可以继续用此负数的绝对值来寻找原
 
 ---
 
-**31. [Toeplitz Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Toeplitz%20Matrix.java)**      Level: Easy      Tags: [Array]
+**30. [Toeplitz Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Toeplitz%20Matrix.java)**      Level: Easy      Tags: [Array]
       
 
 似乎没什么算法特点, 就是array基本运算, 然后分割成一个helper function去做重复计算, 剪短代码.
@@ -16091,7 +16390,7 @@ Preserve原数的负数，这样可以继续用此负数的绝对值来寻找原
 
 ---
 
-**32. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium      Tags: [Array, Binary Search]
+**31. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 binary search. 
@@ -16109,7 +16408,7 @@ Note:
 
 ---
 
-**33. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
+**32. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
       
 
 #### Vote 计数
@@ -16131,7 +16430,7 @@ Note:
 
 ---
 
-**34. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
+**33. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
       
 
 如题
@@ -16147,7 +16446,7 @@ Note:
 
 ---
 
-**35. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**34. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 方法1:
@@ -16171,7 +16470,7 @@ Not done yet
 
 ---
 
-**36. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
+**35. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 画图, 最小值被rotate之后, 变成array中间的最低谷.
@@ -16184,7 +16483,7 @@ O(nlogn)
 
 ---
 
-**37. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard      Tags: [Array, Binary Search]
+**36. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard      Tags: [Array, Binary Search]
       
 
 一个需要严谨思考的题目. 因为有duplicate, 会导致不断平移, 所以最终time complexity是O(n)
@@ -16196,7 +16495,7 @@ O(nlogn)
 
 ---
 
-**38. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium      Tags: [Array, Backtracking]
+**37. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium      Tags: [Array, Backtracking]
       
 
 Backtracking:
@@ -16214,7 +16513,7 @@ Backtracking方法2:
 
 ---
 
-**39. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard      Tags: [Array, Stack, Two Pointers]
+**38. [Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)**      Level: Hard      Tags: [Array, Stack, Two Pointers]
       
 
 这道题目的方法比较多.
@@ -16244,7 +16543,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 ---
 
-**40. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard      Tags: [Array, Monotonous Stack, Stack]
+**39. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard      Tags: [Array, Monotonous Stack, Stack]
       
 
 给n个bar,组成柱状图histogram. 求在这一排柱状图里面可以找到的面积最大的长方形.
@@ -16271,7 +16570,7 @@ min(leftHighestWall, rightHighestWall) - currHeight.
 
 ---
 
-**41. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**40. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 - 注意不要思维定式: 以为mid是index
@@ -16284,7 +16583,7 @@ Time: O(nLogN)
 
 ---
 
-**42. [Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)**      Level: Medium      Tags: [Array]
+**41. [Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)**      Level: Medium      Tags: [Array]
       
 
 #### basic
@@ -16307,7 +16606,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 ---
 
-**43. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search]
+**42. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
@@ -16322,7 +16621,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 ---
 
-**44. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**43. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -16340,7 +16639,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 ---
 
-**45. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**44. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -16361,7 +16660,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 ---
 
-**46. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
+**45. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
       
 
 #### 方法1: monotonous stack
@@ -16380,7 +16679,7 @@ Coordinate DP?
 
 ---
 
-**47. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
+**46. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -16425,7 +16724,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**48. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**47. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
 还是2个人拿n个coin, coin可以有不同的value. 
@@ -16478,7 +16777,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**49. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy      Tags: [Array, Hash Table]
+**48. [Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 无序数组, 找是否有重复element, return true/false.
@@ -16495,7 +16794,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**50. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy      Tags: [Array, Hash Table]
+**49. [Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个element的index i,j 的大小最多相差k.
@@ -16522,7 +16821,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**51. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
+**50. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
       
 
 给出步数，看能不能jump to end.
@@ -16543,7 +16842,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**52. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**51. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 找连续的持续上升子序列的长度.
@@ -16562,7 +16861,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**53. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**52. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 #### DP
@@ -16580,7 +16879,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**54. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
+**53. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -16608,7 +16907,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**55. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP]
+**54. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP]
       
 
 和Stock I 的区别：可以买卖多次，求总和的最大盈利.
@@ -16644,7 +16943,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**56. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**55. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -16677,7 +16976,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**57. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**56. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -16700,7 +16999,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**58. [First Missing Positive.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Missing%20Positive.java)**      Level: Hard      Tags: [Array]
+**57. [First Missing Positive.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Missing%20Positive.java)**      Level: Hard      Tags: [Array]
       
 
 给一串无序数字, 有负数: 找这个array里面第一个 missing的 positive integer
@@ -16723,7 +17022,7 @@ missing positive integer 其实是以 [1, n] 来做比较的.
 
 ---
 
-**59. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**58. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
@@ -16736,7 +17035,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**60. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**59. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -16757,7 +17056,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**61. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, Sequence DP]
+**60. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
@@ -16778,7 +17077,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**62. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP]
+**61. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -16806,7 +17105,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**63. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy      Tags: [Array, Quick Select, Quick Sort]
+**62. [Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)**      Level: Easy      Tags: [Array, Quick Select, Quick Sort]
       
 
 给一串无序数组, 找到median(sort之后 位置在中间的数字).
@@ -16822,7 +17121,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**64. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+**63. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
 给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
@@ -16835,7 +17134,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**65. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, Sort, Sweep Line]
+**64. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, Sort, Sweep Line]
       
 
 给一串int[Interval]. 把所以Interval merge起来.
@@ -16868,7 +17167,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**66. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
+**65. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
       
 
 给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
@@ -16896,7 +17195,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**67. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+**66. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
 给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
@@ -16923,7 +17222,7 @@ return unique item 的长度.
 
 ---
 
-**68. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**67. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
@@ -16941,7 +17240,7 @@ return unique item 的长度.
 
 ---
 
-**69. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Map]
+**68. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Map]
       
 
 把anagram找到并output
@@ -16975,7 +17274,7 @@ return unique item 的长度.
 
 ---
 
-**70. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**69. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -17002,7 +17301,7 @@ return unique item 的长度.
 
 ---
 
-**71. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**70. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -17026,7 +17325,7 @@ return unique item 的长度.
 
 ---
 
-**72. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**71. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一个integer k, 和一个target n. 
@@ -17045,7 +17344,7 @@ return unique item 的长度.
 
 ---
 
-**73. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**72. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -17073,7 +17372,7 @@ return unique item 的长度.
 
 ---
 
-**74. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**73. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 
 给一串unique integers, 找到所有可能的subset. result里面不能有重复.
@@ -17107,7 +17406,7 @@ return unique item 的长度.
 
 ---
 
-**75. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**74. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 
 给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
@@ -17143,7 +17442,7 @@ return unique item 的长度.
 
 ---
 
-**76. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
+**75. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
       
 
 给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
@@ -17174,7 +17473,7 @@ return unique item 的长度.
 
 ---
 
-**77. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**76. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
@@ -17194,7 +17493,7 @@ return unique item 的长度.
 
 ---
 
-**78. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**77. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 #### Two Pointers
@@ -17207,7 +17506,7 @@ return unique item 的长度.
 
 ---
 
-**79. [Majority Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element%20II.java)**      Level: Medium      Tags: [Array]
+**78. [Majority Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element%20II.java)**      Level: Medium      Tags: [Array]
       
 
 #### Sort + count
@@ -17223,7 +17522,7 @@ return unique item 的长度.
 
 ---
 
-**80. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
+**79. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给2D matrix, 每行sorted, 每行的首位都大于上一行的末尾. goal: find target from matrix
@@ -17236,7 +17535,7 @@ return unique item 的长度.
 
 ---
 
-**81. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
+**80. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给sorted array, 有重复数字, 找跟target重合所在的range.
@@ -17251,7 +17550,7 @@ return unique item 的长度.
 
 ---
 
-**82. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
+**81. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
       
 
 如题, merge two sorted array into 新的 sorted array
@@ -17263,7 +17562,7 @@ return unique item 的长度.
 
 ---
 
-**83. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
+**82. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
       
 
 determine if characters are unique in string
@@ -17276,7 +17575,7 @@ determine if characters are unique in string
 
 ---
 
-**84. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: Medium      Tags: [Array]
+**83. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: Medium      Tags: [Array]
       
 
 给一串sorted list, 中间有缺数字, return 所有数字的range string (example 看题目)
@@ -17289,7 +17588,7 @@ determine if characters are unique in string
 
 ---
 
-**85. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**84. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -17314,7 +17613,7 @@ TODO:
 
 ---
 
-**86. [Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)**      Level: Medium      Tags: [Array, Enumeration]
+**85. [Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)**      Level: Medium      Tags: [Array, Enumeration]
       
 
 从(0,0)坐标, 走完spiral matrix, 把结果存在list里.
@@ -17330,7 +17629,7 @@ TODO:
 
 ---
 
-**87. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+**86. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
       
 
 #### Sweep Line
@@ -17351,6 +17650,47 @@ TODO:
 #### 另外
 - 因为interval已经sort, 本想用Binary Search O(logn). 
 - 但是找到interval insert position 最后 merge还是要用 O(n), 所以不必要 binary Search
+
+
+
+---
+
+**87. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+      
+
+#### HashMap<value, index>
+- 相对暴力简洁: 找到一个value, 存一个index
+- 若在HashMap里面 match 到结果, 就return HashMap里存的index. 
+- O(n) space && time.
+
+#### Sort array, two pointer
+- 前后++, --搜索. Sort 用时O(nlogn).     
+- 1. 第一步 two pointer 找 value.       
+- 2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
+- O(n) space, O(nlogn) time.    
+
+
+
+
+---
+
+**88. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
+      
+
+题目解析后: find 2 number, that: 1. k slots between the 2 number, 2. no slots taken between the two number.
+
+#### BST
+- BST structure not given, use TreeSet to build BST with each node
+- Every time find last/next inorder element 
+- `treeSet.lower(x)`, `treeSet.higher(x)`
+- 一旦位置相隔(k + 1), 就满足题目条件
+- O(nlogn), good enough
+
+#### Track slots of days
+- Reverse the array, save days index into days[], where the new index is slot.
+- days[i]: at slot i, which day a flower will be planted
+- O(n)
+- Needs to understand: http://www.cnblogs.com/grandyang/p/8415880.html
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (38)
+## Hash Table (39)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -43,7 +43,25 @@ TODO: no need of hashMap, just use set to store the existing
 
 ---
 
-**3. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium      Tags: [Hash Table, Linked List]
+**3. [LFU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LFU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table]
+      
+
+#### Hash Table
+- 具体看thoughts, 几种不同的方式使用map
+- `regular object map`: map of <key, item>, where `item : {int val; int count}`
+- `frequency list map`: map of <frequency count, List<item>>, where the list preserves `recency`
+- `item location in frequency map`: map of <key, int location index in list>:
+- index relative to the item in a particular list, not tracking which list here
+- Track constant capacity, and minimum frequency
+- Every get(): update all 3 data structures
+- Every put(): update all 3 data structures, with optional removal (if over capacity)
+- TODO: code it up
+
+
+
+---
+
+**4. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium      Tags: [Hash Table, Linked List]
       
 
 TODO: 
@@ -62,7 +80,7 @@ TODO:
 
 ---
 
-**4. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table]
+**5. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table]
       
 
 
@@ -70,7 +88,7 @@ TODO:
 
 ---
 
-**5. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy      Tags: [Hash Table]
+**6. [Find Anagram Mappings.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Anagram%20Mappings.java)**      Level: Easy      Tags: [Hash Table]
       
 
 比较简单, 用HashMap 存index list. 最后再遍历一遍数组A, 列举出所有元素.
@@ -80,7 +98,7 @@ O(n)
 
 ---
 
-**6. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy      Tags: [Hash Table]
+**7. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy      Tags: [Hash Table]
       
 
 最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
@@ -97,7 +115,7 @@ O(n)
 
 ---
 
-**7. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, String]
+**8. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 方法1: 按照题意, 找到第一个 first index == last index的字母.
@@ -108,28 +126,11 @@ O(n)
 
 ---
 
-**8. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
+**9. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
 其实想到了切入点, 是个可难可简单的题目. 这里的encode就是想办法把url存起来, 然后给个 key.
 那么具体怎么做这个key, 简单就可以用一个map, 然后counting. 复杂一点就可以做random letter/number组成key.
-
-
-
----
-
-**9. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
-      
-
-tutorial:https://www.youtube.com/watch?v=P8zBxoVY1oI&feature=youtu.be
-
-解法1：相对暴力简洁, HashMap<value, index>，找到一个value, 存一个; 若在HashMap里面 match 到结果, 就return HashMap里存的index. O(n) space && time.
-
-解法2：Sort array, two pointer 前后++,--搜索。Sort 用时O(nlogn).     
-1. 第一步 two pointer 找 value.       
-2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
-O(n) space, O(nlogn) time.    
-
 
 
 
@@ -693,6 +694,25 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 #### Stack
 - Use stack instead of stringBuffer: keep append/remove last added item
 - However, stringBuffer appears to be faster than stack.
+
+
+
+---
+
+**38. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+      
+
+#### HashMap<value, index>
+- 相对暴力简洁: 找到一个value, 存一个index
+- 若在HashMap里面 match 到结果, 就return HashMap里存的index. 
+- O(n) space && time.
+
+#### Sort array, two pointer
+- 前后++, --搜索. Sort 用时O(nlogn).     
+- 1. 第一步 two pointer 找 value.       
+- 2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
+- O(n) space, O(nlogn) time.    
+
 
 
 

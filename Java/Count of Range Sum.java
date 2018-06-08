@@ -1,41 +1,6 @@
- 
- 
- 
-## Merge Sort (3)
-**0. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
-      
-
-#### Merge Sort
-- Divide and conquer, recursively
-- 先从中间分段, merge sort 左边 (dfs), merge sort 右边
-- 最后merge起来
-- merge的时候因为是做int[], 所以没办法必须要O(n) space
-- Time O(nlogn), Space O(n)
-
-
-
----
-
-**1. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
-      
-
-#### Merge sort
-- 1. find middle. 快慢指针
-- 2. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段
-- 3. Merge:  假设given list A, B 已经是sorted, 然后按照大小，混合。
-- 要recursively call sortList() on partial list.
-
-#### Quick sort
-- 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
-- 但是quick sort不建议用在list上面。
-- 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
-
-
-
----
-
-**2. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
-      
+H
+1528434667
+tags: Divide and Conquer, Merge Sort, BST, PreSum
 
 TODO: Write the code + merge function
 
@@ -69,7 +34,72 @@ TODO: Write the code + merge function
 #### BST
 - TODO?
 
+```
+/*
+Given an integer array nums, return the number of range sums 
+that lie in [lower, upper] inclusive.
+
+Range sum S(i, j) is defined as the sum of the elements in nums 
+between indices i and j (i ≤ j), inclusive.
+
+Note:
+A naive algorithm of O(n2) is trivial. You MUST do better than that.
+
+Example:
+
+Input: nums = [-2,5,-1], lower = -2, upper = 2,
+Output: 3 
+Explanation: The three ranges are : [0,0], [2,2], [0,2] and their respective sums are: -2, -1, 2.
+*/
+
+class Solution {
+    public int countRangeSum(int[] nums, int lower, int upper) {
+        // edge case
+        if (nums == null || nums.length <= 0) {
+            return 0;
+        }
+        // mergeSort()   
+        long[] preSum = calcPreSum(nums);
+
+        return mergeSort(preSum, lower, upper, 0, preSum.length);
+    }
+
+    private int mergeSort(long[] preSum, int lower, int upper, int start, int end) {
+        if (start + 1 >= end) {
+            return 0;
+        }
+        int mid = (start + end) / 2, m = mid, n = mid, count = 0;
+        
+        // sort two sides
+        count += mergeSort(preSum, lower, upper, start, mid);
+        count += mergeSort(preSum, lower, upper, mid, end);
+        
+        // calculate count in range [m, n]
+        for (int i = start; i < mid; i++) {
+            while (m < end && preSum[m] - preSum[i] < lower) {
+                m++;
+            }
+            while (n < end && preSum[n] - preSum[i] <= upper) {
+                n++;
+            }
+            count += n - m;
+        }
+
+        // merge two list for range [start, end]
+        Arrays.sort(preSum, start, end);
+        //merge(preSum, start, mid - 1, end - 1); SHOULD use a merge function
+        return count;
+    }
+
+    private long[] calcPreSum(int[] nums) {
+        long[] preSum = new long[nums.length + 1];
+        for (int i = 1; i < preSum.length; i++) {
+            preSum[i] = preSum[i - 1] + nums[i - 1];
+        }
+        return preSum;
+    }
+}
 
 
----
 
+```

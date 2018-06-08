@@ -1,6 +1,6 @@
 E
 1525331164
-tags: DP, Sequence DP, Array, Divide and Conquer, DFS
+tags: DP, Sequence DP, Array, Divide and Conquer, DFS, PreSum
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
 

@@ -1,7 +1,7 @@
  
  
  
-## BST (17)
+## BST (19)
 **0. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, Tree]
       
 
@@ -300,6 +300,67 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 等于dfs遍历了所有k1<= x <= k2的x node。
 - dfs left, process root, then dfs right
 - 这里, 把 left/right/match的情况全部cover了，然后把k1,k2的边框限制好，中间就全部遍历了。
+
+
+
+---
+
+**17. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
+      
+
+题目解析后: find 2 number, that: 1. k slots between the 2 number, 2. no slots taken between the two number.
+
+#### BST
+- BST structure not given, use TreeSet to build BST with each node
+- Every time find last/next inorder element 
+- `treeSet.lower(x)`, `treeSet.higher(x)`
+- 一旦位置相隔(k + 1), 就满足题目条件
+- O(nlogn), good enough
+
+#### Track slots of days
+- Reverse the array, save days index into days[], where the new index is slot.
+- days[i]: at slot i, which day a flower will be planted
+- O(n)
+- Needs to understand: http://www.cnblogs.com/grandyang/p/8415880.html
+
+
+
+---
+
+**18. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
+      
+
+TODO: Write the code + merge function
+
+#### Divide and Conquer + PreSum + MergeSort
+- 算法非常厉害就是了: 先做presum[], 那么 sum range [i,j] 就等于是preSum[j+1] - preSum[i]
+- 分治: 考虑[start, mid] range里面的结果, 再考虑[mid, end] range里面的结果. (分开来 mergeSort)
+- 最后考虑[low,high]总体的结果
+- 小技巧: PreSum 做成了 (n + 1) length, 那么求range sum [i,j] 就可以简化成 preSum[j] - preSum[i]
+- NOTE: should write merge() function, but that is minor, just use `Arrays.sort(nums, start, end)`, OJ passed
+- Every mergeSort() has a for loop => O(n log n)
+
+##### 如何 count range?
+- 这里比较特别的一个做法: 找一个 [low, mid]里面的i, mid 之后的preSum作比较 (解释源自: https://blog.csdn.net/qq508618087/article/details/51435944)
+- 即在右边数组找到两个边界, 设为`m, n`, 
+- 其中m是在右边数组中第一个使得`sum[m] - sum[i] >= lower`的位置, 
+- n是第一个使得`sum[n] - sum[i] > upper`的位置, 
+- 这样`n-m`就是与左边元素i所构成的位于`[lower, upper]`范围的区间个数. 
+
+##### 神奇的重点: 为什么要 merge and sort
+- 边界[lower, higher] 在 sorted array 好作比较, 一旦国界, 就可以停止计算, 减少不必要计算.
+- 上面这个n,m的做法可行的前提: preSum[]里面前后两个 range[low, mid], [mid, high]已经sorted了
+- 也就是说, 在recursively mergeSort()的时候, 真的需要merge sorted 2 partitions
+- 也许会问: 能不能sort呢, sort不久打乱了顺序? 对,打乱的是preSum[]的顺序.
+- 但是不要紧: 很巧妙的, 分治的时候, 前半段/后半段 都在原顺序保留的情况下 分开process完了, 最后才merge
+- 在做m,n 的range的时候, 原理如下, 比如preSum被分成这么两段: `[A,B,C]`, `[D,E,F]`
+- 每一个preSum value `A` 在跟 preSum[i] 作比较的时候 `A - preSum < lower`, 都是单一作比较, 不牵扯到 B, C
+- 因此, `[A, B, C]` 是否保留一开始 preSum的顺序在此时不重要
+- 此时最重要的是, `[A,B,C]`以及排序好, 那么在于 `lower` boundary 作比较的时候, 一旦过界, 就可以停止计算(减少不必要的计算)
+
+
+#### BST
+- TODO?
 
 
 

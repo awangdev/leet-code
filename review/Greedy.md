@@ -196,7 +196,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**10. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP]
+**10. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
