@@ -1,6 +1,6 @@
 M
 1519663383
-tags: Array, Tree, DFS, Divide and Conquer
+tags: Array, Tree, DFS, Divide and Conquer, Hash Table
 
 如题
 
@@ -10,6 +10,8 @@ tags: Array, Tree, DFS, Divide and Conquer
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
+- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- sapce: O(n), time: O(n) access
 
 ```
 /*
@@ -54,11 +56,23 @@ inorder: if found the root node in the sequence, all indexes less than the root 
 1. Use preorder head index as root
 2. Find the root node index in inorder sequence.
 3. split into subproblems: track by indexes
-*/
+*//**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 class Solution {
+    Map<Integer, Integer> map = new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder == null || inorder == null || preorder.length != inorder.length) {
             return null;
+        }
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
         }
         return dfs(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
     }
@@ -69,7 +83,7 @@ class Solution {
             return null;
         }
         TreeNode root = new TreeNode(preorder[preStart]);
-        int mid = findMidIndex(inorder, inStart, inEnd, preorder[preStart]);
+        int mid = map.get(preorder[preStart]);
             
         if (mid < 0) {
             return null;
@@ -83,16 +97,8 @@ class Solution {
         
         return root;
     }
-    
-    public int findMidIndex(int[] inorder, int inStart, int inEnd, int val) {
-        for (int i = inStart; i <= inEnd; i++) {
-            if (inorder[i] == val) {
-                return i;
-            }
-        }
-        return -1;
-    }
 }
+
  
 /**
 Previous notes
