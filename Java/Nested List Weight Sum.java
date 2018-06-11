@@ -5,10 +5,17 @@ tags: DFS, BFS
 给一串integers, list里面可能有nest list. 算总的sum. 规则, 如果是nested list, 每深一个depth, sum要乘以depth.
 
 #### DFS
+- New interface to understand: object contains integer or object
+- Visit all && sum, consider dfs.
+- bottom->up is easier: pick nested object and execute dfs, which returns sum of it, add with (level value * weight).
 - 简单的处理nested structure, dfs增加depth.
+- time: visit all nodes eventually, O(n), space O(n)
+- Note1: not multiplying on overall level sum. Only multiply level with single value at this level.
+- Note2:top->bottom is not necessary: there is not need of passing added object into next level.
 
 #### BFS
 - bfs, queue, 处理queue.size().
+- use a level variable to track levels
 
 ```
 /*
