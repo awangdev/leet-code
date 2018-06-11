@@ -45,10 +45,10 @@ Thinking process:
  */
 public class Solution {
     public List<TreeNode> generateTrees(int n) {
-        List<TreeNode> rst = new ArrayList<>();
-        if (n <= 0) {
-            return rst;
-        }
+     //   List<TreeNode> rst = new ArrayList<>();
+     //   if (n <= 0) {
+     //      return rst;
+     //   }
         return generate(1, n);
     }
 
