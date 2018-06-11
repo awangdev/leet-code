@@ -53,15 +53,42 @@ Recursion Linked List
  *     ListNode(int x) { val = x; }
  * }
  */
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
+
+/*
+Thoughts:
+Slow/fast pointer to find mid
+*/
+class Solution {
+    public TreeNode sortedListToBST(ListNode head) {
+        if (head == null) {
+            return null;
+        } else if (head.next == null) { // be carefull in dfs
+            return new TreeNode(head.val);
+        }
+        
+        ListNode midNode = findMid(head);
+        TreeNode root = new TreeNode(midNode.next.val);
+        root.right = sortedListToBST(midNode.next.next);
+        // Establish end point for remaining left list
+        midNode.next = null;
+        root.left = sortedListToBST(head);
+        return root;
+    }
+    
+    /*
+    Always check if the fastNode can move forward for 2 steps
+    */
+    public ListNode findMid(ListNode node) {
+        ListNode fastNode = node.next;
+        while (fastNode.next != null && fastNode.next.next != null) {
+            node = node.next;
+            fastNode = fastNode.next.next;
+        }
+        return node;
+    }
+}
+
+
 /*
 Thoughts:
 0. find length of elements
@@ -110,40 +137,6 @@ Previous notes:
 Find the middle point of the list.
 Left of the mid will be left-tree, right of the mid node will be right-tree.
 */
-/*
-Thoughts:
-Slow/fast pointer to find mid
-*/
-class Solution {
-    public TreeNode sortedListToBST(ListNode head) {
-        if (head == null) {
-            return null;
-        } else if (head.next == null) { // be carefull in dfs
-            return new TreeNode(head.val);
-        }
-        
-        ListNode midNode = findMid(head);
-        TreeNode root = new TreeNode(midNode.next.val);
-        root.right = sortedListToBST(midNode.next.next);
-        // Establish end point for remaining left list
-        midNode.next = null;
-        root.left = sortedListToBST(head);
-        return root;
-    }
-    
-    /*
-    Always check if the fastNode can move forward for 2 steps
-    */
-    public ListNode findMid(ListNode node) {
-        ListNode fastNode = node.next;
-        while (fastNode.next != null && fastNode.next.next != null) {
-            node = node.next;
-            fastNode = fastNode.next.next;
-        }
-        return node;
-    }
-}
-
 
 
 ```
