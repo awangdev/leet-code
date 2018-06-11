@@ -1,18 +1,19 @@
 M
 1519715027
-tags: Tree, DFS
+tags: Tree, DFS, Divide and Conquer
 
 给一个特殊的binary tree, treeNode里面有一个 next pointer.
 
 写一个function, 把所有node都更同level的node 连在一起. 最右边的node.next = NULL
 
-#### DFS
-- 题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
+#### DFS + Divide and Conquer
+- 题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单. NOT BFS, because requires O(1) space
 - 对于一个root来说, 只有几个点可以顾忌到: root.left, root.right, root.next. 
 - 想办法把这三个方向的点, 能连起来的都连起来:
-- 1. node.left.next = node.right
-- 2. If node.next != null, link node.right.next = node.next.left;
+- 1. `node.left.next = node.right`
+- 2. If `node.next != null`, link `node.right.next = node.next.left`;
 - 然后在dfs(root.left), dfs(root.right)
+- Time: visit && connect all nodes, O(n)
 
 #### BFS
 - 不和题意，用了queue space，与Input成正比。太大。
