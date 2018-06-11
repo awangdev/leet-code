@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (28)
+## Divide and Conquer (29)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -616,6 +616,23 @@ TODO: Write the code + merge function
 
 #### BST
 - TODO?
+
+
+
+---
+
+**28. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
+      
+
+#### DFS, Divide and Conquer
+- 写个Inorder和Postorder的例子。利用他们分left/right subtree的规律解题。
+- Postorder array 的末尾， 就是当下层的root.   
+- 在Inorder array 里面找到这个root,就刚好把左右两边分割成left/right tree。
+- 这题比较tricky地用了一个helper做recursive。 特别要注意处理index的变化, precisely考虑开头结尾
+- runtime: O(n), visit && build all nodes
+
+#### Improvement
+- `findMid(arr)` can be replaced with a map<value, index>, no need execute O(n) search at runtime
 
 
 

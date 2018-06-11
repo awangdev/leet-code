@@ -56,31 +56,14 @@ k是permutation的一个数位。而permutation是有规律的。
 
 ---
 
-**3. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math]
-      
-
-TODO: 
-1. use list, iterative? keep candidates and populating
-2. clean up the dfs code, a bit messy
-3. edge case of "0001000" is invalid, right?
-
-#### DFS
-耗了一点时间。本以为需要DP一下，把做过的n存一下。后来发现，其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
-难的case先不handle.到底之后来一次O(n) scan.
-总共的时间起码是O(n/2) + O(n), 所以还是O(n)
-
-
-
----
-
-**4. [Trailing Zeros.java](https://github.com/awangdev/LintCode/blob/master/Java/Trailing%20Zeros.java)**      Level: Easy      Tags: [Math]
+**3. [Trailing Zeros.java](https://github.com/awangdev/LintCode/blob/master/Java/Trailing%20Zeros.java)**      Level: Easy      Tags: [Math]
       
 
 
 
 ---
 
-**5. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Heap, Math]
+**4. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Heap, Math]
       
 
 非常brutle的。
@@ -94,7 +77,7 @@ HashSet确保没有重复。
 
 ---
 
-**6. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy      Tags: [Math]
+**5. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy      Tags: [Math]
       
 
 方法1:
@@ -111,7 +94,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**7. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy      Tags: [Array, Math]
+**6. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy      Tags: [Array, Math]
       
 
 简单的实现, 加1, 进位. 唯一取巧的地方, 最后如果要多一位, 一定是10000...这个模式, 可以走捷径, 直接来个+1size的array, 然后第一位=1.
@@ -120,7 +103,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**8. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy      Tags: [Bit Manipulation, Math]
+**7. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy      Tags: [Bit Manipulation, Math]
       
 
 跟powerOfThree一样: 可以loop, check mod; 也可以用binary search找合适的数字.
@@ -129,7 +112,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**9. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
+**8. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
 其实想到了切入点, 是个可难可简单的题目. 这里的encode就是想办法把url存起来, 然后给个 key.
@@ -139,7 +122,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**10. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
+**9. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
       
 
 给一个数字n, 找到这个数字 最少能用多少个 平方数组成. 
@@ -174,7 +157,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**11. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
+**10. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
       
 
 Binary找sqrt. 基本 mid+1, mid-1 template.
@@ -184,7 +167,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**12. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium      Tags: [Binary Search, Math]
+**11. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium      Tags: [Binary Search, Math]
       
 
 傻做就O(n), 要更好就考虑O(logN).
@@ -198,7 +181,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**13. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy      Tags: [Math, String]
+**12. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy      Tags: [Math, String]
       
 
 方法一:土办法没技术，把binary换成数字，加起来，再换成binary。如果input很大，那么很可能int,long都hold不住。不保险。
@@ -210,7 +193,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**14. [Add Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Digits.java)**      Level: Easy      Tags: [Math]
+**13. [Add Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Digits.java)**      Level: Easy      Tags: [Math]
       
 
 方法1: 普通做法就是按照题意, double-while loop把数字加起来. 第一层循环是O(n), 然后第二层循环就少很多数位, overall O(n)
@@ -221,7 +204,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**15. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium      Tags: [Linked List, Math]
+**14. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium      Tags: [Linked List, Math]
       
 
 LinkedList都已经反转好了，直接做.
@@ -238,7 +221,7 @@ Linked List 没有天然size.
 
 ---
 
-**16. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy      Tags: [Math]
+**15. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy      Tags: [Math]
       
 
 #### 方法1
@@ -254,7 +237,7 @@ Space O(n), time O(n)
 
 ---
 
-**17. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy      Tags: [Binary Search, Math]
+**16. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy      Tags: [Binary Search, Math]
       
 
 #### s- qrt(int x)
@@ -271,7 +254,7 @@ Space O(n), time O(n)
 
 ---
 
-**18. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math]
+**17. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -290,7 +273,7 @@ Space O(n), time O(n)
 
 ---
 
-**19. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy      Tags: [Hash Table, Math]
+**18. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy      Tags: [Hash Table, Math]
       
 
 计数: 所有小于n的prime number.
@@ -310,7 +293,7 @@ Space O(n), time O(n)
 
 ---
 
-**20. [Excel Sheet Column Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Number.java)**      Level: Easy      Tags: [Math]
+**19. [Excel Sheet Column Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Number.java)**      Level: Easy      Tags: [Math]
       
 
 #### Math
@@ -323,7 +306,7 @@ Space O(n), time O(n)
 
 ---
 
-**21. [Excel Sheet Column Title.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Title.java)**      Level: Easy      Tags: [Math]
+**20. [Excel Sheet Column Title.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Title.java)**      Level: Easy      Tags: [Math]
       
 
 #### 基本换算
@@ -337,7 +320,7 @@ Space O(n), time O(n)
 
 ---
 
-**22. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Math, String]
+**21. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Math, String]
       
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
@@ -360,7 +343,7 @@ Space O(n), time O(n)
 
 ---
 
-**23. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**22. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -377,7 +360,7 @@ Space O(n), time O(n)
 
 ---
 
-**24. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
+**23. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
       
 
 给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
@@ -405,7 +388,7 @@ Space O(n), time O(n)
 
 ---
 
-**25. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
+**24. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
       
 
 给一个expression String, 要evaluate这个expression的值.
@@ -428,7 +411,7 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 
 ---
 
-**26. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
+**25. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
       
 
 LeetCode: 判断数字是否是ugly number. (definition: factor only have 2, 3, 5)
@@ -443,6 +426,28 @@ LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
 - 方法1-1：(解释不通，不可取)用PriorityQueue排序。神奇的3，5，7走位：按照题目答案的出发，定了3，5，7以什么规律出现。但是题目并没有特殊表明。
 - 方法2: DP . Not Done yet.
 
+
+
+
+---
+
+**26. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+      
+
+TODO: 
+1. use list, iterative? keep candidates and populating
+2. clean up the dfs code, a bit messy
+3. edge case of "0001000" is invalid, right?
+
+#### DFS
+- find all solutions, DFS will be easier to write than iterative/BFS
+- when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
+- bottom->up, dfs till leaf level, and return candidates.
+- each level, pair with all the candidates
+- 其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
+- 难的case先不handle.到底之后来一次overall scan.
+- every level have 5 choices of digital pairs to add on sides. Need to do for n-2 times. 
+- Time complexity: O(5^n)
 
 
 

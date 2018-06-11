@@ -1,5 +1,6 @@
 M
-tags: Math, DFS
+1528732676
+tags: Math, DFS, Sequence DFS
 
 TODO: 
 1. use list, iterative? keep candidates and populating
@@ -7,9 +8,14 @@ TODO:
 3. edge case of "0001000" is invalid, right?
 
 #### DFS
-耗了一点时间。本以为需要DP一下，把做过的n存一下。后来发现，其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
-难的case先不handle.到底之后来一次O(n) scan.
-总共的时间起码是O(n/2) + O(n), 所以还是O(n)
+- find all solutions, DFS will be easier to write than iterative/BFS
+- when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
+- bottom->up, dfs till leaf level, and return candidates.
+- each level, pair with all the candidates
+- 其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
+- 难的case先不handle.到底之后来一次overall scan.
+- every level have 5 choices of digital pairs to add on sides. Need to do for n-2 times. 
+- Time complexity: O(5^n)
 
 ```
 /*

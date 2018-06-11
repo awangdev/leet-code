@@ -1,10 +1,19 @@
 M
-tags: String, DFS, Backtracking
+1528731679
+tags: String, DFS, Backtracking, Sequence DFS
 
-递归。
-看thought.取或者不取(,  )
+#### DFS
+- start with empty string, need to go top->bottom
+- 取或者不取`(`, `)`
+- rule: open parentheses >= close parentheses
+- Note: 在DFS时 pass a reference (StringBuffer) and maintain, instead of passing object (String) and re-create every time
+- time: O(2^n), pick/not pick, the decision repat for all nodes at every level
+- T(n) = 2 * T(n - 1) + O(1)
 
-Note: 在DFS时, 可以pass object (String) and re-create every time; or pass a reference (StringBuffer) and maintain it
+#### bottom->up DFS
+- figure out n=1, n=2 => build n=3, and n=4
+- dfs(n-1) return a list of candidates
+- add a pair of `()` to the candidates: either in front, at end, or contain the candidates
 
 ```
 /*
@@ -59,7 +68,7 @@ class Solution {
             dfs(result, sb.append(LEFT), numL - 1, numR);
             sb.deleteCharAt(sb.length() - 1);
         }
-        if (numR > 0 && numL < numR) {
+        if (numR > 0 && numL < numR) { // hardcheck/validation
             dfs(result, sb.append(RIGHT), numL, numR - 1);
             sb.deleteCharAt(sb.length() - 1);
         }
