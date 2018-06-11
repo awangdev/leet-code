@@ -3,6 +3,8 @@ H
 tags: DP, Backtracking, DFS, Memoization
 
 #### DFS + Memoization
+- Realize the input s expands into a tree of possible prefixes.
+- We can do top->bottom(add candidate+backtracking) OR bottom->top(find list of candidates from subproblem, and cross-match)
 - DFS on string: find a valid word, dfs on the suffix. [NO backtraking in the solution]
 - DFS returns List<String>: every for loop takes a prefix substring, and append with all suffix (result of dfs)
 - Memoization: `Map<substring, List<String>>`, which reduces repeated calculation if the substring has been tried.
