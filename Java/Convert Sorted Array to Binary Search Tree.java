@@ -2,13 +2,14 @@ E
 1519630976
 tags: Tree, DFS, Divide and Conquer
 
-如题
+如题, build balanced BST from sorted array
 
 #### DFS
 - Binary Search Tree特点: 左边的node都比右边的node小. 
-- 如果要height相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
-- 在每一个level, 找到中间点, 然后分割2办, 继续dfs
+- height balance, subtree height 相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
+- 在每一个level, 找到中间点, 然后分割2半, 继续dfs
 - Divide and Conquer
+- time/space: O(n), visit all nodes, no redundant visits.
 
 ```
 /*
