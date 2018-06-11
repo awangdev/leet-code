@@ -1,30 +1,8 @@
  
  
  
-## TreeSet (2)
-**0. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
-      
-
-题目解析后: find 2 number, that: 1. k slots between the 2 number, 2. no slots taken between the two number.
-
-#### BST
-- BST structure not given, use TreeSet to build BST with each node
-- Every time find last/next inorder element 
-- `treeSet.lower(x)`, `treeSet.higher(x)`
-- 一旦位置相隔(k + 1), 就满足题目条件
-- O(nlogn), good enough
-
-#### Track slots of days
-- Reverse the array, save days index into days[], where the new index is slot.
-- days[i]: at slot i, which day a flower will be planted
-- O(n)
-- Needs to understand: http://www.cnblogs.com/grandyang/p/8415880.html
-
-
-
----
-
-**1. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+## Queue (1)
+**0. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。

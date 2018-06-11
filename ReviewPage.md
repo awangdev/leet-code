@@ -443,13 +443,16 @@ HashMap 来确认match。有几种情况考虑:
 #### Hash Table
 - 具体看thoughts, 几种不同的方式使用map
 - `regular object map`: map of <key, item>, where `item : {int val; int count}`
+- Use a Map<frequency count, doubly-linked node> to track the frequency
+- Track constant capacity, and minimum frequency
+- Every get(): update all frequency map as well
+- Every put(): update all frequency map as well, with optional removal (if over capacity)
+
+- Original post: http://www.cnblogs.com/grandyang/p/6258459.html
+- TODO: one doubly linked list might be good enough to replace below:
 - `frequency list map`: map of <frequency count, List<item>>, where the list preserves `recency`
 - `item location in frequency map`: map of <key, int location index in list>:
 - index relative to the item in a particular list, not tracking which list here
-- Track constant capacity, and minimum frequency
-- Every get(): update all 3 data structures
-- Every put(): update all 3 data structures, with optional removal (if over capacity)
-- TODO: code it up
 
 
 
@@ -2217,25 +2220,28 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**152. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Review      Tags: [Backtracking, DP]
+**152. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
-两个DP一起用.解决了timeout的问题     
-1. isWord[i][j], subString(i,j)是否存在dict中？
+#### DFS + Memoization
+- DFS on string: find a valid word, dfs on the suffix. [NO backtraking in the solution]
+- DFS returns List<String>: every for loop takes a prefix substring, and append with all suffix (result of dfs)
+- Memoization: `Map<substring, List<String>>`, which reduces repeated calculation if the substring has been tried.
+- Time O(n!). Worst case, permutation of unique letters: `s= 'abcdef....'`, and `dict=[a,b,c,d,e,f...]`
 
-2. 用isWord加快 isValid[i]: [i ～ end]是否可以从dict中找到合理的解？      
-	从末尾开始查看i：因为我们需要测试isWord[i][j]时候，j>i, 而我们观察的是[i,j]这区间；       
-	j>i的部分同样需要考虑，我们还需要知道isValid[0～j+1]。 所以isValid[x]这次是表示[x, end]是否valid的DP。     
-	i 从 末尾到0, 可能是因为考虑到isWord[i][j]都是在[0~n]之内，所以倒过来数，坐标比较容易搞清楚。     
-	(回头看Word Break I， 也有坐标反转的做法)
+#### Regular DPs
+- 两个DP一起用, 解决了timeout的问题: when a invalid case 'aaaaaaaaa' occurs, isValid[] stops dfs from occuring
+- 1. isWord[i][j], subString(i,j)是否存在dict中？
+- 2. 用isWord加快 isValid[i]: [i ～ end]是否可以从dict中找到合理的解？      
+- 从末尾开始查看i：因为我们需要测试isWord[i][j]时候，j>i, 而我们观察的是[i,j]这区间；       
+- j>i的部分同样需要考虑，我们还需要知道isValid[0～j+1]。 所以isValid[x]这次是表示[x, end]是否valid的DP。     
+- i 从 末尾到0, 可能是因为考虑到isWord[i][j]都是在[0~n]之内，所以倒过来数，坐标比较容易搞清楚。     
+- (回头看Word Break I， 也有坐标反转的做法)
+- 3. dfs 利用 isValid 和isWord做普通的DFS。
 
-3. dfs 利用 isValid 和isWord做普通的DFS。
-
-Note:
-在Word Break里面用了set.contains(...), 在isValid里面，i 从0开始。 但是，contains()本身是O(n).     
-在这道题里面应该是因为word dictionary太大，加上nest for, 变成O(n^3)所以timeout.
-
-istead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary里面。
+#### Timeout Note
+- Regarding regular solution: 如果不做memoization或者dp, 'aaaaa....aaa' will repeatedly calculate same substring
+- Regarding double DP solution: 在Word Break里面用了set.contains(...), 在isValid里面，i 从0开始. 但是, contains()本身是O(n); intead,用一个isWord[i][j]，就O(1)判断了i~j是不是存在dictionary
 
 
 
@@ -7759,6 +7765,46 @@ TODO: Write the code + merge function
 
 #### BST
 - TODO?
+
+
+
+---
+
+**424. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+      
+
+给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
+
+#### BST, Array, preSum
+- 将问题reduce到: row of values, find 1st value >= target.
+- 1. loop over startingRow; 2. loop over [startingRow, m - 1]; 3. Use TreeSet to track areas and find boundary defined by k.
+- When building more rows/cols the rectangle, total sum could be over k: 
+- when it happens, just need to find a new starting row or col, 
+- where the rectangle area can reduce/remain <= k
+- 找多余area的起始点: extraArea = treeSet.ceiling(totalSum - k). 也就是找 减去k 后 起始的/左边的area.
+- 去掉这些左边的起始area, 剩下的就 <=k.    (num - extraArea)
+- 为什么用TreeSet: area的大小无规律, 并且要找 >= 任意值 的第一个value. 给一串non-sorted数字, 找 >= target的数, 如果不写binary search, 那么用BST最合适
+- O(m^2*nlogn)
+
+#### 思想
+- 从最基本的O(m^2*n^2) 考虑: 遍历 startingRow/startingCol
+- rectangle? layer by layer? 可以想到Presum的思想, 大于需要的sum的时候, 减掉多余的部分
+- 如何找到多余的area? 那么就是search: 把需要search的内容存起来, 可以想到用BST(TreeSet), 或者自己写Binary Search.
+
+
+
+---
+
+**425. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
+      
+
+看的list of coordinates 是否能组成perfect rectangle, 并且不允许overlap area.
+
+#### 画图发现特点
+- 特点1: 所有给出的点(再找出没有specify的对角线点), 如果最后组成perfect rectangle, 都应该互相消除, 最后剩下4个corner
+- 特点2: 找到所有点里面的min/max (x,y), 最后组成的 maxArea, 应该跟过程中accumulate的area相等
+- 特点1确保中间没有空心的部分, 保证所有的重合点都会互相消除, 最后剩下4个顶点
+- 特点2确保没有重合: 重合的area会最终超出maxArea
 
 
 

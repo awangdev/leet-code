@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (39)
+## Hash Table (40)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -49,13 +49,16 @@ TODO: no need of hashMap, just use set to store the existing
 #### Hash Table
 - 具体看thoughts, 几种不同的方式使用map
 - `regular object map`: map of <key, item>, where `item : {int val; int count}`
+- Use a Map<frequency count, doubly-linked node> to track the frequency
+- Track constant capacity, and minimum frequency
+- Every get(): update all frequency map as well
+- Every put(): update all frequency map as well, with optional removal (if over capacity)
+
+- Original post: http://www.cnblogs.com/grandyang/p/6258459.html
+- TODO: one doubly linked list might be good enough to replace below:
 - `frequency list map`: map of <frequency count, List<item>>, where the list preserves `recency`
 - `item location in frequency map`: map of <key, int location index in list>:
 - index relative to the item in a particular list, not tracking which list here
-- Track constant capacity, and minimum frequency
-- Every get(): update all 3 data structures
-- Every put(): update all 3 data structures, with optional removal (if over capacity)
-- TODO: code it up
 
 
 
@@ -713,6 +716,21 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 - 2. 注意，要利用额外的空间保留original array， 用来时候找index. (此处不能用HashMap，因为以value 为key，但value可能重复)      
 - O(n) space, O(nlogn) time.    
 
+
+
+
+---
+
+**39. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
+      
+
+看的list of coordinates 是否能组成perfect rectangle, 并且不允许overlap area.
+
+#### 画图发现特点
+- 特点1: 所有给出的点(再找出没有specify的对角线点), 如果最后组成perfect rectangle, 都应该互相消除, 最后剩下4个corner
+- 特点2: 找到所有点里面的min/max (x,y), 最后组成的 maxArea, 应该跟过程中accumulate的area相等
+- 特点1确保中间没有空心的部分, 保证所有的重合点都会互相消除, 最后剩下4个顶点
+- 特点2确保没有重合: 重合的area会最终超出maxArea
 
 
 

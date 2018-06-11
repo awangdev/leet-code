@@ -358,7 +358,7 @@ stack.push(item);
 ## TreeSet
 - 如果BST treenode没给, 可以用TreeSet
 - TreeSet还是一个set, 存values, 而好处是可以用 `treeSet.ceiling(x)` 找到 最小 >= x的值
-- 同样, 找 <= x, 用 `treeSet.floor(x)`
+- 同样, 找 <= x 的value, 用 `treeSet.floor(x)`
 - strict less or greater: `treeSet.lower(x)`, `treeSet.higher(x)`
 - time O(nlogn)
 
@@ -1112,6 +1112,12 @@ Track queue size, use the queue as in rotation
 - 每个dfs里面, 都会填充这个result object.
 
 ### object dfs
+- take front part, and dfs(remaining), where usually rst = dfs(remaining) = list<object>
+- cross-match front X rst list
+- Note1: dfs returns partial solution, and the highest level builds the final result: `return dfs(...0, .)`
+- Note2: there may not be backtracking, because there isn't any result or partial result parameter passing around
+- optimization: the 'remaining' part can be cached/memoized so we don't make redundant calculation
+- p: Word Break II, where `suffix -> rst list` are cached to avoid extreme case
 
 #### Regular Premitives
 - usually object = int, string
@@ -1193,6 +1199,9 @@ private class PathSum {
 # Geometry
 
 # Approach
+## 遇到Array
+
+## 遇到需要排序
 
 ## Greedy
 
