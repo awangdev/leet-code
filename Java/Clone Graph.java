@@ -7,26 +7,23 @@ tags: DFS, BFS, Graph
 #### 思想
 - Use HashMap to mark cloned nodes.    
 - 先能复制多少Node复制多少. 然后把neighbor 加上
+- Use `map<oldNode, newNode>` to mark visited
 
 #### DFS
-- copy the node
-- Mark 'added' using map(old, new)
+- Given graph node obj `{val, list of neighbor}`: copy the node and all neighbors
+- Mark visited using map<oldNode, newNode>
 - for loop on the each one of the neighbors: map copy, record in map, and further dfs
 - once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
 - 主要思想是: 一旦复制过了, 不必要重新复制
 
 #### BFS
-_ Copy the root node, then copy all the neighbors. 
-_ Mark copied node in map.
-_ Use queue to contain the newly added neighbors. Need to work on them in the future.
-
-#### Note
-initialize map with (node, newNode)
+- Copy the root node, then copy all the neighbors. 
+- Mark copied node in map.
+- Use queue to contain the newly added neighbors. Need to work on them in the future.
 
 ```
 /*
 Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
-
 
 OJ's undirected graph serialization:
 Nodes are labeled uniquely.
@@ -67,6 +64,7 @@ DFS
 - return node
 */
 public class Solution {
+    // old -> node node map
     Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
         if (node == null) {

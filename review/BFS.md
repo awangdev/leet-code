@@ -71,10 +71,17 @@
 给一串integers, list里面可能有nest list. 算总的sum. 规则, 如果是nested list, 每深一个depth, sum要乘以depth.
 
 #### DFS
+- New interface to understand: object contains integer or object
+- Visit all && sum, consider dfs.
+- bottom->up is easier: pick nested object and execute dfs, which returns sum of it, add with (level value * weight).
 - 简单的处理nested structure, dfs增加depth.
+- time: visit all nodes eventually, O(n), space O(n)
+- Note1: not multiplying on overall level sum. Only multiply level with single value at this level.
+- Note2:top->bottom is not necessary: there is not need of passing added object into next level.
 
 #### BFS
 - bfs, queue, 处理queue.size().
+- use a level variable to track levels
 
 
 
@@ -88,47 +95,47 @@
 #### 思想
 - Use HashMap to mark cloned nodes.    
 - 先能复制多少Node复制多少. 然后把neighbor 加上
+- Use `map<oldNode, newNode>` to mark visited
 
 #### DFS
-- copy the node
-- Mark 'added' using map(old, new)
+- Given graph node obj `{val, list of neighbor}`: copy the node and all neighbors
+- Mark visited using map<oldNode, newNode>
 - for loop on the each one of the neighbors: map copy, record in map, and further dfs
 - once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
 - 主要思想是: 一旦复制过了, 不必要重新复制
 
 #### BFS
-_ Copy the root node, then copy all the neighbors. 
-_ Mark copied node in map.
-_ Use queue to contain the newly added neighbors. Need to work on them in the future.
-
-#### Note
-initialize map with (node, newNode)
+- Copy the root node, then copy all the neighbors. 
+- Mark copied node in map.
+- Use queue to contain the newly added neighbors. Need to work on them in the future.
 
 
 
 ---
 
-**5. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Union Find]
+**5. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2Dmatrix, 里面是1和0, 找#of island.
 
-
 #### DFS
+- More or less like a graph problem: visit all nodes connected with the starting node.
 - top level 有一个 double for loop, 查看每一个点.
 - 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
 - 这样确保每个visited 过得island都被清扫干净
+- O(mn) time, visit all nodes
 
 #### Union Find
-- 可以用union-find， 就像Number of island II 一样。
+- 可以用union-find， 就像Number of island II 一样.
 - 只不过这个不Return list, 而只是# of islands
+- Union Find is independent from the problem: it models the union status of integers.
 - 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 
 
 ---
 
-**6. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review      Tags: [BFS, DFS, Union Find]
+**6. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
@@ -140,12 +147,22 @@ initialize map with (node, newNode)
 - 目的是: always并到大的union里面
 - note: 将2D coordinate (x,y) 转换成1D: index = x * n + y
 
-#### DFS
-- TODO
+#### DFS: mark all invalid 'O'
+- Reversed thinking: find surrounded nodes, how about filter out border nodes && their connections?
+- Need to traverse all the border nodes, consider dfs, visit all.
+- loop over border: find any 'O', and dfs to find all connected nodes, mark them as 'M'
+- time: O(mn) loop over all nodes to replace remaining 'O' with 'X'
 
-#### BFS
-- TODO
+#### DFS: mark all valid 'O'
+- More like a graph problem: traverse all 'O' spots, and mark as visited int[][] with area count [1 -> some number]
+- Run dfs as top->bottom: mark area count and dsf into next level
+- End condition: if any 'O' reaches border, mark the global map<count, false>
+- keep dfs untill all connected nodes are visited.
+- At the end, O(mn) loop over the matrix and mark 'X' for all the true area from map.
+- Practice: write code to verify
 
+### BFS
+- TODO
 
 
 
@@ -289,6 +306,9 @@ initialize map with (node, newNode)
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
 - 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样

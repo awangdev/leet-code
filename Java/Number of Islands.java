@@ -1,18 +1,20 @@
 M
 1520355237
-tags: DFS, BFS, Union Find
+tags: DFS, BFS, Union Find, Matrix DFS
 
 给一个2Dmatrix, 里面是1和0, 找#of island.
 
-
 #### DFS
+- More or less like a graph problem: visit all nodes connected with the starting node.
 - top level 有一个 double for loop, 查看每一个点.
 - 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
 - 这样确保每个visited 过得island都被清扫干净
+- O(mn) time, visit all nodes
 
 #### Union Find
-- 可以用union-find， 就像Number of island II 一样。
+- 可以用union-find， 就像Number of island II 一样.
 - 只不过这个不Return list, 而只是# of islands
+- Union Find is independent from the problem: it models the union status of integers.
 - 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 ```
@@ -36,6 +38,49 @@ Note
 If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
 
 */
+
+
+/*
+Thoughts:
+- DFS and flip the bit-1 on the grid to 0 as we go: to 4 different directions
+- Loop through all positions
+- Visited spots won't be visited again because they are updated to '0'
+*/
+class Solution {
+    private int[] dx = {1, -1, 0, 0};
+    private int[] dy = {0, 0, 1, -1};
+    
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1') {
+                    count++;
+                    dfs(grid, i, j);
+                }
+            }
+        }
+        return count;
+    }
+    
+    private void dfs(char[][] grid, int x, int y) {
+        if (!validateInput(grid, x, y)) {
+            return;
+        }
+        grid[x][y] = '0';
+        for (int i = 0; i < dx.length; i++) {
+            dfs(grid, x + dx[i], y + dy[i]);
+        }
+    }
+
+    private boolean validateInput(char[][] grid, int x, int y) {
+        return x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] == '0';
+    }
+}
+
 /*
 Thoughts:
 Similart to ConnectingGraph, and we count # of unions left.
@@ -61,18 +106,18 @@ class Solution {
                 totalLandCount += grid[i][j] == '1' ? 1 : 0;
             }    
         }
+        // # of island blocks, goal is to connect them all.
         unionFind.setCount(totalLandCount);
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == '1') {
-                    for (int k = 0; k < dx.length; k++) {
+                    for (int k = 0; k < dx.length; k++) { // 4 directions
                         int x = i + dx[k];
                         int y = j + dy[k];
-                        if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == '1') {
-                            // Attemp to connect all of the 4 directions
-                            // 1D index = rowNum * numOfColumn + colNum
-                            unionFind.union(i * n + j, x * n + y);
+                        if (!validateInput(grid, x, y)) {
+                            // Attemp to union all of the 4 directions
+                            unionFind.union(convertToIndex(i, j, n), convertToIndex(x, y, n));
                         }
                     }
                 }
@@ -80,6 +125,14 @@ class Solution {
         }
         
         return unionFind.query();
+    }
+
+    // 1D index = rowNum * numOfColumn + colNum
+    private int convertToIndex(int x, int y, int rowLength) {
+        return x * rowLength + y;
+    }
+    private boolean validateInput(char[][] grid, int x, int y) {
+        return x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] == '0';
     }
 }
 
@@ -119,42 +172,6 @@ class UnionFind {
     }
 }
 
-/*
-Thoughts:
-- DFS and flip the bit-1 on the grid to 0 as we go: to 4 different directions
-- Loop through all positions
-- Visited spots won't be visited again because they are updated to '0'
-*/
-class Solution {
-    private int[] dx = {1, -1, 0, 0};
-    private int[] dy = {0, 0, 1, -1};
-    
-    public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0 || grid[0].length == 0) {
-            return 0;
-        }
-        int count = 0;
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                if (grid[i][j] == '1') {
-                    count++;
-                    dfs(grid, i, j);
-                }
-            }
-        }
-        return count;
-    }
-    
-    private void dfs(char[][] grid, int x, int y) {
-        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] == '0') {
-            return;
-        }
-        grid[x][y] = '0';
-        for (int i = 0; i < dx.length; i++) {
-            dfs(grid, x + dx[i], y + dy[i]);
-        }
-    }
-}
 
 /*
 Thoughts:

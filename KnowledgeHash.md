@@ -625,8 +625,6 @@ class Node {
 ```
 - Also, adjacent list:
 ```
-
-
 // Use Hashmap
 // Number of Connected Components in an Undirected Graph
 private Map<Integer, List<Integer>> buildGraph(int n, int[][] edges) {
@@ -685,7 +683,7 @@ private Map<Integer, List<Integer>> buildGraph(int n, int[][] edges) {
 # Union Find
 - 集合合并，查找元素在集合里面
 - Find and Union functions
-- Time Complexity: log(n)
+- Time Complexity: log(n), https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
 - 在UnionFind function里维护不同的状态, expose with public helper functions
 - 似乎对index进行union find 操作 比较方便 (而并不是给实际value union find. index不重复, 而value会重复)
 

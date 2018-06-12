@@ -1,6 +1,6 @@
-R
+M
 1520479490
-tags: DFS, BFS, Union Find
+tags: DFS, BFS, Union Find, Matrix DFS
 
 给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
 
@@ -11,12 +11,22 @@ tags: DFS, BFS, Union Find
 - 目的是: always并到大的union里面
 - note: 将2D coordinate (x,y) 转换成1D: index = x * n + y
 
-#### DFS
-- TODO
+#### DFS: mark all invalid 'O'
+- Reversed thinking: find surrounded nodes, how about filter out border nodes && their connections?
+- Need to traverse all the border nodes, consider dfs, visit all.
+- loop over border: find any 'O', and dfs to find all connected nodes, mark them as 'M'
+- time: O(mn) loop over all nodes to replace remaining 'O' with 'X'
 
-#### BFS
-- TODO
+#### DFS: mark all valid 'O'
+- More like a graph problem: traverse all 'O' spots, and mark as visited int[][] with area count [1 -> some number]
+- Run dfs as top->bottom: mark area count and dsf into next level
+- End condition: if any 'O' reaches border, mark the global map<count, false>
+- keep dfs untill all connected nodes are visited.
+- At the end, O(mn) loop over the matrix and mark 'X' for all the true area from map.
+- Practice: write code to verify
 
+### BFS
+- TODO
 
 ```
 /*
@@ -38,6 +48,54 @@ X O X X
 Hide Tags Breadth-first Search
 
 */
+
+// DFS
+public class Solution {
+    private int[] dx = {1, -1, 0, 0};
+    private int[] dy = {0, 0, 1, -1};
+
+    public void solve(char[][] board) {
+        if (board == null || board.length == 0) {
+            return;
+        }
+        int row = board.length;
+        int col = board[0].length;
+        //Check the board
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (i == 0 || i == row - 1 || j == 0 || j == col - 1) {
+                    fill(board, i , j);
+                }
+            }
+        }
+        char mark = 'M', candidate = 'O', goal = 'X';
+        //Replacement
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (board[i][j] == candidate) {
+                    board[i][j] = goal;
+                } 
+                if (board[i][j] == mark) {
+                    board[i][j] = candidate;
+                }
+            }
+        }
+    }
+    
+    //DFS to traverse all border nodes and their connected nodes
+    public void fill(char[][] board, int x, int y) {
+        int row = board.length, col = board[0].length;
+        if (x < 0 || x >= row || y < 0 || y >= col || board[x][y] != 'O') {
+            return;
+        }
+        board[x][y] = 'M';
+        for (int i = 0; i < dx.length; i++) {
+            fill(board, x + dx[i], y + dy[i]);
+        }
+    }
+}
+
+
 /*
 Thoughts:
 The only where it can't be surrounded is when the O is on edge; also, same to any connecting O with it.
@@ -129,141 +187,5 @@ class UnionFind {
     }
 }
 
-/*
-Previous notes:
-Thinking Process:
-Since dfs does not work, try bfs.
-Very similar to DFS, however, when checking the 4 bounaries: 
-1. chcek the curruent point.
-2. Add surrounding points into a queue.
-3. Deal with the queue immediately via a while loop
-
- */
-public class Solution {
-    private char[][] board;
-    private int row;
-    private int col;
-    private char target;
-    private char mark;
-    private Queue<Integer> queue = new LinkedList<Integer>();
-    public void solve(char[][] board) {
-        if (board == null || board.length == 0) {
-            return;
-        }
-        this.board = board;
-        row = board.length;
-        col = board[0].length;
-        target = 'O';
-        mark = 'M';
-        //Check the board
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (i == 0 || i == row - 1 || j == 0 || j == col - 1) {
-                    check(i,j);
-                }
-            }
-        }
-        //Replacement
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (board[i][j] == target) {
-                    board[i][j] = 'X';
-                } 
-                if (board[i][j] == mark) {
-                    board[i][j] = target;
-                }
-            }
-        }
-    }
-    //BFS
-    public void check(int i, int j) {
-        fill(board, i, j);
-        while(!queue.isEmpty()) {
-            int val = queue.poll();
-            int x = val / col;
-            int y = val % col;
-            fill(board, x - 1, y);
-            fill(board, x + 1, y);
-            fill(board, x, y - 1);
-            fill(board, x, y + 1);
-        }
-    }
-    public void fill(char[][] board, int i, int j) {
-        if (i < 0 || i >= row || j < 0 || j >= col || board[i][j] != target) {
-            return;
-        }
-        board[i][j] = mark;
-        queue.offer(i * col + j);
-    }
-}
-
-
-
-
-/*
-Thinking process:
-Using DFS.
-1. Whenever the edge has an 'O', all touching point with 'O' will be non-surrounded by 'X'. SO check the 4 bounds first. Mark all non-surrounded point as M.
-2. Replace all remaining 'O' with 'X'
-3. Replace 'M' with 'O'
-However, in the LeetCode test, DFS gives stack overflow. So we'd use BFS instead.
-*/
-
-/*
-
-//The following is using DFS, but gives Stackoverflow.
-public class Solution {
-    private char[][] board;
-    private int row;
-    private int col;
-    private char target;
-    private char mark;
-    public void solve(char[][] board) {
-        if (board == null || board.length == 0) {
-            return;
-        }
-        this.board = board;
-        target = 'O';
-        mark = 'M';
-        row = board.length;
-        col = board[0].length;
-        
-        //check bound
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (i == 0 || j == 0 || i == row - 1 || j == col - 1) {
-                    check(i, j);
-                }
-            }
-        }
-        //1. replace remaining target with 'x'
-        //2. replace all mark with 'O'
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (board[i][j] == target) {
-                    board[i][j] = 'X';
-                } else if (board[i][j] == mark) {
-                    board[i][j] = 'O';
-                }
-            }
-        }
-    }
-    
-    public void check(int i, int j) {
-        if (i < 0 || j < 0 || i > row - 1 || j > col - 1) {
-            return;
-        }
-        if (board[i][j] == target) {
-            board[i][j] = mark;
-            check(i - 1, j);
-            check(i + 1, j);
-            check(i, j - 1);
-            check(i, j + 1);
-        }
-    }
-
-}
-
-*/
 
 ```

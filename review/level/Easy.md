@@ -741,10 +741,17 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 给一串integers, list里面可能有nest list. 算总的sum. 规则, 如果是nested list, 每深一个depth, sum要乘以depth.
 
 #### DFS
+- New interface to understand: object contains integer or object
+- Visit all && sum, consider dfs.
+- bottom->up is easier: pick nested object and execute dfs, which returns sum of it, add with (level value * weight).
 - 简单的处理nested structure, dfs增加depth.
+- time: visit all nodes eventually, O(n), space O(n)
+- Note1: not multiplying on overall level sum. Only multiply level with single value at this level.
+- Note2:top->bottom is not necessary: there is not need of passing added object into next level.
 
 #### BFS
 - bfs, queue, 处理queue.size().
+- use a level variable to track levels
 
 
 
@@ -770,13 +777,14 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 **61. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
       
 
-如题
+如题, build balanced BST from sorted array
 
 #### DFS
 - Binary Search Tree特点: 左边的node都比右边的node小. 
-- 如果要height相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
-- 在每一个level, 找到中间点, 然后分割2办, 继续dfs
+- height balance, subtree height 相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
+- 在每一个level, 找到中间点, 然后分割2半, 继续dfs
 - Divide and Conquer
+- time/space: O(n), visit all nodes, no redundant visits.
 
 
 
@@ -819,8 +827,16 @@ HashMap
 
 给一个binary tree, 返回所有root-to-leaf path
 
-#### DFS
+#### DFS, backtracking
+- Find all paths, bfs/dfs all works. dfs will be simplier to write
 - Recursive:分叉. dfs.
+- top->bottom: enumerate current node into the list, carry to next level, and backtrack
+- top->bottom is trivial to consider: path flows from top->bottom
+
+#### DFS, bottom->up
+- We can also take current node.left or node.right to generate list of results from the subproblem
+- let dfs return list of string candidates, and we can run pair the list with currenet node, once they come back.
+- TODO: can write code to practice
 
 #### Iterative
 - Iterative, 非递归练习了一下

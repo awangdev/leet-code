@@ -2181,6 +2181,8 @@ Double sequence DP. 与regular expression 很像.
       
 
 #### DFS + Memoization
+- Realize the input s expands into a tree of possible prefixes.
+- We can do top->bottom(add candidate+backtracking) OR bottom->top(find list of candidates from subproblem, and cross-match)
 - DFS on string: find a valid word, dfs on the suffix. [NO backtraking in the solution]
 - DFS returns List<String>: every for loop takes a prefix substring, and append with all suffix (result of dfs)
 - Memoization: `Map<substring, List<String>>`, which reduces repeated calculation if the substring has been tried.
@@ -2210,10 +2212,17 @@ Double sequence DP. 与regular expression 很像.
 给一串integers, list里面可能有nest list. 算总的sum. 规则, 如果是nested list, 每深一个depth, sum要乘以depth.
 
 #### DFS
+- New interface to understand: object contains integer or object
+- Visit all && sum, consider dfs.
+- bottom->up is easier: pick nested object and execute dfs, which returns sum of it, add with (level value * weight).
 - 简单的处理nested structure, dfs增加depth.
+- time: visit all nodes eventually, O(n), space O(n)
+- Note1: not multiplying on overall level sum. Only multiply level with single value at this level.
+- Note2:top->bottom is not necessary: there is not need of passing added object into next level.
 
 #### BFS
 - bfs, queue, 处理queue.size().
+- use a level variable to track levels
 
 
 
@@ -2239,19 +2248,20 @@ Double sequence DP. 与regular expression 很像.
 **152. [Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
       
 
-如题
+如题, build balanced BST from sorted array
 
 #### DFS
 - Binary Search Tree特点: 左边的node都比右边的node小. 
-- 如果要height相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
-- 在每一个level, 找到中间点, 然后分割2办, 继续dfs
+- height balance, subtree height 相差<1, 必须左右sub tree均分. 做DFS(num, start, end)
+- 在每一个level, 找到中间点, 然后分割2半, 继续dfs
 - Divide and Conquer
+- time/space: O(n), visit all nodes, no redundant visits.
 
 
 
 ---
 
-**153. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
+**153. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
       
 
 如题
@@ -2262,6 +2272,8 @@ Double sequence DP. 与regular expression 很像.
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
+- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- sapce: O(n), time: O(n) access
 
 
 
@@ -2350,20 +2362,21 @@ HashMap
 
 ---
 
-**160. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium      Tags: [DFS, Tree]
+**160. [Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Tree]
       
 
 给一个特殊的binary tree, treeNode里面有一个 next pointer.
 
 写一个function, 把所有node都更同level的node 连在一起. 最右边的node.next = NULL
 
-#### DFS
-- 题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单.
+#### DFS + Divide and Conquer
+- 题目要求DFS. 想清楚了如何在DFS level把几种情况都考虑了, 写起来很简单. NOT BFS, because requires O(1) space
 - 对于一个root来说, 只有几个点可以顾忌到: root.left, root.right, root.next. 
 - 想办法把这三个方向的点, 能连起来的都连起来:
-- 1. node.left.next = node.right
-- 2. If node.next != null, link node.right.next = node.next.left;
+- 1. `node.left.next = node.right`
+- 2. If `node.next != null`, link `node.right.next = node.next.left`;
 - 然后在dfs(root.left), dfs(root.right)
+- Time: visit && connect all nodes, O(n)
 
 #### BFS
 - 不和题意，用了queue space，与Input成正比。太大。
@@ -2441,8 +2454,16 @@ HashMap
 
 给一个binary tree, 返回所有root-to-leaf path
 
-#### DFS
+#### DFS, backtracking
+- Find all paths, bfs/dfs all works. dfs will be simplier to write
 - Recursive:分叉. dfs.
+- top->bottom: enumerate current node into the list, carry to next level, and backtrack
+- top->bottom is trivial to consider: path flows from top->bottom
+
+#### DFS, bottom->up
+- We can also take current node.left or node.right to generate list of results from the subproblem
+- let dfs return list of string candidates, and we can run pair the list with currenet node, once they come back.
+- TODO: can write code to practice
 
 #### Iterative
 - Iterative, 非递归练习了一下
@@ -2486,21 +2507,19 @@ Not done yet
 #### 思想
 - Use HashMap to mark cloned nodes.    
 - 先能复制多少Node复制多少. 然后把neighbor 加上
+- Use `map<oldNode, newNode>` to mark visited
 
 #### DFS
-- copy the node
-- Mark 'added' using map(old, new)
+- Given graph node obj `{val, list of neighbor}`: copy the node and all neighbors
+- Mark visited using map<oldNode, newNode>
 - for loop on the each one of the neighbors: map copy, record in map, and further dfs
 - once dfs completes, add newNeighbor as neighbor of the new node (get to it via map)
 - 主要思想是: 一旦复制过了, 不必要重新复制
 
 #### BFS
-_ Copy the root node, then copy all the neighbors. 
-_ Mark copied node in map.
-_ Use queue to contain the newly added neighbors. Need to work on them in the future.
-
-#### Note
-initialize map with (node, newNode)
+- Copy the root node, then copy all the neighbors. 
+- Mark copied node in map.
+- Use queue to contain the newly added neighbors. Need to work on them in the future.
 
 
 
@@ -2680,20 +2699,22 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 ---
 
-**179. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Union Find]
+**179. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2Dmatrix, 里面是1和0, 找#of island.
 
-
 #### DFS
+- More or less like a graph problem: visit all nodes connected with the starting node.
 - top level 有一个 double for loop, 查看每一个点.
 - 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
 - 这样确保每个visited 过得island都被清扫干净
+- O(mn) time, visit all nodes
 
 #### Union Find
-- 可以用union-find， 就像Number of island II 一样。
+- 可以用union-find， 就像Number of island II 一样.
 - 只不过这个不Return list, 而只是# of islands
+- Union Find is independent from the problem: it models the union status of integers.
 - 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 
@@ -2703,28 +2724,30 @@ Lint还不能跑, 全部按照题意和答案document的.
 **180. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard      Tags: [Union Find]
       
 
-方法1: 
-用int[] father 的unionFind, 需要转换2D position into 1D index.
-count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
-这样比较clean
-Time: O(k * log(mn))
+给一个island grid[][], and list of operations to fill a particualr (x,y) position.
 
-方法2: 
-用HashMap的Union-find.
+count # of remaining island after each operation.
 
-把board转换成1D array， 就可以用union-find来判断了。 判断时，是在四个方向各走一步，判断是否是同一个Land.
-每走一次operator，都会count++. 若发现是同一个island, count--
+#### Union Find, model with int[]
+- 把board转换成1D array， 就可以用union-find来判断了. 
+- 用int[] father 的unionFind, 需要转换2D position into 1D index. 这样比较clean
+- 判断时，是在四个方向各走一步，判断是否是同一个Land.
+- 每走一次operator，都会count++. 若发现是同一个island, count--
+- count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
+- Time: O(k * log(mn))
 
-Side Note:
-Proof of UnionFind log(n) time: 
-https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
+#### Union Find, model with Hashmap 
+- 用HashMap的Union-find.
 
+
+#### Note:
+- Proof of UnionFind log(n) time: https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
 
 
 
 ---
 
-**181. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review      Tags: [BFS, DFS, Union Find]
+**181. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
@@ -2736,12 +2759,22 @@ https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%9
 - 目的是: always并到大的union里面
 - note: 将2D coordinate (x,y) 转换成1D: index = x * n + y
 
-#### DFS
-- TODO
+#### DFS: mark all invalid 'O'
+- Reversed thinking: find surrounded nodes, how about filter out border nodes && their connections?
+- Need to traverse all the border nodes, consider dfs, visit all.
+- loop over border: find any 'O', and dfs to find all connected nodes, mark them as 'M'
+- time: O(mn) loop over all nodes to replace remaining 'O' with 'X'
 
-#### BFS
-- TODO
+#### DFS: mark all valid 'O'
+- More like a graph problem: traverse all 'O' spots, and mark as visited int[][] with area count [1 -> some number]
+- Run dfs as top->bottom: mark area count and dsf into next level
+- End condition: if any 'O' reaches border, mark the global map<count, false>
+- keep dfs untill all connected nodes are visited.
+- At the end, O(mn) loop over the matrix and mark 'X' for all the true area from map.
+- Practice: write code to verify
 
+### BFS
+- TODO
 
 
 
@@ -3854,6 +3887,9 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
 - 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样

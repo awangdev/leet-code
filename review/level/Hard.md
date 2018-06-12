@@ -340,6 +340,8 @@ Double sequence DP. 与regular expression 很像.
       
 
 #### DFS + Memoization
+- Realize the input s expands into a tree of possible prefixes.
+- We can do top->bottom(add candidate+backtracking) OR bottom->top(find list of candidates from subproblem, and cross-match)
 - DFS on string: find a valid word, dfs on the suffix. [NO backtraking in the solution]
 - DFS returns List<String>: every for loop takes a prefix substring, and append with all suffix (result of dfs)
 - Memoization: `Map<substring, List<String>>`, which reduces repeated calculation if the substring has been tried.
@@ -390,22 +392,24 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 **24. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard      Tags: [Union Find]
       
 
-方法1: 
-用int[] father 的unionFind, 需要转换2D position into 1D index.
-count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
-这样比较clean
-Time: O(k * log(mn))
+给一个island grid[][], and list of operations to fill a particualr (x,y) position.
 
-方法2: 
-用HashMap的Union-find.
+count # of remaining island after each operation.
 
-把board转换成1D array， 就可以用union-find来判断了。 判断时，是在四个方向各走一步，判断是否是同一个Land.
-每走一次operator，都会count++. 若发现是同一个island, count--
+#### Union Find, model with int[]
+- 把board转换成1D array， 就可以用union-find来判断了. 
+- 用int[] father 的unionFind, 需要转换2D position into 1D index. 这样比较clean
+- 判断时，是在四个方向各走一步，判断是否是同一个Land.
+- 每走一次operator，都会count++. 若发现是同一个island, count--
+- count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
+- Time: O(k * log(mn))
 
-Side Note:
-Proof of UnionFind log(n) time: 
-https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
+#### Union Find, model with Hashmap 
+- 用HashMap的Union-find.
 
+
+#### Note:
+- Proof of UnionFind log(n) time: https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
 
 
 
@@ -785,6 +789,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
 - 最先inDegree == 0的node, 就排在字母表前面.
 - 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
 
 #### DFS
 - 跟BFS建立 grpah 的过程一模一样

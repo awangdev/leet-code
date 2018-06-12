@@ -27,8 +27,16 @@
 
 给一个binary tree, 返回所有root-to-leaf path
 
-#### DFS
+#### DFS, backtracking
+- Find all paths, bfs/dfs all works. dfs will be simplier to write
 - Recursive:分叉. dfs.
+- top->bottom: enumerate current node into the list, carry to next level, and backtrack
+- top->bottom is trivial to consider: path flows from top->bottom
+
+#### DFS, bottom->up
+- We can also take current node.left or node.right to generate list of results from the subproblem
+- let dfs return list of string candidates, and we can run pair the list with currenet node, once they come back.
+- TODO: can write code to practice
 
 #### Iterative
 - Iterative, 非递归练习了一下

@@ -55,20 +55,22 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 ---
 
-**4. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Union Find]
+**4. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2Dmatrix, 里面是1和0, 找#of island.
 
-
 #### DFS
+- More or less like a graph problem: visit all nodes connected with the starting node.
 - top level 有一个 double for loop, 查看每一个点.
 - 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
 - 这样确保每个visited 过得island都被清扫干净
+- O(mn) time, visit all nodes
 
 #### Union Find
-- 可以用union-find， 就像Number of island II 一样。
+- 可以用union-find， 就像Number of island II 一样.
 - 只不过这个不Return list, 而只是# of islands
+- Union Find is independent from the problem: it models the union status of integers.
 - 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
 
 
@@ -78,28 +80,30 @@ Lint还不能跑, 全部按照题意和答案document的.
 **5. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard      Tags: [Union Find]
       
 
-方法1: 
-用int[] father 的unionFind, 需要转换2D position into 1D index.
-count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
-这样比较clean
-Time: O(k * log(mn))
+给一个island grid[][], and list of operations to fill a particualr (x,y) position.
 
-方法2: 
-用HashMap的Union-find.
+count # of remaining island after each operation.
 
-把board转换成1D array， 就可以用union-find来判断了。 判断时，是在四个方向各走一步，判断是否是同一个Land.
-每走一次operator，都会count++. 若发现是同一个island, count--
+#### Union Find, model with int[]
+- 把board转换成1D array， 就可以用union-find来判断了. 
+- 用int[] father 的unionFind, 需要转换2D position into 1D index. 这样比较clean
+- 判断时，是在四个方向各走一步，判断是否是同一个Land.
+- 每走一次operator，都会count++. 若发现是同一个island, count--
+- count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
+- Time: O(k * log(mn))
 
-Side Note:
-Proof of UnionFind log(n) time: 
-https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
+#### Union Find, model with Hashmap 
+- 用HashMap的Union-find.
 
+
+#### Note:
+- Proof of UnionFind log(n) time: https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
 
 
 
 ---
 
-**6. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Review      Tags: [BFS, DFS, Union Find]
+**6. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
@@ -111,12 +115,22 @@ https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%9
 - 目的是: always并到大的union里面
 - note: 将2D coordinate (x,y) 转换成1D: index = x * n + y
 
-#### DFS
-- TODO
+#### DFS: mark all invalid 'O'
+- Reversed thinking: find surrounded nodes, how about filter out border nodes && their connections?
+- Need to traverse all the border nodes, consider dfs, visit all.
+- loop over border: find any 'O', and dfs to find all connected nodes, mark them as 'M'
+- time: O(mn) loop over all nodes to replace remaining 'O' with 'X'
 
-#### BFS
-- TODO
+#### DFS: mark all valid 'O'
+- More like a graph problem: traverse all 'O' spots, and mark as visited int[][] with area count [1 -> some number]
+- Run dfs as top->bottom: mark area count and dsf into next level
+- End condition: if any 'O' reaches border, mark the global map<count, false>
+- keep dfs untill all connected nodes are visited.
+- At the end, O(mn) loop over the matrix and mark 'X' for all the true area from map.
+- Practice: write code to verify
 
+### BFS
+- TODO
 
 
 

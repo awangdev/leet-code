@@ -2,26 +2,35 @@ H
 1520396316
 tags: Union Find
 
-方法1: 
-用int[] father 的unionFind, 需要转换2D position into 1D index.
-count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
-这样比较clean
-Time: O(k * log(mn))
+给一个island grid[][], and list of operations to fill a particualr (x,y) position.
 
-方法2: 
-用HashMap的Union-find.
+count # of remaining island after each operation.
 
-把board转换成1D array， 就可以用union-find来判断了。 判断时，是在四个方向各走一步，判断是否是同一个Land.
-每走一次operator，都会count++. 若发现是同一个island, count--
+#### Union Find, model with int[]
+- 把board转换成1D array， 就可以用union-find来判断了. 
+- 用int[] father 的unionFind, 需要转换2D position into 1D index. 这样比较clean
+- 判断时，是在四个方向各走一步，判断是否是同一个Land.
+- 每走一次operator，都会count++. 若发现是同一个island, count--
+- count的加减, 都放在了UnionFind自己的function里面, 方便tracking, 给几个helper function就对了.
+- Time: O(k * log(mn))
 
-Side Note:
-Proof of UnionFind log(n) time: 
-https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
+#### Union Find, model with Hashmap 
+- 用HashMap的Union-find.
 
+
+#### Note:
+- Proof of UnionFind log(n) time: https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%93find
 
 ```
 /*
-A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand operation which turns the water at position (row, col) into a land. Given a list of positions to operate, count the number of islands after each addLand operation. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+A 2d grid map of m rows and n columns is initially filled with water. 
+We may perform an addLand operation which turns the water at position (row, col) into a land. 
+
+Given a list of positions to operate, count the number of islands after each addLand operation. 
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
+
+You may assume all four edges of the grid are all surrounded by water.
 
 Example:
 
@@ -69,8 +78,7 @@ https://en.wikipedia.org/wiki/Proof_of_O(log*n)_time_complexity_of_union%E2%80%9
 class Solution {
     public List<Integer> numIslands2(int m, int n, int[][] positions) {
         List<Integer> rst = new ArrayList<>();
-        if (m <= 0 || n <= 0 || positions == null || positions.length == 0
-            || positions[0] == null || positions[0].length == 0) {
+        if (validateInput(m, n, positions)) {
             return rst;
         }
         
@@ -82,7 +90,7 @@ class Solution {
         for (int i = 0; i < positions.length; i++) {
             int x = positions[i][0];
             int y = positions[i][1];
-            if (grid[x][y] == 1) {
+            if (grid[x][y] == 1) { // no need to fill
                 continue;
             }
             grid[x][y] = 1;
@@ -90,7 +98,7 @@ class Solution {
             for (int j = 0; j < dx.length; j++) {
                 int movedX = x + dx[j];
                 int movedY = y + dy[j];
-                if (movedX >= 0 && movedX < m && movedY >= 0 && movedY < n && grid[movedX][movedY] == 1) {
+                if (validateBorder(grid, movedX, movedY, m, n)) {
                     unionFind.union(x * n + y, movedX * n + movedY);
                 }
             }
@@ -98,6 +106,14 @@ class Solution {
         }
 
         return rst;
+    }
+
+    private boolean validateBorder(int[][] grid, int x, int y, int m, int n) {
+        return x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1;
+    }
+
+    private boolean validateInput(int m, int n, int[][] positions) {
+        return m <= 0 || n <= 0 || positions == null || positions.length == 0 || positions[0] == null || positions[0].length == 0;
     }
 }
 
