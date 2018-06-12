@@ -85,7 +85,7 @@ Search word:没有node就报错. 到结尾return true
 - 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
 ##### 关于Trie
-- Build Trie with target words: insert, search, startWith.    
+- Build Trie with target words: insert, search, startWith. Sometimes, just: `buildTree(words)` and return root.
 - 依然要对board matrix做DFS。
 - no for loop on words. 直接对board DFS:   
 - 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
@@ -103,7 +103,6 @@ Search word:没有node就报错. 到结尾return true
 - Big improvement: use boolean visited on TrieNode!     
 - 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
 - 在Trie search() method 里面，凡是visit过的，mark一下。  
-
 
 
 

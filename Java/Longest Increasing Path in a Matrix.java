@@ -1,6 +1,6 @@
 H
 1521561205
-tags: DFS, Memoization, Topological Sort, DP
+tags: DFS, Memoization, Topological Sort, DP, Coordinate DP
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
@@ -10,6 +10,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 最终要visit所有node, 所以用DFS搜索比较合适.
 
 #### DFS, Memoization
+- 简单版: longest path, only allow right/down direction: 
+- `dp[x][y] = Math.max(dp[prevUpX][prevUpY], or dp[prevUpX][prevUpY] + 1)`; and compare the other direction as well
+- This problem, just compare the direction from dfs result
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
 - dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
@@ -91,13 +94,17 @@ class Solution {
         for (int i = 0; i < dx.length; i++) {
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if (nx >= 0 && nx < matrix.length && ny >= 0 && ny < matrix[0].length
-                && matrix[x][y] < matrix[nx][ny]) {
+            if (validateCoordinate(matrix, x, y, nx, ny)) {
                 dp[x][y] = Math.max(dp[x][y], dfs(matrix, nx, ny) + 1);
             }
         }
         visited[x][y] = true;
         return dp[x][y];
+    }
+
+    private boolean validateCoordinate(int[][] matrix, int x, int y, int nx, int ny) {
+        return nx >= 0 && nx < matrix.length && ny >= 0 && ny < matrix[0].length
+                && matrix[x][y] < matrix[nx][ny];
     }
 }
 ```

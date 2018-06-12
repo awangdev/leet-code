@@ -267,7 +267,7 @@ Table of Contents
 
 ## Functions
 - peek(), pop(), push()
-- Stack<object> stack = new Stack<>();
+- Stack<Object> stack = new Stack<>(); Push generic Object to stack
 
 ## 基本用法
 - 用来暂且保存有效信息

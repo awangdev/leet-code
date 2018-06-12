@@ -288,6 +288,8 @@ O(nlogn)
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
 
+peak: 比周围4个方向的点value大
+
 #### DFS
 
 ##### 基本原理

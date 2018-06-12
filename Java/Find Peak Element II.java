@@ -4,6 +4,8 @@ tags: Divide and Conquer, DFS, Binary Search
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
 
+peak: 比周围4个方向的点value大
+
 #### DFS
 
 ##### 基本原理
@@ -71,6 +73,64 @@ Tags Expand
 Binary Search LintCode Copyright Matrix
 */
 
+// 简化版
+class Solution {
+    public List<Integer> findPeakII(int[][] A) {
+        List<Integer> rst = new ArrayList<>();
+        if (A == null || A.length == 0 || A[0] == null || A[0].length == 0) {
+            return rst;
+        }
+        int m = A.length;
+        int n = A[0].length;
+        rst = find(1, m - 2, 1, n - 2, A);
+
+        return rst;
+    }
+
+    private List<Integer> find(int x1, int x2, int y1, int y2, int[][] A) {
+        // Given coordinate boundary, find center point (midX, midY)
+        int midX = x1 + ((x2 - x1) >> 1); // or just (x2 - x1)/2
+        int midY = y1 + ((y2 - y1) >> 1);
+
+        int x = midX, y = midY; // 从中间点开始寻找 x,y
+        int max = A[x][y];
+        // With i = midX, find peak on the center row.
+        // 固定y: 这里顾不到curr row上下的大小
+        for (int j = y1; j <= y2; j++) {
+            if (A[midX][j] > max) {
+                max = A[midX][j];
+                x = midX;
+                y = j;
+            }
+        }
+
+        // With j = midY, find peak on the center col.
+        // 固定x: 这里顾不到curr col左右的大小
+        // 这里如果找到A[i][midY]大于max, 强行override 之前写到的y.
+        // 放弃找之前的peak, 找这个新peak, 肯定找的到.
+        for (int i = x1; i <= x2; i++) {
+            if (A[i][midY] > max) {
+                max = A[i][midY];
+                y = midY;
+                x = i;
+            }
+        }
+ 
+        // If (x,y) not at the peak, move towards the peak for 1 step, then DFS
+        // 剪枝/矫正.
+        if (A[x - 1][y] > max) { // UP-LEFT
+            return find(x1, midX - 1, y1, y2, A);
+        } else if (A[x + 1][y] > max) { // UP-RIGHT
+            return find(x1 + 1, midX, y1, y2, A);
+        } else if (A[x][y - 1] > max) { // DOWN-LEFT
+            return find(x1, x2, y1, midY - 1, A);
+        } else if (A[x][y + 1] > max) { // DOWN-RIGHT
+            return find(x1, x2, midY + 1, y2, A);
+        }
+
+        return new ArrayList<>(Arrays.asList(x, y));
+    }
+}
 
 /*
 Not on LeetCode. 
@@ -170,67 +230,6 @@ class Solution {
 
 
 
-// 简化版
-class Solution {
-    /**
-     * @param A: An integer matrix
-     * @return: The index of the peak
-     */
-    public List<Integer> findPeakII(int[][] A) {
-        List<Integer> rst = new ArrayList<>();
-        if (A == null || A.length == 0 || A[0] == null || A[0].length == 0) {
-            return rst;
-        }
-        int m = A.length;
-        int n = A[0].length;
-        rst = find(1, m - 2, 1, n - 2, A);
 
-        return rst;
-    }
-
-    private List<Integer> find(int x1, int x2, int y1, int y2, int[][] A) {
-        // Given coordinate boundary, find center point (midX, midY)
-        int midX = x1 + ((x2 - x1) >> 1); // or just (x2 - x1)/2
-        int midY = y1 + ((y2 - y1) >> 1);
-
-        int x = midX, y = midY; // 从中间点开始寻找 x,y
-        int max = A[x][y];
-        // With i = midX, find peak on the center row.
-        // 固定y: 这里顾不到curr row上下的大小
-        for (int j = y1; j <= y2; j++) {
-            if (A[midX][j] > max) {
-                max = A[midX][j];
-                x = midX;
-                y = j;
-            }
-        }
-
-        // With j = midY, find peak on the center col.
-        // 固定x: 这里顾不到curr col左右的大小
-        // 这里如果找到A[i][midY]大于max, 强行override 之前写到的y.
-        // 放弃找之前的peak, 找这个新peak, 肯定找的到.
-        for (int i = x1; i <= x2; i++) {
-            if (A[i][midY] > max) {
-                max = A[i][midY];
-                y = midY;
-                x = i;
-            }
-        }
- 
-        // If (x,y) not at the peak, move towards the peak for 1 step, then DFS
-        // 剪枝/矫正.
-        if (A[x - 1][y] > max) { // UP-LEFT
-            return find(x1, midX - 1, y1, y2, A);
-        } else if (A[x + 1][y] > max) { // UP-RIGHT
-            return find(x1 + 1, midX, y1, y2, A);
-        } else if (A[x][y - 1] > max) { // DOWN-LEFT
-            return find(x1, x2, y1, midY - 1, A);
-        } else if (A[x][y + 1] > max) { // DOWN-RIGHT
-            return find(x1, x2, midY + 1, y2, A);
-        }
-
-        return new ArrayList<Integer>(Arrays.asList(x, y));
-    }
-}
 
 ```

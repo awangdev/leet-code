@@ -13,7 +13,7 @@ tags: Backtracking, Trie, DFS
 - 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
 ##### 关于Trie
-- Build Trie with target words: insert, search, startWith.    
+- Build Trie with target words: insert, search, startWith. Sometimes, just: `buildTree(words)` and return root.
 - 依然要对board matrix做DFS。
 - no for loop on words. 直接对board DFS:   
 - 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
@@ -31,7 +31,6 @@ tags: Backtracking, Trie, DFS
 - Big improvement: use boolean visited on TrieNode!     
 - 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
 - 在Trie search() method 里面，凡是visit过的，mark一下。  
-
 
 
 ```
@@ -82,6 +81,12 @@ Search with dfs
 
 Overall: O(k^2 * n) + O(mn) = O(mn), k should be small
 */
+/*
+Thoughts:
+Simplify the problem: want to find the words' existance based on the trie structure.
+1. Build the trie with the words.
+2. DFS and backtracking with the board and see if the combination exist.
+*/
 class Solution {
     class TrieNode {
         String word;
@@ -91,68 +96,63 @@ class Solution {
             this.children = new TrieNode[26];
         }
     }
-    
-    TrieNode root;
-    int[] dx = {0, 0, 1, -1};
-    int[] dy = {1, -1, 0, 0};
+
     public List<String> findWords(char[][] board, String[] words) {
         List<String> result = new ArrayList<>();
-        if (board == null || board.length == 0 || board[0] == null || board[0].length == 0
-           || words == null || words.length == 0) {
+        if (validateInput(board, words)) {
             return result;
         }
-
         // Build trie
-        root = new TrieNode();
-        for (String word : words) {
-            insert(word);
-        }
-        
+        TrieNode root = buildTrie(words);
         // DFS and populate the result
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 dfs(root, board, i, j, result);
             }
         }
-
         return result;
     }
     
     private void dfs(TrieNode node, char[][] board, int x, int y, List<String> result) {
-        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] == '#') {
-            return;
-        }
         char c = board[x][y];
-        if (node.children[c - 'a'] == null) {
+        if (c == '#' || node.children[c - 'a'] == null) {
             return;
         }
+
         node = node.children[c - 'a'];
         // Found the match
         if (node.word != null) {
             result.add(node.word);
             node.word = null; // mark it null, means the word has been found and registered in result.
         }
+
         // Not found the match, dfs and backtracking
         board[x][y] = '#';
-        for (int i = 0; i < dx.length; i++) {
-            dfs(node, board, x + dx[i], y + dy[i], result);
-        }
+        if (x > 0) dfs(node, board, x - 1, y, result);
+        if (y > 0) dfs(node, board, x, y - 1, result);
+        if (x < board.length - 1) dfs(node, board, x + 1, y, result);
+        if (y < board[0].length - 1) dfs(node, board, x, y + 1, result);
         board[x][y] = c;
     }
     
-    private void insert(String word) {
-        TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if (node.children[c - 'a'] == null) {
-                node.children[c - 'a'] = new TrieNode();
+    private TrieNode buildTrie(String[] dict) {
+        TrieNode root = new TrieNode();
+        for (String word : dict) {
+            TrieNode node = root;
+            for (char c : word.toCharArray()) {
+                int index = c - 'a';
+                if (node.children[index] == null) node.children[index] = new TrieNode();
+                node = node.children[index];
             }
-            node = node.children[c - 'a'];
-            if (i == word.length() - 1) {
-                node.word = word;
-            }
+            node.word = word;
         }
+        return root;
     }
+    private boolean validateInput(char[][] board, String[] words) {
+        return board == null || board.length == 0 || board[0] == null || board[0].length == 0
+           || words == null || words.length == 0;
+    }
+    
 }
 
 /*

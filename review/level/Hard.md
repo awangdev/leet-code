@@ -429,7 +429,7 @@ count # of remaining island after each operation.
 - 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
 ##### 关于Trie
-- Build Trie with target words: insert, search, startWith.    
+- Build Trie with target words: insert, search, startWith. Sometimes, just: `buildTree(words)` and return root.
 - 依然要对board matrix做DFS。
 - no for loop on words. 直接对board DFS:   
 - 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
@@ -447,7 +447,6 @@ count # of remaining island after each operation.
 - Big improvement: use boolean visited on TrieNode!     
 - 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
 - 在Trie search() method 里面，凡是visit过的，mark一下。  
-
 
 
 
@@ -610,6 +609,8 @@ findMedian: O(1)
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
 
+peak: 比周围4个方向的点value大
+
 #### DFS
 
 ##### 基本原理
@@ -691,7 +692,7 @@ Coordinate DP?
 
 ---
 
-**35. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [DFS, DP, Memoization, Topological Sort]
+**35. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -702,6 +703,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 最终要visit所有node, 所以用DFS搜索比较合适.
 
 #### DFS, Memoization
+- 简单版: longest path, only allow right/down direction: 
+- `dp[x][y] = Math.max(dp[prevUpX][prevUpY], or dp[prevUpX][prevUpY] + 1)`; and compare the other direction as well
+- This problem, just compare the direction from dfs result
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
 - dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:

@@ -1861,7 +1861,7 @@ Coordinate DP?
 
 ---
 
-**28. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [DFS, DP, Memoization, Topological Sort]
+**28. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -1872,6 +1872,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 最终要visit所有node, 所以用DFS搜索比较合适.
 
 #### DFS, Memoization
+- 简单版: longest path, only allow right/down direction: 
+- `dp[x][y] = Math.max(dp[prevUpX][prevUpY], or dp[prevUpX][prevUpY] + 1)`; and compare the other direction as well
+- This problem, just compare the direction from dfs result
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
 - dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
@@ -4596,7 +4599,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 - 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
 ##### 关于Trie
-- Build Trie with target words: insert, search, startWith.    
+- Build Trie with target words: insert, search, startWith. Sometimes, just: `buildTree(words)` and return root.
 - 依然要对board matrix做DFS。
 - no for loop on words. 直接对board DFS:   
 - 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
@@ -4618,10 +4621,9 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 
 
-
 ---
 
-**15. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Stack]
+**15. [Decode String.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20String.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Stack]
       
 
 给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
@@ -4630,19 +4632,23 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 目的: 把expression展开成一个正常的String.
 
-#### DFS
-- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
-#### Stack
+#### Stack, Iteratively
+- Process inner item first: last come, first serve, use stack.
+- Record number globally and only use it when '[' is met.
 - Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner string
 - 有很多需要注意的细节才能做对:
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
 - 几个 type check: instanceof String, Character.isDigit(x), Integer.valueOf(int num)
-- 出结果时候, 不能轻易 sb.reverse().toString(): sb.reverse() 翻转了整个连在一起的string, 错.
-- 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
-- 最后再从buffer里面倒进StringBuffer.
+- 出结果时候: `sb.insert(0, stack.pop())`
+
+
+#### DFS
+- Bottom->up: find deepest inner string first and expand from inside of `[ ]`
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查`[ ]`的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+- 其他时候, 都要继续 append to substring
 
 
 
@@ -4653,6 +4659,8 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
       
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
+
+peak: 比周围4个方向的点value大
 
 #### DFS
 
@@ -4686,7 +4694,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**17. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [DFS, DP, Memoization, Topological Sort]
+**17. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -4697,6 +4705,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 最终要visit所有node, 所以用DFS搜索比较合适.
 
 #### DFS, Memoization
+- 简单版: longest path, only allow right/down direction: 
+- `dp[x][y] = Math.max(dp[prevUpX][prevUpY], or dp[prevUpX][prevUpY] + 1)`; and compare the other direction as well
+- This problem, just compare the direction from dfs result
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
 - dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
@@ -6920,7 +6931,7 @@ Search word:没有node就报错. 到结尾return true
 - 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
 ##### 关于Trie
-- Build Trie with target words: insert, search, startWith.    
+- Build Trie with target words: insert, search, startWith. Sometimes, just: `buildTree(words)` and return root.
 - 依然要对board matrix做DFS。
 - no for loop on words. 直接对board DFS:   
 - 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
@@ -6938,7 +6949,6 @@ Search word:没有node就报错. 到结尾return true
 - Big improvement: use boolean visited on TrieNode!     
 - 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
 - 在Trie search() method 里面，凡是visit过的，mark一下。  
-
 
 
 
@@ -8962,7 +8972,7 @@ Search word:没有node就报错. 到结尾return true
 - 3. TrieNode里面存在 end的时候存string word, 表示到底. 用完了 word = null, 刚好截断重复查找的问题.
 
 ##### 关于Trie
-- Build Trie with target words: insert, search, startWith.    
+- Build Trie with target words: insert, search, startWith. Sometimes, just: `buildTree(words)` and return root.
 - 依然要对board matrix做DFS。
 - no for loop on words. 直接对board DFS:   
 - 每一层,都会有个up-to-this-point的string. 在Trie里面check它是不是存在。以此判断。   
@@ -8980,7 +8990,6 @@ Search word:没有node就报错. 到结尾return true
 - Big improvement: use boolean visited on TrieNode!     
 - 不要用rst.contains(...), 因为这个是O(n) 在leetcode还是会timeout（lintcode竟然可以pass）!    
 - 在Trie search() method 里面，凡是visit过的，mark一下。  
-
 
 
 
@@ -10415,7 +10424,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**6. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Stack]
+**6. [Decode String.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20String.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Stack]
       
 
 给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
@@ -10424,19 +10433,23 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 目的: 把expression展开成一个正常的String.
 
-#### DFS
-- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
-#### Stack
+#### Stack, Iteratively
+- Process inner item first: last come, first serve, use stack.
+- Record number globally and only use it when '[' is met.
 - Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner string
 - 有很多需要注意的细节才能做对:
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
 - 几个 type check: instanceof String, Character.isDigit(x), Integer.valueOf(int num)
-- 出结果时候, 不能轻易 sb.reverse().toString(): sb.reverse() 翻转了整个连在一起的string, 错.
-- 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
-- 最后再从buffer里面倒进StringBuffer.
+- 出结果时候: `sb.insert(0, stack.pop())`
+
+
+#### DFS
+- Bottom->up: find deepest inner string first and expand from inside of `[ ]`
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查`[ ]`的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+- 其他时候, 都要继续 append to substring
 
 
 
@@ -13950,7 +13963,7 @@ count 一个 32-bit number binary format 里面有多少1
 
 ---
 
-**7. [Expression Expand.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Expand.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Stack]
+**7. [Decode String.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20String.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Stack]
       
 
 给一个expression string. 里面包括数字, 字母, 括号. 其中数字代表括号里面的内容重复几次.
@@ -13959,19 +13972,23 @@ count 一个 32-bit number binary format 里面有多少1
 
 目的: 把expression展开成一个正常的String.
 
-#### DFS
-- 与Stack时需要考虑的一些function类似. 特别之处: **检查[ ]的结尾**
-- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
-- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
 
-#### Stack
+#### Stack, Iteratively
+- Process inner item first: last come, first serve, use stack.
+- Record number globally and only use it when '[' is met.
 - Stack存 [ ] 里面的内容, detect 括号开头结尾: 结尾时process inner string
 - 有很多需要注意的细节才能做对:
 - Stack<Object> 也可以用, 每个地方要注意 cast. 存进去的需要是Object: String, Integer
 - 几个 type check: instanceof String, Character.isDigit(x), Integer.valueOf(int num)
-- 出结果时候, 不能轻易 sb.reverse().toString(): sb.reverse() 翻转了整个连在一起的string, 错.
-- 用另一个Stack<String>作为buffer, 先把stack里面的内容倒出来 (pure), 但是每个item里面顺序不变.
-- 最后再从buffer里面倒进StringBuffer.
+- 出结果时候: `sb.insert(0, stack.pop())`
+
+
+#### DFS
+- Bottom->up: find deepest inner string first and expand from inside of `[ ]`
+- 与Stack时需要考虑的一些function类似. 特别之处: **检查`[ ]`的结尾**
+- 因为DFS时候, 括号里的substring会被保留着进入下一个level, 所以我们在base level要keep track of substring.
+- 用int paren 来track 括号的开合, 当paren再次==0的时候 找到closure ']'
+- 其他时候, 都要继续 append to substring
 
 
 
@@ -13982,6 +13999,8 @@ count 一个 32-bit number binary format 里面有多少1
       
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
+
+peak: 比周围4个方向的点value大
 
 #### DFS
 
@@ -14515,7 +14534,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
  
  
 ## Topological Sort (5)
-**0. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [DFS, DP, Memoization, Topological Sort]
+**0. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -14526,6 +14545,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 最终要visit所有node, 所以用DFS搜索比较合适.
 
 #### DFS, Memoization
+- 简单版: longest path, only allow right/down direction: 
+- `dp[x][y] = Math.max(dp[prevUpX][prevUpY], or dp[prevUpX][prevUpY] + 1)`; and compare the other direction as well
+- This problem, just compare the direction from dfs result
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
 - dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
@@ -15110,7 +15132,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
  
  
  
-## Coordinate DP (12)
+## Coordinate DP (13)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization, Sequence DP]
       
 
@@ -15219,7 +15241,35 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**5. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**5. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
+      
+
+m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
+
+- 接成圈是不行的, 所以visit过得 (x,y)就不能再去了.
+- 斜角方向不能走, 只能走上下左右
+- 无法按照坐标DP来做, 因为计算顺序4个方向都可以走.
+- 最终要visit所有node, 所以用DFS搜索比较合适.
+
+#### DFS, Memoization
+- 简单版: longest path, only allow right/down direction: 
+- `dp[x][y] = Math.max(dp[prevUpX][prevUpY], or dp[prevUpX][prevUpY] + 1)`; and compare the other direction as well
+- This problem, just compare the direction from dfs result
+- DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
+- initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
+- dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
+- Maht.max(dp[x][y], dp[nx][ny] + 1); where dp[n][ny] = dfs(matrix, nx, ny)
+- top level: O(mn), 尝试从每一个 (x,y) 出发
+- O(m * n * k), where k is the longest path
+
+#### Topological sort
+还没有做
+
+
+
+---
+
+**6. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 找连续的持续上升子序列的长度.
@@ -15238,7 +15288,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**6. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**7. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 #### DP
@@ -15256,7 +15306,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**7. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math]
+**8. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -15275,7 +15325,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**8. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
+**9. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
       
 
 俄罗斯套娃, 这里用envelope来表现. 给一串array, 每一个[x, y] 是envelope 长宽. [[5,4],[6,4],[6,7],[2,3]]. 
@@ -15304,7 +15354,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**9. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**10. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -15327,7 +15377,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**10. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**11. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
@@ -15340,7 +15390,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**11. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**12. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -16097,6 +16147,8 @@ O(nlogn)
       
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
+
+peak: 比周围4个方向的点value大
 
 #### DFS
 
@@ -18383,7 +18435,7 @@ TODO:
 
 ---
 
-**4. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [DFS, DP, Memoization, Topological Sort]
+**4. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -18394,6 +18446,9 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 最终要visit所有node, 所以用DFS搜索比较合适.
 
 #### DFS, Memoization
+- 简单版: longest path, only allow right/down direction: 
+- `dp[x][y] = Math.max(dp[prevUpX][prevUpY], or dp[prevUpX][prevUpY] + 1)`; and compare the other direction as well
+- This problem, just compare the direction from dfs result
 - DFS太多重复计算; memoization (dp[][], visited[][]) 省去了重复计算
 - initialize dp[x][y] = 1, (x,y) 自己也算path里的一格
 - dfs(matrix, x, y): 每次检查(x,y)的4个neighbor (nx, ny), 如果他们到(x,y)是递增, 那么就考虑和比较:
