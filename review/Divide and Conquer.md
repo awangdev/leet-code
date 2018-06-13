@@ -290,12 +290,14 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
-- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
+- 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
+- track overall max 
 - init dp[0] = 0; max = MIN_VALUE 因为有负数
 - Time, space O(n)
 - Rolling array, space O(1)
 
-#### Divide and Conquer
+#### Divide and Conquer, DFS
 - 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
 - left/rigth 的case, 直接 dfs
 - corss-mid case: continuous sum max from left + continous sum max from right + mid
@@ -309,7 +311,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
 
-#### DFS
+#### DFS, Divide and Conquer
 - Similar to Binary Tree Longest Consecutive Sequence I
 - 只不过可以递增递减, 还有连接上parent的方向.
 - 对于任何一个节点, 都可能: 
@@ -330,6 +332,11 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 这里 `longestConsecutive(root.left)` 就很重要了
 - 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
 - 最后, 任何一层的孩子都会被照顾到.
+
+##### Double Recursive functions
+- 用两种recursive的方式handle skip root node的情况
+- Recursive using dfs(), basically build child + parent
+- Recursive using main function, but with value of child node: skipping root
 
 
 

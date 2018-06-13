@@ -1094,12 +1094,14 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
-- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
+- 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
+- track overall max 
 - init dp[0] = 0; max = MIN_VALUE 因为有负数
 - Time, space O(n)
 - Rolling array, space O(1)
 
-#### Divide and Conquer
+#### Divide and Conquer, DFS
 - 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
 - left/rigth 的case, 直接 dfs
 - corss-mid case: continuous sum max from left + continous sum max from right + mid

@@ -48,15 +48,19 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 #### BFS
 - Kahn algorithem:
 - 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
-- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
+- count in-degree: inDegree就是每个node上面, **有多少个走进来的edge**?
+- **IMPORTANT**: always initialize inDegree map/array with 0
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
 - 对这些 indegree == 0 的 nodes BFS, add to queue.
-- 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
+- visit queue 上每个 node: count++, also add this curr node to sorted list
+- Check all neighbors/edges of curr node: 如果visit过了, 这个node上的 indegree--
+- 如果 indegree == 0, add this node to queue.
 
 ##### Indegree 原理
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
-- indegree是周围的node到我这里的次数count. 
+- Note: 如果有cycle, 这个node上面会多一些inDegree, 也就无法清0, 它也无法进入 queue && sorted list. 
+- Remember: **indegree是周围的node到我这里的次数count**
 - 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
+- Topological problem: almost always care about cycle case (if detecting cycle is not goal)
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
@@ -67,6 +71,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 #### Notes:
 - 还有 List[] arrayOfList = new ArrayList[]; 这样的操作啊, 代替了map<integer, integerList>
+- List[]的list, 其实是default  List<Object>
 
 #### Previous notes
 有点绕，但是做过一次就明白一点。    
@@ -115,7 +120,31 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**3. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+**3. [Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)**      Level: Medium      Tags: [BFS, DFS, Topological Sort]
+      
+
+#### Topological Sort BFS
+- indegree tracking: Track all neighbors/childrens. 把所有的children都存在 inDegree<label, indegree count>里面
+- Process with a queue: 先把所有的root加一遍(indegree == 0)，可能多个root。并且全部加到queue里面。
+- BFS with Queue:
+- Only when map.get(label) == 0, add into queue && rst. (indegree剪完了, 就是root啦)
+- inDegree在这里就 count down indegree, 确保在后面出现的node, 一定最后process.
+
+
+#### Basics about graph
+- 几个graph的condition：   
+- 1. 可能有多个root
+- 2. directed node, 可以direct backwards.
+
+TODO:
+- build`Map<DirectedGraphNode, Integer> inDegree = new HashMap<>();` and include the root itself
+- that is more traditional indegree building
+
+
+
+---
+
+**4. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
       
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -143,30 +172,6 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 - 跟BFS建立 grpah 的过程一模一样
 - DFS的不同在于: 用visited map 来标记走过的地方
 - 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**4. [Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)**      Level: Medium      Tags: [BFS, DFS, Topological Sort]
-      
-
-#### Topological Sort BFS
-- indegree tracking: Track all neighbors/childrens. 把所有的children都存在 inDegree<label, indegree count>里面
-- Process with a queue: 先把所有的root加一遍(indegree == 0)，可能多个root。并且全部加到queue里面。
-- BFS with Queue:
-- Only when map.get(label) == 0, add into queue && rst. (indegree剪完了, 就是root啦)
-- inDegree在这里就 count down indegree, 确保在后面出现的node, 一定最后process.
-
-
-#### Basics about graph
-- 几个graph的condition：   
-- 1. 可能有多个root
-- 2. directed node, 可以direct backwards.
-
-TODO:
-- build`Map<DirectedGraphNode, Integer> inDegree = new HashMap<>();` and include the root itself
-- that is more traditional indegree building
 
 
 

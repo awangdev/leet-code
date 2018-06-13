@@ -1,5 +1,5 @@
 H
-1522007797
+1528866812
 tags: Graph, Topological Sort, DFS, BFS, Backtracking
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -90,96 +90,69 @@ Use this feature to build the edges.
 
 1. Build graph
 2. Calculate indegree
-3. BSF
+3. BFS
 */
 class Solution {
     public String alienOrder(String[] words) {
         if (words == null || words.length == 0) {
             return "";
         }
-
-        Map<Character, List<Character>> graph = buildGraph(words);
-        Map<Character, Integer> inDegree = buildInDegree(graph);
+        
+        // Build graph && indegree map
+        Map<Character, List<Character>> graph = new HashMap<>();
+        Map<Character, Integer> inDegree = new HashMap<>();
+        build(graph, inDegree, words);
         
         // Topological sort with BFS
         return topoSort(graph, inDegree);
     }
     
+    private void build(Map<Character, List<Character>> graph, Map<Character, Integer> inDegree, String[] words) {
+        // Init graph, inDegree
+        for (String word : words) {
+            for (char c : word.toCharArray()) {
+                if (!graph.containsKey(c)) {
+                    graph.put(c, new ArrayList<>());
+                }
+                inDegree.put(c, 0);
+            }
+        }
+        // Build graph: find char diff between two row, and store the order indication into graph
+        // always currentWord[index] -> nextWord[index]
+        for (int i = 0; i < words.length - 1; i++) {
+            int index = 0;
+            while (index < words[i].length() && index < words[i + 1].length()) {
+                char c1 = words[i].charAt(index);
+                char c2 = words[i + 1].charAt(index);
+                if (c1 != c2) {
+                    graph.get(c1).add(c2);
+                    inDegree.put(c2, inDegree.get(c2) + 1);
+                    break;
+                }
+                index++;
+            }
+        }
+    }
+    //BFS
     private String topoSort(Map<Character, List<Character>> graph, Map<Character, Integer> inDegree) {
         Queue<Character> queue = new LinkedList<>();
-        
         // Build queue with 0 indegree
         for (char c : inDegree.keySet()) {
-            if (inDegree.get(c) == 0) {
-                queue.offer(c);
-            }
+            if (inDegree.get(c) == 0) queue.offer(c);
         }
 
         StringBuffer sb = new StringBuffer();
         while (!queue.isEmpty()) {
             char c = queue.poll();
             sb.append(c);
-            
             for (char edgeNode : graph.get(c)) {
                 inDegree.put(edgeNode, inDegree.get(edgeNode) - 1);
-                if (inDegree.get(edgeNode) == 0) {
-                    queue.offer(edgeNode);
-                }
+                if (inDegree.get(edgeNode) == 0) queue.offer(edgeNode);
             }
         }
         
-        if (sb.length() != graph.size()) {
-            return "";
-        }
-        
+        if (sb.length() != graph.size()) return "";
         return sb.toString();
-    }
-    
-    private Map<Character, List<Character>> buildGraph (String[] words) {
-        Map<Character, List<Character>> graph = new HashMap<>();
-
-        // Create nodes
-        for (String word: words) {
-            for (char c : word.toCharArray()) {
-                if (!graph.containsKey(c)) {
-                    graph.put(c, new ArrayList<>());
-                }
-            }
-        }
-        
-        // Build edges: find char diff between two row, and store the order indication into graph
-        // always currentWord[index] -> nextWord[index]
-        for (int i = 0; i < words.length - 1; i++) {
-            int index = 0;
-            while (index < words[i].length() && index < words[i + 1].length()) {
-                char c = words[i].charAt(index);
-                if (c != words[i + 1].charAt(index)) {
-                    graph.get(c).add(words[i + 1].charAt(index));
-                    break;
-                }
-                index++;
-            }
-        }
-
-        return graph;
-    }
-    
-    private Map<Character, Integer> buildInDegree(Map<Character, List<Character>> graph) {
-        Map<Character, Integer> inDegree = new HashMap<>();
-
-        // Build baseline
-        for (char c : graph.keySet()) {
-            inDegree.put(c, 0);
-        }
-        
-        // Aggregate inDegree
-        for (char c: graph.keySet()) {
-            for (char edgeNode : graph.get(c)) {
-                inDegree.put(edgeNode, inDegree.get(edgeNode) + 1);
-            }
-        }
-        
-        return inDegree;
     }
 }
 

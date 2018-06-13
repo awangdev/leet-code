@@ -18,7 +18,6 @@ Given an expression string array,
 return the Polish notation of this expression. 
 (remove the parentheses)
 
-Have you met this question in a real interview? Yes
 Example
 For the expression [(5 − 6) * 7] 
 (which represented by ["(", "5", "−", "6", ")", "*", "7"]), 
@@ -36,6 +35,12 @@ LintCode Copyright Stack
 */
 
 /*
+The expression tree will be something like below. '()' are not recorded by just used as weights:
+            *
+        /       \
+       -         7
+    /    \
+   5      6
 Thoughts:
 Build the expression tree, and do a pre-order-traversal, 
 and record all nodes in the array list.

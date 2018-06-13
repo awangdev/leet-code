@@ -346,7 +346,7 @@ trivial, 先加left recursively, 再加right recursively, 然后组成头部.
 - Divde and Conquer: 先recursively找到 left和right的大小， 然后evaluate中间的符号
 - Time, Space O(n), n = # expression nodes
 
-### Note
+#### Note
 - 1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
 - 2. 若有个child是null,那就return另外一个node。    
 - 3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.

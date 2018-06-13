@@ -51,30 +51,17 @@ class Solution {
     }
     
     private void dfs(List<List<Integer>> result, List<Integer> list, TreeNode node, int sum) {
-        if (node == null) {
-            return;
-        }
+        if (node == null) return;
 
-        // check leaf
-        if (node.left == null && node.right == null) {
-            if (node.val == sum) {
-                list.add(node.val);
-                result.add(new ArrayList<>(list)); 
-                list.remove(list.size() - 1);
-            }
-            return;
-        }
-        
         list.add(node.val);
-
-        if (node.left != null) {
-            dfs(result, list, node.left, sum - node.val);
+        // check leaf
+        if (node.left == null && node.right == null && node.val == sum) {
+            result.add(new ArrayList<>(list)); 
+            list.remove(list.size() - 1);
+            return;
         }
-
-        if (node.right != null) {
-            dfs(result, list, node.right, sum - node.val);
-        }
-
+        dfs(result, list, node.left, sum - node.val);
+        dfs(result, list, node.right, sum - node.val);
         // backtracking
         list.remove(list.size() - 1);
     }

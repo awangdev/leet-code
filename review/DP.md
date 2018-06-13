@@ -1,7 +1,7 @@
  
  
  
-## DP (70)
+## DP (72)
 **0. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Review      Tags: [DP, String]
       
 
@@ -1492,12 +1492,14 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 #### Sequence DP
 - dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
-- 因为continous sequence, 所以不满足条件的时候, 会断: track overall max,
+- init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
+- 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
+- track overall max 
 - init dp[0] = 0; max = MIN_VALUE 因为有负数
 - Time, space O(n)
 - Rolling array, space O(1)
 
-#### Divide and Conquer
+#### Divide and Conquer, DFS
 - 找一个mid piont, 考虑3种情况: 只要左边, 只要右边, cross-mid
 - left/rigth 的case, 直接 dfs
 - corss-mid case: continuous sum max from left + continous sum max from right + mid
@@ -1551,7 +1553,30 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**66. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**66. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
+      
+
+找max path sum,  可以从任意treeNode 到任意 treeNode.
+
+#### Kinda, Tree DP
+- 两个情况: 1. combo sum: left+right+root; 2. single path sum
+- Note1: the path needs to be continuous, curr node cannot be skipped
+- Note2: what about I want to skip curr node: handled by lower level of dfs(), where child branch max was compared.
+- Note3: skip left/right child branch sum, by comparing with 0. 小于0的, 没必要记录
+
+#### DP的思想
+- tree给我们2条branch, 每条branch就类似于 dp[i - 1], 这里类似于dp[left], dp[right] 这样
+- 找到 dp[left], dp[right] 以后, 跟 curr node结合. 
+- 因为是找max sum, 并且可以skip nodes, 所以需要全局变量max
+- 每次dfs() return的一定是可以继续 `continuously link 的 path`, 所以return `one single path sum + curr value`.
+
+#### DFS, PathSum object
+- that just solves everything
+
+
+---
+
+**67. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -1579,7 +1604,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**67. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**68. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
       
 
 给一个String word, 和一个字典, 检查是否word可以被劈开, 而所有substring都应该是dictionary里面的words.
@@ -1608,7 +1633,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**68. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+**69. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
       
 
 给一个数字n, 找到以(1...n)为node的所有unique BST.
@@ -1624,7 +1649,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**69. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+**70. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
@@ -1644,6 +1669,43 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - 从最基本的O(m^2*n^2) 考虑: 遍历 startingRow/startingCol
 - rectangle? layer by layer? 可以想到Presum的思想, 大于需要的sum的时候, 减掉多余的部分
 - 如何找到多余的area? 那么就是search: 把需要search的内容存起来, 可以想到用BST(TreeSet), 或者自己写Binary Search.
+
+
+
+---
+
+**71. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [DFS, DP, backtracking]
+      
+
+String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
+
+如果其中一个人再无法翻转了, 另一个人就赢. 求: 给出string, 先手是否能赢.
+
+#### Backtracking
+- curr player 每走一步, 就生成一种新的局面, dfs on this
+- 等到dfs结束, 不论成功与否, 都要backtracking
+- curr level: 把"++" 改成 "--"; backtrack的时候, 改回 '--'
+- 换成boolean[] 比 string/stringBuilder要快很多, 因为不需要重新生成string.
+- ++ 可以走 (n - 1)个位置: 
+- T(N) = (N - 2) * T(N - 2) = (N - 4) * (N - 2) * T(N - 4) ... = O(N!)
+
+##### iterate based on "++"
+- 做一个String s的 replica: string or stringBuilder
+- 每次dfs后, 然后更替里面的字符 "+" => "-"
+- 目的只是Mark已经用过的index
+- 真正的dfs 还是在 original input string s 身上展开
+- 每次都重新生成substring, 并不是很efficient
+
+##### Game theory
+- 保证p1能胜利，就必须保持所有p2的move都不能赢
+- 或者说, 在知道棋的所有情况时, 只要p2有一种路子会输, p1就一定能走对路能赢.
+- 同时，p1只要在可走的Move里面，有一个move可以赢就足够了。
+- p1: player1, p2: player2
+
+#### O(N^2) 的 DP
+- 需要Game Theory的功底, Nim game. https://www.jiuzhang.com/qa/941/
+- http://www.1point3acres.com/bbs/thread-137953-1-1.html
+- TODO: https://leetcode.com/problems/flip-game-ii/discuss/73954/Theory-matters-from-Backtracking(128ms)-to-DP-(0ms)
 
 
 

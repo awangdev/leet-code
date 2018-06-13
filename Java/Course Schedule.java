@@ -17,15 +17,19 @@ tags: DFS, BFS, Graph, Topological Sort, Backtracking
 #### BFS
 - Kahn algorithem:
 - 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
-- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
+- count in-degree: inDegree就是每个node上面, **有多少个走进来的edge**?
+- **IMPORTANT**: always initialize inDegree map/array with 0
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
 - 对这些 indegree == 0 的 nodes BFS, add to queue.
-- 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
+- visit queue 上每个 node: count++, also add this curr node to sorted list
+- Check all neighbors/edges of curr node: 如果visit过了, 这个node上的 indegree--
+- 如果 indegree == 0, add this node to queue.
 
 ##### Indegree 原理
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
-- indegree是周围的node到我这里的次数count. 
+- Note: 如果有cycle, 这个node上面会多一些inDegree, 也就无法清0, 它也无法进入 queue && sorted list. 
+- Remember: **indegree是周围的node到我这里的次数count**
 - 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
+- Topological problem: almost always care about cycle case (if detecting cycle is not goal)
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
@@ -36,6 +40,7 @@ tags: DFS, BFS, Graph, Topological Sort, Backtracking
 
 #### Notes:
 - 还有 List[] arrayOfList = new ArrayList[]; 这样的操作啊, 代替了map<integer, integerList>
+- List[]的list, 其实是default  List<Object>
 
 #### Previous notes
 有点绕，但是做过一次就明白一点。    
@@ -101,16 +106,16 @@ Topological sort, BFS Kahn's algorithem.
 */
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        if (numCourses == 0 || prerequisites == null || prerequisites.length == 0
-            || prerequisites[0] == null || prerequisites[0].length == 0) {
+        if (validateInput(numCourses, prerequisites)) {
             return true;
         }
         List[] edges = new ArrayList[numCourses];
-        int[] inDegree = new int[numCourses];
+        int[] inDegree = new int[numCourses]; 
         
         // Initialize
         for (int i = 0; i < numCourses; i++) {
             edges[i] = new ArrayList<>();
+            inDegree[0] = 0;// though, 0 by default
         }
         
         // Build graph edges
@@ -140,7 +145,14 @@ class Solution {
             }
         }
         
+        // BFS will always end. But count should == # of unique course. 
+        // If not (likely less than), then there is cycle
         return count == numCourses;
+    }
+
+    private boolean validateInput(int numCourses, int[][] prerequisites) {
+        return numCourses == 0 || prerequisites == null || prerequisites.length == 0
+            || prerequisites[0] == null || prerequisites[0].length == 0;
     }
 }
 

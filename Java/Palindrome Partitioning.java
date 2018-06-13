@@ -7,6 +7,10 @@ tags: DFS, Backtracking
 求所有partition palindrome组合. `list<list<string>>`
 
 #### DFS
+- 可以top->bottom: 遍历str, validate substring(start, i); if valid, add as candidate, and dfs; backtrack by remove candidate.
+- 也可以bottom->up: 遍历str, validate substring(start, i); if valid, dfs(remaining str), return list of suffix; cross match with curr candidate.
+
+#### DFS Top->Bottom
 - 在遍历str的时候，考虑从每个curr spot 到 str 结尾，是能有多少种palindorme?
 - 那就从curr spot当个字符开始算，开始back tracing.
 - 如果所选不是palindrome， 那move on.
@@ -16,6 +20,10 @@ tags: DFS, Backtracking
 #### Optimization
 - 可以再每一个dfs level 算 isPalindrome(S), 但是可以先把 boolean[][] isPalin 算出来, 每次O(1) 来用
 - 注意: isPalin[i][j] 是 inclusive的, 所以用的时候要认准坐标
+- Calculate isPalin[i][j]: pick mid point [0 ~ n]
+- expand and validate palindrome at these indexes: `[mid, mid+1]` or `[mid-1][mid+1]`
+
+#### Complexity
 - Overall Space O(n^2): 存 isPlain[][]
 - Time O(n!), 每一层的for loop spawn n * (n - 1) * (n - 2)
 

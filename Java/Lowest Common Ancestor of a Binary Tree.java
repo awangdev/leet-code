@@ -5,7 +5,9 @@ tags: Tree, DFS
 给一个Binary Tree root, 以及两个node p, q. 找 p 和 q 的 lowest common ancestor
 
 #### DFS
-- 因为是 binary tree, 所以直接盲目搜索搜索path不efficient. 巧用DFS来找每一个node的common ancestor
+- 因为是 binary tree, 所以直接盲目搜索搜索path不efficient, use extra space and waste time
+- 巧用DFS来找每一个node的common ancestor. 
+- Need the assumption: 1. unique nodes across tree; 2. must have a solution
 - 当root == null或者 p q 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
 - 三种情况:
 - 1. A,B都找到，那么这个level的node就是其中一层的ancestor: 其实，最先recursively return到的那个，就是最底的LCA parent.   
@@ -84,7 +86,7 @@ class Solution {
         
         if (leftChildAncestor != null && rightChildAncestor != null) {
             return root;
-        } else if (leftChildAncestor != null || rightChildAncestor != null) {
+        } else if (leftChildAncestor != null || rightChildAncestor != null) { // ancestor can be itself
             return leftChildAncestor != null ? leftChildAncestor : rightChildAncestor;
         }
         return null;

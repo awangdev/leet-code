@@ -2,7 +2,7 @@ E
 1526529797
 tags: Tree, DFS, Double Recursive
 
-count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
+count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
 
 #### DFS
 - 对所给的input sum 做减法, 知道 sum 达到一个目标值截止
@@ -66,12 +66,9 @@ class Solution {
     
     private int dfs(TreeNode node, int sum) {
         int count = 0;
-        if (node == null) {
-            return count;
-        }
-        if (node.val == sum) {
-            count++;
-        }
+        if (node == null) return count;
+
+        count += node.val == sum ? 1 : 0;
         count += dfs(node.left, sum - node.val);
         count += dfs(node.right, sum - node.val);
         return count;

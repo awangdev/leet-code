@@ -7,7 +7,7 @@
 
 找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
 
-#### DFS
+#### DFS, Divide and Conquer
 - Similar to Binary Tree Longest Consecutive Sequence I
 - 只不过可以递增递减, 还有连接上parent的方向.
 - 对于任何一个节点, 都可能: 
@@ -29,6 +29,11 @@
 - 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
 - 最后, 任何一层的孩子都会被照顾到.
 
+##### Double Recursive functions
+- 用两种recursive的方式handle skip root node的情况
+- Recursive using dfs(), basically build child + parent
+- Recursive using main function, but with value of child node: skipping root
+
 
 
 ---
@@ -36,7 +41,7 @@
 **1. [Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)**      Level: Easy      Tags: [DFS, Double Recursive, Tree]
       
 
-count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
+count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
 
 #### DFS
 - 对所给的input sum 做减法, 知道 sum 达到一个目标值截止

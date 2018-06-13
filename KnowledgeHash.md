@@ -3,6 +3,7 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Array](#array)
+      * [Honorable Problems](#honorable-problems)
    * [String](#string)
       * [Functions](#functions)
       * [StringBuffer](#stringbuffer)
@@ -14,8 +15,7 @@ Table of Contents
    * [Heap](#heap)
       * [Insert](#insert)
       * [Extract Minimum Element](#extract-minimum-element)
-      * [Min/Max Heap](#minmax-heap)
-      * [如何想到](#如何想到)
+      * [如何想到用 Min/Max Heap](#如何想到用-minmax-heap)
    * [Stack](#stack)
       * [Functions](#functions-1)
       * [基本用法](#基本用法)
@@ -62,6 +62,7 @@ Table of Contents
          * [用途](#用途)
          * [优点](#优点)
    * [Graph](#graph)
+      * [Popular algorithms](#popular-algorithms)
       * [Adjacency List](#adjacency-list)
          * [Example](#example-2)
          * [构建Graph](#构建graph)
@@ -152,11 +153,13 @@ Table of Contents
    * [Reservoir Sampling](#reservoir-sampling)
    * [Geometry](#geometry)
    * [Approach](#approach)
+      * [遇到Array](#遇到array)
+      * [遇到需要排序](#遇到需要排序)
       * [Greedy](#greedy)
       * [Divide and Conquer](#divide-and-conquer)
       * [Recursion](#recursion)
          * [特征](#特征)
-   * [Other minor Problem Sets](#other-minor-problem-sets)
+   * [Other minor problem sets](#other-minor-problem-sets)
       * [回文串 Palindrome](#回文串-palindrome)
       * [Windows Problem](#windows-problem)
    * [Collections Functions](#collections-functions)
@@ -164,6 +167,7 @@ Table of Contents
       * [ArrayList](#arraylist)
    * [CS Basics](#cs-basics)
       * [BigO Specials](#bigo-specials)
+      * [Time Complexity of graph/dfs block](#time-complexity-of-graphdfs-block)
       * [Sum, PrefixSum](#sum-prefixsum)
       * [Math](#math)
          * [Math Functions](#math-functions)
@@ -184,7 +188,6 @@ Table of Contents
       * [Basics](#basics)
       * [Edge case](#edge-case)
       * [Advanced](#advanced)
-
 
 
 
@@ -602,6 +605,11 @@ Given [3,2,1,4]. The segment tree will be:
 - graph can have cycle
 - If no cycle, it's called 'acyclic'
 - Two popular ways to store graph: Adjacency List, Adjacency Matrices
+
+## Popular algorithms
+- Topological sort: figure out if cycle exist (course schedule), output order (course schedule II, Alien Dictinary)
+- Union Find: count unions (Number of islands I, II)
+- Given a matrix, or some structure: consider graph data structure, and convert into graph `Map<node, neighbors>`
 
 ## Adjacency List
 - The graph can be presented with a graph class, which is just a list of node, a map of nodes

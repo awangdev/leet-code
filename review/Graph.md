@@ -62,15 +62,19 @@
 #### BFS
 - Kahn algorithem:
 - 先build一个graph map: <node, list of nodes >; or `List[] edges; edges[i] = new ArrayList<>();`
-- count in-degree: inDegree就是每个node上面, 有多少个走进来的edge?
+- count in-degree: inDegree就是每个node上面, **有多少个走进来的edge**?
+- **IMPORTANT**: always initialize inDegree map/array with 0
 - 那些没有 in-coming-edge的, indegree 其实就 等于 0, 那么他们就应该在final result list里面
 - 对这些 indegree == 0 的 nodes BFS, add to queue.
-- 模拟visit每个ndoe, 如果visit过了, 这个node上的 indegree--, 然后如果最终 indegree == 0, 这个node就成功进入final list.
+- visit queue 上每个 node: count++, also add this curr node to sorted list
+- Check all neighbors/edges of curr node: 如果visit过了, 这个node上的 indegree--
+- 如果 indegree == 0, add this node to queue.
 
 ##### Indegree 原理
-- Note: 如果有cycle, indegree是不会变成0的, 它也无法进入最终list. 
-- indegree是周围的node到我这里的次数count. 
+- Note: 如果有cycle, 这个node上面会多一些inDegree, 也就无法清0, 它也无法进入 queue && sorted list. 
+- Remember: **indegree是周围的node到我这里的次数count**
 - 如果周围所有node的连线, 都意义切除后, 我的indegree还不等于0, 那么肯定有某些node间接地有重复连线, 也就是有cycle
+- Topological problem: almost always care about cycle case (if detecting cycle is not goal)
 
 #### DFS
 - 这道题没有要求作出final list, 相对简单, 只要visit每个nodes, 最后确认没有cycle就好了
@@ -81,6 +85,7 @@
 
 #### Notes:
 - 还有 List[] arrayOfList = new ArrayList[]; 这样的操作啊, 代替了map<integer, integerList>
+- List[]的list, 其实是default  List<Object>
 
 #### Previous notes
 有点绕，但是做过一次就明白一点。    
@@ -129,7 +134,58 @@
 
 ---
 
-**4. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+**4. [Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+      
+
+给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
+
+count这个graph里面有多少个独立的component.
+
+#### Union Find
+- 跟Graph Valid Tree 几乎一模一样
+- 建造简单的parent[] union find
+- 每个edge都union.
+- **注意** union 的时候, 只需要union if rootA != rootB
+
+#### DFS
+- build graph as adjacent list: Map<Integer, List<Integer>>
+- dfs for all nodes of the graph, and mark visited node
+- count every dfs trip and that will be the total unions
+
+
+
+---
+
+**5. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+      
+
+给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
+
+检查这些edge是否能合成一个 valid tree
+
+#### Union Find
+- 复习Union-Find的另外一个种形式, track union size
+- 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 存储的关键都是：元素相对的index上存着他的root parent.    
+- 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
+- 另一个union-find, 用hashmap的:
+- http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
+
+#### DFS
+- Create adjacent list graph: Map<Integer, List<Integer>>
+- 检查: 
+- 1. 是否有cycle using dfs, check boolean[] visited
+- 2. 是否所有的node全部链接起来: check if any node not visited
+
+#### BFS
+- (还没做, 可以写一写)
+- 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+
+
+---
+
+**6. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
       
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -157,57 +213,6 @@
 - 跟BFS建立 grpah 的过程一模一样
 - DFS的不同在于: 用visited map 来标记走过的地方
 - 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**5. [Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
-      
-
-给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
-
-count这个graph里面有多少个独立的component.
-
-#### Union Find
-- 跟Graph Valid Tree 几乎一模一样
-- 建造简单的parent[] union find
-- 每个edge都union.
-- **注意** union 的时候, 只需要union if rootA != rootB
-
-#### DFS
-- build graph as adjacent list: Map<Integer, List<Integer>>
-- dfs for all nodes of the graph, and mark visited node
-- count every dfs trip and that will be the total unions
-
-
-
----
-
-**6. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
-      
-
-给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
-
-检查这些edge是否能合成一个 valid tree
-
-#### Union Find
-- 复习Union-Find的另外一个种形式, track union size
-- 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
-- 存储的关键都是：元素相对的index上存着他的root parent.    
-- 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
-- 另一个union-find, 用hashmap的:
-- http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
-
-#### DFS
-- Create adjacent list graph: Map<Integer, List<Integer>>
-- 检查: 
-- 1. 是否有cycle using dfs, check boolean[] visited
-- 2. 是否所有的node全部链接起来: check if any node not visited
-
-#### BFS
-- (还没做, 可以写一写)
-- 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
 
 
 

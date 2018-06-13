@@ -4,7 +4,7 @@ tags: Tree, DFS, Divide and Conquer, Double Recursive
 
 找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
 
-#### DFS
+#### DFS, Divide and Conquer
 - Similar to Binary Tree Longest Consecutive Sequence I
 - 只不过可以递增递减, 还有连接上parent的方向.
 - 对于任何一个节点, 都可能: 
@@ -25,6 +25,11 @@ tags: Tree, DFS, Divide and Conquer, Double Recursive
 - 这里 `longestConsecutive(root.left)` 就很重要了
 - 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
 - 最后, 任何一层的孩子都会被照顾到.
+
+##### Double Recursive functions
+- 用两种recursive的方式handle skip root node的情况
+- Recursive using dfs(), basically build child + parent
+- Recursive using main function, but with value of child node: skipping root
 
 ```
 /*
@@ -77,62 +82,5 @@ class Solution {
     }
 }
 
-
-// NOT quite working, and too complicated
-class Solution {
-    int max = 0;
-    public int longestConsecutive (TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int directDepth = dfs(root, 1);
-        return Math.max(max, directDepth);
-    }
-
-    private int dfs(TreeNode node, int depth) {
-        if (node == null) {
-            return depth;
-        }
-        int val = node.val;
-        // check node
-        int leftDepth = 0, rightDepth = 0;
-        if (node.left != null) {
-            if (depth < 0 && node.left.val + 1 == val) {
-                leftDepth = dfs(node.left, depth - 1);
-            } else if (depth > 0 && node.left.val - 1 == val) {
-                leftDepth = dfs(node.left, depth + 1);
-            }
-        }
-        if (node.right != null) {
-            if (depth < 0 && node.right.val + 1 == val) {
-                rightDepth = dfs(node.right, depth - 1);
-            } else if (depth > 0 && node.right.val - 1 == val) {
-                rightDepth = dfs(node.right, depth + 1);
-            }
-        }
-        // regular depth compare between math, left, right
-        max = Math.max(max, Math.max(
-                       Math.abs(leftDepth), Math.abs(rightDepth)));
-        
-        // Calculate overall connected depth
-        if (node.left != null && node.right != null &&
-            (node.left.val + 1 == node.right.val - 1 || 
-             node.left.val - 1 == node.right.val + 1)) {
-            max = Math.max(max, Math.abs(leftDepth)+Math.abs(rightDepth) - 1);
-        }
-
-        // Return the consecutive depth based on input depth
-        if (depth > 0) {
-            return leftDepth > 0 && rightDepth > 0 ? 
-                   Math.max(leftDepth, rightDepth) : 
-                   (leftDepth > 0 ? leftDepth : rightDepth);
-        }
-
-
-        return leftDepth < 0 && rightDepth < 0 ? 
-               Math.min(leftDepth, rightDepth) : 
-               (leftDepth > 0 ? rightDepth : leftDepth);
-    }
-}
 
 ```

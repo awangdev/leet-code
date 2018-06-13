@@ -1,12 +1,24 @@
 H
 1526524522
-tags: Tree, DFS
+tags: Tree, DFS, DP, Tree DP
 
 找max path sum,  可以从任意treeNode 到任意 treeNode.
 
+#### Kinda, Tree DP
+- 两个情况: 1. combo sum: left+right+root; 2. single path sum
+- Note1: the path needs to be continuous, curr node cannot be skipped
+- Note2: what about I want to skip curr node: handled by lower level of dfs(), where child branch max was compared.
+- Note3: skip left/right child branch sum, by comparing with 0. 小于0的, 没必要记录
+
+#### DP的思想
+- tree给我们2条branch, 每条branch就类似于 dp[i - 1], 这里类似于dp[left], dp[right] 这样
+- 找到 dp[left], dp[right] 以后, 跟 curr node结合. 
+- 因为是找max sum, 并且可以skip nodes, 所以需要全局变量max
+- 每次dfs() return的一定是可以继续 `continuously link 的 path`, 所以return `one single path sum + curr value`.
+
 #### DFS, PathSum object
 - that just solves everything
-```
+/*
 private class PathSum {
     int singlePathMax;
     int combinedPathMax;
@@ -15,8 +27,7 @@ private class PathSum {
         this.combinedPathMax = combinedPathMax;
     }
 }
-```
-
+*/
 
 #### Previous Notes
 ##### Note1
@@ -69,7 +80,25 @@ Divide and Conquer Dynamic Programming Recursion
  *     }
  * }
  */
+// DP, DFS, 99.73%
+public class Solution {
+    int max = Integer.MIN_VALUE;
+    
+    public int maxPathSum(TreeNode root) {
+        maxPathDown(root);
+        return max;
+    }
+    
+    private int maxPathDown(TreeNode node) {
+        if (node == null) return 0;
+        int left = Math.max(0, maxPathDown(node.left)); // left single path
+        int right = Math.max(0, maxPathDown(node.right)); // right single path
+        max = Math.max(max, left + right + node.val); // compare combo max with global max
+        return Math.max(left, right) + node.val; // always return the max single continuous path 
+    }
+}
 
+// Use a customized object to track single path, v.s. combo path
 public class Solution {
     // Class used to carry sum in recursive dfs
     private class PathSum {

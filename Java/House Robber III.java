@@ -53,8 +53,6 @@ Example 2:
   / \   \ 
  1   3   1
 Maximum amount of money the thief can rob = 4 + 5 = 9.
-Credits:
-Special thanks to @dietpepsi for adding this problem and creating all test cases.
 
 Subscribe to see which companies asked this question
 

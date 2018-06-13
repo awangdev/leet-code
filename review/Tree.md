@@ -439,6 +439,9 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 维持一个最大值: Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 - 注意check root == null
 
+#### Note
+- BFS is doable as well, but a bit more code to write: tracks largest level we reach
+
 
 
 ---
@@ -453,7 +456,9 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 这个无论如何都要走所有node, 所以dfs应该比较适合.
 
 #### BFS
-- 还没做
+- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
+- depth definition: reach to a leaf node, where node.left == null && node.right == null
+- BFS using queue, track level.
 
 
 
@@ -525,7 +530,9 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 给一个Binary Tree root, 以及两个node p, q. 找 p 和 q 的 lowest common ancestor
 
 #### DFS
-- 因为是 binary tree, 所以直接盲目搜索搜索path不efficient. 巧用DFS来找每一个node的common ancestor
+- 因为是 binary tree, 所以直接盲目搜索搜索path不efficient, use extra space and waste time
+- 巧用DFS来找每一个node的common ancestor. 
+- Need the assumption: 1. unique nodes across tree; 2. must have a solution
 - 当root == null或者 p q 任何一个在findLCA底部被找到了(root== A || root == B)，那么就return 这个root.     
 - 三种情况:
 - 1. A,B都找到，那么这个level的node就是其中一层的ancestor: 其实，最先recursively return到的那个，就是最底的LCA parent.   
@@ -567,6 +574,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 #### Find path with BST
 - 利用 BST 的性质，可以直接搜到target node，而做成两个长度不一定相等的list
 - 然后很简单找到LCA 
+- O(n) space, O(logn) time
 
 #### DFS
 - Brutly寻找p和q的common ancestor, 然后recursively drive left/right
@@ -575,6 +583,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 1. one of p, q 在leaf, 那么此时的root其实就是lowest common ancestor
 - 2. 如果p, q 在root的左右两边, 这就是分叉口, 那么root就是lowest common ancestor
 - 3. 如果p,q 在root的同一边 (左,右), 那么继续dfs
+- O(1) extra space, O(logn) time
 
 
 
@@ -621,7 +630,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
 
-#### DFS
+#### DFS, Divide and Conquer
 - Similar to Binary Tree Longest Consecutive Sequence I
 - 只不过可以递增递减, 还有连接上parent的方向.
 - 对于任何一个节点, 都可能: 
@@ -643,14 +652,31 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 - 这一步特地忽略掉了root, 然后走下去一层: 因为是recursive, 所以还会继续divde && conquer
 - 最后, 任何一层的孩子都会被照顾到.
 
+##### Double Recursive functions
+- 用两种recursive的方式handle skip root node的情况
+- Recursive using dfs(), basically build child + parent
+- Recursive using main function, but with value of child node: skipping root
+
 
 
 ---
 
-**32. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, Tree]
+**32. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
       
 
 找max path sum,  可以从任意treeNode 到任意 treeNode.
+
+#### Kinda, Tree DP
+- 两个情况: 1. combo sum: left+right+root; 2. single path sum
+- Note1: the path needs to be continuous, curr node cannot be skipped
+- Note2: what about I want to skip curr node: handled by lower level of dfs(), where child branch max was compared.
+- Note3: skip left/right child branch sum, by comparing with 0. 小于0的, 没必要记录
+
+#### DP的思想
+- tree给我们2条branch, 每条branch就类似于 dp[i - 1], 这里类似于dp[left], dp[right] 这样
+- 找到 dp[left], dp[right] 以后, 跟 curr node结合. 
+- 因为是找max sum, 并且可以skip nodes, 所以需要全局变量max
+- 每次dfs() return的一定是可以继续 `continuously link 的 path`, 所以return `one single path sum + curr value`.
 
 #### DFS, PathSum object
 - that just solves everything
@@ -698,7 +724,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 **35. [Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)**      Level: Easy      Tags: [DFS, Double Recursive, Tree]
       
 
-count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
+count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
 
 #### DFS
 - 对所给的input sum 做减法, 知道 sum 达到一个目标值截止

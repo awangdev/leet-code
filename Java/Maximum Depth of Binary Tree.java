@@ -10,12 +10,16 @@ tags: DFS, Tree
 - 维持一个最大值: Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 - 注意check root == null
 
+#### Note
+- BFS is doable as well, but a bit more code to write: tracks largest level we reach
+
 ```
 /*
 71% Accepted
 Given a binary tree, find its maximum depth.
 
-The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+The maximum depth is the number of nodes along the longest path 
+from the root node down to the farthest leaf node.
 
 Example
 Given a binary tree as follow:

@@ -2,7 +2,7 @@
  
  
 ## backtracking (1)
-**0. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Review      Tags: [DFS, backtracking]
+**0. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [DFS, DP, backtracking]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -15,8 +15,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 - curr level: 把"++" 改成 "--"; backtrack的时候, 改回 '--'
 - 换成boolean[] 比 string/stringBuilder要快很多, 因为不需要重新生成string.
 - ++ 可以走 (n - 1)个位置: 
-- T(N) = T(1) + T(2) + T(3) + ... + T(N-2) + T(N - 1)
-- => T(N) = 2T(N-1) = 2 * 2 * T(N - 2) = ... = (2^n)T(1) = O(2 ^ n)
+- T(N) = (N - 2) * T(N - 2) = (N - 4) * (N - 2) * T(N - 4) ... = O(N!)
 
 ##### iterate based on "++"
 - 做一个String s的 replica: string or stringBuilder
@@ -34,6 +33,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 #### O(N^2) 的 DP
 - 需要Game Theory的功底, Nim game. https://www.jiuzhang.com/qa/941/
 - http://www.1point3acres.com/bbs/thread-137953-1-1.html
+- TODO: https://leetcode.com/problems/flip-game-ii/discuss/73954/Theory-matters-from-Backtracking(128ms)-to-DP-(0ms)
 
 
 

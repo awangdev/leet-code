@@ -52,7 +52,7 @@ public class Solution {
         if (root == null) {
             return;
         }
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while(!queue.isEmpty()) {
             TreeNode node = queue.poll();

@@ -1,6 +1,6 @@
-R
-1524464833
-tags: DFS, backtracking
+M
+1528875498
+tags: DFS, backtracking, DP
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
 
@@ -12,8 +12,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 - curr level: 把"++" 改成 "--"; backtrack的时候, 改回 '--'
 - 换成boolean[] 比 string/stringBuilder要快很多, 因为不需要重新生成string.
 - ++ 可以走 (n - 1)个位置: 
-- T(N) = T(1) + T(2) + T(3) + ... + T(N-2) + T(N - 1)
-- => T(N) = 2T(N-1) = 2 * 2 * T(N - 2) = ... = (2^n)T(1) = O(2 ^ n)
+- T(N) = (N - 2) * T(N - 2) = (N - 4) * (N - 2) * T(N - 4) ... = O(N!)
 
 ##### iterate based on "++"
 - 做一个String s的 replica: string or stringBuilder
@@ -31,6 +30,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 #### O(N^2) 的 DP
 - 需要Game Theory的功底, Nim game. https://www.jiuzhang.com/qa/941/
 - http://www.1point3acres.com/bbs/thread-137953-1-1.html
+- TODO: https://leetcode.com/problems/flip-game-ii/discuss/73954/Theory-matters-from-Backtracking(128ms)-to-DP-(0ms)
 
 ```
 /*
@@ -51,35 +51,35 @@ Derive your algorithm's runtime complexity.
 Tags: Backtracking
 Similar Problems: (E) Nim Game, (E) Flip Game
 */
-
+// DFS, over 65%
 public class Solution {
     public boolean canWin(String s) {
         if (s == null || s.length() < 2) {
             return false;
         }
         boolean[] sign = new boolean[s.length()];
-        for (int i = 0; i < sign.length; i++) {
-            sign[i] = s.charAt(i) == '+';
-        }
+        for (int i = 0; i < sign.length; i++) sign[i] = s.charAt(i) == '+';
         return dfs(sign);
     }
 
     public boolean dfs(boolean[] sign) {
         for (int i = 0; i < sign.length - 1; i++) {
             if (sign[i] && sign[i + 1]) {
-                sign[i] = false;
-                sign[i + 1] = false;
+                setSign(sign, i, false);
                 // When opponent is possible to lose, return true for curr player
                 if (!dfs(sign)) {
-                    sign[i] = true;
-                    sign[i + 1] = true;
+                    setSign(sign, i, true);
                     return true;
                 }
-                sign[i] = true;
-                sign[i + 1] = true;
+                setSign(sign, i, true);
             }
         }
         return false;
+    }
+
+    private void setSign(boolean[] sign, int i, boolean value) {
+        sign[i] = value;
+        sign[i + 1] = value;
     }
 }
 
@@ -88,7 +88,6 @@ public class Solution {
 /*
 Thoughts:
 DFS, search by replace '++' with "--" at each possible spot.
-
 */
 
 class Solution {
@@ -117,8 +116,10 @@ class Solution {
 
 
 /*
+    SLOW
     Make sure to use a new string, and do not alter the original input s 
     when calling recursively on canWin.
+    Much slower, since it's creating string in every dfs
 */
 public class Solution {
   public static boolean canWin(String s) {
