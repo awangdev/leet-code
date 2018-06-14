@@ -776,7 +776,10 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 #### DFS
 - Use Map<Level, Integer> 来存每一个level的结果
-- dfs(node.right), 然后 dfs(node.left)
+- dfs function 里, 如果 input depth 不存在, 就add to map.
+- dfs function 里面先: dfs(node.right), 然后 dfs(node.left)
+- 由于always depth search on right side, 所以map会被right branch populate; 然后才是 leftChild.right
+
 
 
 
@@ -813,10 +816,23 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**40. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+**40. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
       
 
-#### DFS, Recursive
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
 - serilize: divide and conquer, pre-order traversal
 - deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
 - 一直dfs找left child, 接着right child until leaf is found.

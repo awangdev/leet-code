@@ -17,6 +17,8 @@ tags: Array, DFS, Backtracking, Combination
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
+- O(m!)
 
 
 ```

@@ -3616,7 +3616,10 @@ is completely filled, and all nodes are as far left as possible
 
 #### DFS
 - Use Map<Level, Integer> 来存每一个level的结果
-- dfs(node.right), 然后 dfs(node.left)
+- dfs function 里, 如果 input depth 不存在, 就add to map.
+- dfs function 里面先: dfs(node.right), 然后 dfs(node.left)
+- 由于always depth search on right side, 所以map会被right branch populate; 然后才是 leftChild.right
+
 
 
 
@@ -3652,7 +3655,7 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
@@ -3673,10 +3676,23 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**22. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+**22. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
       
 
-#### DFS, Recursive
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
 - serilize: divide and conquer, pre-order traversal
 - deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
 - 一直dfs找left child, 接着right child until leaf is found.
@@ -4248,10 +4264,23 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**13. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+**13. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
       
 
-#### DFS, Recursive
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
 - serilize: divide and conquer, pre-order traversal
 - deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
 - 一直dfs找left child, 接着right child until leaf is found.
@@ -5376,8 +5405,11 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 #### DFS, Backtracking
 - 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
+- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
+- Assume d = average depth to find all solutions
+- time: O(m^d)
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -5409,6 +5441,8 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
+- O(m!)
 
 
 
@@ -5429,6 +5463,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 
 
 
@@ -5515,7 +5550,10 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 #### DFS
 - Use Map<Level, Integer> 来存每一个level的结果
-- dfs(node.right), 然后 dfs(node.left)
+- dfs function 里, 如果 input depth 不存在, 就add to map.
+- dfs function 里面先: dfs(node.right), 然后 dfs(node.left)
+- 由于always depth search on right side, 所以map会被right branch populate; 然后才是 leftChild.right
+
 
 
 
@@ -5582,7 +5620,7 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
@@ -5603,10 +5641,23 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**54. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+**54. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
       
 
-#### DFS, Recursive
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
 - serilize: divide and conquer, pre-order traversal
 - deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
 - 一直dfs找left child, 接着right child until leaf is found.
@@ -7330,8 +7381,11 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 #### DFS, Backtracking
 - 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
+- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
+- Assume d = average depth to find all solutions
+- time: O(m^d)
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -7363,6 +7417,8 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
+- O(m!)
 
 
 
@@ -7383,6 +7439,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 
 
 
@@ -7681,8 +7738,11 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 #### DFS, Backtracking
 - 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
+- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
+- Assume d = average depth to find all solutions
+- time: O(m^d)
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -7714,6 +7774,8 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
+- O(m!)
 
 
 
@@ -7734,6 +7796,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 
 
 
@@ -8574,7 +8637,10 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 #### DFS
 - Use Map<Level, Integer> 来存每一个level的结果
-- dfs(node.right), 然后 dfs(node.left)
+- dfs function 里, 如果 input depth 不存在, 就add to map.
+- dfs function 里面先: dfs(node.right), 然后 dfs(node.left)
+- 由于always depth search on right side, 所以map会被right branch populate; 然后才是 leftChild.right
+
 
 
 
@@ -8611,10 +8677,23 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**40. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+**40. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
       
 
-#### DFS, Recursive
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
 - serilize: divide and conquer, pre-order traversal
 - deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
 - 一直dfs找left child, 接着right child until leaf is found.
@@ -11845,7 +11924,7 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
@@ -12125,7 +12204,7 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
@@ -13011,14 +13090,15 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 升序array, 找2SUM.
 
-#### 方法1:
+#### Two pointers
 - 排序好的array. Two pointer移动start和end，核查sum.
 - 注意sum用long.
 - O(n) time
 
-#### 方法2: Binary Search, 因为已经排好序了啊
+#### Binary Search, 因为已经排好序了啊
 - 定住一个valueA, 然后在剩下的里面 binary serach 找 (target - valueB)
-- O(nLogN), 就不写了
+- for loop O(n), binary search O(logn)
+- overall time: O(nLogN), 就不写了
 
 
 
@@ -13981,7 +14061,7 @@ count 一个 32-bit number binary format 里面有多少1
  
  
  
-## Divide and Conquer (30)
+## Divide and Conquer (31)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -14338,7 +14418,38 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**14. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+**14. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
+      
+
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
+- serilize: divide and conquer, pre-order traversal
+- deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
+- 一直dfs找left child, 接着right child until leaf is found.
+- 用一个StringBuffer来hold string, 因为string 是primitive, 我们这里需要pass reference
+
+#### BFS, Non-recursive
+- using queue. 想法直观。level-order traversal. save到一个string里面就好。
+- 遇到null child, 不是直接忽略, 而是assign一个Integer.MIN_VALUE, 然后 mark as '#'
+- BFS需要track queue size, 每一次只process特定数量的nodes
+
+
+
+---
+
+**15. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
       
 
 给一个数字n, 找到以(1...n)为node的所有unique BST.
@@ -14354,7 +14465,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**15. [Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)**      Level: Medium      Tags: [Binary Tree, Divide and Conquer, Segment Tree]
+**16. [Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)**      Level: Medium      Tags: [Binary Tree, Divide and Conquer, Segment Tree]
       
 
 给一个区间[startIndex, endIndex], 建造segment tree structure, return root node.
@@ -14368,7 +14479,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**16. [Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)**      Level: Medium      Tags: [Binary Tree, Divide and Conquer, Segment Tree]
+**17. [Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)**      Level: Medium      Tags: [Binary Tree, Divide and Conquer, Segment Tree]
       
 
 给一个array, 建造segment tree structure, 
@@ -14390,7 +14501,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**17. [Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+**18. [Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
       
 
 给了segment Tree, node里面有Max value, 找[start,end]里面的max
@@ -14405,7 +14516,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**18. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+**19. [Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
       
 
 给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
@@ -14419,7 +14530,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**19. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
+**20. [Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)**      Level: Medium      Tags: [Binary Tree, DFS, Divide and Conquer, Segment Tree]
       
 
 #### Segment Tree
@@ -14432,7 +14543,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**20. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+**21. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
       
 
 给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
@@ -14454,7 +14565,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**21. [Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)**      Level: Medium      Tags: [DFS, Divide and Conquer]
+**22. [Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)**      Level: Medium      Tags: [DFS, Divide and Conquer]
       
 
 如题: Calculate the a^n % b where a, b and n are all 32bit integers.
@@ -14470,7 +14581,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**22. [Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer, Segment Tree]
+**23. [Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer, Segment Tree]
       
 
 给一串数字 int[], 然后一个query Interval[], 每个interval是 [start, end], 找query 区间里的最小值.
@@ -14483,7 +14594,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**23. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**24. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 #### Priorityqueue
@@ -14513,7 +14624,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**24. [Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer]
+**25. [Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer]
       
 
 给matrix, 每一行sorted, 每一列从上往下sorted, 找target是否存在
@@ -14533,7 +14644,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**25. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
+**26. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
       
 
 #### Merge sort
@@ -14551,7 +14662,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**26. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**27. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -14576,7 +14687,7 @@ TODO:
 
 ---
 
-**27. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+**28. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
       
 
 给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
@@ -14603,7 +14714,7 @@ output 所有 expression
 
 ---
 
-**28. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
+**29. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
       
 
 TODO: Write the code + merge function
@@ -14642,7 +14753,7 @@ TODO: Write the code + merge function
 
 ---
 
-**29. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
+**30. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
       
 
 #### DFS, Divide and Conquer
@@ -16095,14 +16206,15 @@ binary search 公式
 
 升序array, 找2SUM.
 
-#### 方法1:
+#### Two pointers
 - 排序好的array. Two pointer移动start和end，核查sum.
 - 注意sum用long.
 - O(n) time
 
-#### 方法2: Binary Search, 因为已经排好序了啊
+#### Binary Search, 因为已经排好序了啊
 - 定住一个valueA, 然后在剩下的里面 binary serach 找 (target - valueB)
-- O(nLogN), 就不写了
+- for loop O(n), binary search O(logn)
+- overall time: O(nLogN), 就不写了
 
 
 
@@ -16876,14 +16988,15 @@ O(n)
 
 升序array, 找2SUM.
 
-#### 方法1:
+#### Two pointers
 - 排序好的array. Two pointer移动start和end，核查sum.
 - 注意sum用long.
 - O(n) time
 
-#### 方法2: Binary Search, 因为已经排好序了啊
+#### Binary Search, 因为已经排好序了啊
 - 定住一个valueA, 然后在剩下的里面 binary serach 找 (target - valueB)
-- O(nLogN), 就不写了
+- for loop O(n), binary search O(logn)
+- overall time: O(nLogN), 就不写了
 
 
 
@@ -18019,8 +18132,11 @@ return unique item 的长度.
 
 #### DFS, Backtracking
 - 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
+- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
+- Assume d = average depth to find all solutions
+- time: O(m^d)
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -18052,6 +18168,8 @@ return unique item 的长度.
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
+- O(m!)
 
 
 
@@ -18072,6 +18190,7 @@ return unique item 的长度.
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 
 
 

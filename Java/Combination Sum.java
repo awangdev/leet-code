@@ -11,8 +11,11 @@ tags: Array, DFS, Backtracking, Combination
 
 #### DFS, Backtracking
 - 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
+- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
+- Assume d = average depth to find all solutions
+- time: O(m^d)
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择

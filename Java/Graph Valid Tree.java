@@ -7,7 +7,7 @@ tags: DFS, BFS, Union Find, Graph
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
@@ -40,6 +40,8 @@ Note: you can assume that no duplicate edges will appear in edges. Since all edg
 
 
  */
+
+
 /*
 Thoughts:
 Tree should not have cycle, which means adding each edge should connect a new node and that node should not be in the tree yet.
@@ -47,7 +49,45 @@ If found cycle, return false.
 
 Note: need to count # of unions after merging. Count should be 1 for a tree.
 */
+// 简化版 unionfind
+class Solution {
+    int[] father;
+    int count;
+    public boolean validTree(int n, int[][] edges) {
+        if (n <= 0) {// No node, false
+            return false;
+        }
 
+        // init union find data structure
+        father = new int[n];
+        count = n;
+        for (int i = 0; i < n; i++) father[i] = i;
+        // perform union find
+        for (int i = 0; i < edges.length; i++) {
+            int x = edges[i][0];
+            int y = edges[i][1];
+            if (find(x) == find(y)) return false;
+            union(x, y);
+        }
+        return count == 1; // no other isolated sub-graph
+    }
+    
+    private void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX != rootY) {
+            father[rootX] = rootY;
+            count--;
+        }
+    }
+
+    private int find(int x) {
+        if (father[x] == x) return x;
+        return father[x] = find(father[x]);
+    }
+}
+
+// Full-length union-find
 class Solution {
     public boolean validTree(int n, int[][] edges) {
         // No node, false

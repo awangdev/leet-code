@@ -197,7 +197,7 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.

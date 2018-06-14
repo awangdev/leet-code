@@ -176,14 +176,15 @@ O(n)
 
 升序array, 找2SUM.
 
-#### 方法1:
+#### Two pointers
 - 排序好的array. Two pointer移动start和end，核查sum.
 - 注意sum用long.
 - O(n) time
 
-#### 方法2: Binary Search, 因为已经排好序了啊
+#### Binary Search, 因为已经排好序了啊
 - 定住一个valueA, 然后在剩下的里面 binary serach 找 (target - valueB)
-- O(nLogN), 就不写了
+- for loop O(n), binary search O(logn)
+- overall time: O(nLogN), 就不写了
 
 
 
@@ -1319,8 +1320,11 @@ return unique item 的长度.
 
 #### DFS, Backtracking
 - 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
+- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
+- Assume d = average depth to find all solutions
+- time: O(m^d)
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -1352,6 +1356,8 @@ return unique item 的长度.
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
+- O(m!)
 
 
 
@@ -1372,6 +1378,7 @@ return unique item 的长度.
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 
 
 

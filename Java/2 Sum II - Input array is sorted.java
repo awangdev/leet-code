@@ -4,14 +4,15 @@ tags: Array, Two Pointers, Binary Search
 
 升序array, 找2SUM.
 
-#### 方法1:
+#### Two pointers
 - 排序好的array. Two pointer移动start和end，核查sum.
 - 注意sum用long.
 - O(n) time
 
-#### 方法2: Binary Search, 因为已经排好序了啊
+#### Binary Search, 因为已经排好序了啊
 - 定住一个valueA, 然后在剩下的里面 binary serach 找 (target - valueB)
-- O(nLogN), 就不写了
+- for loop O(n), binary search O(logn)
+- overall time: O(nLogN), 就不写了
 
 ```
 /*

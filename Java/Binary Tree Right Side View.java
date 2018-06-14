@@ -10,7 +10,10 @@ tags: Tree, DFS, BFS
 
 #### DFS
 - Use Map<Level, Integer> 来存每一个level的结果
-- dfs(node.right), 然后 dfs(node.left)
+- dfs function 里, 如果 input depth 不存在, 就add to map.
+- dfs function 里面先: dfs(node.right), 然后 dfs(node.left)
+- 由于always depth search on right side, 所以map会被right branch populate; 然后才是 leftChild.right
+
 
 ```
 /*

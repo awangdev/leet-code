@@ -13,6 +13,7 @@ tags: Array, DFS, Backtracking, Combination
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 
 ```
 /*

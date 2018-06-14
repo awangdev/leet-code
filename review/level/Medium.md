@@ -513,14 +513,15 @@ O(n) space, O(nLog(n)) time, because of sorting.
 
 升序array, 找2SUM.
 
-#### 方法1:
+#### Two pointers
 - 排序好的array. Two pointer移动start和end，核查sum.
 - 注意sum用long.
 - O(n) time
 
-#### 方法2: Binary Search, 因为已经排好序了啊
+#### Binary Search, 因为已经排好序了啊
 - 定住一个valueA, 然后在剩下的里面 binary serach 找 (target - valueB)
-- O(nLogN), 就不写了
+- for loop O(n), binary search O(logn)
+- overall time: O(nLogN), 就不写了
 
 
 
@@ -2823,8 +2824,11 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 #### DFS, Backtracking
 - 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
+- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
+- Assume d = average depth to find all solutions
+- time: O(m^d)
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -2856,6 +2860,8 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
+- O(m!)
 
 
 
@@ -2876,6 +2882,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 
 
 
@@ -2990,7 +2997,10 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 #### DFS
 - Use Map<Level, Integer> 来存每一个level的结果
-- dfs(node.right), 然后 dfs(node.left)
+- dfs function 里, 如果 input depth 不存在, 就add to map.
+- dfs function 里面先: dfs(node.right), 然后 dfs(node.left)
+- 由于always depth search on right side, 所以map会被right branch populate; 然后才是 leftChild.right
+
 
 
 
@@ -3071,7 +3081,7 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.

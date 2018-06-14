@@ -265,6 +265,13 @@ Table of Contents
 - 第k小的元素，Heap用来维护当前候选集合
 - 如果给出的数组没有排序, 先排序, 然后用heap. 
 
+## Example
+- Given n items, find first k smallest items (`k closest point to the origin`):
+- you would think about putting all n items into a min-heap(priorityQueue), and output top k by polling. That will be O(nlogn)
+- Could do better: 1. use max-heap to store first k items; 2. if any value less than max, replace max with new value.
+- Result is: always keep the smaller items in the max-heap, and replace the head/max.
+- therefore, building the queue is like O(nlogk), saved space and time
+
 
 # Stack
 
@@ -1101,7 +1108,9 @@ for (len = ..; len <= n; len++) {
 # Search
 
 ## Breadth-first Search
-Track queue size, use the queue as in rotation
+- Track queue size, use the queue as in rotation
+- When use BFS or DFS? In the background, DFS is built over stack memory (for each function call), which is limited (10k iterations), if space complexity is too high, then it's not sufficient.
+- BFS is iterative, so all the space used will be in heap memory: as much memory you can add
 
 ## Depth-first Search
 - backtracking: do not repeatly visit a node

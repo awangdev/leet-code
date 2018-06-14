@@ -495,7 +495,10 @@ is completely filled, and all nodes are as far left as possible
 
 #### DFS
 - Use Map<Level, Integer> 来存每一个level的结果
-- dfs(node.right), 然后 dfs(node.left)
+- dfs function 里, 如果 input depth 不存在, 就add to map.
+- dfs function 里面先: dfs(node.right), 然后 dfs(node.left)
+- 由于always depth search on right side, 所以map会被right branch populate; 然后才是 leftChild.right
+
 
 
 
@@ -531,7 +534,7 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size
+- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
 - 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
@@ -552,10 +555,23 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**22. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Tree]
+**22. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
       
 
-#### DFS, Recursive
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
 - serilize: divide and conquer, pre-order traversal
 - deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
 - 一直dfs找left child, 接着right child until leaf is found.

@@ -1,8 +1,21 @@
 H
 1527781232
-tags: Tree, Design, DFS, BFS
+tags: Tree, Design, DFS, BFS, Divide and Conquer
 
-#### DFS, Recursive
+#### DFS, Divide and Conquer
+##### Serilize
+- Divide and conquer: Pre-order traversal to link all nodes together
+- build the string data: use '#' to represent null child. 
+- the preorder string, can be parsed apart by `split(',')`
+
+##### Deserialize
+- Use a list (here we use `Deque` for the ease of get/remove in 1 function: remove()) 
+- to take all parts of the parsed sring data: dfs on the Deque
+- first node from the list is always the head
+- '#' will be a null child: this should break dfs
+- Deque is a global variable, so dfs(right child) will happen after dfs(left child) completes
+
+#### DFS, Recursive [previous note]
 - serilize: divide and conquer, pre-order traversal
 - deserialize: 稍微复杂, 用dfs. 每次要truncate input string: 
 - 一直dfs找left child, 接着right child until leaf is found.
@@ -52,6 +65,41 @@ Binary Tree
  * }
  */
 // DFS, Recursive
+public class Codec {
+    private final String DELI = ",";
+    private final String NULL = "#";
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuffer sb = new StringBuffer();
+        buildString(root, sb);
+        return sb.toString();
+    }
+    private void buildString(TreeNode node, StringBuffer sb) {
+        if (node == null) {
+            sb.append(NULL).append(DELI);
+        } else {
+            sb.append(node.val).append(DELI);
+            buildString(node.left, sb);
+            buildString(node.right, sb);
+        }
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        Deque<String> nodes = new LinkedList<>();
+        nodes.addAll(Arrays.asList(data.split(DELI)));
+        return buildTree(nodes);
+    }
+
+    private TreeNode buildTree(Deque<String> nodes) {
+        String val = nodes.remove();
+        if (val.equals(NULL)) return null;
+        TreeNode node = new TreeNode(Integer.parseInt(val));
+        node.left = buildTree(nodes);
+        node.right = buildTree(nodes);
+        return node;
+    }
+}
 
 public class Codec {
     // Encodes a tree to a single string.
