@@ -10,7 +10,7 @@ tags: DP, Binary Search, Partition DP
 - 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成, n本书, 让k个人来copy, 也就是分割成k段.
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
-- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
+- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果: `Math.max(dp[j][k - 1], sum)`, where j is the cut.
 - dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
 - Time: O(kn^2), space O(nk)
 
