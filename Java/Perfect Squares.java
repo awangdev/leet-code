@@ -21,6 +21,11 @@ tags: Math, DP, BFS, Partition DP
 - 最后发现它的两边是 A*n*sqrt(n) <= actual time complexity <= B*n*sqrt(n)
 - 那么就是O(n*sqrt(n))啦
 
+#### BFS
+- minus all possible (i*i) and calculate the remain
+- if the remain is new, add to queue (use a hashset to mark calculated item)
+- find shortest path / lowest level number
+
 #### Previous Notes
 - 一开始没clue.看了一下提示
 - １.　第一步想到了，从数学角度，可能是从最大的perfect square number开始算起。
@@ -82,6 +87,46 @@ class Solution {
     }
 }
 
+/*
+BFS: 
+- count level, add input number n into queue
+- consume num from queue, try out all integers [1, num)
+- add remains (num - x^2) back to queue
+- if any remain == 0, that's end of search, return level + 1
+*/
+class Solution {
+    public int numSquares(int n) {
+        // check input
+        if (n <= 0) {
+            return 0;
+        }
+        // build queue, add n
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> set = new HashSet<>(); // save remain, skip the ones already added
+        queue.offer(n);
+        // consume queue, count level
+        int level = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int x = 0; x < size; x++) {
+                int num = queue.poll();
+                for (int i = 1; i <= num; i++) {
+                    int remain = num - i * i;
+                    if (remain == 0) {
+                        return level;
+                    } else if (remain > 0 && !set.contains(remain)) {
+                        queue.offer(remain);
+                        set.add(remain);
+                    } else if (remain < 0) {
+                        break;
+                    }
+                }
+            }
+            level++;
+        }
+        return level;
+    }
+}
 /*
 Previous notes
 Thoughts:
