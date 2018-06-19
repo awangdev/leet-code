@@ -1,16 +1,15 @@
 M
 1520573473
-tags: Array, Backtracking
+tags: Array, Backtracking, DFS
 
-Backtracking:
-找到开头的字母, 然后recursively DFS 去把word串到底:
-每到一个字母, 朝四个方向走, 之中一个true就可以.
+#### DFS, Backtracking:
+- 找到开头的字母, 然后recursively DFS 去把word串到底:
+- 每到一个字母, 朝四个方向走, 之中一个true就可以.
+- Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
 
-Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
-
-Backtracking方法2:    
-用一个boolean visited[][]
-
+#### Note: other ways of marking visited:
+- 用一个boolean visited[][]
+- Use hash map, key = x@y
 
 
 ```

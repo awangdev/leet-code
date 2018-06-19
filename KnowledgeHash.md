@@ -467,6 +467,7 @@ The expression tree will be like
 - Prefix Tree
 - n-ary tree
 - Can tell if string is a valid prefix in O(K) time, k = str.length
+- example: Word Search II
 
 ## 用法/考点
 - Autocomplete

@@ -1,16 +1,22 @@
 E
+1528956495
+tags: DFS, Array
 
-虽然Easy, 但用到DFS最基本的想法.
-1. dive deep
-2. mark VISITED
-3. sum it up
+#### DFS
+- 虽然Easy, 但用到DFS最基本的想法.
+- 1. dive deep
+- 2. mark VISITED
+- 3. sum it up
+- Time: worst O(mn), traverse all possible nodes
 
-更要注意, 要从符合条件value==1的地方开始dfs.
-对于什么island都没有的情况，area应该位0， 而不是Integer.MIN_VALUE, 问清楚考官那小伙, 别写顺手。
+- 更要注意, 要从符合条件value==1的地方开始dfs.
+- 对于什么island都没有的情况，area应该位0， 而不是Integer.MIN_VALUE, 问清楚考官那小伙, 别写顺手。
 
 ```
 /*
-Given a non-empty 2D array grid of 0's and 1's, an island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+Given a non-empty 2D array grid of 0's and 1's, an island is a group of 1's 
+(representing land) connected 4-directionally (horizontal or vertical.) 
+You may assume all four edges of the grid are surrounded by water.
 
 Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)
 
@@ -42,9 +48,9 @@ Note: when island is found and counted into area, it needs to be flipped to othe
 */
 
 class Solution {
-    private static int[] DX = {0, 1, 0, -1};
-    private static int[] DY = {1, 0, -1, 0};
-    private static int VISITED = -1;
+    private int[] dx = {0, 1, 0, -1};
+    private int[] dy = {1, 0, -1, 0};
+    private int VISITED = -1;
 
     public int maxAreaOfIsland(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0].length == 0) {
@@ -62,15 +68,19 @@ class Solution {
     }
 
     private int dfs(int[][] grid, int x, int y) {
-        if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 1) {
+        int currentLevelSum = 0;
+        if (validate(grid, x, y)) {
             grid[x][y] = VISITED;
-            int currentLevelSum = 1;
-            for (int i = 0; i < DX.length; i++) {
-                currentLevelSum += dfs(grid, x + DX[i], y + DY[i]);
+            currentLevelSum++;
+            for (int i = 0; i < dx.length; i++) {
+                currentLevelSum += dfs(grid, x + dx[i], y + dy[i]);
             }
-            return currentLevelSum;
         }
-        return 0;
+        return currentLevelSum;
+    }
+
+    private boolean validate(int[][] grid, int x, int y) {
+        return x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == 1;
     }
 }
 
