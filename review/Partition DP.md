@@ -24,6 +24,11 @@
 - 最后发现它的两边是 A*n*sqrt(n) <= actual time complexity <= B*n*sqrt(n)
 - 那么就是O(n*sqrt(n))啦
 
+#### BFS
+- minus all possible (i*i) and calculate the remain
+- if the remain is new, add to queue (use a hashset to mark calculated item)
+- find shortest path / lowest level number
+
 #### Previous Notes
 - 一开始没clue.看了一下提示
 - １.　第一步想到了，从数学角度，可能是从最大的perfect square number开始算起。
@@ -48,7 +53,7 @@
 - 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成, n本书, 让k个人来copy, 也就是分割成k段.
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
 - 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
-- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果
+- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果: `Math.max(dp[j][k - 1], sum)`, where j is the cut.
 - dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
 - Time: O(kn^2), space O(nk)
 
@@ -87,11 +92,13 @@
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
 
 #### Partition DP
+- 加法原理
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
 - 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
+- Space, Time O(n)
 
 
 

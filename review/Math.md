@@ -1,7 +1,7 @@
  
  
  
-## Math (27)
+## Math (28)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -143,6 +143,11 @@ Power of 3:  3 ^ x == n ?
 - 考虑sqrt(1) + sqrt(2) + ....sqrt(n):找这个的upper bound and lower bound.
 - 最后发现它的两边是 A*n*sqrt(n) <= actual time complexity <= B*n*sqrt(n)
 - 那么就是O(n*sqrt(n))啦
+
+#### BFS
+- minus all possible (i*i) and calculate the remain
+- if the remain is new, add to queue (use a hashset to mark calculated item)
+- find shortest path / lowest level number
 
 #### Previous Notes
 - 一开始没clue.看了一下提示
@@ -448,6 +453,26 @@ TODO:
 - 难的case先不handle.到底之后来一次overall scan.
 - every level have 5 choices of digital pairs to add on sides. Need to do for n-2 times. 
 - Time complexity: O(5^n)
+
+
+
+---
+
+**27. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+      
+
+给list of (x,y) coordinates. Determine  # of points on the same line
+
+#### Observation
+- If given n points, we can calculate all possible slopes. O(n^2) times
+- For the two dots that generates the same slope, these dots could be on **parallel** slopes
+- figure out how to prune the parallel dots
+
+#### Trick: prune parallel dots using greatest common divider
+- Devide the x and y by their greatest common divider, such that x and y can be reduced to minimum value
+- All other x and y can be reduced to such condition as well
+- track the final reduced (x,y) in a map: they are the key to the count
+- No need to use Map<Integer, Map<Integer, Integer>> to perform 2 level mapping; just `map<String, Integer>`, where the key is "x@y"
 
 
 

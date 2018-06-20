@@ -654,16 +654,17 @@ Previous notes:
 **44. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium      Tags: [Hash Table]
       
 
-方法1：  
-   1. 利用2Sum的原理，把4Sum分为连个2Sum。左一个pair,右一个pair，每个pair里面放2个数字。   
-   2. 以一个点，i，作为分界口，也要列举出所有i之前的pair,作为基础。   
-   3. 再尝试从所有i+1后面,找合适的2nd pair。   
- 
-   可以用HashSet<List>, 可以直接比较list里面每一个元素, 保证set不重复.
-   Previous Notes: 在造class Pair时候，要做@override的function: hashCode(), equals(Object d). 平时不太想得起来用。
-   参见 http://lifexplorer.me/leetcode-3sum-4sum-and-k-sum/    
+#### Based on 2sum
+- 1. 利用2Sum的原理，把4Sum分为连个2Sum。左一个pair,右一个pair，每个pair里面放2个数字。   
+- 2. 以一个点，i，作为分界口，也要列举出所有i之前的pair,作为基础。   
+- 3. 再尝试从所有i+1后面,找合适的2nd pair。   
+- Time: O(n^2 * x), where x = # of candidates, still slow
+- 可以用HashSet<List>, 可以直接比较list里面每一个元素, 保证set不重复.
+- Previous Notes: 在造class Pair时候，要做@override的function: hashCode(), equals(Object d). 平时不太想得起来用。
+- 参见 http://lifexplorer.me/leetcode-3sum-4sum-and-k-sum/    
 
-方法2： 3Sum外面再加一层. 参考3Sum. 时间O(n^3)。 但此方法在k-sum时候，无疑过于费时间. O(n^k)
+#### Based on 3Sum
+- 3Sum外面再加一层. 参考3Sum. 时间O(n^3)。 但此方法在k-sum时候，无疑过于费时间. O(n^k)
 
 
 
@@ -813,6 +814,11 @@ mask = mask | (1 << i); // prefix mask
 - 考虑sqrt(1) + sqrt(2) + ....sqrt(n):找这个的upper bound and lower bound.
 - 最后发现它的两边是 A*n*sqrt(n) <= actual time complexity <= B*n*sqrt(n)
 - 那么就是O(n*sqrt(n))啦
+
+#### BFS
+- minus all possible (i*i) and calculate the remain
+- if the remain is new, add to queue (use a hashset to mark calculated item)
+- find shortest path / lowest level number
 
 #### Previous Notes
 - 一开始没clue.看了一下提示
@@ -1439,18 +1445,17 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**85. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium      Tags: [Array, Backtracking]
+**85. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium      Tags: [Array, Backtracking, DFS]
       
 
-Backtracking:
-找到开头的字母, 然后recursively DFS 去把word串到底:
-每到一个字母, 朝四个方向走, 之中一个true就可以.
+#### DFS, Backtracking:
+- 找到开头的字母, 然后recursively DFS 去把word串到底:
+- 每到一个字母, 朝四个方向走, 之中一个true就可以.
+- Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
 
-Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
-
-Backtracking方法2:    
-用一个boolean visited[][]
-
+#### Note: other ways of marking visited:
+- 用一个boolean visited[][]
+- Use hash map, key = x@y
 
 
 
@@ -1980,11 +1985,13 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
 
 #### Partition DP
+- 加法原理
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
 - 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
+- Space, Time O(n)
 
 
 

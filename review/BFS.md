@@ -52,6 +52,11 @@
 - 最后发现它的两边是 A*n*sqrt(n) <= actual time complexity <= B*n*sqrt(n)
 - 那么就是O(n*sqrt(n))啦
 
+#### BFS
+- minus all possible (i*i) and calculate the remain
+- if the remain is new, add to queue (use a hashset to mark calculated item)
+- find shortest path / lowest level number
+
 #### Previous Notes
 - 一开始没clue.看了一下提示
 - １.　第一步想到了，从数学角度，可能是从最大的perfect square number开始算起。
