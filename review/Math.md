@@ -1,7 +1,7 @@
  
  
  
-## Math (28)
+## Math (29)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -473,6 +473,18 @@ TODO:
 - All other x and y can be reduced to such condition as well
 - track the final reduced (x,y) in a map: they are the key to the count
 - No need to use Map<Integer, Map<Integer, Integer>> to perform 2 level mapping; just `map<String, Integer>`, where the key is "x@y"
+
+
+
+---
+
+**28. [Number of Digit One.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Digit%20One.java)**      Level: Hard      Tags: [Math]
+      
+
+Pure math problem, not quite representative
+
+Explanation
+https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n)-C++JavaPython
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## String (45)
+## String (46)
 **0. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Review      Tags: [DP, String]
       
 
@@ -729,6 +729,25 @@ output 所有 expression
 - figure out n=1, n=2 => build n=3, and n=4
 - dfs(n-1) return a list of candidates
 - add a pair of `()` to the candidates: either in front, at end, or contain the candidates
+
+
+
+---
+
+**45. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: [Bit Manipulation, String]
+      
+
+#### String
+- 首先要分两半解决，断点是'.': str.split("\\.");
+- Integer那一半好弄，whie loop里: num%2, num/2. 做一个 `parseInteger()` function
+- Decimal那边复杂点. 做一个 `parseDecimal()` function:
+- bit == 1的数学条件: 当下num * 2 >= 1。 更新: num = num * 2 - 1;
+- bit == 0的数学条件: num * 2 < 1. 更新: num = num * 2
+
+#### 注意
+- num是 double, 小数在 `num = num * 2 - 1` 的公式下可能无限循环
+- 因此check: num重复性，以及binary code < 32 bit.
+- 所以题目也才有了32BIT的要求!
 
 
 

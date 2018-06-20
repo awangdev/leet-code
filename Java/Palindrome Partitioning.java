@@ -1,5 +1,5 @@
 M
-1523836015
+1529478652
 tags: DFS, Backtracking
 
 给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
@@ -12,7 +12,7 @@ tags: DFS, Backtracking
 
 #### DFS Top->Bottom
 - 在遍历str的时候，考虑从每个curr spot 到 str 结尾，是能有多少种palindorme?
-- 那就从curr spot当个字符开始算，开始back tracing.
+- 那就从curr spot当个字符开始算，开始backtracking.
 - 如果所选不是palindrome， 那move on.
 - 若所选的确是palindrome,　加到path里面，DFS去下个level，等遍历到了结尾，这就产生了一种分割成palindrome的串。
 - 每次DFS结尾，要把这一层加的所选palindrome删掉，backtracking嘛
@@ -25,7 +25,8 @@ tags: DFS, Backtracking
 
 #### Complexity
 - Overall Space O(n^2): 存 isPlain[][]
-- Time O(n!), 每一层的for loop spawn n * (n - 1) * (n - 2)
+- Time O(2^n), 每一层都在做 pick/not pick index i 的选择, 所以worst case 2^n. 
+- 因为我们的isPalin[][]优化了palindrome的判断O(1), 所以overall Time: O(2^n)
 
 ```
 /*
@@ -64,28 +65,28 @@ class Solution {
         return rst;
     }
     
-    private void dfs(List<List<String>> rst, List<String> list, int x) {
+    private void dfs(List<List<String>> rst, List<String> list, int index) {
         if (x == str.length()) {
             rst.add(new ArrayList<>(list));
             return;
         }
-        for (int i = x + 1; i <= str.length(); i++) {
-            if (isPalin[x][i - 1]) { // 也需要查看自身是不是 palindrome: s.charAt(x). isPalin[i][j] 是 inclusive的
-                list.add(str.substring(x, i));
+        for (int i = index + 1; i <= str.length(); i++) {
+            if (isPalin[index][i - 1]) { // 也需要查看自身是不是 palindrome: s.charAt(x). isPalin[i][j] 是 inclusive的
+                list.add(str.substring(index, i));
                 dfs(rst, list, i);
                 list.remove(list.size() - 1);
             }
         }
     }
-    
+    // Kinda DP, isPalin[i][j] shows palindrome status for s[i,j] inclusivly
     private boolean[][] calcPalin(String s) {
         int n = s.length();
         char[] arr = s.toCharArray();
         boolean[][] isPalin = new boolean[n][n];
-        int mid, i, j;
+        int i, j;
         
-        for (mid = 0; mid < n; mid++) {
-            // odd
+        for (int mid = 0; mid < n; mid++) {
+            // odd: single char in center
             i = j = mid;
             while (i >= 0 && j < n && arr[i] == arr[j]) {
                 isPalin[i][j] = true;
@@ -93,7 +94,7 @@ class Solution {
                 j++;
             }
             
-            // even
+            // even: always even number of palindrome characters
             i = mid;
             j = mid + 1;
             while (i >= 0 && j < n && arr[i] == arr[j]) {

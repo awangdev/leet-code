@@ -1,22 +1,25 @@
 H
+1529478003
+tags: String, Bit Manipulation
 
-首先要分两半解决，断点是'.': str.split("\\.");
+#### String
+- 首先要分两半解决，断点是'.': str.split("\\.");
+- Integer那一半好弄，whie loop里: num%2, num/2. 做一个 `parseInteger()` function
+- Decimal那边复杂点. 做一个 `parseDecimal()` function:
+- bit == 1的数学条件: 当下num * 2 >= 1。 更新: num = num * 2 - 1;
+- bit == 0的数学条件: num * 2 < 1. 更新: num = num * 2
 
-Integer那一半好弄，whie loop里： num%2, num/2。
-
-Decimal那边复杂点.
-   bit == 1的数学条件：当下num * 2 >= 1。 更新: num = num * 2 - 1;
-   bit == 0的数学条件： num * 2 < 1. 更新: num = num * 2
-
-注意：num是 double, 小数在 （num = num * 2 -1）的公式下可能无限循环. 因此check: num重复性，以及binary code < 32 bit.
-
-(所以题目也才有了32BIT的要求！)
+#### 注意
+- num是 double, 小数在 `num = num * 2 - 1` 的公式下可能无限循环
+- 因此check: num重复性，以及binary code < 32 bit.
+- 所以题目也才有了32BIT的要求!
 
 ```
 /*
 Given a (decimal - e.g. 3.72) number that is passed in as a string, 
 return the binary representation that is passed in as a string. 
-If the fractional part of the number can not be represented accurately in binary with at most 32 characters, return ERROR.
+If the fractional part of the number can not be represented 
+accurately in binary with at most 32 characters, return ERROR.
 
 Example
 For n = "3.72", return "ERROR".
@@ -47,6 +50,7 @@ Note2: use a set to prevent infinite loop on float:
 for example: 2x - 1 = x -> x = 1. that will cause infinite loop.
 
 */
+
 public class Solution {
     public String binaryRepresentation(String n) {
         if (n.length() == 0 || n.equals("0")) {
@@ -77,12 +81,12 @@ public class Solution {
             return n;
         }
         int num = Integer.parseInt(n);
-        String rst = "";
+        StringBuffer sb = new StringBuffer();
         while (num != 0) {
-            rst = num % 2 + rst;//mod(2) -> binary representation
+            sb.insert(0, num % 2);//mod(2) -> binary representation
             num = num / 2;//小时候转换二进制也是这样。
         }
-        return rst;
+        return sb.toString();
     }
     // A little bit math, but implemtable.
     public String parseDecimal(String n) {
@@ -92,23 +96,23 @@ public class Solution {
         //A doublem must be able to catch it. If not, that is way bigger than 32 bit.
         double num = Double.parseDouble("0." + n);
         //Check existance
-        HashSet<Double> set = new HashSet<Double>();
-        String rst = "";
+        HashSet<Double> set = new HashSet<>();
+        StringBuffer sb = new StringBuffer();
         while (num > 0) {
-            if (rst.length() > 32 || set.contains(num)) {
+            if (sb.length() > 32 || set.contains(num)) {
                 return "ERROR";
             }
             set.add(num);
             //For decimal: binary code on one spot == 1, means: num * 2 - 1 > 0
             if (num * 2 >= 1) {
-                rst = rst + "1";
+                sb.append("1");
                 num = num * 2 - 1;
             } else {
-                rst = rst + "0";
+                sb.append("0");
                 num = num * 2;
             }
         }
-        return rst;
+        return sb.toString();
     }
 }
 ```
