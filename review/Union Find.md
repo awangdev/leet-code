@@ -208,7 +208,7 @@ count这个graph里面有多少个独立的component.
 - Create adjacent list graph: Map<Integer, List<Integer>>
 - 检查: 
 - 1. 是否有cycle using dfs, check boolean[] visited
-- 2. 是否所有的node全部链接起来: check if any node not visited
+- 2. 是否所有的node全部链接起来: validate if all edge connected: # of visited node should match graph size
 
 #### BFS
 - (还没做, 可以写一写)
