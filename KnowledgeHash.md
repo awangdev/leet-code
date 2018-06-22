@@ -811,6 +811,7 @@ while (!queue.isEmpty()) {
 - Quick Sort. Runtime: O(nlogn) average, O(n^2) worst. Memory: O(nlogn).
 - Heap Sort
 - Radix Sort. Runtime: O(nk)
+- Bucket Sort.
 - Insertion Sort
 - Bubble Sort. Runtime: O(n^2) average/worst. Memory: O(1)
 - Selection Sort. Runtime: O(n^2) average/worst. Memory: O(1)
@@ -868,13 +869,15 @@ private int partition(int[] nums, int low, int high) {
 }
 ```
 
+### Bucket Sort
+- P: 
+
 ## Comparator for Arrays, Collections
 ```
 public int compare(x, y) {
 	return x - y; // or x.compareTo(y)
 }
 ```
-
 
 # DP
 ## 判断

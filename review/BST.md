@@ -1,7 +1,7 @@
  
  
  
-## BST (20)
+## BST (21)
 **0. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, Tree]
       
 
@@ -388,6 +388,29 @@ TODO: Write the code + merge function
 - 从最基本的O(m^2*n^2) 考虑: 遍历 startingRow/startingCol
 - rectangle? layer by layer? 可以想到Presum的思想, 大于需要的sum的时候, 减掉多余的部分
 - 如何找到多余的area? 那么就是search: 把需要search的内容存起来, 可以想到用BST(TreeSet), 或者自己写Binary Search.
+
+
+
+---
+
+**20. [Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)**      Level: Hard      Tags: [BST, DFS, Tree]
+      
+
+BST里面有2个node misplace, 要归为. 要求: O(1) extra space
+
+#### Observation
+- BST inorder traversal should give small -> large sequence
+- misplaced means: a **large**->small item would occur, and later a large>**small** would occur. 
+- The first large && second small item are the 2 candidates.
+
+#### dfs, O(1) extra space
+- traverse, and take note of the candidate
+- at the end, swap value of the 2 candidates
+
+#### O(n) space
+- inorder traversal the nodes and save in array, find the 2 items misplanced and swap them
+- But O(n) space should not be allowed
+
 
 
 

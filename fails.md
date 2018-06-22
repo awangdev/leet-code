@@ -26,3 +26,7 @@
 - P: Expression Add Operators
 - dfs都对, 但是负数的地方, 忘记加符号: be consistent and mindful about negative number
 - dfs(rst, list, s, i + 1, sum - currValue, **`- currValue`**, target);
+
+#### i++, i--, testing
+- code快, 写错++, --
+- testing时候忽略了++,--, 那么其实就没有在真的test.

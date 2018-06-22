@@ -6140,7 +6140,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
  
  
  
-## Hard (71)
+## Hard (72)
 **0. [Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)**      Level: Hard      Tags: []
       
 与Count of Smaller Number非常类似。以实际的value来构成segment tree，leaf上存（count of smaller number）。
@@ -7795,6 +7795,29 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 - num是 double, 小数在 `num = num * 2 - 1` 的公式下可能无限循环
 - 因此check: num重复性，以及binary code < 32 bit.
 - 所以题目也才有了32BIT的要求!
+
+
+
+---
+
+**71. [Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)**      Level: Hard      Tags: [BST, DFS, Tree]
+      
+
+BST里面有2个node misplace, 要归为. 要求: O(1) extra space
+
+#### Observation
+- BST inorder traversal should give small -> large sequence
+- misplaced means: a **large**->small item would occur, and later a large>**small** would occur. 
+- The first large && second small item are the 2 candidates.
+
+#### dfs, O(1) extra space
+- traverse, and take note of the candidate
+- at the end, swap value of the 2 candidates
+
+#### O(n) space
+- inorder traversal the nodes and save in array, find the 2 items misplanced and swap them
+- But O(n) space should not be allowed
+
 
 
 
