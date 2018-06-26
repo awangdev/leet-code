@@ -2163,7 +2163,7 @@ determine if characters are unique in string
  
  
  
-## Medium (205)
+## Medium (206)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -6154,6 +6154,34 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
+**205. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
+      
+
+给一个string, 找到最长的palindrome substring.
+
+Related: Longest Palindromic Subsequence, Palindrome Partioning II
+
+O(n^2) is not too hard to think of. How about O(n)?
+
+#### String, Palindrome definition
+- 从中间劈开, 遍历i: 从n个不同的点劈开: 每次劈开都看是否可以从劈开出作为palindromic的中点延伸
+- palindrome两种情况: odd, even palindrome
+- Worst case: 整个string都是相同字符，time complexity变成： 1 + 2 +３　＋　．．．　＋n = O(n^2)
+
+#### DP: isPalin[][]
+- 穷举double for loop. O(n^2)
+- boolean isPalin[i][j], 每次确认有palindrome就记录下来true / false
+- 穷举的for loop计算顺序: end point j, and stat point i = [0, j]
+- 在计算 isPalin[i][j]的时候, isPalin[i+1][j-1]应该已经计算过了.
+- double for loop: O(n^2)
+
+#### O(n) 
+- TODO
+
+
+
+---
+
 
 
 
@@ -7856,7 +7884,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
  
  
  
-## Review (10)
+## Review (9)
 **0. [Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)**      Level: Review      Tags: [Binary Search, Segment Tree]
       
 
@@ -7936,30 +7964,13 @@ A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[
 
 ---
 
-**3. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Review      Tags: [DP, String]
-      
-
-#### DP 
-- similar to Longest Palindromic Subsequence
-- TODO: 区间型DP; or memoization?
-
-方法1: 从中间劈开. 遍历i，从n个不同的点劈开：每次劈开都看是否可以从劈开出作为palindromic的中点延伸。   
-   Worst case: 整个string都是相同字符，time complexity变成： 1 + 2 +３　＋　．．．　＋n = O(n^2)
-
-方法2: 穷举double for loop. O(n^2)
-
-
-
-
----
-
-**4. [Maximum Subarray III.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20III.java)**      Level: Review      Tags: []
+**3. [Maximum Subarray III.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20III.java)**      Level: Review      Tags: []
       
 
 
 ---
 
-**5. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
+**4. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
       
 
 Binary找sqrt. 基本 mid+1, mid-1 template.
@@ -7969,14 +7980,14 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**6. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
+**5. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
       
 
 
 
 ---
 
-**7. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
+**6. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
@@ -7991,7 +8002,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**8. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
+**7. [Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
       
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
@@ -8018,7 +8029,7 @@ HashHeap?
 
 ---
 
-**9. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+**8. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
       
 
 给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
