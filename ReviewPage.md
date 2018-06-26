@@ -995,11 +995,8 @@ TODO: use prefixSum, could be a 2D array, also could be a customized object
 
 ---
 
-**73. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: []
+**73. [Subarray Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20II.java)**      Level: Hard      Tags: [Array, Binary Search, Two Pointers]
       
-分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum(a ~ b] = 0.    
-
-    这样理解后，用hashMap存每个sum[0~i]的值和index i. 如果有重复，就找到了一组sum为0的数组。
 
 
 
@@ -7988,6 +7985,36 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 - inorder traversal the nodes and save in array, find the 2 items misplanced and swap them
 - But O(n) space should not be allowed
 
+
+
+
+---
+
+**428. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+      
+
+给一串数字, 找其中的一个subarray的 [start, end] index, 条件: subarary sum == 0.
+
+#### Hash Table
+- 分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum[a+1 ~ b] == 0
+- 用hashMap存每个sum[0~i]的值和index i. 如果有重复，就找到了一组sum为0的数组.
+
+
+
+---
+
+**429. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+
+给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
+
+#### PreSum的思想
+- 算出一个右下角点(i,j)到(0,0)的大小: 上一块 + 左一块 + curr node - overlap area
+- preSum[i][j]: sum from (0,0) to (i-1,j-1)
+- same approach as `subarray sum`: use hashmap to store diff->index; if diff re-appears, that means sum of 0 has occurred
+- sequence of calculation: 1. iterate over start row. 2. iterate over end row. 3. iterate over col number (this is where hashmap is stored based on)
+- the iteration over col is like a screening: find previous sum and determine result
+- Note: 其实并没有真的去找 `== 0` 的解答,而是根据特性来判断 `剩下的/后来加上的一定是0`
 
 
 

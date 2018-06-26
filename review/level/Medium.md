@@ -1,7 +1,7 @@
  
  
  
-## Medium (204)
+## Medium (205)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -3970,6 +3970,23 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 #### BFS
 - (还没做, 可以写一写)
 - 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+
+
+---
+
+**204. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+
+给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
+
+#### PreSum的思想
+- 算出一个右下角点(i,j)到(0,0)的大小: 上一块 + 左一块 + curr node - overlap area
+- preSum[i][j]: sum from (0,0) to (i-1,j-1)
+- same approach as `subarray sum`: use hashmap to store diff->index; if diff re-appears, that means sum of 0 has occurred
+- sequence of calculation: 1. iterate over start row. 2. iterate over end row. 3. iterate over col number (this is where hashmap is stored based on)
+- the iteration over col is like a screening: find previous sum and determine result
+- Note: 其实并没有真的去找 `== 0` 的解答,而是根据特性来判断 `剩下的/后来加上的一定是0`
 
 
 

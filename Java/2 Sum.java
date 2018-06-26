@@ -15,6 +15,50 @@ tags: Array, Hash Table
 
 
 ```
+/**
+LeetCode: 0-based answer
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+Example:
+
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+*/
+/*
+Thoughts:
+    Using a HashMap, O(n) space and O(n) time.
+    Thinking process:
+    Push everything into a HashMap.
+    Check if one element exist in the HashMap, if so save it. Meanwhile, save the other one.
+    Trick: after adding into the HashMap, we are looking for the 2nd index first. 
+        Always check (target - current) from the HashMap. 
+        If exist, that means index0 has already been pushed into the HashMap and current value is at index1.
+    (key, value) = (numbers[i], i)
+    Note: return index+1 because this is not 0-based.
+*/
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return null;
+        }
+        int[] result = new int[2];
+        Map<Integer, Integer> recordMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (recordMap.containsKey(target - nums[i])) {
+                result[0] = recordMap.get(target - nums[i]);
+                result[1] = i;
+                return result;
+            } else {
+                recordMap.put(nums[i], i);
+            }
+        }
+        return result;
+    }
+}
 
 /*
 Given an array of integers, find two numbers such that they add up to a specific target number.
@@ -33,43 +77,6 @@ O(n) Space, O(n) Time
 Tags Expand 
 Two Pointers Sort Hash Table Array Airbnb Facebook
 */
-
-/*
-Thoughts:
-    Using a HashMap, O(n) space and O(n) time.
-    Thinking process:
-    Push everything into a HashMap.
-    Check if one element exist in the HashMap, if so save it. Meanwhile, save the other one.
-    Trick: after adding into the HashMap, we are looking for the 2nd index first. 
-        Always check (target - current) from the HashMap. 
-        If exist, that means index0 has already been pushed into the HashMap and current value is at index1.
-    (key, value) = (numbers[i], i)
-    Note: return index+1 because this is not 0-based.
-*/
-class Solution {
-    final static int RESULT_SIZE = 2;
-    final static int RESULT_INDEX1 = 0;
-    final static int RESULT_INDEX2 = 1;
-    public int[] twoSum(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return null;
-        }
-        final int[] result = new int[RESULT_SIZE];
-        final Map<Integer, Integer> recordMap = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (recordMap.containsKey(target - nums[i])) {
-                result[RESULT_INDEX1] = recordMap.get(target - nums[i]);
-                result[RESULT_INDEX2] = i;
-                return result;
-            } else {
-                recordMap.put(nums[i], i);
-            }
-        }
-        return result;
-    }
-}
-
-
 
 //2. O(n) Space O(nlogn) time
 /*

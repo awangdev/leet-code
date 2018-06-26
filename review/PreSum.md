@@ -1,7 +1,7 @@
  
  
  
-## PreSum (4)
+## PreSum (5)
 **0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
@@ -102,6 +102,23 @@ TODO: Write the code + merge function
 
 #### BST
 - TODO?
+
+
+
+---
+
+**4. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+
+给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
+
+#### PreSum的思想
+- 算出一个右下角点(i,j)到(0,0)的大小: 上一块 + 左一块 + curr node - overlap area
+- preSum[i][j]: sum from (0,0) to (i-1,j-1)
+- same approach as `subarray sum`: use hashmap to store diff->index; if diff re-appears, that means sum of 0 has occurred
+- sequence of calculation: 1. iterate over start row. 2. iterate over end row. 3. iterate over col number (this is where hashmap is stored based on)
+- the iteration over col is like a screening: find previous sum and determine result
+- Note: 其实并没有真的去找 `== 0` 的解答,而是根据特性来判断 `剩下的/后来加上的一定是0`
 
 
 

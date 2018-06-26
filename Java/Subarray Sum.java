@@ -1,8 +1,12 @@
 E
+1529941153
+tags: Array, Hash Table
 
-分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum(a ~ b] = 0.    
+给一串数字, 找其中的一个subarray的 [start, end] index, 条件: subarary sum == 0.
 
-    这样理解后，用hashMap存每个sum[0~i]的值和index i. 如果有重复，就找到了一组sum为0的数组。
+#### Hash Table
+- 分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum[a+1 ~ b] == 0
+- 用hashMap存每个sum[0~i]的值和index i. 如果有重复，就找到了一组sum为0的数组.
 
 ```
 /*
@@ -29,14 +33,13 @@ That means from a ~ b, there is not change: that is, sum[a - b] = 0.
 As result, hashmap.get(a)+1 will be the satrting index, and b will be ending index.
 */
 public class Solution {
-
-    public ArrayList<Integer> subarraySum(int[] nums) {
-        ArrayList<Integer> rst = new ArrayList<Integer>();
+    public List<Integer> subarraySum(int[] nums) {
+        List<Integer> rst = new ArrayList<>();
         if (nums == null || nums.length == 0) {
             return rst;
         }
         int sum = 0;
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
         //we know that sub-array (a,b) has zero sum if SUM(0 ... a-1) = SUM(0 ... b)
         for (int i = 0; i < nums.length; i++) {

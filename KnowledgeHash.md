@@ -1219,15 +1219,17 @@ private class PathSum {
 
 # Approach
 ## 遇到Array
+- Sorted? value boundary?
 
 ## 遇到需要排序
+- Arrays.sort()
 
 ## Greedy
 
 ## Divide and Conquer
 
 ## Recursion
-- Recursion 至少用O(n) space, n = depth of recursive call.
+- Recursion 至少用O(n) space, n = depth of recursive call. Each recursive call takes a space in stack(limited)
 - 所有recursive problem 都可以 interatively 解决, 但是有可能代码更复杂
 - ex: dfs
 - always find the entry point or terminating point
