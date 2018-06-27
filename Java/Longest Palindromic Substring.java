@@ -18,7 +18,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 - boolean isPalin[i][j], 每次确认有palindrome就记录下来true / false
 - 穷举的for loop计算顺序: end point j, and stat point i = [0, j]
 - 在计算 isPalin[i][j]的时候, isPalin[i+1][j-1]应该已经计算过了.
-- double for loop: O(n^2)
+- double for loop: O(n^2). slower, because it guarantees O(n^2) due to the for loop
 
 #### O(n) 
 - TODO
