@@ -1,7 +1,7 @@
  
  
  
-## DFS (74)
+## DFS (75)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -1700,6 +1700,37 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 #### O(n) space
 - inorder traversal the nodes and save in array, find the 2 items misplanced and swap them
 - But O(n) space should not be allowed
+
+
+
+
+---
+
+**74. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+      
+
+给一个string s, 找最长的sub-sequence which is also palindrome.
+
+注意！subsequence并不是substring, 是可以skip letter / non-continuous character sequence
+    
+#### Interval DP
+- 用[i][j]表示区间的首尾
+- 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
+- Iteration一定是以i ~ j 之间的len来看的. 
+- len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+- 注意考虑len == 1, len == 2是的特殊情况.
+- time/space: O(n^2)
+
+#### Memoization
+- 同样的方式model dp[i][j]: range [i, j] 之间的  max palindromic length
+- 三种情况: 
+- 1. 首尾match 继而 dfs[i+1, j-1]
+- 2. 首尾不match,dfs[i+1,j] 
+- 3. 首尾不match,dfs[i,j-1] 
+- 注意: init dp[i][j]=-1, dfs的时候查dp[i][j] 是否算过
+- more about dfs: bottom-up, first dive deep into dfs(i+1,j-1) till the base cases.
+- time/space: O(n^2)
+- prepare dp[n][n]: O(n^2); dfs: visit all combinations of [i,j]: O(n^2)
 
 
 

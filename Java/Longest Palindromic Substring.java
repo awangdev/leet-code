@@ -22,6 +22,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 #### O(n) 
 - TODO
+- https://www.felix021.com/blog/read.php?2040
 
 ```
 /*
@@ -60,6 +61,7 @@ public class Solution {
     		i--;
     		j++;
     	}
+		//Note: i and j has moved apart 1 extra step after while loop
 		if (maxLen < j - i - 1) {
 			maxLen = j - i - 1;
 			start = i + 1;

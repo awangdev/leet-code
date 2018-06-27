@@ -223,30 +223,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**10. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
-      
-
-给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
-
-#### DP 
-- DP[i]: 在i点记录，走到i点上的最少jump次数
-- dp[i] = Math.min(dp[i], dp[j] + 1);
-- condition (j + nums[j] >= i)
-- 注意使用 dp[i] = Integer.MAX_VALUE做起始值, 来找min
-
-#### Previous Notes
-- Greedy, 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
-- 维护一个range, 是最远我们能走的. 
-- index/i 是一步一步往前, 每次当 i <= range, 做一个while loop， 在其中找最远能到的地方 maxRange
-- 然后更新 range = maxRange
-- 其中step也是跟index是一样, 一步一步走.
-- 最后check的condition是，我们最远你能走的range >= nums.length - 1, 说明以最少的Step就到达了重点。Good.
-
-
-
----
-
-**11. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**10. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
@@ -259,7 +236,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**12. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**11. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -275,6 +252,45 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - O(mn) runtime because each spot will be marked once visited. 
 - 这个题目的简单版本一个array的例子：从简单题目开始想DP会简单一点。每个位置，都是从其他位置（上下左右）来的dpValue +　１.　如果啥也没有的时候，init state 其实都是1， 就一个数字，不增不减嘛。
 
+
+
+
+---
+
+**12. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+      
+
+给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
+
+#### Greedy
+- always aiming for the `farest can go`
+- if the `farest can go` breaches the end, return steps
+- otherwise, send `start=end+1`, `end=farest` and keep stepping from here
+- though trying with 2 loops, worst case [1,1,1,...1,1] could have O(n^2)
+- But on average should be jumpping through the array without looking back
+- time: average O(n)
+
+#### Previous Notes, Greedy
+- 维护一个range, 是最远我们能走的. 
+- index/i 是一步一步往前, 每次当 i <= range, 做一个while loop， 在其中找最远能到的地方 maxRange
+- 然后更新 range = maxRange
+- 其中step也是跟index是一样, 一步一步走.
+- 最后check的condition是，我们最远你能走的range >= nums.length - 1, 说明以最少的Step就到达了重点。Good.
+
+#### Even simpler Greedy
+- 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
+- track the farest point
+- whenver curr index reachest the farest point, that means we are making a nother move, so count++
+- there seems to have one assumption: must have a solution. Otherwise, count will be wrong number. 
+- 其实跟第一个greedy的思维模式是一模一样的.
+
+
+#### DP 
+- DP[i]: 在i点记录，走到i点上的最少jump次数
+- dp[i] = Math.min(dp[i], dp[j] + 1);
+- condition (j + nums[j] >= i)
+- 注意使用 dp[i] = Integer.MAX_VALUE做起始值, 来找min
+- time: O(n^2), slow, and timesout
 
 
 

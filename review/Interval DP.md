@@ -2,29 +2,7 @@
  
  
 ## Interval DP (4)
-**0. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DP, Interval DP, Memoization]
-      
-
-#### Interval DP
-- 用[i][j]表示区间的首尾
-- 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
-- Iteration一定是以i ~ j 之间的len来看的. 
-- len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
-- 注意考虑len == 1, len == 2是的特殊情况.
-
-#### Memoization
-- 同样的方式model dp[i][j]: range [i, j] 之间的  max palindromic length
-- 三种情况: 
-- 1. 首尾match 继而 dfs[i+1, j-1]
-- 2. 首尾不match,dfs[i+1,j] 
-- 3. 首尾不match,dfs[i,j-1] 
-- 注意: init dp[i][j]=-1, dfs的时候查dp[i][j] 是否算过
-
-
-
----
-
-**1. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard      Tags: [DP, Interval DP, String]
+**0. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard      Tags: [DP, Interval DP, String]
       
 
 - 给两个string S, T. 检验他们是不是scramble string.
@@ -51,7 +29,7 @@
 
 ---
 
-**2. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**1. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
 还是2个人拿n个coin, coin可以有不同的value. 
@@ -104,7 +82,7 @@
 
 ---
 
-**3. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
+**2. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -135,6 +113,37 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 每次burst都切成了三份：左边可以recusive 求左边剩下的部分的最大值 + 中间3项相乘 + 右边递归下去求最大值。
 - Note: 这个是Memoization, 而不纯是DP
 - 因为recursive了，其实还是搜索，但是memorize了求过的值，节省了Processing
+
+
+
+
+---
+
+**3. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+      
+
+给一个string s, 找最长的sub-sequence which is also palindrome.
+
+注意！subsequence并不是substring, 是可以skip letter / non-continuous character sequence
+    
+#### Interval DP
+- 用[i][j]表示区间的首尾
+- 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
+- Iteration一定是以i ~ j 之间的len来看的. 
+- len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+- 注意考虑len == 1, len == 2是的特殊情况.
+- time/space: O(n^2)
+
+#### Memoization
+- 同样的方式model dp[i][j]: range [i, j] 之间的  max palindromic length
+- 三种情况: 
+- 1. 首尾match 继而 dfs[i+1, j-1]
+- 2. 首尾不match,dfs[i+1,j] 
+- 3. 首尾不match,dfs[i,j-1] 
+- 注意: init dp[i][j]=-1, dfs的时候查dp[i][j] 是否算过
+- more about dfs: bottom-up, first dive deep into dfs(i+1,j-1) till the base cases.
+- time/space: O(n^2)
+- prepare dp[n][n]: O(n^2); dfs: visit all combinations of [i,j]: O(n^2)
 
 
 

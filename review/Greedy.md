@@ -98,17 +98,25 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 给出步数，看能不能jump to end.
 
+#### Greedy - start from index = 0
+- Keep track of farest can go
+- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
+- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
+- This can be done using DP. However, greedy algorithm is fast in this particular problem.
+
+#### Greedy - start from index = n - 1
+- greedy: start from end, and mark last index
+- loop from i = [n - 2 -> 0], where i + nums[i] should always >= last index
+- check if last == 0 when returning. It means: can we jump from index=0 to the end?
+- Time: O(n), beat 100%
+
 #### DP
 - DP[i]: 在i点记录，i点之前的步数是否可以走到i点？ True of false.
 - 其实j in [0~i)中间只需要一个能到达i 就好了
 - Function: DP[i] = DP[j] && (A[j] >= i - j), for all j in [0 ~ i)
 - Return: DP[dp.length - 1];
-- It timesout, O(n^2)
+- Time: O(n^2)
 
-#### Greedy
-- Keep track of farest can go
-- 一旦 farest >= nums.length - 1, 也就是到了头, 就可以停止, return true.
-- 一旦 farest <= i, 也就是说, 在i点上, 已经走过了步数, 不能再往前跳, 于是 return false
 
 
 
@@ -150,30 +158,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**8. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
-      
-
-给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
-
-#### DP 
-- DP[i]: 在i点记录，走到i点上的最少jump次数
-- dp[i] = Math.min(dp[i], dp[j] + 1);
-- condition (j + nums[j] >= i)
-- 注意使用 dp[i] = Integer.MAX_VALUE做起始值, 来找min
-
-#### Previous Notes
-- Greedy, 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
-- 维护一个range, 是最远我们能走的. 
-- index/i 是一步一步往前, 每次当 i <= range, 做一个while loop， 在其中找最远能到的地方 maxRange
-- 然后更新 range = maxRange
-- 其中step也是跟index是一样, 一步一步走.
-- 最后check的condition是，我们最远你能走的range >= nums.length - 1, 说明以最少的Step就到达了重点。Good.
-
-
-
----
-
-**9. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
+**8. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
       
 
 给一串gas station array, 每个index里面有一定数量gas.
@@ -196,7 +181,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**10. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
+**9. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -224,7 +209,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**11. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+**10. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
       
 
 #### Hash Table, Greedy
@@ -237,6 +222,45 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 #### Stack
 - Use stack instead of stringBuffer: keep append/remove last added item
 - However, stringBuffer appears to be faster than stack.
+
+
+
+---
+
+**11. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+      
+
+给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
+
+#### Greedy
+- always aiming for the `farest can go`
+- if the `farest can go` breaches the end, return steps
+- otherwise, send `start=end+1`, `end=farest` and keep stepping from here
+- though trying with 2 loops, worst case [1,1,1,...1,1] could have O(n^2)
+- But on average should be jumpping through the array without looking back
+- time: average O(n)
+
+#### Previous Notes, Greedy
+- 维护一个range, 是最远我们能走的. 
+- index/i 是一步一步往前, 每次当 i <= range, 做一个while loop， 在其中找最远能到的地方 maxRange
+- 然后更新 range = maxRange
+- 其中step也是跟index是一样, 一步一步走.
+- 最后check的condition是，我们最远你能走的range >= nums.length - 1, 说明以最少的Step就到达了重点。Good.
+
+#### Even simpler Greedy
+- 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
+- track the farest point
+- whenver curr index reachest the farest point, that means we are making a nother move, so count++
+- there seems to have one assumption: must have a solution. Otherwise, count will be wrong number. 
+- 其实跟第一个greedy的思维模式是一模一样的.
+
+
+#### DP 
+- DP[i]: 在i点记录，走到i点上的最少jump次数
+- dp[i] = Math.min(dp[i], dp[j] + 1);
+- condition (j + nums[j] >= i)
+- 注意使用 dp[i] = Integer.MAX_VALUE做起始值, 来找min
+- time: O(n^2), slow, and timesout
 
 
 

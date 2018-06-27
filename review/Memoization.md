@@ -57,29 +57,7 @@
 
 ---
 
-**2. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DP, Interval DP, Memoization]
-      
-
-#### Interval DP
-- 用[i][j]表示区间的首尾
-- 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
-- Iteration一定是以i ~ j 之间的len来看的. 
-- len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
-- 注意考虑len == 1, len == 2是的特殊情况.
-
-#### Memoization
-- 同样的方式model dp[i][j]: range [i, j] 之间的  max palindromic length
-- 三种情况: 
-- 1. 首尾match 继而 dfs[i+1, j-1]
-- 2. 首尾不match,dfs[i+1,j] 
-- 3. 首尾不match,dfs[i,j-1] 
-- 注意: init dp[i][j]=-1, dfs的时候查dp[i][j] 是否算过
-
-
-
----
-
-**3. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
+**2. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
 #### DFS + Memoization
@@ -108,7 +86,7 @@
 
 ---
 
-**4. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
+**3. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -136,7 +114,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**5. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
+**4. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -181,7 +159,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**6. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
+**5. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
 #### Recursive + Memoization
@@ -207,7 +185,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**7. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**6. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
 还是2个人拿n个coin, coin可以有不同的value. 
@@ -260,7 +238,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**8. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
+**7. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -297,7 +275,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**9. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**8. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -318,7 +296,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**10. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**9. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -329,6 +307,37 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 #### recursively calculate
 - recursively calculate fib(n - 1) + fib(n - 2). 公式没问题, 但是时间太长, timeout.
+
+
+
+
+---
+
+**10. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+      
+
+给一个string s, 找最长的sub-sequence which is also palindrome.
+
+注意！subsequence并不是substring, 是可以skip letter / non-continuous character sequence
+    
+#### Interval DP
+- 用[i][j]表示区间的首尾
+- 考虑3个情况: 砍头, 砍尾, 砍头并砍尾 (考虑首尾关系)
+- Iteration一定是以i ~ j 之间的len来看的. 
+- len = j - i + 1; 那么反推, 如果len已知, j = len + i -1;
+- 注意考虑len == 1, len == 2是的特殊情况.
+- time/space: O(n^2)
+
+#### Memoization
+- 同样的方式model dp[i][j]: range [i, j] 之间的  max palindromic length
+- 三种情况: 
+- 1. 首尾match 继而 dfs[i+1, j-1]
+- 2. 首尾不match,dfs[i+1,j] 
+- 3. 首尾不match,dfs[i,j-1] 
+- 注意: init dp[i][j]=-1, dfs的时候查dp[i][j] 是否算过
+- more about dfs: bottom-up, first dive deep into dfs(i+1,j-1) till the base cases.
+- time/space: O(n^2)
+- prepare dp[n][n]: O(n^2); dfs: visit all combinations of [i,j]: O(n^2)
 
 
 
