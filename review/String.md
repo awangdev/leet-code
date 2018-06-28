@@ -1,7 +1,7 @@
  
  
  
-## String (46)
+## String (47)
 **0. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
       
 
@@ -760,6 +760,34 @@ O(n^2) is not too hard to think of. How about O(n)?
 #### O(n) 
 - TODO
 - https://www.felix021.com/blog/read.php?2040
+
+
+
+---
+
+**46. [Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)**      Level: Hard      Tags: [Coordinate DP, Stack, String]
+      
+
+给一串string, 里面只有`(`, `)`. 找最长valid parentheses 的长度.
+
+#### 1D Coordinate DP
+- use dp[i] track local max, maintain global max
+- int[] dp. dp[i]: longest valid string that ends on i.
+- 结尾是 ')', 2种情况: 1. 刚好s[i-1]是'('; 2. s[i]的')'更前面的一个起始'(' 对应
+- 注意, 结尾如果是'('属于不合理情况, 忽略.
+- init: dp[0] = 0, 单个char不可能成型.
+- 计算顺序: 从左到右, 找local max, maintain global max
+- O(n) space, O(n) runtime
+
+#### Stack
+- Stack 里面存所有的open/close parentheses.
+- 如果遇到stack.top()刚好开合结掉, 就stack.pop().
+- 剩下的都是不合理的elements.
+- 有点像negatively找 solution: `endIndex - 最后一个failedIndex(stack.pop()) - 1`, 应该就是最后一个succeeded string的长度
+- 每次更新 endIndex 为stack.top(), 然后从stack继续找下一个failedIndex
+- 所有的length作比较, 就可以找出最长length
+- O(n) stack space, O(n) runtime. 应该比dp慢一点, 因为做了2遍O(n)
+
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Easy (142)
+## Easy (143)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy      Tags: []
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -2152,6 +2152,20 @@ determine if characters are unique in string
 #### Hash Table
 - 分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum[a+1 ~ b] == 0
 - 用hashMap存每个sum[0~i]的值和index i. 如果有重复，就找到了一组sum为0的数组.
+
+
+
+---
+
+**142. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
+      
+
+给一串数字, 求sumRange.
+
+#### PreSum
+- 就是pre sum 的definition
+- preSum也是dp[]一种最简易的形式把.
+- dp[i], preSum[i]: 前(i-1)个元素的和.
 
 
 

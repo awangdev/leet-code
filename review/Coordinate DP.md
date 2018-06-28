@@ -1,7 +1,7 @@
  
  
  
-## Coordinate DP (13)
+## Coordinate DP (15)
 **0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization, Sequence DP]
       
 
@@ -291,6 +291,65 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 - condition (j + nums[j] >= i)
 - 注意使用 dp[i] = Integer.MAX_VALUE做起始值, 来找min
 - time: O(n^2), slow, and timesout
+
+
+
+---
+
+**13. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+      
+
+给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
+
+#### DFS + Memoization
+- 其实跟给一个2D matrix没有什么区别, 可以做dfs, memoization.
+- initialize memo: pathSum[i][j] = MAX_VALUE; 计算过的path省略
+- Bottom-top: 先dfs到最深的path, 然后逐步网上返回
+- `OR 原理: min(pathA, pathB) + currNode`
+- 浪费一点空间, pathSum[n][n]. space: O(n^2), where n = triangle height
+- 时间:O(n^2). Visit all nodes once: 1 + 2 + 3 + .... n = n^2
+
+#### DP
+- 跟dfs的原理很像, `OR 原理: min(pathA, pathB) + currNode`
+- init dp[n-1][j] = node values
+- build from bottom -> top: dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle.get(i).get(j);
+- 跟传统的coordinate dp有所不同, inner for loop 是需要计算 j <= i, 原因是triangle的性质.
+- 空间: dp[n][n]. space: O(n^2)
+- 时间:O(n^2). Visit all nodes once: 1 + 2 + 3 + .... n = n^2
+
+#### DP + O(n) space 
+- Based on the DP solution: the calculation always depend on `next row` for col at `j` and `j + 1`
+- 既然只depend on next row, 可以用rolling array来处理: reduce to O(n) space.
+- Further: 可以降维, 把第一维彻底去掉, 变成 dp[n]
+- 同样是double for loop, 但是只在乎column changes: `dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);`  
+
+
+
+---
+
+**14. [Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)**      Level: Hard      Tags: [Coordinate DP, Stack, String]
+      
+
+给一串string, 里面只有`(`, `)`. 找最长valid parentheses 的长度.
+
+#### 1D Coordinate DP
+- use dp[i] track local max, maintain global max
+- int[] dp. dp[i]: longest valid string that ends on i.
+- 结尾是 ')', 2种情况: 1. 刚好s[i-1]是'('; 2. s[i]的')'更前面的一个起始'(' 对应
+- 注意, 结尾如果是'('属于不合理情况, 忽略.
+- init: dp[0] = 0, 单个char不可能成型.
+- 计算顺序: 从左到右, 找local max, maintain global max
+- O(n) space, O(n) runtime
+
+#### Stack
+- Stack 里面存所有的open/close parentheses.
+- 如果遇到stack.top()刚好开合结掉, 就stack.pop().
+- 剩下的都是不合理的elements.
+- 有点像negatively找 solution: `endIndex - 最后一个failedIndex(stack.pop()) - 1`, 应该就是最后一个succeeded string的长度
+- 每次更新 endIndex 为stack.top(), 然后从stack继续找下一个failedIndex
+- 所有的length作比较, 就可以找出最长length
+- O(n) stack space, O(n) runtime. 应该比dp慢一点, 因为做了2遍O(n)
+
 
 
 

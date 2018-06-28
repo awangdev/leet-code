@@ -1,7 +1,7 @@
  
  
  
-## PreSum (5)
+## PreSum (6)
 **0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
@@ -119,6 +119,20 @@ TODO: Write the code + merge function
 - sequence of calculation: 1. iterate over start row. 2. iterate over end row. 3. iterate over col number (this is where hashmap is stored based on)
 - the iteration over col is like a screening: find previous sum and determine result
 - Note: 其实并没有真的去找 `== 0` 的解答,而是根据特性来判断 `剩下的/后来加上的一定是0`
+
+
+
+---
+
+**5. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
+      
+
+给一串数字, 求sumRange.
+
+#### PreSum
+- 就是pre sum 的definition
+- preSum也是dp[]一种最简易的形式把.
+- dp[i], preSum[i]: 前(i-1)个元素的和.
 
 
 

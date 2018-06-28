@@ -158,30 +158,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**8. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
-      
-
-给一串gas station array, 每个index里面有一定数量gas.
-
-给一串cost array, 每个index有一个值, 是reach下一个gas station的油耗.
-
-array的结尾地方, 再下一个点是开头, 形成一个circle route.
-
-找一个index, 作为starting point: 让车子从这个点, 拿上油, 开出去, 还能开回到这个starting point
-
-#### Greedy
-- 不论从哪一个点开始, 都可以记录总油耗, total = {gas[i] - cost[i]}. 最后如果total < 0, 必然不能走回来
-- 可以记录每一步的油耗积累, remain = {gas[i] - cost[i]}; 一旦 remain < 0, 说明之前的starting point 不合适, 重设: start = i + 1
-
-#### NOT DP
-- 看似有点像 House Robber II, 但是问题要求的是: 一个起始点的index
-- 而不是求: 最后点可否走完/最值/计数
-
-
-
----
-
-**9. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
+**8. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -209,7 +186,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**10. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+**9. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
       
 
 #### Hash Table, Greedy
@@ -227,7 +204,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**11. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**10. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -261,6 +238,31 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 - condition (j + nums[j] >= i)
 - 注意使用 dp[i] = Integer.MAX_VALUE做起始值, 来找min
 - time: O(n^2), slow, and timesout
+
+
+
+---
+
+**11. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
+      
+
+给一串gas station array, 每个index里面有一定数量gas.
+
+给一串cost array, 每个index有一个值, 是reach下一个gas station的油耗.
+
+array的结尾地方, 再下一个点是开头, 形成一个circle route.
+
+找一个index, 作为starting point: 让车子从这个点, 拿上油, 开出去, 还能开回到这个starting point
+
+#### Greedy
+- 不论从哪一个点开始, 都可以记录总油耗, `total = {gas[i] - cost[i]}`. 最后如果total < 0, 无论从哪开始, 必然都不能走回来
+- 可以记录每一步的油耗积累, `remain += gas[i] - cost[i]`
+- 一旦 remain < 0, 说明之前的starting point 不合适, 也就是说, 初始点肯定在后面的index. 重设: start = i + 1
+- single for loop. Time: O(n)
+
+#### NOT DP
+- 看似有点像 House Robber II, 但是问题要求的是: 一个起始点的index
+- 而不是求: 最后点可否走完/最值/计数
 
 
 

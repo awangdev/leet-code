@@ -16,11 +16,12 @@ Table of Contents
       * [Insert](#insert)
       * [Extract Minimum Element](#extract-minimum-element)
       * [如何想到用 Min/Max Heap](#如何想到用-minmax-heap)
+      * [Example](#example)
    * [Stack](#stack)
       * [Functions](#functions-1)
       * [基本用法](#基本用法)
       * [Monotonous Stack](#monotonous-stack)
-      * [Example](#example)
+      * [Example](#example-1)
    * [Queue](#queue)
       * [Functions](#functions-2)
    * [Linked List](#linked-list)
@@ -38,7 +39,7 @@ Table of Contents
       * [Binary Tree Traversal](#binary-tree-traversal)
          * [Inorder Traversal](#inorder-traversal)
    * [Expression Tree](#expression-tree)
-      * [Example](#example-1)
+      * [Example](#example-2)
       * [Build Tree](#build-tree)
    * [Trie](#trie)
       * [用法/考点](#用法考点)
@@ -64,7 +65,7 @@ Table of Contents
    * [Graph](#graph)
       * [Popular algorithms](#popular-algorithms)
       * [Adjacency List](#adjacency-list)
-         * [Example](#example-2)
+         * [Example](#example-3)
          * [构建Graph](#构建graph)
       * [Adjacency Matrices](#adjacency-matrices)
       * [Graph Search](#graph-search)
@@ -89,6 +90,7 @@ Table of Contents
          * [Heap Sort](#heap-sort)
          * [Quick Sort](#quick-sort)
             * [Quick Select](#quick-select)
+         * [Bucket Sort](#bucket-sort)
       * [Comparator for Arrays, Collections](#comparator-for-arrays-collections)
    * [DP](#dp)
       * [判断](#判断)
@@ -150,12 +152,14 @@ Table of Contents
       * [插入法 (iterative)](#插入法-iterative)
    * [Sweep Line](#sweep-line)
    * [Backtracking](#backtracking)
+   * [Greedy](#greedy)
+         * [When to use](#when-to-use)
+         * [Examples](#examples)
    * [Reservoir Sampling](#reservoir-sampling)
    * [Geometry](#geometry)
    * [Approach](#approach)
       * [遇到Array](#遇到array)
       * [遇到需要排序](#遇到需要排序)
-      * [Greedy](#greedy)
       * [Divide and Conquer](#divide-and-conquer)
       * [Recursion](#recursion)
          * [特征](#特征)
@@ -180,6 +184,12 @@ Table of Contents
    * [Threads](#threads)
       * [Two approaches](#two-approaches)
    * [Bit Manipulation](#bit-manipulation)
+   * [Memory](#memory)
+   * [Java Garbage Collections](#java-garbage-collections)
+         * [Heap](#heap-1)
+         * [Garbage Collection Roots](#garbage-collection-roots)
+            * [Example](#example-4)
+         * [Marking and Sweeping Carbage](#marking-and-sweeping-carbage)
    * [Pain Point](#pain-point)
       * [NP-Complete problems](#np-complete-problems)
          * [wiki](#wiki)
@@ -188,6 +198,7 @@ Table of Contents
       * [Basics](#basics)
       * [Edge case](#edge-case)
       * [Advanced](#advanced)
+
 
 
 
@@ -1213,6 +1224,24 @@ private class PathSum {
 - 尽量不要改变source data, 否则会变得难track
 - 注意! 在for loop 和 end condition 里面改变 buffer object (ex: list),  一定都要backtracking: ex: `list.remove(list.size() - 1)`
 
+# Greedy
+- follows the problem sovling approach of making the locally optimal choice at each stage with the hope of finding a global optimum.
+- pro: simply, quick, easy to program
+- cons: only locally optimal decision, **NOT** globally applicable.
+
+### When to use
+- 1. Greedy - choice property: a global optimum can be formed by selecting a local optimum. (making a best choice at the moment, leading to global optimum)
+- 2. Optimal Substructure: an optimal solution to be problem contains an optimal solution to subproblems.
+- Note: the second point is very similar to sub-problem in DP, **BUT** greedy algorithm never re-consider the processed choices (main diff from DP).
+
+### Examples
+- these examples can be found on GeekForGeeks
+- Activity Selection
+- Huffman Coding
+- Job Sequencing
+- Fractional Knapsack (backpack)
+- Prim's Minimum Spanning Tree
+
 # Reservoir Sampling
 
 # Geometry
@@ -1223,8 +1252,6 @@ private class PathSum {
 
 ## 遇到需要排序
 - Arrays.sort()
-
-## Greedy
 
 ## Divide and Conquer
 
@@ -1347,6 +1374,41 @@ private class PathSum {
 - Math.pow(2, h) = 2 << (h - 1); 2 << 1就是把所有bits往左移动一位, 也就是 * 2 
 - Also, 1 << h = 2 ^ h; 1 << h 就是 2 * 2 * 2* ....乘h次.
 - bit operation should be in parentheses
+
+# Memory
+- Heap
+- Stack
+
+# Java Garbage Collections
+- https://www.dynatrace.com/resources/ebooks/javabook/how-garbage-collection-works/
+- downside: garbade collection adapts to all kinds of complex situations, which makes it hard to optimize -> performance problem.
+
+### Heap
+- operating system allocates heap memory to JVM, where JVM uses the heap to store/removes objects.
+- As long as a object is referenced, JVM will not delete the object
+- There exist a `first reference` in the tree: `Garbage Collection Roots`, GC roots.
+
+### Garbage Collection Roots
+- Four types of Garbage Collection roots:
+- 1. Local variable: kept alive by the stack of a thread. This is not a real object virtual reference and thus is not visible. For all intents and purposes, local variables are GC roots.
+- 2. Active Java threads: live object, and are GC root.
+- 3. Static variables: referenced by their classes, can be removed when classes are garbage-collected.
+- 4. JNI references: java objects that the native code has created as part of JNI call.
+
+#### Example
+- A typical java application has these GC roots:
+- local varialbes in main method
+- the main thread
+- static variables of the main class
+
+### Marking and Sweeping Carbage
+- two simple steps in garbage collection:
+- 1. traverses all object references, starting with GC roots, and mark all found objects as live
+- 2. all heap memory that is NOT occupied by marked objects are reclaimed (cleaned up for reuse, marked as free)
+- This resolves the classic memory leak: unreachable but not deleted objects
+- However, this does not solve this memory leak: developer forgot to `dereference` object, which will always be treated as live.
+- My thoughts: Java objects should be used and not forgotten; also, we can set object to `NULL` if no longer used but still referenced.
+- Setting to `NULL` will simply make the object elligible for garbage collection.
 
 # Pain Point
 - For any array access, make sure to check the boundary!!!

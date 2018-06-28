@@ -1,7 +1,7 @@
  
  
  
-## Memoization (11)
+## Memoization (12)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [DP, Memoization, Sequence DP]
       
 
@@ -339,6 +339,37 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - time/space: O(n^2)
 - prepare dp[n][n]: O(n^2); dfs: visit all combinations of [i,j]: O(n^2)
 
+
+
+
+---
+
+**11. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+      
+
+给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
+
+#### DFS + Memoization
+- 其实跟给一个2D matrix没有什么区别, 可以做dfs, memoization.
+- initialize memo: pathSum[i][j] = MAX_VALUE; 计算过的path省略
+- Bottom-top: 先dfs到最深的path, 然后逐步网上返回
+- `OR 原理: min(pathA, pathB) + currNode`
+- 浪费一点空间, pathSum[n][n]. space: O(n^2), where n = triangle height
+- 时间:O(n^2). Visit all nodes once: 1 + 2 + 3 + .... n = n^2
+
+#### DP
+- 跟dfs的原理很像, `OR 原理: min(pathA, pathB) + currNode`
+- init dp[n-1][j] = node values
+- build from bottom -> top: dp[i][j] = Math.min(dp[i + 1][j], dp[i + 1][j + 1]) + triangle.get(i).get(j);
+- 跟传统的coordinate dp有所不同, inner for loop 是需要计算 j <= i, 原因是triangle的性质.
+- 空间: dp[n][n]. space: O(n^2)
+- 时间:O(n^2). Visit all nodes once: 1 + 2 + 3 + .... n = n^2
+
+#### DP + O(n) space 
+- Based on the DP solution: the calculation always depend on `next row` for col at `j` and `j + 1`
+- 既然只depend on next row, 可以用rolling array来处理: reduce to O(n) space.
+- Further: 可以降维, 把第一维彻底去掉, 变成 dp[n]
+- 同样是double for loop, 但是只在乎column changes: `dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);`  
 
 
 

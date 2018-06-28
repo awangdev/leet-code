@@ -1,7 +1,7 @@
  
  
  
-## Hard (73)
+## Hard (74)
 **0. [Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)**      Level: Hard      Tags: []
       
 与Count of Smaller Number非常类似。以实际的value来构成segment tree，leaf上存（count of smaller number）。
@@ -1702,6 +1702,34 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 - condition (j + nums[j] >= i)
 - 注意使用 dp[i] = Integer.MAX_VALUE做起始值, 来找min
 - time: O(n^2), slow, and timesout
+
+
+
+---
+
+**73. [Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)**      Level: Hard      Tags: [Coordinate DP, Stack, String]
+      
+
+给一串string, 里面只有`(`, `)`. 找最长valid parentheses 的长度.
+
+#### 1D Coordinate DP
+- use dp[i] track local max, maintain global max
+- int[] dp. dp[i]: longest valid string that ends on i.
+- 结尾是 ')', 2种情况: 1. 刚好s[i-1]是'('; 2. s[i]的')'更前面的一个起始'(' 对应
+- 注意, 结尾如果是'('属于不合理情况, 忽略.
+- init: dp[0] = 0, 单个char不可能成型.
+- 计算顺序: 从左到右, 找local max, maintain global max
+- O(n) space, O(n) runtime
+
+#### Stack
+- Stack 里面存所有的open/close parentheses.
+- 如果遇到stack.top()刚好开合结掉, 就stack.pop().
+- 剩下的都是不合理的elements.
+- 有点像negatively找 solution: `endIndex - 最后一个failedIndex(stack.pop()) - 1`, 应该就是最后一个succeeded string的长度
+- 每次更新 endIndex 为stack.top(), 然后从stack继续找下一个failedIndex
+- 所有的length作比较, 就可以找出最长length
+- O(n) stack space, O(n) runtime. 应该比dp慢一点, 因为做了2遍O(n)
+
 
 
 
