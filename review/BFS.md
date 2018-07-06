@@ -1,7 +1,7 @@
  
  
  
-## BFS (27)
+## BFS (28)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -683,6 +683,43 @@ TODO:
 #### BFS
 - (还没做, 可以写一写)
 - 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+
+
+---
+
+**27. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+      
+
+给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
+
+这个题目有多种解法, 最强就是O(n) space and time
+
+#### DFS and reduce input string
+- in dfs: remove the incorrect parentheses one at a time
+- detect the incorrect parentheses by tracking/counting (similar to validation of the parentheses string): `if(count<0)`
+- once detected, remove the char from middle of s, and dfs on the rest of the s that has not been tested yet.
+
+##### Core concept: reverse test
+- `if a parenthese string is valid, the reverse of it should also be valid`
+- Test s with open='(', close=')' first; **reverse s**, and test it with open=')', close='('
+
+##### Minor details
+- only procceed to remove invalid parenthese when `count<0`, and also break && return dfs after the recursive calls.
+- The above 2 facts eliminates all the redundant results.
+- Reverse string before alternating open and close parentheses, so when returning final result, it will return the correct order.
+- Open questions: how does it guarantee minimum removals?
+
+##### Backtracking
+- 如果用stringbuffer, 那么久不会每次create new string, 但是需要maintain这个string buffer, 就会backtracking
+
+##### Complexity
+- Seems to be O(n), but need to derive
+
+#### BFS
+TODO
+
+#### DP
 
 
 

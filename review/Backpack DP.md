@@ -1,7 +1,7 @@
  
  
  
-## Backpack DP (6)
+## Backpack DP (7)
 **0. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
@@ -26,7 +26,27 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**1. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**1. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP, Sequence DP]
+      
+
+给串数字, target amount, 求总共多少种方式可以reach the amount.
+
+#### DP
+- O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 状态: dp[i]: sum of ways that coins can add up to i.
+- Function: dp[j] += dp[j - coins[i]];
+- Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
+- note: 避免重复count, 所以 j = coins[i] as start
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
+
+
+
+---
+
+**2. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
@@ -67,7 +87,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**2. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**3. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
@@ -90,7 +110,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**3. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**4. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 #### Backpack DP
@@ -115,7 +135,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**4. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
+**5. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
       
 
 给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
@@ -155,7 +175,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**5. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**6. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 

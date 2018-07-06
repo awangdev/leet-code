@@ -2,6 +2,8 @@ E
 1521695977
 tags: DP, Memoization, Sequence DP
 
+每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
+
 #### Recursive + Memoization
 - 递归很好写, 但是重复计算, timeout. time: O(2^n)
 - O(2^n): each n can spawn 2 dfs child, at next level, it will keep spawn. Total 2^n nodes will spawn.

@@ -1,7 +1,7 @@
  
  
  
-## Sequence DP (15)
+## Sequence DP (16)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [DP, Memoization, Sequence DP]
       
 
@@ -60,6 +60,8 @@
 **2. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
+每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
+
 #### Recursive + Memoization
 - 递归很好写, 但是重复计算, timeout. time: O(2^n)
 - O(2^n): each n can spawn 2 dfs child, at next level, it will keep spawn. Total 2^n nodes will spawn.
@@ -83,19 +85,21 @@
 
 ---
 
-**3. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**3. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP, Sequence DP]
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
 
 #### DP
 - O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 - 状态: dp[i]: sum of ways that coins can add up to i.
 - Function: dp[j] += dp[j - coins[i]];
 - Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
 - note: 避免重复count, 所以 j = coins[i] as start
-- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
-- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
 
 
 
@@ -107,14 +111,17 @@
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
 
 #### Sequence DP
-- 求知道dp[n]的min cost, 但是不知道最后一个房子选什么颜色
-- 那么就遍历最后一个房子(i - 1)的颜色
-- 选中最后一个房子的颜色同时, 来选择 (i - 2)的颜色, 来找出最低的cost
-- 考虑DP最后一个位置的情况. 发现给出了一些特殊条件, 需要附带在DP[i]上,
-- 那么就定义二维数组
+- 求dp[i]的min cost, 但是不知道最后一个房子选什么颜色, 那么就遍历最后一个房子(i - 1)的颜色
+- 选中最后一个房子的颜色同时, 根据dp[i - 1]的颜色/cost + cost[i-1], 来找出最低的cost
+- 考虑DP最后一个位置的情况(颜色选择):需要附带颜色status在DP[i]上: 定义二维数组, 其中一位是status
+- dp[i][j]: 前i个house 刷成 j 号颜色的最小cost.
+- dp[0][j] = 0: 0th house, no cost
+- 计算顺序: 从每一个house开始算起 [0 ~ n], first for loop
+- 然后选ith 房子的 color, 再选(i-1)th 房子的color. Double for loop, skip same color
 
 #### Rolling Array
 - 观察发现 index[i] 只跟 [i-1] 相关, 所以2位就足够, %2
+
 
 
 ---
@@ -126,7 +133,7 @@
 
 #### Sequence DP
 - 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
-- 思考的适合搞清楚当下的和之前的情况的关系
+- 搞清楚当下[i]的和之前[i-x]的情况的关系: 不可以连着house, 那么就直接考虑 dp[i-2]的情况
 - Sequence DP, new dp[n + 1];
 
 #### Rolling Array
@@ -148,6 +155,7 @@
 - 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 - 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
 - be careful with edge case nums = [0], only with 1 element.
+- Time,space: O(n)
 
 #### 两个状态
 - 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
@@ -155,7 +163,7 @@
 - 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
 
 #### Rolling array
-与House Robber I一样, 可以用%2 来操作rolling array
+- 与House Robber I一样, 可以用%2 来操作rolling array, space reduced to O(1)
 
 
 
@@ -173,27 +181,30 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 求: 最少的cost 
 
 #### DP
+- 跟Paint House I 几乎一模一样, 只不过paint color更多了: k colors.
 - 先考虑单纯地用dp[i]表示涂前 i 个房子的最小cost
 - 但是 dp[i] 和 dp[i-1] 两个index选什么颜色会互相影响, 难讨论, 于是加状态: 序列DP被加了状态变成2D. 
 - 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
 - 做dp[i][j]: # cost for 前 i 个房子, 所以要先pick (i-1) 房子的cost, 然后在找出 (i-2)房子的cost
 - K种颜色 => O(NK^2)
 - 如果不优化, 跟Paint House I 几乎是一模一样的代码
-
+- Time O(NK^2), space(NK)
+- Rolling array: reduce space to O(K)
 
 #### 注意
 - 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
 - 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
 - [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
 
-#### Optimization
-- O(NK)
+#### Optimization Solution
+- Time: O(NK)
 - 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小两个挑出来, 就不必有第三个for loop 找 min
 - 每次在数列里面找: 除去自己之外的最小值, 利用最小值/次小值的思想
 - 维持2个最值: 最小值/次小值. 
 - 计算的时候, 如果除掉的不是最小值的index, 就给出最小值; 如果除掉的是最小值的index, 就给出次小值.
 - Every loop: 1. calculate the two min vlaues for each i; 2. calcualte dp[i][j]
 - 如何想到优化: 把表达式写出来, 然后看哪里可以优化
+- 另外, 还是可以rolling array, reduce space complexity to O(K)
 
 
 
@@ -415,6 +426,27 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - 1. rst[i - j] 记录的是[0, i-j]这一段是否可以break后在dict找到。     
 - 2. 若true，再加上剩下所有[i-j, i]都能在dict找到，那么rst[i] = rst[0, i - j] && rst[i-j, i] == true
 - 优化：找dict里面最长string, 限制j的增大。
+
+
+
+
+---
+
+**15. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+      
+
+#### DP
+- 最多2个fence 颜色相同
+- 假设i是和 i-1不同，那么结果就是 (k-1)*dp[i - 1]
+- 假设i是何 i-1相同，那么根据条件，i-1和i-2肯定不同。那么所有的结果就是(k-1)*dp[i-2]
+- 加法原理
+- time, space: O(n)
+- rolling array: space O(1)
+
+#### Previous Notes
+- 这题目很有意思. 一开始分析的太复杂, 最后按照这个哥们的想法（http://yuanhsh.iteye.com/blog/2219891） 的来做，反而简单了许多。
+- 设定T（n）的做法，最后题目化简以后就跟Fibonacci number一样一样的。详细分析如下。
+- 做完，还是觉得如有神。本来是个Easy题，想不到，就是搞不出。
 
 
 

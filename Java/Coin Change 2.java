@@ -1,17 +1,19 @@
 M
 1522735311
-tags: DP, Sequence DP
+tags: DP, Sequence DP, Backpack DP
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
 
 #### DP
 - O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 - 状态: dp[i]: sum of ways that coins can add up to i.
 - Function: dp[j] += dp[j - coins[i]];
 - Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
 - note: 避免重复count, 所以 j = coins[i] as start
-- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
-- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
 
 ```
 /*
@@ -60,7 +62,7 @@ class Solution {
         dp[0] = 1; // for dp, not quite meaning full: 1 way to build 0 amount
         for (int i = 0; i < n; i++) {
             for (int j = coins[i]; j <= amount; j++) {
-                dp[j] += dp[j - coins[i]];;
+                dp[j] += dp[j - coins[i]];
             }
         }
         return dp[amount];

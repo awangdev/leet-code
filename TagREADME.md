@@ -189,7 +189,7 @@ Table of Contents
  
  
  
-## DP (73)
+## DP (75)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)|Medium|Java|[DP]||
@@ -226,7 +226,7 @@ Table of Contents
 |31|[Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)|Easy|Java|[Brainteaser, DP, Game Theory]||
 |32|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Trie]||
 |33|[Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)|Medium|Java|[Array, DP, Greedy]||
-|34|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[DP, Sequence DP]||
+|34|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[Backpack DP, DP, Sequence DP]||
 |35|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP]||
 |36|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
 |37|[Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)|Easy|Java|[Array, Coordinate DP, DP]||
@@ -265,6 +265,8 @@ Table of Contents
 |70|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
 |71|[Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)|Medium|Java|[Array, Coordinate DP, DFS, DP, Memoization]||
 |72|[Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)|Easy|Java|[DP, PreSum]||
+|73|[Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)|Review|Java|[BFS, DFS, DP]||
+|74|[Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)|Easy|Java|[DP, Sequence DP]||
 
 
 
@@ -284,7 +286,7 @@ Table of Contents
  
  
  
-## BFS (27)
+## BFS (28)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)|Medium|Java|[BFS, Stack, Tree]||
@@ -314,6 +316,7 @@ Table of Contents
 |24|[Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)|Medium|Java|[BFS, DFS, Topological Sort]||
 |25|[Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)|Hard|Java|[BFS, Backtracking, DFS, Graph, Topological Sort]||
 |26|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
+|27|[Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)|Review|Java|[BFS, DFS, DP]||
 
 
 
@@ -366,7 +369,7 @@ Table of Contents
  
  
  
-## DFS (76)
+## DFS (77)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)|Hard|Java|[Backtracking, DFS, DP, Memoization]||
@@ -445,6 +448,7 @@ Table of Contents
 |73|[Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)|Hard|Java|[BST, DFS, Tree]||
 |74|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
 |75|[Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)|Medium|Java|[Array, Coordinate DP, DFS, DP, Memoization]||
+|76|[Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)|Review|Java|[BFS, DFS, DP]||
 
 
 
@@ -984,13 +988,13 @@ Table of Contents
  
  
  
-## Sequence DP (15)
+## Sequence DP (16)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[DP, Memoization, Sequence DP]||
 |1|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization, Sequence DP]||
 |2|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
-|3|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[DP, Sequence DP]||
+|3|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[Backpack DP, DP, Sequence DP]||
 |4|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP]||
 |5|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
 |6|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP]||
@@ -1002,6 +1006,7 @@ Table of Contents
 |12|[Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)|Easy|Java|[Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]||
 |13|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, PreSum, Sequence DP]||
 |14|[Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)|Medium|Java|[DP, Sequence DP]||
+|15|[Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)|Easy|Java|[DP, Sequence DP]||
 
 
 
@@ -1094,15 +1099,16 @@ Table of Contents
  
  
  
-## Backpack DP (6)
+## Backpack DP (7)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)|Medium|Java|[Backpack DP, DP]||
-|1|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
-|2|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
-|3|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
-|4|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Hard|Java|[Backpack DP, DP]||
-|5|[Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)|Medium|Java|[Array, Backpack DP, DP]||
+|1|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[Backpack DP, DP, Sequence DP]||
+|2|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
+|3|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
+|4|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
+|5|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Hard|Java|[Backpack DP, DP]||
+|6|[Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)|Medium|Java|[Array, Backpack DP, DP]||
 
 
 

@@ -5,14 +5,17 @@ tags: DP, Sequence DP
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
 
 #### Sequence DP
-- 求知道dp[n]的min cost, 但是不知道最后一个房子选什么颜色
-- 那么就遍历最后一个房子(i - 1)的颜色
-- 选中最后一个房子的颜色同时, 来选择 (i - 2)的颜色, 来找出最低的cost
-- 考虑DP最后一个位置的情况. 发现给出了一些特殊条件, 需要附带在DP[i]上,
-- 那么就定义二维数组
+- 求dp[i]的min cost, 但是不知道最后一个房子选什么颜色, 那么就遍历最后一个房子(i - 1)的颜色
+- 选中最后一个房子的颜色同时, 根据dp[i - 1]的颜色/cost + cost[i-1], 来找出最低的cost
+- 考虑DP最后一个位置的情况(颜色选择):需要附带颜色status在DP[i]上: 定义二维数组, 其中一位是status
+- dp[i][j]: 前i个house 刷成 j 号颜色的最小cost.
+- dp[0][j] = 0: 0th house, no cost
+- 计算顺序: 从每一个house开始算起 [0 ~ n], first for loop
+- 然后选ith 房子的 color, 再选(i-1)th 房子的color. Double for loop, skip same color
 
 #### Rolling Array
 - 观察发现 index[i] 只跟 [i-1] 相关, 所以2位就足够, %2
+
 ```
 /*
 There are a row of n houses, each house can be painted with one of the three colors: 

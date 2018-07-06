@@ -1,7 +1,7 @@
  
  
  
-## DFS (76)
+## DFS (77)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -1763,6 +1763,43 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 - 既然只depend on next row, 可以用rolling array来处理: reduce to O(n) space.
 - Further: 可以降维, 把第一维彻底去掉, 变成 dp[n]
 - 同样是double for loop, 但是只在乎column changes: `dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);`  
+
+
+
+---
+
+**76. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+      
+
+给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
+
+这个题目有多种解法, 最强就是O(n) space and time
+
+#### DFS and reduce input string
+- in dfs: remove the incorrect parentheses one at a time
+- detect the incorrect parentheses by tracking/counting (similar to validation of the parentheses string): `if(count<0)`
+- once detected, remove the char from middle of s, and dfs on the rest of the s that has not been tested yet.
+
+##### Core concept: reverse test
+- `if a parenthese string is valid, the reverse of it should also be valid`
+- Test s with open='(', close=')' first; **reverse s**, and test it with open=')', close='('
+
+##### Minor details
+- only procceed to remove invalid parenthese when `count<0`, and also break && return dfs after the recursive calls.
+- The above 2 facts eliminates all the redundant results.
+- Reverse string before alternating open and close parentheses, so when returning final result, it will return the correct order.
+- Open questions: how does it guarantee minimum removals?
+
+##### Backtracking
+- 如果用stringbuffer, 那么久不会每次create new string, 但是需要maintain这个string buffer, 就会backtracking
+
+##### Complexity
+- Seems to be O(n), but need to derive
+
+#### BFS
+TODO
+
+#### DP
 
 
 

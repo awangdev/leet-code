@@ -11,27 +11,30 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 求: 最少的cost 
 
 #### DP
+- 跟Paint House I 几乎一模一样, 只不过paint color更多了: k colors.
 - 先考虑单纯地用dp[i]表示涂前 i 个房子的最小cost
 - 但是 dp[i] 和 dp[i-1] 两个index选什么颜色会互相影响, 难讨论, 于是加状态: 序列DP被加了状态变成2D. 
 - 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
 - 做dp[i][j]: # cost for 前 i 个房子, 所以要先pick (i-1) 房子的cost, 然后在找出 (i-2)房子的cost
 - K种颜色 => O(NK^2)
 - 如果不优化, 跟Paint House I 几乎是一模一样的代码
-
+- Time O(NK^2), space(NK)
+- Rolling array: reduce space to O(K)
 
 #### 注意
 - 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
 - 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
 - [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
 
-#### Optimization
-- O(NK)
+#### Optimization Solution
+- Time: O(NK)
 - 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小两个挑出来, 就不必有第三个for loop 找 min
 - 每次在数列里面找: 除去自己之外的最小值, 利用最小值/次小值的思想
 - 维持2个最值: 最小值/次小值. 
 - 计算的时候, 如果除掉的不是最小值的index, 就给出最小值; 如果除掉的是最小值的index, 就给出次小值.
 - Every loop: 1. calculate the two min vlaues for each i; 2. calcualte dp[i][j]
 - 如何想到优化: 把表达式写出来, 然后看哪里可以优化
+- 另外, 还是可以rolling array, reduce space complexity to O(K)
 
 ```
 
@@ -77,7 +80,7 @@ class Solution {
         int k = costs[0].length;
         int[][] dp = new int[n + 1][k];
         // Paint 0 houese should be initialized with 0 cost
-        for (int j = 0; j < k; i++) {
+        for (int j = 0; j < k; j++) {
             dp[0][j] = 0;
         }
 
@@ -95,6 +98,32 @@ class Solution {
                 }
             }
 
+        }
+        return minCost;
+     }
+}
+
+// space optimization, rolling array, O(k) space
+class Solution {
+    public int minCostII(int[][] costs) {
+        if (costs == null || costs.length == 0) {
+            return 0;
+        } else if (costs.length == 1 && costs[0].length == 1) {
+            return costs[0][0];
+        }
+        int minCost = Integer.MAX_VALUE;
+        int n = costs.length, k = costs[0].length;
+        int[][] dp = new int[2][k]; // dp[0][j] = 0; Paint 0 house, for j=[0 ~ k)
+
+        for (int i = 1; i <= n; i++) { // iterate over house #
+            for (int j = 0; j < k; j++) { // choose color j for dp[i]
+                dp[i % 2][j] = Integer.MAX_VALUE;
+                for (int m = 0; m < k; m++) { // choose adjacent color for dp[i-1]
+                    if (m == j) continue;
+                    dp[i % 2][j] = Math.min(dp[i % 2][j], dp[(i - 1) % 2][m] + costs[i - 1][j]);
+                }    
+                if (i == n) minCost = Math.min(minCost, dp[i % 2][j]);
+            }
         }
         return minCost;
      }
@@ -157,5 +186,39 @@ class Solution {
      }
 }
 
+// Rolling array, O(k) space, a little bit slower because of the %2 
+class Solution {
+    public int minCostII(int[][] costs) {
+        if (costs == null || costs.length == 0) {
+            return 0;
+        } else if (costs.length == 1 && costs[0].length == 1) {
+            return costs[0][0];
+        }
+        int minCost = Integer.MAX_VALUE;
+        int n = costs.length, k = costs[0].length;
+        int[][] dp = new int[2][k]; // dp[0][j] = 0; for j=[0 ~ k)
+
+        for (int i = 1; i <= n; i++) {
+            int minIndex = -1, minSecIndex = -1;
+            for (int j = 0; j < k; j++) {
+                if (minIndex == -1 || dp[(i - 1) % 2][j] < dp[(i - 1) % 2][minIndex]) {
+                    minSecIndex = minIndex;
+                    minIndex = j;
+                } else if (minSecIndex == -1 || dp[(i - 1) % 2][j] < dp[(i - 1) % 2][minSecIndex]) {
+                    minSecIndex = j;
+                }
+            }
+
+            // DP Processing
+            for (int j = 0; j < k; j++) {
+                if (j == minIndex) dp[i % 2][j] = dp[(i - 1) % 2][minSecIndex] + costs[i - 1][j];
+                else dp[i % 2][j] = dp[(i - 1) % 2][minIndex] + costs[i - 1][j];
+                
+                if (i == n) minCost = Math.min(minCost, dp[i % 2][j]);   
+            }
+        }
+        return minCost;
+     }
+}
 
 ```

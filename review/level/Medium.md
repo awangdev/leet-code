@@ -1940,19 +1940,21 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 ---
 
-**104. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**104. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP, Sequence DP]
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
 
 #### DP
 - O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 - 状态: dp[i]: sum of ways that coins can add up to i.
 - Function: dp[j] += dp[j - coins[i]];
 - Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
 - note: 避免重复count, 所以 j = coins[i] as start
-- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
-- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
 
 
 
@@ -2040,6 +2042,7 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 - 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
 - be careful with edge case nums = [0], only with 1 element.
+- Time,space: O(n)
 
 #### 两个状态
 - 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
@@ -2047,7 +2050,7 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
 
 #### Rolling array
-与House Robber I一样, 可以用%2 来操作rolling array
+- 与House Robber I一样, 可以用%2 来操作rolling array, space reduced to O(1)
 
 
 

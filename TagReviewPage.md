@@ -1421,7 +1421,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
  
  
  
-## DP (73)
+## DP (75)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -2015,6 +2015,8 @@ Space O(n): dp[], sum[]
 **28. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
+每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
+
 #### Recursive + Memoization
 - 递归很好写, 但是重复计算, timeout. time: O(2^n)
 - O(2^n): each n can spawn 2 dfs child, at next level, it will keep spawn. Total 2^n nodes will spawn.
@@ -2193,19 +2195,21 @@ TODO
 
 ---
 
-**34. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**34. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP, Sequence DP]
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
 
 #### DP
 - O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 - 状态: dp[i]: sum of ways that coins can add up to i.
 - Function: dp[j] += dp[j - coins[i]];
 - Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
 - note: 避免重复count, 所以 j = coins[i] as start
-- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
-- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
 
 
 
@@ -2217,14 +2221,17 @@ TODO
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
 
 #### Sequence DP
-- 求知道dp[n]的min cost, 但是不知道最后一个房子选什么颜色
-- 那么就遍历最后一个房子(i - 1)的颜色
-- 选中最后一个房子的颜色同时, 来选择 (i - 2)的颜色, 来找出最低的cost
-- 考虑DP最后一个位置的情况. 发现给出了一些特殊条件, 需要附带在DP[i]上,
-- 那么就定义二维数组
+- 求dp[i]的min cost, 但是不知道最后一个房子选什么颜色, 那么就遍历最后一个房子(i - 1)的颜色
+- 选中最后一个房子的颜色同时, 根据dp[i - 1]的颜色/cost + cost[i-1], 来找出最低的cost
+- 考虑DP最后一个位置的情况(颜色选择):需要附带颜色status在DP[i]上: 定义二维数组, 其中一位是status
+- dp[i][j]: 前i个house 刷成 j 号颜色的最小cost.
+- dp[0][j] = 0: 0th house, no cost
+- 计算顺序: 从每一个house开始算起 [0 ~ n], first for loop
+- 然后选ith 房子的 color, 再选(i-1)th 房子的color. Double for loop, skip same color
 
 #### Rolling Array
 - 观察发现 index[i] 只跟 [i-1] 相关, 所以2位就足够, %2
+
 
 
 ---
@@ -2328,7 +2335,7 @@ TODO
 
 #### Sequence DP
 - 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
-- 思考的适合搞清楚当下的和之前的情况的关系
+- 搞清楚当下[i]的和之前[i-x]的情况的关系: 不可以连着house, 那么就直接考虑 dp[i-2]的情况
 - Sequence DP, new dp[n + 1];
 
 #### Rolling Array
@@ -2350,6 +2357,7 @@ TODO
 - 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 - 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
 - be careful with edge case nums = [0], only with 1 element.
+- Time,space: O(n)
 
 #### 两个状态
 - 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
@@ -2357,7 +2365,7 @@ TODO
 - 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
 
 #### Rolling array
-与House Robber I一样, 可以用%2 来操作rolling array
+- 与House Robber I一样, 可以用%2 来操作rolling array, space reduced to O(1)
 
 
 
@@ -2408,27 +2416,30 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 求: 最少的cost 
 
 #### DP
+- 跟Paint House I 几乎一模一样, 只不过paint color更多了: k colors.
 - 先考虑单纯地用dp[i]表示涂前 i 个房子的最小cost
 - 但是 dp[i] 和 dp[i-1] 两个index选什么颜色会互相影响, 难讨论, 于是加状态: 序列DP被加了状态变成2D. 
 - 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
 - 做dp[i][j]: # cost for 前 i 个房子, 所以要先pick (i-1) 房子的cost, 然后在找出 (i-2)房子的cost
 - K种颜色 => O(NK^2)
 - 如果不优化, 跟Paint House I 几乎是一模一样的代码
-
+- Time O(NK^2), space(NK)
+- Rolling array: reduce space to O(K)
 
 #### 注意
 - 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
 - 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
 - [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
 
-#### Optimization
-- O(NK)
+#### Optimization Solution
+- Time: O(NK)
 - 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小两个挑出来, 就不必有第三个for loop 找 min
 - 每次在数列里面找: 除去自己之外的最小值, 利用最小值/次小值的思想
 - 维持2个最值: 最小值/次小值. 
 - 计算的时候, 如果除掉的不是最小值的index, 就给出最小值; 如果除掉的是最小值的index, 就给出次小值.
 - Every loop: 1. calculate the two min vlaues for each i; 2. calcualte dp[i][j]
 - 如何想到优化: 把表达式写出来, 然后看哪里可以优化
+- 另外, 还是可以rolling array, reduce space complexity to O(K)
 
 
 
@@ -3221,6 +3232,64 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
+**73. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+      
+
+给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
+
+这个题目有多种解法, 最强就是O(n) space and time
+
+#### DFS and reduce input string
+- in dfs: remove the incorrect parentheses one at a time
+- detect the incorrect parentheses by tracking/counting (similar to validation of the parentheses string): `if(count<0)`
+- once detected, remove the char from middle of s, and dfs on the rest of the s that has not been tested yet.
+
+##### Core concept: reverse test
+- `if a parenthese string is valid, the reverse of it should also be valid`
+- Test s with open='(', close=')' first; **reverse s**, and test it with open=')', close='('
+
+##### Minor details
+- only procceed to remove invalid parenthese when `count<0`, and also break && return dfs after the recursive calls.
+- The above 2 facts eliminates all the redundant results.
+- Reverse string before alternating open and close parentheses, so when returning final result, it will return the correct order.
+- Open questions: how does it guarantee minimum removals?
+
+##### Backtracking
+- 如果用stringbuffer, 那么久不会每次create new string, 但是需要maintain这个string buffer, 就会backtracking
+
+##### Complexity
+- Seems to be O(n), but need to derive
+
+#### BFS
+TODO
+
+#### DP
+
+
+
+---
+
+**74. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+      
+
+#### DP
+- 最多2个fence 颜色相同
+- 假设i是和 i-1不同，那么结果就是 (k-1)*dp[i - 1]
+- 假设i是何 i-1相同，那么根据条件，i-1和i-2肯定不同。那么所有的结果就是(k-1)*dp[i-2]
+- 加法原理
+- time, space: O(n)
+- rolling array: space O(1)
+
+#### Previous Notes
+- 这题目很有意思. 一开始分析的太复杂, 最后按照这个哥们的想法（http://yuanhsh.iteye.com/blog/2219891） 的来做，反而简单了许多。
+- 设定T（n）的做法，最后题目化简以后就跟Fibonacci number一样一样的。详细分析如下。
+- 做完，还是觉得如有神。本来是个Easy题，想不到，就是搞不出。
+
+
+
+
+---
+
 
 
 
@@ -3310,7 +3379,7 @@ TODO
  
  
  
-## BFS (27)
+## BFS (28)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -3997,6 +4066,43 @@ TODO:
 
 ---
 
+**27. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+      
+
+给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
+
+这个题目有多种解法, 最强就是O(n) space and time
+
+#### DFS and reduce input string
+- in dfs: remove the incorrect parentheses one at a time
+- detect the incorrect parentheses by tracking/counting (similar to validation of the parentheses string): `if(count<0)`
+- once detected, remove the char from middle of s, and dfs on the rest of the s that has not been tested yet.
+
+##### Core concept: reverse test
+- `if a parenthese string is valid, the reverse of it should also be valid`
+- Test s with open='(', close=')' first; **reverse s**, and test it with open=')', close='('
+
+##### Minor details
+- only procceed to remove invalid parenthese when `count<0`, and also break && return dfs after the recursive calls.
+- The above 2 facts eliminates all the redundant results.
+- Reverse string before alternating open and close parentheses, so when returning final result, it will return the correct order.
+- Open questions: how does it guarantee minimum removals?
+
+##### Backtracking
+- 如果用stringbuffer, 那么久不会每次create new string, 但是需要maintain这个string buffer, 就会backtracking
+
+##### Complexity
+- Seems to be O(n), but need to derive
+
+#### BFS
+TODO
+
+#### DP
+
+
+
+---
+
 
 
 
@@ -4560,7 +4666,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
  
  
  
-## DFS (76)
+## DFS (77)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -6322,6 +6428,43 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 - 既然只depend on next row, 可以用rolling array来处理: reduce to O(n) space.
 - Further: 可以降维, 把第一维彻底去掉, 变成 dp[n]
 - 同样是double for loop, 但是只在乎column changes: `dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);`  
+
+
+
+---
+
+**76. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+      
+
+给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
+
+这个题目有多种解法, 最强就是O(n) space and time
+
+#### DFS and reduce input string
+- in dfs: remove the incorrect parentheses one at a time
+- detect the incorrect parentheses by tracking/counting (similar to validation of the parentheses string): `if(count<0)`
+- once detected, remove the char from middle of s, and dfs on the rest of the s that has not been tested yet.
+
+##### Core concept: reverse test
+- `if a parenthese string is valid, the reverse of it should also be valid`
+- Test s with open='(', close=')' first; **reverse s**, and test it with open=')', close='('
+
+##### Minor details
+- only procceed to remove invalid parenthese when `count<0`, and also break && return dfs after the recursive calls.
+- The above 2 facts eliminates all the redundant results.
+- Reverse string before alternating open and close parentheses, so when returning final result, it will return the correct order.
+- Open questions: how does it guarantee minimum removals?
+
+##### Backtracking
+- 如果用stringbuffer, 那么久不会每次create new string, 但是需要maintain这个string buffer, 就会backtracking
+
+##### Complexity
+- Seems to be O(n), but need to derive
+
+#### BFS
+TODO
+
+#### DP
 
 
 
@@ -12915,7 +13058,7 @@ HashHeap?
  
  
  
-## Sequence DP (15)
+## Sequence DP (16)
 **0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [DP, Memoization, Sequence DP]
       
 
@@ -12974,6 +13117,8 @@ HashHeap?
 **2. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
+每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
+
 #### Recursive + Memoization
 - 递归很好写, 但是重复计算, timeout. time: O(2^n)
 - O(2^n): each n can spawn 2 dfs child, at next level, it will keep spawn. Total 2^n nodes will spawn.
@@ -12997,19 +13142,21 @@ HashHeap?
 
 ---
 
-**3. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**3. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP, Sequence DP]
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
 
 #### DP
 - O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
 - 状态: dp[i]: sum of ways that coins can add up to i.
 - Function: dp[j] += dp[j - coins[i]];
 - Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
 - note: 避免重复count, 所以 j = coins[i] as start
-- 注意 coins 可能需要放在for loop 外面, 而主导换coin的流程. 
-- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
 
 
 
@@ -13021,14 +13168,17 @@ HashHeap?
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
 
 #### Sequence DP
-- 求知道dp[n]的min cost, 但是不知道最后一个房子选什么颜色
-- 那么就遍历最后一个房子(i - 1)的颜色
-- 选中最后一个房子的颜色同时, 来选择 (i - 2)的颜色, 来找出最低的cost
-- 考虑DP最后一个位置的情况. 发现给出了一些特殊条件, 需要附带在DP[i]上,
-- 那么就定义二维数组
+- 求dp[i]的min cost, 但是不知道最后一个房子选什么颜色, 那么就遍历最后一个房子(i - 1)的颜色
+- 选中最后一个房子的颜色同时, 根据dp[i - 1]的颜色/cost + cost[i-1], 来找出最低的cost
+- 考虑DP最后一个位置的情况(颜色选择):需要附带颜色status在DP[i]上: 定义二维数组, 其中一位是status
+- dp[i][j]: 前i个house 刷成 j 号颜色的最小cost.
+- dp[0][j] = 0: 0th house, no cost
+- 计算顺序: 从每一个house开始算起 [0 ~ n], first for loop
+- 然后选ith 房子的 color, 再选(i-1)th 房子的color. Double for loop, skip same color
 
 #### Rolling Array
 - 观察发现 index[i] 只跟 [i-1] 相关, 所以2位就足够, %2
+
 
 
 ---
@@ -13040,7 +13190,7 @@ HashHeap?
 
 #### Sequence DP
 - 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
-- 思考的适合搞清楚当下的和之前的情况的关系
+- 搞清楚当下[i]的和之前[i-x]的情况的关系: 不可以连着house, 那么就直接考虑 dp[i-2]的情况
 - Sequence DP, new dp[n + 1];
 
 #### Rolling Array
@@ -13062,6 +13212,7 @@ HashHeap?
 - 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 - 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
 - be careful with edge case nums = [0], only with 1 element.
+- Time,space: O(n)
 
 #### 两个状态
 - 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
@@ -13069,7 +13220,7 @@ HashHeap?
 - 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
 
 #### Rolling array
-与House Robber I一样, 可以用%2 来操作rolling array
+- 与House Robber I一样, 可以用%2 来操作rolling array, space reduced to O(1)
 
 
 
@@ -13087,27 +13238,30 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 求: 最少的cost 
 
 #### DP
+- 跟Paint House I 几乎一模一样, 只不过paint color更多了: k colors.
 - 先考虑单纯地用dp[i]表示涂前 i 个房子的最小cost
 - 但是 dp[i] 和 dp[i-1] 两个index选什么颜色会互相影响, 难讨论, 于是加状态: 序列DP被加了状态变成2D. 
 - 考虑最后位, 而前一位i-1又被i位的颜色限制, 于是在考虑 min dp[i] 时候, 又多了一层iteration.
 - 做dp[i][j]: # cost for 前 i 个房子, 所以要先pick (i-1) 房子的cost, 然后在找出 (i-2)房子的cost
 - K种颜色 => O(NK^2)
 - 如果不优化, 跟Paint House I 几乎是一模一样的代码
-
+- Time O(NK^2), space(NK)
+- Rolling array: reduce space to O(K)
 
 #### 注意
 - 序列型dp[i]表示'前i-1个'的结果. 所以dp最好设定为 int[n + 1] size. 
 - 然而, 颜色在这里是状态, 所以保留在 j: [ 0~k)
 - [[8]] 这样的edge case. 跑不进for loop, 所以特殊handle.
 
-#### Optimization
-- O(NK)
+#### Optimization Solution
+- Time: O(NK)
 - 如果已知每次都要从cost里面选两个不同的最小cost,那么先把最小两个挑出来, 就不必有第三个for loop 找 min
 - 每次在数列里面找: 除去自己之外的最小值, 利用最小值/次小值的思想
 - 维持2个最值: 最小值/次小值. 
 - 计算的时候, 如果除掉的不是最小值的index, 就给出最小值; 如果除掉的是最小值的index, 就给出次小值.
 - Every loop: 1. calculate the two min vlaues for each i; 2. calcualte dp[i][j]
 - 如何想到优化: 把表达式写出来, 然后看哪里可以优化
+- 另外, 还是可以rolling array, reduce space complexity to O(K)
 
 
 
@@ -13329,6 +13483,27 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - 1. rst[i - j] 记录的是[0, i-j]这一段是否可以break后在dict找到。     
 - 2. 若true，再加上剩下所有[i-j, i]都能在dict找到，那么rst[i] = rst[0, i - j] && rst[i-j, i] == true
 - 优化：找dict里面最长string, 限制j的增大。
+
+
+
+
+---
+
+**15. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+      
+
+#### DP
+- 最多2个fence 颜色相同
+- 假设i是和 i-1不同，那么结果就是 (k-1)*dp[i - 1]
+- 假设i是何 i-1相同，那么根据条件，i-1和i-2肯定不同。那么所有的结果就是(k-1)*dp[i-2]
+- 加法原理
+- time, space: O(n)
+- rolling array: space O(1)
+
+#### Previous Notes
+- 这题目很有意思. 一开始分析的太复杂, 最后按照这个哥们的想法（http://yuanhsh.iteye.com/blog/2219891） 的来做，反而简单了许多。
+- 设定T（n）的做法，最后题目化简以后就跟Fibonacci number一样一样的。详细分析如下。
+- 做完，还是觉得如有神。本来是个Easy题，想不到，就是搞不出。
 
 
 
@@ -14086,7 +14261,7 @@ return unique item 的长度.
  
  
  
-## Backpack DP (6)
+## Backpack DP (7)
 **0. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
@@ -14111,7 +14286,27 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**1. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**1. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP, Sequence DP]
+      
+
+给串数字, target amount, 求总共多少种方式可以reach the amount.
+
+#### DP
+- O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 状态: dp[i]: sum of ways that coins can add up to i.
+- Function: dp[j] += dp[j - coins[i]];
+- Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
+- note: 避免重复count, 所以 j = coins[i] as start
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
+
+
+
+---
+
+**2. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
@@ -14152,7 +14347,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**2. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**3. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
@@ -14175,7 +14370,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**3. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**4. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 #### Backpack DP
@@ -14200,7 +14395,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**4. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
+**5. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
       
 
 给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
@@ -14240,7 +14435,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**5. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**6. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -19522,6 +19717,8 @@ Space O(n): dp[], sum[]
 
 **5. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
+
+每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
 
 #### Recursive + Memoization
 - 递归很好写, 但是重复计算, timeout. time: O(2^n)

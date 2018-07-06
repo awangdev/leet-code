@@ -1108,6 +1108,7 @@ for (len = ..; len <= n; len++) {
 - 2. 初始化状态不是很容易找到; 
 - 3. 从大到小
 - 区间搜索(Interval dp), 适合用 memoization, 因为计算顺序稍微比较难
+- recursive function calls with slow runtime: think about memoization.
 
 ## 特点
 - 需要开全局变量
@@ -1410,6 +1411,7 @@ private class PathSum {
 - My thoughts: Java objects should be used and not forgotten; also, we can set object to `NULL` if no longer used but still referenced.
 - Setting to `NULL` will simply make the object elligible for garbage collection.
 
+
 # Pain Point
 - For any array access, make sure to check the boundary!!!
 
@@ -1439,3 +1441,13 @@ private class PathSum {
 
 ## Advanced
 - 写出的function, 加入要解决更大scale的问题, 比如说call 10k 遍, 是否有冗余计算或者空间? 如何优化?
+
+## Pre-Computation
+- If the problem is on a server, we can maintain data storage, cache, or inmemory data structure: precompute
+- Knowing a 'server' is available in the problem, that gives indications of precompute appraoch: and then just use the result/resource over and over.
+
+## Knowledge && experience
+#### Java Design Pattern
+- https://www.journaldev.com/1827/java-design-patterns-example-tutorial
+- Singleton: create a static instance of class that can be accessed globally without recreation.
+- Factory: Used when a super class has multiple sub-classes and we may return one of the sub-classes on demand. Example: returning different client based on region

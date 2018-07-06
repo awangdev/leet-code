@@ -6,7 +6,7 @@ tags: DP, Sequence DP
 
 #### Sequence DP
 - 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
-- 思考的适合搞清楚当下的和之前的情况的关系
+- 搞清楚当下[i]的和之前[i-x]的情况的关系: 不可以连着house, 那么就直接考虑 dp[i-2]的情况
 - Sequence DP, new dp[n + 1];
 
 #### Rolling Array

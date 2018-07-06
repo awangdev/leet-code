@@ -8,6 +8,7 @@ tags: DP, Sequence DP
 - 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 - 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
 - be careful with edge case nums = [0], only with 1 element.
+- Time,space: O(n)
 
 #### 两个状态
 - 是否搜刮了第一个房子, 分出两个branch, 可以看做两种状态.
@@ -15,7 +16,7 @@ tags: DP, Sequence DP
 - 连个维度表示的是2种状态(1st house being robbed or not); 这两种状态是平行世界的两种状态, 互不相关.
 
 #### Rolling array
-与House Robber I一样, 可以用%2 来操作rolling array
+- 与House Robber I一样, 可以用%2 来操作rolling array, space reduced to O(1)
 
 ```
 /*
@@ -66,6 +67,31 @@ class Solution {
     }
 }
 
+// rolling array, O(1) space
+class Solution {
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        } else if (nums.length == 1) {
+            return nums[0];
+        }
+        int n = nums.length;
+        long[][] dp = new long[2][2];
+        dp[0][0] = 0; // not picking any number
+        dp[1][0] = 0; // not picking nums[0]
+        dp[1][1] = nums[0]; // pick nums[0]
+        
+        for (int i = 2; i < n; i++) { // spare the (i = n) case
+            dp[i % 2][0] = Math.max(dp[(i - 1) % 2][0], dp[(i - 2) % 2][0] + nums[i - 1]);
+            dp[i % 2][1] = Math.max(dp[(i - 1) % 2][1], dp[(i - 2) % 2][1] + nums[i - 1]);
+        }
+        // i = n;
+        dp[n % 2][0] = Math.max(dp[(n - 1) % 2][0], dp[(n - 2) % 2][0] + nums[n - 1]);
+        dp[n % 2][1] = dp[(n - 1) % 2][1];
+        
+        return (int) Math.max(dp[n % 2][0], dp[n % 2][1]);
+    }
+}
 /*
 Thougths:
 If there is a circle, which give 2 branches: index i == 0 was robbed, or index i == 0 was not robbed.
