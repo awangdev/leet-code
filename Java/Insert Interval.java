@@ -133,23 +133,12 @@ public class Solution {
 
 
 /*
-O(n)
+O(n) time, O(1) space
 Thoughts:
 1. Find right position to insert: find the last start position that's <= newInterval.start
 2. After insertion, merge.
 3. How to merge? Look at merge inerval question
-
-
 */
-/**
- * Definition for an interval.
- * public class Interval {
- *     int start;
- *     int end;
- *     Interval() { start = 0; end = 0; }
- *     Interval(int s, int e) { start = s; end = e; }
- * }
- */
 class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         if (intervals == null || intervals.size() == 0 || newInterval == null) {
@@ -158,37 +147,34 @@ class Solution {
             }
             return intervals;
         }
+        
         //Insert
-        int start = newInterval.start;
-        int front = -1;
+        int index = 0;
         for (int i = 0; i < intervals.size(); i++) {
-            if (intervals.get(i).start <= start) {
-                front = i;
+            if (intervals.get(i).start <= newInterval.start) {
+                index = i;
+                break;
             }
         }
-
-        // if front==-1, add to front + 1 = 0
-        intervals.add(front + 1, newInterval);
-     
-        //Merge
-        Interval pre = intervals.get(0);
-        Interval curr = null;
-        for (int i = 1; i < intervals.size(); i++) {
-            curr = intervals.get(i);
-            if (pre.end >= curr.start) {
-                pre.end = pre.end > curr.end ? pre.end : curr.end;
-                intervals.remove(i);
-                i--;
-            } else {
-                pre = curr;
-            }
-        }
+        intervals.add(index, newInterval);
+        return merge(intervals);
+    }
     
+    private List<Interval> merge(List<Interval> intervals) {
+        intervals.sort(Comparator.comparing(interval -> interval.start)); // O(nlogn)
+        int i = 0;
+        while(i < intervals.size() - 1) {
+            Interval curr = intervals.get(i), next = intervals.get(i + 1);
+            if (curr.end >= next.start) {
+                curr.end = curr.end >= next.end ? curr.end : next.end;
+                intervals.remove(i + 1);
+                continue;
+            }
+            i++;
+        }
         return intervals;
     }
 }
-
-
 
 
 /*
@@ -197,8 +183,6 @@ class Solution {
     find position x that has newInterval.start <= x.start
     find position y that has y.end <= newInterval.end
 */
-
-
 class Solution {
     public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
         ArrayList<Interval> result = new ArrayList<Interval>();
