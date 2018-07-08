@@ -1,12 +1,13 @@
 M
-1527991514
+1531083215
 tags: Binary Search
 
 找到h-index, 给的citation int[] 已经sorted. h-index 的definition 具体看题目.
 
 #### Binary Search
-- H-index的一个优化, 找target value, 满足 `value >= h`, where `h = n - mid`
-- O(nlogn)
+- H-index的一个简单版, 已经sorted(从小到大), 找target value
+- 按定义, 找最后一个 `dictations[mid] >= h`, where `h = n - mid`
+- O(logn)
 
 ```
 /*
@@ -21,6 +22,29 @@ Hide Tags Binary Search
 Hide Similar Problems (M) H-Index
 
 */
+
+public class Solution {
+    public int hIndex(int[] citations) {
+        if (citations == null || citations.length == 0) {
+            return 0;
+        }
+        int n = citations.length;
+        int start = 0, end = n - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            int h = n - mid;
+            if (citations[mid] < h) start = mid;
+            else { // citations[mid] >= h
+                if (mid - 1 >= 0 && citations[mid - 1] <= h) return h;  // verify the prior node: (N-h)
+                end = mid;
+            }
+        }
+	// validate start && end
+        if (citations[start] >= n - start) return n - start;
+        if (citations[end] >= n - end) return n - end;
+        return 0;
+    }
+}
 
 /*
 	citations[0,1,3,5,6]
