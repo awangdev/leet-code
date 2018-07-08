@@ -1,9 +1,19 @@
 M
-tags: Sort, Two Pointers
+1531086337
+tags: Sort, Two Pointers, Quick Sort
+
+Sort Color的普通版, sort all k colors in colors array.
+
+Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java
+
+#### Quick Sort
+- O(nk)
 
 ```
 /*
-Given an array of n objects with k different colors (numbered from 1 to k), sort them so that objects of the same color are adjacent, with the colors in the order 1, 2, ... k.
+LintCode
+Given an array of n objects with k different colors (numbered from 1 to k), 
+sort them so that objects of the same color are adjacent, with the colors in the order 1, 2, ... k.
 
 Example
 GIven colors=[3, 2, 2, 1, 4], k=4, your code should sort colors in-place to [1, 2, 2, 3, 4]. 
@@ -18,6 +28,9 @@ Can you do it without using extra memory?
 
 Tags Expand 
 Two Pointers Sort
+*/
+
+/*
 
 Thoughts (Need to revist and think about this, very interesting)
 Doing quick sort partition for K -1 times.
@@ -27,13 +40,45 @@ Doing quick sort partition for K -1 times.
 4. Result: only swap when low and high have disagreement on the pivot value.
 
 */
-
 class Solution {
-    /**
-     * @param colors: A list of integer
-     * @param k: An integer
-     * @return: nothing
-     */
+    public void sortColors2(int[] colors, int k) {
+        if (colors == null || colors.length == 0 || k <= 0)  return;
+
+        int start = 0;
+        for (int i = 0; i < k - 1; i++) {
+            start = partition(colors, start, colors.length - 1, i);
+        }
+
+        /*
+        int end = colors.length - 1;
+        for (int i = 0; i < k - 1; i++) {
+            end = helper(colors, 0, end, k - i - 1);
+        }
+        */
+        
+    }
+
+    // quick sort partion function template
+    private int partition(int[] nums, int start, int end, int pivot) {
+        int low = start, high = end;
+        while (low <= high) {
+            while(low < high && nums[low] <= pivot) low++;
+            while(high > 0 && nums[high] > pivot) high--;
+            
+            if (low <= high) swap(nums, low++, high--);
+        }
+        return low - 1;
+    }
+
+    private void swap(int[] nums, int x, int y){
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp;
+    }
+}
+
+// Previous version
+class Solution {
     public void sortColors2(int[] colors, int k) {
         if (colors == null || colors.length == 0 || k <= 0) {
             return;
