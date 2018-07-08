@@ -1,42 +1,43 @@
 M
-1525758861
-tags: Array, Sort, Sweep Line
+1531077570
+tags: Array, Sort, Sweep Line, PriorityQueue
 
-给一串int[Interval]. 把所以Interval merge起来.
+给一串int[Interval] (unsorted), 把所以Interval merge起来.
 
-#### Sweep Line
-- O(nlogn)         
+#### Sweep Line with Priority Queue
+- O(nlogn) time (PriorityQueue), O(n) space     
 - 扫描线+Count无敌手。注意start end把interval给合起来。   
 - count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
-- 空间：O(2n) -> O(n)   
-- 时间,priorityqueue: O(nlogn)   
 - 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
 - 在 LeetCode里面，Sweep Line比方法2要快很多.
 
 #### Sort Interval 
-- Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
-- (不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
-- Collections.sort(..., new comparator): sort by Interval.start.
-
-- 画两个相连的Interval， prev, curr:
-- prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
-- 记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
-- 若没有重合，就继续iteration: prev = curr. move on.
+- Sort by interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- sort by Interval.start: `intervals.sort(Comparator.comparing(interval -> interval.start)); // O(nlogn)`
+- Related example: Insert Interval
+- 用两个相连的Interval: curr, next
+- 如果 curr.end覆盖了 next.start: 需要merge. 那么比较一下 curr.end vs. next.end    
+- 一旦merge, 需要remove被覆盖的 next interval: `list.remove(i+1)`
+- 若没有重合，就继续iteration
+- time O(nlogn), space O(1)
 
 #### Sort Intervals and append end logically
-- Sort intervals: O(nlogn)
+- Sort intervals: O(nlogn), extra space O(n) when creating rst list
 - 找到结尾 interval, 满足条件就可以save
 - 如果不到return的条件, 就继续延伸 interval.end
 
 /*
+    // old comparator
     new Comparator<Object>(){
         public int compare(obj1, obj2) {
             return obj1.x - obj2.x;
         }
-
     }
+    // simplier way to define comparator
+    Comparator.comparing(p -> p.val)
 
-    PriorityQueue<Point> queue = new PriorityQueue<>(Comparator.comparing(p -> p.val));
+    // example
+    intervals.sort(Comparator.comparing(interval -> interval.start));
 */
 
 
@@ -52,7 +53,7 @@ Tags: Array, Sort
 Similar Problems: (H) Insert Interval, (E) Meeting Rooms (M) Meeting Rooms II
 
 */
-
+// sweep line, extra space used
 class Solution {
     class Point {
         int val, flag;
@@ -95,6 +96,36 @@ class Solution {
         }
         
         return rst;
+    }
+}
+
+/*
+    Space O(1), time: O(nlogn)
+
+    Sort by start time.
+    then it overlaps: check on pre.end and curr.start.
+    if overlaps: curr.start will be overlapped; also check on curr.end and pre.end, decide who ends this interval
+    
+    border case: null, return itself; or length==1, return.
+*/
+class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        if (intervals == null || intervals.size() <= 1) {
+            return intervals;
+        }
+
+        intervals.sort(Comparator.comparing(interval -> interval.start)); // O(nlogn)
+        int i = 0;
+        while(i < intervals.size() - 1) {
+            Interval curr = intervals.get(i), next = intervals.get(i + 1);
+            if (curr.end >= next.start) {
+                curr.end = curr.end >= next.end ? curr.end : next.end;
+                intervals.remove(i + 1);
+                continue;
+            }
+            i++;
+        }
+        return intervals;
     }
 }
 
@@ -163,6 +194,7 @@ public class Solution {
     }
 }
 
+// extra space used for rst O(n)
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         List<Interval> rst = new ArrayList<>();
@@ -188,16 +220,6 @@ class Solution {
     }
 }
 
-/*
-    Thoughts: 12.09.2015
-    Recap. Use O(1)
-
-    Sort by start time.
-    then it overlaps: check on pre.end and curr.start.
-    if overlaps: curr.start will be overlapped; also check on curr.end and pre.end, decide who ends this interval
-    
-    border case: null, return itself; or length==1, return.
-*/
 
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
@@ -205,30 +227,23 @@ class Solution {
             return intervals;
         }
 
-        Collections.sort(intervals, new Comparator<Interval>(){
-            public int compare(Interval a, Interval b) {
-                return a.start - b.start;
-            }
-        });
+        intervals.sort(Comparator.comparing(interval -> interval.start)); // O(nlogn)
         Interval prev = intervals.get(0);
         Interval curr;
 
         for (int i = 1; i < intervals.size(); i++) {
             curr  = intervals.get(i);
             if (prev.end >= curr.start) {
-                if (prev.end <= curr.end) {
-                    prev.end = curr.end;
-                }
+                prev.end = prev.end >= curr.end ? prev.end : curr.end;
                 intervals.remove(i);
                 i--;
             } else {
                 prev = curr;         
             }
         }
-
         return intervals;
     }
-
 }
+
 
 ```
