@@ -1,16 +1,31 @@
 M
-tags: Hash Table, Sort
+1531081483
+tags: Hash Table, Sort, Bucket Sort
 
 找到h-index, 给的citation int[] 并不是sorted. h-index 的definition 具体看题目.
 
 #### Sort, find h from end
 - 例子写出来，发现可以sort以后按照定义搜索一遍。 nlogn.
-- 当然，搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
+- 搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
+- 题目给的规则, 从小到大排序后: 剩下的 paper `n-h`, 全部要 <= h 个 citation.
+- time O(nlogn), search O(n)
 
-#### Bucket count
-- o(n)也可以，用bucket. 比较巧妙
-- TODO
+##### 正向思考
+- 从i = 0 开始找第一个 `citations[i] >= h`, 就是第一个符合 h-index 规则的paper, return h
 
+##### 反向思考
+- 如果从 h = n, 每次h--; 那么 `x = n - h` 就是从 `[0 ~ n)` 开始找第一个 `dictations[x] >= h`, 就是结果
+- 同时, `dictations[x-1]` 就是最后一个(dictation最多的)其余的paper.
+
+#### Bucket count / Bucket Sort
+- O(n)
+- Bucket sort的思想: 过一遍 input, 把dictation value 作为 index, 分布在bucket[index]上++
+- bucket[x] 是 count when # of citation == x. 
+- 如果 x 大于 n的时候, 就超出了index范围, 但是刚好这个问题可以包容, 把这样的情况记位在bucket[n]就可以
+- 巧妙: `sum += bucket[h]` where `h = [n ~ 0]` 利用了h-index的definition:
+- # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
+- 这里运用到了bucket sort的思想, 但是并不是sorting, 而h-index的定义运用的很巧妙.
+- Read more about actual bucket sort: https://en.wikipedia.org/wiki/Bucket_sort
 
 ```
 /*
@@ -58,21 +73,41 @@ Hide Similar Problems (M) H-Index II
 
 
 */
+// 正向思考
 public class Solution {
     public int hIndex(int[] citations) {
         if (citations == null || citations.length == 0) {
-        	return 0;
+            return 0;
         }
-        Arrays.sort(citations);
-        for (int h = citations.length; h > 0; h--) {
-        	int x = citations.length - h;
-        	if (citations[x] >= h) {
-        		return h;
-        	}
+        int n = citations.length;
+        Arrays.sort(citations); // nlogn
+        for (int i = 0; i < n; i++) {
+            int h = n - i;
+            if (citations[i] >= h) {
+                return h;
+            }
         }
         return 0;
     }
 }
+
+// 反向思考
+public class Solution {
+    public int hIndex(int[] citations) {
+        if (citations == null || citations.length == 0) {
+            return 0;
+        }
+        Arrays.sort(citations); // nlogn
+        for (int h = citations.length; h > 0; h--) {
+            int x = citations.length - h;
+            if (citations[x] >= h) {
+                return h;
+            }
+        }
+        return 0;
+    }
+}
+
 
 
 /*
@@ -91,29 +126,25 @@ public class Solution {
 public class Solution {
     public int hIndex(int[] citations) {
         if (citations == null || citations.length == 0) {
-        	return 0;
+            return 0;
         }
- 		int n = citations.length;
- 		int[] bucket = new int[n + 1];
- 		//fill bucket
- 		for (int i = 0; i < n; i++) {
- 			int bucketSlot = citations[i];
- 			if (citations[i] <= n) {
- 				bucket[bucketSlot]++;
- 			} else {//bucketSlot > n
- 				bucket[n]++;
- 			}
- 		}
+        int n = citations.length;
+        int[] bucket = new int[n + 1]; // bucket[n] stores paper with more than n citations.
+        //fill bucket
+        for (int i = 0; i < n; i++) {
+            int bucketSlot = citations[i];
+            if (bucketSlot <= n) bucket[bucketSlot]++;
+            else bucket[n]++; //bucketSlot > n
+        }
 
- 		//Find best H
- 		int sum = 0;
- 		for (int h = n; h >= 0; h--) {
- 			if (sum + bucket[h] >= h) {
- 				return h;
- 			} 		
- 			sum += bucket[h];
- 		}
-      	return 0;
+        //Find best H
+        int sum = 0;
+        for (int h = n; h >= 0; h--) {
+            sum += bucket[h];
+            if (sum >= h) return h; // h-index definition: # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
+        }
+        return 0;
     }
 }
+
 ```
