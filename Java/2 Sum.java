@@ -42,21 +42,19 @@ Thoughts:
 */
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return null;
-        }
-        int[] result = new int[2];
-        Map<Integer, Integer> recordMap = new HashMap<>();
+        int[] rst = new int[2];
+        if (nums == null || nums.length <= 1) return rst;
+
+        Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            if (recordMap.containsKey(target - nums[i])) {
-                result[0] = recordMap.get(target - nums[i]);
-                result[1] = i;
-                return result;
-            } else {
-                recordMap.put(nums[i], i);
-            }
+            if (map.containsKey(target - nums[i])) {
+                rst[0] = map.get(target - nums[i]);
+                rst[1] = i;
+                break;
+            } 
+            map.put(nums[i], i);
         }
-        return result;
+        return rst;
     }
 }
 

@@ -2,51 +2,7 @@
  
  
 ## Sort (20)
-**0. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Hash Table, Sort]
-      
-
-找到h-index, 给的citation int[] 并不是sorted. h-index 的definition 具体看题目.
-
-#### Sort, find h from end
-- 例子写出来，发现可以sort以后按照定义搜索一遍。 nlogn.
-- 当然，搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
-
-#### Bucket count
-- o(n)也可以，用bucket. 比较巧妙
-- TODO
-
-
-
-
----
-
-**1. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Sort, Two Pointers]
-      
-
-#### Counting sort
-- TODO: count occurance and reassign array
-
-#### One pass
-- TODO: have two pointers, start/end.
-- start tracks red, end tracks blue. Swap red/blue to right position, and start++ or end--.
-- leave white as is and it will be sorted automatically
-
-#### Quick sort
-- partition the array by k [0, 1, 2]
-
-
-
-
----
-
-**2. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Sort, Two Pointers]
-      
-
-
-
----
-
-**3. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Sort, String, Two Pointers]
+**0. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Sort, String, Two Pointers]
       
 
 
@@ -54,7 +10,7 @@
 
 ---
 
-**4. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [Sort]
+**1. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [Sort]
       
 
 TODO: use prefixSum, could be a 2D array, also could be a customized object
@@ -63,14 +19,14 @@ TODO: use prefixSum, could be a 2D array, also could be a customized object
 
 ---
 
-**5. [The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)**      Level: Medium      Tags: [Array, Sort, Two Pointers]
+**2. [The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)**      Level: Medium      Tags: [Array, Sort, Two Pointers]
       
 
 
 
 ---
 
-**6. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium      Tags: [Array, Sort]
+**3. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium      Tags: [Array, Sort]
       
 
 方法1:
@@ -92,7 +48,7 @@ O(n)
 
 ---
 
-**7. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy      Tags: [Binary Search, Hash Table, Sort, Two Pointers]
+**4. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy      Tags: [Binary Search, Hash Table, Sort, Two Pointers]
       
 
 方法1:
@@ -106,7 +62,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 ---
 
-**8. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy      Tags: [Hash Table, Sort]
+**5. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy      Tags: [Hash Table, Sort]
       
 
 HashMap
@@ -115,7 +71,7 @@ HashMap
 
 ---
 
-**9. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
+**6. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
       
 
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
@@ -134,7 +90,7 @@ HashMap
 
 ---
 
-**10. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**7. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -152,7 +108,7 @@ HashMap
 
 ---
 
-**11. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, Sort, Sweep Line]
+**8. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, Sort, Sweep Line]
       
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
@@ -168,7 +124,7 @@ HashMap
 
 ---
 
-**12. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium      Tags: [Linked List, Sort]
+**9. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium      Tags: [Linked List, Sort]
       
 
 input一串数字, 需要出sorted output. 每次insert一个数字时, 都要放到正确的sorted的位置
@@ -189,7 +145,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**13. [Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)**      Level: Medium      Tags: [Sort]
+**10. [Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)**      Level: Medium      Tags: [Sort]
       
 
 给一串数字, 非负数, 把所有数字串联起来, 组成最大数字.
@@ -209,40 +165,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**14. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, Sort, Sweep Line]
-      
-
-给一串int[Interval]. 把所以Interval merge起来.
-
-#### Sweep Line
-- O(nlogn)         
-- 扫描线+Count无敌手。注意start end把interval给合起来。   
-- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
-- 空间：O(2n) -> O(n)   
-- 时间,priorityqueue: O(nlogn)   
-- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
-- 在 LeetCode里面，Sweep Line比方法2要快很多.
-
-#### Sort Interval 
-- Collections.sort() on interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
-- (不知为何LeetCode把Merge Interval, Insert Interval 标为Hard)
-- Collections.sort(..., new comparator): sort by Interval.start.
-
-- 画两个相连的Interval， prev, curr:
-- prev只有 prev.end覆盖了 curr.start， 才需要merge. 那么比较一下, marege.     
-- 记得如果merge, 一定要list.remove(i), 并且i--， 因为改变了List的大小。
-- 若没有重合，就继续iteration: prev = curr. move on.
-
-#### Sort Intervals and append end logically
-- Sort intervals: O(nlogn)
-- 找到结尾 interval, 满足条件就可以save
-- 如果不到return的条件, 就继续延伸 interval.end
-
-
-
----
-
-**15. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium      Tags: [Sort]
+**11. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium      Tags: [Sort]
       
 
 implement quick sort.
@@ -258,7 +181,7 @@ implement quick sort.
 
 ---
 
-**16. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
+**12. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
       
 
 #### Merge Sort
@@ -272,7 +195,7 @@ implement quick sort.
 
 ---
 
-**17. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**13. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
@@ -292,7 +215,7 @@ implement quick sort.
 
 ---
 
-**18. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
+**14. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
       
 
 #### Merge sort
@@ -310,7 +233,7 @@ implement quick sort.
 
 ---
 
-**19. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+**15. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
       
 
 #### Sweep Line
@@ -321,7 +244,7 @@ implement quick sort.
 
 
 #### Basic Implementation
-- 这里已经给了sorted intervals by start point.
+- 这里已经给了 **sorted** intervals by start point.
 - 直接找到可以insert newInterval的位子. Insert
 - 然后loop to merge entire interval array
 - 因为给的是个list, 所以方便`intervals.remove(i)`
@@ -331,6 +254,110 @@ implement quick sort.
 #### 另外
 - 因为interval已经sort, 本想用Binary Search O(logn). 
 - 但是找到interval insert position 最后 merge还是要用 O(n), 所以不必要 binary Search
+
+
+
+---
+
+**16. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
+      
+
+给一串int[Interval] (unsorted), 把所以Interval merge起来.
+
+#### Sweep Line with Priority Queue
+- O(nlogn) time (PriorityQueue), O(n) space     
+- 扫描线+Count无敌手。注意start end把interval给合起来。   
+- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
+- 在 LeetCode里面，Sweep Line比方法2要快很多.
+
+#### Sort Interval 
+- Sort by interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- sort by Interval.start: `intervals.sort(Comparator.comparing(interval -> interval.start)); // O(nlogn)`
+- Related example: Insert Interval
+- 用两个相连的Interval: curr, next
+- 如果 curr.end覆盖了 next.start: 需要merge. 那么比较一下 curr.end vs. next.end    
+- 一旦merge, 需要remove被覆盖的 next interval: `list.remove(i+1)`
+- 若没有重合，就继续iteration
+- time O(nlogn), space O(1)
+
+#### Sort Intervals and append end logically
+- Sort intervals: O(nlogn), extra space O(n) when creating rst list
+- 找到结尾 interval, 满足条件就可以save
+- 如果不到return的条件, 就继续延伸 interval.end
+
+
+
+---
+
+**17. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Bucket Sort, Hash Table, Sort]
+      
+
+找到h-index, 给的citation int[] 并不是sorted. h-index 的definition 具体看题目.
+
+#### Sort, find h from end
+- 例子写出来，发现可以sort以后按照定义搜索一遍。 nlogn.
+- 搜索一遍时候可以优化，用binary search. 但是没意义，因为array.sort已经用了nlogn
+- 题目给的规则, 从小到大排序后: 剩下的 paper `n-h`, 全部要 <= h 个 citation.
+- time O(nlogn), search O(n)
+
+##### 正向思考
+- 从i = 0 开始找第一个 `citations[i] >= h`, 就是第一个符合 h-index 规则的paper, return h
+
+##### 反向思考
+- 如果从 h = n, 每次h--; 那么 `x = n - h` 就是从 `[0 ~ n)` 开始找第一个 `dictations[x] >= h`, 就是结果
+- 同时, `dictations[x-1]` 就是最后一个(dictation最多的)其余的paper.
+
+#### Bucket count / Bucket Sort
+- O(n)
+- Bucket sort的思想(更像是counting sort?): 过一遍 input, 把dictation value 作为 index, 分布在bucket[index]上++
+- bucket[x] 是 count when # of citation == x. 
+- 如果 x 大于 n的时候, 就超出了index范围, 但是刚好这个问题可以包容, 把这样的情况记位在bucket[n]就可以
+- 巧妙: `sum += bucket[h]` where `h = [n ~ 0]` 利用了h-index的definition:
+- # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
+- 这里运用到了bucket sort的思想, 但是并不是sorting, 而h-index的定义运用的很巧妙.
+- Read more about actual bucket sort: https://en.wikipedia.org/wiki/Bucket_sort
+
+
+
+---
+
+**18. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+      
+
+
+
+#### partition array, the base of quick sort
+- partition the array by pivot k = {0, 1, 2}
+- 每一次partition都return starting point of the current partition
+- 然后根据下一个 color, 去还没有sort 干净的那个部分, 再sort一下就好
+- time O(kn), where k = 0 => O(n)
+- 这里只是partion, 并不需要recursively quick sort, 所以结果是简单的O(n)
+
+#### One pass
+- have two pointers, left/right
+- start tracks red, end tracks blue. Swap red/blue to right position, and left++ or right--.
+- leave white as is and it will be sorted automatically
+- be very careful with index i: when swapping with index right, we do not know what is nums[right], so need to re-calculate index i .
+- O(n)
+- Note: this one pass solution does not work if there are more than 3 colors. Need to use the regular quick sorty.
+
+#### Counting sort
+- TODO: count occurance and reassign array
+
+
+
+---
+
+**19. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Quick Sort, Sort, Two Pointers]
+      
+
+Sort Color的普通版, sort all k colors in colors array.
+
+Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java
+
+#### Quick Sort
+- O(nk)
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## PriorityQueue (5)
+## PriorityQueue (6)
 **0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
       
 
@@ -95,7 +95,7 @@
 
 
 #### Basic Implementation
-- 这里已经给了sorted intervals by start point.
+- 这里已经给了 **sorted** intervals by start point.
 - 直接找到可以insert newInterval的位子. Insert
 - 然后loop to merge entire interval array
 - 因为给的是个list, 所以方便`intervals.remove(i)`
@@ -105,6 +105,37 @@
 #### 另外
 - 因为interval已经sort, 本想用Binary Search O(logn). 
 - 但是找到interval insert position 最后 merge还是要用 O(n), 所以不必要 binary Search
+
+
+
+---
+
+**5. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
+      
+
+给一串int[Interval] (unsorted), 把所以Interval merge起来.
+
+#### Sweep Line with Priority Queue
+- O(nlogn) time (PriorityQueue), O(n) space     
+- 扫描线+Count无敌手。注意start end把interval给合起来。   
+- count==0的时候，就是每次start end双数抵消的时候，就应该是一个interval的开头/结尾。写个例子就知道了。   
+- 记得怎么写comparator. New way: new PriorityQueue<>(Comparator.comparing(p -> p.val));
+- 在 LeetCode里面，Sweep Line比方法2要快很多.
+
+#### Sort Interval 
+- Sort by interval.start之后，试着跑一遍，按照merge的需求，把需要merge的地方续好，然后减掉多余的interval就好。
+- sort by Interval.start: `intervals.sort(Comparator.comparing(interval -> interval.start)); // O(nlogn)`
+- Related example: Insert Interval
+- 用两个相连的Interval: curr, next
+- 如果 curr.end覆盖了 next.start: 需要merge. 那么比较一下 curr.end vs. next.end    
+- 一旦merge, 需要remove被覆盖的 next interval: `list.remove(i+1)`
+- 若没有重合，就继续iteration
+- time O(nlogn), space O(1)
+
+#### Sort Intervals and append end logically
+- Sort intervals: O(nlogn), extra space O(n) when creating rst list
+- 找到结尾 interval, 满足条件就可以save
+- 如果不到return的条件, 就继续延伸 interval.end
 
 
 

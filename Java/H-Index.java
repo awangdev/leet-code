@@ -19,7 +19,7 @@ tags: Hash Table, Sort, Bucket Sort
 
 #### Bucket count / Bucket Sort
 - O(n)
-- Bucket sort的思想: 过一遍 input, 把dictation value 作为 index, 分布在bucket[index]上++
+- Bucket sort的思想(更像是counting sort?): 过一遍 input, 把dictation value 作为 index, 分布在bucket[index]上++
 - bucket[x] 是 count when # of citation == x. 
 - 如果 x 大于 n的时候, 就超出了index范围, 但是刚好这个问题可以包容, 把这样的情况记位在bucket[n]就可以
 - 巧妙: `sum += bucket[h]` where `h = [n ~ 0]` 利用了h-index的definition:

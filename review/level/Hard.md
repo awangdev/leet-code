@@ -1423,7 +1423,7 @@ output 所有 expression
 
 
 #### Basic Implementation
-- 这里已经给了sorted intervals by start point.
+- 这里已经给了 **sorted** intervals by start point.
 - 直接找到可以insert newInterval的位子. Insert
 - 然后loop to merge entire interval array
 - 因为给的是个list, 所以方便`intervals.remove(i)`

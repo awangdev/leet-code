@@ -10,7 +10,7 @@ tags: Array, Sort, PriorityQueue
 
 
 #### Basic Implementation
-- 这里已经给了sorted intervals by start point.
+- 这里已经给了 **sorted** intervals by start point.
 - 直接找到可以insert newInterval的位子. Insert
 - 然后loop to merge entire interval array
 - 因为给的是个list, 所以方便`intervals.remove(i)`
@@ -58,77 +58,65 @@ What's the difference from merge intervals?
 2. sort point in min-heap
 3. when count increase and decreases to 0, that means we can close an interval
 */
-/**
- * Definition for an interval.
- * public class Interval {
- *     int start;
- *     int end;
- *     Interval() { start = 0; end = 0; }
- *     Interval(int s, int e) { start = s; end = e; }
- * }
- */
-public class Solution {
-
+/*
+Option1: 
+- convert all intervals into points with open/close flag, sort, and merge. When count == 0, close a interval.
+- priority queue, O(n) space, O(nlogn) time
+*/
+class Solution {
     class Point {
-        int x;
-        int flag;
-        public Point(int x, int flag) {
-            this.x = x;
+        int val, flag;
+        public Point(int val, int flag) {
+            this.val = val;
             this.flag = flag;
         }
     }
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         List<Interval> rst = new ArrayList<>();
-        if (intervals == null && newInterval == null) {
+        if (intervals == null || intervals.size() == 0 || newInterval == null) {
+            if (newInterval != null) rst.add(newInterval);
             return rst;
-        } else if (intervals == null) {
-            rst.add(newInterval);
-            return rst;
-        } else if (newInterval == null) {
-            return intervals;
         }
-
-        PriorityQueue<Point> queue = new PriorityQueue<>(1, new Comparator<Point>(){
-            public int compare(Point a, Point b){
-                return a.x - b.x;
-            }
-        });
-
-        for (Interval range: intervals) {
-            queue.add(new Point(range.start, 1));
-            queue.add(new Point(range.end, -1));
-        }
-
-        queue.add(new Point(newInterval.start, 1));
-        queue.add(new Point(newInterval.end, -1));
-
+        
+        // build priority queue
+        PriorityQueue<Point> queue = buildQueue(intervals, newInterval);
+        // iterate over queue, count and build interval
         int count = 0;
-        int startNew = 0;
-        int endNew = 0;
+        Interval interval = new Interval();
         while (!queue.isEmpty()) {
             Point p = queue.poll();
-            if (count == 0) {
-                startNew = p.x;
-            }
+            if (count == 0) {//detect start
+                interval.start = p.val;
+            }    
+            
             count += p.flag;
-
-            while (!queue.isEmpty() && p.x == queue.peek().x) {
+            while (!queue.isEmpty() && p.val == queue.peek().val) {
                 p = queue.poll();
                 count += p.flag;
             }
-
+            
             if (count == 0) {
-                endNew = p.x;
-                Interval addInterval = new Interval(startNew, endNew);
-                rst.add(addInterval);
+                interval.end = p.val;
+                rst.add(interval);
+                interval = new Interval();
             }
-
-        }//end while
-
+        }
         return rst;
-
     }
+    
+    private PriorityQueue<Point> buildQueue(List<Interval> intervals, Interval newInterval) {
+        PriorityQueue<Point> queue = new PriorityQueue<>(Comparator.comparing(p -> p.val));
+        queue.offer(new Point(newInterval.start, 1));
+        queue.offer(new Point(newInterval.end, -1));
+        for (Interval interval : intervals) {
+            queue.offer(new Point(interval.start, 1));
+            queue.offer(new Point(interval.end, -1));
+        }
+        return queue;
+    }
+    
 }
+
 
 
 
