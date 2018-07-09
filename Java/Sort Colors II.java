@@ -1,6 +1,6 @@
 M
 1531086337
-tags: Sort, Two Pointers, Quick Sort
+tags: Sort, Two Pointers, Partition
 
 Sort Color的普通版, sort all k colors in colors array.
 

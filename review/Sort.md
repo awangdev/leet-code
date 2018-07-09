@@ -2,31 +2,14 @@
  
  
 ## Sort (20)
-**0. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Sort, String, Two Pointers]
-      
-
-
-
-
----
-
-**1. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [Sort]
-      
-
-TODO: use prefixSum, could be a 2D array, also could be a customized object
-
-
-
----
-
-**2. [The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)**      Level: Medium      Tags: [Array, Sort, Two Pointers]
+**0. [The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)**      Level: Medium      Tags: [Array, Sort, Two Pointers]
       
 
 
 
 ---
 
-**3. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium      Tags: [Array, Sort]
+**1. [Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)**      Level: Medium      Tags: [Array, Sort]
       
 
 方法1:
@@ -48,7 +31,7 @@ O(n)
 
 ---
 
-**4. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy      Tags: [Binary Search, Hash Table, Sort, Two Pointers]
+**2. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy      Tags: [Binary Search, Hash Table, Sort, Two Pointers]
       
 
 方法1:
@@ -62,7 +45,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 ---
 
-**5. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy      Tags: [Hash Table, Sort]
+**3. [Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)**      Level: Easy      Tags: [Hash Table, Sort]
       
 
 HashMap
@@ -71,7 +54,7 @@ HashMap
 
 ---
 
-**6. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
+**4. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
       
 
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
@@ -90,7 +73,7 @@ HashMap
 
 ---
 
-**7. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**5. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -108,7 +91,7 @@ HashMap
 
 ---
 
-**8. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, Sort, Sweep Line]
+**6. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, Sort, Sweep Line]
       
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
@@ -124,7 +107,7 @@ HashMap
 
 ---
 
-**9. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium      Tags: [Linked List, Sort]
+**7. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium      Tags: [Linked List, Sort]
       
 
 input一串数字, 需要出sorted output. 每次insert一个数字时, 都要放到正确的sorted的位置
@@ -145,7 +128,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**10. [Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)**      Level: Medium      Tags: [Sort]
+**8. [Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)**      Level: Medium      Tags: [Sort]
       
 
 给一串数字, 非负数, 把所有数字串联起来, 组成最大数字.
@@ -165,7 +148,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**11. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium      Tags: [Sort]
+**9. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium      Tags: [Sort]
       
 
 implement quick sort.
@@ -181,7 +164,7 @@ implement quick sort.
 
 ---
 
-**12. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
+**10. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
       
 
 #### Merge Sort
@@ -195,7 +178,7 @@ implement quick sort.
 
 ---
 
-**13. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**11. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
@@ -215,7 +198,7 @@ implement quick sort.
 
 ---
 
-**14. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
+**12. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
       
 
 #### Merge sort
@@ -233,7 +216,7 @@ implement quick sort.
 
 ---
 
-**15. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+**13. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
       
 
 #### Sweep Line
@@ -259,7 +242,7 @@ implement quick sort.
 
 ---
 
-**16. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
+**14. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
       
 
 给一串int[Interval] (unsorted), 把所以Interval merge起来.
@@ -290,7 +273,7 @@ implement quick sort.
 
 ---
 
-**17. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Bucket Sort, Hash Table, Sort]
+**15. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Bucket Sort, Hash Table, Sort]
       
 
 找到h-index, 给的citation int[] 并不是sorted. h-index 的definition 具体看题目.
@@ -322,10 +305,12 @@ implement quick sort.
 
 ---
 
-**18. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**16. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Sort, Two Pointers]
       
 
+给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
 
+虽然叫sort color, 其实就是sort 这些 numbers, 只不过抽象了一下.
 
 #### partition array, the base of quick sort
 - partition the array by pivot k = {0, 1, 2}
@@ -349,7 +334,7 @@ implement quick sort.
 
 ---
 
-**19. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Quick Sort, Sort, Two Pointers]
+**17. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Partition, Sort, Two Pointers]
       
 
 Sort Color的普通版, sort all k colors in colors array.
@@ -358,6 +343,52 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 
 #### Quick Sort
 - O(nk)
+
+
+
+---
+
+**18. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Partition, Sort, String, Two Pointers]
+      
+
+给一串字符(ASCII 大写, 小写字母), 要求sort 小写字母, 在大写字母前面. 
+
+字母间的前后顺序无所谓, 也不需要preserve original order .
+
+跟sort color分成相似.
+
+#### Partition + Two pointers
+- 其实就是quick sort里面的partition function的简化版
+- Two pointers, 找一个 pivot 'a' 来区分大写小写字母
+- ASCII code 里面 大写字母在小写字母前面, 数字更小
+- 然后 while, move start++, end--,
+- 每一轮都swap
+
+#### Two pointers
+- 直接用两个 pointer left/right 标记开头结尾
+- 每次遇到 `>= 'a'` 就是小写字母, swap(chars, i, left);
+- 每次遇到 `< 'a'` 就是大写字母, swap(chars, i, right);
+- 注意: 每次处理完left swap, 任由for loop i++, 因为确定 [0 left] 都是准确的
+- 每次处理完 right swap, 我们不确定从 right index 换过来的是不是正确的, 所以 i--, 跟for loop 的 i++抵消.
+- 写 while loop 的 solution看起来更容易理解.
+
+
+
+---
+
+**19. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, Sort]
+      
+
+给一串数字, 找subarray的首尾index, 条件: subarray最接近0.
+
+#### PreSum
+- Can be a 2D array, or a `class Point`
+- Sort preSum: smaller (有可能负数) 靠前, 大数字靠后
+- 比较preSum种相连接的两个节点, 找差值min
+- 因为最接近的两个preSum节点的差值肯定是最小
+- min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
+- time O(nlogn), sort
+- space: O(n)
 
 
 

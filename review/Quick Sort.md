@@ -1,7 +1,7 @@
  
  
  
-## Quick Sort (5)
+## Quick Sort (3)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -56,47 +56,6 @@
 - 原因是题目要找第一个nums[i] >= k, 也就是说, 即便是nums[i]==k也应该swap到前面去
 - 这个跟quick sort 原题有一点点不一样.
 
-
-
-
----
-
-**3. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
-      
-
-
-
-#### partition array, the base of quick sort
-- partition the array by pivot k = {0, 1, 2}
-- 每一次partition都return starting point of the current partition
-- 然后根据下一个 color, 去还没有sort 干净的那个部分, 再sort一下就好
-- time O(kn), where k = 0 => O(n)
-- 这里只是partion, 并不需要recursively quick sort, 所以结果是简单的O(n)
-
-#### One pass
-- have two pointers, left/right
-- start tracks red, end tracks blue. Swap red/blue to right position, and left++ or right--.
-- leave white as is and it will be sorted automatically
-- be very careful with index i: when swapping with index right, we do not know what is nums[right], so need to re-calculate index i .
-- O(n)
-- Note: this one pass solution does not work if there are more than 3 colors. Need to use the regular quick sorty.
-
-#### Counting sort
-- TODO: count occurance and reassign array
-
-
-
----
-
-**4. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Quick Sort, Sort, Two Pointers]
-      
-
-Sort Color的普通版, sort all k colors in colors array.
-
-Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java
-
-#### Quick Sort
-- O(nk)
 
 
 

@@ -1,8 +1,10 @@
 M
 1531084797
-tags: Array, Two Pointers, Sort, Quick Sort
+tags: Array, Two Pointers, Sort, Partition
 
+给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
 
+虽然叫sort color, 其实就是sort 这些 numbers, 只不过抽象了一下.
 
 #### partition array, the base of quick sort
 - partition the array by pivot k = {0, 1, 2}

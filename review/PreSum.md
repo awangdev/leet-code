@@ -1,7 +1,7 @@
  
  
  
-## PreSum (6)
+## PreSum (7)
 **0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
@@ -133,6 +133,24 @@ TODO: Write the code + merge function
 - 就是pre sum 的definition
 - preSum也是dp[]一种最简易的形式把.
 - dp[i], preSum[i]: 前(i-1)个元素的和.
+
+
+
+---
+
+**6. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, Sort]
+      
+
+给一串数字, 找subarray的首尾index, 条件: subarray最接近0.
+
+#### PreSum
+- Can be a 2D array, or a `class Point`
+- Sort preSum: smaller (有可能负数) 靠前, 大数字靠后
+- 比较preSum种相连接的两个节点, 找差值min
+- 因为最接近的两个preSum节点的差值肯定是最小
+- min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
+- time O(nlogn), sort
+- space: O(n)
 
 
 
