@@ -6669,7 +6669,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (43)
+## Hash Table (44)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -7474,6 +7474,25 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 - # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
 - 这里运用到了bucket sort的思想, 但是并不是sorting, 而h-index的定义运用的很巧妙.
 - Read more about actual bucket sort: https://en.wikipedia.org/wiki/Bucket_sort
+
+
+
+---
+
+**43. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+      
+
+给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
+
+跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
+
+#### PriorityQueue + HashTable
+- PriorityQueue排序+分布排列的一个经典用法.
+- Count frequency and store in pq.
+- Consume element of pq for k rounds, each time pick one element from queue.
+- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
+- space, O(n) extra space in sb, O(26) constant space with pq.
+- time: O(n) to add all items
 
 
 
@@ -10842,7 +10861,7 @@ reset() 给出最初的nums
  
  
  
-## Heap (13)
+## Heap (14)
 **0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap]
       
 
@@ -11114,6 +11133,25 @@ HashHeap?
 - 再priorityQueue, (mLog(m)), m是unique 数字的总量
 - 最终find top k, O(k)
 - Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
+
+
+
+---
+
+**13. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+      
+
+给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
+
+跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
+
+#### PriorityQueue + HashTable
+- PriorityQueue排序+分布排列的一个经典用法.
+- Count frequency and store in pq.
+- Consume element of pq for k rounds, each time pick one element from queue.
+- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
+- space, O(n) extra space in sb, O(26) constant space with pq.
+- time: O(n) to add all items
 
 
 
@@ -16036,7 +16074,7 @@ TODO:
  
  
  
-## Greedy (13)
+## Greedy (14)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -16327,6 +16365,25 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 - 如果qp 真的穷尽, break, return count
 - 不然, count + remain of k
 - extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+
+
+
+---
+
+**13. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+      
+
+给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
+
+跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
+
+#### PriorityQueue + HashTable
+- PriorityQueue排序+分布排列的一个经典用法.
+- Count frequency and store in pq.
+- Consume element of pq for k rounds, each time pick one element from queue.
+- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
+- space, O(n) extra space in sb, O(26) constant space with pq.
+- time: O(n) to add all items
 
 
 

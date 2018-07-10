@@ -8267,3 +8267,22 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 
 ---
 
+**433. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+      
+
+给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
+
+跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
+
+#### PriorityQueue + HashTable
+- PriorityQueue排序+分布排列的一个经典用法.
+- Count frequency and store in pq.
+- Consume element of pq for k rounds, each time pick one element from queue.
+- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
+- space, O(n) extra space in sb, O(26) constant space with pq.
+- time: O(n) to add all items
+
+
+
+---
+

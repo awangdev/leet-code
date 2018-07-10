@@ -5,7 +5,7 @@ Table of Contents
 * [Merge Sort (3)](#merge-sort-3)
 * [Sequence DFS (2)](#sequence-dfs-2)
 * [String (47)](#string-47)
-* [Math (29)](#math-29)
+* [Math (30)](#math-30)
 * [DP (75)](#dp-75)
 * [Double Sequence DP (4)](#double-sequence-dp-4)
 * [BFS (28)](#bfs-28)
@@ -24,7 +24,7 @@ Table of Contents
 * [BST (21)](#bst-21)
 * [Permutation (3)](#permutation-3)
 * [Partition DP (5)](#partition-dp-5)
-* [PriorityQueue (6)](#priorityqueue-6)
+* [PriorityQueue (7)](#priorityqueue-7)
 * [Heap (13)](#heap-13)
 * [Interval DP (4)](#interval-dp-4)
 * [Stack (24)](#stack-24)
@@ -52,17 +52,17 @@ Table of Contents
 * [Topological Sort (5)](#topological-sort-5)
 * [Quick Sort (3)](#quick-sort-3)
 * [Bucket Sort (1)](#bucket-sort-1)
-* [Greedy (12)](#greedy-12)
+* [Greedy (13)](#greedy-13)
 * [Hash Map (3)](#hash-map-3)
-* [Queue (1)](#queue-1)
+* [Queue (2)](#queue-2)
 * [Coordinate DP (15)](#coordinate-dp-15)
 * [Monotonous Stack (1)](#monotonous-stack-1)
 * [Partition (3)](#partition-3)
-* [Enumeration (4)](#enumeration-4)
+* [Enumeration (5)](#enumeration-5)
 * [Binary Tree (13)](#binary-tree-13)
 * [Expression Tree (5)](#expression-tree-5)
 * [Binary Search (37)](#binary-search-37)
-* [Array (94)](#array-94)
+* [Array (95)](#array-95)
 * [Geometry (2)](#geometry-2)
 * [Memoization (12)](#memoization-12)
 * [Two Stacks (1)](#two-stacks-1)
@@ -471,7 +471,7 @@ Table of Contents
  
  
  
-## Hash Table (43)
+## Hash Table (44)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
@@ -517,6 +517,7 @@ Table of Contents
 |40|[Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)|Easy|Java|[Array, Hash Table]||
 |41|[Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)|Medium|Java|[Array, Hash Table, PreSum]||
 |42|[H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)|Medium|Java|[Bucket Sort, Hash Table, Sort]||
+|43|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
 
 
 
@@ -770,7 +771,7 @@ Table of Contents
  
  
  
-## Heap (13)
+## Heap (14)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Review|Java|[Heap]||
@@ -786,6 +787,7 @@ Table of Contents
 |10|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
 |11|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, PriorityQueue]||
 |12|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
+|13|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
 
 
 
@@ -1241,7 +1243,7 @@ Table of Contents
  
  
  
-## Greedy (13)
+## Greedy (14)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)|Medium|Java|[Enumeration, Greedy]||
@@ -1257,6 +1259,7 @@ Table of Contents
 |10|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
 |11|[Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)|Medium|Java|[Greedy]||
 |12|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|13|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
 
 
 

@@ -451,3 +451,4 @@
 |430|[Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)|Medium|Java|[Partition, Sort, String, Two Pointers]||
 |431|[Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)|Medium|Java|[PreSum, Sort]||
 |432|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|433|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
