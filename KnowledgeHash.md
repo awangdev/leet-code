@@ -348,6 +348,7 @@ stack.push(item);
 - peek(), poll(), add()/offer(), remove(object)
 - queue = new LinkedList<...>()
 - PriorityQueue: new Comparator 很重要
+- PriorityQueue 用完的item(top poll item 可能用完后 attribute有所变化): **如果还要继续用, 那就把item add回queue里**.
 - Queue 可以用 LinkedList 实现. Add from the last/end of the list; Return/remove from the head of the list. 
 
 # Linked List
@@ -1361,7 +1362,7 @@ private class PathSum {
 
 # Bit Manipulation
 - Bit OR |, AND &, XOR ^
-- Bit shift: <<, >>
+- Bit shift: <<, >>; the result of shift has to be stored : `a = a >> 1`;
 - A << 1: binary of A shifted left for 1 bit, which result in value x 2
 - A >> 1: divide by integer 2. Note: decimals are ignored in the result.
 - bit shift is a lot faster than reqular 'times' operation.

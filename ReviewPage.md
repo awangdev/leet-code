@@ -2431,32 +2431,32 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 ---
 
-**159. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
+**159. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium      Tags: [Linked List, Math, Two Pointers]
       
 
-方法1:
-快慢指针, O(1)space.
+LinkedList 里面有 cycle, 找到cycle的起始点(第一个重复出现的element).
 
-确认有cycle后, 其实是数学问题:
-当head == slow.next时候， head就是cycle starting point.
-也就是说，当slow 移动到了那个回溯点，slow.next那个点就刚好是head的那个点...
+#### Slow, fast Pointer
+- 快慢指针, O(1)space.
+- 1. 确认有cycle后 2. 数学问题:找到开头.
+- 当head == slow.next时候， head就是cycle starting point.
+- 也就是说，当slow 移动到了那个回溯点，slow.next那个点就刚好是head的那个点...
 
-证明:
-1. 假设慢指针走t步, 快指针走快一倍, 也就是2t.
-2. 我们假设cycle的长度是Y, 而进入cycle之前的长度为X.
-3. 假设慢指针走了m圈cycle, 而快指针走了n圈cycle之后, 两个pointer相遇.
-4. 最终在Y cycle里面的K点相遇, 也就是两个指针都在这最后一圈里面走了K 步.
-=> 
-那么:
-t = X + mY + K
-2t = X + nY + K
-整合公式:
-X + K = (n - 2m)Y
-这里的m和n不过是整数的跑圈数, 也就是说X和K加在一起, 总归是结束cycle. X 和 K 互补
-=> 结论: 当slow/fast 指针在K点相遇后, 再走X步, 就到了cycle的起点, 也就是题目要求的起点.
+#### 证明
+- 1. 假设慢指针走t步, 快指针走快一倍, 也就是2t.
+- 2. 我们假设cycle的长度是Y, 而进入cycle之前的长度为X.
+- 3. 假设慢指针走了m圈cycle, 而快指针走了n圈cycle之后, 两个pointer相遇.
+- 4. 最终在Y cycle里面的K点相遇, 也就是两个指针都在这最后一圈里面走了K 步.
+- 那么:
+- t = X + mY + K
+- 2t = X + nY + K
+- 整合公式: X + K = (n - 2m)Y
+- 这里的m和n不过是整数的跑圈数, 也就是说X和K加在一起, 总归是结束cycle. X 和 K 互补
+- 结论: 当slow/fast 指针在K点相遇后, 再走X步, 就到了cycle的起点, 也就是题目要求的起点.
 
-方法2:
-HashMap, O(n) space
+#### Hash Table, O(n) space
+
+
 
 
 ---
@@ -8233,6 +8233,35 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 - min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
 - time O(nlogn), sort
 - space: O(n)
+
+
+
+---
+
+**432. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+      
+
+#### Array, count frequency, enumerate
+- Enumerate to understand: 1. we can module the tasks in module/section; 2. Only need sum the intervals/slots, not return actual layout
+- Perfect condition, all letters appear identical # times: just line them up separate in order.
+- Real case: task appears different times
+- 1. Place maxCount task as header followed with n slots: define (maxCount-1) sections
+- 2. For tasks with less # than maxCount# can fill the (maxCount-1) sections; what about the tail section?
+- 3. Any task with same maxTask#, of if prior sections all filled, will fill the tail section
+- To count overall slots/intervals, come up with this equation:
+- 1. Fixed sections: `(maxCount - 1) * (n + 1)`
+- 2. Plus all repeating maxCount tasks: calculate by couting identical maxCount of them
+- 3. Exception: if the first (max - 1) sections are all filled completely, and we still have extra task (ex: when n is not large enough), then just return tasks.length
+- time O(1), space O(1)
+
+#### PriorityQueue
+- 正面去做: 
+- summerize 每个task出现的次数, 然后qp sort Task object, count 大的靠前
+- 起始每个section: k slots = n + 1
+- 目标是穷尽 k, 或者 穷尽 pq (poll k times, but will save it back to queue if Task # > 0)
+- 如果qp 真的穷尽, break, return count
+- 不然, count + remain of k
+- extra space O(x), time O(n) + constant time O(xlogx), where x = 26
 
 
 

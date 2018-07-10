@@ -1,7 +1,7 @@
  
  
  
-## Array (94)
+## Array (95)
 **0. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, Greedy]
       
 
@@ -1894,6 +1894,35 @@ TODO:
 
 #### Counting sort
 - TODO: count occurance and reassign array
+
+
+
+---
+
+**94. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+      
+
+#### Array, count frequency, enumerate
+- Enumerate to understand: 1. we can module the tasks in module/section; 2. Only need sum the intervals/slots, not return actual layout
+- Perfect condition, all letters appear identical # times: just line them up separate in order.
+- Real case: task appears different times
+- 1. Place maxCount task as header followed with n slots: define (maxCount-1) sections
+- 2. For tasks with less # than maxCount# can fill the (maxCount-1) sections; what about the tail section?
+- 3. Any task with same maxTask#, of if prior sections all filled, will fill the tail section
+- To count overall slots/intervals, come up with this equation:
+- 1. Fixed sections: `(maxCount - 1) * (n + 1)`
+- 2. Plus all repeating maxCount tasks: calculate by couting identical maxCount of them
+- 3. Exception: if the first (max - 1) sections are all filled completely, and we still have extra task (ex: when n is not large enough), then just return tasks.length
+- time O(1), space O(1)
+
+#### PriorityQueue
+- 正面去做: 
+- summerize 每个task出现的次数, 然后qp sort Task object, count 大的靠前
+- 起始每个section: k slots = n + 1
+- 目标是穷尽 k, 或者 穷尽 pq (poll k times, but will save it back to queue if Task # > 0)
+- 如果qp 真的穷尽, break, return count
+- 不然, count + remain of k
+- extra space O(x), time O(n) + constant time O(xlogx), where x = 26
 
 
 

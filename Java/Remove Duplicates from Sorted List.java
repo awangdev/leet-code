@@ -67,15 +67,6 @@ while everything when head.next is not null
 compare head.val == head.next.val? 
 If so, head.next = head.next.next
  */
-
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
 /*
 Thoughts:
 1. Check head.
@@ -84,9 +75,8 @@ Thoughts:
 */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null) {
-            return head;
-        }
+        if (head == null) return head;
+
         ListNode node = head;
         while (node != null) {
             while (node.next != null && node.val == node.next.val) {
