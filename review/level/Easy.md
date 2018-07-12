@@ -894,7 +894,7 @@ isBadVersion 是有方向的嘛，一个点错了，后面全错。
 
 ---
 
-**69. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
+**69. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
@@ -906,8 +906,6 @@ isBadVersion 是有方向的嘛，一个点错了，后面全错。
 #### 方法2: Sweep line
 - class Point{pos, flag}, PriorityQueue排序。计算count
 - 跟 Number of Airplanes in the Sky 是一个类型的题目
-
-
 
 
 

@@ -9385,7 +9385,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
  
  
  
-## Sort (20)
+## Sort (21)
 **0. [The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)**      Level: Medium      Tags: [Array, Sort, Two Pointers]
       
 
@@ -9438,7 +9438,7 @@ HashMap
 
 ---
 
-**4. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
+**4. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
@@ -9453,11 +9453,9 @@ HashMap
 
 
 
-
-
 ---
 
-**5. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**5. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -9773,6 +9771,40 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 - min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
 - time O(nlogn), sort
 - space: O(n)
+
+
+
+---
+
+**20. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
+      
+
+#### PriorityQueue
+- Use priority queue to sort by customized class interval{int dist; int x, y;}. 
+- Sort by larger distance and then sort by start index
+- seat(): pq.poll() to find interval of largest distance. Split and add new intervals back to queue.
+- leave(x): one seat will be in 2 intervals: remove both from pq, and merge to a new interval.
+- 主方程写出来其实很好写, 就是 split + add interval, 然后 find + delete interval 而已. 最难的是构建data structure
+- seat(): O(logn), leave(): O(n)
+
+##### Trick: 构建虚拟 boundary
+- 如果是开头的seat, 或者是结尾的seat, 比较难handle: 一开始坐在seat=0的时候, 没有interval啊!
+- Trick就是, 我们自己定义个虚拟的座位 `seat=-1`, `seat=N`
+- 一开始有一个 interval[-1, N] 然后就建立了boundary.
+- 从此以后, 每次split成小interval的时候:
+- 遇到 `interval[-1, y]`, distance就是 `(y - 0)`
+- 遇到 `interval[x, N]`, distance就是 `(N - 1 - x)`
+- 当然正常的interval dist 就是 `(y - x) / 2`
+
+##### distance 中间点
+- Interval.dist 我们其实做的是 distance的中间点 `(y - x) / 2`
+- 这里的dist是 `距离两边的距离` 而不是 x, y 之间的距离. 这里要特别注意.
+
+#### TreeSet
+- https://leetcode.com/problems/exam-room/discuss/139885/Java-Solution-based-on-treeset/153588
+
+#### Map
+- TODO, not sure.
 
 
 
@@ -10686,8 +10718,43 @@ reset() 给出最初的nums
  
  
  
-## PriorityQueue (7)
-**0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+## PriorityQueue (10)
+**0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
+      
+
+- 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
+- 开会的是超人。瞬间移动接上下一个会议
+
+#### 方法1:
+找是否有overlap. priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
+
+#### 方法2: Sweep line
+- class Point{pos, flag}, PriorityQueue排序。计算count
+- 跟 Number of Airplanes in the Sky 是一个类型的题目
+
+
+
+---
+
+**1. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
+      
+
+#### Sweep Line
+- 把Interval拆分成数轴上的Point 
+- 起飞mark 1   
+- 降落mark -1     
+- 用PriorityQueue排序， loop through queue, 计算(起飞+降落)值可能有的max。
+
+#### 注意
+- 同时起飞和降落，就是 1 - 1 = 0. 所以在while loop里面有第二个while loop，    
+- 当坐标x重合时，在这里做完所有x点的加减，然后再比较 max。     
+- 这避免了错误多count，或者少count
+
+
+
+---
+
+**2. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
       
 
 #### PriorityQueue
@@ -10710,7 +10777,7 @@ reset() 给出最初的nums
 
 ---
 
-**1. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**3. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 #### Priorityqueue
@@ -10740,7 +10807,7 @@ reset() 给出最初的nums
 
 ---
 
-**2. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, PriorityQueue]
+**4. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, PriorityQueue]
       
 
 #### Priority Queue
@@ -10752,7 +10819,7 @@ reset() 给出最初的nums
 
 ---
 
-**3. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
+**5. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
       
 
 给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
@@ -10769,7 +10836,7 @@ reset() 给出最初的nums
 
 ---
 
-**4. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+**6. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
       
 
 #### Sweep Line
@@ -10795,7 +10862,7 @@ reset() 给出最初的nums
 
 ---
 
-**5. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
+**7. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
       
 
 给一串int[Interval] (unsorted), 把所以Interval merge起来.
@@ -10826,7 +10893,7 @@ reset() 给出最初的nums
 
 ---
 
-**6. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**8. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -10850,6 +10917,40 @@ reset() 给出最初的nums
 - 如果qp 真的穷尽, break, return count
 - 不然, count + remain of k
 - extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+
+
+
+---
+
+**9. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
+      
+
+#### PriorityQueue
+- Use priority queue to sort by customized class interval{int dist; int x, y;}. 
+- Sort by larger distance and then sort by start index
+- seat(): pq.poll() to find interval of largest distance. Split and add new intervals back to queue.
+- leave(x): one seat will be in 2 intervals: remove both from pq, and merge to a new interval.
+- 主方程写出来其实很好写, 就是 split + add interval, 然后 find + delete interval 而已. 最难的是构建data structure
+- seat(): O(logn), leave(): O(n)
+
+##### Trick: 构建虚拟 boundary
+- 如果是开头的seat, 或者是结尾的seat, 比较难handle: 一开始坐在seat=0的时候, 没有interval啊!
+- Trick就是, 我们自己定义个虚拟的座位 `seat=-1`, `seat=N`
+- 一开始有一个 interval[-1, N] 然后就建立了boundary.
+- 从此以后, 每次split成小interval的时候:
+- 遇到 `interval[-1, y]`, distance就是 `(y - 0)`
+- 遇到 `interval[x, N]`, distance就是 `(N - 1 - x)`
+- 当然正常的interval dist 就是 `(y - x) / 2`
+
+##### distance 中间点
+- Interval.dist 我们其实做的是 distance的中间点 `(y - x) / 2`
+- 这里的dist是 `距离两边的距离` 而不是 x, y 之间的距离. 这里要特别注意.
+
+#### TreeSet
+- https://leetcode.com/problems/exam-room/discuss/139885/Java-Solution-based-on-treeset/153588
+
+#### Map
+- TODO, not sure.
 
 
 
@@ -13152,7 +13253,7 @@ count这个graph里面有多少个独立的component.
  
  
 ## Sweep Line (5)
-**0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
+**0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
@@ -13167,11 +13268,9 @@ count这个graph里面有多少个独立的component.
 
 
 
-
-
 ---
 
-**1. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**1. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -13270,7 +13369,7 @@ HashHeap?
  
  
 ## Interval (1)
-**0. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**0. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -18740,7 +18839,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 ---
 
-**40. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**40. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
       
 
 #### Sweep Line

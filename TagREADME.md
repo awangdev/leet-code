@@ -13,19 +13,19 @@ Table of Contents
 * [Design (18)](#design-18)
 * [DFS (77)](#dfs-77)
 * [Game Theory (4)](#game-theory-4)
-* [Hash Table (43)](#hash-table-43)
+* [Hash Table (44)](#hash-table-44)
 * [Backtracking (29)](#backtracking-29)
 * [Double Recursive (2)](#double-recursive-2)
 * [Combination (4)](#combination-4)
 * [TreeSet (2)](#treeset-2)
 * [Tree (46)](#tree-46)
-* [Sort (20)](#sort-20)
+* [Sort (21)](#sort-21)
 * [Trie (9)](#trie-9)
 * [BST (21)](#bst-21)
 * [Permutation (3)](#permutation-3)
 * [Partition DP (5)](#partition-dp-5)
-* [PriorityQueue (7)](#priorityqueue-7)
-* [Heap (13)](#heap-13)
+* [PriorityQueue (10)](#priorityqueue-10)
+* [Heap (14)](#heap-14)
 * [Interval DP (4)](#interval-dp-4)
 * [Stack (24)](#stack-24)
 * [Linked List (30)](#linked-list-30)
@@ -37,6 +37,7 @@ Table of Contents
 * [Union Find (10)](#union-find-10)
 * [Matrix DFS (2)](#matrix-dfs-2)
 * [Sweep Line (5)](#sweep-line-5)
+* [Map (1)](#map-1)
 * [Interval (1)](#interval-1)
 * [Sequence DP (16)](#sequence-dp-16)
 * [Minimum Binary Tree (3)](#minimum-binary-tree-3)
@@ -52,7 +53,7 @@ Table of Contents
 * [Topological Sort (5)](#topological-sort-5)
 * [Quick Sort (3)](#quick-sort-3)
 * [Bucket Sort (1)](#bucket-sort-1)
-* [Greedy (13)](#greedy-13)
+* [Greedy (14)](#greedy-14)
 * [Hash Map (3)](#hash-map-3)
 * [Queue (2)](#queue-2)
 * [Coordinate DP (15)](#coordinate-dp-15)
@@ -652,15 +653,15 @@ Table of Contents
  
  
  
-## Sort (20)
+## Sort (21)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)|Medium|Java|[Array, Sort, Two Pointers]||
 |1|[Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)|Medium|Java|[Array, Sort]||
 |2|[Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)|Easy|Java|[Binary Search, Hash Table, Sort, Two Pointers]||
 |3|[Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)|Easy|Java|[Hash Table, Sort]||
-|4|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[Sort, Sweep Line]||
-|5|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, Sort, Sweep Line]||
+|4|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[PriorityQueue, Sort, Sweep Line]||
+|5|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
 |6|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
 |7|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|Medium|Java|[Linked List, Sort]||
 |8|[Largest Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Number.java)|Medium|Java|[Sort]||
@@ -675,6 +676,7 @@ Table of Contents
 |17|[Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)|Medium|Java|[Partition, Sort, Two Pointers]||
 |18|[Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)|Medium|Java|[Partition, Sort, String, Two Pointers]||
 |19|[Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)|Medium|Java|[PreSum, Sort]||
+|20|[Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)|Medium|Java|[PriorityQueue, Sort]||
 
 
 
@@ -755,16 +757,19 @@ Table of Contents
  
  
  
-## PriorityQueue (7)
+## PriorityQueue (10)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
-|1|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
-|2|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, PriorityQueue]||
-|3|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
-|4|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Hard|Java|[Array, PriorityQueue, Sort]||
-|5|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, PriorityQueue, Sort, Sweep Line]||
-|6|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|0|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[PriorityQueue, Sort, Sweep Line]||
+|1|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
+|2|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
+|3|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
+|4|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, PriorityQueue]||
+|5|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
+|6|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Hard|Java|[Array, PriorityQueue, Sort]||
+|7|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, PriorityQueue, Sort, Sweep Line]||
+|8|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|9|[Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)|Medium|Java|[PriorityQueue, Sort]||
 
 
 
@@ -975,8 +980,8 @@ Table of Contents
 ## Sweep Line (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[Sort, Sweep Line]||
-|1|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, Sort, Sweep Line]||
+|0|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[PriorityQueue, Sort, Sweep Line]||
+|1|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
 |2|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
 |3|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
 |4|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, PriorityQueue, Sort, Sweep Line]||
@@ -989,7 +994,7 @@ Table of Contents
 ## Interval (1)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, Sort, Sweep Line]||
+|0|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
 
 
 
@@ -1474,7 +1479,7 @@ Table of Contents
 |37|[Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)|Medium|Java|[Array, Binary Search, Two Pointers]||
 |38|[Game of Life.java](https://github.com/awangdev/LintCode/blob/master/Java/Game%20of%20Life.java)|Medium|Java|[Array]||
 |39|[Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)|Review|Java|[Array, Binary Search, PreSum]||
-|40|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, Sort, Sweep Line]||
+|40|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
 |41|[Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)|Medium|Java|[Array, Coordinate DP, DP]||
 |42|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
 |43|[Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)|Medium|Java|[Array, DP, Game Theory, Memoization, MiniMax]||

@@ -1,7 +1,7 @@
  
  
  
-## Sort (20)
+## Sort (21)
 **0. [The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)**      Level: Medium      Tags: [Array, Sort, Two Pointers]
       
 
@@ -54,7 +54,7 @@ HashMap
 
 ---
 
-**4. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [Sort, Sweep Line]
+**4. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
@@ -69,11 +69,9 @@ HashMap
 
 
 
-
-
 ---
 
-**5. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**5. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -389,6 +387,40 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 - min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
 - time O(nlogn), sort
 - space: O(n)
+
+
+
+---
+
+**20. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
+      
+
+#### PriorityQueue
+- Use priority queue to sort by customized class interval{int dist; int x, y;}. 
+- Sort by larger distance and then sort by start index
+- seat(): pq.poll() to find interval of largest distance. Split and add new intervals back to queue.
+- leave(x): one seat will be in 2 intervals: remove both from pq, and merge to a new interval.
+- 主方程写出来其实很好写, 就是 split + add interval, 然后 find + delete interval 而已. 最难的是构建data structure
+- seat(): O(logn), leave(): O(n)
+
+##### Trick: 构建虚拟 boundary
+- 如果是开头的seat, 或者是结尾的seat, 比较难handle: 一开始坐在seat=0的时候, 没有interval啊!
+- Trick就是, 我们自己定义个虚拟的座位 `seat=-1`, `seat=N`
+- 一开始有一个 interval[-1, N] 然后就建立了boundary.
+- 从此以后, 每次split成小interval的时候:
+- 遇到 `interval[-1, y]`, distance就是 `(y - 0)`
+- 遇到 `interval[x, N]`, distance就是 `(N - 1 - x)`
+- 当然正常的interval dist 就是 `(y - x) / 2`
+
+##### distance 中间点
+- Interval.dist 我们其实做的是 distance的中间点 `(y - x) / 2`
+- 这里的dist是 `距离两边的距离` 而不是 x, y 之间的距离. 这里要特别注意.
+
+#### TreeSet
+- https://leetcode.com/problems/exam-room/discuss/139885/Java-Solution-based-on-treeset/153588
+
+#### Map
+- TODO, not sure.
 
 
 

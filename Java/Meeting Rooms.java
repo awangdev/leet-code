@@ -1,6 +1,6 @@
 E
 1521097808
-tags: Sort, Sweep Line
+tags: Sort, Sweep Line, PriorityQueue
 
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
 - 开会的是超人。瞬间移动接上下一个会议
@@ -11,8 +11,6 @@ tags: Sort, Sweep Line
 #### 方法2: Sweep line
 - class Point{pos, flag}, PriorityQueue排序。计算count
 - 跟 Number of Airplanes in the Sky 是一个类型的题目
-
-
 
 ```
 /*

@@ -1,7 +1,7 @@
  
  
  
-## Medium (207)
+## Medium (208)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -1506,7 +1506,7 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 ---
 
-**85. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, Sort, Sweep Line]
+**85. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
       
 
 #### Sweep Line
@@ -4150,6 +4150,40 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 - 如果qp 真的穷尽, break, return count
 - 不然, count + remain of k
 - extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+
+
+
+---
+
+**207. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
+      
+
+#### PriorityQueue
+- Use priority queue to sort by customized class interval{int dist; int x, y;}. 
+- Sort by larger distance and then sort by start index
+- seat(): pq.poll() to find interval of largest distance. Split and add new intervals back to queue.
+- leave(x): one seat will be in 2 intervals: remove both from pq, and merge to a new interval.
+- 主方程写出来其实很好写, 就是 split + add interval, 然后 find + delete interval 而已. 最难的是构建data structure
+- seat(): O(logn), leave(): O(n)
+
+##### Trick: 构建虚拟 boundary
+- 如果是开头的seat, 或者是结尾的seat, 比较难handle: 一开始坐在seat=0的时候, 没有interval啊!
+- Trick就是, 我们自己定义个虚拟的座位 `seat=-1`, `seat=N`
+- 一开始有一个 interval[-1, N] 然后就建立了boundary.
+- 从此以后, 每次split成小interval的时候:
+- 遇到 `interval[-1, y]`, distance就是 `(y - 0)`
+- 遇到 `interval[x, N]`, distance就是 `(N - 1 - x)`
+- 当然正常的interval dist 就是 `(y - x) / 2`
+
+##### distance 中间点
+- Interval.dist 我们其实做的是 distance的中间点 `(y - x) / 2`
+- 这里的dist是 `距离两边的距离` 而不是 x, y 之间的距离. 这里要特别注意.
+
+#### TreeSet
+- https://leetcode.com/problems/exam-room/discuss/139885/Java-Solution-based-on-treeset/153588
+
+#### Map
+- TODO, not sure.
 
 
 
