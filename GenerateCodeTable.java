@@ -216,7 +216,7 @@ public class GenerateCodeTable {
             StringBuffer sb = new StringBuffer(" \n \n \n## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
             sb.append(header);
             List<TableRow> entryTableRows = entry.getValue();
-            entryTableRows.sort(Comparator.comparing(row -> String.join(",", row.getTags()))); //TODO
+            entryTableRows.sort(Comparator.comparing(row -> String.join(",", row.getTags())));
             for (int i = 0; i < entryTableRows.size(); i++) {
                 sb.append("|" + i + entryTableRows.get(i).getTableComposedLine());
             }

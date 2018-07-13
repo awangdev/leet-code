@@ -1,7 +1,7 @@
  
  
  
-## DP (75)
+## DP (76)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -1865,6 +1865,26 @@ TODO
 - 设定T（n）的做法，最后题目化简以后就跟Fibonacci number一样一样的。详细分析如下。
 - 做完，还是觉得如有神。本来是个Easy题，想不到，就是搞不出。
 
+
+
+
+---
+
+**75. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
+      
+
+具体看题目: count # of valid rectangles (four corner are 1) in a grid[][].
+
+#### basic thinking + Math
+- Fix two rows and count matching columns
+- Calculate number rectangles with `combination` concept:
+- total number of combinations of pick 2 points randomly: count * (count - 1) / 2
+
+#### DP
+- TODO. HOW?
+
+#### Brutle
+- O(m^2 * n^2), times out
 
 
 

@@ -1,10 +1,10 @@
 E
-1525327296
-tags: Hash Map, String
+1531457022
+tags: Hash Table, String
 
 给一串String, 找到最长的长度, 把最长的String全都return
 
-#### HashMap
+#### Hash Table
 - <Integer,List<String>>
 - 存最长值, 最后map.get(max) 
 
@@ -56,22 +56,16 @@ Thoughts:
 3. return
 */
 public class Solution {
-    /*
-     * @param dictionary: an array of strings
-     * @return: an arraylist of strings
-     */
     public List<String> longestWords(String[] dictionary) {
     	if (dictionary == null || dictionary.length == 0) {
     		return null;
     	}
-    	Map<Integer, ArrayList<String>> map = new HashMap<>();
+    	Map<Integer, List<String>> map = new HashMap<>();
     	int max = 0;
 
     	for (String word : dictionary) {
     		int length = word.length();
-    		if (!map.containsKey(length)) {
-    		    map.put(length, new ArrayList<>());
-    		}
+        map.putIfAbsent(length, new ArrayList<>());
     		map.get(length).add(word);
     		max = Math.max(max, length);
     	}

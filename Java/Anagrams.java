@@ -1,11 +1,11 @@
 M
-1526453112
-tags: Array, Hash Map
+1531455963
+tags: Array, Hash Table
 
 把anagram找到并output
 
 #### HashMap
-- 存在int[26], Arrays.toString(arr) 就是 string key
+- 存在int[26], Arrays.toString(arr) 就是 string key: character frequency map
 - anagram都有一样的key, 存进hashmap<string, list of anagrams>
 - output anagrams
 
@@ -47,34 +47,21 @@ String Hash Table
 
 
 */
-
 public class Solution {
-    /**
-     * @param strs: A list of strings
-     * @return: A list of strings
-     */
     public List<String> anagrams(String[] strs) {
         List<String> rst = new ArrayList<>();
-        if (strs == null || strs == null) {
-    	  	return rst;
-        }
+        if (strs == null || strs == null) return rst;
         Map<String, List<String>> map = new HashMap<>();
 		for (String word : strs){
             int[] arr = new int[26];
-            for (char c : word.toCharArray()){
-                arr[c - 'a']++;
-            }
+            for (char c : word.toCharArray()) arr[c - 'a']++;
             String key = Arrays.toString(arr);
-            if (!map.containsKey(key)) {
-                map.put(key, new ArrayList<>());
-            }
+            map.putIfAbsent(key, new ArrayList<>());
             map.get(key).add(word);
         }
         
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            if (entry.getValue().size() >= 2) {
-                rst.addAll(entry.getValue());
-            }
+        for (List<String> list : map.values()) {
+            if (list.size() >= 2) rst.addAll(list);
         }
         return rst;
     }

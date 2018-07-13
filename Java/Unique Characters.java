@@ -1,11 +1,17 @@
 E
-1528181066
+1531457659
 tags: String, Array
 
 determine if characters are unique in string
 
-- 用hashSet, space O(n), time O(n)
-- 不用额外data structure, O(n^2), double for loop.
+#### HashSet
+- space O(n), time O(n)
+
+#### char[]
+- space O(n), time O(nlogn)
+
+#### no additional data structure
+- double for loop:  O(n^2)
 
 
 ```
@@ -24,6 +30,19 @@ What if you can not use additional data structures?
 Tags Expand 
 String Cracking The Coding Interview Array
 */
+
+public class Solution {
+    public boolean isUnique(String str) {
+    	if (str == null || str.length() == 0) return true;
+
+    	char[] arr = str.toCharArray(); // nlogn
+		Arrays.sort(arr);
+    	for (int i = 1; i < arr.length; i++) {
+			if (arr[i] == arr[i - 1]) return false;
+    	}
+    	return true;
+    }
+}
 
 /*
 	Thought:
@@ -55,10 +74,6 @@ public class Solution {
 */
 
 public class Solution {
-    /**
-     * @param str: a string
-     * @return: a boolean
-     */
     public boolean isUnique(String str) {
 		if (str == null || str.length() == 0) {
     		return true;
