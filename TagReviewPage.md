@@ -9804,6 +9804,7 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 - https://leetcode.com/problems/exam-room/discuss/139885/Java-Solution-based-on-treeset/153588
 
 #### Map
+- how?
 - TODO, not sure.
 
 
@@ -10950,6 +10951,7 @@ reset() 给出最初的nums
 - https://leetcode.com/problems/exam-room/discuss/139885/Java-Solution-based-on-treeset/153588
 
 #### Map
+- how?
 - TODO, not sure.
 
 
