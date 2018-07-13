@@ -1,7 +1,7 @@
  
  
  
-## DP (76)
+## DP (77)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -1885,6 +1885,23 @@ TODO
 
 #### Brutle
 - O(m^2 * n^2), times out
+
+
+
+---
+
+**76. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
+      
+
+根据题意, count # of palindromic substring. (不同index截取出来的substring算不同的情况)
+
+#### isPalin[][]
+- build boolean[][] to check isPalin[i][j] with DP concept
+- check all candidates isPalin[][]
+- O(n^2)
+
+#### odd/even split check
+https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solution-8-lines-extendPalindrome
 
 
 

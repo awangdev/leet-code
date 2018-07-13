@@ -84,6 +84,16 @@ class Solution {
     }
 }
 
+/*
+DP. TODO
+If fixing a starting point A(0,0), the problem can be reduced to a dp problem
+dp[i][j] represents the sum of rectangle from A(0,0) point to (i,j)
+
+https://leetcode.com/problems/number-of-corner-rectangles/discuss/110200/Summary-of-three-solutions-based-on-three-different-ideas
+
+*/
+
+
 // Brutle, timesout
 class Solution {
     public int countCornerRectangles(int[][] grid) {
