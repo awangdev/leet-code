@@ -212,7 +212,10 @@ public class GenerateCodeTable {
             }
         });
         // Build View
-        for (Map.Entry<String, List<TableRow>> entry : tagToRows.entrySet()) {
+        List<Map.Entry<String, List<TableRow>>> entries = new ArrayList<>(tagToRows.entrySet());
+        entries.sort(Comparator.comparing(entry -> -entry.getValue().size()));
+
+        for (Map.Entry<String, List<TableRow>> entry : entries) {
             StringBuffer sb = new StringBuffer(" \n \n \n## " + entry.getKey() + " (" + entry.getValue().size() + ")\n");
             sb.append(header);
             List<TableRow> entryTableRows = entry.getValue();

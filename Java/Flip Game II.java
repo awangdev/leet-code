@@ -1,6 +1,6 @@
 M
 1528875498
-tags: DFS, backtracking, DP
+tags: DFS, Backtracking, DP
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
 
