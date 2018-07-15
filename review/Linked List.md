@@ -406,25 +406,7 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 
 ---
 
-**23. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [Linked List, Tree]
-      
-
-#### Inorder Traversal, Linked List
-- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
-- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
-
-##### Iterative inorder traversal
-- 在check right node的事后，    
-- 不论right == null or != null, 每次都要强行move to right.    
-- 如果不node = node.right,     
-- 很可能发生窘境：       
-- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
-
-
-
----
-
-**24. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium      Tags: [Hash Table, Linked List]
+**23. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium      Tags: [Hash Table, Linked List]
       
 
 deep copy linked list. linked list 上有random pointer to other nodes.
@@ -439,7 +421,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**25. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**24. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 #### Priorityqueue
@@ -469,7 +451,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**26. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
+**25. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
       
 
 #### Linked List
@@ -484,7 +466,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**27. [Reorder List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reorder%20List.java)**      Level: Medium      Tags: [Linked List]
+**26. [Reorder List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reorder%20List.java)**      Level: Medium      Tags: [Linked List]
       
 
 给一个Linked list, reorder: 从head/tail 两个方向 向中间进发, re-order like: one node at a time,
@@ -498,7 +480,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**28. [Nth to Last Node in List.java](https://github.com/awangdev/LintCode/blob/master/Java/Nth%20to%20Last%20Node%20in%20List.java)**      Level: Easy      Tags: [Linked List]
+**27. [Nth to Last Node in List.java](https://github.com/awangdev/LintCode/blob/master/Java/Nth%20to%20Last%20Node%20in%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 #### Linked List
@@ -510,7 +492,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**29. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
+**28. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
       
 
 #### Merge sort
@@ -528,7 +510,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**30. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+**29. [Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
       
 time: O(n)
 space: O(1)
@@ -539,6 +521,33 @@ space: O(1)
 - 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
 - 只不过做的时候要小心地 doubly link them
 - 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
+
+
+
+---
+
+**30. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个BST, convert成 sorted doubly DoublyListNode.
+
+#### Inorder Traversal, Linked List
+- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
+- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
+
+##### Iterative inorder traversal
+- 在check right node的事后，    
+- 不论right == null or != null, 每次都要强行move to right.    
+- 如果不node = node.right,     
+- 很可能发生窘境：       
+- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
 
 
 

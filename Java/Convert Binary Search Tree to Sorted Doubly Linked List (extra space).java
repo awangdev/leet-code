@@ -1,6 +1,10 @@
 M
-1527961955
-tags: Tree, Linked List
+1531695678
+tags: Tree, Linked List, Stack
+time: O(n)
+space: O(n)
+
+给一个BST, convert成 sorted doubly DoublyListNode.
 
 #### Inorder Traversal, Linked List
 - 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
@@ -15,7 +19,7 @@ tags: Tree, Linked List
 
 ```
 /*
-
+LintCode
 Convert a binary search tree to doubly linked list with in-order traversal.
 
 Example

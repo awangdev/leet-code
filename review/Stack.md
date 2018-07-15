@@ -1,7 +1,7 @@
  
  
  
-## Stack (25)
+## Stack (26)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -537,6 +537,28 @@ space: O(n)
 - 4. empty string 要output `/`
 - 最终就是用stack (`上一个加进去的item, 用来备选pop() out`), 遇到 `../` pop()掉上一个加上去的item, 其余加进stack
 - 最终用 '/' 把所有item连接起来.
+
+
+
+---
+
+**25. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个BST, convert成 sorted doubly DoublyListNode.
+
+#### Inorder Traversal, Linked List
+- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
+- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
+
+##### Iterative inorder traversal
+- 在check right node的事后，    
+- 不论right == null or != null, 每次都要强行move to right.    
+- 如果不node = node.right,     
+- 很可能发生窘境：       
+- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
 
 
 

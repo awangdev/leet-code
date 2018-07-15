@@ -416,7 +416,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 
 ---
 
-**21. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+**21. [Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
       
 time: O(n)
 space: O(1)
@@ -427,6 +427,11 @@ space: O(1)
 - 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
 - 只不过做的时候要小心地 doubly link them
 - 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
 
 
 

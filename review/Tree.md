@@ -840,25 +840,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**41. [Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [Linked List, Tree]
-      
-
-#### Inorder Traversal, Linked List
-- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
-- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
-
-##### Iterative inorder traversal
-- 在check right node的事后，    
-- 不论right == null or != null, 每次都要强行move to right.    
-- 如果不node = node.right,     
-- 很可能发生窘境：       
-- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
-
-
-
----
-
-**42. [Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)**      Level: Medium      Tags: [BST, DFS, Stack, Tree]
+**41. [Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)**      Level: Medium      Tags: [BST, DFS, Stack, Tree]
       
 
 #### Iterative + stack: inorder traversal
@@ -873,7 +855,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**43. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
+**42. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
       
 
 #### DFS, Divide and Conquer
@@ -890,7 +872,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**44. [Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)**      Level: Hard      Tags: [BST, DFS, Tree]
+**43. [Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)**      Level: Hard      Tags: [BST, DFS, Tree]
       
 
 BST里面有2个node misplace, 要归为. 要求: O(1) extra space
@@ -913,7 +895,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 
 ---
 
-**45. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
+**44. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
       
 
 给一串3-digit 的数组. 每个数字的表达一个TreeNode, 3 digit分别代表: depth.position.value
@@ -937,7 +919,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 
 ---
 
-**46. [Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Tree]
+**45. [Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Tree]
       
 time: O(n)
 space: O(n)
@@ -967,7 +949,7 @@ space: O(n)
 
 ---
 
-**47. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+**46. [Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
       
 time: O(n)
 space: O(1)
@@ -978,6 +960,33 @@ space: O(1)
 - 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
 - 只不过做的时候要小心地 doubly link them
 - 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
+
+
+
+---
+
+**47. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个BST, convert成 sorted doubly DoublyListNode.
+
+#### Inorder Traversal, Linked List
+- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
+- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
+
+##### Iterative inorder traversal
+- 在check right node的事后，    
+- 不论right == null or != null, 每次都要强行move to right.    
+- 如果不node = node.right,     
+- 很可能发生窘境：       
+- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
 
 
 

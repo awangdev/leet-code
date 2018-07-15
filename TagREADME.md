@@ -2,25 +2,25 @@
 Table of Contents
 =================
 
-* [Array (95)](#array-95)
-* [DFS (78)](#dfs-78)
+* [Array (97)](#array-97)
+* [DFS (79)](#dfs-79)
 * [DP (77)](#dp-77)
-* [String (48)](#string-48)
-* [Hash Table (47)](#hash-table-47)
-* [Tree (47)](#tree-47)
+* [String (49)](#string-49)
+* [Hash Table (48)](#hash-table-48)
+* [Tree (48)](#tree-48)
 * [Binary Search (37)](#binary-search-37)
 * [Two Pointers (33)](#two-pointers-33)
 * [Divide and Conquer (32)](#divide-and-conquer-32)
 * [Math (31)](#math-31)
+* [Linked List (31)](#linked-list-31)
 * [Backtracking (30)](#backtracking-30)
-* [Linked List (30)](#linked-list-30)
 * [BFS (28)](#bfs-28)
-* [Stack (24)](#stack-24)
+* [Stack (25)](#stack-25)
+* [BST (22)](#bst-22)
 * [Sort (21)](#sort-21)
-* [BST (21)](#bst-21)
 * [Design (18)](#design-18)
+* [Bit Manipulation (17)](#bit-manipulation-17)
 * [Sequence DP (16)](#sequence-dp-16)
-* [Bit Manipulation (16)](#bit-manipulation-16)
 * [Coordinate DP (15)](#coordinate-dp-15)
 * [Heap (14)](#heap-14)
 * [Greedy (14)](#greedy-14)
@@ -30,7 +30,7 @@ Table of Contents
 * [PriorityQueue (10)](#priorityqueue-10)
 * [Union Find (10)](#union-find-10)
 * [Trie (9)](#trie-9)
-* [PreSum (7)](#presum-7)
+* [PreSum (8)](#presum-8)
 * [Graph (7)](#graph-7)
 * [Backpack DP (7)](#backpack-dp-7)
 * [Partition DP (5)](#partition-dp-5)
@@ -214,7 +214,7 @@ Table of Contents
 |30|[Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)|Medium|Java|[BFS, DFS, Tree]||
 |31|[Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Linked List]||
 |32|[Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Tree]||
-|33|[Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)|Medium|Java|[BST, DFS, Linked List, Tree]||
+|33|[Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)|Medium|Java|[BST, DFS, Linked List, Tree]||
 |34|[Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)|Medium|Java|[BST, DFS, Stack, Tree]||
 |35|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
 |36|[Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)|Hard|Java|[BST, DFS, Tree]||
@@ -484,7 +484,7 @@ Table of Contents
 |11|[Binary Tree Level Order Traversal II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Level%20Order%20Traversal%20II.java)|Medium|Java|[BFS, Tree]||
 |12|[Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)|Easy|Java|[BST, Binary Search, Tree]||
 |13|[Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Tree]||
-|14|[Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)|Medium|Java|[BST, DFS, Linked List, Tree]||
+|14|[Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)|Medium|Java|[BST, DFS, Linked List, Tree]||
 |15|[Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)|Medium|Java|[BST, DFS, Stack, Tree]||
 |16|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
 |17|[Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)|Hard|Java|[BST, DFS, Tree]||
@@ -515,7 +515,7 @@ Table of Contents
 |42|[Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)|Medium|Java|[DFS, Tree]||
 |43|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java|[Hash Table, Stack, Tree]||
 |44|[Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)|Easy|Java|[Hash Table, Tree]||
-|45|[Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)|Medium|Java|[Linked List, Tree]||
+|45|[Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)|Medium|Java|[Linked List, Stack, Tree]||
 |46|[Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)|Medium|Java|[Stack, Tree]||
 |47|[Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)|Medium|Java|[Stack, Tree, Two Stacks]||
 
@@ -697,7 +697,7 @@ Table of Contents
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Linked List]||
-|1|[Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)|Medium|Java|[BST, DFS, Linked List, Tree]||
+|1|[Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)|Medium|Java|[BST, DFS, Linked List, Tree]||
 |2|[LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)|Hard|Java|[Design, Hash Table, Linked List]||
 |3|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
 |4|[Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)|Medium|Java|[Divide and Conquer, Linked List, Merge Sort, Sort]||
@@ -721,7 +721,7 @@ Table of Contents
 |22|[Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)|Medium|Java|[Linked List, Math]||
 |23|[Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)|Medium|Java|[Linked List, Math, Two Pointers]||
 |24|[Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)|Medium|Java|[Linked List, Sort]||
-|25|[Convert Binary Search Tree to Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Doubly%20Linked%20List.java)|Medium|Java|[Linked List, Tree]||
+|25|[Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)|Medium|Java|[Linked List, Stack, Tree]||
 |26|[Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)|Easy|Java|[Linked List, Two Pointers]||
 |27|[Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)|Medium|Java|[Linked List, Two Pointers]||
 |28|[Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)|Easy|Java|[Linked List, Two Pointers]||
@@ -809,7 +809,7 @@ Table of Contents
  
  
  
-## Stack (25)
+## Stack (26)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
@@ -832,11 +832,12 @@ Table of Contents
 |17|[Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)|Easy|Java|[Design, Stack]||
 |18|[Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)|Hard|Java|[Greedy, Hash Table, Stack]||
 |19|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java|[Hash Table, Stack, Tree]||
-|20|[Evaluate Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Reverse%20Polish%20Notation.java)|Medium|Java|[Stack]||
-|21|[Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)|Easy|Java|[Stack]||
-|22|[Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)|Medium|Java|[Stack, String]||
-|23|[Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)|Medium|Java|[Stack, Tree]||
-|24|[Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)|Medium|Java|[Stack, Tree, Two Stacks]||
+|20|[Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)|Medium|Java|[Linked List, Stack, Tree]||
+|21|[Evaluate Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Reverse%20Polish%20Notation.java)|Medium|Java|[Stack]||
+|22|[Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)|Easy|Java|[Stack]||
+|23|[Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)|Medium|Java|[Stack, String]||
+|24|[Maximum Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Binary%20Tree.java)|Medium|Java|[Stack, Tree]||
+|25|[Binary Tree Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Postorder%20Traversal.java)|Medium|Java|[Stack, Tree, Two Stacks]||
 
 
 
@@ -858,7 +859,7 @@ Table of Contents
 |9|[Search Range in Binary Search Tree .java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Range%20in%20Binary%20Search%20Tree%20.java)|Medium|Java|[BST, Binary Tree]||
 |10|[Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Linked List]||
 |11|[Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Tree]||
-|12|[Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)|Medium|Java|[BST, DFS, Linked List, Tree]||
+|12|[Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)|Medium|Java|[BST, DFS, Linked List, Tree]||
 |13|[Kth Smallest Element in a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20BST.java)|Medium|Java|[BST, DFS, Stack, Tree]||
 |14|[Lowest Common Ancestor of a Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Tree]||
 |15|[Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)|Hard|Java|[BST, DFS, Tree]||
