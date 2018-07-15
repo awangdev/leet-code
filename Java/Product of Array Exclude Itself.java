@@ -71,3 +71,29 @@ public class Solution {
 
 
 ```
+/*
+从前往后遍历，从后往前遍历，两者都不乘以当前位置的数，两者之积则是最终结果。
+*/
+public class Solution {
+    /*
+     * @param nums: Given an integers array A
+     * @return: A long long array B and B[i]= A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1]
+     */
+    public List<Long> productExcludeItself(List<Integer> nums) {
+        // write your code here
+        if(nums==null||nums.size()==0)
+            return null;
+        int n=nums.size();
+        long[]left=new long[n];
+        long[]right=new long[n];
+        left[0]=right[n-1]=1;
+        for(int i=1;i<n;i++)
+            left[i]=left[i-1]*nums.get(i-1);
+        for(int i=n-2;i>=0;i--)
+            right[i]=right[i+1]*nums.get(i+1);
+        List<Long>res=new ArrayList<Long>();
+        for(int i=0;i<n;i++)
+            res.add(left[i]*right[i]);
+        return res;
+    }
+}
