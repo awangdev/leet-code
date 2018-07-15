@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (31)
+## Divide and Conquer (32)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -705,6 +705,36 @@ TODO: Write the code + merge function
 
 #### Improvement
 - `findMid(arr)` can be replaced with a map<value, index>, no need execute O(n) search at runtime
+
+
+
+---
+
+**31. [Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个tree, 按照题意找最一个node满足: 
+1. 这个node的subtree涵盖最深level的所有leaves. 
+2. 这个node必须是能找到的最deep那个
+
+条件2的需求是因为: root本身就是满足条件1的node, 还有很多Higher-level node也是如此, 所以要找那个deepest.
+
+
+#### DFS on tree
+- 分析题目, 思想是: 看到tree里面所有的leaves, 找到他们最deep的 common ancestor
+- Maintain a map <Node, maxChildDepth>
+- Recursively dfs: return deepest node that has all leaves by these comparisons:
+- 1. If left,right child same depth, return root: they need common ancestor
+- 2. If not same depth, return the one with larger depth
+- 被传送去上一个level的, 永远都是subtree里面符合题意的: the node containing all leaf nodes
+- Visit all nodes once O(n), space O(n)
+
+#### BFS
+- Find all leaves at deepest level
+- Use map to track each node-parent
+- Backtrack all nodes to find common ancestor
 
 
 

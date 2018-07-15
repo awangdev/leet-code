@@ -419,77 +419,7 @@ is completely filled, and all nodes are as far left as possible
 
 ---
 
-**17. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
-      
-
-给一串unique integers, 找到所有可能的subset. result里面不能有重复.
-
-#### DFS
-- dfs的两种路子: 1. pick&&skip dfs, 2. for loop dfs
-- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list.
-- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst。
-- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: O(2^n), 3ms
-
-#### Bit Manipulation
-- n = nums.length, 那么在每一个index, 都是 pick / not pick: 0/1
-- 考虑subset index 0/1的bit map: range 的就是 [0000...00 ~ 2^n-1]
-- 每一个bitmap就能展现出一个subset的内容: all the 1 represents picked indexes
-- 做法:
-- 1. 找出Range
-- 2. 遍历每一个bitmap candidate
-- 3. 对每一个integer 的 bit representation 遍历, 如果是1, add to list
-- time: O(2^n * 2^n) = O(4^n), still 3ms, fast.
-
-#### Iterative, BFS
-- Regular BFS, 注意考虑如果让one level to generate next level
-- 1. 用queue来存每一次的candidate indexes
-- 2. 每一次打开一层candiates, add them all to result
-- 3. 并且用每一轮的candidates, populate next level, back into queue.
-- should be same O(2^n), but actual run time 7ms, slower
-
-
-
-
-
----
-
-**18. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
-      
-
-给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
-
-#### DFS
-- DFS, 找准需要pass along的几个数据结构. 先sort input, 然后DFS
-- Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
-- 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
-- srot O(nlogn), subset: O(2^n)
-
-#### BFS
-- Regular BFS, 注意考虑如果让one level to generate next level
-- skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
-- 1. 用queue来存每一次的candidate indexes
-- 2. 每一次打开一层candiates, add them all to result
-- 3. 并且用每一轮的candidates, populate next level, back into queue.
-- srot O(nlogn), subset: O(2^n)
-- should be same O(2^n). slower than dfs
-
-#### Previous notes:
-- 在DFS种skip duplicate candidates, 基于sorted array的技巧：    
-- 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],
-- 说明x=nums[i-1]已经在curr level 用过，不需要再用一次: [a,x1,x2]，x1==x2    
-- i == index -> [a,x1]    
-- i == index + 1 -> [a,x2]. 我们要skip这一种
-- 如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
-
-#### 注意
-- 不能去用result.contains(), 这本身非常costly O(nlogn)
-
-
-
-
----
-
-**19. [Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)**      Level: Medium      Tags: [BFS, DFS, Tree]
+**17. [Binary Tree Right Side View.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Right%20Side%20View.java)**      Level: Medium      Tags: [BFS, DFS, Tree]
       
 
 给一个binary tree, 从右边看过来, return all visible nodes
@@ -509,7 +439,7 @@ is completely filled, and all nodes are as far left as possible
 
 ---
 
-**20. [Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**18. [Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -531,7 +461,7 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**21. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
+**19. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
       
 
 #### DFS, Divide and Conquer
@@ -562,7 +492,7 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**22. [Word Ladder.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder.java)**      Level: Medium      Tags: [BFS]
+**20. [Word Ladder.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder.java)**      Level: Medium      Tags: [BFS]
       
 
 给一串string[], 需要找shortest distance to change from wordA -> wordB. (限制条件细节见原题)
@@ -583,7 +513,7 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**23. [Find the Connected Component in the Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Connected%20Component%20in%20the%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS]
+**21. [Find the Connected Component in the Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Connected%20Component%20in%20the%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS]
       
 
 给一个undirected graph, return 所有的component. (这道题找不到了)  
@@ -602,7 +532,7 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**24. [Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)**      Level: Medium      Tags: [BFS, DFS, Topological Sort]
+**22. [Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)**      Level: Medium      Tags: [BFS, DFS, Topological Sort]
       
 
 #### Topological Sort BFS
@@ -626,7 +556,7 @@ TODO:
 
 ---
 
-**25. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+**23. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
       
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -659,7 +589,7 @@ TODO:
 
 ---
 
-**26. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**24. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -688,7 +618,7 @@ TODO:
 
 ---
 
-**27. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**25. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
@@ -720,6 +650,82 @@ TODO:
 TODO
 
 #### DP
+
+
+
+---
+
+**26. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+      
+time: O(2^n)
+space: O(2^n)
+
+给一串unique integers, 找到所有可能的subset. result里面不能有重复.
+
+#### DFS
+- dfs的两种路子: 1. pick&&skip dfs, 2. for loop dfs
+- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list. Bottom-up, reach底部, 才生产第一个solution.
+- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst.  top-bottom: 有一个solution, 就先加上.
+- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: `O(2^n)`, 3ms
+
+#### Bit Manipulation
+- n = nums.length, 那么在每一个index, 都是 pick / not pick: 0/1
+- 考虑subset index 0/1的bit map: range 的就是 [0000...00 ~ 2^n-1]
+- 每一个bitmap就能展现出一个subset的内容: all the 1 represents picked indexes
+- 做法:
+- 1. 找出Range
+- 2. 遍历每一个bitmap candidate
+- 3. 对每一个integer 的 bit representation 遍历, 如果是1, add to list
+- time: O(2^n * 2^n) = O(4^n), still 3ms, fast.
+
+#### Iterative, BFS
+- Regular BFS, 注意考虑如果让one level to generate next level
+- 1. 用queue来存每一次的candidate indexes
+- 2. 每一次打开一层candiates, add them all to result
+- 3. 并且用每一轮的candidates, populate next level, back into queue.
+- should be same O(2^n), but actual run time 7ms, slower
+
+
+
+
+
+---
+
+**27. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+      
+time: O(2^n)
+sapce: O(2^n)
+
+给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
+
+#### DFS
+- DFS, 找准需要pass along的几个数据结构. 先`sort input`, 然后DFS
+- Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
+- 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
+- sort O(nlogn), subset: O(2^n)
+- space O(2^n), save results
+
+#### BFS
+- Regular BFS, 注意考虑如果让one level to generate next level
+- skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
+- 1. 用queue来存每一次的candidate indexes
+- 2. 每一次打开一层candiates, add them all to result
+- 3. 并且用每一轮的candidates, populate next level, back into queue.
+- srot O(nlogn), subset: O(2^n)
+- should be same O(2^n). slower than dfs
+
+#### Previous notes:
+- 在DFS种skip duplicate candidates, 基于sorted array的技巧：    
+- 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],
+- 说明x=nums[i-1]已经在curr level 用过，不需要再用一次: [a,x1,x2]，x1==x2    
+- i == index -> [a,x1]    
+- i == index + 1 -> [a,x2]. 我们要skip这一种
+- 如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
+
+#### 注意
+- 不能去用result.contains(), 这本身非常costly O(nlogn)
+- 几遍是用 list.toString() 其实也是O(n) iteration, 其实也是增加了check的时间, 不建议
+
 
 
 

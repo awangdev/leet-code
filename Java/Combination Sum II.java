@@ -1,5 +1,5 @@
 M
-1526759152
+1531549900
 tags: Array, DFS, Backtracking, Combination
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -17,8 +17,11 @@ tags: Array, DFS, Backtracking, Combination
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
-- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
-- O(m!)
+
+##### Time complexity
+- Which one?
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations: O(m!)
+- Time: Same as `subsetII`, pick/not=pick an item as we go, no reuse of item. Worst case: all unique items in the set. O(2^n)
 
 
 ```
@@ -65,12 +68,9 @@ A solution set is:
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        // check edge case
-        if (candidates == null || candidates.length == 0 || target <= 0) {
-            return result;
-        }
+        if (validate(candidates, target)) return result;
+
         Arrays.sort(candidates); // critical to skip duplicates
-        // init reuslt, dfs
         dfs(result, new ArrayList<>(), candidates, 0, target);
         return result;
     }
@@ -84,13 +84,14 @@ class Solution {
 
             int value = candidates[i];
             list.add(value);
-            if (target == value) {
-                result.add(new ArrayList<>(list));
-            } else (target - value > 0) {
-                dfs(result, list, candidates, i + 1, target - value);
-            }
-            list.remove(list.size() - 1);
+            if (target == value) result.add(new ArrayList<>(list));
+            else if (target - value > 0) dfs(result, list, candidates, i + 1, target - value);
+            list.remove(list.size() - 1); // backtrack
         }
+    }
+
+    private boolean validate(int[] candidates, int target) {
+        return candidates == null || candidates.length == 0 || target <= 0;
     }
 }
 

@@ -19,6 +19,8 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 **1. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
+time: O(n!)
+space: O(n!)
 
 给一串数字candidates (no duplicates), 和一个target. 
 
@@ -31,9 +33,13 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 考虑input: 没有duplicate, 不需要sort
 - 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
-- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
-- Assume d = average depth to find all solutions
-- time: O(m^d)
+
+##### Time complexity for Combination (reuse-candidate)
+- at each level dfs, we have the index as starting point: 
+- if we are at `index=0, we can have n child dfs() options via for loop`; 
+- if at `index=1, we will have (n-1) dfs options via for loop`. 
+- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -65,8 +71,11 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
 - 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
 - the result is trivial, save success list into result.
-- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
-- O(m!)
+
+##### Time complexity
+- Which one?
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations: O(m!)
+- Time: Same as `subsetII`, pick/not=pick an item as we go, no reuse of item. Worst case: all unique items in the set. O(2^n)
 
 
 
@@ -87,7 +96,11 @@ Given two integers n and k, return all possible combinations of k numbers out of
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+
+##### Time Complexity
+- Which one?
 - worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
+- C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
 
 
 

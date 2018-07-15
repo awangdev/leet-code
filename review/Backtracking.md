@@ -415,153 +415,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**18. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
-      
-
-给一串数字candidates (no duplicates), 和一个target. 
-
-找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
-
-注意: 同一个candidate integer, 可以用任意多次.
-
-
-#### DFS, Backtracking
-- 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
-- the result is trivial, save success list into result.
-- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
-- Assume d = average depth to find all solutions
-- time: O(m^d)
-
-##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
-- 每次pick以后, 就生成一条新的routine, from this index
-- 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
-- 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
-- 注意2: Backtracking在success case && dfs case 后都要做, 因为backtrack 是为了之前上一层dfs.
-
-
-
-
----
-
-**19. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
-      
-
-给一串数字candidates (can have duplicates), 和一个target. 
-
-找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
-
-注意: 同一个candidate integer, 只可以用一次.
-
-#### DFS, Backtracking
-- when the input has duplicates, and want to skip redundant items? 
-- 1. sort. 2. in for loop, skip same neighbor.
-- 考虑input: 有duplicate, 必须sort
-- 考虑重复使用的规则: 不可以重复使用
-- 1. for loop里面dfs的时候, 使用curr index + 1
-- 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
-- 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
-- the result is trivial, save success list into result.
-- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
-- O(m!)
-
-
-
-
----
-
-**20. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
-      
-
-给一个integer k, 和一个target n. 
-
-从positive数字[1 ~ 9], 找到所有unique的 组合(combination) int[], size = k, 要求每个combination的和 = n.
-
-(隐藏条件, 需要clarify): 同一个candidate integer [1 ~ 9], 只可以用一次.
-
-#### DFS, Backtracking
-- 跟Combination Sum I, II 没什么太大区别, 只不过, 一定要用k个数字, 也就是一个for loop里面的特别条件
-- 考虑input: 没有重复数字 [1 ~ 9]
-- 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
-- the result is trivial, save success list into result.
-- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
-
-
-
----
-
-**21. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
-      
-
-给一串unique integers, 找到所有可能的subset. result里面不能有重复.
-
-#### DFS
-- dfs的两种路子: 1. pick&&skip dfs, 2. for loop dfs
-- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list.
-- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst。
-- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: O(2^n), 3ms
-
-#### Bit Manipulation
-- n = nums.length, 那么在每一个index, 都是 pick / not pick: 0/1
-- 考虑subset index 0/1的bit map: range 的就是 [0000...00 ~ 2^n-1]
-- 每一个bitmap就能展现出一个subset的内容: all the 1 represents picked indexes
-- 做法:
-- 1. 找出Range
-- 2. 遍历每一个bitmap candidate
-- 3. 对每一个integer 的 bit representation 遍历, 如果是1, add to list
-- time: O(2^n * 2^n) = O(4^n), still 3ms, fast.
-
-#### Iterative, BFS
-- Regular BFS, 注意考虑如果让one level to generate next level
-- 1. 用queue来存每一次的candidate indexes
-- 2. 每一次打开一层candiates, add them all to result
-- 3. 并且用每一轮的candidates, populate next level, back into queue.
-- should be same O(2^n), but actual run time 7ms, slower
-
-
-
-
-
----
-
-**22. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
-      
-
-给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
-
-#### DFS
-- DFS, 找准需要pass along的几个数据结构. 先sort input, 然后DFS
-- Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
-- 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
-- srot O(nlogn), subset: O(2^n)
-
-#### BFS
-- Regular BFS, 注意考虑如果让one level to generate next level
-- skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
-- 1. 用queue来存每一次的candidate indexes
-- 2. 每一次打开一层candiates, add them all to result
-- 3. 并且用每一轮的candidates, populate next level, back into queue.
-- srot O(nlogn), subset: O(2^n)
-- should be same O(2^n). slower than dfs
-
-#### Previous notes:
-- 在DFS种skip duplicate candidates, 基于sorted array的技巧：    
-- 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],
-- 说明x=nums[i-1]已经在curr level 用过，不需要再用一次: [a,x1,x2]，x1==x2    
-- i == index -> [a,x1]    
-- i == index + 1 -> [a,x2]. 我们要skip这一种
-- 如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
-
-#### 注意
-- 不能去用result.contains(), 这本身非常costly O(nlogn)
-
-
-
-
----
-
-**23. [Permutations.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations.java)**      Level: Medium      Tags: [Backtracking, DFS, Permutation]
+**18. [Permutations.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations.java)**      Level: Medium      Tags: [Backtracking, DFS, Permutation]
       
 
 #### Recursive: Backtracking
@@ -588,7 +442,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**24. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
+**19. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
       
 
 给一串数字, 检查是否是valid IP, 如果合理, 给出所有valid 的IP组合方式.
@@ -606,7 +460,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**25. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+**20. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
       
 
 给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
@@ -633,7 +487,7 @@ output 所有 expression
 
 ---
 
-**26. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
+**21. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
       
 
 #### DFS
@@ -653,7 +507,7 @@ output 所有 expression
 
 ---
 
-**27. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+**22. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
       
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -686,7 +540,7 @@ output 所有 expression
 
 ---
 
-**28. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**23. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -723,7 +577,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**29. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
+**24. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
       
 
 给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
@@ -751,6 +605,171 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 - Overall Space O(n^2): 存 isPlain[][]
 - Time O(2^n), 每一层都在做 pick/not pick index i 的选择, 所以worst case 2^n. 
 - 因为我们的isPalin[][]优化了palindrome的判断O(1), 所以overall Time: O(2^n)
+
+
+
+---
+
+**25. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+      
+time: O(2^n)
+space: O(2^n)
+
+给一串unique integers, 找到所有可能的subset. result里面不能有重复.
+
+#### DFS
+- dfs的两种路子: 1. pick&&skip dfs, 2. for loop dfs
+- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list. Bottom-up, reach底部, 才生产第一个solution.
+- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst.  top-bottom: 有一个solution, 就先加上.
+- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: `O(2^n)`, 3ms
+
+#### Bit Manipulation
+- n = nums.length, 那么在每一个index, 都是 pick / not pick: 0/1
+- 考虑subset index 0/1的bit map: range 的就是 [0000...00 ~ 2^n-1]
+- 每一个bitmap就能展现出一个subset的内容: all the 1 represents picked indexes
+- 做法:
+- 1. 找出Range
+- 2. 遍历每一个bitmap candidate
+- 3. 对每一个integer 的 bit representation 遍历, 如果是1, add to list
+- time: O(2^n * 2^n) = O(4^n), still 3ms, fast.
+
+#### Iterative, BFS
+- Regular BFS, 注意考虑如果让one level to generate next level
+- 1. 用queue来存每一次的candidate indexes
+- 2. 每一次打开一层candiates, add them all to result
+- 3. 并且用每一轮的candidates, populate next level, back into queue.
+- should be same O(2^n), but actual run time 7ms, slower
+
+
+
+
+
+---
+
+**26. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+      
+time: O(2^n)
+sapce: O(2^n)
+
+给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
+
+#### DFS
+- DFS, 找准需要pass along的几个数据结构. 先`sort input`, 然后DFS
+- Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
+- 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
+- sort O(nlogn), subset: O(2^n)
+- space O(2^n), save results
+
+#### BFS
+- Regular BFS, 注意考虑如果让one level to generate next level
+- skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
+- 1. 用queue来存每一次的candidate indexes
+- 2. 每一次打开一层candiates, add them all to result
+- 3. 并且用每一轮的candidates, populate next level, back into queue.
+- srot O(nlogn), subset: O(2^n)
+- should be same O(2^n). slower than dfs
+
+#### Previous notes:
+- 在DFS种skip duplicate candidates, 基于sorted array的技巧：    
+- 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],
+- 说明x=nums[i-1]已经在curr level 用过，不需要再用一次: [a,x1,x2]，x1==x2    
+- i == index -> [a,x1]    
+- i == index + 1 -> [a,x2]. 我们要skip这一种
+- 如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
+
+#### 注意
+- 不能去用result.contains(), 这本身非常costly O(nlogn)
+- 几遍是用 list.toString() 其实也是O(n) iteration, 其实也是增加了check的时间, 不建议
+
+
+
+
+---
+
+**27. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+      
+time: O(n!)
+space: O(n!)
+
+给一串数字candidates (no duplicates), 和一个target. 
+
+找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
+
+注意: 同一个candidate integer, 可以用任意多次.
+
+
+#### DFS, Backtracking
+- 考虑input: 没有duplicate, 不需要sort
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
+- the result is trivial, save success list into result.
+
+##### Time complexity for Combination (reuse-candidate)
+- at each level dfs, we have the index as starting point: 
+- if we are at `index=0, we can have n child dfs() options via for loop`; 
+- if at `index=1, we will have (n-1) dfs options via for loop`. 
+- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
+
+##### Combination DFS 思想
+- 在每个index上面都要面临: pick/not pick的选择
+- 每次pick以后, 就生成一条新的routine, from this index
+- 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
+- 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
+- 注意2: Backtracking在success case && dfs case 后都要做, 因为backtrack 是为了之前上一层dfs.
+
+
+
+
+---
+
+**28. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+      
+
+给一串数字candidates (can have duplicates), 和一个target. 
+
+找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
+
+注意: 同一个candidate integer, 只可以用一次.
+
+#### DFS, Backtracking
+- when the input has duplicates, and want to skip redundant items? 
+- 1. sort. 2. in for loop, skip same neighbor.
+- 考虑input: 有duplicate, 必须sort
+- 考虑重复使用的规则: 不可以重复使用
+- 1. for loop里面dfs的时候, 使用curr index + 1
+- 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
+- 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
+- the result is trivial, save success list into result.
+
+##### Time complexity
+- Which one?
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations: O(m!)
+- Time: Same as `subsetII`, pick/not=pick an item as we go, no reuse of item. Worst case: all unique items in the set. O(2^n)
+
+
+
+
+---
+
+**29. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+      
+
+给一个integer k, 和一个target n. 
+
+从positive数字[1 ~ 9], 找到所有unique的 组合(combination) int[], size = k, 要求每个combination的和 = n.
+
+(隐藏条件, 需要clarify): 同一个candidate integer [1 ~ 9], 只可以用一次.
+
+#### DFS, Backtracking
+- 跟Combination Sum I, II 没什么太大区别, 只不过, 一定要用k个数字, 也就是一个for loop里面的特别条件
+- 考虑input: 没有重复数字 [1 ~ 9]
+- 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
+- the result is trivial, save success list into result.
+
+##### Time Complexity
+- Which one?
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
+- C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
 
 
 

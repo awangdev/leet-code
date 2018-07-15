@@ -1,6 +1,8 @@
 M
-1526624967
+1531549407
 tags: Array, DFS, Backtracking, Combination
+time: O(n!)
+space: O(n!)
 
 给一串数字candidates (no duplicates), 和一个target. 
 
@@ -13,9 +15,13 @@ tags: Array, DFS, Backtracking, Combination
 - 考虑input: 没有duplicate, 不需要sort
 - 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
 - the result is trivial, save success list into result.
-- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
-- Assume d = average depth to find all solutions
-- time: O(m^d)
+
+##### Time complexity for Combination (reuse-candidate)
+- at each level dfs, we have the index as starting point: 
+- if we are at `index=0, we can have n child dfs() options via for loop`; 
+- if at `index=1, we will have (n-1) dfs options via for loop`. 
+- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
 - 在每个index上面都要面临: pick/not pick的选择
@@ -67,28 +73,26 @@ A solution set is:
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        // check edge case
-        if (candidates == null || candidates.length == 0 || target <= 0) {
-            return result;
-        }
-        // init reuslt, dfs
+        if (validate(candidates, target)) return result;
+
         dfs(result, new ArrayList<>(), candidates, 0, target);
         return result;
     }
 
+    // for loop, where dfs is performed
     private void dfs(List<List<Integer>> result, List<Integer> list,
                      int[] candidates, int index, int target) {
-        // for loop, where dfs is performed
         for (int i = index; i < candidates.length; i++) {
             int value = candidates[i];
             list.add(value);
-            if (target == value) {
-                result.add(new ArrayList<>(list));
-            } else if (target - value > 0) {// dfs
-                dfs(result, list, candidates, i, target - value);
-            }
-            list.remove(list.size() - 1);
+            if (target == value) result.add(new ArrayList<>(list)); // one closure
+            else if (target - value > 0) dfs(result, list, candidates, i, target - value);
+            list.remove(list.size() - 1); // backtrack
         }
+    }
+
+    private boolean validate(int[] candidates, int target) {
+        return candidates == null || candidates.length == 0 || target <= 0;
     }
 }
 

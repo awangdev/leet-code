@@ -1,5 +1,5 @@
 M
-1526760084
+1531549915
 tags: Array, DFS, Backtracking, Combination
 
 给一个integer k, 和一个target n. 
@@ -13,7 +13,11 @@ tags: Array, DFS, Backtracking, Combination
 - 考虑input: 没有重复数字 [1 ~ 9]
 - 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
 - the result is trivial, save success list into result.
+
+##### Time Complexity
+- Which one?
 - worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
+- C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
 
 ```
 /*
@@ -49,11 +53,8 @@ class Solution {
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> result = new ArrayList<>();
         // init result, check edge case
-        if (k <= 0 || n <= 0) {
-            return result;
-        }
+        if (k <= 0 || n <= 0) return result;
 
-        // dfs
         dfs(result, new ArrayList<>(), 1, k, n);
         return result;
     }

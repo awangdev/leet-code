@@ -1,14 +1,17 @@
 M
-1526768652
+1531544611
 tags: Array, Backtracking, DFS, BFS
+time: O(2^n)
+sapce: O(2^n)
 
 给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
 
 #### DFS
-- DFS, 找准需要pass along的几个数据结构. 先sort input, 然后DFS
+- DFS, 找准需要pass along的几个数据结构. 先`sort input`, 然后DFS
 - Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
 - 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
-- srot O(nlogn), subset: O(2^n)
+- sort O(nlogn), subset: O(2^n)
+- space O(2^n), save results
 
 #### BFS
 - Regular BFS, 注意考虑如果让one level to generate next level
@@ -29,6 +32,7 @@ tags: Array, Backtracking, DFS, BFS
 
 #### 注意
 - 不能去用result.contains(), 这本身非常costly O(nlogn)
+- 几遍是用 list.toString() 其实也是O(n) iteration, 其实也是增加了check的时间, 不建议
 
 
 ```
@@ -63,13 +67,10 @@ Thoughts:
 - subset, either take or not take : 2^n space, 2^n time
 */
 class Solution {
-    Set<String> set = new HashSet<>();
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        // edge case, init result
-        if (nums == null || nums.length == 0) {
-            return result;
-        }
+        if (nums == null || nums.length == 0) return result; // edge case
+
         Arrays.sort(nums);
         List<Integer> list = new ArrayList<>();
 
@@ -81,7 +82,7 @@ class Solution {
 
     private void dfs(List<List<Integer>> result, List<Integer> list, int[] nums, int depth) {
         for (int i = depth; i < nums.length; i++) {
-            if (i > depth && nums[i] == nums[i - 1]) continue;
+            if (i > depth && nums[i] == nums[i - 1]) continue; // IMPORTANT, skip duplicate: i > depth && nums[i] == nums[i - 1]
             list.add(nums[i]);
             result.add(new ArrayList<>(list));
             dfs(result, list, nums, i + 1);
@@ -162,7 +163,7 @@ class Solution {
     private void dfs(List<List<Integer>> result, List<Integer> list, int[] nums, int depth) {
         // check closure case
         if (depth >= nums.length) {
-            String key = list.toString();
+            String key = list.toString(); // O(n), not optimal
             if (!set.contains(key)) {
                 result.add(new ArrayList<>(list));
                 set.add(key);

@@ -1198,83 +1198,7 @@ return unique item 的长度.
 
 ---
 
-**63. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
-      
-
-给一串数字candidates (no duplicates), 和一个target. 
-
-找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
-
-注意: 同一个candidate integer, 可以用任意多次.
-
-
-#### DFS, Backtracking
-- 考虑input: 没有duplicate, 不需要sort
-- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
-- the result is trivial, save success list into result.
-- T(N) = T(N - a) + T(N - b) + T(N - c) + .. + T(N - z), where m = # of candidates [Not straight forward]
-- Assume d = average depth to find all solutions
-- time: O(m^d)
-
-##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
-- 每次pick以后, 就生成一条新的routine, from this index
-- 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
-- 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
-- 注意2: Backtracking在success case && dfs case 后都要做, 因为backtrack 是为了之前上一层dfs.
-
-
-
-
----
-
-**64. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
-      
-
-给一串数字candidates (can have duplicates), 和一个target. 
-
-找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
-
-注意: 同一个candidate integer, 只可以用一次.
-
-#### DFS, Backtracking
-- when the input has duplicates, and want to skip redundant items? 
-- 1. sort. 2. in for loop, skip same neighbor.
-- 考虑input: 有duplicate, 必须sort
-- 考虑重复使用的规则: 不可以重复使用
-- 1. for loop里面dfs的时候, 使用curr index + 1
-- 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
-- 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
-- the result is trivial, save success list into result.
-- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations:
-- O(m!)
-
-
-
-
----
-
-**65. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
-      
-
-给一个integer k, 和一个target n. 
-
-从positive数字[1 ~ 9], 找到所有unique的 组合(combination) int[], size = k, 要求每个combination的和 = n.
-
-(隐藏条件, 需要clarify): 同一个candidate integer [1 ~ 9], 只可以用一次.
-
-#### DFS, Backtracking
-- 跟Combination Sum I, II 没什么太大区别, 只不过, 一定要用k个数字, 也就是一个for loop里面的特别条件
-- 考虑input: 没有重复数字 [1 ~ 9]
-- 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
-- the result is trivial, save success list into result.
-- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
-
-
-
----
-
-**66. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**63. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -1302,77 +1226,7 @@ return unique item 的长度.
 
 ---
 
-**67. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
-      
-
-给一串unique integers, 找到所有可能的subset. result里面不能有重复.
-
-#### DFS
-- dfs的两种路子: 1. pick&&skip dfs, 2. for loop dfs
-- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list.
-- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst。
-- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: O(2^n), 3ms
-
-#### Bit Manipulation
-- n = nums.length, 那么在每一个index, 都是 pick / not pick: 0/1
-- 考虑subset index 0/1的bit map: range 的就是 [0000...00 ~ 2^n-1]
-- 每一个bitmap就能展现出一个subset的内容: all the 1 represents picked indexes
-- 做法:
-- 1. 找出Range
-- 2. 遍历每一个bitmap candidate
-- 3. 对每一个integer 的 bit representation 遍历, 如果是1, add to list
-- time: O(2^n * 2^n) = O(4^n), still 3ms, fast.
-
-#### Iterative, BFS
-- Regular BFS, 注意考虑如果让one level to generate next level
-- 1. 用queue来存每一次的candidate indexes
-- 2. 每一次打开一层candiates, add them all to result
-- 3. 并且用每一轮的candidates, populate next level, back into queue.
-- should be same O(2^n), but actual run time 7ms, slower
-
-
-
-
-
----
-
-**68. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
-      
-
-给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
-
-#### DFS
-- DFS, 找准需要pass along的几个数据结构. 先sort input, 然后DFS
-- Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
-- 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
-- srot O(nlogn), subset: O(2^n)
-
-#### BFS
-- Regular BFS, 注意考虑如果让one level to generate next level
-- skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
-- 1. 用queue来存每一次的candidate indexes
-- 2. 每一次打开一层candiates, add them all to result
-- 3. 并且用每一轮的candidates, populate next level, back into queue.
-- srot O(nlogn), subset: O(2^n)
-- should be same O(2^n). slower than dfs
-
-#### Previous notes:
-- 在DFS种skip duplicate candidates, 基于sorted array的技巧：    
-- 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],
-- 说明x=nums[i-1]已经在curr level 用过，不需要再用一次: [a,x1,x2]，x1==x2    
-- i == index -> [a,x1]    
-- i == index + 1 -> [a,x2]. 我们要skip这一种
-- 如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
-
-#### 注意
-- 不能去用result.contains(), 这本身非常costly O(nlogn)
-
-
-
-
----
-
-**69. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
+**64. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
       
 
 给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
@@ -1403,7 +1257,7 @@ return unique item 的长度.
 
 ---
 
-**70. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**65. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
@@ -1423,7 +1277,7 @@ return unique item 的长度.
 
 ---
 
-**71. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**66. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 #### Two Pointers
@@ -1436,7 +1290,7 @@ return unique item 的长度.
 
 ---
 
-**72. [Majority Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element%20II.java)**      Level: Medium      Tags: [Array]
+**67. [Majority Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element%20II.java)**      Level: Medium      Tags: [Array]
       
 
 #### Sort + count
@@ -1452,7 +1306,7 @@ return unique item 的长度.
 
 ---
 
-**73. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
+**68. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给2D matrix, 每行sorted, 每行的首位都大于上一行的末尾. goal: find target from matrix
@@ -1465,7 +1319,7 @@ return unique item 的长度.
 
 ---
 
-**74. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
+**69. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给sorted array, 有重复数字, 找跟target重合所在的range.
@@ -1480,7 +1334,7 @@ return unique item 的长度.
 
 ---
 
-**75. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
+**70. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
       
 
 如题, merge two sorted array into 新的 sorted array
@@ -1492,7 +1346,7 @@ return unique item 的长度.
 
 ---
 
-**76. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: Medium      Tags: [Array]
+**71. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: Medium      Tags: [Array]
       
 
 给一串sorted list, 中间有缺数字, return 所有数字的range string (example 看题目)
@@ -1505,7 +1359,7 @@ return unique item 的长度.
 
 ---
 
-**77. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**72. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -1530,7 +1384,7 @@ TODO:
 
 ---
 
-**78. [Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)**      Level: Medium      Tags: [Array, Enumeration]
+**73. [Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)**      Level: Medium      Tags: [Array, Enumeration]
       
 
 从(0,0)坐标, 走完spiral matrix, 把结果存在list里.
@@ -1546,7 +1400,7 @@ TODO:
 
 ---
 
-**79. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+**74. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
       
 
 #### Sweep Line
@@ -1572,7 +1426,7 @@ TODO:
 
 ---
 
-**80. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+**75. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 #### HashMap<value, index>
@@ -1591,7 +1445,7 @@ TODO:
 
 ---
 
-**81. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
+**76. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
       
 
 题目解析后: find 2 number, that: 1. k slots between the 2 number, 2. no slots taken between the two number.
@@ -1613,7 +1467,7 @@ TODO:
 
 ---
 
-**82. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+**77. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
@@ -1638,7 +1492,7 @@ TODO:
 
 ---
 
-**83. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
+**78. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
       
 
 #### DFS, Divide and Conquer
@@ -1655,7 +1509,7 @@ TODO:
 
 ---
 
-**84. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
+**79. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
       
 
 #### DFS
@@ -1672,7 +1526,7 @@ TODO:
 
 ---
 
-**85. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**80. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line
@@ -1692,7 +1546,7 @@ TODO:
 
 ---
 
-**86. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+**81. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 给一串数字, 找其中的一个subarray的 [start, end] index, 条件: subarary sum == 0.
@@ -1705,7 +1559,7 @@ TODO:
 
 ---
 
-**87. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+**82. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
       
 
 给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
@@ -1722,7 +1576,7 @@ TODO:
 
 ---
 
-**88. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**83. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -1761,7 +1615,7 @@ TODO:
 
 ---
 
-**89. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+**84. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
       
 
 给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
@@ -1792,7 +1646,7 @@ TODO:
 
 ---
 
-**90. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
+**85. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
       
 
 给一串int[Interval] (unsorted), 把所以Interval merge起来.
@@ -1823,7 +1677,7 @@ TODO:
 
 ---
 
-**91. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Sort, Two Pointers]
+**86. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Sort, Two Pointers]
       
 
 给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
@@ -1852,7 +1706,7 @@ TODO:
 
 ---
 
-**92. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**87. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -1881,7 +1735,7 @@ TODO:
 
 ---
 
-**93. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
+**88. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
       
 
 把anagram找到并output
@@ -1915,7 +1769,7 @@ TODO:
 
 ---
 
-**94. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
+**89. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
       
 
 determine if characters are unique in string
@@ -1929,6 +1783,171 @@ determine if characters are unique in string
 #### no additional data structure
 - double for loop:  O(n^2)
 
+
+
+
+---
+
+**90. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+      
+time: O(2^n)
+space: O(2^n)
+
+给一串unique integers, 找到所有可能的subset. result里面不能有重复.
+
+#### DFS
+- dfs的两种路子: 1. pick&&skip dfs, 2. for loop dfs
+- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list. Bottom-up, reach底部, 才生产第一个solution.
+- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst.  top-bottom: 有一个solution, 就先加上.
+- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: `O(2^n)`, 3ms
+
+#### Bit Manipulation
+- n = nums.length, 那么在每一个index, 都是 pick / not pick: 0/1
+- 考虑subset index 0/1的bit map: range 的就是 [0000...00 ~ 2^n-1]
+- 每一个bitmap就能展现出一个subset的内容: all the 1 represents picked indexes
+- 做法:
+- 1. 找出Range
+- 2. 遍历每一个bitmap candidate
+- 3. 对每一个integer 的 bit representation 遍历, 如果是1, add to list
+- time: O(2^n * 2^n) = O(4^n), still 3ms, fast.
+
+#### Iterative, BFS
+- Regular BFS, 注意考虑如果让one level to generate next level
+- 1. 用queue来存每一次的candidate indexes
+- 2. 每一次打开一层candiates, add them all to result
+- 3. 并且用每一轮的candidates, populate next level, back into queue.
+- should be same O(2^n), but actual run time 7ms, slower
+
+
+
+
+
+---
+
+**91. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+      
+time: O(2^n)
+sapce: O(2^n)
+
+给一串integers(may have duplicates), 找到所有可能的subset. result里面不能有重复.
+
+#### DFS
+- DFS, 找准需要pass along的几个数据结构. 先`sort input`, 然后DFS
+- Using for loop approach: 每个dfs call是一种可能性，直接add into result.     
+- 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
+- sort O(nlogn), subset: O(2^n)
+- space O(2^n), save results
+
+#### BFS
+- Regular BFS, 注意考虑如果让one level to generate next level
+- skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
+- 1. 用queue来存每一次的candidate indexes
+- 2. 每一次打开一层candiates, add them all to result
+- 3. 并且用每一轮的candidates, populate next level, back into queue.
+- srot O(nlogn), subset: O(2^n)
+- should be same O(2^n). slower than dfs
+
+#### Previous notes:
+- 在DFS种skip duplicate candidates, 基于sorted array的技巧：    
+- 一旦for loop里面的i!=index，并且nums[i] == nums[i-1],
+- 说明x=nums[i-1]已经在curr level 用过，不需要再用一次: [a,x1,x2]，x1==x2    
+- i == index -> [a,x1]    
+- i == index + 1 -> [a,x2]. 我们要skip这一种
+- 如果需要[a,x1,x2]怎么办？ 其实这一种在index变化时，会在不同的两个dfs call 里面涉及到。
+
+#### 注意
+- 不能去用result.contains(), 这本身非常costly O(nlogn)
+- 几遍是用 list.toString() 其实也是O(n) iteration, 其实也是增加了check的时间, 不建议
+
+
+
+
+---
+
+**92. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+      
+time: O(n!)
+space: O(n!)
+
+给一串数字candidates (no duplicates), 和一个target. 
+
+找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
+
+注意: 同一个candidate integer, 可以用任意多次.
+
+
+#### DFS, Backtracking
+- 考虑input: 没有duplicate, 不需要sort
+- 考虑重复使用的规则: 可以重复使用, 那么for loop里面dfs的时候, 使用curr index i
+- the result is trivial, save success list into result.
+
+##### Time complexity for Combination (reuse-candidate)
+- at each level dfs, we have the index as starting point: 
+- if we are at `index=0, we can have n child dfs() options via for loop`; 
+- if at `index=1, we will have (n-1) dfs options via for loop`. 
+- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
+
+##### Combination DFS 思想
+- 在每个index上面都要面临: pick/not pick的选择
+- 每次pick以后, 就生成一条新的routine, from this index
+- 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
+- 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
+- 注意2: Backtracking在success case && dfs case 后都要做, 因为backtrack 是为了之前上一层dfs.
+
+
+
+
+---
+
+**93. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+      
+
+给一串数字candidates (can have duplicates), 和一个target. 
+
+找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
+
+注意: 同一个candidate integer, 只可以用一次.
+
+#### DFS, Backtracking
+- when the input has duplicates, and want to skip redundant items? 
+- 1. sort. 2. in for loop, skip same neighbor.
+- 考虑input: 有duplicate, 必须sort
+- 考虑重复使用的规则: 不可以重复使用
+- 1. for loop里面dfs的时候, 使用curr index + 1
+- 2. for loop里面, 同一个level, 同一个数字, 不能重复使用: `(i > index && candidates[i] == candidates[i - 1]) continue`
+- 因为在同一个level里面重复的数字在下一个dfs level里面是会被考虑到的, 这里必须skip (这个就记住吧)
+- the result is trivial, save success list into result.
+
+##### Time complexity
+- Which one?
+- Time: every level has 1 less element to choose, worst case is: cannot find any solution over all combinations: O(m!)
+- Time: Same as `subsetII`, pick/not=pick an item as we go, no reuse of item. Worst case: all unique items in the set. O(2^n)
+
+
+
+
+---
+
+**94. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+      
+
+给一个integer k, 和一个target n. 
+
+从positive数字[1 ~ 9], 找到所有unique的 组合(combination) int[], size = k, 要求每个combination的和 = n.
+
+(隐藏条件, 需要clarify): 同一个candidate integer [1 ~ 9], 只可以用一次.
+
+#### DFS, Backtracking
+- 跟Combination Sum I, II 没什么太大区别, 只不过, 一定要用k个数字, 也就是一个for loop里面的特别条件
+- 考虑input: 没有重复数字 [1 ~ 9]
+- 考虑candidate重复利用: 不可以重复利用, next level dfs 时候, curr index + 1
+- the result is trivial, save success list into result.
+
+##### Time Complexity
+- Which one?
+- worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
+- C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
 
 
 

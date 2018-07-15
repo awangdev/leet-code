@@ -1,7 +1,7 @@
  
  
  
-## Bit Manipulation (15)
+## Bit Manipulation (16)
 **0. [O(1) Check Power of 2.java](https://github.com/awangdev/LintCode/blob/master/Java/O(1)%20Check%20Power%20of%202.java)**      Level: Easy      Tags: [Bit Manipulation]
       
 
@@ -209,16 +209,37 @@ count 一个 32-bit number binary format 里面有多少1
 
 ---
 
-**13. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**13. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: [Bit Manipulation, String]
       
+
+#### String
+- 首先要分两半解决，断点是'.': str.split("\\.");
+- Integer那一半好弄，whie loop里: num%2, num/2. 做一个 `parseInteger()` function
+- Decimal那边复杂点. 做一个 `parseDecimal()` function:
+- bit == 1的数学条件: 当下num * 2 >= 1。 更新: num = num * 2 - 1;
+- bit == 0的数学条件: num * 2 < 1. 更新: num = num * 2
+
+#### 注意
+- num是 double, 小数在 `num = num * 2 - 1` 的公式下可能无限循环
+- 因此check: num重复性，以及binary code < 32 bit.
+- 所以题目也才有了32BIT的要求!
+
+
+
+---
+
+**14. [Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+      
+time: O(2^n)
+space: O(2^n)
 
 给一串unique integers, 找到所有可能的subset. result里面不能有重复.
 
 #### DFS
 - dfs的两种路子: 1. pick&&skip dfs, 2. for loop dfs
-- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list.
-- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst。
-- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: O(2^n), 3ms
+- 1. pick&&skip dfs: 取或者不取 + backtracking. 当level/index到底，return 一个list. Bottom-up, reach底部, 才生产第一个solution.
+- 2. for loop dfs: for loop + backtracking. 记得：做subset的时候, 每个dfs recursive call是一种独特可能，先加进rst.  top-bottom: 有一个solution, 就先加上.
+- Time&&space: subset means independent choice of either pick&&not pick. You pick n times: `O(2^n)`, 3ms
 
 #### Bit Manipulation
 - n = nums.length, 那么在每一个index, 都是 pick / not pick: 0/1
@@ -243,20 +264,25 @@ count 一个 32-bit number binary format 里面有多少1
 
 ---
 
-**14. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: [Bit Manipulation, String]
+**15. [Total Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Total%20Hamming%20Distance.java)**      Level: Medium      Tags: [Bit Manipulation]
       
+time: O(n)
+space: O(1), 32-bit array
 
-#### String
-- 首先要分两半解决，断点是'.': str.split("\\.");
-- Integer那一半好弄，whie loop里: num%2, num/2. 做一个 `parseInteger()` function
-- Decimal那边复杂点. 做一个 `parseDecimal()` function:
-- bit == 1的数学条件: 当下num * 2 >= 1。 更新: num = num * 2 - 1;
-- bit == 0的数学条件: num * 2 < 1. 更新: num = num * 2
+给出Hamming Distance定义(bit format时候有多少binary diff), 求一串数字的hamming distance总和.
 
-#### 注意
-- num是 double, 小数在 `num = num * 2 - 1` 的公式下可能无限循环
-- 因此check: num重复性，以及binary code < 32 bit.
-- 所以题目也才有了32BIT的要求!
+#### Bit Manipulation
+- Bit题: 考验 bit >>, mask & 1, 还有对题目的理解能力
+- Put integers in binary, and compare each column:
+- for each `1`, ask: how many are different from me? all the `0`
+- `# of diffs at each bit-column = #ofZero * #ofOne `
+- 1. countZero[], countOne[]; 2. loop over nums and populate the two array
+
+##### 注意雷点
+- 问清楚: 10^9 < 2^31, we are okay with 32 bits
+- `最终的hamming distance 要从 [1 ~ 32] 哪个bit开始算起`? 取决于 `最长`的那个binary format: 但不用先去找bit length
+- 在做countZero, countOne时候, 都做32-bit; 最终做乘积的时候, 如果 `1` 或者 `0` 个数为零, 乘积自然为0.
+
 
 
 
