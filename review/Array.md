@@ -1,7 +1,7 @@
  
  
  
-## Array (95)
+## Array (97)
 **0. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, Greedy]
       
 
@@ -1948,6 +1948,51 @@ space: O(n!)
 - Which one?
 - worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 - C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
+
+
+
+---
+
+**95. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Hash Table
+- Hash Table two sum 思想, but `save frequency of current preSum`
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
+- `k = sum - portion`, and reversely, `portion = sum - k`
+- We know the value of sum and k, so portion will be requested
+- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(portion) = the # of possible ways to reach k
+- O(n) time, O(n) space
+
+#### PreSum, O(n^2)
+- move from starting point i = [0 ~ n -1] and define range = [i ~ j]
+- use presum to verify k: `preSum[j] - preSum[i - 1]`
+- O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
+
+
+
+
+---
+
+**96. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
+      
+time: O(n)
+space: O(1)
+
+给一排座位, 一个人去坐: 找离两边的人都最远的地方(中间点), return 跟旁边人的最大distance
+
+是Exam Room 的同种概念, 简单化题目: 这里只考虑一个人就好了
+
+#### Basic Implementation, track start/end
+- start/end point, 然后比较大小记录dist
+- 注意1: 如果第一个座位没有人, 特殊处理, dist = [0 ~ end]
+- 注意2: 如果最后一个座位没有人, 特殊处理: dist = [n - 1 - start];
+- 其余: `dist = Math.max(dist, (end - start) / 2)`
+- 相关题目: 几乎同样概念 `Binary Gap`, 升级复杂版`Exam Room`
+
 
 
 

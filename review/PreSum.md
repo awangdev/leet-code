@@ -1,7 +1,7 @@
  
  
  
-## PreSum (7)
+## PreSum (8)
 **0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
@@ -151,6 +151,30 @@ TODO: Write the code + merge function
 - min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
 - time O(nlogn), sort
 - space: O(n)
+
+
+
+---
+
+**7. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Hash Table
+- Hash Table two sum 思想, but `save frequency of current preSum`
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
+- `k = sum - portion`, and reversely, `portion = sum - k`
+- We know the value of sum and k, so portion will be requested
+- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(portion) = the # of possible ways to reach k
+- O(n) time, O(n) space
+
+#### PreSum, O(n^2)
+- move from starting point i = [0 ~ n -1] and define range = [i ~ j]
+- use presum to verify k: `preSum[j] - preSum[i - 1]`
+- O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
+
 
 
 

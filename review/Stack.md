@@ -1,7 +1,7 @@
  
  
  
-## Stack (24)
+## Stack (25)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -517,6 +517,26 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 - 所有的length作比较, 就可以找出最长length
 - O(n) stack space, O(n) runtime. 应该比dp慢一点, 因为做了2遍O(n)
 
+
+
+
+---
+
+**24. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
+      
+time: O(n)
+space: O(n)
+
+给一个path, simplify成最简单形式. 注意考虑edge case
+
+#### Stack
+- 理解unix path 的情况, 不懂得要问: 
+- 1. `.` 代表current directory, 可以忽略. 
+- 2. `../` 表示previous level. 
+- 3. double slash 可以忽略.
+- 4. empty string 要output `/`
+- 最终就是用stack (`上一个加进去的item, 用来备选pop() out`), 遇到 `../` pop()掉上一个加上去的item, 其余加进stack
+- 最终用 '/' 把所有item连接起来.
 
 
 

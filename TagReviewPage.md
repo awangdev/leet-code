@@ -128,7 +128,7 @@ TODO:
  
  
  
-## String (48)
+## String (49)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -962,6 +962,26 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 - 4. 最后一个看坑。要是乘积是0，就返回‘0’。 但是这个其实可以在开头catch到没必要做到结尾catch。
 - 用到几个StringBuffer的好东西: reverse(), sb.deleteCharAt(i)   
 - 找数字，或者26个字母，都可以: s.charAt(i) - '0'; s.charAt(i) - 'a';
+
+
+
+---
+
+**48. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
+      
+time: O(n)
+space: O(n)
+
+给一个path, simplify成最简单形式. 注意考虑edge case
+
+#### Stack
+- 理解unix path 的情况, 不懂得要问: 
+- 1. `.` 代表current directory, 可以忽略. 
+- 2. `../` 表示previous level. 
+- 3. double slash 可以忽略.
+- 4. empty string 要output `/`
+- 最终就是用stack (`上一个加进去的item, 用来备选pop() out`), 遇到 `../` pop()掉上一个加上去的item, 其余加进stack
+- 最终用 '/' 把所有item连接起来.
 
 
 
@@ -4810,7 +4830,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
  
  
  
-## DFS (78)
+## DFS (79)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -6664,6 +6684,22 @@ space: O(n)
 
 ---
 
+**78. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+
+
+---
+
 
 
 
@@ -6813,7 +6849,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (47)
+## Hash Table (48)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -7708,6 +7744,30 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 #### Hash Table
 - <Integer,List<String>>
 - 存最长值, 最后map.get(max) 
+
+
+
+---
+
+**47. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Hash Table
+- Hash Table two sum 思想, but `save frequency of current preSum`
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
+- `k = sum - portion`, and reversely, `portion = sum - k`
+- We know the value of sum and k, so portion will be requested
+- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(portion) = the # of possible ways to reach k
+- O(n) time, O(n) space
+
+#### PreSum, O(n^2)
+- move from starting point i = [0 ~ n -1] and define range = [i ~ j]
+- use presum to verify k: `preSum[j] - preSum[i - 1]`
+- O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
+
 
 
 
@@ -8728,7 +8788,7 @@ space: O(n!)
  
  
  
-## Tree (47)
+## Tree (48)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -9694,6 +9754,22 @@ space: O(n)
 
 ---
 
+**47. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+
+
+---
+
 
 
 
@@ -10374,7 +10450,7 @@ TODO
  
  
  
-## BST (21)
+## BST (22)
 **0. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, Tree]
       
 
@@ -10784,6 +10860,22 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 - inorder traversal the nodes and save in array, find the 2 items misplanced and swap them
 - But O(n) space should not be allowed
 
+
+
+
+---
+
+**21. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
 
 
 
@@ -11736,7 +11828,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
  
  
  
-## Stack (24)
+## Stack (25)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -12257,13 +12349,33 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 
 ---
 
+**24. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
+      
+time: O(n)
+space: O(n)
+
+给一个path, simplify成最简单形式. 注意考虑edge case
+
+#### Stack
+- 理解unix path 的情况, 不懂得要问: 
+- 1. `.` 代表current directory, 可以忽略. 
+- 2. `../` 表示previous level. 
+- 3. double slash 可以忽略.
+- 4. empty string 要output `/`
+- 最终就是用stack (`上一个加进去的item, 用来备选pop() out`), 遇到 `../` pop()掉上一个加上去的item, 其余加进stack
+- 最终用 '/' 把所有item连接起来.
+
+
+
+---
+
 
 
 
  
  
  
-## Linked List (30)
+## Linked List (31)
 **0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy      Tags: [Linked List]
       
 1525664839
@@ -12790,6 +12902,22 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
+**30. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+
+
+---
+
 
 
 
@@ -12820,7 +12948,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
  
  
  
-## PreSum (7)
+## PreSum (8)
 **0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
@@ -12970,6 +13098,30 @@ TODO: Write the code + merge function
 - min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
 - time O(nlogn), sort
 - space: O(n)
+
+
+
+---
+
+**7. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Hash Table
+- Hash Table two sum 思想, but `save frequency of current preSum`
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
+- `k = sum - portion`, and reversely, `portion = sum - k`
+- We know the value of sum and k, so portion will be requested
+- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(portion) = the # of possible ways to reach k
+- O(n) time, O(n) space
+
+#### PreSum, O(n^2)
+- move from starting point i = [0 ~ n -1] and define range = [i ~ j]
+- use presum to verify k: `preSum[j] - preSum[i - 1]`
+- O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
+
 
 
 
@@ -15158,7 +15310,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
  
  
  
-## Bit Manipulation (16)
+## Bit Manipulation (17)
 **0. [O(1) Check Power of 2.java](https://github.com/awangdev/LintCode/blob/master/Java/O(1)%20Check%20Power%20of%202.java)**      Level: Easy      Tags: [Bit Manipulation]
       
 
@@ -15440,6 +15592,19 @@ space: O(1), 32-bit array
 - `最终的hamming distance 要从 [1 ~ 32] 哪个bit开始算起`? 取决于 `最长`的那个binary format: 但不用先去找bit length
 - 在做countZero, countOne时候, 都做32-bit; 最终做乘积的时候, 如果 `1` 或者 `0` 个数为零, 乘积自然为0.
 
+
+
+
+---
+
+**16. [Binary Gap.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Gap.java)**      Level: Easy      Tags: [Bit Manipulation]
+      
+time: O(n), n = # of bits
+space: O(1)
+
+#### Bit Manipulation
+- 理解Binary Gap的描述
+- 简单的 `>>`, `&1`, track start and end point 就好了
 
 
 
@@ -18511,7 +18676,7 @@ TODO:
  
  
  
-## Array (95)
+## Array (97)
 **0. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, Greedy]
       
 
@@ -20458,6 +20623,51 @@ space: O(n!)
 - Which one?
 - worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 - C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
+
+
+
+---
+
+**95. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Hash Table
+- Hash Table two sum 思想, but `save frequency of current preSum`
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
+- `k = sum - portion`, and reversely, `portion = sum - k`
+- We know the value of sum and k, so portion will be requested
+- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(portion) = the # of possible ways to reach k
+- O(n) time, O(n) space
+
+#### PreSum, O(n^2)
+- move from starting point i = [0 ~ n -1] and define range = [i ~ j]
+- use presum to verify k: `preSum[j] - preSum[i - 1]`
+- O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
+
+
+
+
+---
+
+**96. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
+      
+time: O(n)
+space: O(1)
+
+给一排座位, 一个人去坐: 找离两边的人都最远的地方(中间点), return 跟旁边人的最大distance
+
+是Exam Room 的同种概念, 简单化题目: 这里只考虑一个人就好了
+
+#### Basic Implementation, track start/end
+- start/end point, 然后比较大小记录dist
+- 注意1: 如果第一个座位没有人, 特殊处理, dist = [0 ~ end]
+- 注意2: 如果最后一个座位没有人, 特殊处理: dist = [n - 1 - start];
+- 其余: `dist = Math.max(dist, (end - start) / 2)`
+- 相关题目: 几乎同样概念 `Binary Gap`, 升级复杂版`Exam Room`
+
 
 
 

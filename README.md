@@ -457,3 +457,8 @@
 |436|[Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)|Medium|Java|[Array, Backtracking, Combination, DFS]||
 |437|[Total Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Total%20Hamming%20Distance.java)|Medium|Java|[Bit Manipulation]||
 |438|[Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
+|439|[Binary Gap.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Gap.java)|Easy|Java|[Bit Manipulation]||
+|440|[Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)|Medium|Java|[Array, Hash Table, PreSum]||
+|441|[Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)|Easy|Java|[Array]||
+|442|[Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)|Medium|Java|[Stack, String]||
+|443|[Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)|Medium|Java|[BST, DFS, Linked List, Tree]||

@@ -1,7 +1,7 @@
  
  
  
-## String (48)
+## String (49)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -835,6 +835,26 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 - 4. 最后一个看坑。要是乘积是0，就返回‘0’。 但是这个其实可以在开头catch到没必要做到结尾catch。
 - 用到几个StringBuffer的好东西: reverse(), sb.deleteCharAt(i)   
 - 找数字，或者26个字母，都可以: s.charAt(i) - '0'; s.charAt(i) - 'a';
+
+
+
+---
+
+**48. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
+      
+time: O(n)
+space: O(n)
+
+给一个path, simplify成最简单形式. 注意考虑edge case
+
+#### Stack
+- 理解unix path 的情况, 不懂得要问: 
+- 1. `.` 代表current directory, 可以忽略. 
+- 2. `../` 表示previous level. 
+- 3. double slash 可以忽略.
+- 4. empty string 要output `/`
+- 最终就是用stack (`上一个加进去的item, 用来备选pop() out`), 遇到 `../` pop()掉上一个加上去的item, 其余加进stack
+- 最终用 '/' 把所有item连接起来.
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Bit Manipulation (16)
+## Bit Manipulation (17)
 **0. [O(1) Check Power of 2.java](https://github.com/awangdev/LintCode/blob/master/Java/O(1)%20Check%20Power%20of%202.java)**      Level: Easy      Tags: [Bit Manipulation]
       
 
@@ -283,6 +283,19 @@ space: O(1), 32-bit array
 - `最终的hamming distance 要从 [1 ~ 32] 哪个bit开始算起`? 取决于 `最长`的那个binary format: 但不用先去找bit length
 - 在做countZero, countOne时候, 都做32-bit; 最终做乘积的时候, 如果 `1` 或者 `0` 个数为零, 乘积自然为0.
 
+
+
+
+---
+
+**16. [Binary Gap.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Gap.java)**      Level: Easy      Tags: [Bit Manipulation]
+      
+time: O(n), n = # of bits
+space: O(1)
+
+#### Bit Manipulation
+- 理解Binary Gap的描述
+- 简单的 `>>`, `&1`, track start and end point 就好了
 
 
 

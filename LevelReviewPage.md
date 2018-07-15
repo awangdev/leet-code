@@ -1,7 +1,7 @@
  
  
  
-## Easy (143)
+## Easy (145)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy      Tags: []
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -2186,13 +2186,47 @@ determine if characters are unique in string
 
 ---
 
+**143. [Binary Gap.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Gap.java)**      Level: Easy      Tags: [Bit Manipulation]
+      
+time: O(n), n = # of bits
+space: O(1)
+
+#### Bit Manipulation
+- 理解Binary Gap的描述
+- 简单的 `>>`, `&1`, track start and end point 就好了
+
+
+
+---
+
+**144. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
+      
+time: O(n)
+space: O(1)
+
+给一排座位, 一个人去坐: 找离两边的人都最远的地方(中间点), return 跟旁边人的最大distance
+
+是Exam Room 的同种概念, 简单化题目: 这里只考虑一个人就好了
+
+#### Basic Implementation, track start/end
+- start/end point, 然后比较大小记录dist
+- 注意1: 如果第一个座位没有人, 特殊处理, dist = [0 ~ end]
+- 注意2: 如果最后一个座位没有人, 特殊处理: dist = [n - 1 - start];
+- 其余: `dist = Math.max(dist, (end - start) / 2)`
+- 相关题目: 几乎同样概念 `Binary Gap`, 升级复杂版`Exam Room`
+
+
+
+
+---
+
 
 
 
  
  
  
-## Medium (212)
+## Medium (215)
 **0. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 
@@ -6491,6 +6525,66 @@ space: O(n)
 - Find all leaves at deepest level
 - Use map to track each node-parent
 - Backtrack all nodes to find common ancestor
+
+
+
+---
+
+**212. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Hash Table
+- Hash Table two sum 思想, but `save frequency of current preSum`
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
+- `k = sum - portion`, and reversely, `portion = sum - k`
+- We know the value of sum and k, so portion will be requested
+- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(portion) = the # of possible ways to reach k
+- O(n) time, O(n) space
+
+#### PreSum, O(n^2)
+- move from starting point i = [0 ~ n -1] and define range = [i ~ j]
+- use presum to verify k: `preSum[j] - preSum[i - 1]`
+- O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
+
+
+
+
+---
+
+**213. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
+      
+time: O(n)
+space: O(n)
+
+给一个path, simplify成最简单形式. 注意考虑edge case
+
+#### Stack
+- 理解unix path 的情况, 不懂得要问: 
+- 1. `.` 代表current directory, 可以忽略. 
+- 2. `../` 表示previous level. 
+- 3. double slash 可以忽略.
+- 4. empty string 要output `/`
+- 最终就是用stack (`上一个加进去的item, 用来备选pop() out`), 遇到 `../` pop()掉上一个加上去的item, 其余加进stack
+- 最终用 '/' 把所有item连接起来.
+
+
+
+---
+
+**214. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
 
 
 

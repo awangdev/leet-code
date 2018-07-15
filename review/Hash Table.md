@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (47)
+## Hash Table (48)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -896,6 +896,30 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 #### Hash Table
 - <Integer,List<String>>
 - 存最长值, 最后map.get(max) 
+
+
+
+---
+
+**47. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Hash Table
+- Hash Table two sum 思想, but `save frequency of current preSum`
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
+- `k = sum - portion`, and reversely, `portion = sum - k`
+- We know the value of sum and k, so portion will be requested
+- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(portion) = the # of possible ways to reach k
+- O(n) time, O(n) space
+
+#### PreSum, O(n^2)
+- move from starting point i = [0 ~ n -1] and define range = [i ~ j]
+- use presum to verify k: `preSum[j] - preSum[i - 1]`
+- O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
+
 
 
 

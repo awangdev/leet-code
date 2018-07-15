@@ -1,7 +1,7 @@
  
  
  
-## Easy (143)
+## Easy (145)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy      Tags: []
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -2180,6 +2180,40 @@ determine if characters are unique in string
 
 #### no additional data structure
 - double for loop:  O(n^2)
+
+
+
+
+---
+
+**143. [Binary Gap.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Gap.java)**      Level: Easy      Tags: [Bit Manipulation]
+      
+time: O(n), n = # of bits
+space: O(1)
+
+#### Bit Manipulation
+- 理解Binary Gap的描述
+- 简单的 `>>`, `&1`, track start and end point 就好了
+
+
+
+---
+
+**144. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
+      
+time: O(n)
+space: O(1)
+
+给一排座位, 一个人去坐: 找离两边的人都最远的地方(中间点), return 跟旁边人的最大distance
+
+是Exam Room 的同种概念, 简单化题目: 这里只考虑一个人就好了
+
+#### Basic Implementation, track start/end
+- start/end point, 然后比较大小记录dist
+- 注意1: 如果第一个座位没有人, 特殊处理, dist = [0 ~ end]
+- 注意2: 如果最后一个座位没有人, 特殊处理: dist = [n - 1 - start];
+- 其余: `dist = Math.max(dist, (end - start) / 2)`
+- 相关题目: 几乎同样概念 `Binary Gap`, 升级复杂版`Exam Room`
 
 
 
