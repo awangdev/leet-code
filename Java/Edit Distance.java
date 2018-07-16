@@ -1,17 +1,33 @@
 H
 1519272534
-tags: String, DP, Double Sequence DP
+tags: String, DP, Double Sequence DP, Sequence DP
+time: O(MN)
+Space: O(N)
 
 两个字符串, A要变成B, 可以 insert/delete/replace, 找最小变化operation count
 
 #### Double Sequence
-- 考虑两个字符串变换的最后点: 需要insert/delete/replace? 分析每种情况, 然后列出表达式.
+- 考虑两个字符串的末尾index s[i], t[j]: 如果需要让这两个字符一样, 可能使用题目给出的三种operation: insert/delete/replace?
 - 先calculate最坏的情况, 3种operation count + 1; 然后在比较match的情况.
 - 注意, 在i或者j为0的时候, 变成另外一个数字的steps只能是全变.
-- 第一步, 空间时间都是O(MN)
+- 第一步, 空间时间都是O(MN), O(MN)
 - 滚动数组优化, 空间O(N)
 
+##### Detail analysis
+- insert: assume insert on s, `#ofOperation = (s[0 ~ i] to t[0 ~ j-1]) + 1;`
+- delete: assume delete on t, `#ofOperatoin = (s[0 ~ i - 1] to t[0 ~ j]) + 1;`
+- replace: replace both s and t, `#ofOperatoin = (s[0 ~ i - 1] to t[0 ~ j - 1]) + 1;`
+- dp[i][j]代表了两个 sequence 互相之间的性质: s[0 ~ i] 转换成 s[0~j] 所需要的最少 operation count
+- init: 当i==0, dp[0][j] = j; 每次都要 + j 个character; 同理, 当j==0, dp[i][0] = i;
+- 而dp[i][j]有两种情况处理: `s[i] == t[j]` or `s[i] != t[j]`
+
+##### 何时initialize
+- 这种判断取决于经验: 如果知道initialization可以再 double for loop 里面一起做, 那么可以留着那么做
+- 这样属于 `需要什么, initialize什么`
+- 事后在做space optimization的时候, 可以轻易在 1st dimension 上做rolling array
+
 #### Search
+- 可以做, 但是不建议:这道题需要找 min count, 而不是search/find all solutions, 所以search会写的比较复杂, 牛刀杀鸡.
 
 ```
 /*
@@ -41,12 +57,8 @@ init: for word1[0, 0] to change to words[0 ,j]: it has to be j add operations
 */
 class Solution {
     public int minDistance(String word1, String word2) {
-        if (word1 == null || word2 == null) {
-            if (word1 == null && word2 == null) {
-                return 0;
-            }
-            return word1 == null ? word2.length() : word1.length();
-        }
+        if (word1 == null && word2 == null) return 0;
+        if (word1 == null || word2 == null) return word1 == null ? word2.length() : word1.length();
         
         int m = word1.length();
         int n = word2.length();
@@ -62,11 +74,10 @@ class Solution {
                     dp[i][j] = i;
                     continue;
                 }
-                // Base line, worst case
-                dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i - 1][j])) + 1;
-                // If match, improvement case
                 if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
-                    dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - 1]);
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else { // 3 ways to find replace, find min
+                    dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i - 1][j])) + 1;
                 }
             }
         }
@@ -74,17 +85,11 @@ class Solution {
     }
 }
 
-/*
-Rolling array
-*/
+// Rolling array
 class Solution {
     public int minDistance(String word1, String word2) {
-        if (word1 == null || word2 == null) {
-            if (word1 == null && word2 == null) {
-                return 0;
-            }
-            return word1 == null ? word2.length() : word1.length();
-        }
+        if (word1 == null && word2 == null) return 0;
+        if (word1 == null || word2 == null) return word1 == null ? word2.length() : word1.length();
         
         int m = word1.length();
         int n = word2.length();
@@ -93,22 +98,53 @@ class Solution {
         for (int i = 0; i <= m; i++) {
             for (int j = 0; j <= n; j++) {
                 if (i == 0) {
-                    dp[i % 2][j] = j;
+                    dp[i%2][j] = j;
                     continue;
                 }
                 if (j == 0) {
-                    dp[i % 2][j] = i;
+                    dp[i%2][j] = i;
                     continue;
                 }
-                // Base line, worst case
-                dp[i % 2][j] = Math.min(dp[(i - 1) % 2][j - 1], Math.min(dp[i % 2][j - 1], dp[(i - 1) % 2][j])) + 1;
-                // If match, improvement case
                 if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
-                    dp[i % 2][j] = Math.min(dp[i % 2][j], dp[(i - 1) % 2][j - 1]);
+                    dp[i%2][j] = dp[(i - 1)%2][j - 1];
+                } else { // 3 ways to find replace, find min
+                    dp[i%2][j] = Math.min(dp[(i - 1)%2][j - 1], Math.min(dp[i%2][j - 1], dp[(i - 1)%2][j])) + 1;
                 }
             }
         }
-        return dp[m % 2][n];
+        return dp[m%2][n];
+    }
+}
+
+// Init operation ahead of double for loop
+// This approach is okay, but cannot be optimized for space since dp[i][j] has to be initialized completely
+class Solution {
+    public int minDistance(String word1, String word2) {
+        if (word1 == null && word2 == null) return 0;
+        if (word1 == null || word2 == null) return word1 == null ? word2.length() : word1.length();
+        
+        int m = word1.length();
+        int n = word2.length();
+        int[][] dp = new int[m + 1][n + 1];
+        
+        // init
+        for (int i = 0; i <= m; i++) {
+            dp[i][0] = i;
+        }       
+        for (int j = 0; j <= n; j++) {
+            dp[0][j] = j;
+        }
+        
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else { // 3 ways to find replace, find min
+                    dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i - 1][j])) + 1;
+                }
+            }
+        }
+        return dp[m][n];
     }
 }
 

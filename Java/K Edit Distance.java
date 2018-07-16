@@ -1,6 +1,6 @@
 H
 1522220157
-tags: Trie, DP, Double Sequence DP
+tags: Trie, DP, Double Sequence DP, Sequence DP
 
 给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
 

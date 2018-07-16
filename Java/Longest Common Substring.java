@@ -1,6 +1,6 @@
 M
 1525239157
-tags: DP, Double Sequence DP, String
+tags: DP, Double Sequence DP, String, Sequence DP
 
 #### Double Sequence DP
 - 两个string, 找最值: longest common string length

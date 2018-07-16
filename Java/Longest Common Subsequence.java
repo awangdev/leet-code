@@ -1,6 +1,6 @@
 M
 1519197096
-tags: DP, Double Sequence DP
+tags: DP, Double Sequence DP, Sequence DP
 
 给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
 
