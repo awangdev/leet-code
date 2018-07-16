@@ -463,3 +463,4 @@
 |442|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
 |443|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization]||
 |444|[Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)|Medium|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|445|[Random Pick Index.java](https://github.com/awangdev/LintCode/blob/master/Java/Random%20Pick%20Index.java)|Medium|Java|[Reservior Sampling]||

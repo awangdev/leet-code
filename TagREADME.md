@@ -64,6 +64,7 @@ Table of Contents
 * [Quick Select (1)](#quick-select-1)
 * [Bucket Sort (1)](#bucket-sort-1)
 * [Monotonous Stack (1)](#monotonous-stack-1)
+* [Reservior Sampling (1)](#reservior-sampling-1)
 * [Two Stacks (1)](#two-stacks-1)
 * [Tree DP (1)](#tree-dp-1)
 
@@ -1586,6 +1587,16 @@ Table of Contents
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)|Hard|Java|[Array, Monotonous Stack, Stack]||
+
+
+
+ 
+ 
+ 
+## Reservior Sampling (1)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Random Pick Index.java](https://github.com/awangdev/LintCode/blob/master/Java/Random%20Pick%20Index.java)|Medium|Java|[Reservior Sampling]||
 
 
 
