@@ -122,43 +122,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**7. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP]
-      
-
-和Stock I 的区别：可以买卖多次，求总和的最大盈利.
-
-#### 几种其他不同的思路:
-- Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起. 计算delta, 其实简单粗暴, 也还不错.
-- 如下, 从低谷找peek, sell.
-- DP. (old dp solution BuyOn[], SellOn[])
-- DFS计算所有(timeout).Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
-
-#### Greedy
-- 画图, 因为可以无限买卖, 所以只要有上升, 就卖
-- 所有卖掉的, 平移加起来, 其实就是overall best profit
-- O(n)
-
-#### 找涨幅最大的区间，买卖：
-- 找到低谷，买进:peek = start + 1 时候，就是每次往前走一步;若没有上涨趋势，继续往低谷前进。
-- 涨到峰顶，卖出:一旦有上涨趋势，进一个while loop，涨到底, 再加个profit.
-- profit += prices[peek - 1] - prices[start]; 挺特别的。
-- 当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
-
-#### DP
-- 想知道前i天的最大profit, 那么用sequence DP
-- 当天的是否能卖, 取决于昨天是否买进, 也就是昨天买了或者卖了的状态: 加状态, 2D DP
-- 如果今天是卖的状态, 那么昨天: 要么买进了, 今天 +price 卖出; 要么昨天刚卖, 今天不可能再卖, profit等同.
-- 如果今天是买的状态, 那么昨天: 要么卖掉了, 今天 -price 买入; 要么昨天刚卖, 今天不可能再买, profit等同.
-
-#### Rolling Array
-- [i] 和 [i - 1] 相关联, roll
-
-
-
-
----
-
-**8. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
+**7. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -186,7 +150,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**9. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+**8. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
       
 
 #### Hash Table, Greedy
@@ -204,7 +168,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**10. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**9. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -243,7 +207,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**11. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
+**10. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
       
 
 给一串gas station array, 每个index里面有一定数量gas.
@@ -268,7 +232,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**12. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**11. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -297,7 +261,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**13. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+**12. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
       
 
 给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
@@ -311,6 +275,49 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 - Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
 - space, O(n) extra space in sb, O(26) constant space with pq.
 - time: O(n) to add all items
+
+
+
+---
+
+**13. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+      
+time: O(n)
+space: O(1) greedy, O(n) dp
+
+和Stock I 的区别：可以买卖多次，求总和的最大盈利.
+
+#### 几种其他不同的思路:
+- Greedy, 每次有相邻的diff符合profit条件, 就卖了, 最后把所有的diff加在一起. 计算delta, 其实简单粗暴, 也还不错.
+- 如下, 从低谷找peek, sell.
+- DP. (old dp solution BuyOn[], SellOn[])
+- DFS计算所有(timeout).Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
+
+#### Greedy
+- 画图, 因为可以无限买卖, 所以只要有上升, 就有profit
+- 所有卖掉的, 平移加起来, 其实就是overall best profit
+- O(n)
+
+#### 找涨幅最大的区间，买卖：
+- 找到低谷，买进:peek = start + 1 时候，就是每次往前走一步;若没有上涨趋势，继续往低谷前进。
+- 涨到峰顶，卖出:一旦有上涨趋势，进一个while loop，涨到底, 再加个profit.
+- profit += prices[peek - 1] - prices[start]; 挺特别的。
+- 当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
+
+#### DP, sequence dp + status
+- 想知道前i天的最大profit, 那么用sequence DP: 
+- dp[i]: represents 前i天的最大profit
+- 当天的是否能卖, 取决于昨天是否买进, 也就是 `昨天买了或者卖了的状态`: 加状态, dp[i][0], dp[i][1]
+- `买`的状态 `dp[i][0]` = 1. 今天买入, 昨天卖掉的dp[i-1][1]结果 - price[i]; 2. 今天不买, 跟昨天买的status dp[i-1][0] 结果 比较.
+- `卖`的状态 `dp[i][1]` = 1. 今天卖出, 昨天买进的dp[i-1][0]结果 + price[i]; 2. 今天不卖, 跟昨天卖的status dp[i-1][1] 结果 比较.
+- 注意init: 
+- dp[0][0] = dp[0][1] = 0; // 0 days, 
+- dp[1][0] = 0; // sell on 1st day, haven't bought, so just 0 profit.
+- dp[1][0] = -prices[0]; // buy on 1st day, with cost of prices[0]
+
+##### Rolling Array
+- [i] 和 [i - 1] 相关联, roll
+
 
 
 

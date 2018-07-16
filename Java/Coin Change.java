@@ -1,6 +1,6 @@
 M
 1516583739
-tags: DP, Sequence DP, Memoization
+tags: DP, Backpack DP, Memoization
 
 给一串不同数额的coins, 和total amount to spent. 求 最少 用多少个coin可以组合到这个amount. 每种coins个数不限量.
 

@@ -1,10 +1,11 @@
 M
 1523329114
-tags: DP, Sequence DP
+tags: DP, Sequence DP, Status DP
 
 和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
 
 #### Sequence DP
+- dp[i][status]: 在 status=[0,1] 情况下, 前i个 房子拿到的 max rob gain. status=0, 1st house robbed; status=1, 1st house skipped
 - 根据dp[i-1]是否被rob来讨论dp[i]: dp[i] = Math.max(dp[i-1], dp[i - 2] + nums[i - 1]);
 - 特别的是，末尾的last house 和 first house相连. 这里就需要分别讨论两种情况: 第一个房子被搜刮, 或者第一个房子没被搜刮
 - be careful with edge case nums = [0], only with 1 element.
@@ -55,13 +56,13 @@ class Solution {
         dp[1][0] = 0; // not picking nums[0]
         dp[1][1] = nums[0]; // pick nums[0]
         
-        for (int i = 2; i < n; i++) { // spare the (i = n) case
+        for (int i = 2; i < n; i++) { // skip the (i = n) case
             dp[i][0] = Math.max(dp[i - 1][0], dp[i - 2][0] + nums[i - 1]);
             dp[i][1] = Math.max(dp[i - 1][1], dp[i - 2][1] + nums[i - 1]);
         }
         // i = n;
         dp[n][0] = Math.max(dp[n - 1][0], dp[n - 2][0] + nums[n - 1]);
-        dp[n][1] = dp[n - 1][1];
+        dp[n][1] = dp[n - 1][1]; // because the next-connected dp[0][1] was picked
         
         return (int) Math.max(dp[n][0], dp[n][1]);
     }

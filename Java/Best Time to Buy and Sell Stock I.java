@@ -1,5 +1,5 @@
 E
-1523511808
+1531717344
 tags: Array, DP, Sequence DP
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -11,7 +11,8 @@ tags: Array, DP, Sequence DP
 
 #### DP
 - Find min value for first i items, new dp[n + 1].
-- 然后用当天的price做减法算max profit.
+- dp[i]: 前i天, prices最小的price是多少: min cost of first i days
+- 然后用当天的price做减法dp[i]算max profit.
 - Time, Space: O(n)
 - 更进一步, 用一个min来表示min[i], 因为计算中只需要当下的min.
 
@@ -27,7 +28,8 @@ tags: Array, DP, Sequence DP
 /*
 Say you have an array for which the ith element is the price of a given stock on day i.
 
-If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), 
+If you were only permitted to complete at most one transaction 
+(ie, buy one and sell one share of the stock), 
 design an algorithm to find the maximum profit.
 
 Example 1:
@@ -123,13 +125,12 @@ class Solution {
         if (prices == null || prices.length <= 1) {
             return 0;
         }
-        int profit = 0;
-        int min = prices[0];
+        int profit = 0, min = prices[0];
         for (int i = 1; i < prices.length; i++) {
-            if (prices[i] > min) {
-                profit = Math.max(profit, prices[i] - min);
-            } else {
+            if (prices[i] < min) {
                 min = prices[i];
+            } else {
+                profit = Math.max(profit, prices[i] - min);
             }
         }
         return profit;

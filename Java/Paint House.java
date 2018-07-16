@@ -1,6 +1,8 @@
 E
 1522770984
-tags: DP, Sequence DP
+tags: DP, Sequence DP, Status DP
+time: O(nm), m = # of colors
+space: O(nm)
 
 要paint n个房子, 还有 nx3的cost[][]. 求最少用多少cost paint 所有房子.
 

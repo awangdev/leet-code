@@ -1,13 +1,15 @@
 M
-1527828369
+1531713769
 tags: DP, Sequence DP
+time: O(n^2)
+space: O(n)
 
 给一个String word, 和一个字典, 检查是否word可以被劈开, 而所有substring都应该是dictionary里面的words.
 
 #### Sequence DP
 - true/false problem, think about dp
 - 子问题: 前i个字母, 是否可以有valid break
-- 检查dp[j] && substring(j, i)
+- 检查dp[j] && substring(j, i), for all j = [0 ~ i]
 - dp = new boolean[n + 1]; dp[0] = true;
 - goal: if there is a j,  `dp[j] == true && word[j, n] in dict`. Need iterate over i = [0 ~ n], also j = [0, i]
 - 注意, 用set代替list, 因为要用 contains().
@@ -64,10 +66,8 @@ init dp[] = new boolean[n + 1];
 class Solution {
     public boolean wordBreak(String s, List<String> dict) {
         // check edge case
-        if (s == null || s.length() == 0 
-            || dict == null || dict.size() == 0) {
-            return false;
-        }
+        if (s == null || s.length() == 0 || dict == null || dict.size() == 0) return false;
+
         Set<String> words = new HashSet<>(dict);
         // init dp
         int n = s.length();
@@ -78,9 +78,7 @@ class Solution {
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
                 dp[i] |= dp[j] && words.contains(s.substring(j, i));
-                if (dp[i]) {
-                    break;
-                }
+                if (dp[i]) break;
             }
         }
         

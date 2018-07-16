@@ -8,6 +8,7 @@ space: O(n)
 - 最多2个fence 颜色相同
 - 假设i是和 i-1不同，那么结果就是 (k-1)*dp[i - 1]
 - 假设i是何 i-1相同，那么根据条件，i-1和i-2肯定不同。那么所有的结果就是(k-1)*dp[i-2]
+- dp[i]: count # of ways to paint 前i个 fence
 - 加法原理
 - time, space: O(n)
 - rolling array: space O(1)

@@ -2,7 +2,7 @@
  
  
 ## Memoization (12)
-**0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [DP, Memoization, Sequence DP]
+**0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [Backpack DP, DP, Memoization]
       
 
 给一串不同数额的coins, 和total amount to spent. 求 最少 用多少个coin可以组合到这个amount. 每种coins个数不限量.
@@ -171,9 +171,10 @@ Space O(n): dp[], sum[]
 - O(n) time, space
 
 #### DP
-- 最后一步被前两种走法决定: dp[i] = dp[i - 1] + dp[i - 2]
+- 加法原理, 最后一步被前两种走法决定: dp[i] = dp[i - 1] + dp[i - 2]
 - 基础sequence DP, int[] dp = int[n + 1];
 - DP[]存的是以 1-based index的状态
+- dp[i]: count # of ways to finish 前i个 台阶
 - 需要知道dp[n] 的状态, 但是最大坐标是[n-1], 所以int[n+1]
 - dp[0]往往是有特殊状态的
 - O(n) space, time

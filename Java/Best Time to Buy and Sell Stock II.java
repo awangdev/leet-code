@@ -1,6 +1,8 @@
 E
-1523511814
-tags: Array, Greedy, DP, Sequence DP
+1531717353
+tags: Array, Greedy, DP, Sequence DP, Status DP
+time: O(n)
+space: O(1) greedy, O(n) dp
 
 和Stock I 的区别：可以买卖多次，求总和的最大盈利.
 
@@ -11,7 +13,7 @@ tags: Array, Greedy, DP, Sequence DP
 - DFS计算所有(timeout).Improvement on DFS -> DP -> calculate sellOn[i] and buyOn[i], and then return buyOn[i]. 有点难想, 但是代码简单, 也是O(n)
 
 #### Greedy
-- 画图, 因为可以无限买卖, 所以只要有上升, 就卖
+- 画图, 因为可以无限买卖, 所以只要有上升, 就有profit
 - 所有卖掉的, 平移加起来, 其实就是overall best profit
 - O(n)
 
@@ -21,13 +23,18 @@ tags: Array, Greedy, DP, Sequence DP
 - profit += prices[peek - 1] - prices[start]; 挺特别的。
 - 当没有上涨趋势时候，peek-1也就是start, 所以这里刚好profit += 0.
 
-#### DP
-- 想知道前i天的最大profit, 那么用sequence DP
-- 当天的是否能卖, 取决于昨天是否买进, 也就是昨天买了或者卖了的状态: 加状态, 2D DP
-- 如果今天是卖的状态, 那么昨天: 要么买进了, 今天 +price 卖出; 要么昨天刚卖, 今天不可能再卖, profit等同.
-- 如果今天是买的状态, 那么昨天: 要么卖掉了, 今天 -price 买入; 要么昨天刚卖, 今天不可能再买, profit等同.
+#### DP, sequence dp + status
+- 想知道前i天的最大profit, 那么用sequence DP: 
+- dp[i]: represents 前i天的最大profit
+- 当天的是否能卖, 取决于昨天是否买进, 也就是 `昨天买了或者卖了的状态`: 加状态, dp[i][0], dp[i][1]
+- `买`的状态 `dp[i][0]` = 1. 今天买入, 昨天卖掉的dp[i-1][1]结果 - price[i]; 2. 今天不买, 跟昨天买的status dp[i-1][0] 结果 比较.
+- `卖`的状态 `dp[i][1]` = 1. 今天卖出, 昨天买进的dp[i-1][0]结果 + price[i]; 2. 今天不卖, 跟昨天卖的status dp[i-1][1] 结果 比较.
+- 注意init: 
+- dp[0][0] = dp[0][1] = 0; // 0 days, 
+- dp[1][0] = 0; // sell on 1st day, haven't bought, so just 0 profit.
+- dp[1][0] = -prices[0]; // buy on 1st day, with cost of prices[0]
 
-#### Rolling Array
+##### Rolling Array
 - [i] 和 [i - 1] 相关联, roll
 
 
@@ -53,6 +60,8 @@ Thoughts:
 Draw a curve and realize that, only when prices[i] > prices[i - 1], 
 we complete buy/sell and take the profit.
 Adding more slopes can be greater than 0~N overall height diff. 
+
+// Greedy
 */
 class Solution {
     public int maxProfit(int[] prices) {
@@ -69,10 +78,7 @@ class Solution {
     }
 }
  
-/*
-DP
-Thoughts: See details at notes above
-*/
+//DP: See details at notes above
 class Solution {
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length == 0) {
@@ -81,6 +87,7 @@ class Solution {
         int n = prices.length;
         int[][] dp = new int[n + 1][2];
         dp[0][0] = dp[0][1] = 0;
+        dp[1][1] = 0;
         dp[1][0] = - prices[0];// -2
         for (int i = 2; i <= n; i++) {
             dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - prices[i - 1]);

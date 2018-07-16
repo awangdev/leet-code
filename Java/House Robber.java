@@ -1,10 +1,13 @@
 E
 1523329104
 tags: DP, Sequence DP
+time: O(n)
+space: O(n) or rolling array O(1)
 
 搜刮房子, 相邻的不能碰. 每个房子里有value, 求max.
 
 #### Sequence DP
+- dp[i]: 前i个房子拿到的max gain
 - 看最后结尾状态的前一个或前两个的情况，再综合考虑当下的
 - 搞清楚当下[i]的和之前[i-x]的情况的关系: 不可以连着house, 那么就直接考虑 dp[i-2]的情况
 - Sequence DP, new dp[n + 1];

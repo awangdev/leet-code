@@ -1,6 +1,6 @@
 M
 1522735311
-tags: DP, Sequence DP, Backpack DP
+tags: DP, Backpack DP
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
 
