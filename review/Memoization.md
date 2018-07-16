@@ -31,33 +31,7 @@
 
 ---
 
-**1. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization, Sequence DP]
-      
-
-无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
-
-#### DP, double for loop, O(n^2)
-- 考虑nums[i]结尾的时候, 在[0, i) 里count有多少小于nums[i]
-- 对于所有 i in [0, n), 最常的increasing序列有多少length?
-- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
-- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
-- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
-- 时间复杂度  O(n^2)
-
-
-#### O(nLogN)
-- 维持一个list of increasing sequence
-- 这个list其实是一个base-line, 记录着最低的increasing sequence.
-- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
-- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
-- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
-- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
-
-
-
----
-
-**2. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
+**1. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
 #### DFS + Memoization
@@ -86,7 +60,7 @@
 
 ---
 
-**3. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
+**2. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -114,7 +88,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**4. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
+**3. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -159,7 +133,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**5. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
+**4. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
 每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
@@ -188,7 +162,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**6. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**5. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
 还是2个人拿n个coin, coin可以有不同的value. 
@@ -241,7 +215,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**7. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
+**6. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -278,7 +252,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**8. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**7. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -299,7 +273,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**9. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**8. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -316,7 +290,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**10. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+**9. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
       
 
 给一个string s, 找最长的sub-sequence which is also palindrome.
@@ -347,7 +321,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**11. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+**10. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
       
 
 给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
@@ -373,6 +347,34 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - 既然只depend on next row, 可以用rolling array来处理: reduce to O(n) space.
 - Further: 可以降维, 把第一维彻底去掉, 变成 dp[n]
 - 同样是double for loop, 但是只在乎column changes: `dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);`  
+
+
+
+---
+
+**11. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
+      
+time: O(n^2) dp, O(nLogN) binary search
+space: O(n)
+
+无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
+
+#### DP, double for loop, O(n^2)
+- 找subsequence: 不需要continous, 可以skip candidate
+- 考虑nums[i]结尾的时候, 在[0, i), dp[i - 1] 里count有多少小于nums[i]
+- dp[i]: 到i为止 (对于所有 j in [0, i], 记录max length of increasing subsequence
+- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
+- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
+- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
+- 时间复杂度  O(n^2)
+
+#### O(nLogN)
+- 维持一个list of increasing sequence
+- 这个list其实是一个base-line, 记录着最低的increasing sequence.
+- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
+- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
+- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
+- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
 
 
 

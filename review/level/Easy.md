@@ -1399,11 +1399,13 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 **99. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
+time: O(n)
+space: O(n), O(1) rolling array
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
 
 #### Sequence DP
-- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- dp[i]: 前i个element,包括 last element (i-1), 可能组成的 subarray 的最大sum.
 - init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
 - 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
 - track overall max 

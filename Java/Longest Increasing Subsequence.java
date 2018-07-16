@@ -1,17 +1,19 @@
 M
-1516863852
-tags: Binary Search, DP, Sequence DP, Coordinate DP, Memoization
+1531724912
+tags: Binary Search, DP, Coordinate DP, Memoization
+time: O(n^2) dp, O(nLogN) binary search
+space: O(n)
 
 无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
 
 #### DP, double for loop, O(n^2)
-- 考虑nums[i]结尾的时候, 在[0, i) 里count有多少小于nums[i]
-- 对于所有 i in [0, n), 最常的increasing序列有多少length?
+- 找subsequence: 不需要continous, 可以skip candidate
+- 考虑nums[i]结尾的时候, 在[0, i), dp[i - 1] 里count有多少小于nums[i]
+- dp[i]: 到i为止 (对于所有 j in [0, i], 记录max length of increasing subsequence
 - max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
 - 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
 - dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
 - 时间复杂度  O(n^2)
-
 
 #### O(nLogN)
 - 维持一个list of increasing sequence

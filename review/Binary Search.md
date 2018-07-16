@@ -98,33 +98,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 ---
 
-**6. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization, Sequence DP]
-      
-
-无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
-
-#### DP, double for loop, O(n^2)
-- 考虑nums[i]结尾的时候, 在[0, i) 里count有多少小于nums[i]
-- 对于所有 i in [0, n), 最常的increasing序列有多少length?
-- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
-- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
-- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
-- 时间复杂度  O(n^2)
-
-
-#### O(nLogN)
-- 维持一个list of increasing sequence
-- 这个list其实是一个base-line, 记录着最低的increasing sequence.
-- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
-- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
-- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
-- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
-
-
-
----
-
-**7. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard      Tags: [Binary Search, DP, Partition DP]
+**6. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard      Tags: [Binary Search, DP, Partition DP]
       
 
 给一串书pages[i], k个人, pages[i] 代表每本书的页数. k个人从不同的点同时开始抄书. 
@@ -168,7 +142,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 ---
 
-**8. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
+**7. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
       
 
 Binary找sqrt. 基本 mid+1, mid-1 template.
@@ -178,7 +152,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**9. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy      Tags: [Binary Search, Hash Table, Sort, Two Pointers]
+**8. [Intersection of Two Arrays II.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Arrays%20II.java)**      Level: Easy      Tags: [Binary Search, Hash Table, Sort, Two Pointers]
       
 
 方法1:
@@ -192,7 +166,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 ---
 
-**10. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium      Tags: [Array, Binary Search]
+**9. [Find Peak Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 binary search. 
@@ -210,7 +184,7 @@ Note:
 
 ---
 
-**11. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium      Tags: [Binary Search, Math]
+**10. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium      Tags: [Binary Search, Math]
       
 
 傻做就O(n), 要更好就考虑O(logN).
@@ -224,7 +198,7 @@ Note:
 
 ---
 
-**12. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**11. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 方法1:
@@ -248,7 +222,7 @@ Not done yet
 
 ---
 
-**13. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
+**12. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
 
 方法1:
@@ -266,7 +240,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 
 ---
 
-**14. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
+**13. [Find Minimum in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 画图, 最小值被rotate之后, 变成array中间的最低谷.
@@ -279,7 +253,7 @@ O(nlogn)
 
 ---
 
-**15. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard      Tags: [Array, Binary Search]
+**14. [Find Minimum in Rotated Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.java)**      Level: Hard      Tags: [Array, Binary Search]
       
 
 一个需要严谨思考的题目. 因为有duplicate, 会导致不断平移, 所以最终time complexity是O(n)
@@ -291,7 +265,7 @@ O(nlogn)
 
 ---
 
-**16. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard      Tags: [Binary Search, DFS, Divide and Conquer]
+**15. [Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)**      Level: Hard      Tags: [Binary Search, DFS, Divide and Conquer]
       
 
 2Dmatrix, 里面的value有一些递增, 递减的特点(细节比较长, 看原题). 目标是找到peak element
@@ -330,7 +304,7 @@ peak: 比周围4个方向的点value大
 
 ---
 
-**17. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy      Tags: [Binary Search, Math]
+**16. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy      Tags: [Binary Search, Math]
       
 
 #### s- qrt(int x)
@@ -347,7 +321,7 @@ peak: 比周围4个方向的点value大
 
 ---
 
-**18. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Easy      Tags: [Binary Search]
+**17. [First Bad Version.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Bad%20Version.java)**      Level: Easy      Tags: [Binary Search]
       
 
 Binary Search
@@ -359,7 +333,7 @@ isBadVersion 是有方向的嘛，一个点错了，后面全错。
 
 ---
 
-**19. [Wood Cut.java](https://github.com/awangdev/LintCode/blob/master/Java/Wood%20Cut.java)**      Level: Medium      Tags: [Binary Search]
+**18. [Wood Cut.java](https://github.com/awangdev/LintCode/blob/master/Java/Wood%20Cut.java)**      Level: Medium      Tags: [Binary Search]
       
 
 二分的思想: 判断的是一个 validate() function, 而不是简单的'=='
@@ -372,7 +346,7 @@ Overall time: O(nLogM), where M = largest wood length
 
 ---
 
-**20. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**19. [Find the Duplicate Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Duplicate%20Number.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 - 注意不要思维定式: 以为mid是index
@@ -385,7 +359,7 @@ Time: O(nLogN)
 
 ---
 
-**21. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
+**20. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
@@ -400,7 +374,7 @@ Time: O(nLogN)
 
 ---
 
-**22. [Classical Binary Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Classical%20Binary%20Search.java)**      Level: Easy      Tags: [Binary Search]
+**21. [Classical Binary Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Classical%20Binary%20Search.java)**      Level: Easy      Tags: [Binary Search]
       
 
 #### Binary Search Template
@@ -414,7 +388,7 @@ Time: O(nLogN)
 
 ---
 
-**23. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy      Tags: [BST, Binary Search, Tree]
+**22. [Closest Binary Search Tree Value.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Binary%20Search%20Tree%20Value.java)**      Level: Easy      Tags: [BST, Binary Search, Tree]
       
 
 给一个BST, 和一个double target, 走位找到最接近的number.
@@ -433,7 +407,7 @@ Time: O(nLogN)
 
 ---
 
-**24. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium      Tags: [Binary Search, Tree]
+**23. [Count Complete Tree Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Complete%20Tree%20Nodes.java)**      Level: Medium      Tags: [Binary Search, Tree]
       
 
 Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下角缺node, 别忘了!)
@@ -455,7 +429,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**25. [Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)**      Level: Easy      Tags: [Binary Search]
+**24. [Closest Number in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Closest%20Number%20in%20Sorted%20Array.java)**      Level: Easy      Tags: [Binary Search]
       
 
 - Binary Search 的一种变型, LintCode无法再跑一边.
@@ -466,7 +440,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**26. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
+**25. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
       
 
 俄罗斯套娃, 这里用envelope来表现. 给一串array, 每一个[x, y] 是envelope 长宽. [[5,4],[6,4],[6,7],[2,3]]. 
@@ -495,7 +469,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**27. [Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)**      Level: Easy      Tags: [Binary Search]
+**26. [Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)**      Level: Easy      Tags: [Binary Search]
       
 
 给一个sorted integer array, 找target出现的最后的index. array 里有重复数字
@@ -506,7 +480,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**28. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+**27. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
       
 
 给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
@@ -528,7 +502,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**29. [Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer, Segment Tree]
+**28. [Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer, Segment Tree]
       
 
 给一串数字 int[], 然后一个query Interval[], 每个interval是 [start, end], 找query 区间里的最小值.
@@ -541,7 +515,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**30. [Interval Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum.java)**      Level: Medium      Tags: [Binary Search, Segment Tree]
+**29. [Interval Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum.java)**      Level: Medium      Tags: [Binary Search, Segment Tree]
       
 
 给一串数字 int[], 然后一个query Interval[], 每个interval是 [start, end], 找query 区间里的sum.
@@ -555,7 +529,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**31. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
+**30. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给2D matrix, 每行sorted, 每行的首位都大于上一行的末尾. goal: find target from matrix
@@ -568,7 +542,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**32. [Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer]
+**31. [Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)**      Level: Medium      Tags: [Binary Search, Divide and Conquer]
       
 
 给matrix, 每一行sorted, 每一列从上往下sorted, 找target是否存在
@@ -588,7 +562,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**33. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
+**32. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给sorted array, 有重复数字, 找跟target重合所在的range.
@@ -603,7 +577,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**34. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**33. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -628,7 +602,7 @@ TODO:
 
 ---
 
-**35. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+**34. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
@@ -653,7 +627,7 @@ TODO:
 
 ---
 
-**36. [H-Index II.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index%20II.java)**      Level: Medium      Tags: [Binary Search]
+**35. [H-Index II.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index%20II.java)**      Level: Medium      Tags: [Binary Search]
       
 
 找到h-index, 给的citation int[] 已经sorted. h-index 的definition 具体看题目.
@@ -662,6 +636,34 @@ TODO:
 - H-index的一个简单版, 已经sorted(从小到大), 找target value
 - 按定义, 找最后一个 `dictations[mid] >= h`, where `h = n - mid`
 - O(logn)
+
+
+
+---
+
+**36. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
+      
+time: O(n^2) dp, O(nLogN) binary search
+space: O(n)
+
+无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
+
+#### DP, double for loop, O(n^2)
+- 找subsequence: 不需要continous, 可以skip candidate
+- 考虑nums[i]结尾的时候, 在[0, i), dp[i - 1] 里count有多少小于nums[i]
+- dp[i]: 到i为止 (对于所有 j in [0, i], 记录max length of increasing subsequence
+- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
+- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
+- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
+- 时间复杂度  O(n^2)
+
+#### O(nLogN)
+- 维持一个list of increasing sequence
+- 这个list其实是一个base-line, 记录着最低的increasing sequence.
+- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
+- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
+- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
+- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
 
 
 

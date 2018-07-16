@@ -2,9 +2,9 @@
 Table of Contents
 =================
 
-* [Array (97)](#array-97)
+* [Array (98)](#array-98)
 * [DFS (79)](#dfs-79)
-* [DP (77)](#dp-77)
+* [DP (78)](#dp-78)
 * [String (49)](#string-49)
 * [Hash Table (48)](#hash-table-48)
 * [Tree (48)](#tree-48)
@@ -21,9 +21,9 @@ Table of Contents
 * [Design (18)](#design-18)
 * [Sequence DP (18)](#sequence-dp-18)
 * [Bit Manipulation (17)](#bit-manipulation-17)
+* [Greedy (15)](#greedy-15)
 * [Coordinate DP (15)](#coordinate-dp-15)
 * [Heap (14)](#heap-14)
-* [Greedy (14)](#greedy-14)
 * [Binary Tree (13)](#binary-tree-13)
 * [Memoization (12)](#memoization-12)
 * [Segment Tree (10)](#segment-tree-10)
@@ -33,9 +33,9 @@ Table of Contents
 * [PreSum (8)](#presum-8)
 * [Backpack DP (8)](#backpack-dp-8)
 * [Graph (7)](#graph-7)
+* [Status DP (6)](#status-dp-6)
 * [Partition DP (5)](#partition-dp-5)
 * [Sweep Line (5)](#sweep-line-5)
-* [Status DP (5)](#status-dp-5)
 * [Topological Sort (5)](#topological-sort-5)
 * [Enumeration (5)](#enumeration-5)
 * [Expression Tree (5)](#expression-tree-5)
@@ -72,7 +72,7 @@ Table of Contents
  
  
  
-## Array (97)
+## Array (98)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Missing Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Ranges.java)|Medium|Java|[Array]||
@@ -136,42 +136,43 @@ Table of Contents
 |58|[Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)|Medium|Java|[Array, DP, Greedy]||
 |59|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, PreSum, Sequence DP]||
 |60|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
-|61|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
-|62|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
-|63|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
-|64|[Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)|Medium|Java|[Array, Enumeration]||
-|65|[Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)|Medium|Java|[Array, Enumeration]||
-|66|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
-|67|[Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)|Hard|Java|[Array, Geometry, Hash Table, Math]||
-|68|[Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)|Easy|Java|[Array, Greedy]||
-|69|[Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)|Easy|Java|[Array, Hash Table]||
-|70|[Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)|Easy|Java|[Array, Hash Table]||
-|71|[2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)|Easy|Java|[Array, Hash Table]||
-|72|[Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)|Easy|Java|[Array, Hash Table]||
-|73|[Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)|Medium|Java|[Array, Hash Table]||
-|74|[Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)|Medium|Java|[Array, Hash Table, PreSum]||
-|75|[Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)|Medium|Java|[Array, Hash Table, PreSum]||
-|76|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|Hard|Java|[Array, Hash Table, Union Find]||
-|77|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
-|78|[Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)|Easy|Java|[Array, Math]||
-|79|[Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)|Hard|Java|[Array, Monotonous Stack, Stack]||
-|80|[Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)|Medium|Java|[Array, Partition, Sort, Two Pointers]||
-|81|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Hard|Java|[Array, PriorityQueue, Sort]||
-|82|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, PriorityQueue, Sort, Sweep Line]||
-|83|[Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)|Easy|Java|[Array, Quick Select, Quick Sort]||
-|84|[Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)|Medium|Java|[Array, Quick Sort, Sort, Two Pointers]||
-|85|[Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)|Medium|Java|[Array, Sort]||
-|86|[The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)|Medium|Java|[Array, Sort, Two Pointers]||
-|87|[Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)|Hard|Java|[Array, Stack, Two Pointers]||
-|88|[Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)|Easy|Java|[Array, String]||
-|89|[Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)|Easy|Java|[Array, Two Pointers]||
-|90|[3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)|Medium|Java|[Array, Two Pointers]||
-|91|[3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)|Medium|Java|[Array, Two Pointers]||
-|92|[3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)|Medium|Java|[Array, Two Pointers]||
-|93|[Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
-|94|[Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
-|95|[Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)|Medium|Java|[Array, Two Pointers]||
-|96|[Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)|Medium|Java|[Array, Two Pointers]||
+|61|[Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)|Medium|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|62|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
+|63|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
+|64|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
+|65|[Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)|Medium|Java|[Array, Enumeration]||
+|66|[Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)|Medium|Java|[Array, Enumeration]||
+|67|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|68|[Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)|Hard|Java|[Array, Geometry, Hash Table, Math]||
+|69|[Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)|Easy|Java|[Array, Greedy]||
+|70|[Contains Duplicate.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate.java)|Easy|Java|[Array, Hash Table]||
+|71|[Contains Duplicate II.java](https://github.com/awangdev/LintCode/blob/master/Java/Contains%20Duplicate%20II.java)|Easy|Java|[Array, Hash Table]||
+|72|[2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)|Easy|Java|[Array, Hash Table]||
+|73|[Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)|Easy|Java|[Array, Hash Table]||
+|74|[Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)|Medium|Java|[Array, Hash Table]||
+|75|[Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)|Medium|Java|[Array, Hash Table, PreSum]||
+|76|[Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)|Medium|Java|[Array, Hash Table, PreSum]||
+|77|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|Hard|Java|[Array, Hash Table, Union Find]||
+|78|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
+|79|[Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)|Easy|Java|[Array, Math]||
+|80|[Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)|Hard|Java|[Array, Monotonous Stack, Stack]||
+|81|[Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)|Medium|Java|[Array, Partition, Sort, Two Pointers]||
+|82|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Hard|Java|[Array, PriorityQueue, Sort]||
+|83|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, PriorityQueue, Sort, Sweep Line]||
+|84|[Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Median.java)|Easy|Java|[Array, Quick Select, Quick Sort]||
+|85|[Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)|Medium|Java|[Array, Quick Sort, Sort, Two Pointers]||
+|86|[Wiggle Sort.java](https://github.com/awangdev/LintCode/blob/master/Java/Wiggle%20Sort.java)|Medium|Java|[Array, Sort]||
+|87|[The Smallest Difference.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Smallest%20Difference.java)|Medium|Java|[Array, Sort, Two Pointers]||
+|88|[Trapping Rain Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water.java)|Hard|Java|[Array, Stack, Two Pointers]||
+|89|[Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)|Easy|Java|[Array, String]||
+|90|[Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)|Easy|Java|[Array, Two Pointers]||
+|91|[3 Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Closest.java)|Medium|Java|[Array, Two Pointers]||
+|92|[3 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum.java)|Medium|Java|[Array, Two Pointers]||
+|93|[3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)|Medium|Java|[Array, Two Pointers]||
+|94|[Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
+|95|[Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
+|96|[Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)|Medium|Java|[Array, Two Pointers]||
+|97|[Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)|Medium|Java|[Array, Two Pointers]||
 
 
 
@@ -266,7 +267,7 @@ Table of Contents
  
  
  
-## DP (77)
+## DP (78)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)|Hard|Java|[Array, BST, Binary Search, DP, Queue, TreeSet]||
@@ -286,66 +287,67 @@ Table of Contents
 |14|[Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)|Medium|Java|[Array, DP, Greedy]||
 |15|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, PreSum, Sequence DP]||
 |16|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
-|17|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
-|18|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
-|19|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
-|20|[Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)|Review|Java|[BFS, DFS, DP]||
-|21|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math, Partition DP]||
-|22|[Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)|Medium|Java|[BST, DP, Divide and Conquer, Tree]||
-|23|[Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DP, Tree]||
-|24|[Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)|Medium|Java|[Backpack DP, DP]||
-|25|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[Backpack DP, DP]||
-|26|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
-|27|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
-|28|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
-|29|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Hard|Java|[Backpack DP, DP]||
-|30|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[Backpack DP, DP, Memoization]||
-|31|[Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)|Medium|Java|[Backtracking, DFS, DP]||
-|32|[Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)|Hard|Java|[Backtracking, DFS, DP, Memoization]||
-|33|[Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)|Hard|Java|[Backtracking, DP, Greedy, String]||
-|34|[Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)|Review|Java|[Backtracking, DP, String]||
-|35|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
-|36|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization, Sequence DP]||
-|37|[Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)|Hard|Java|[Binary Search, DP, Partition DP]||
-|38|[Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)|Medium|Java|[Bit Manipulation, Bitwise DP, DP]||
-|39|[Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)|Easy|Java|[Brainteaser, DP, Game Theory]||
-|40|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[Coordinate DP, DFS, DP, Memoization, Topological Sort]||
-|41|[Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)|Medium|Java|[Coordinate DP, DP]||
-|42|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
-|43|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
-|44|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
-|45|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
-|46|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Hard|Java|[DFS, DP, Tree, Tree DP]||
-|47|[Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)|Medium|Java|[DP]||
-|48|[k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)|Hard|Java|[DP]||
-|49|[Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)|Medium|Java|[DP]||
-|50|[Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)|Hard|Java|[DP]||
-|51|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
-|52|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP]||
-|53|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, String]||
-|54|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP, String]||
-|55|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, Trie]||
-|56|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
-|57|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
-|58|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Interval DP, String]||
-|59|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
-|60|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
-|61|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
-|62|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
-|63|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
-|64|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
-|65|[Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)|Easy|Java|[DP, PreSum]||
-|66|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
-|67|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP, Sequence DP]||
-|68|[Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)|Easy|Java|[DP, Sequence DP]||
-|69|[Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)|Medium|Java|[DP, Sequence DP]||
-|70|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP, Status DP]||
-|71|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP, Status DP]||
-|72|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP, Status DP]||
-|73|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|Hard|Java|[DP, String]||
-|74|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java|[DP, String]||
-|75|[Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)|Medium|Java|[DP, String]||
-|76|[Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)|Medium|Java|[DP, String]||
+|17|[Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)|Medium|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|18|[Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)|Hard|Java|[Array, DP, Hash Table, Stack]||
+|19|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
+|20|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
+|21|[Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)|Review|Java|[BFS, DFS, DP]||
+|22|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math, Partition DP]||
+|23|[Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)|Medium|Java|[BST, DP, Divide and Conquer, Tree]||
+|24|[Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DP, Tree]||
+|25|[Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)|Medium|Java|[Backpack DP, DP]||
+|26|[Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)|Medium|Java|[Backpack DP, DP]||
+|27|[Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)|Medium|Java|[Backpack DP, DP]||
+|28|[Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)|Medium|Java|[Backpack DP, DP]||
+|29|[Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)|Medium|Java|[Backpack DP, DP]||
+|30|[Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)|Hard|Java|[Backpack DP, DP]||
+|31|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[Backpack DP, DP, Memoization]||
+|32|[Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)|Medium|Java|[Backtracking, DFS, DP]||
+|33|[Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)|Hard|Java|[Backtracking, DFS, DP, Memoization]||
+|34|[Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)|Hard|Java|[Backtracking, DP, Greedy, String]||
+|35|[Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)|Review|Java|[Backtracking, DP, String]||
+|36|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
+|37|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization]||
+|38|[Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)|Hard|Java|[Binary Search, DP, Partition DP]||
+|39|[Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)|Medium|Java|[Bit Manipulation, Bitwise DP, DP]||
+|40|[Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)|Easy|Java|[Brainteaser, DP, Game Theory]||
+|41|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[Coordinate DP, DFS, DP, Memoization, Topological Sort]||
+|42|[Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)|Medium|Java|[Coordinate DP, DP]||
+|43|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
+|44|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
+|45|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
+|46|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
+|47|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Hard|Java|[DFS, DP, Tree, Tree DP]||
+|48|[Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)|Medium|Java|[DP]||
+|49|[k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)|Hard|Java|[DP]||
+|50|[Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)|Medium|Java|[DP]||
+|51|[Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)|Hard|Java|[DP]||
+|52|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
+|53|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP]||
+|54|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, String]||
+|55|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP, String]||
+|56|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, Trie]||
+|57|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
+|58|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
+|59|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Interval DP, String]||
+|60|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
+|61|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
+|62|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
+|63|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
+|64|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
+|65|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
+|66|[Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)|Easy|Java|[DP, PreSum]||
+|67|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
+|68|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP, Sequence DP]||
+|69|[Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)|Easy|Java|[DP, Sequence DP]||
+|70|[Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)|Medium|Java|[DP, Sequence DP]||
+|71|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP, Status DP]||
+|72|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP, Status DP]||
+|73|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP, Status DP]||
+|74|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|Hard|Java|[DP, String]||
+|75|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java|[DP, String]||
+|76|[Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)|Medium|Java|[DP, String]||
+|77|[Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)|Medium|Java|[DP, String]||
 
 
 
@@ -551,7 +553,7 @@ Table of Contents
 |21|[Last Position of Target.java](https://github.com/awangdev/LintCode/blob/master/Java/Last%20Position%20of%20Target.java)|Easy|Java|[Binary Search]||
 |22|[H-Index II.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index%20II.java)|Medium|Java|[Binary Search]||
 |23|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
-|24|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization, Sequence DP]||
+|24|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization]||
 |25|[Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)|Hard|Java|[Binary Search, DFS, Divide and Conquer]||
 |26|[Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)|Hard|Java|[Binary Search, DP, Partition DP]||
 |27|[Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)|Medium|Java|[Binary Search, Divide and Conquer]||
@@ -938,9 +940,9 @@ Table of Contents
 |0|[Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)|Easy|Java|[Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]||
 |1|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, PreSum, Sequence DP]||
 |2|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
-|3|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
-|4|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
-|5|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization, Sequence DP]||
+|3|[Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)|Medium|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|4|[Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)|Hard|Java|[Array, DP, Sequence DP]||
+|5|[Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)|Easy|Java|[Array, DP, Sequence DP]||
 |6|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP]||
 |7|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, String]||
 |8|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP, String]||
@@ -985,6 +987,30 @@ Table of Contents
  
  
  
+## Greedy (15)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
+|1|[Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)|Medium|Java|[Array, DP, Greedy]||
+|2|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, PreSum, Sequence DP]||
+|3|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|4|[Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)|Medium|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|5|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|6|[Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)|Easy|Java|[Array, Greedy]||
+|7|[Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)|Hard|Java|[Backtracking, DP, Greedy, String]||
+|8|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
+|9|[Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)|Medium|Java|[Enumeration, Greedy]||
+|10|[Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)|Medium|Java|[Greedy]||
+|11|[Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)|Medium|Java|[Greedy]||
+|12|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
+|13|[Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)|Hard|Java|[Greedy, Hash Table, Stack]||
+|14|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
+
+
+
+ 
+ 
+ 
 ## Coordinate DP (15)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -997,7 +1023,7 @@ Table of Contents
 |6|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
 |7|[Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)|Medium|Java|[Array, Coordinate DP, DP, Memoization]||
 |8|[Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)|Hard|Java|[Binary Search, Coordinate DP, DP]||
-|9|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization, Sequence DP]||
+|9|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization]||
 |10|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[Coordinate DP, DFS, DP, Memoization, Topological Sort]||
 |11|[Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)|Medium|Java|[Coordinate DP, DP]||
 |12|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
@@ -1026,29 +1052,6 @@ Table of Contents
 |11|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
 |12|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Review|Java|[Heap]||
 |13|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, PriorityQueue]||
-
-
-
- 
- 
- 
-## Greedy (14)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)|Hard|Java|[Array, Coordinate DP, DP, Greedy]||
-|1|[Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)|Medium|Java|[Array, DP, Greedy]||
-|2|[Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)|Medium|Java|[Array, DP, Greedy, PreSum, Sequence DP]||
-|3|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
-|4|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
-|5|[Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)|Easy|Java|[Array, Greedy]||
-|6|[Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)|Hard|Java|[Backtracking, DP, Greedy, String]||
-|7|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
-|8|[Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)|Medium|Java|[Enumeration, Greedy]||
-|9|[Queue Reconstruction by Height.java](https://github.com/awangdev/LintCode/blob/master/Java/Queue%20Reconstruction%20by%20Height.java)|Medium|Java|[Greedy]||
-|10|[Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)|Medium|Java|[Greedy]||
-|11|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
-|12|[Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)|Hard|Java|[Greedy, Hash Table, Stack]||
-|13|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
 
 
 
@@ -1086,7 +1089,7 @@ Table of Contents
 |3|[Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)|Medium|Java|[Array, DP, Game Theory, Memoization, MiniMax]||
 |4|[Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)|Medium|Java|[Backpack DP, DP, Memoization]||
 |5|[Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)|Hard|Java|[Backtracking, DFS, DP, Memoization]||
-|6|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization, Sequence DP]||
+|6|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization]||
 |7|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[Coordinate DP, DFS, DP, Memoization, Topological Sort]||
 |8|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
 |9|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
@@ -1223,6 +1226,21 @@ Table of Contents
  
  
  
+## Status DP (6)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|1|[Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)|Medium|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
+|2|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
+|3|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP, Status DP]||
+|4|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP, Status DP]||
+|5|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP, Status DP]||
+
+
+
+ 
+ 
+ 
 ## Partition DP (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -1245,20 +1263,6 @@ Table of Contents
 |2|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
 |3|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
 |4|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[PriorityQueue, Sort, Sweep Line]||
-
-
-
- 
- 
- 
-## Status DP (5)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)|Easy|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
-|1|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
-|2|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP, Status DP]||
-|3|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP, Status DP]||
-|4|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP, Status DP]||
 
 
 

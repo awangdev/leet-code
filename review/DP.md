@@ -1,7 +1,7 @@
  
  
  
-## DP (77)
+## DP (78)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -90,33 +90,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 
 ---
 
-**5. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization, Sequence DP]
-      
-
-无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
-
-#### DP, double for loop, O(n^2)
-- 考虑nums[i]结尾的时候, 在[0, i) 里count有多少小于nums[i]
-- 对于所有 i in [0, n), 最常的increasing序列有多少length?
-- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
-- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
-- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
-- 时间复杂度  O(n^2)
-
-
-#### O(nLogN)
-- 维持一个list of increasing sequence
-- 这个list其实是一个base-line, 记录着最低的increasing sequence.
-- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
-- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
-- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
-- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
-
-
-
----
-
-**6. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
+**5. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
 Not quite clear.
@@ -130,7 +104,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**7. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**6. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
@@ -145,7 +119,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**8. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**7. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 
 2D grid, 每个格子里面可能是 'W' wall, 'E' enemy, 或者是 '0' empty.
@@ -168,7 +142,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**9. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
+**8. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
       
 
 给一个数字n, 找到这个数字 最少能用多少个 平方数组成. 
@@ -208,7 +182,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**10. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**9. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给一个数组nums, 全正数, 无重复数字; 找: # of 拼出m的方法.
@@ -232,7 +206,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**11. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard      Tags: [Binary Search, DP, Partition DP]
+**10. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard      Tags: [Binary Search, DP, Partition DP]
       
 
 给一串书pages[i], k个人, pages[i] 代表每本书的页数. k个人从不同的点同时开始抄书. 
@@ -276,7 +250,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**12. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard      Tags: [DP, Interval DP, String]
+**11. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard      Tags: [DP, Interval DP, String]
       
 
 - 给两个string S, T. 检验他们是不是scramble string.
@@ -303,7 +277,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**13. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium      Tags: [DP]
+**12. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium      Tags: [DP]
       
 
 Sequence DP
@@ -313,7 +287,7 @@ Sequence DP
 
 ---
 
-**14. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
+**13. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
       
 
 给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
@@ -328,7 +302,7 @@ Sequence DP
 
 ---
 
-**15. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard      Tags: [DP, String]
+**14. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard      Tags: [DP, String]
       
 
 双序列DP, 从最后点考虑.
@@ -341,7 +315,7 @@ Sequence DP
 
 ---
 
-**16. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**15. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 time: O(MN)
 Space: O(N)
@@ -375,7 +349,7 @@ Space: O(N)
 
 ---
 
-**17. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard      Tags: [DP, String]
+**16. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard      Tags: [DP, String]
       
 
 Double Sequence DP:
@@ -387,14 +361,14 @@ Double Sequence DP:
 
 ---
 
-**18. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
+**17. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
       
 
 
 
 ---
 
-**19. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
+**18. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
       
 
 Double sequence DP. 与regular expression 很像.
@@ -407,7 +381,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**20. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
+**19. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -422,7 +396,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**21. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
+**20. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
 #### DFS + Memoization
@@ -451,7 +425,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**22. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**21. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -472,7 +446,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**23. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
+**22. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
       
 
 #### 方法1: monotonous stack
@@ -491,7 +465,7 @@ Coordinate DP?
 
 ---
 
-**24. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**23. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -514,7 +488,7 @@ Coordinate DP?
 
 ---
 
-**25. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
+**24. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -542,7 +516,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**26. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
+**25. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -563,7 +537,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**27. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
+**26. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -608,7 +582,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**28. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
+**27. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
 每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
@@ -637,7 +611,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**29. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**28. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
 还是2个人拿n个coin, coin可以有不同的value. 
@@ -690,7 +664,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**30. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
+**29. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -727,7 +701,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**31. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy      Tags: [Brainteaser, DP, Game Theory]
+**30. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy      Tags: [Brainteaser, DP, Game Theory]
       
 
 #### Brainteaser
@@ -744,7 +718,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**32. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
+**31. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
       
 
 给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
@@ -763,7 +737,7 @@ TODO
 
 ---
 
-**33. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
+**32. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
       
 
 给出步数，看能不能jump to end.
@@ -792,7 +766,7 @@ TODO
 
 ---
 
-**34. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**33. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
@@ -812,7 +786,7 @@ TODO
 
 ---
 
-**35. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
+**34. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
       
 time: O(nm), m = # of colors
 space: O(nm)
@@ -835,7 +809,7 @@ space: O(nm)
 
 ---
 
-**36. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
+**35. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -854,7 +828,7 @@ space: O(nm)
 
 ---
 
-**37. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**36. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 找连续的持续上升子序列的长度.
@@ -873,7 +847,7 @@ space: O(nm)
 
 ---
 
-**38. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**37. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 #### DP
@@ -891,7 +865,7 @@ space: O(nm)
 
 ---
 
-**39. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium      Tags: [Bit Manipulation, Bitwise DP, DP]
+**38. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium      Tags: [Bit Manipulation, Bitwise DP, DP]
       
 
 给一个数组, 算里面有多少bit 1. 
@@ -908,7 +882,7 @@ space: O(nm)
 
 ---
 
-**40. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math]
+**39. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -927,7 +901,7 @@ space: O(nm)
 
 ---
 
-**41. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**40. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n) or rolling array O(1)
@@ -950,7 +924,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**42. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
+**41. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
       
 
 和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
@@ -974,7 +948,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**43. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium      Tags: [DFS, DP, Status DP, Tree]
+**42. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium      Tags: [DFS, DP, Status DP, Tree]
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -1007,7 +981,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**44. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
+**43. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
       
 time: O(NK^2):
 space: (NK)
@@ -1050,7 +1024,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**45. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**44. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -1083,7 +1057,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**46. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
+**45. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
       
 
 有int[] price of stock, 最多做 k transactions.  求最大profit.
@@ -1128,7 +1102,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**47. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
+**46. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
       
 
 俄罗斯套娃, 这里用envelope来表现. 给一串array, 每一个[x, y] 是envelope 长宽. [[5,4],[6,4],[6,7],[2,3]]. 
@@ -1157,7 +1131,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**48. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**47. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
@@ -1198,7 +1172,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**49. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**48. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
@@ -1221,7 +1195,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**50. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**49. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 #### Backpack DP
@@ -1246,7 +1220,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**51. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
+**50. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -1269,7 +1243,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**52. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
+**51. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
       
 
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
@@ -1305,7 +1279,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**53. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
+**52. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
       
 
 给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
@@ -1345,7 +1319,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**54. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**53. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 
 #### Double Sequence DP
@@ -1369,7 +1343,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**55. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**54. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
@@ -1382,7 +1356,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**56. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**55. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -1403,13 +1377,15 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**57. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
+**56. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
+time: O(n)
+space: O(n), O(1) rolling array
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
 
 #### Sequence DP
-- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- dp[i]: 前i个element,包括 last element (i-1), 可能组成的 subarray 的最大sum.
 - init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
 - 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
 - track overall max 
@@ -1426,7 +1402,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**58. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
+**57. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -1454,7 +1430,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**59. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**58. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -1471,7 +1447,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**60. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
+**59. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
       
 
 找max path sum,  可以从任意treeNode 到任意 treeNode.
@@ -1494,7 +1470,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**61. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**60. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -1522,7 +1498,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**62. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+**61. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
       
 
 给一个数字n, 找到以(1...n)为node的所有unique BST.
@@ -1538,7 +1514,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**63. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+**62. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
@@ -1563,7 +1539,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**64. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**63. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -1600,7 +1576,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**65. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
+**64. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
       
 
 给一个string, 找到最长的palindrome substring.
@@ -1629,7 +1605,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**66. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+**65. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
       
 
 给一个string s, 找最长的sub-sequence which is also palindrome.
@@ -1660,7 +1636,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**67. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**66. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -1699,7 +1675,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**68. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+**67. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
       
 
 给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
@@ -1730,7 +1706,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**69. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
+**68. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
       
 
 给一串数字, 求sumRange.
@@ -1744,7 +1720,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**70. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**69. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
@@ -1781,7 +1757,7 @@ TODO
 
 ---
 
-**71. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
+**70. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
       
 
 具体看题目: count # of valid rectangles (four corner are 1) in a grid[][].
@@ -1801,7 +1777,7 @@ TODO
 
 ---
 
-**72. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
+**71. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
       
 
 根据题意, count # of palindromic substring. (不同index截取出来的substring算不同的情况)
@@ -1818,7 +1794,7 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 
 ---
 
-**73. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**72. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n)
@@ -1842,7 +1818,7 @@ space: O(n)
 
 ---
 
-**74. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**73. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
       
 time: O(n^2)
 space: O(n)
@@ -1874,7 +1850,7 @@ space: O(n)
 
 ---
 
-**75. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
+**74. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -1903,7 +1879,7 @@ space: O(n)
 
 ---
 
-**76. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**75. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(1) greedy, O(n) dp
@@ -1941,6 +1917,55 @@ space: O(1) greedy, O(n) dp
 ##### Rolling Array
 - [i] 和 [i - 1] 相关联, roll
 
+
+
+
+---
+
+**76. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
+      
+time: O(n^2) dp, O(nLogN) binary search
+space: O(n)
+
+无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
+
+#### DP, double for loop, O(n^2)
+- 找subsequence: 不需要continous, 可以skip candidate
+- 考虑nums[i]结尾的时候, 在[0, i), dp[i - 1] 里count有多少小于nums[i]
+- dp[i]: 到i为止 (对于所有 j in [0, i], 记录max length of increasing subsequence
+- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
+- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
+- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
+- 时间复杂度  O(n^2)
+
+#### O(nLogN)
+- 维持一个list of increasing sequence
+- 这个list其实是一个base-line, 记录着最低的increasing sequence.
+- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
+- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
+- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
+- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
+
+
+
+---
+
+**77. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+      
+time: O(n)
+space: O(n), O(1) rolling array
+
+跟Stock II 一样, 买卖无限, 需先买在卖. 附加条件: 每个sell transaction要加一笔fee.
+
+#### Sequence DP
+- 与StockII一样, dp[i]: represents 前i天的最大profit.
+- sell 的时候, 才完成了一次transaction, 需要扣fee; 而买入不扣fee.
+- model sell on dp[i] day (which depends on dp[i-1]) and each day can be sell/buy => add status to dp[i][status]
+- status[0] buy on this day, status[1] sell on this day
+- dp[i][0] = Math.max(dp[i-1][0], dp[i - 1][0] - prices[i]);
+- dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
+- init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
+- return dp[n][1]
 
 
 

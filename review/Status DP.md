@@ -1,7 +1,7 @@
  
  
  
-## Status DP (5)
+## Status DP (6)
 **0. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
       
 time: O(nm), m = # of colors
@@ -163,6 +163,27 @@ space: O(1) greedy, O(n) dp
 ##### Rolling Array
 - [i] 和 [i - 1] 相关联, roll
 
+
+
+
+---
+
+**5. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+      
+time: O(n)
+space: O(n), O(1) rolling array
+
+跟Stock II 一样, 买卖无限, 需先买在卖. 附加条件: 每个sell transaction要加一笔fee.
+
+#### Sequence DP
+- 与StockII一样, dp[i]: represents 前i天的最大profit.
+- sell 的时候, 才完成了一次transaction, 需要扣fee; 而买入不扣fee.
+- model sell on dp[i] day (which depends on dp[i-1]) and each day can be sell/buy => add status to dp[i][status]
+- status[0] buy on this day, status[1] sell on this day
+- dp[i][0] = Math.max(dp[i-1][0], dp[i - 1][0] - prices[i]);
+- dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
+- init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
+- return dp[n][1]
 
 
 

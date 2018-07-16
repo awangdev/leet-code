@@ -1,7 +1,7 @@
  
  
  
-## Array (97)
+## Array (98)
 **0. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, Greedy]
       
 
@@ -983,11 +983,13 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 **54. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
+time: O(n)
+space: O(n), O(1) rolling array
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
 
 #### Sequence DP
-- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- dp[i]: 前i个element,包括 last element (i-1), 可能组成的 subarray 的最大sum.
 - init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
 - 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
 - track overall max 
@@ -2001,6 +2003,27 @@ space: O(1) greedy, O(n) dp
 ##### Rolling Array
 - [i] 和 [i - 1] 相关联, roll
 
+
+
+
+---
+
+**97. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+      
+time: O(n)
+space: O(n), O(1) rolling array
+
+跟Stock II 一样, 买卖无限, 需先买在卖. 附加条件: 每个sell transaction要加一笔fee.
+
+#### Sequence DP
+- 与StockII一样, dp[i]: represents 前i天的最大profit.
+- sell 的时候, 才完成了一次transaction, 需要扣fee; 而买入不扣fee.
+- model sell on dp[i] day (which depends on dp[i-1]) and each day can be sell/buy => add status to dp[i][status]
+- status[0] buy on this day, status[1] sell on this day
+- dp[i][0] = Math.max(dp[i-1][0], dp[i - 1][0] - prices[i]);
+- dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
+- init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
+- return dp[n][1]
 
 
 

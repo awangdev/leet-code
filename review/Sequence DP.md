@@ -2,33 +2,7 @@
  
  
 ## Sequence DP (18)
-**0. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization, Sequence DP]
-      
-
-无序数组, 找最长的上升(不需要连续)数组 的长度. 先做O(n^2), 然后可否O(nLogN)?
-
-#### DP, double for loop, O(n^2)
-- 考虑nums[i]结尾的时候, 在[0, i) 里count有多少小于nums[i]
-- 对于所有 i in [0, n), 最常的increasing序列有多少length?
-- max需要在全局维护: nums是无序的, nums[i]也可能是一个很小的值, 所以末尾dp[i]并不是全局的max, 而只是对于nums[i]的max.
-- 正因此, 每个nums[i]都要和每个nums[j] 作比较, j < i.
-- dp[i] = Maht.max(dp[i], dp[j] + 1); j = [0 , i - 1]
-- 时间复杂度  O(n^2)
-
-
-#### O(nLogN)
-- 维持一个list of increasing sequence
-- 这个list其实是一个base-line, 记录着最低的increasing sequence.
-- 当我们go through all nums的时候, 如果刚好都是上升, 直接append
-- 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
-- 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
-- '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
-
-
-
----
-
-**1. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
+**0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
       
 
 给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
@@ -43,7 +17,7 @@
 
 ---
 
-**2. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**1. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 time: O(MN)
 Space: O(N)
@@ -77,7 +51,7 @@ Space: O(N)
 
 ---
 
-**3. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
+**2. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
 每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
@@ -106,7 +80,7 @@ Space: O(N)
 
 ---
 
-**4. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
+**3. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
       
 
 给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
@@ -125,7 +99,7 @@ TODO
 
 ---
 
-**5. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
+**4. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
       
 time: O(nm), m = # of colors
 space: O(nm)
@@ -148,7 +122,7 @@ space: O(nm)
 
 ---
 
-**6. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**5. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n) or rolling array O(1)
@@ -171,7 +145,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**7. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
+**6. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
       
 
 和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
@@ -195,7 +169,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**8. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
+**7. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
       
 time: O(NK^2):
 space: (NK)
@@ -238,7 +212,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**9. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**8. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -271,7 +245,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**10. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
+**9. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
       
 
 有int[] price of stock, 最多做 k transactions.  求最大profit.
@@ -316,7 +290,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**11. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**10. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 
 #### Double Sequence DP
@@ -340,13 +314,15 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**12. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
+**11. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]
       
+time: O(n)
+space: O(n), O(1) rolling array
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
 
 #### Sequence DP
-- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- dp[i]: 前i个element,包括 last element (i-1), 可能组成的 subarray 的最大sum.
 - init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
 - 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
 - track overall max 
@@ -363,7 +339,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**13. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
+**12. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -391,7 +367,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**14. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**13. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n)
@@ -415,7 +391,7 @@ space: O(n)
 
 ---
 
-**15. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**14. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
       
 time: O(n^2)
 space: O(n)
@@ -447,7 +423,7 @@ space: O(n)
 
 ---
 
-**16. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
+**15. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -476,7 +452,7 @@ space: O(n)
 
 ---
 
-**17. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**16. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(1) greedy, O(n) dp
@@ -514,6 +490,27 @@ space: O(1) greedy, O(n) dp
 ##### Rolling Array
 - [i] 和 [i - 1] 相关联, roll
 
+
+
+
+---
+
+**17. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+      
+time: O(n)
+space: O(n), O(1) rolling array
+
+跟Stock II 一样, 买卖无限, 需先买在卖. 附加条件: 每个sell transaction要加一笔fee.
+
+#### Sequence DP
+- 与StockII一样, dp[i]: represents 前i天的最大profit.
+- sell 的时候, 才完成了一次transaction, 需要扣fee; 而买入不扣fee.
+- model sell on dp[i] day (which depends on dp[i-1]) and each day can be sell/buy => add status to dp[i][status]
+- status[0] buy on this day, status[1] sell on this day
+- dp[i][0] = Math.max(dp[i-1][0], dp[i - 1][0] - prices[i]);
+- dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
+- init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
+- return dp[n][1]
 
 
 

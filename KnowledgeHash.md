@@ -1416,6 +1416,8 @@ private class PathSum {
 
 # Pain Point
 - For any array access, make sure to check the boundary!!!
+- subsequence: not continuous, can skip candidate!
+- subarray: continous!
 
 ## NP-Complete problems
 ### wiki

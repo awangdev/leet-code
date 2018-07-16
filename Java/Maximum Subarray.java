@@ -1,11 +1,13 @@
 E
 1525331164
 tags: DP, Sequence DP, Array, Divide and Conquer, DFS, PreSum
+time: O(n)
+space: O(n), O(1) rolling array
 
 给一串数组, 找数组中间 subarray 数字之和的最大值
 
 #### Sequence DP
-- dp[i]: 前i个element, 包括element i 在内的 continous subsequence 的最大sum是多少?
+- dp[i]: 前i个element,包括 last element (i-1), 可能组成的 subarray 的最大sum.
 - init: dp = int[n + 1], dp[0]: first 0 items, does not have any sum
 - 因为continous sequence, 所以不满足条件的时候, 会断. That is: need to take curr num, regardless => can drop prev max in dp[i]
 - track overall max 
@@ -77,7 +79,7 @@ class Solution {
         dp[0] = 0;
         int max = Integer.MIN_VALUE;
         for (int i = 1; i <= n; i++) {
-            dp[i] = Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]);
+            dp[i] = Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]); // contious, or start from nums[i-1]
             max = Math.max(max, dp[i]);
         }
         
