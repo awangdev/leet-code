@@ -1,6 +1,9 @@
 M
+1531703331
 tags: Stack, Tree, BFS
-
+time: O(n)
+space: O(n)
+    
 #### Queue
 - 简单的level traversal.根据level奇数偶数而add到不同位子.
 - Option1: based on level % 2, insert to front/end of list
@@ -45,48 +48,35 @@ Tree Search Breadth First Search Queue Binary Tree
  * }
  */
 
-
-//Recap 02.23.2015. BFS. first level = 0; level % 2 = 1, list.add(0, ...)
+//BFS. first level = 0; level % 2 = 1, list.add(0, ...)
 public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: A list of lists of integer include 
-     *          the zigzag level order traversal of its nodes' values 
-     */
-    public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
-        ArrayList<ArrayList<Integer>> rst = new ArrayList<ArrayList<Integer>>();
-        if (root == null) {
-            return rst;
-        }
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> rst = new ArrayList<>();
+        if (root == null) return rst;
         
-        int level = 0;
-        int size = 0;
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        int level = 0, size = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         
         while (!queue.isEmpty()) {
             size = queue.size();
-            ArrayList<Integer> list = new ArrayList<Integer>();
+            ArrayList<Integer> list = new ArrayList<>();
             for (int i = 0 ; i < size; i++) {
                 TreeNode node = queue.poll();
-                if (level % 2 == 0) {
-                    list.add(node.val);   
-                } else {
-                    list.add(0, node.val);
-                }
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
+                list.add(node.val);
+                if (level % 2 == 1) addChild(queue, node.left, node.right);
+                else addChild(queue, node.right, node.left);
             }
             level++;
             rst.add(list);
         }
         
         return rst;
-
+    }
+    
+    private void addChild(Queue<TreeNode> queue, TreeNode nodeA, TreeNode nodeB) {
+        if (nodeA != null) queue.offer(nodeA);
+        if (nodeB != null) queue.offer(nodeB);
     }
 }
  
