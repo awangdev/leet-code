@@ -1,6 +1,8 @@
 E
-1530857792
+1531701138
 tags: DP, Sequence DP
+time: O(n)
+space: O(n)
 
 #### DP
 - 最多2个fence 颜色相同
@@ -49,7 +51,7 @@ class Solution {
         int[] dp = new int[n + 1];
         dp[0] = 0;
         dp[1] = k;
-        dp[2] = k + k * (k - 1);
+        dp[2] = k + k * (k - 1); // [1,2] same color + [1,2] diff color
         
         // process
         for (int i = 3; i <= n; i++) {

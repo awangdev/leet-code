@@ -9,6 +9,7 @@ tags: DP, Sequence DP
 - 子问题: 前i个字母, 是否可以有valid break
 - 检查dp[j] && substring(j, i)
 - dp = new boolean[n + 1]; dp[0] = true;
+- goal: if there is a j,  `dp[j] == true && word[j, n] in dict`. Need iterate over i = [0 ~ n], also j = [0, i]
 - 注意, 用set代替list, 因为要用 contains().
 
 #### Previous notes
