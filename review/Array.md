@@ -1,7 +1,7 @@
  
  
  
-## Array (98)
+## Array (100)
 **0. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, Greedy]
       
 
@@ -2024,6 +2024,47 @@ space: O(n), O(1) rolling array
 - dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
 - init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
 - return dp[n][1]
+
+
+
+---
+
+**98. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
+      
+time: O(n)
+space: O(1)
+
+有n个人, 其中有个人是celebrity, 满足条件 `Celeb knows nobody; Everyone else knows the celeb`. 找到celeb
+
+#### Understand the property
+- If brutly find celeb by comparing all possible pair: take complete O(n^2) handshakes.
+- Instead, we can perform pruning, or like survival mode:
+- 1. Assume a celeb = 0, and compare with all i = [1~ n-1]
+- 2. If `celeb candidate know i, set celeb = i` as the next candidate (ex: prev canddiate invalid when he knows i)
+- 3. For last standing celeb candidate: compare with all for validation
+- Why performing the last run of validation? There could be someone dropped out before we execute `know(celeb, i)`. 
+
+##### 思考逻辑
+- 先写出来[0 ~ n - 1], 最简单的方式 O(n^2) 检查, 记录每个人的状态.
+- 逐渐发现, 因为 celeb 谁都不会认识, 那么当任何candidate knows anyone, 他自身就不是celeb.
+- 我们可以greedy地, 一旦fail一个, 就立刻假设下一个是celeb candidate
+- 最终还是要检查一遍, 避免错漏.
+- 想一下happy case: 如果 celeb=0,  那么 know(celeb, i) 永远都是false, 然后 celeb一直保持0, 坚持到verify所有人.
+
+
+
+---
+
+**99. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+      
+
+#### Array, Math
+- 这个问题更在于问题本身的分析 (而且还有多余条件); 最终的for loop 也比较不standard.
+- People younger than 15 cannot make requests due to the first rule.
+- From the age of 15, people can make requests to the same age: a[i] * (a[i] - 1) requests.
+- People can make requests to younger people older than 0.5 * i + 7: a[j] * a[i] requests.
+- The third rule is redundant as the condition is already covered by the second rule.
+- TODO: the approach.
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## DFS (79)
+## DFS (81)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -1873,6 +1873,50 @@ space: O(1)
 - 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
 - extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
 - 要求in-place: 不能重新create new node
+
+
+
+---
+
+**79. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+      
+
+给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
+
+对每个empty space而言, fill it with dist to nearest gate.
+
+#### DFS
+- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
+- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
+- hard to resue: we do not know the direction in cached result dist[i][j]
+- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
+- Through dfs from all zeros, update each spot with shorter dist
+- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
+
+#### BFS
+- TODO? why BFS better?
+
+
+
+---
+
+**80. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
+      
+
+#### Union Find
+- TODO
+
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
 
 
 

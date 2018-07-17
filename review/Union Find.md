@@ -1,7 +1,7 @@
  
  
  
-## Union Find (10)
+## Union Find (11)
 **0. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium      Tags: [Union Find]
       
 
@@ -213,6 +213,28 @@ count这个graph里面有多少个独立的component.
 #### BFS
 - (还没做, 可以写一写)
 - 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+
+
+---
+
+**10. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
+      
+
+#### Union Find
+- TODO
+
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
 
 
 

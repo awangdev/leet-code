@@ -1,7 +1,7 @@
  
  
  
-## Stack (26)
+## Stack (27)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -561,6 +561,20 @@ space: O(n)
 - 简单的level traversal.根据level奇数偶数而add到不同位子.
 - Option1: based on level % 2, insert to front/end of list
 - Option2: based on level, insert right/left of node into queue
+
+
+
+---
+
+**26. [Exclusive Time of Functions.java](https://github.com/awangdev/LintCode/blob/master/Java/Exclusive%20Time%20of%20Functions.java)**      Level: Medium      Tags: [Stack]
+      
+
+#### Stack
+- 1. later function always appears after prior fn: 1 is called by 0
+- 2. `Not mentione in the question`: a function can be started multiple times
+- 3. `Not mentione in the question`: a fn cannot start if children fn starts
+- 4. Use stack to keep id
+- TODO: what leads to the choice of stack? stacking fn id
 
 
 

@@ -464,3 +464,10 @@
 |443|[Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)|Medium|Java|[Binary Search, Coordinate DP, DP, Memoization]||
 |444|[Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)|Medium|Java|[Array, DP, Greedy, Sequence DP, Status DP]||
 |445|[Random Pick Index.java](https://github.com/awangdev/LintCode/blob/master/Java/Random%20Pick%20Index.java)|Medium|Java|[Reservior Sampling]||
+|446|[Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)|Medium|Java|[Array, Greedy]||
+|447|[Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)|Medium|Java|[Hash Table]||
+|448|[Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)|Medium|Java|[Hash Table]||
+|449|[Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)|Medium|Java|[BFS, DFS]||
+|450|[Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)|Medium|Java|[DFS, Hash Table, Union Find]||
+|451|[Exclusive Time of Functions.java](https://github.com/awangdev/LintCode/blob/master/Java/Exclusive%20Time%20of%20Functions.java)|Medium|Java|[Stack]||
+|452|[Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)|Medium|Java|[Array, Math]||

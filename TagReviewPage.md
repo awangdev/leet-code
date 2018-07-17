@@ -1009,7 +1009,7 @@ space: O(n)
  
  
  
-## Math (31)
+## Math (32)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -1547,6 +1547,21 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 - 4. 最后一个看坑。要是乘积是0，就返回‘0’。 但是这个其实可以在开头catch到没必要做到结尾catch。
 - 用到几个StringBuffer的好东西: reverse(), sb.deleteCharAt(i)   
 - 找数字，或者26个字母，都可以: s.charAt(i) - '0'; s.charAt(i) - 'a';
+
+
+
+---
+
+**31. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+      
+
+#### Array, Math
+- 这个问题更在于问题本身的分析 (而且还有多余条件); 最终的for loop 也比较不standard.
+- People younger than 15 cannot make requests due to the first rule.
+- From the age of 15, people can make requests to the same age: a[i] * (a[i] - 1) requests.
+- People can make requests to younger people older than 0.5 * i + 7: a[j] * a[i] requests.
+- The third rule is redundant as the condition is already covered by the second rule.
+- TODO: the approach.
 
 
 
@@ -3633,7 +3648,7 @@ TODO
  
  
  
-## BFS (28)
+## BFS (29)
 **0. [Minimum Height Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Height%20Trees.java)**      Level: Medium      Tags: [BFS, Graph]
       
 
@@ -4365,6 +4380,28 @@ space: O(n)
 
 ---
 
+**28. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+      
+
+给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
+
+对每个empty space而言, fill it with dist to nearest gate.
+
+#### DFS
+- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
+- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
+- hard to resue: we do not know the direction in cached result dist[i][j]
+- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
+- Through dfs from all zeros, update each spot with shorter dist
+- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
+
+#### BFS
+- TODO? why BFS better?
+
+
+
+---
+
 
 
 
@@ -4928,7 +4965,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
  
  
  
-## DFS (79)
+## DFS (81)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -6805,6 +6842,50 @@ space: O(1)
 
 ---
 
+**79. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+      
+
+给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
+
+对每个empty space而言, fill it with dist to nearest gate.
+
+#### DFS
+- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
+- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
+- hard to resue: we do not know the direction in cached result dist[i][j]
+- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
+- Through dfs from all zeros, update each spot with shorter dist
+- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
+
+#### BFS
+- TODO? why BFS better?
+
+
+
+---
+
+**80. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
+      
+
+#### Union Find
+- TODO
+
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
+
+
+
+---
+
 
 
 
@@ -6954,7 +7035,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (48)
+## Hash Table (51)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -7873,6 +7954,74 @@ space: O(n)
 - use presum to verify k: `preSum[j] - preSum[i - 1]`
 - O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
 
+
+
+
+---
+
+**48. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
+      
+time: O(mnk), where `m = A.row`, `n = B.col`, `k = A.col = B.row`
+space: O(1) extra
+
+给两个matrics, 做乘积. 注意, 是sparse matrix (特点: 很多0).
+
+#### Hash Table
+- Recall matric multiplication rules: result[i][j] = sum(A-row[i] * B-col[j])
+- `sparse matric: lots positions are zero`
+- 平白地写matric multiplication 没有意义, 重点就是optimization:
+- `optimization`: for A-zero-row, and B-zero-col, there is no need to calculate, just return 0.
+- 1. Find A-zero-rows and store in setA, same for setB
+- 2. during multiplication, reduce time complexity.
+- Base: O(mnk), where `m = A.row`, `n = B.col`, `k = A.col = B.row`
+
+#### Matrices
+- 乘法规则: result[i][j] = sum(A-row[i] * B-col[j])
+- A column size == B row size. 并且: 计算顺序是iterate over A column size
+
+
+
+---
+
+**49. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
+      
+time: O(mn)
+space: O(X), X = max wall width
+
+给一面墙, 每一行是一行bricks. 用一条vertical line 扫描, 会vertically割开brink. 找到割开最少brick的那条线的x index.
+
+#### Hash Table
+- Find the vertical line (x-coordinate of the grid), where most gaps are found.
+- Each gap has (x,y) coordinate
+- Create `map<x-coordinate, #occurrance>`, and maintain a max occurance. 
+- 计算: x-coordinate: `x = 0; x += brick[i] width`
+- Eventually: min-crossed bricks = wall.lenght - maxOccurrance 
+
+##### 思想
+- 分析题意, 找到题目的目标
+- 虽然Map自己不能有sort的规律, 但是可以maintain global variable
+
+
+
+---
+
+**50. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
+      
+
+#### Union Find
+- TODO
+
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
 
 
 
@@ -12507,7 +12656,7 @@ space: O(n)
  
  
  
-## Stack (26)
+## Stack (27)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -13072,6 +13221,20 @@ space: O(n)
 
 ---
 
+**26. [Exclusive Time of Functions.java](https://github.com/awangdev/LintCode/blob/master/Java/Exclusive%20Time%20of%20Functions.java)**      Level: Medium      Tags: [Stack]
+      
+
+#### Stack
+- 1. later function always appears after prior fn: 1 is called by 0
+- 2. `Not mentione in the question`: a function can be started multiple times
+- 3. `Not mentione in the question`: a fn cannot start if children fn starts
+- 4. Use stack to keep id
+- TODO: what leads to the choice of stack? stacking fn id
+
+
+
+---
+
 
 
 
@@ -13592,7 +13755,7 @@ count这个graph里面有多少个独立的component.
  
  
  
-## Union Find (10)
+## Union Find (11)
 **0. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium      Tags: [Union Find]
       
 
@@ -13804,6 +13967,28 @@ count这个graph里面有多少个独立的component.
 #### BFS
 - (还没做, 可以写一写)
 - 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+
+
+---
+
+**10. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
+      
+
+#### Union Find
+- TODO
+
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
 
 
 
@@ -17115,7 +17300,7 @@ TODO:
  
  
  
-## Greedy (15)
+## Greedy (16)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -17453,6 +17638,32 @@ space: O(n), O(1) rolling array
 - dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
 - init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
 - return dp[n][1]
+
+
+
+---
+
+**15. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
+      
+time: O(n)
+space: O(1)
+
+有n个人, 其中有个人是celebrity, 满足条件 `Celeb knows nobody; Everyone else knows the celeb`. 找到celeb
+
+#### Understand the property
+- If brutly find celeb by comparing all possible pair: take complete O(n^2) handshakes.
+- Instead, we can perform pruning, or like survival mode:
+- 1. Assume a celeb = 0, and compare with all i = [1~ n-1]
+- 2. If `celeb candidate know i, set celeb = i` as the next candidate (ex: prev canddiate invalid when he knows i)
+- 3. For last standing celeb candidate: compare with all for validation
+- Why performing the last run of validation? There could be someone dropped out before we execute `know(celeb, i)`. 
+
+##### 思考逻辑
+- 先写出来[0 ~ n - 1], 最简单的方式 O(n^2) 检查, 记录每个人的状态.
+- 逐渐发现, 因为 celeb 谁都不会认识, 那么当任何candidate knows anyone, 他自身就不是celeb.
+- 我们可以greedy地, 一旦fail一个, 就立刻假设下一个是celeb candidate
+- 最终还是要检查一遍, 避免错漏.
+- 想一下happy case: 如果 celeb=0,  那么 know(celeb, i) 永远都是false, 然后 celeb一直保持0, 坚持到verify所有人.
 
 
 
@@ -19143,7 +19354,7 @@ space: O(n)
  
  
  
-## Array (98)
+## Array (100)
 **0. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, Greedy]
       
 
@@ -21166,6 +21377,47 @@ space: O(n), O(1) rolling array
 - dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
 - init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
 - return dp[n][1]
+
+
+
+---
+
+**98. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
+      
+time: O(n)
+space: O(1)
+
+有n个人, 其中有个人是celebrity, 满足条件 `Celeb knows nobody; Everyone else knows the celeb`. 找到celeb
+
+#### Understand the property
+- If brutly find celeb by comparing all possible pair: take complete O(n^2) handshakes.
+- Instead, we can perform pruning, or like survival mode:
+- 1. Assume a celeb = 0, and compare with all i = [1~ n-1]
+- 2. If `celeb candidate know i, set celeb = i` as the next candidate (ex: prev canddiate invalid when he knows i)
+- 3. For last standing celeb candidate: compare with all for validation
+- Why performing the last run of validation? There could be someone dropped out before we execute `know(celeb, i)`. 
+
+##### 思考逻辑
+- 先写出来[0 ~ n - 1], 最简单的方式 O(n^2) 检查, 记录每个人的状态.
+- 逐渐发现, 因为 celeb 谁都不会认识, 那么当任何candidate knows anyone, 他自身就不是celeb.
+- 我们可以greedy地, 一旦fail一个, 就立刻假设下一个是celeb candidate
+- 最终还是要检查一遍, 避免错漏.
+- 想一下happy case: 如果 celeb=0,  那么 know(celeb, i) 永远都是false, 然后 celeb一直保持0, 坚持到verify所有人.
+
+
+
+---
+
+**99. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+      
+
+#### Array, Math
+- 这个问题更在于问题本身的分析 (而且还有多余条件); 最终的for loop 也比较不standard.
+- People younger than 15 cannot make requests due to the first rule.
+- From the age of 15, people can make requests to the same age: a[i] * (a[i] - 1) requests.
+- People can make requests to younger people older than 0.5 * i + 7: a[j] * a[i] requests.
+- The third rule is redundant as the condition is already covered by the second rule.
+- TODO: the approach.
 
 
 

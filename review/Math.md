@@ -1,7 +1,7 @@
  
  
  
-## Math (31)
+## Math (32)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -539,6 +539,21 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 - 4. 最后一个看坑。要是乘积是0，就返回‘0’。 但是这个其实可以在开头catch到没必要做到结尾catch。
 - 用到几个StringBuffer的好东西: reverse(), sb.deleteCharAt(i)   
 - 找数字，或者26个字母，都可以: s.charAt(i) - '0'; s.charAt(i) - 'a';
+
+
+
+---
+
+**31. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+      
+
+#### Array, Math
+- 这个问题更在于问题本身的分析 (而且还有多余条件); 最终的for loop 也比较不standard.
+- People younger than 15 cannot make requests due to the first rule.
+- From the age of 15, people can make requests to the same age: a[i] * (a[i] - 1) requests.
+- People can make requests to younger people older than 0.5 * i + 7: a[j] * a[i] requests.
+- The third rule is redundant as the condition is already covered by the second rule.
+- TODO: the approach.
 
 
 

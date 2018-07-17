@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (48)
+## Hash Table (51)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -920,6 +920,74 @@ space: O(n)
 - use presum to verify k: `preSum[j] - preSum[i - 1]`
 - O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
 
+
+
+
+---
+
+**48. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
+      
+time: O(mnk), where `m = A.row`, `n = B.col`, `k = A.col = B.row`
+space: O(1) extra
+
+给两个matrics, 做乘积. 注意, 是sparse matrix (特点: 很多0).
+
+#### Hash Table
+- Recall matric multiplication rules: result[i][j] = sum(A-row[i] * B-col[j])
+- `sparse matric: lots positions are zero`
+- 平白地写matric multiplication 没有意义, 重点就是optimization:
+- `optimization`: for A-zero-row, and B-zero-col, there is no need to calculate, just return 0.
+- 1. Find A-zero-rows and store in setA, same for setB
+- 2. during multiplication, reduce time complexity.
+- Base: O(mnk), where `m = A.row`, `n = B.col`, `k = A.col = B.row`
+
+#### Matrices
+- 乘法规则: result[i][j] = sum(A-row[i] * B-col[j])
+- A column size == B row size. 并且: 计算顺序是iterate over A column size
+
+
+
+---
+
+**49. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
+      
+time: O(mn)
+space: O(X), X = max wall width
+
+给一面墙, 每一行是一行bricks. 用一条vertical line 扫描, 会vertically割开brink. 找到割开最少brick的那条线的x index.
+
+#### Hash Table
+- Find the vertical line (x-coordinate of the grid), where most gaps are found.
+- Each gap has (x,y) coordinate
+- Create `map<x-coordinate, #occurrance>`, and maintain a max occurance. 
+- 计算: x-coordinate: `x = 0; x += brick[i] width`
+- Eventually: min-crossed bricks = wall.lenght - maxOccurrance 
+
+##### 思想
+- 分析题意, 找到题目的目标
+- 虽然Map自己不能有sort的规律, 但是可以maintain global variable
+
+
+
+---
+
+**50. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
+      
+
+#### Union Find
+- TODO
+
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
 
 
 
