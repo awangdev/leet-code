@@ -3,15 +3,15 @@ Table of Contents
 =================
 
 * [Array (100)](#array-100)
-* [DFS (81)](#dfs-81)
-* [DP (78)](#dp-78)
-* [Hash Table (51)](#hash-table-51)
+* [DFS (82)](#dfs-82)
+* [DP (79)](#dp-79)
+* [Hash Table (53)](#hash-table-53)
 * [String (49)](#string-49)
 * [Tree (48)](#tree-48)
 * [Binary Search (37)](#binary-search-37)
 * [Two Pointers (33)](#two-pointers-33)
+* [Divide and Conquer (33)](#divide-and-conquer-33)
 * [Math (32)](#math-32)
-* [Divide and Conquer (32)](#divide-and-conquer-32)
 * [Linked List (31)](#linked-list-31)
 * [Backtracking (30)](#backtracking-30)
 * [BFS (29)](#bfs-29)
@@ -22,15 +22,15 @@ Table of Contents
 * [Sequence DP (18)](#sequence-dp-18)
 * [Bit Manipulation (17)](#bit-manipulation-17)
 * [Greedy (16)](#greedy-16)
+* [Heap (15)](#heap-15)
 * [Coordinate DP (15)](#coordinate-dp-15)
-* [Heap (14)](#heap-14)
 * [Binary Tree (13)](#binary-tree-13)
 * [Memoization (12)](#memoization-12)
 * [Union Find (11)](#union-find-11)
 * [Segment Tree (10)](#segment-tree-10)
 * [PriorityQueue (10)](#priorityqueue-10)
 * [Trie (9)](#trie-9)
-* [PreSum (8)](#presum-8)
+* [PreSum (9)](#presum-9)
 * [Backpack DP (8)](#backpack-dp-8)
 * [Graph (7)](#graph-7)
 * [Status DP (6)](#status-dp-6)
@@ -182,7 +182,7 @@ Table of Contents
  
  
  
-## DFS (81)
+## DFS (82)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Subset.java](https://github.com/awangdev/LintCode/blob/master/Java/Subset.java)|Medium|Java|[Array, BFS, Backtracking, Bit Manipulation, DFS]||
@@ -243,36 +243,37 @@ Table of Contents
 |55|[Convert Expression to Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Polish%20Notation.java)|Hard|Java|[Binary Tree, DFS, Expression Tree, Stack]||
 |56|[Convert Expression to Reverse Polish Notation.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Expression%20to%20Reverse%20Polish%20Notation.java)|Hard|Java|[Binary Tree, DFS, Expression Tree, Stack]||
 |57|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[Coordinate DP, DFS, DP, Memoization, Topological Sort]||
-|58|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
-|59|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
-|60|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Hard|Java|[DFS, DP, Tree, Tree DP]||
-|61|[Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)|Medium|Java|[DFS, Divide and Conquer]||
-|62|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Double Recursive, Tree]||
-|63|[Decode String.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20String.java)|Medium|Java|[DFS, Divide and Conquer, Stack]||
-|64|[Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)|Easy|Java|[DFS, Divide and Conquer, Tree]||
-|65|[Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
-|66|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
-|67|[Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
-|68|[Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)|Easy|Java|[DFS, Double Recursive, Tree]||
-|69|[Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)|Medium|Java|[DFS, Hash Table, Tree]||
-|70|[Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)|Medium|Java|[DFS, Hash Table, Union Find]||
-|71|[Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)|Medium|Java|[DFS, Math, Sequence DFS]||
-|72|[Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)|Easy|Java|[DFS, Tree]||
-|73|[Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
-|74|[Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
-|75|[Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
-|76|[Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)|Easy|Java|[DFS, Tree]||
-|77|[Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)|Easy|Java|[DFS, Tree]||
-|78|[Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
-|79|[Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)|Easy|Java|[DFS, Tree]||
-|80|[Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)|Medium|Java|[DFS, Tree]||
+|58|[Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)|Medium|Java|[DFS, DP]||
+|59|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
+|60|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
+|61|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Hard|Java|[DFS, DP, Tree, Tree DP]||
+|62|[Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)|Medium|Java|[DFS, Divide and Conquer]||
+|63|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Double Recursive, Tree]||
+|64|[Decode String.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20String.java)|Medium|Java|[DFS, Divide and Conquer, Stack]||
+|65|[Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)|Easy|Java|[DFS, Divide and Conquer, Tree]||
+|66|[Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
+|67|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
+|68|[Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
+|69|[Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)|Easy|Java|[DFS, Double Recursive, Tree]||
+|70|[Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)|Medium|Java|[DFS, Hash Table, Tree]||
+|71|[Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)|Medium|Java|[DFS, Hash Table, Union Find]||
+|72|[Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)|Medium|Java|[DFS, Math, Sequence DFS]||
+|73|[Same Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Same%20Tree.java)|Easy|Java|[DFS, Tree]||
+|74|[Balanced Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Balanced%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
+|75|[Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
+|76|[Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)|Easy|Java|[DFS, Tree]||
+|77|[Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)|Easy|Java|[DFS, Tree]||
+|78|[Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)|Easy|Java|[DFS, Tree]||
+|79|[Lowest Common Ancestor of a Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.java)|Medium|Java|[DFS, Tree]||
+|80|[Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)|Easy|Java|[DFS, Tree]||
+|81|[Binary Tree Maximum Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum%20II.java)|Medium|Java|[DFS, Tree]||
 
 
 
  
  
  
-## DP (78)
+## DP (79)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)|Hard|Java|[Array, BST, Binary Search, DP, Queue, TreeSet]||
@@ -320,46 +321,47 @@ Table of Contents
 |42|[Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)|Medium|Java|[Coordinate DP, DP]||
 |43|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
 |44|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
-|45|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
-|46|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
-|47|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Hard|Java|[DFS, DP, Tree, Tree DP]||
-|48|[Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)|Medium|Java|[DP]||
-|49|[k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)|Hard|Java|[DP]||
-|50|[Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)|Medium|Java|[DP]||
-|51|[Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)|Hard|Java|[DP]||
-|52|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
-|53|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP]||
-|54|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, String]||
-|55|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP, String]||
-|56|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, Trie]||
-|57|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
-|58|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
-|59|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Interval DP, String]||
-|60|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
-|61|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
-|62|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
-|63|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
-|64|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
-|65|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
-|66|[Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)|Easy|Java|[DP, PreSum]||
-|67|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
-|68|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP, Sequence DP]||
-|69|[Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)|Easy|Java|[DP, Sequence DP]||
-|70|[Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)|Medium|Java|[DP, Sequence DP]||
-|71|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP, Status DP]||
-|72|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP, Status DP]||
-|73|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP, Status DP]||
-|74|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|Hard|Java|[DP, String]||
-|75|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java|[DP, String]||
-|76|[Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)|Medium|Java|[DP, String]||
-|77|[Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)|Medium|Java|[DP, String]||
+|45|[Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)|Medium|Java|[DFS, DP]||
+|46|[Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)|Medium|Java|[DFS, DP, Interval DP, Memoization]||
+|47|[House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)|Medium|Java|[DFS, DP, Status DP, Tree]||
+|48|[Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)|Hard|Java|[DFS, DP, Tree, Tree DP]||
+|49|[Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)|Medium|Java|[DP]||
+|50|[k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)|Hard|Java|[DP]||
+|51|[Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)|Medium|Java|[DP]||
+|52|[Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)|Hard|Java|[DP]||
+|53|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
+|54|[Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP]||
+|55|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, String]||
+|56|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP, String]||
+|57|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, Trie]||
+|58|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
+|59|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
+|60|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Interval DP, String]||
+|61|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
+|62|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
+|63|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
+|64|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
+|65|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
+|66|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
+|67|[Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)|Easy|Java|[DP, PreSum]||
+|68|[House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)|Easy|Java|[DP, Sequence DP]||
+|69|[Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)|Hard|Java|[DP, Sequence DP]||
+|70|[Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)|Easy|Java|[DP, Sequence DP]||
+|71|[Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)|Medium|Java|[DP, Sequence DP]||
+|72|[Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)|Easy|Java|[DP, Sequence DP, Status DP]||
+|73|[House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)|Medium|Java|[DP, Sequence DP, Status DP]||
+|74|[Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)|Hard|Java|[DP, Sequence DP, Status DP]||
+|75|[Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)|Hard|Java|[DP, String]||
+|76|[Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)|Hard|Java|[DP, String]||
+|77|[Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)|Medium|Java|[DP, String]||
+|78|[Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)|Medium|Java|[DP, String]||
 
 
 
  
  
  
-## Hash Table (51)
+## Hash Table (53)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)|Medium|Java|[Array, DFS, Divide and Conquer, Hash Table, Tree]||
@@ -395,24 +397,26 @@ Table of Contents
 |30|[Rehashing.java](https://github.com/awangdev/LintCode/blob/master/Java/Rehashing.java)|Medium|Java|[Hash Table]||
 |31|[Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)|Medium|Java|[Hash Table]||
 |32|[Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)|Medium|Java|[Hash Table]||
-|33|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
-|34|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
-|35|[Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)|Medium|Java|[Hash Table, Linked List]||
-|36|[Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)|Medium|Java|[Hash Table, Linked List]||
-|37|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
-|38|[Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)|Medium|Java|[Hash Table, Math]||
-|39|[Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)|Easy|Java|[Hash Table, Math]||
-|40|[Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)|Easy|Java|[Hash Table, Sort]||
-|41|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java|[Hash Table, Stack, Tree]||
-|42|[First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)|Easy|Java|[Hash Table, String]||
-|43|[Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)|Medium|Java|[Hash Table, String]||
-|44|[Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)|Medium|Java|[Hash Table, String]||
-|45|[Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)|Easy|Java|[Hash Table, String]||
-|46|[Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)|Hard|Java|[Hash Table, String, Trie]||
-|47|[Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)|Medium|Java|[Hash Table, String, Two Pointers]||
-|48|[Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)|Hard|Java|[Hash Table, String, Two Pointers]||
-|49|[Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)|Easy|Java|[Hash Table, Tree]||
-|50|[Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)|Easy|Java|[Hash Table, Trie]||
+|33|[Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)|Medium|Java|[Hash Table]||
+|34|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
+|35|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
+|36|[Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)|Medium|Java|[Hash Table, Linked List]||
+|37|[Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)|Medium|Java|[Hash Table, Linked List]||
+|38|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
+|39|[Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)|Medium|Java|[Hash Table, Math]||
+|40|[Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)|Easy|Java|[Hash Table, Math]||
+|41|[Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)|Medium|Java|[Hash Table, PreSum]||
+|42|[Valid Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Anagram.java)|Easy|Java|[Hash Table, Sort]||
+|43|[Binary Tree Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Inorder%20Traversal.java)|Easy|Java|[Hash Table, Stack, Tree]||
+|44|[First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)|Easy|Java|[Hash Table, String]||
+|45|[Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)|Medium|Java|[Hash Table, String]||
+|46|[Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)|Medium|Java|[Hash Table, String]||
+|47|[Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)|Easy|Java|[Hash Table, String]||
+|48|[Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)|Hard|Java|[Hash Table, String, Trie]||
+|49|[Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)|Medium|Java|[Hash Table, String, Two Pointers]||
+|50|[Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)|Hard|Java|[Hash Table, String, Two Pointers]||
+|51|[Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)|Easy|Java|[Hash Table, Tree]||
+|52|[Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)|Easy|Java|[Hash Table, Trie]||
 
 
 
@@ -622,6 +626,48 @@ Table of Contents
  
  
  
+## Divide and Conquer (33)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)|Hard|Java|[Array, Binary Search, DFS, Divide and Conquer]||
+|1|[Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)|Easy|Java|[Array, Bit Manipulation, Divide and Conquer]||
+|2|[Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)|Easy|Java|[Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]||
+|3|[Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)|Medium|Java|[Array, DFS, Divide and Conquer, Hash Table, Tree]||
+|4|[Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)|Medium|Java|[Array, DFS, Divide and Conquer, Tree]||
+|5|[Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)|Hard|Java|[BFS, DFS, Design, Divide and Conquer, Tree]||
+|6|[Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)|Review|Java|[BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]||
+|7|[Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Linked List]||
+|8|[Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Tree]||
+|9|[Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)|Medium|Java|[BST, DP, Divide and Conquer, Tree]||
+|10|[Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)|Hard|Java|[BST, Divide and Conquer, Merge Sort, PreSum]||
+|11|[Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)|Hard|Java|[Backtracking, DFS, Divide and Conquer, String]||
+|12|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
+|13|[Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)|Hard|Java|[Binary Search, DFS, Divide and Conquer]||
+|14|[Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)|Medium|Java|[Binary Search, Divide and Conquer]||
+|15|[Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)|Medium|Java|[Binary Search, Divide and Conquer, Segment Tree]||
+|16|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|17|[Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|18|[Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
+|19|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|20|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
+|21|[Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)|Medium|Java|[DFS, Divide and Conquer]||
+|22|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Double Recursive, Tree]||
+|23|[Decode String.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20String.java)|Medium|Java|[DFS, Divide and Conquer, Stack]||
+|24|[Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)|Easy|Java|[DFS, Divide and Conquer, Tree]||
+|25|[Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
+|26|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
+|27|[Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
+|28|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
+|29|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap]||
+|30|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
+|31|[Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)|Review|Java|[Divide and Conquer, Heap, Quick Sort]||
+|32|[Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)|Medium|Java|[Divide and Conquer, Linked List, Merge Sort, Sort]||
+
+
+
+ 
+ 
+ 
 ## Math (32)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -657,47 +703,6 @@ Table of Contents
 |29|[Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)|Easy|Java|[Math, String]||
 |30|[Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)|Hard|Java|[Math, String]||
 |31|[Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)|Medium|Java|[Math, String]||
-
-
-
- 
- 
- 
-## Divide and Conquer (32)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)|Hard|Java|[Array, Binary Search, DFS, Divide and Conquer]||
-|1|[Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)|Easy|Java|[Array, Bit Manipulation, Divide and Conquer]||
-|2|[Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)|Easy|Java|[Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP]||
-|3|[Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)|Medium|Java|[Array, DFS, Divide and Conquer, Hash Table, Tree]||
-|4|[Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)|Medium|Java|[Array, DFS, Divide and Conquer, Tree]||
-|5|[Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)|Hard|Java|[BFS, DFS, Design, Divide and Conquer, Tree]||
-|6|[Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)|Review|Java|[BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]||
-|7|[Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Linked List]||
-|8|[Validate Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Validate%20Binary%20Search%20Tree.java)|Medium|Java|[BST, DFS, Divide and Conquer, Tree]||
-|9|[Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)|Medium|Java|[BST, DP, Divide and Conquer, Tree]||
-|10|[Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)|Hard|Java|[BST, Divide and Conquer, Merge Sort, PreSum]||
-|11|[Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)|Hard|Java|[Backtracking, DFS, Divide and Conquer, String]||
-|12|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
-|13|[Find Peak Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Peak%20Element%20II.java)|Hard|Java|[Binary Search, DFS, Divide and Conquer]||
-|14|[Search a 2D Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix%20II.java)|Medium|Java|[Binary Search, Divide and Conquer]||
-|15|[Interval Minimum Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Minimum%20Number.java)|Medium|Java|[Binary Search, Divide and Conquer, Segment Tree]||
-|16|[Segment Tree Query.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
-|17|[Segment Tree Modify.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Modify.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
-|18|[Segment Tree Query II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Query%20II.java)|Medium|Java|[Binary Tree, DFS, Divide and Conquer, Segment Tree]||
-|19|[Segment Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
-|20|[Segment Tree Build II.java](https://github.com/awangdev/LintCode/blob/master/Java/Segment%20Tree%20Build%20II.java)|Medium|Java|[Binary Tree, Divide and Conquer, Segment Tree]||
-|21|[Fast Power.java](https://github.com/awangdev/LintCode/blob/master/Java/Fast%20Power.java)|Medium|Java|[DFS, Divide and Conquer]||
-|22|[Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)|Medium|Java|[DFS, Divide and Conquer, Double Recursive, Tree]||
-|23|[Decode String.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20String.java)|Medium|Java|[DFS, Divide and Conquer, Stack]||
-|24|[Convert Sorted Array to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.java)|Easy|Java|[DFS, Divide and Conquer, Tree]||
-|25|[Populating Next Right Pointers in Each Node.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
-|26|[Binary Tree Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
-|27|[Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)|Medium|Java|[DFS, Divide and Conquer, Tree]||
-|28|[Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)|Hard|Java|[DP, Divide and Conquer, Interval DP, Memoization]||
-|29|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
-|30|[Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)|Review|Java|[Divide and Conquer, Heap, Quick Sort]||
-|31|[Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)|Medium|Java|[Divide and Conquer, Linked List, Merge Sort, Sort]||
 
 
 
@@ -1023,6 +1028,30 @@ Table of Contents
  
  
  
+## Heap (15)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap]||
+|1|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
+|2|[Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)|Medium|Java|[Binary Search, Heap]||
+|3|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
+|4|[Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)|Hard|Java|[Design, Heap]||
+|5|[Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)|Hard|Java|[Design, Heap]||
+|6|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap]||
+|7|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
+|8|[Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)|Review|Java|[Divide and Conquer, Heap, Quick Sort]||
+|9|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
+|10|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
+|11|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
+|12|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
+|13|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Review|Java|[Heap]||
+|14|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, PriorityQueue]||
+
+
+
+ 
+ 
+ 
 ## Coordinate DP (15)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -1041,29 +1070,6 @@ Table of Contents
 |12|[Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)|Medium|Java|[Coordinate DP, DP]||
 |13|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math]||
 |14|[Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)|Hard|Java|[Coordinate DP, Stack, String]||
-
-
-
- 
- 
- 
-## Heap (14)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap]||
-|1|[Building Outline.java](https://github.com/awangdev/LintCode/blob/master/Java/Building%20Outline.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]||
-|2|[Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)|Medium|Java|[Binary Search, Heap]||
-|3|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
-|4|[Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)|Hard|Java|[Design, Heap]||
-|5|[Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)|Hard|Java|[Design, Heap]||
-|6|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
-|7|[Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)|Review|Java|[Divide and Conquer, Heap, Quick Sort]||
-|8|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
-|9|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, Sort, Sweep Line]||
-|10|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
-|11|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
-|12|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Review|Java|[Heap]||
-|13|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, PriorityQueue]||
 
 
 
@@ -1189,7 +1195,7 @@ Table of Contents
  
  
  
-## PreSum (8)
+## PreSum (9)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)|Review|Java|[Array, Binary Search, PreSum]||
@@ -1199,7 +1205,8 @@ Table of Contents
 |4|[Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)|Medium|Java|[Array, Hash Table, PreSum]||
 |5|[Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)|Hard|Java|[BST, Divide and Conquer, Merge Sort, PreSum]||
 |6|[Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)|Easy|Java|[DP, PreSum]||
-|7|[Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)|Medium|Java|[PreSum, Sort]||
+|7|[Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)|Medium|Java|[Hash Table, PreSum]||
+|8|[Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)|Medium|Java|[PreSum, Sort]||
 
 
 

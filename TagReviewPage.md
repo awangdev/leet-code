@@ -1573,7 +1573,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
  
  
  
-## DP (78)
+## DP (79)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -3543,6 +3543,15 @@ space: O(n), O(1) rolling array
 
 ---
 
+**78. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+      
+
+// 如何想到从中间initialize
+
+
+
+---
+
 
 
 
@@ -4965,7 +4974,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
  
  
  
-## DFS (81)
+## DFS (82)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -6886,6 +6895,15 @@ space: O(1)
 
 ---
 
+**81. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+      
+
+// 如何想到从中间initialize
+
+
+
+---
+
 
 
 
@@ -7035,7 +7053,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (51)
+## Hash Table (53)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -8022,6 +8040,32 @@ space: O(X), X = max wall width
 - output -> all accounts, and sort emails
 - space O(mn): m row, n = emails
 - time O(mn)
+
+
+
+---
+
+**51. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Map<preSumValue, index>
+- use `Map<preSum value, index>` to store inline preSum and its index.
+- 1. Build presum incline
+- 2. Use map to cache current preSum value and its index: `Map<preSum value, index>`
+- 3. Each iteration: calculate possible preSum candidate that prior target sequence. ex: `(preSum - k)`
+- 4. Use the calculated preSum candidate to find index
+- 5. Use found index to calculate for result. ex: calculate range.
+
+
+
+---
+
+**52. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
+      
+
+TODO: how aout without chaning the input nums?
 
 
 
@@ -11641,7 +11685,7 @@ reset() 给出最初的nums
  
  
  
-## Heap (14)
+## Heap (15)
 **0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap]
       
 
@@ -11932,6 +11976,13 @@ HashHeap?
 - Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
 - space, O(n) extra space in sb, O(26) constant space with pq.
 - time: O(n) to add all items
+
+
+
+---
+
+**14. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
+      
 
 
 
@@ -13265,7 +13316,7 @@ space: O(n)
  
  
  
-## PreSum (8)
+## PreSum (9)
 **0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
@@ -13441,6 +13492,23 @@ space: O(n)
 - use presum to verify k: `preSum[j] - preSum[i - 1]`
 - O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
 
+
+
+
+---
+
+**8. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Map<preSumValue, index>
+- use `Map<preSum value, index>` to store inline preSum and its index.
+- 1. Build presum incline
+- 2. Use map to cache current preSum value and its index: `Map<preSum value, index>`
+- 3. Each iteration: calculate possible preSum candidate that prior target sequence. ex: `(preSum - k)`
+- 4. Use the calculated preSum candidate to find index
+- 5. Use found index to calculate for result. ex: calculate range.
 
 
 
@@ -16072,7 +16140,7 @@ space: O(1)
  
  
  
-## Divide and Conquer (32)
+## Divide and Conquer (33)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -16808,6 +16876,13 @@ space: O(n)
 - Find all leaves at deepest level
 - Use map to track each node-parent
 - Backtrack all nodes to find common ancestor
+
+
+
+---
+
+**32. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
+      
 
 
 

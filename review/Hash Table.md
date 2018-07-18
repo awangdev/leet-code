@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (51)
+## Hash Table (53)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -988,6 +988,32 @@ space: O(X), X = max wall width
 - output -> all accounts, and sort emails
 - space O(mn): m row, n = emails
 - time O(mn)
+
+
+
+---
+
+**51. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Map<preSumValue, index>
+- use `Map<preSum value, index>` to store inline preSum and its index.
+- 1. Build presum incline
+- 2. Use map to cache current preSum value and its index: `Map<preSum value, index>`
+- 3. Each iteration: calculate possible preSum candidate that prior target sequence. ex: `(preSum - k)`
+- 4. Use the calculated preSum candidate to find index
+- 5. Use found index to calculate for result. ex: calculate range.
+
+
+
+---
+
+**52. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
+      
+
+TODO: how aout without chaning the input nums?
 
 
 

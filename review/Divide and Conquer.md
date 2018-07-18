@@ -1,7 +1,7 @@
  
  
  
-## Divide and Conquer (32)
+## Divide and Conquer (33)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -737,6 +737,13 @@ space: O(n)
 - Find all leaves at deepest level
 - Use map to track each node-parent
 - Backtrack all nodes to find common ancestor
+
+
+
+---
+
+**32. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
+      
 
 
 

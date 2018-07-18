@@ -1,7 +1,7 @@
  
  
  
-## PreSum (8)
+## PreSum (9)
 **0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
@@ -177,6 +177,23 @@ space: O(n)
 - use presum to verify k: `preSum[j] - preSum[i - 1]`
 - O(n^2): `1 + 2 + 3 + 4 ... + n ~= O(n^2)`
 
+
+
+
+---
+
+**8. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Map<preSumValue, index>
+- use `Map<preSum value, index>` to store inline preSum and its index.
+- 1. Build presum incline
+- 2. Use map to cache current preSum value and its index: `Map<preSum value, index>`
+- 3. Each iteration: calculate possible preSum candidate that prior target sequence. ex: `(preSum - k)`
+- 4. Use the calculated preSum candidate to find index
+- 5. Use found index to calculate for result. ex: calculate range.
 
 
 

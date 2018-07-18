@@ -1,7 +1,7 @@
  
  
  
-## Heap (14)
+## Heap (15)
 **0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap]
       
 
@@ -292,6 +292,13 @@ HashHeap?
 - Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
 - space, O(n) extra space in sb, O(26) constant space with pq.
 - time: O(n) to add all items
+
+
+
+---
+
+**14. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
+      
 
 
 

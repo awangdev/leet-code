@@ -1,7 +1,7 @@
  
  
  
-## DP (78)
+## DP (79)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -1966,6 +1966,15 @@ space: O(n), O(1) rolling array
 - dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
 - init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
 - return dp[n][1]
+
+
+
+---
+
+**78. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+      
+
+// 如何想到从中间initialize
 
 
 

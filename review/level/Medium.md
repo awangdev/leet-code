@@ -1,7 +1,7 @@
  
  
  
-## Medium (224)
+## Medium (228)
 **0. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium      Tags: []
       
 
@@ -4567,6 +4567,48 @@ space: O(X), X = max wall width
 - People can make requests to younger people older than 0.5 * i + 7: a[j] * a[i] requests.
 - The third rule is redundant as the condition is already covered by the second rule.
 - TODO: the approach.
+
+
+
+---
+
+**224. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+      
+
+// 如何想到从中间initialize
+
+
+
+---
+
+**225. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum]
+      
+time: O(n)
+space: O(n)
+
+#### Map<preSumValue, index>
+- use `Map<preSum value, index>` to store inline preSum and its index.
+- 1. Build presum incline
+- 2. Use map to cache current preSum value and its index: `Map<preSum value, index>`
+- 3. Each iteration: calculate possible preSum candidate that prior target sequence. ex: `(preSum - k)`
+- 4. Use the calculated preSum candidate to find index
+- 5. Use found index to calculate for result. ex: calculate range.
+
+
+
+---
+
+**226. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
+      
+
+
+
+---
+
+**227. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
+      
+
+TODO: how aout without chaning the input nums?
 
 
 

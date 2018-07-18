@@ -1,7 +1,7 @@
  
  
  
-## DFS (81)
+## DFS (82)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -1917,6 +1917,15 @@ space: O(1)
 - output -> all accounts, and sort emails
 - space O(mn): m row, n = emails
 - time O(mn)
+
+
+
+---
+
+**81. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+      
+
+// 如何想到从中间initialize
 
 
 

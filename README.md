@@ -471,3 +471,7 @@
 |450|[Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)|Medium|Java|[DFS, Hash Table, Union Find]||
 |451|[Exclusive Time of Functions.java](https://github.com/awangdev/LintCode/blob/master/Java/Exclusive%20Time%20of%20Functions.java)|Medium|Java|[Stack]||
 |452|[Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)|Medium|Java|[Array, Math]||
+|453|[Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)|Medium|Java|[DFS, DP]||
+|454|[Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)|Medium|Java|[Hash Table, PreSum]||
+|455|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap]||
+|456|[Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)|Medium|Java|[Hash Table]||
