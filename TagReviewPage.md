@@ -3721,7 +3721,7 @@ TODO
  
  
  
-## BFS (29)
+## BFS (30)
 **0. [Minimum Height Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Height%20Trees.java)**      Level: Medium      Tags: [BFS, Graph]
       
 
@@ -4475,6 +4475,33 @@ space: O(n)
 
 ---
 
+**29. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个Binary Tree, traverse所有node, 按照vertial order 排列成output: List<List> 
+
+重点是: col里面有排序, 在higher level的排在前面; 如果node遇到collision在同一个位置: 根据他们的相对位置 先放left, 再放right
+
+#### BFS
+- 应该比较好想: naturally level-traverse all nodes, add node to appropriate col list
+- Use min/max to track map keys, since the keys are continous
+
+#### DFS
+- 一开始很容易想到: enumerate一下, 先放curr node.val, 然后node.left.val, node.right.val. 非常简单
+- 但是最简单的方法有错: assume所有left subtree都 排在right subtree. 但是: right subtree可能先有一个lower-left-branch,  appear in a column first.
+- 所以还要preserve column list的order.
+- 这里我们用了 `Map<col, Node>` 来track col, Node 里面用了 `node.level`来track level (其实再一个map也可以)
+- 这样在结尾要sort,就会非常慢: Visit all nodes O(n) + O(logK) + O(KlogM), K = # of cols, M = # of items in col
+- 应该也是可以optimize map keys的, 反正都是continuous key
+
+
+
+
+
+---
+
 
 
 
@@ -5054,7 +5081,7 @@ space: O(n)
  
  
  
-## DFS (82)
+## DFS (83)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -6984,6 +7011,33 @@ space: O(1)
 
 ---
 
+**82. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个Binary Tree, traverse所有node, 按照vertial order 排列成output: List<List> 
+
+重点是: col里面有排序, 在higher level的排在前面; 如果node遇到collision在同一个位置: 根据他们的相对位置 先放left, 再放right
+
+#### BFS
+- 应该比较好想: naturally level-traverse all nodes, add node to appropriate col list
+- Use min/max to track map keys, since the keys are continous
+
+#### DFS
+- 一开始很容易想到: enumerate一下, 先放curr node.val, 然后node.left.val, node.right.val. 非常简单
+- 但是最简单的方法有错: assume所有left subtree都 排在right subtree. 但是: right subtree可能先有一个lower-left-branch,  appear in a column first.
+- 所以还要preserve column list的order.
+- 这里我们用了 `Map<col, Node>` 来track col, Node 里面用了 `node.level`来track level (其实再一个map也可以)
+- 这样在结尾要sort,就会非常慢: Visit all nodes O(n) + O(logK) + O(KlogM), K = # of cols, M = # of items in col
+- 应该也是可以optimize map keys的, 反正都是continuous key
+
+
+
+
+
+---
+
 
 
 
@@ -7133,7 +7187,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (55)
+## Hash Table (56)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -8187,6 +8241,33 @@ space: O(n)
 
 ---
 
+**55. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个Binary Tree, traverse所有node, 按照vertial order 排列成output: List<List> 
+
+重点是: col里面有排序, 在higher level的排在前面; 如果node遇到collision在同一个位置: 根据他们的相对位置 先放left, 再放right
+
+#### BFS
+- 应该比较好想: naturally level-traverse all nodes, add node to appropriate col list
+- Use min/max to track map keys, since the keys are continous
+
+#### DFS
+- 一开始很容易想到: enumerate一下, 先放curr node.val, 然后node.left.val, node.right.val. 非常简单
+- 但是最简单的方法有错: assume所有left subtree都 排在right subtree. 但是: right subtree可能先有一个lower-left-branch,  appear in a column first.
+- 所以还要preserve column list的order.
+- 这里我们用了 `Map<col, Node>` 来track col, Node 里面用了 `node.level`来track level (其实再一个map也可以)
+- 这样在结尾要sort,就会非常慢: Visit all nodes O(n) + O(logK) + O(KlogM), K = # of cols, M = # of items in col
+- 应该也是可以optimize map keys的, 反正都是continuous key
+
+
+
+
+
+---
+
 
 
 
@@ -9202,7 +9283,7 @@ space: O(n!)
  
  
  
-## Tree (48)
+## Tree (49)
 **0. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, Tree]
       
 
@@ -10190,6 +10271,33 @@ space: O(n)
 - 简单的level traversal.根据level奇数偶数而add到不同位子.
 - Option1: based on level % 2, insert to front/end of list
 - Option2: based on level, insert right/left of node into queue
+
+
+
+---
+
+**48. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个Binary Tree, traverse所有node, 按照vertial order 排列成output: List<List> 
+
+重点是: col里面有排序, 在higher level的排在前面; 如果node遇到collision在同一个位置: 根据他们的相对位置 先放left, 再放right
+
+#### BFS
+- 应该比较好想: naturally level-traverse all nodes, add node to appropriate col list
+- Use min/max to track map keys, since the keys are continous
+
+#### DFS
+- 一开始很容易想到: enumerate一下, 先放curr node.val, 然后node.left.val, node.right.val. 非常简单
+- 但是最简单的方法有错: assume所有left subtree都 排在right subtree. 但是: right subtree可能先有一个lower-left-branch,  appear in a column first.
+- 所以还要preserve column list的order.
+- 这里我们用了 `Map<col, Node>` 来track col, Node 里面用了 `node.level`来track level (其实再一个map也可以)
+- 这样在结尾要sort,就会非常慢: Visit all nodes O(n) + O(logK) + O(KlogM), K = # of cols, M = # of items in col
+- 应该也是可以optimize map keys的, 反正都是continuous key
+
+
 
 
 

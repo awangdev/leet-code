@@ -2245,7 +2245,7 @@ space: O(1) greedy, O(n) dp
  
  
  
-## Medium (232)
+## Medium (233)
 **0. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium      Tags: []
       
 
@@ -6933,6 +6933,33 @@ time: O(n)
 - `A[i] > A[i - 1] && B[i] > B[i - 1]`: 1. 已经合理, 也不动.  2. [i], [i-1] 全部都swap
 - `A[i] > B[i - 1] && B[i] > A[i - 1]`, 交错开来, 所以调换[i], 或者[i-1]: 1. 换[i-1]. 2. 换[i]
 - 注意因为求min, 所以init value应该是 Integer.MAX_VALUE;
+
+
+
+---
+
+**232. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个Binary Tree, traverse所有node, 按照vertial order 排列成output: List<List> 
+
+重点是: col里面有排序, 在higher level的排在前面; 如果node遇到collision在同一个位置: 根据他们的相对位置 先放left, 再放right
+
+#### BFS
+- 应该比较好想: naturally level-traverse all nodes, add node to appropriate col list
+- Use min/max to track map keys, since the keys are continous
+
+#### DFS
+- 一开始很容易想到: enumerate一下, 先放curr node.val, 然后node.left.val, node.right.val. 非常简单
+- 但是最简单的方法有错: assume所有left subtree都 排在right subtree. 但是: right subtree可能先有一个lower-left-branch,  appear in a column first.
+- 所以还要preserve column list的order.
+- 这里我们用了 `Map<col, Node>` 来track col, Node 里面用了 `node.level`来track level (其实再一个map也可以)
+- 这样在结尾要sort,就会非常慢: Visit all nodes O(n) + O(logK) + O(KlogM), K = # of cols, M = # of items in col
+- 应该也是可以optimize map keys的, 反正都是continuous key
+
+
 
 
 
