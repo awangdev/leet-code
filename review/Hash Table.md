@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (53)
+## Hash Table (55)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -1014,6 +1014,42 @@ space: O(n)
       
 
 TODO: how aout without chaning the input nums?
+
+
+
+---
+
+**53. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+      
+time: O(n)
+space: O(n)
+
+给一串点, 找是否有一个所有点中间的, 跟y-axis平行的中线.
+
+#### Hash Table
+- 1. store in `Map<y, set<x>>`, 2. iterate over map, check head,tail against the mid point
+- 很好的细节题目:
+- 1. 除以2, 需要存double
+- 2. (问面试官)可以有重复的点! 所以track `set<x>`
+- 3. 处理 left==right时候, 就当做两个点来处理.
+- 4. 存进set里面没有sort, 但是最后做check的时候, 需要sort list
+- 时间: visit all nodes 两遍,  O(n)
+
+
+
+---
+
+**54. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+      
+time: O(1) avg
+space: O(n)
+
+#### Hash Table
+- 用`map<value, index> 来track value->index`, 用`list track index->value`
+- map查看value是否存在
+- list maintain 用来 insert/remove/random operations.
+- 特点: 一旦remove, 换到list结尾然后 `list.remove(list.size() - 1)`, 这样remove的cost更低. 
+- list.remove(object) 应该是要O(logn) 做一个search的.
 
 
 

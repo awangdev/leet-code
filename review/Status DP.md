@@ -1,7 +1,7 @@
  
  
  
-## Status DP (6)
+## Status DP (7)
 **0. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
       
 time: O(nm), m = # of colors
@@ -184,6 +184,22 @@ space: O(n), O(1) rolling array
 - dp[i][1] = Math.max(dp[i-1][1], dp[i - 1][1] + prices[i] - fee);
 - init: dp[0][0,1] = 0; dp[1][1] = 0; dp[1][0] = - prices;
 - return dp[n][1]
+
+
+
+---
+
+**6. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
+      
+
+
+#### DP
+- 特点: 上一步可能是swaped也可能是fixed
+- 考虑A,B之间的现状: `A[i] > A[i - 1] && B[i] > B[i - 1]` 或者 `A[i] > B[i - 1] && B[i] > A[i - 1]`
+- 问题: 如何把这个状态变成合理的strick-increasing状态?
+- `A[i] > A[i - 1] && B[i] > B[i - 1]`: 1. 已经合理, 也不动.  2. [i], [i-1] 全部都swap
+- `A[i] > B[i - 1] && B[i] > A[i - 1]`, 交错开来, 所以调换[i], 或者[i-1]: 1. 换[i-1]. 2. 换[i]
+- 注意因为求min, 所以init value应该是 Integer.MAX_VALUE;
 
 
 

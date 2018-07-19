@@ -1,7 +1,7 @@
  
  
  
-## Design (18)
+## Design (19)
 **0. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
       
 
@@ -356,6 +356,22 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 - 特点2: 找到所有点里面的min/max (x,y), 最后组成的 maxArea, 应该跟过程中accumulate的area相等
 - 特点1确保中间没有空心的部分, 保证所有的重合点都会互相消除, 最后剩下4个顶点
 - 特点2确保没有重合: 重合的area会最终超出maxArea
+
+
+
+---
+
+**18. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+      
+time: O(1) avg
+space: O(n)
+
+#### Hash Table
+- 用`map<value, index> 来track value->index`, 用`list track index->value`
+- map查看value是否存在
+- list maintain 用来 insert/remove/random operations.
+- 特点: 一旦remove, 换到list结尾然后 `list.remove(list.size() - 1)`, 这样remove的cost更低. 
+- list.remove(object) 应该是要O(logn) 做一个search的.
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Medium (228)
+## Medium (232)
 **0. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium      Tags: []
       
 
@@ -4609,6 +4609,86 @@ space: O(n)
       
 
 TODO: how aout without chaning the input nums?
+
+
+
+---
+
+**228. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+      
+time: O(n)
+space: O(n)
+
+给一串点, 找是否有一个所有点中间的, 跟y-axis平行的中线.
+
+#### Hash Table
+- 1. store in `Map<y, set<x>>`, 2. iterate over map, check head,tail against the mid point
+- 很好的细节题目:
+- 1. 除以2, 需要存double
+- 2. (问面试官)可以有重复的点! 所以track `set<x>`
+- 3. 处理 left==right时候, 就当做两个点来处理.
+- 4. 存进set里面没有sort, 但是最后做check的时候, 需要sort list
+- 时间: visit all nodes 两遍,  O(n)
+
+
+
+---
+
+**229. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+      
+time: O(1) avg
+space: O(n)
+
+#### Hash Table
+- 用`map<value, index> 来track value->index`, 用`list track index->value`
+- map查看value是否存在
+- list maintain 用来 insert/remove/random operations.
+- 特点: 一旦remove, 换到list结尾然后 `list.remove(list.size() - 1)`, 这样remove的cost更低. 
+- list.remove(object) 应该是要O(logn) 做一个search的.
+
+
+
+---
+
+**230. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+      
+time: O(n^2)
+time: O(n)
+
+给一串 unsorted sequence, 找到长 increasing subsequence 的个数!
+
+#### Coordinate DP
+- 需要能够判断综合题, 分清楚情况和套路: combination of `longest subsequence` and `ways to do`, as well as global variable. 
+- len[i] (我们平时的dp[i]): 在前i个元素中, 最长的 increasing subsequence length;
+- count[i]: 在前i个元素中, 并且以 len[i]这个长度为准的 subsequence的 count. 或者: 在前i个元素中, ways to reach longest increasing subsequence.
+- `len[i] == len[j] + 1`: same length, but different sequence, so add all `count[i] += count[j]`
+- `len[i] < len[j] + 1`: 这就是更长的情况找到了, 那么有多少次 count[j] 有多少, count[i] 就有多少. 仔细想sequence: 长度增长了, 但是ways to reach i 没有增长.
+- 同样的判断需要用在 maxLen 和 maxFreq上:
+- 如果没有增长 maxLen 不变, maxFreq上面需要 +=count[i] (同一种长度, 多了更多的做法)
+- 如果maxLen 变长, maxFreq 也就是采用了 count[i] = count[j]
+- TODO: Is rolling array possible?
+
+#### 相关
+- 都是 Coordiate DP, DP的鼻祖家族:
+- Longest Increasing Subsequence (跟这道题的一部分一模一样)
+- Longest Continuous Increasing Subsequence (连续, 只check dp[i - 1])
+- Longest Increasing Continuous Subsequence I, II (Lintcode, II 是matrix)
+
+
+
+---
+
+**231. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
+      
+
+
+#### DP
+- 特点: 上一步可能是swaped也可能是fixed
+- 考虑A,B之间的现状: `A[i] > A[i - 1] && B[i] > B[i - 1]` 或者 `A[i] > B[i - 1] && B[i] > A[i - 1]`
+- 问题: 如何把这个状态变成合理的strick-increasing状态?
+- `A[i] > A[i - 1] && B[i] > B[i - 1]`: 1. 已经合理, 也不动.  2. [i], [i-1] 全部都swap
+- `A[i] > B[i - 1] && B[i] > A[i - 1]`, 交错开来, 所以调换[i], 或者[i-1]: 1. 换[i-1]. 2. 换[i]
+- 注意因为求min, 所以init value应该是 Integer.MAX_VALUE;
 
 
 

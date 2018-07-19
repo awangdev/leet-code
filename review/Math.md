@@ -1,7 +1,7 @@
  
  
  
-## Math (32)
+## Math (33)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -554,6 +554,26 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 - People can make requests to younger people older than 0.5 * i + 7: a[j] * a[i] requests.
 - The third rule is redundant as the condition is already covered by the second rule.
 - TODO: the approach.
+
+
+
+---
+
+**32. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+      
+time: O(n)
+space: O(n)
+
+给一串点, 找是否有一个所有点中间的, 跟y-axis平行的中线.
+
+#### Hash Table
+- 1. store in `Map<y, set<x>>`, 2. iterate over map, check head,tail against the mid point
+- 很好的细节题目:
+- 1. 除以2, 需要存double
+- 2. (问面试官)可以有重复的点! 所以track `set<x>`
+- 3. 处理 left==right时候, 就当做两个点来处理.
+- 4. 存进set里面没有sort, 但是最后做check的时候, 需要sort list
+- 时间: visit all nodes 两遍,  O(n)
 
 
 

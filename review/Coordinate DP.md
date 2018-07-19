@@ -1,7 +1,7 @@
  
  
  
-## Coordinate DP (15)
+## Coordinate DP (17)
 **0. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
@@ -352,6 +352,50 @@ space: O(n)
 - 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
 - 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
 - '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
+
+
+
+---
+
+**15. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+      
+time: O(n^2)
+time: O(n)
+
+给一串 unsorted sequence, 找到长 increasing subsequence 的个数!
+
+#### Coordinate DP
+- 需要能够判断综合题, 分清楚情况和套路: combination of `longest subsequence` and `ways to do`, as well as global variable. 
+- len[i] (我们平时的dp[i]): 在前i个元素中, 最长的 increasing subsequence length;
+- count[i]: 在前i个元素中, 并且以 len[i]这个长度为准的 subsequence的 count. 或者: 在前i个元素中, ways to reach longest increasing subsequence.
+- `len[i] == len[j] + 1`: same length, but different sequence, so add all `count[i] += count[j]`
+- `len[i] < len[j] + 1`: 这就是更长的情况找到了, 那么有多少次 count[j] 有多少, count[i] 就有多少. 仔细想sequence: 长度增长了, 但是ways to reach i 没有增长.
+- 同样的判断需要用在 maxLen 和 maxFreq上:
+- 如果没有增长 maxLen 不变, maxFreq上面需要 +=count[i] (同一种长度, 多了更多的做法)
+- 如果maxLen 变长, maxFreq 也就是采用了 count[i] = count[j]
+- TODO: Is rolling array possible?
+
+#### 相关
+- 都是 Coordiate DP, DP的鼻祖家族:
+- Longest Increasing Subsequence (跟这道题的一部分一模一样)
+- Longest Continuous Increasing Subsequence (连续, 只check dp[i - 1])
+- Longest Increasing Continuous Subsequence I, II (Lintcode, II 是matrix)
+
+
+
+---
+
+**16. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
+      
+
+
+#### DP
+- 特点: 上一步可能是swaped也可能是fixed
+- 考虑A,B之间的现状: `A[i] > A[i - 1] && B[i] > B[i - 1]` 或者 `A[i] > B[i - 1] && B[i] > A[i - 1]`
+- 问题: 如何把这个状态变成合理的strick-increasing状态?
+- `A[i] > A[i - 1] && B[i] > B[i - 1]`: 1. 已经合理, 也不动.  2. [i], [i-1] 全部都swap
+- `A[i] > B[i - 1] && B[i] > A[i - 1]`, 交错开来, 所以调换[i], 或者[i-1]: 1. 换[i-1]. 2. 换[i]
+- 注意因为求min, 所以init value应该是 Integer.MAX_VALUE;
 
 
 

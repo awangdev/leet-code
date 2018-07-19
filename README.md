@@ -475,3 +475,7 @@
 |454|[Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)|Medium|Java|[Hash Table, PreSum]||
 |455|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap]||
 |456|[Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)|Medium|Java|[Hash Table]||
+|457|[Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)|Medium|Java|[Hash Table, Math]||
+|458|[Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)|Medium|Java|[Array, Design, Hash Table]||
+|459|[Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)|Medium|Java|[Coordinate DP, DP]||
+|460|[Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)|Medium|Java|[Coordinate DP, DP, Status DP]||

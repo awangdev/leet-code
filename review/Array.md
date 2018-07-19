@@ -1,7 +1,7 @@
  
  
  
-## Array (100)
+## Array (101)
 **0. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, Greedy]
       
 
@@ -2065,6 +2065,22 @@ space: O(1)
 - People can make requests to younger people older than 0.5 * i + 7: a[j] * a[i] requests.
 - The third rule is redundant as the condition is already covered by the second rule.
 - TODO: the approach.
+
+
+
+---
+
+**100. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+      
+time: O(1) avg
+space: O(n)
+
+#### Hash Table
+- 用`map<value, index> 来track value->index`, 用`list track index->value`
+- map查看value是否存在
+- list maintain 用来 insert/remove/random operations.
+- 特点: 一旦remove, 换到list结尾然后 `list.remove(list.size() - 1)`, 这样remove的cost更低. 
+- list.remove(object) 应该是要O(logn) 做一个search的.
 
 
 
