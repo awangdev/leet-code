@@ -1,23 +1,24 @@
 M
 1519835840
-tags: Array, Two Pointers, Binary Search
+tags: Array, Two Pointers, Binary Search, Subarray
+time: O(n)
+space: O(1)
 
-方法1:
-2 pointer, O(n). 找subarray, start 或 end pointer，每次一格这样移动.
+给一串positive integer, 找最短的subarray sum, where the sum >= s
 
-好的策略: 
-1. 先找一个solution, 定住end. 
-2. 然后移动start; 记录每个solution if occurs
-3. 然后再移动end，往下找。
+#### Two pointer
+- 全部是positive integer, 那么preSum一定是增长的.
+- 那其实就用two pointer: `start=0, end=0` 不断往前移动. 策略: 
+- 1. end++ until a solution where sum >= s is reached
+- 2. 然后移动start; 记录每个solution, Math.min(min, end - start);
+- 3. 然后再移动end，往下找
+- Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
 
-Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
+#### Binary Search
+- O(nlogn) NOT DONE.
 
-方法2:
-Double for loop, base i 每次只+1, 所以最后O(n^2)
-
-方法3:
-Binary Search, O(nLogN)
-Not done yet
+#### Double For loop
+- O(n^2), inefficient
 
 ```
 /*

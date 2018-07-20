@@ -1,7 +1,17 @@
 E
-tags: Greedy, Array
+1532126087
+tags: Greedy, Array, DP, Sequence DP, Subarray
+time: O(m)
+space: O(1)
 
-TODO: dp?
+给一串数组, unsorted, can have negative/positive num. 找数组中间 subarray 数字之和的最小值
+
+#### DP
+- 看到 min value, 至少考虑dp:
+- Consider last num: min sum will be (preMinSum + curr, or curr)
+- Use preMinSum to cache previouly calcualted min sum, also compare with +curr.
+- Have a global min to track: because the preMinSum can be dis-continuous. 
+- 也可以写成 dp[i] 但是没什么必要
 
 ```
 
@@ -19,6 +29,28 @@ The subarray should contain at least one integer.
 Tags Expand 
 Greedy LintCode Copyright Subarray Array
 
+
+*/
+
+/*
+DP, Sequence DP
+Consider last num: min sum will be (preMinSum + curr, or curr)
+Use preMinSum to cache previouly calcualted min sum, also compare with +curr.
+Have a global min to track: because the preMinSum can be dis-continuous.
+*/
+public class Solution {
+    public int minSubArray(List<Integer> nums) {
+        if (nums == null || nums.size() == 0) return Integer.MAX_VALUE;
+        int preMinSum = 0, min = Integer.MAX_VALUE;
+        for (int num : nums) {
+            preMinSum = Math.min(num, preMinSum + num);
+            min = Math.min(min, preMinSum);
+        }
+        return min;
+    }
+}
+
+/*
 Thoughts:
 Note: sub-array has order. It's not sub-set
 1. On each index: decide to add with nums.get(i), to use the new lowest value nums.get(i). That means:
@@ -28,8 +60,6 @@ Note: sub-array has order. It's not sub-set
 
 Note: remember to pre-set init value for curMin, minRst. 
 */
-
-
 public class Solution {
     /**
      * @param nums: a list of integers

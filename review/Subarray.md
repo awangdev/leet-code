@@ -1,23 +1,84 @@
  
  
  
-## PreSum (10)
-**0. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
+## Subarray (11)
+**0. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium      Tags: [Array, DP, Subarray]
       
 
-给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
+从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
 
-- Binary Search的思想, 用在所要找的这个 average sum 上面. 大小是在[min, max]之中
-- 找k的时候, 是>=k都可以, 巧用一个 min(preSum)的概念.
-- 找k的时候, 画图, 可以看出来, 其实要的是 k window 里面的sum [x, i], 所以要用 sum[0, i] - sum[0, x]
+#### DP
+- 求最值, 想到DP. Time/Space O (n)
+- 两个特别处: 
+- 1. 正负数情况, 需要用两个DP array. 
+- 2. continuous prodct 这个条件决定了在Math.min, Math.max的时候, 
+- 是跟nums[x]当下值比较的, 如果当下值更适合, 会舍去之前的continous product, 然后重新开始.
+- 这也就注定了需要一个global variable 来hold result.
 
-需要仔细去读下面的notes.
+#### Space optimization, rolling array
+- maxProduct && minProduct 里面的 index i, 都只能 i - 1相关, 所以可以省去redundant operatoins
+- Time: O(n), space: O(1)
 
 
 
 ---
 
-**1. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP, Subarray]
+**1. [Maximum Average Subarray I.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20I.java)**      Level: Easy      Tags: [Array, Subarray]
+      
+time: O(n)
+space: O(1)
+
+简单的求sum of fixed window k, 同时求max avg, 结尾求余数就好.
+
+
+
+---
+
+**2. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Subarray, Two Pointers]
+      
+time: O(n)
+space: O(1)
+
+给一串positive integer, 找最短的subarray sum, where the sum >= s
+
+#### Two pointer
+- 全部是positive integer, 那么preSum一定是增长的.
+- 那其实就用two pointer: `start=0, end=0` 不断往前移动. 策略: 
+- 1. end++ until a solution where sum >= s is reached
+- 2. 然后移动start; 记录每个solution, Math.min(min, end - start);
+- 3. 然后再移动end，往下找
+- Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
+
+#### Binary Search
+- O(nlogn) NOT DONE.
+
+#### Double For loop
+- O(n^2), inefficient
+
+
+
+---
+
+**3. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
+      
+
+给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
+
+#### DP
+- O(n^2)
+- 需要记录在0 ~ i点(包括nums[i], 以nums[i]结尾)的sum, 坐标型动态规划.
+- dp[i] = dp[i - 1] + nums[i];
+- 最后移动, 作比较
+
+#### 直接算结果
+- 从sum = 每次[i ~ j]的所有情况
+- 验证
+
+
+
+---
+
+**4. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP, Subarray]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -42,7 +103,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**2. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
+**5. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -70,46 +131,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**3. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
-      
-
-TODO: Write the code + merge function
-
-#### Divide and Conquer + PreSum + MergeSort
-- 算法非常厉害就是了: 先做presum[], 那么 sum range [i,j] 就等于是preSum[j+1] - preSum[i]
-- 分治: 考虑[start, mid] range里面的结果, 再考虑[mid, end] range里面的结果. (分开来 mergeSort)
-- 最后考虑[low,high]总体的结果
-- 小技巧: PreSum 做成了 (n + 1) length, 那么求range sum [i,j] 就可以简化成 preSum[j] - preSum[i]
-- NOTE: should write merge() function, but that is minor, just use `Arrays.sort(nums, start, end)`, OJ passed
-- Every mergeSort() has a for loop => O(n log n)
-
-##### 如何 count range?
-- 这里比较特别的一个做法: 找一个 [low, mid]里面的i, mid 之后的preSum作比较 (解释源自: https://blog.csdn.net/qq508618087/article/details/51435944)
-- 即在右边数组找到两个边界, 设为`m, n`, 
-- 其中m是在右边数组中第一个使得`sum[m] - sum[i] >= lower`的位置, 
-- n是第一个使得`sum[n] - sum[i] > upper`的位置, 
-- 这样`n-m`就是与左边元素i所构成的位于`[lower, upper]`范围的区间个数. 
-
-##### 神奇的重点: 为什么要 merge and sort
-- 边界[lower, higher] 在 sorted array 好作比较, 一旦国界, 就可以停止计算, 减少不必要计算.
-- 上面这个n,m的做法可行的前提: preSum[]里面前后两个 range[low, mid], [mid, high]已经sorted了
-- 也就是说, 在recursively mergeSort()的时候, 真的需要merge sorted 2 partitions
-- 也许会问: 能不能sort呢, sort不久打乱了顺序? 对,打乱的是preSum[]的顺序.
-- 但是不要紧: 很巧妙的, 分治的时候, 前半段/后半段 都在原顺序保留的情况下 分开process完了, 最后才merge
-- 在做m,n 的range的时候, 原理如下, 比如preSum被分成这么两段: `[A,B,C]`, `[D,E,F]`
-- 每一个preSum value `A` 在跟 preSum[i] 作比较的时候 `A - preSum < lower`, 都是单一作比较, 不牵扯到 B, C
-- 因此, `[A, B, C]` 是否保留一开始 preSum的顺序在此时不重要
-- 此时最重要的是, `[A,B,C]`以及排序好, 那么在于 `lower` boundary 作比较的时候, 一旦过界, 就可以停止计算(减少不必要的计算)
-
-
-#### BST
-- TODO?
-
-
-
----
-
-**4. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
+**6. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -124,37 +146,6 @@ space: O(n)
 #### Previous notes, same preSum + map solution
 - 分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum[a+1 ~ b] == 0
 - 用hashMap存每个sum[0~i]的值和index i. 如果有重复，就找到了一组sum为0的数组.
-
-
-
----
-
-**5. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
-      
-
-给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
-
-#### PreSum的思想
-- 算出一个右下角点(i,j)到(0,0)的大小: 上一块 + 左一块 + curr node - overlap area
-- preSum[i][j]: sum from (0,0) to (i-1,j-1)
-- same approach as `subarray sum`: use hashmap to store diff->index; if diff re-appears, that means sum of 0 has occurred
-- sequence of calculation: 1. iterate over start row. 2. iterate over end row. 3. iterate over col number (this is where hashmap is stored based on)
-- the iteration over col is like a screening: find previous sum and determine result
-- Note: 其实并没有真的去找 `== 0` 的解答,而是根据特性来判断 `剩下的/后来加上的一定是0`
-
-
-
----
-
-**6. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
-      
-
-给一串数字, 求sumRange.
-
-#### PreSum
-- 就是pre sum 的definition
-- preSum也是dp[]一种最简易的形式把.
-- dp[i], preSum[i]: 前(i-1)个元素的和.
 
 
 
@@ -226,6 +217,24 @@ space: O(n)
 - 3. Each iteration: calculate possible preSum candidate that prior target sequence. ex: `(preSum - k)`
 - 4. Use the calculated preSum candidate to find index
 - 5. Use found index to calculate for result. ex: calculate range.
+
+
+
+---
+
+**10. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
+      
+time: O(m)
+space: O(1)
+
+给一串数组, unsorted, can have negative/positive num. 找数组中间 subarray 数字之和的最小值
+
+#### DP
+- 看到 min value, 至少考虑dp:
+- Consider last num: min sum will be (preMinSum + curr, or curr)
+- Use preMinSum to cache previouly calcualted min sum, also compare with +curr.
+- Have a global min to track: because the preMinSum can be dis-continuous. 
+- 也可以写成 dp[i] 但是没什么必要
 
 
 

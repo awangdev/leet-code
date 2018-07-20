@@ -408,12 +408,16 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 
 **23. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium      Tags: [Hash Table, Linked List]
       
+time: O(n)
+space: O(1)
 
 deep copy linked list. linked list 上有random pointer to other nodes.
 
-#### HashMap
-- Basic Implementation
+#### HashMap, Linked List
+- Basic Implementation of copy linked list:
 - use node and dummy to hold new list, 遍历head.next .... null.    
+- Map 在这里用来: 1. avoid creating same node; 2. return the item if existing
+- map 的 key全部是old object, 新的key全部是 newly created object
 - 每一步都check map里面有没有head. 没有? 加上
 - 每一步都check map里面有没有head.random. 没有? 加上
 

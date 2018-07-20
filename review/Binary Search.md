@@ -1,7 +1,7 @@
  
  
  
-## Binary Search (37)
+## Binary Search (38)
 **0. [Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)**      Level: Review      Tags: [Binary Search, Segment Tree]
       
 
@@ -198,25 +198,26 @@ Note:
 
 ---
 
-**11. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**11. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Subarray, Two Pointers]
       
+time: O(n)
+space: O(1)
 
-方法1:
-2 pointer, O(n). 找subarray, start 或 end pointer，每次一格这样移动.
+给一串positive integer, 找最短的subarray sum, where the sum >= s
 
-好的策略: 
-1. 先找一个solution, 定住end. 
-2. 然后移动start; 记录每个solution if occurs
-3. 然后再移动end，往下找。
+#### Two pointer
+- 全部是positive integer, 那么preSum一定是增长的.
+- 那其实就用two pointer: `start=0, end=0` 不断往前移动. 策略: 
+- 1. end++ until a solution where sum >= s is reached
+- 2. 然后移动start; 记录每个solution, Math.min(min, end - start);
+- 3. 然后再移动end，往下找
+- Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
 
-Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
+#### Binary Search
+- O(nlogn) NOT DONE.
 
-方法2:
-Double for loop, base i 每次只+1, 所以最后O(n^2)
-
-方法3:
-Binary Search, O(nLogN)
-Not done yet
+#### Double For loop
+- O(n^2), inefficient
 
 
 
@@ -664,6 +665,32 @@ space: O(n)
 - 如果不上升, 应该去list里面, 找到最小的那个刚好大于new num的数字, 把它换成num
 - 这样就完成了baseline. 举个例子, 比如替换的刚好是在list最后一个element, 等于就是把peak下降了, 那么后面其他的数字就可能继续上升.
 - '维护baseline就是一个递增的数列' 的证明, 还没有仔细想.
+
+
+
+---
+
+**37. [Search Rotated in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Rotated%20in%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
+      
+time: log(n)
+space: O(1)
+
+#### Binary Search
+- 关键点, 是找到 [mid]是在左边/还是右边的continous increasing subarray: 比较 `A[start] < A[mid]`
+- 在两个section 里面分别讨论 target 的位置     
+- 1. `nums[start] < nums[mid]`: start是从index=0开始的, 那就说明 `mid在前半段`
+- `start<target<mid`: target 在这个section里面, end = mid;
+- `target > mid`: start = mid;
+- 2. `nums[start] > nums[mid]`: start是从index=0开始的, 那就说明 `mid在后半段`
+- `mid < target < end`: start = mid;
+- `target < mid`: end = mid;   
+
+#### binary search break point, 然后继续binary search target
+- 1. binay search break point     
+- 2. binary search target      
+- 注意等号，在判断target在前半段还是后半段：if (A[p1] <= target && target <= A[breakPoint])      
+
+
 
 
 

@@ -1,7 +1,7 @@
  
  
  
-## Medium (233)
+## Medium (235)
 **0. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium      Tags: []
       
 
@@ -472,7 +472,7 @@ while里面two pointer移动。每次如果num[left]+num[right] > target，那�
 
 ---
 
-**32. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium      Tags: [Array, DP]
+**32. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium      Tags: [Array, DP, Subarray]
       
 
 从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
@@ -1002,25 +1002,26 @@ Singly-linked list需要reverse, 用stack.
 
 ---
 
-**60. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**60. [Minimum Size Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Size%20Subarray%20Sum.java)**      Level: Medium      Tags: [Array, Binary Search, Subarray, Two Pointers]
       
+time: O(n)
+space: O(1)
 
-方法1:
-2 pointer, O(n). 找subarray, start 或 end pointer，每次一格这样移动.
+给一串positive integer, 找最短的subarray sum, where the sum >= s
 
-好的策略: 
-1. 先找一个solution, 定住end. 
-2. 然后移动start; 记录每个solution if occurs
-3. 然后再移动end，往下找。
+#### Two pointer
+- 全部是positive integer, 那么preSum一定是增长的.
+- 那其实就用two pointer: `start=0, end=0` 不断往前移动. 策略: 
+- 1. end++ until a solution where sum >= s is reached
+- 2. 然后移动start; 记录每个solution, Math.min(min, end - start);
+- 3. 然后再移动end，往下找
+- Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
 
-Note: 虽然一眼看上去是nested loop.但是分析后，发现其实就是按照end pointer移动的Loop。start每次移动一格。总体上，还是O(n)
+#### Binary Search
+- O(nlogn) NOT DONE.
 
-方法2:
-Double for loop, base i 每次只+1, 所以最后O(n^2)
-
-方法3:
-Binary Search, O(nLogN)
-Not done yet
+#### Double For loop
+- O(n^2), inefficient
 
 
 
@@ -1892,7 +1893,7 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 ---
 
-**100. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math]
+**100. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -2279,7 +2280,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**116. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP]
+**116. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -2892,12 +2893,16 @@ LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
 
 **148. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium      Tags: [Hash Table, Linked List]
       
+time: O(n)
+space: O(1)
 
 deep copy linked list. linked list 上有random pointer to other nodes.
 
-#### HashMap
-- Basic Implementation
+#### HashMap, Linked List
+- Basic Implementation of copy linked list:
 - use node and dummy to hold new list, 遍历head.next .... null.    
+- Map 在这里用来: 1. avoid creating same node; 2. return the item if existing
+- map 的 key全部是old object, 新的key全部是 newly created object
 - 每一步都check map里面有没有head. 没有? 加上
 - 每一步都check map里面有没有head.random. 没有? 加上
 
@@ -3705,7 +3710,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 - bucket[x] 是 count when # of citation == x. 
 - 如果 x 大于 n的时候, 就超出了index范围, 但是刚好这个问题可以包容, 把这样的情况记位在bucket[n]就可以
 - 巧妙: `sum += bucket[h]` where `h = [n ~ 0]` 利用了h-index的definition:
-- # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
+- #of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
 - 这里运用到了bucket sort的思想, 但是并不是sorting, 而h-index的定义运用的很巧妙.
 - Read more about actual bucket sort: https://en.wikipedia.org/wiki/Bucket_sort
 
@@ -3798,19 +3803,24 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 
 ---
 
-**193. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, Sort]
+**193. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, PriorityQueue, Sort, Subarray]
       
+time: O(nlogn)
+space: O(n)
 
 给一串数字, 找subarray的首尾index, 条件: subarray最接近0.
 
-#### PreSum
-- Can be a 2D array, or a `class Point`
+#### PreSum + index in class
+- Can be a 2D array, or a `class Point` to store preSum + index
 - Sort preSum: smaller (有可能负数) 靠前, 大数字靠后
-- 比较preSum种相连接的两个节点, 找差值min
-- 因为最接近的两个preSum节点的差值肯定是最小
+- 比较preSum种相连接的两个节点, 找差值min; 因为最接近的两个preSum节点的差值肯定是最小
 - min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
 - time O(nlogn), sort
 - space: O(n)
+
+#### 为何没有用 map<preSum, index> ?
+- 因为map虽然能存 preSum + index, 但是无法有效排序
+- 所以用一个class来存这两个信息, 然后合理排序
 
 
 
@@ -4221,19 +4231,26 @@ space: O(n)
 
 ---
 
-**208. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+**208. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
 
-#### Hash Table
+给一串数字, 找其中的 # of subarray的 where subararySum == k.
+
+#### Hash Table + PreSum
 - Hash Table two sum 思想, but `save frequency of current preSum`
-- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
-- `k = sum - portion`, and reversely, `portion = sum - k`
-- We know the value of sum and k, so portion will be requested
-- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
-- map.get(portion) = the # of possible ways to reach k
+- map.get(priorSum) = the # of possible ways to reach k
+- Keep counting
 - O(n) time, O(n) space
+
+##### Detailed explanation
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`. Here: `k = sum - priorSum`, and reversely, `priorSum = sum - k`
+- priorSum is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(priorSum): # ways to sum up to priorSum.
+- Also, to get `priorSum + k = sum`: each unique way of building priorSum will append later elements to reach sum (the later elemnts will sum up to k)
+- Therefore # ways to build `k = map.get(priorSum)`
+
 
 #### PreSum, O(n^2)
 - move from starting point i = [0 ~ n -1] and define range = [i ~ j]
@@ -4524,6 +4541,10 @@ space: O(X), X = max wall width
 **221. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
       
 
+给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
+
+要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
+
 #### Union Find
 - TODO
 
@@ -4581,7 +4602,7 @@ space: O(X), X = max wall width
 
 ---
 
-**225. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum]
+**225. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -4714,6 +4735,54 @@ space: O(n)
 - 这里我们用了 `Map<col, Node>` 来track col, Node 里面用了 `node.level`来track level (其实再一个map也可以)
 - 这样在结尾要sort,就会非常慢: Visit all nodes O(n) + O(logK) + O(KlogM), K = # of cols, M = # of items in col
 - 应该也是可以optimize map keys的, 反正都是continuous key
+
+
+
+
+
+---
+
+**233. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
+      
+time: O(n)
+space: O(1)
+
+给一个binary tree, 用constant space link 所有所有node.next to same level next node.
+
+#### DFS
+- 用constant space 也就是不可以BFS, 但是mention了用dfs stack space没问题 (提示啊!)
+- 1. link leftChild -> rightChild
+- 2. resolve root.rightMost child -> first possible root.next.left/right child
+- 3. dfs connect(rightChild), connect(leftChild)
+- Each level should be fully linked from left side, so every reach to parent will have valid path or end.
+
+#### Trick
+- 1. 处理 nextNode -> next -> next ...的case: 找到第一个有child的next node才可以罢休. 这个case很容易miss
+- 2. 我们的假设是, 上一个level的所有node都应该是linked, 那么在dfs时候, 就应该先connect(root.right). 右孩子的全处理完毕, 那么trick1才可以施行.
+
+
+
+---
+
+**234. [Search Rotated in Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20Rotated%20in%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
+      
+time: log(n)
+space: O(1)
+
+#### Binary Search
+- 关键点, 是找到 [mid]是在左边/还是右边的continous increasing subarray: 比较 `A[start] < A[mid]`
+- 在两个section 里面分别讨论 target 的位置     
+- 1. `nums[start] < nums[mid]`: start是从index=0开始的, 那就说明 `mid在前半段`
+- `start<target<mid`: target 在这个section里面, end = mid;
+- `target > mid`: start = mid;
+- 2. `nums[start] > nums[mid]`: start是从index=0开始的, 那就说明 `mid在后半段`
+- `mid < target < end`: start = mid;
+- `target < mid`: end = mid;   
+
+#### binary search break point, 然后继续binary search target
+- 1. binay search break point     
+- 2. binary search target      
+- 注意等号，在判断target在前半段还是后半段：if (A[p1] <= target && target <= A[breakPoint])      
 
 
 

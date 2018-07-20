@@ -1,7 +1,7 @@
  
  
  
-## Tree (49)
+## Tree (50)
 **0. [Inorder Successor in Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, Tree]
       
 
@@ -1016,6 +1016,28 @@ space: O(n)
 - 应该也是可以optimize map keys的, 反正都是continuous key
 
 
+
+
+
+---
+
+**49. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
+      
+time: O(n)
+space: O(1)
+
+给一个binary tree, 用constant space link 所有所有node.next to same level next node.
+
+#### DFS
+- 用constant space 也就是不可以BFS, 但是mention了用dfs stack space没问题 (提示啊!)
+- 1. link leftChild -> rightChild
+- 2. resolve root.rightMost child -> first possible root.next.left/right child
+- 3. dfs connect(rightChild), connect(leftChild)
+- Each level should be fully linked from left side, so every reach to parent will have valid path or end.
+
+#### Trick
+- 1. 处理 nextNode -> next -> next ...的case: 找到第一个有child的next node才可以罢休. 这个case很容易miss
+- 2. 我们的假设是, 上一个level的所有node都应该是linked, 那么在dfs时候, 就应该先connect(root.right). 右孩子的全处理完毕, 那么trick1才可以施行.
 
 
 

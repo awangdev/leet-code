@@ -1,44 +1,46 @@
-H
+M
+1532072230
+tags: Array, Binary Search
+time: log(n)
+space: O(1)
 
-方法1：O(logn)
-    还是把它先当做正常的sorted list开始搜。    
-    但是在比较的时候，多比较一个A[start] < A[mid]?     
-    在1 和 2 里面分别讨论 target 的位置     
-        1. A[start] < A[mid] ?     
-            说明在前半段    
-            - start<target<mid     
-            - target > mid      
-        2. A[start] > A[mid]     
-            说明 start 还在前半段，而mid在后半段     
-            - mid < target < end     
-            - target < mid     
+#### Binary Search
+- 关键点, 是找到 [mid]是在左边/还是右边的continous increasing subarray: 比较 `A[start] < A[mid]`
+- 在两个section 里面分别讨论 target 的位置     
+- 1. `nums[start] < nums[mid]`: start是从index=0开始的, 那就说明 `mid在前半段`
+- `start<target<mid`: target 在这个section里面, end = mid;
+- `target > mid`: start = mid;
+- 2. `nums[start] > nums[mid]`: start是从index=0开始的, 那就说明 `mid在后半段`
+- `mid < target < end`: start = mid;
+- `target < mid`: end = mid;   
 
-   
-
-方法2：O(logn)     
-    1. binay search break point     
-    2. binary search target      
-    注意等号，在判断target在前半段还是后半段：if (A[p1] <= target && target <= A[breakPoint])      
+#### binary search break point, 然后继续binary search target
+- 1. binay search break point     
+- 2. binary search target      
+- 注意等号，在判断target在前半段还是后半段：if (A[p1] <= target && target <= A[breakPoint])      
 
 
 
 ```
 /*
-Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
-(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
 
 You are given a target value to search. If found in the array return its index, otherwise return -1.
 
 You may assume no duplicate exists in the array.
 
-Example
-For [4, 5, 1, 2, 3] and target=1, return 2
+Your algorithm's runtime complexity must be in the order of O(log n).
 
-For [4, 5, 1, 2, 3] and target=0, return -1
+Example 1:
 
-Tags Expand 
-Binary Search Array Sorted Array
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+Example 2:
+
+Input: nums = [4,5,6,7,0,1,2], target = 3
+Output: -1
 */
 
 
@@ -51,51 +53,36 @@ Binary Search Array Sorted Array
     //3. Need to locate that continous section, then check if target is part of the continous section
 
 */
-public class Solution { 
-    public int search(int[] A, int target) {
-        // write your code here
-        if (A.length == 0) {
-            return -1;
-        }
-        
-        int start = 0;
-        int end = A.length - 1;
-        int mid;
-        
+
+class Solution {
+    public int search(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return -1;
+        int start = 0, end = nums.length - 1;
         while (start + 1 < end) {
-            mid = start + (end - start) / 2;
-            if (A[mid] == target) {//Check central point
-                return mid;
-            }
-            if (A[start] < A[mid]){//1st section is continous
-                if (A[start] <= target && target <= A[mid]) {//target in 1st section?
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[start] < nums[mid]) { //Land in 1st continous section
+                if (nums[start] <= target && target <= nums[mid]) { //target in 1st section?
                     end = mid;
                 } else {
                     start = mid;
                 }
-            } else {//2nd section is continous
-                if (A[mid] <= target && target <= A[end]) {//target in 2nd section?
+            } else { //Land in 2nd continous section
+                if (nums[mid] <= target && target <= nums[end]) { //target in 2nd section?
                     start = mid;
                 } else {
                     end = mid;
                 }
             }
-        }//While
-        
-        if (A[start] == target) {
-            return start;
-        } else if (A[end] == target) {
-            return end;
-        } else {
-            return -1;
         }
+        if (nums[start] == target) return start;
+        if (nums[end] == target) return end;
+        
+        return -1;
     }
 }
 
-/*
-    Easy solution:
-    Find the break point, then decide which section to binary search
-*/
+// Solution2: Find the break point, then decide which section to binary search
 public class Solution {
     
     public int search(int[] A, int target) {

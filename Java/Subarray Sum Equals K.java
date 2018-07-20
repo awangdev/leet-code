@@ -1,17 +1,24 @@
 M
 1531625267
-tags: Array, Hash Table, PreSum
+tags: Array, Hash Table, PreSum, Subarray
 time: O(n)
 space: O(n)
 
-#### Hash Table
+给一串数字, 找其中的 # of subarray的 where subararySum == k.
+
+#### Hash Table + PreSum
 - Hash Table two sum 思想, but `save frequency of current preSum`
-- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
-- `k = sum - portion`, and reversely, `portion = sum - k`
-- We know the value of sum and k, so portion will be requested
-- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
-- map.get(portion) = the # of possible ways to reach k
+- map.get(priorSum) = the # of possible ways to reach k
+- Keep counting
 - O(n) time, O(n) space
+
+##### Detailed explanation
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`. Here: `k = sum - priorSum`, and reversely, `priorSum = sum - k`
+- priorSum is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(priorSum): # ways to sum up to priorSum.
+- Also, to get `priorSum + k = sum`: each unique way of building priorSum will append later elements to reach sum (the later elemnts will sum up to k)
+- Therefore # ways to build `k = map.get(priorSum)`
+
 
 #### PreSum, O(n^2)
 - move from starting point i = [0 ~ n -1] and define range = [i ~ j]
@@ -42,8 +49,9 @@ class Solution {
         preSumFreq.put(0, 1);
         for (int num : nums) {
             sum += num;
-            if (preSumFreq.containsKey(sum - k)) {
-                count += preSumFreq.get(sum - k);
+            int priorSum = sum - k;
+            if (preSumFreq.containsKey(priorSum)) { // # ways to sum up to priorSum.
+                count += preSumFreq.get(priorSum); // each way of priorSum will extend later elements to reach sum (the later elemnts will sum up to k)
             }
             preSumFreq.put(sum, preSumFreq.getOrDefault(sum, 0) + 1);
         }

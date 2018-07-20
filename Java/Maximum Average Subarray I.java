@@ -1,8 +1,11 @@
 E
 1517552169
-tags: Array
+tags: Array, Subarray
+time: O(n)
+space: O(1)
 
-简单的求sum, 同时求max, 结尾求余数就好.
+简单的求sum of fixed window k, 同时求max avg, 结尾求余数就好.
+
 ```
 /*
 Given an array consisting of n integers, find the contiguous subarray of given length k 

@@ -26,7 +26,7 @@
 - bucket[x] 是 count when # of citation == x. 
 - 如果 x 大于 n的时候, 就超出了index范围, 但是刚好这个问题可以包容, 把这样的情况记位在bucket[n]就可以
 - 巧妙: `sum += bucket[h]` where `h = [n ~ 0]` 利用了h-index的definition:
-- # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
+- #of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
 - 这里运用到了bucket sort的思想, 但是并不是sorting, 而h-index的定义运用的很巧妙.
 - Read more about actual bucket sort: https://en.wikipedia.org/wiki/Bucket_sort
 

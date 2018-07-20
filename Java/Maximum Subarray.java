@@ -1,10 +1,10 @@
 E
 1525331164
-tags: DP, Sequence DP, Array, Divide and Conquer, DFS, PreSum
+tags: DP, Sequence DP, Array, Divide and Conquer, DFS, PreSum, Subarray
 time: O(n)
 space: O(n), O(1) rolling array
 
-给一串数组, 找数组中间 subarray 数字之和的最大值
+给一串数组, unsorted, can have negative/positive num. 找数组中间 subarray 数字之和的最大值
 
 #### Sequence DP
 - dp[i]: 前i个element,包括 last element (i-1), 可能组成的 subarray 的最大sum.
@@ -58,6 +58,19 @@ which is more subtle.
 
  */
 
+// Despte the detailed dp[] solution, we have the light version:
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length == 0) return Integer.MIN_VALUE;
+        int preMaxSum = 0, max = Integer.MIN_VALUE;
+        for (int num : nums) {
+            preMaxSum = Math.max(num, preMaxSum + num);
+            max = Math.max(max, preMaxSum);
+        }
+        return max;
+    }
+}
+
 /*
 Thoughts:
 sequence dp
@@ -105,6 +118,8 @@ class Solution {
         return max;
     }
 }
+
+
 
 // checking dp[i-1] >= 0.   Same as Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]);
 class Solution {

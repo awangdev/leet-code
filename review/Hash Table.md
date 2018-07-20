@@ -613,12 +613,16 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 **32. [Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)**      Level: Medium      Tags: [Hash Table, Linked List]
       
+time: O(n)
+space: O(1)
 
 deep copy linked list. linked list 上有random pointer to other nodes.
 
-#### HashMap
-- Basic Implementation
+#### HashMap, Linked List
+- Basic Implementation of copy linked list:
 - use node and dummy to hold new list, 遍历head.next .... null.    
+- Map 在这里用来: 1. avoid creating same node; 2. return the item if existing
+- map 的 key全部是old object, 新的key全部是 newly created object
 - 每一步都check map里面有没有head. 没有? 加上
 - 每一步都check map里面有没有head.random. 没有? 加上
 
@@ -749,12 +753,19 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**40. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+**40. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
       
+time: O(n)
+space: O(n)
 
 给一串数字, 找其中的一个subarray的 [start, end] index, 条件: subarary sum == 0.
 
 #### Hash Table
+- `subarray sum equals k` 的简单版: k = 0
+- 求preSum, 然后不断check `map.containsKey(preSum - k)`. 
+- 如果 `priorSum = preSum - k == 0`, 说明 [priorSum.index + 1, curr index] 就是我们要找的这一段
+
+#### Previous notes, same preSum + map solution
 - 分析出，如果sum[0~a]=x, 然后sum[0~b]=x, 说明sum[a+1 ~ b] == 0
 - 用hashMap存每个sum[0~i]的值和index i. 如果有重复，就找到了一组sum为0的数组.
 
@@ -803,7 +814,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 - bucket[x] 是 count when # of citation == x. 
 - 如果 x 大于 n的时候, 就超出了index范围, 但是刚好这个问题可以包容, 把这样的情况记位在bucket[n]就可以
 - 巧妙: `sum += bucket[h]` where `h = [n ~ 0]` 利用了h-index的definition:
-- # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
+- #of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
 - 这里运用到了bucket sort的思想, 但是并不是sorting, 而h-index的定义运用的很巧妙.
 - Read more about actual bucket sort: https://en.wikipedia.org/wiki/Bucket_sort
 
@@ -901,19 +912,26 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**47. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+**47. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
 
-#### Hash Table
+给一串数字, 找其中的 # of subarray的 where subararySum == k.
+
+#### Hash Table + PreSum
 - Hash Table two sum 思想, but `save frequency of current preSum`
-- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`
-- `k = sum - portion`, and reversely, `portion = sum - k`
-- We know the value of sum and k, so portion will be requested
-- portion is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
-- map.get(portion) = the # of possible ways to reach k
+- map.get(priorSum) = the # of possible ways to reach k
+- Keep counting
 - O(n) time, O(n) space
+
+##### Detailed explanation
+- From the orignal presum solution: `target = preSum[j] - preSum[i - 1]`. Here: `k = sum - priorSum`, and reversely, `priorSum = sum - k`
+- priorSum is just previously calcualted sum; track its frequency using `map<preSumValue, frequency>`
+- map.get(priorSum): # ways to sum up to priorSum.
+- Also, to get `priorSum + k = sum`: each unique way of building priorSum will append later elements to reach sum (the later elemnts will sum up to k)
+- Therefore # ways to build `k = map.get(priorSum)`
+
 
 #### PreSum, O(n^2)
 - move from starting point i = [0 ~ n -1] and define range = [i ~ j]
@@ -974,6 +992,10 @@ space: O(X), X = max wall width
 **50. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
       
 
+给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
+
+要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
+
 #### Union Find
 - TODO
 
@@ -993,7 +1015,7 @@ space: O(X), X = max wall width
 
 ---
 
-**51. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum]
+**51. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)

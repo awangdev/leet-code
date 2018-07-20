@@ -1,6 +1,6 @@
 M
 1516608238
-tags: Array, DP
+tags: Array, DP, Subarray
 
 从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
 

@@ -2,6 +2,10 @@ M
 1531813218
 tags: DFS, Union Find, Hash Table
 
+给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
+
+要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
+
 #### Union Find
 - TODO
 

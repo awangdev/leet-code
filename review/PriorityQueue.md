@@ -1,7 +1,7 @@
  
  
  
-## PriorityQueue (10)
+## PriorityQueue (11)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
@@ -176,7 +176,30 @@
 
 ---
 
-**8. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**8. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, PriorityQueue, Sort, Subarray]
+      
+time: O(nlogn)
+space: O(n)
+
+给一串数字, 找subarray的首尾index, 条件: subarray最接近0.
+
+#### PreSum + index in class
+- Can be a 2D array, or a `class Point` to store preSum + index
+- Sort preSum: smaller (有可能负数) 靠前, 大数字靠后
+- 比较preSum种相连接的两个节点, 找差值min; 因为最接近的两个preSum节点的差值肯定是最小
+- min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
+- time O(nlogn), sort
+- space: O(n)
+
+#### 为何没有用 map<preSum, index> ?
+- 因为map虽然能存 preSum + index, 但是无法有效排序
+- 所以用一个class来存这两个信息, 然后合理排序
+
+
+
+---
+
+**9. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -205,7 +228,7 @@
 
 ---
 
-**9. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
+**10. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
       
 
 #### PriorityQueue

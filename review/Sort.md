@@ -295,7 +295,7 @@ implement quick sort.
 - bucket[x] 是 count when # of citation == x. 
 - 如果 x 大于 n的时候, 就超出了index范围, 但是刚好这个问题可以包容, 把这样的情况记位在bucket[n]就可以
 - 巧妙: `sum += bucket[h]` where `h = [n ~ 0]` 利用了h-index的definition:
-- # of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
+- #of papers (sum of bucket[n]...bucket[0]) has more than h cidations 
 - 这里运用到了bucket sort的思想, 但是并不是sorting, 而h-index的定义运用的很巧妙.
 - Read more about actual bucket sort: https://en.wikipedia.org/wiki/Bucket_sort
 
@@ -374,19 +374,24 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 
 ---
 
-**19. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, Sort]
+**19. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, PriorityQueue, Sort, Subarray]
       
+time: O(nlogn)
+space: O(n)
 
 给一串数字, 找subarray的首尾index, 条件: subarray最接近0.
 
-#### PreSum
-- Can be a 2D array, or a `class Point`
+#### PreSum + index in class
+- Can be a 2D array, or a `class Point` to store preSum + index
 - Sort preSum: smaller (有可能负数) 靠前, 大数字靠后
-- 比较preSum种相连接的两个节点, 找差值min
-- 因为最接近的两个preSum节点的差值肯定是最小
+- 比较preSum种相连接的两个节点, 找差值min; 因为最接近的两个preSum节点的差值肯定是最小
 - min所在的两个节点的index, 就是result candidate: 这两个index可能再原nums里面相差很远
 - time O(nlogn), sort
 - space: O(n)
+
+#### 为何没有用 map<preSum, index> ?
+- 因为map虽然能存 preSum + index, 但是无法有效排序
+- 所以用一个class来存这两个信息, 然后合理排序
 
 
 
