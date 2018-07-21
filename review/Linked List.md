@@ -320,10 +320,16 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 
 **19. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
+time: O(1)
+space: O(n)
+
+Least Recently Used (LRU) cache: `get(key)`, `put(key, value)`
+
+When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 #### Double Linked List
-- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
-- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- 用了一个特别的双向的ListNode，有了`head`和`tail`，这样就大大加快了速度。     
+- 主要加快的就是那个`更新排位`的过程，找到item hashmap O(1), 做减法换位也都是O(1)
 - Overall O(1)
 
 ##### 巧妙点

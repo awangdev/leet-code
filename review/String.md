@@ -203,9 +203,13 @@ Previous verison of two pointers:
 
 ---
 
-**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
+**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Review      Tags: [Hash Table, String, Two Pointers]
       
 
+H.
+给String S, T. 找min window of S, 并且这个substring contains all chars of T. Complexity O(n)
+
+#### Hash Table
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
 符合的就process as result candidate.
 

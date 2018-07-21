@@ -330,9 +330,13 @@ Previous verison of two pointers:
 
 ---
 
-**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
+**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Review      Tags: [Hash Table, String, Two Pointers]
       
 
+H.
+给String S, T. 找min window of S, 并且这个substring contains all chars of T. Complexity O(n)
+
+#### Hash Table
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
 符合的就process as result candidate.
 
@@ -4955,10 +4959,16 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 **12. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
+time: O(1)
+space: O(n)
+
+Least Recently Used (LRU) cache: `get(key)`, `put(key, value)`
+
+When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 #### Double Linked List
-- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
-- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- 用了一个特别的双向的ListNode，有了`head`和`tail`，这样就大大加快了速度。     
+- 主要加快的就是那个`更新排位`的过程，找到item hashmap O(1), 做减法换位也都是O(1)
 - Overall O(1)
 
 ##### 巧妙点
@@ -5081,6 +5091,8 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
       
 time: O(1) avg
 space: O(n)
+
+Design a data structure that supports all following operations in average O(1) time.
 
 #### Hash Table
 - 用`map<value, index> 来track value->index`, 用`list track index->value`
@@ -7430,9 +7442,13 @@ Previous verison of two pointers:
 
 ---
 
-**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
+**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Review      Tags: [Hash Table, String, Two Pointers]
       
 
+H.
+给String S, T. 找min window of S, 并且这个substring contains all chars of T. Complexity O(n)
+
+#### Hash Table
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
 符合的就process as result candidate.
 
@@ -7696,10 +7712,16 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 **26. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
+time: O(1)
+space: O(n)
+
+Least Recently Used (LRU) cache: `get(key)`, `put(key, value)`
+
+When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 #### Double Linked List
-- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
-- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- 用了一个特别的双向的ListNode，有了`head`和`tail`，这样就大大加快了速度。     
+- 主要加快的就是那个`更新排位`的过程，找到item hashmap O(1), 做减法换位也都是O(1)
 - Overall O(1)
 
 ##### 巧妙点
@@ -8295,6 +8317,8 @@ space: O(n)
       
 time: O(1) avg
 space: O(n)
+
+Design a data structure that supports all following operations in average O(1) time.
 
 #### Hash Table
 - 用`map<value, index> 来track value->index`, 用`list track index->value`
@@ -12808,10 +12832,16 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 
 **19. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
+time: O(1)
+space: O(n)
+
+Least Recently Used (LRU) cache: `get(key)`, `put(key, value)`
+
+When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 #### Double Linked List
-- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
-- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- 用了一个特别的双向的ListNode，有了`head`和`tail`，这样就大大加快了速度。     
+- 主要加快的就是那个`更新排位`的过程，找到item hashmap O(1), 做减法换位也都是O(1)
 - Overall O(1)
 
 ##### 巧妙点
@@ -15786,9 +15816,13 @@ Previous verison of two pointers:
 
 ---
 
-**12. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
+**12. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Review      Tags: [Hash Table, String, Two Pointers]
       
 
+H.
+给String S, T. 找min window of S, 并且这个substring contains all chars of T. Complexity O(n)
+
+#### Hash Table
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
 符合的就process as result candidate.
 
@@ -22251,6 +22285,8 @@ space: O(1)
       
 time: O(1) avg
 space: O(n)
+
+Design a data structure that supports all following operations in average O(1) time.
 
 #### Hash Table
 - 用`map<value, index> 来track value->index`, 用`list track index->value`

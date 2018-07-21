@@ -4660,6 +4660,8 @@ space: O(n)
 time: O(1) avg
 space: O(n)
 
+Design a data structure that supports all following operations in average O(1) time.
+
 #### Hash Table
 - 用`map<value, index> 来track value->index`, 用`list track index->value`
 - map查看value是否存在

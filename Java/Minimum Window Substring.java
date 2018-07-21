@@ -1,7 +1,11 @@
-H
+R
 1519980648
 tags: Hash Table, Two Pointers, String
 
+H.
+给String S, T. 找min window of S, 并且这个substring contains all chars of T. Complexity O(n)
+
+#### Hash Table
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
 符合的就process as result candidate.
 
@@ -9,7 +13,8 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 ```
 /*
-Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
+Given a string S and a string T, find the minimum window in S 
+which will contain all the characters in T in complexity O(n).
 
 For example,
 S = "ADOBECODEBANC"
@@ -19,7 +24,8 @@ Minimum window is "BANC".
 Note:
 If there is no such window in S that covers all characters in T, return the empty string "".
 
-If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
+If there are multiple such windows, you are guaranteed that there will 
+always be only one unique minimum window in S.
 
 
 Challenge
@@ -33,6 +39,81 @@ Should the characters in minimum window has the same order in target?
 Tags Expand 
 Hash Table
 */
+
+class Solution {
+    public String minWindow(String s, String t) {
+        if (s == null || t == null || s.length() < t.length()) {
+            return "";
+        }
+        int[] map = new int[256];
+        for (char c : t.toCharArray()) map[(int)c]++;
+        int count = t.size(), start = 0, end = 0, min = Integer.MAX_VALUE, head = 0;
+        
+        while (end < s.size()) {
+            int endIndex = (int)s.charAt(end++);
+            if (map[endIndex]-- > 0) count--;
+            while (count == 0) {
+                if (end - start < min) {
+                    min = end - start;
+                    head = start;
+                }
+                int startIndex = (int)s.charAt(start++);
+                if (map[startIndex++]++ == 0) {
+                    count++;
+                }
+            }
+        }
+        return min == Integer.MAX_VALUE ? "" : s.substring(head, min);
+    }
+    
+}
+
+
+class Solution {
+    public String minWindow(String s, String t) {
+        if (s == null || t == null || s.length() < t.length()) {
+            return "";
+        }
+        int end = 0;
+        int length = Integer.MAX_VALUE;
+        String rst = "";
+
+        // Initialize source map for validation usage
+        int[] source = new int[256];
+        int[] target = new int[256];
+        for (char c : t.toCharArray()) {
+            target[c]++;
+        }
+
+        for (int i = 0; i < s.length(); i++){
+            while (end < s.length() && !valid(source, target)) {
+                source[s.charAt(end)]++;
+                end++;
+            }
+            if (valid(source, target)) {
+                if (end - i < length) {
+                    length = Math.min(length, end - i);
+                    rst = s.substring(i, end);
+                }
+            }
+            source[s.charAt(i)]--;
+        }
+        return rst;
+    }
+    
+    /*
+        Validate if the count of source map matches targetMap.
+        Use target as base, since it's substring.
+    */
+    private boolean valid(int[] source, int[] target) {
+        for (int i = 0; i < 256; i++) {
+            if (source[i] < target[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 
 /*
 Thoughts:

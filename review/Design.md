@@ -239,10 +239,16 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 **12. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
+time: O(1)
+space: O(n)
+
+Least Recently Used (LRU) cache: `get(key)`, `put(key, value)`
+
+When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 #### Double Linked List
-- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
-- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- 用了一个特别的双向的ListNode，有了`head`和`tail`，这样就大大加快了速度。     
+- 主要加快的就是那个`更新排位`的过程，找到item hashmap O(1), 做减法换位也都是O(1)
 - Overall O(1)
 
 ##### 巧妙点
@@ -365,6 +371,8 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
       
 time: O(1) avg
 space: O(n)
+
+Design a data structure that supports all following operations in average O(1) time.
 
 #### Hash Table
 - 用`map<value, index> 来track value->index`, 用`list track index->value`
