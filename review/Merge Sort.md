@@ -1,7 +1,7 @@
  
  
  
-## Merge Sort (3)
+## Merge Sort (4)
 **0. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
       
 
@@ -16,7 +16,37 @@
 
 ---
 
-**1. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
+**1. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, Merge Sort, PriorityQueue]
+      
+
+#### Priorityqueue
+- Iterative, PQ来排列所有list的leading node.
+- 记得k lists 需要是已经sort好的
+- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
+- Note:
+- 1. 不要忘记customized priority需要一个customized new Comparator<T>()
+- 2. Given list 里面也可能有null node, 不要忘记查.
+
+#### Divide and Conquer
+- always merge 2 list at a time
+- 3 branches: 
+- 1. start == end
+- 2. start + 1 == end
+- 3. or start + 1 < end (recursive and keep merging)
+- T(k) = 2T(k/2) + O(mk), where m = longest list length
+- time complexity: O(nklogk)
+- TODO: write the recursive code.
+
+#### Followup
+- 如果k很大，一个机器上放不下所有的k list怎么办？ 
+- 如果Merge起来的很长，一个机器上放不下怎么办？
+
+
+
+
+---
+
+**2. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
       
 
 #### Merge sort
@@ -34,7 +64,7 @@
 
 ---
 
-**2. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
+**3. [Count of Range Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Range%20Sum.java)**      Level: Hard      Tags: [BST, Divide and Conquer, Merge Sort, PreSum]
       
 
 TODO: Write the code + merge function

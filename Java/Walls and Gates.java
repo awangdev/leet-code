@@ -1,6 +1,6 @@
 M
 1531812629
-tags: BFS, DFS
+tags: BFS, DFS, Backtracking
 
 给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
 

@@ -68,7 +68,7 @@ class Solution {
                     final Integer[] intarr = {nums[start], nums[end], nums[i]};
                     result.add(Arrays.asList(intarr));
                     start++;
-                    while (start < end && nums[start - 1] == nums[start]) {
+                    while (start < end && nums[start - 1] == nums[start]) { // skip duplicates
                         start++;
                     }
                 } else if (nums[start] + nums[end] + nums[i] < 0) {

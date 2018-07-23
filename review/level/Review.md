@@ -97,7 +97,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**5. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
+**5. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
       
 
 

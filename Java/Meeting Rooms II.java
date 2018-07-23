@@ -4,11 +4,17 @@ tags: Heap, Greedy, Sort, Sweep Line
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue, Sweep Line
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
+- 跟 Merge Interval 解法一个路子.
 
-#### 方法2: 尝试了一下用一个sorted Array + HashMap
+
+#### Sort Array, count room, endIndex
+- 这个方法相对抽象: sort start times, end times, 然后开始过start time
+- 一旦start time less < end[endIndex], 那么房间count就++.
+
+#### sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 ```
@@ -25,15 +31,6 @@ Similar Problems: (H) Merge Intervals, (E) Meeting Rooms
 */
 
 
-/**
- * Definition for an interval.
- * public class Interval {
- *     int start;
- *     int end;
- *     Interval() { start = 0; end = 0; }
- *     Interval(int s, int e) { start = s; end = e; }
- * }
- */
 /*
 Thoughts:
 Counts the num of concurrent meetings.
@@ -56,11 +53,7 @@ class Solution {
         }
         int count = 0;
         int max = 0;
-        PriorityQueue<Point> queue = new PriorityQueue<Point>(new Comparator<Point>() {
-            public int compare(Point a, Point b) {
-                return a.pos - b.pos;
-            }
-        });
+        PriorityQueue<Point> queue = new PriorityQueue<Point>(Comparator.comparing(p -> p.pos));
         
         for (Interval interval: intervals) {
             queue.offer(new Point(interval.start, 1));
@@ -79,6 +72,36 @@ class Solution {
         }
         
         return max;
+    }
+}
+
+
+// O(nlogn)
+class Solution {
+    public int minMeetingRooms(Interval[] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
+        int n = intervals.length;
+        int start[] = new int[n], end[] = new int[n];
+        for(int i=0; i < n; i++) {
+            start[i] = intervals[i].start;
+            end[i] = intervals[i].end;
+        }
+        
+        Arrays.sort(start);
+        Arrays.sort(end);
+        
+        int rooms = 0;
+        int indexEnd = 0;
+        for(int i = 0; i < n; i++) {
+            if (start[i] < end[indexEnd]) {
+                rooms++;
+            } else {
+                indexEnd++;
+            }
+        }
+        return rooms;
     }
 }
 

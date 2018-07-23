@@ -13,6 +13,11 @@ sapce: O(2^n)
 - sort O(nlogn), subset: O(2^n)
 - space O(2^n), save results
 
+#### Simplier BFS on selected candidates
+- use rst = `set<List<String>>` to cache candidates, starting from []
+- add one num at a time; use `rst.contains()` to O(1) check candidates
+- save every result rst.
+
 #### BFS
 - Regular BFS, 注意考虑如果让one level to generate next level
 - skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
@@ -88,6 +93,41 @@ class Solution {
             dfs(result, list, nums, i + 1);
             list.remove(list.size() - 1);
         }
+    }
+}
+
+// Simplier BFS + backtracking
+// Sort O(nlogn), extra space O(2^n), pick/not pick O(2^n)
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+    	Set<List<Integer>> rst = new HashSet<>();
+    	if (nums == null || nums.length == 0) return new ArrayList<>();
+        int n = nums.length;
+
+        Arrays.sort(nums);
+    	Queue<List<Integer>> queue = new LinkedList<>();
+    	List<Integer> list = new ArrayList<>();
+    	queue.offer(new ArrayList<>(list));
+    	rst.add(new ArrayList<>(list));
+    	
+    	for (int i = 0; i < n; i++) {
+            int num = nums[i];
+    		int size = queue.size();
+    		while(size > 0) {
+	    		list = queue.poll();
+	    		//Pick
+	    		list.add(num);
+	    		if (!rst.contains(list)) {//O(n)
+	    			rst.add(new ArrayList<>(list));
+	    		}
+	    		queue.offer(new ArrayList<>(list));
+	    		list.remove(list.size() - 1);
+	    		//Not pick
+	    		queue.offer(new ArrayList<>(list));
+	    		size--;
+	    	}
+    	}
+    	return new ArrayList<>(rst);
     }
 }
 

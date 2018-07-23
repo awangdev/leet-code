@@ -158,11 +158,17 @@ findMedian: O(1)
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue, Sweep Line
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
+- 跟 Merge Interval 解法一个路子.
 
-#### 方法2: 尝试了一下用一个sorted Array + HashMap
+
+#### Sort Array, count room, endIndex
+- 这个方法相对抽象: sort start times, end times, 然后开始过start time
+- 一旦start time less < end[endIndex], 那么房间count就++.
+
+#### sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 
@@ -219,7 +225,7 @@ HashHeap?
 
 ---
 
-**10. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**10. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, Merge Sort, PriorityQueue]
       
 
 #### Priorityqueue
@@ -297,7 +303,7 @@ HashHeap?
 
 ---
 
-**14. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
+**14. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
 

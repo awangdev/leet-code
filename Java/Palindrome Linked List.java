@@ -5,7 +5,7 @@ tags: Linked List, Two Pointers
 #### Reverse Linked List
 - Palindrome概念很简单, 但是要在Linkde List random access坐标, 是很难得: 所以需要把一半 ListNode 翻转
 - reverse linked list: 遍历接开头
-- 用快慢指正找到mid point
+- 用快慢指正找到mid point: the slow pointer 其实是: `even list - pointer before mid`, `odd list -> pointer on mid`
 - Time O(n), 而且不需要用额外的空间(只是调换半个list的内部顺序), 所以空间O(1)
 
 #### Previous Note

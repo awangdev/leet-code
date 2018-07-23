@@ -26,9 +26,11 @@ A message containing letters from A-Z is being encoded to numbers using the foll
 'B' -> 2
 ...
 'Z' -> 26
-Beyond that, now the encoded string can also contain the character '*', which can be treated as one of the numbers from 1 to 9.
+Beyond that, now the encoded string can also contain the character '*', 
+which can be treated as one of the numbers from 1 to 9.
 
-Given the encoded message containing digits and the character '*', return the total number of ways to decode it.
+Given the encoded message containing digits and the character '*', 
+return the total number of ways to decode it.
 
 Also, since the answer may be very large, you should return the output mod 109 + 7.
 

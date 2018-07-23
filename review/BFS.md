@@ -80,7 +80,7 @@
 
 ---
 
-**3. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph]
+**3. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Hash Table]
       
 
 给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
@@ -449,8 +449,10 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**18. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Design, Divide and Conquer, Tree]
+**18. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Deque, Design, Divide and Conquer, Tree]
       
+
+Serialize and Deserialize Binary Tree
 
 #### DFS, Divide and Conquer
 ##### Serilize
@@ -490,9 +492,7 @@ count这个graph里面有多少个独立的component.
 - 在start string基础上，string的每个字母都遍历所有26个字母
 - visited 过的 从wordList里去掉
 - time: word length m, there can be n candidates => O(mn)
-- 但是总是exceed time limit on LeetCode. However, it passes LintCode:
-- 原因是 LeetCode给的是list,  list.contains(), list.remove()  都是 O(logn) time!!!
-- convert to set first.
+- NOTE: use set to contain words, candidates
 
 #### Trie
 - timeout, overkill
@@ -693,6 +693,11 @@ sapce: O(2^n)
 - sort O(nlogn), subset: O(2^n)
 - space O(2^n), save results
 
+#### Simplier BFS on selected candidates
+- use rst = `set<List<String>>` to cache candidates, starting from []
+- add one num at a time; use `rst.contains()` to O(1) check candidates
+- save every result rst.
+
 #### BFS
 - Regular BFS, 注意考虑如果让one level to generate next level
 - skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
@@ -733,7 +738,7 @@ space: O(n)
 
 ---
 
-**28. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+**28. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, Backtracking, DFS]
       
 
 给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 

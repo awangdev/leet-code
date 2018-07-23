@@ -35,6 +35,22 @@ public class Codec {
     }
 }
 
+// Use hashcode, and store integer key
+public class Codec {
+    final String PREFIX = "http://tinyurl.com/";
+    final Map<Integer, String> map = new HashMap<>(); 
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        map.put(longUrl.hashCode(), longUrl);
+        return PREFIX + longUrl.hashCode();
+    }
+
+    // Decodes a shortened URL to its original URL.     
+    public String decode(String shortUrl) {
+        return map.get(Integer.parseInt(shortUrl.replace(PREFIX, "")));
+    }
+}
+
 // Your Codec object will be instantiated and called as such:
 // Codec codec = new Codec();
 // codec.decode(codec.encode(url));

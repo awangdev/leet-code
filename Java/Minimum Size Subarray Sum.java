@@ -22,7 +22,8 @@ space: O(1)
 
 ```
 /*
-Given an array of n positive integers and a positive integer s, find the minimal length of a subarray of which the sum ≥ s. 
+Given an array of n positive integers and a positive integer s, 
+find the minimal length of a subarray of which the sum ≥ s. 
 If there isn't one, return -1 instead.
 
 Example
@@ -42,26 +43,21 @@ Two pointer.
 1. Find the end which has sum >= s, move start forward as much as possible until sum < s.
 2. Use new start and end to look for next new end.
 */
-public class Solution {
+class Solution {
     public int minSubArrayLen(int s, int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
-        int start, end, sum;
-        start = end = sum = 0;
-        int min = Integer.MAX_VALUE;
-        while (end < nums.length) {
-            while (sum < s && end < nums.length) {
-                sum += nums[end];
-                end++;
+        if (nums == null || nums.length == 0 || s <= 0) return 0;
+        int start = 0, end = 0, sum = 0, min = Integer.MAX_VALUE;
+        int n = nums.length;
+        while (end < n) {
+            while (sum < s && end < n) {
+                sum += nums[end++];
             }
-            // move start and log any possible min
-            while (sum >= s && start >= 0) {
+            while (sum >= s && start < n) {
                 min = Math.min(min, end - start);
-                sum -= nums[start];
-                start++;
+                sum -= nums[start++];
             }
         }
+        
         return min == Integer.MAX_VALUE ? 0 : min;
     }
 }

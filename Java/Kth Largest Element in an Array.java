@@ -1,6 +1,6 @@
 M
 1531896299
-tags: Divide and Conquer, Heap
+tags: Divide and Conquer, Heap, Quick Sort
 
 ```
 /**

@@ -29,6 +29,29 @@ For example:
 Thoughts:
 26 bits => num / 26 = 1 => 'A' on that digit
 */
+// insert
+class Solution {
+    public String convertToTitle(int n) {
+        if (n <= 0) {
+            return null;
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            int remain = n % 26;
+            n = n / 26;
+            if (remain == 0) {
+                sb.insert(0, "Z");
+                n--;
+            } else {
+                sb.insert(0, (char)('A' + remain - 1));
+            }
+        }
+        return sb.toString();
+    }
+}
+
+// append
 class Solution {
     public String convertToTitle(int n) {
         if (n <= 0) {

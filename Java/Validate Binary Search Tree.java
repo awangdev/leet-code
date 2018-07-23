@@ -7,6 +7,7 @@ tags: Tree, DFS, BST, Divide and Conquer
 #### DFS
 - 查看每个parent-child关系: leftchild < root < rightChild
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- min/max 非常重要! 不然无法判断跟更上一些层的关系
 
 ##### Note: 
 - min/max需要时long type. 

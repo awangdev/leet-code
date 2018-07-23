@@ -18,7 +18,7 @@
 
 ---
 
-**1. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph]
+**1. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Hash Table]
       
 
 给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.

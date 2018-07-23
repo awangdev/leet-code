@@ -2,7 +2,15 @@ M
 1531902072
 tags: Hash Table
 
-TODO: how aout without chaning the input nums?
+find the maximum length of a contiguous subarray with `equal number of 0 and 1`
+
+#### Hash Table
+- Trick: equal number of 0 and 1, also can be reflected as equal number of -1, 1.
+- 有正负数, 就可以用 `map<preSum, index>` 这一招, 来找到之前存在过的preSum 的index, 来track max length
+- Template:
+- 1. init preSum = 0, `map.put(0, -1)`
+- 2. maintain `max = Math.max(max, i - map.get(preSum))`
+- 3. keep updating map with new presum `map.put(preSum, i)`
 
 ```
 /*

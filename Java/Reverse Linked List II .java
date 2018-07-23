@@ -66,7 +66,7 @@ public class Solution {
             node = node.next;
         }
         ListNode nodeFront = node;
-        ListNode mNode = node.next; //This is the mth node. Reserve it for post-linking
+        ListNode mNode = node.next; //This is the mth node and will be the tail of reversed list. Reserve it for post-linking
 
         node = node.next;
         for (int i = m; i <= n; i++) {
@@ -75,7 +75,7 @@ public class Solution {
             nodeFront.next = node;
             node = temp;
         }
-        // the previous 1st should link the tail
+        // the previous mth node is now at tail, and should link the very next node in the list.
         mNode.next = node;
 
         return dummy.next;

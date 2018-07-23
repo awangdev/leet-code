@@ -731,37 +731,30 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 **45. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
+Build iterator to print ascending elemnts of BST. Inorder traversal BST. Need to maintain O(1) time, O(h) space.
+
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
 每次消耗TreeNode, 都看看rightNode(其实就是下一个最小的candidate), 并且一条龙stack叠上rightNode所有的left子孙.
 
-Previous Notes:
-用O(h)空间的做法：
+#### Stack
+- 用O(h)空间的做法：
+- 理解binary search tree inorder traversal的规律：
+- 先找left.left.left ....left 到底，这里是加进stack; 然后考虑parent,然后再right.
 
-理解binary search tree inorder traversal的规律：
-   先找left.left.left ....left 到底，这里是加进stack.
-   然后考虑parent,然后再right.
-
-例如这题：
-   stack里面top，也就是tree最左下角的node先考虑,取名rst.
-   其实这个rst拿出来以后, 它也同时是最底层left null的parent，算考虑过了最底层的parent。
-   最后就考虑最底层的parent.right, 也就是rst.right.
-
-注意:
-   next()其实有个while loop, 很可能是O(h).题目要求average O(1),所以也是okay的.
+#### Details 例如这题:
+- stack里面top，也就是tree最左下角的node先考虑,取名rst.
+- 其实这个rst拿出来以后, 它也同时是最底层left null的parent，算考虑过了最底层的parent。
+- 最后就考虑最底层的parent.right, 也就是rst.right.
+- 注意: next()其实有个while loop, 很可能是O(h).题目要求average O(1),所以也是okay的.
 
 
-用O(1)空间的做法：不存stack, 时刻update current为最小值。
-
-找下一个最小值,如果current有right child：   
-   和用stack时的iteration类似,那么再找一遍current.right的left-most child,就是最小值了。
-   
-如果current没有right child:    
-    那么就要找current node的右上parent, search in BinarySearchTree from root.
-
-注意：
-   一定要确保找到的parent满足parent.left == current.
-   反而言之，如果current是parent的 right child, 那么下一轮就会重新process parent。
-   但是有错:binary search tree里面parent是小于right child的，也就是在之前一步肯定visit过，如此便会死循环。
+#### 用O(1)空间的做法: 不存stack, 时刻update current为最小值。
+- 找下一个最小值,如果current有right child: 和用stack时的iteration类似,那么再找一遍current.right的left-most child,就是最小值了。
+- 如果current没有right child: 那么就要找current node的右上parent, search in BinarySearchTree from root.
+- 注意:
+- 一定要确保找到的parent满足parent.left == current.
+- 反而言之，如果current是parent的 right child, 那么下一轮就会重新process parent。
+- 但是有错:binary search tree里面parent是小于right child的，也就是在之前一步肯定visit过，如此便会死循环。
 
 
 
@@ -948,6 +941,7 @@ Singly-linked list需要reverse, 用stack.
 #### DFS
 - 查看每个parent-child关系: leftchild < root < rightChild
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- min/max 非常重要! 不然无法判断跟更上一些层的关系
 
 ##### Note: 
 - min/max需要时long type. 
@@ -1027,7 +1021,7 @@ space: O(1)
 
 ---
 
-**61. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph]
+**61. [Clone Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Clone%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Hash Table]
       
 
 给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
@@ -1302,6 +1296,7 @@ Search word:没有node就报错. 到结尾return true
 - 找到开头的字母, 然后recursively DFS 去把word串到底:
 - 每到一个字母, 朝四个方向走, 之中一个true就可以.
 - Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
+- time: O(n^2) * O(3^m)?  where m = word length
 
 #### Note: other ways of marking visited:
 - 用一个boolean visited[][]
@@ -1469,11 +1464,17 @@ unlimited border? 可能需要分割board. 用大框分割, 每次换行的时�
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue, Sweep Line
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
+- 跟 Merge Interval 解法一个路子.
 
-#### 方法2: 尝试了一下用一个sorted Array + HashMap
+
+#### Sort Array, count room, endIndex
+- 这个方法相对抽象: sort start times, end times, 然后开始过start time
+- 一旦start time less < end[endIndex], 那么房间count就++.
+
+#### sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 
@@ -1893,7 +1894,7 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 ---
 
-**100. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
+**100. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, PreSum, Subarray]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -2696,9 +2697,7 @@ count这个graph里面有多少个独立的component.
 - 在start string基础上，string的每个字母都遍历所有26个字母
 - visited 过的 从wordList里去掉
 - time: word length m, there can be n candidates => O(mn)
-- 但是总是exceed time limit on LeetCode. However, it passes LintCode:
-- 原因是 LeetCode给的是list,  list.contains(), list.remove()  都是 O(logn) time!!!
-- convert to set first.
+- NOTE: use set to contain words, candidates
 
 #### Trie
 - timeout, overkill
@@ -3037,7 +3036,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**157. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**157. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, Merge Sort, PriorityQueue]
       
 
 #### Priorityqueue
@@ -4062,6 +4061,11 @@ sapce: O(2^n)
 - sort O(nlogn), subset: O(2^n)
 - space O(2^n), save results
 
+#### Simplier BFS on selected candidates
+- use rst = `set<List<String>>` to cache candidates, starting from []
+- add one num at a time; use `rst.contains()` to O(1) check candidates
+- save every result rst.
+
 #### BFS
 - Regular BFS, 注意考虑如果让one level to generate next level
 - skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
@@ -4516,7 +4520,7 @@ space: O(X), X = max wall width
 
 ---
 
-**220. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+**220. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, Backtracking, DFS]
       
 
 给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
@@ -4619,7 +4623,7 @@ space: O(n)
 
 ---
 
-**226. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
+**226. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
 
@@ -4629,7 +4633,15 @@ space: O(n)
 **227. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
       
 
-TODO: how aout without chaning the input nums?
+find the maximum length of a contiguous subarray with `equal number of 0 and 1`
+
+#### Hash Table
+- Trick: equal number of 0 and 1, also can be reflected as equal number of -1, 1.
+- 有正负数, 就可以用 `map<preSum, index>` 这一招, 来找到之前存在过的preSum 的index, 来track max length
+- Template:
+- 1. init preSum = 0, `map.put(0, -1)`
+- 2. maintain `max = Math.max(max, i - map.get(preSum))`
+- 3. keep updating map with new presum `map.put(preSum, i)`
 
 
 

@@ -5,15 +5,19 @@
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
+给一串interval[], 判断一个人是否能够参加所有meeting.
+
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
 - 开会的是超人。瞬间移动接上下一个会议
 
-#### 方法1:
-找是否有overlap. priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
+#### PriorityQueue
+- 找是否有overlap true/false
+- priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
 
-#### 方法2: Sweep line
+#### Sweep line
 - class Point{pos, flag}, PriorityQueue排序。计算count
 - 跟 Number of Airplanes in the Sky 是一个类型的题目
+- 这道题可能有点overkill,因为并不需要做实际的结果#ofRooms, 而只是判断可能性.
 
 
 
@@ -60,7 +64,7 @@
 
 ---
 
-**3. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**3. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, Merge Sort, PriorityQueue]
       
 
 #### Priorityqueue

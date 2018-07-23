@@ -57,15 +57,19 @@ HashMap
 **4. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
+给一串interval[], 判断一个人是否能够参加所有meeting.
+
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
 - 开会的是超人。瞬间移动接上下一个会议
 
-#### 方法1:
-找是否有overlap. priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
+#### PriorityQueue
+- 找是否有overlap true/false
+- priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
 
-#### 方法2: Sweep line
+#### Sweep line
 - class Point{pos, flag}, PriorityQueue排序。计算count
 - 跟 Number of Airplanes in the Sky 是一个类型的题目
+- 这道题可能有点overkill,因为并不需要做实际的结果#ofRooms, 而只是判断可能性.
 
 
 
@@ -94,11 +98,17 @@ HashMap
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue, Sweep Line
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
+- 跟 Merge Interval 解法一个路子.
 
-#### 方法2: 尝试了一下用一个sorted Array + HashMap
+
+#### Sort Array, count room, endIndex
+- 这个方法相对抽象: sort start times, end times, 然后开始过start time
+- 一旦start time less < end[endIndex], 那么房间count就++.
+
+#### sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 

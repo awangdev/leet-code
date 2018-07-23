@@ -257,7 +257,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 #### Reverse Linked List
 - Palindrome概念很简单, 但是要在Linkde List random access坐标, 是很难得: 所以需要把一半 ListNode 翻转
 - reverse linked list: 遍历接开头
-- 用快慢指正找到mid point
+- 用快慢指正找到mid point: the slow pointer 其实是: `even list - pointer before mid`, `odd list -> pointer on mid`
 - Time O(n), 而且不需要用额外的空间(只是调换半个list的内部顺序), 所以空间O(1)
 
 #### Previous Note
@@ -431,7 +431,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**24. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**24. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, Merge Sort, PriorityQueue]
       
 
 #### Priorityqueue
