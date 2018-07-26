@@ -9,7 +9,9 @@ tags: BFS
 - 在start string基础上，string的每个字母都遍历所有26个字母
 - visited 过的 从wordList里去掉
 - time: word length m, there can be n candidates => O(mn)
-- NOTE: use set to contain words, candidates
+- 但是总是exceed time limit on LeetCode. However, it passes LintCode:
+- 原因是 LeetCode给的是list,  list.contains(), list.remove()  都是 O(logn) time!!!
+- convert to set first.
 
 #### Trie
 - timeout, overkill
@@ -65,9 +67,13 @@ class Solution {
             count++;
             for (int i = 0; i < size; i++) {
                 String word = queue.poll();
-                Set<String> candidates = transform(words, word);
-                if (candidates.contains(endWord)) return count;
-                queue.addAll(candidates);
+                List<String> candidates = transform(words, word);
+                for (String candidate: candidates) {
+                    if (endWord.equals(candidate)) {
+                        return count;
+                    }
+                    queue.offer(candidate);
+                }
             }
         }// END WHILE
 
@@ -75,8 +81,8 @@ class Solution {
     }
 
     // switch each char with 26 lowercase letters, and return candidates
-    private Set<String> transform(Set<String> words, String word) {
-        Set<String> candidates = new HashSet<>();
+    private List<String> transform(Set<String> words, String word) {
+        List<String> candidates = new ArrayList<>();
         StringBuffer sb = new StringBuffer(word);
         for (int i = 0; i < sb.length(); i++) {
             char temp = sb.charAt(i);
@@ -95,6 +101,7 @@ class Solution {
         return candidates;
     }
 }
+
 
 // Pass for Leetcode. Use wordNode class to track
 class Solution {

@@ -898,19 +898,15 @@ isBadVersion 是有方向的嘛，一个点错了，后面全错。
 **69. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
-给一串interval[], 判断一个人是否能够参加所有meeting.
-
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
 - 开会的是超人。瞬间移动接上下一个会议
 
-#### PriorityQueue
-- 找是否有overlap true/false
-- priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
+#### 方法1:
+找是否有overlap. priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
 
-#### Sweep line
+#### 方法2: Sweep line
 - class Point{pos, flag}, PriorityQueue排序。计算count
 - 跟 Number of Airplanes in the Sky 是一个类型的题目
-- 这道题可能有点overkill,因为并不需要做实际的结果#ofRooms, 而只是判断可能性.
 
 
 
@@ -1433,11 +1429,13 @@ space: O(n), O(1) rolling array
 给一串无序数组, 找到median(sort之后 位置在中间的数字).
 
 #### Quick Select
+- 跟`kth largest element in an Array`的 template一样.
 - 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
 - quickSelect 可以找到 kth 最小的元素
 - 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
 - quick select 的template要熟悉一下, 一下子可能想得到, 但写不出来
 - 主要步骤: partition, dfs, only recur on one part of the array 
+
 
 
 
@@ -1514,7 +1512,7 @@ space: O(n), O(1) rolling array
 #### Reverse Linked List
 - Palindrome概念很简单, 但是要在Linkde List random access坐标, 是很难得: 所以需要把一半 ListNode 翻转
 - reverse linked list: 遍历接开头
-- 用快慢指正找到mid point: the slow pointer 其实是: `even list - pointer before mid`, `odd list -> pointer on mid`
+- 用快慢指正找到mid point
 - Time O(n), 而且不需要用额外的空间(只是调换半个list的内部顺序), 所以空间O(1)
 
 #### Previous Note

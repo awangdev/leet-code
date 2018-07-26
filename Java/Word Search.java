@@ -6,7 +6,6 @@ tags: Array, Backtracking, DFS
 - 找到开头的字母, 然后recursively DFS 去把word串到底:
 - 每到一个字母, 朝四个方向走, 之中一个true就可以.
 - Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
-- time: O(n^2) * O(3^m)?  where m = word length
 
 #### Note: other ways of marking visited:
 - 用一个boolean visited[][]

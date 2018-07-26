@@ -1,7 +1,7 @@
  
  
  
-## Backtracking (31)
+## Backtracking (30)
 **0. [Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)**      Level: Medium      Tags: [Backtracking]
       
 
@@ -66,14 +66,14 @@ k是permutation的一个数位。而permutation是有规律的。
 
 ---
 
-**4. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+**4. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
       
 
 
 
 ---
 
-**5. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+**5. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
       
 
 Double sequence DP. 与regular expression 很像.
@@ -202,7 +202,6 @@ Search word:没有node就报错. 到结尾return true
 - 找到开头的字母, 然后recursively DFS 去把word串到底:
 - 每到一个字母, 朝四个方向走, 之中一个true就可以.
 - Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
-- time: O(n^2) * O(3^m)?  where m = word length
 
 #### Note: other ways of marking visited:
 - 用一个boolean visited[][]
@@ -661,11 +660,6 @@ sapce: O(2^n)
 - sort O(nlogn), subset: O(2^n)
 - space O(2^n), save results
 
-#### Simplier BFS on selected candidates
-- use rst = `set<List<String>>` to cache candidates, starting from []
-- add one num at a time; use `rst.contains()` to O(1) check candidates
-- save every result rst.
-
 #### BFS
 - Regular BFS, 注意考虑如果让one level to generate next level
 - skip duplicate: `if (i > endIndex && nums[i] == nums[i - 1]) continue;`
@@ -776,28 +770,6 @@ space: O(n!)
 - Which one?
 - worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 - C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
-
-
-
----
-
-**30. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, Backtracking, DFS]
-      
-
-给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
-
-对每个empty space而言, fill it with dist to nearest gate.
-
-#### DFS
-- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
-- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
-- hard to resue: we do not know the direction in cached result dist[i][j]
-- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
-- Through dfs from all zeros, update each spot with shorter dist
-- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
-
-#### BFS
-- TODO? why BFS better?
 
 
 

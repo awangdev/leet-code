@@ -1,5 +1,5 @@
 M
-1529480408
+1532583365
 tags: DFS, BFS, Union Find, Graph 
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -7,8 +7,9 @@ tags: DFS, BFS, Union Find, Graph
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
-- 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 复习Union-Find的另外一个种形式, track union size: tree does not have cycle, so eventually union size should == 1
+- 1. 查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 2. 验证cycle: `find(x) == find(y) => cycle`: new index has been visited before
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
 - 另一个union-find, 用hashmap的:
@@ -66,7 +67,7 @@ class Solution {
         for (int i = 0; i < edges.length; i++) {
             int x = edges[i][0];
             int y = edges[i][1];
-            if (find(x) == find(y)) return false;
+            if (find(x) == find(y)) return false; // new index has been visited before, so cycle existed.
             union(x, y);
         }
         return count == 1; // no other isolated sub-graph

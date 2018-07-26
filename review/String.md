@@ -1,7 +1,7 @@
  
  
  
-## String (49)
+## String (50)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -144,14 +144,14 @@ Double Sequence DP:
 
 ---
 
-**9. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+**9. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
       
 
 
 
 ---
 
-**10. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+**10. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
       
 
 Double sequence DP. 与regular expression 很像.
@@ -203,13 +203,9 @@ Previous verison of two pointers:
 
 ---
 
-**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Review      Tags: [Hash Table, String, Two Pointers]
+**13. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
       
 
-H.
-给String S, T. 找min window of S, 并且这个substring contains all chars of T. Complexity O(n)
-
-#### Hash Table
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
 符合的就process as result candidate.
 
@@ -875,6 +871,21 @@ space: O(n)
 - 4. empty string 要output `/`
 - 最终就是用stack (`上一个加进去的item, 用来备选pop() out`), 遇到 `../` pop()掉上一个加上去的item, 其余加进stack
 - 最终用 '/' 把所有item连接起来.
+
+
+
+---
+
+**49. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
+      
+time: O(n)
+
+分析edge case, 和各种情况, 然后判别是否是valid number
+
+#### 情况总结
+- 遇到 `.`, `e`, `+/-`, `int`的几种不同情况
+- 分别遇到的顺序不同时候, 结果也不同.
+- 这道题更多是分析情况, 然后把edge case enumerate出来, 算法的意义比较少.
 
 
 

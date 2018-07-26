@@ -2,31 +2,7 @@
  
  
 ## Union Find (11)
-**0. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium      Tags: [Union Find]
-      
-
-LintCode再跑一下.
-TODO: 试一试在union find里面, 来一个 <parent, list of children>?
-
-Identify这是个union-find问题还挺巧妙。    
-看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    
-
-为何不能从一个点出发，比如A，直接print它所有的neighbors呢？     
-	不行，如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。    
-
-所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.     
-
-最后output的想法：    
-做一个 map <parent ID, list>。    
-之前我们不是给每个num都存好了parent了嘛。    
-每个num都有个parent, 然后不同的parent就创造一个不同的list。   
-最后，把Map里面所有的list拿出来就好了。    
-
-
-
----
-
-**1. [Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)**      Level: Medium      Tags: [Union Find]
+**0. [Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)**      Level: Medium      Tags: [Union Find]
       
 
 没有跑过这个程序, 是一个UnionFind的简单实现.
@@ -36,7 +12,7 @@ Document了每个环节的计算原理/思想.
 
 ---
 
-**2. [Connecting Graph II.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20II.java)**      Level: Medium      Tags: [Union Find]
+**1. [Connecting Graph II.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20II.java)**      Level: Medium      Tags: [Union Find]
       
 
 Lint还不能跑, 全部按照题意和答案document的.
@@ -45,7 +21,7 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 ---
 
-**3. [Connecting Graph III.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20III.java)**      Level: Medium      Tags: [Union Find]
+**2. [Connecting Graph III.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20III.java)**      Level: Medium      Tags: [Union Find]
       
 
 还是UnionFind的变形, 这次是算有剩下多少个union. 其实非常简单, 维持一个全局变量count:
@@ -55,7 +31,7 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 ---
 
-**4. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
+**3. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2Dmatrix, 里面是1和0, 找#of island.
@@ -77,7 +53,7 @@ Lint还不能跑, 全部按照题意和答案document的.
 
 ---
 
-**5. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard      Tags: [Union Find]
+**4. [Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)**      Level: Hard      Tags: [Union Find]
       
 
 给一个island grid[][], and list of operations to fill a particualr (x,y) position.
@@ -103,7 +79,7 @@ count # of remaining island after each operation.
 
 ---
 
-**6. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
+**5. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
 
 给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
@@ -136,7 +112,7 @@ count # of remaining island after each operation.
 
 ---
 
-**7. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
+**6. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
       
 
 给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
@@ -167,7 +143,7 @@ count # of remaining island after each operation.
 
 ---
 
-**8. [Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**7. [Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -189,6 +165,32 @@ count这个graph里面有多少个独立的component.
 
 ---
 
+**8. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium      Tags: [Union Find]
+      
+
+遍历 weak connected graph, 将结果存在 List<List<Node>>种.
+
+#### Union Find
+- 跟传统的UnionFind有两点不同:
+- 1. 用 Map<Integer, Integer> 代替 int[], 因为没有给出 graph node label的 boundary.
+- 2. find(x)时候, 没有去update `parent[x]/map.put(x, ..)`. 因为我们最终需要找到这个path.
+- 无法用传统dfs: directed node 无法point到上一个点; 必须用`存parent的方式把所有node遍历掉`
+
+#### Identify这是个union-find问题
+- 看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    
+- 为何不能从一个点出发，比如A，直接print它所有的neighbors呢:
+- 如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。    
+- 所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.     
+- 最后output的想法：    
+- 做一个 map <parent ID, list>。    
+- 之前我们不是给每个num都存好了parent了嘛。    
+- 每个num都有个parent, 然后不同的parent就创造一个不同的list。   
+- 最后，把Map里面所有的list拿出来就好了。    
+
+
+
+---
+
 **9. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
@@ -197,8 +199,9 @@ count这个graph里面有多少个独立的component.
 检查这些edge是否能合成一个 valid tree
 
 #### Union Find
-- 复习Union-Find的另外一个种形式, track union size: if tree, means no cycle, so eventually union size should == 1
-- 题目类型：查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 复习Union-Find的另外一个种形式, track union size: tree does not have cycle, so eventually union size should == 1
+- 1. 查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 2. 验证cycle: `find(x) == find(y) => cycle`: new index has been visited before
 - 存储的关键都是：元素相对的index上存着他的root parent.    
 - 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
 - 另一个union-find, 用hashmap的:
@@ -218,16 +221,16 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**10. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Union Find]
+**10. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
       
 
 给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
 
 要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
 
-#### Union Find
-- TODO
 
+#### Union Find
+- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.

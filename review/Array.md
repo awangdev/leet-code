@@ -502,7 +502,6 @@ O(nlogn)
 - 找到开头的字母, 然后recursively DFS 去把word串到底:
 - 每到一个字母, 朝四个方向走, 之中一个true就可以.
 - Note:每次到一个字母，mark一下'#'. 4个path recurse回来后，mark it back.
-- time: O(n^2) * O(3^m)?  where m = word length
 
 #### Note: other ways of marking visited:
 - 用一个boolean visited[][]
@@ -1036,11 +1035,13 @@ space: O(n), O(1) rolling array
 给一串无序数组, 找到median(sort之后 位置在中间的数字).
 
 #### Quick Select
+- 跟`kth largest element in an Array`的 template一样.
 - 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
 - quickSelect 可以找到 kth 最小的元素
 - 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
 - quick select 的template要熟悉一下, 一下子可能想得到, 但写不出来
 - 主要步骤: partition, dfs, only recur on one part of the array 
+
 
 
 
@@ -1618,7 +1619,7 @@ space: O(n)
 
 ---
 
-**83. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Sort, Two Pointers]
+**83. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
@@ -1778,11 +1779,6 @@ sapce: O(2^n)
 - 为了除去duplicated result, skip used item at current level: `if (i > depth && nums[i] == nums[i - 1]) continue;`
 - sort O(nlogn), subset: O(2^n)
 - space O(2^n), save results
-
-#### Simplier BFS on selected candidates
-- use rst = `set<List<String>>` to cache candidates, starting from []
-- add one num at a time; use `rst.contains()` to O(1) check candidates
-- save every result rst.
 
 #### BFS
 - Regular BFS, 注意考虑如果让one level to generate next level
@@ -2089,8 +2085,6 @@ space: O(1)
       
 time: O(1) avg
 space: O(n)
-
-Design a data structure that supports all following operations in average O(1) time.
 
 #### Hash Table
 - 用`map<value, index> 来track value->index`, 用`list track index->value`

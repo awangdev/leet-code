@@ -1,7 +1,7 @@
  
  
  
-## Quick Sort (4)
+## Quick Sort (6)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -31,6 +31,7 @@
 给一串无序数组, 找到median(sort之后 位置在中间的数字).
 
 #### Quick Select
+- 跟`kth largest element in an Array`的 template一样.
 - 与quickSort不同在于, 每次只要在一半list里面recurring, 所以把O(logn)的时间复杂度降到O(n)
 - quickSelect 可以找到 kth 最小的元素
 - 利用这个原理, 找这个kth最小值, 然后如果 == target index, 就找到了我们的median
@@ -39,9 +40,26 @@
 
 
 
+
 ---
 
-**2. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**2. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium      Tags: [Quick Sort, Sort]
+      
+
+implement quick sort.
+
+#### Quick Sort
+- 首先partition. 返还一个partition的那个中间点的位置: 这个时候, 所有小于nums[partitionIndex] 都应该在 partitionIndex左边
+- 然后劈开两半
+- 前后各自 quick sort, recursively
+- 注意：在partition里面, 比较的时候nums[start] < pivot, nums[end]>pivot, 如果写成了 <= 会 stack overflow.
+- Time O(nlogn), Space: O(1)
+
+
+
+---
+
+**3. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
@@ -61,8 +79,44 @@
 
 ---
 
-**3. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Quick Sort]
+**4. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Quick Sort, Sort, Two Pointers]
       
+
+给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
+
+虽然叫sort color, 其实就是sort 这些 numbers, 只不过抽象了一下.
+
+#### partition array, the base of quick sort
+- partition the array by pivot k = {0, 1, 2}
+- 每一次partition都return starting point of the current partition
+- 然后根据下一个 color, 去还没有sort 干净的那个部分, 再sort一下就好
+- time O(kn), where k = 0 => O(n)
+- 这里只是partion, 并不需要recursively quick sort, 所以结果是简单的O(n)
+
+#### One pass
+- have two pointers, left/right
+- start tracks red, end tracks blue. Swap red/blue to right position, and left++ or right--.
+- leave white as is and it will be sorted automatically
+- be very careful with index i: when swapping with index right, we do not know what is nums[right], so need to re-calculate index i .
+- O(n)
+- Note: this one pass solution does not work if there are more than 3 colors. Need to use the regular quick sorty.
+
+#### Counting sort
+- TODO: count occurance and reassign array
+
+
+
+---
+
+**5. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Partition, Quick Sort, Sort, Two Pointers]
+      
+
+Sort Color的普通版, sort all k colors in colors array.
+
+Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java
+
+#### Quick Sort
+- O(nk)
 
 
 

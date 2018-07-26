@@ -1,6 +1,6 @@
 M
 1531084797
-tags: Array, Two Pointers, Sort, Partition
+tags: Array, Two Pointers, Sort, Partition, Quick Sort
 
 给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
 

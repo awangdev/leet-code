@@ -1,6 +1,6 @@
 R
 1519287323
-tags: String, DP, Backtracking, Sequence DP, Double Sequence DP
+tags: String, DP, Backtracking
 
 ```
 /*

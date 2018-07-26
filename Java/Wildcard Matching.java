@@ -1,6 +1,6 @@
 H
 1519368767
-tags: String, DP, Backtracking, Greedy, Sequence DP, Double Sequence DP
+tags: String, DP, Backtracking, Greedy
 
 Double sequence DP. 与regular expression 很像.
 

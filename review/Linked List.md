@@ -257,7 +257,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 #### Reverse Linked List
 - Palindrome概念很简单, 但是要在Linkde List random access坐标, 是很难得: 所以需要把一半 ListNode 翻转
 - reverse linked list: 遍历接开头
-- 用快慢指正找到mid point: the slow pointer 其实是: `even list - pointer before mid`, `odd list -> pointer on mid`
+- 用快慢指正找到mid point
 - Time O(n), 而且不需要用额外的空间(只是调换半个list的内部顺序), 所以空间O(1)
 
 #### Previous Note
@@ -320,16 +320,10 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 
 **19. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
-time: O(1)
-space: O(n)
-
-Least Recently Used (LRU) cache: `get(key)`, `put(key, value)`
-
-When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 #### Double Linked List
-- 用了一个特别的双向的ListNode，有了`head`和`tail`，这样就大大加快了速度。     
-- 主要加快的就是那个`更新排位`的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
 - Overall O(1)
 
 ##### 巧妙点
@@ -431,7 +425,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**24. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, Merge Sort, PriorityQueue]
+**24. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 #### Priorityqueue

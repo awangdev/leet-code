@@ -57,19 +57,15 @@ HashMap
 **4. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
-给一串interval[], 判断一个人是否能够参加所有meeting.
-
 - 注意接头点要考虑所有开会结会的情况，不要恰巧漏掉相接的点
 - 开会的是超人。瞬间移动接上下一个会议
 
-#### PriorityQueue
-- 找是否有overlap true/false
-- priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
+#### 方法1:
+找是否有overlap. priorityQueue 按照start time排序好以后, 比较current和peek: current.end > peek.start?
 
-#### Sweep line
+#### 方法2: Sweep line
 - class Point{pos, flag}, PriorityQueue排序。计算count
 - 跟 Number of Airplanes in the Sky 是一个类型的题目
-- 这道题可能有点overkill,因为并不需要做实际的结果#ofRooms, 而只是判断可能性.
 
 
 
@@ -98,17 +94,11 @@ HashMap
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### PriorityQueue, Sweep Line
+#### 方法1
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
-- 跟 Merge Interval 解法一个路子.
 
-
-#### Sort Array, count room, endIndex
-- 这个方法相对抽象: sort start times, end times, 然后开始过start time
-- 一旦start time less < end[endIndex], 那么房间count就++.
-
-#### sorted Array + HashMap
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 
@@ -156,7 +146,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**9. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium      Tags: [Sort]
+**9. [QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)**      Level: Medium      Tags: [Quick Sort, Sort]
       
 
 implement quick sort.
@@ -313,7 +303,7 @@ implement quick sort.
 
 ---
 
-**16. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Sort, Two Pointers]
+**16. [Sort Color.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Color.java)**      Level: Medium      Tags: [Array, Partition, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
@@ -342,7 +332,7 @@ implement quick sort.
 
 ---
 
-**17. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Partition, Sort, Two Pointers]
+**17. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Partition, Quick Sort, Sort, Two Pointers]
       
 
 Sort Color的普通版, sort all k colors in colors array.

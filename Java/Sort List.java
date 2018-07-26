@@ -57,9 +57,9 @@ public class Solution {
             return head;
         }
         ListNode mid = findMiddle(head);
-        ListNode left = sortList(mid.next);
+        ListNode right = sortList(mid.next);
         mid.next = null;
-        ListNode right = sortList(head);
+        ListNode left = sortList(head);
         return merge(left, right);
     }
 

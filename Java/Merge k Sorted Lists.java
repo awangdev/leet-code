@@ -1,6 +1,6 @@
 M
 1528047935
-tags: Linked List, Divide and Conquer, Heap, PriorityQueue, Merge Sort
+tags: Linked List, Divide and Conquer, Heap, PriorityQueue
 
 #### Priorityqueue
 - Iterative, PQ来排列所有list的leading node.
@@ -68,14 +68,20 @@ class Solution {
             return null;
         }
         // Initialize the priority queue with customized comparator
-        PriorityQueue<ListNode> queue = new PriorityQueue<>(Comparator.comparing(node -> node.val));
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, new Comparator<ListNode>() {
+            public int compare (ListNode a, ListNode b) {
+                return a.val - b.val;
+            }
+        });
         for (int i = 0; i < lists.length; i++) {
             if (lists[i] != null) {
                 queue.offer(lists[i]);
             }
         }
-        if (queue.isEmpty()) return null;
-        
+
+        if (queue.isEmpty()) {
+            return null;
+        }
         // Append the priority queue with all items
         ListNode dummy = new ListNode(0);
         ListNode head = dummy;
@@ -84,7 +90,7 @@ class Solution {
             if (node.next != null) {
                 queue.offer(node.next);
             }
-            head.next = node; // link
+            head.next = node;
             head = head.next;
         }
         return dummy.next;

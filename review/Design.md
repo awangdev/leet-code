@@ -42,30 +42,37 @@ Implement an iterator to flatten a 2d vector.
 **2. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
-Build iterator to print ascending elemnts of BST. Inorder traversal BST. Need to maintain O(1) time, O(h) space.
-
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
 每次消耗TreeNode, 都看看rightNode(其实就是下一个最小的candidate), 并且一条龙stack叠上rightNode所有的left子孙.
 
-#### Stack
-- 用O(h)空间的做法：
-- 理解binary search tree inorder traversal的规律：
-- 先找left.left.left ....left 到底，这里是加进stack; 然后考虑parent,然后再right.
+Previous Notes:
+用O(h)空间的做法：
 
-#### Details 例如这题:
-- stack里面top，也就是tree最左下角的node先考虑,取名rst.
-- 其实这个rst拿出来以后, 它也同时是最底层left null的parent，算考虑过了最底层的parent。
-- 最后就考虑最底层的parent.right, 也就是rst.right.
-- 注意: next()其实有个while loop, 很可能是O(h).题目要求average O(1),所以也是okay的.
+理解binary search tree inorder traversal的规律：
+   先找left.left.left ....left 到底，这里是加进stack.
+   然后考虑parent,然后再right.
+
+例如这题：
+   stack里面top，也就是tree最左下角的node先考虑,取名rst.
+   其实这个rst拿出来以后, 它也同时是最底层left null的parent，算考虑过了最底层的parent。
+   最后就考虑最底层的parent.right, 也就是rst.right.
+
+注意:
+   next()其实有个while loop, 很可能是O(h).题目要求average O(1),所以也是okay的.
 
 
-#### 用O(1)空间的做法: 不存stack, 时刻update current为最小值。
-- 找下一个最小值,如果current有right child: 和用stack时的iteration类似,那么再找一遍current.right的left-most child,就是最小值了。
-- 如果current没有right child: 那么就要找current node的右上parent, search in BinarySearchTree from root.
-- 注意:
-- 一定要确保找到的parent满足parent.left == current.
-- 反而言之，如果current是parent的 right child, 那么下一轮就会重新process parent。
-- 但是有错:binary search tree里面parent是小于right child的，也就是在之前一步肯定visit过，如此便会死循环。
+用O(1)空间的做法：不存stack, 时刻update current为最小值。
+
+找下一个最小值,如果current有right child：   
+   和用stack时的iteration类似,那么再找一遍current.right的left-most child,就是最小值了。
+   
+如果current没有right child:    
+    那么就要找current node的右上parent, search in BinarySearchTree from root.
+
+注意：
+   一定要确保找到的parent满足parent.left == current.
+   反而言之，如果current是parent的 right child, 那么下一轮就会重新process parent。
+   但是有错:binary search tree里面parent是小于right child的，也就是在之前一步肯定visit过，如此便会死循环。
 
 
 
@@ -232,16 +239,10 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 **12. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
-time: O(1)
-space: O(n)
-
-Least Recently Used (LRU) cache: `get(key)`, `put(key, value)`
-
-When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
 #### Double Linked List
-- 用了一个特别的双向的ListNode，有了`head`和`tail`，这样就大大加快了速度。     
-- 主要加快的就是那个`更新排位`的过程，找到item hashmap O(1), 做减法换位也都是O(1)
+- 用了一个特别的双向的ListNode，有了head和tail，这样就大大加快了速度。     
+- 主要加快的就是那个‘更新排位’的过程，找到item hashmap O(1), 做减法换位也都是O(1)
 - Overall O(1)
 
 ##### 巧妙点
@@ -366,8 +367,6 @@ Serialize and Deserialize Binary Tree
       
 time: O(1) avg
 space: O(n)
-
-Design a data structure that supports all following operations in average O(1) time.
 
 #### Hash Table
 - 用`map<value, index> 来track value->index`, 用`list track index->value`

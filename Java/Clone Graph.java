@@ -1,6 +1,6 @@
 M
 1519966780
-tags: DFS, BFS, Graph, Hash Table
+tags: DFS, BFS, Graph
 
 给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
 

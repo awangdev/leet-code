@@ -34,7 +34,7 @@ O(n) space, O(nLog(n)) time, because of sorting.
 
 ---
 
-**2. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+**2. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
       
 
 Double sequence DP. 与regular expression 很像.
@@ -52,17 +52,11 @@ Double sequence DP. 与regular expression 很像.
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### PriorityQueue, Sweep Line
+#### 方法1
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
-- 跟 Merge Interval 解法一个路子.
 
-
-#### Sort Array, count room, endIndex
-- 这个方法相对抽象: sort start times, end times, 然后开始过start time
-- 一旦start time less < end[endIndex], 那么房间count就++.
-
-#### sorted Array + HashMap
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
 也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
 
 

@@ -1,6 +1,6 @@
 M
 1522910259
-tags: Math, DP, Coordinate DP, Subarray, PreSum
+tags: Math, DP, Coordinate DP, Subarray
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
 

@@ -1,25 +1,29 @@
 M
+1532582750
 tags: Union Find
 
-LintCode再跑一下.
-TODO: 试一试在union find里面, 来一个 <parent, list of children>?
+遍历 weak connected graph, 将结果存在 List<List<Node>>种.
 
-Identify这是个union-find问题还挺巧妙。    
-看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    
+#### Union Find
+- 跟传统的UnionFind有两点不同:
+- 1. 用 Map<Integer, Integer> 代替 int[], 因为没有给出 graph node label的 boundary.
+- 2. find(x)时候, 没有去update `parent[x]/map.put(x, ..)`. 因为我们最终需要找到这个path.
+- 无法用传统dfs: directed node 无法point到上一个点; 必须用`存parent的方式把所有node遍历掉`
 
-为何不能从一个点出发，比如A，直接print它所有的neighbors呢？     
-	不行，如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。    
-
-所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.     
-
-最后output的想法：    
-做一个 map <parent ID, list>。    
-之前我们不是给每个num都存好了parent了嘛。    
-每个num都有个parent, 然后不同的parent就创造一个不同的list。   
-最后，把Map里面所有的list拿出来就好了。    
+#### Identify这是个union-find问题
+- 看到了weak component的形式： 一个点指向所有，那么所有的点都有一个公共的parent，然后就是要找出这些点。    
+- 为何不能从一个点出发，比如A，直接print它所有的neighbors呢:
+- 如果轮到了B点，那因为是directed,它也不知道A的情况，也不知道改如何继续加，或者下手。    
+- 所以，要把所有跟A有关系的点，或者接下去和A的neighbor有关系的点，都放进union-find里面，让这些点有Common parents.     
+- 最后output的想法：    
+- 做一个 map <parent ID, list>。    
+- 之前我们不是给每个num都存好了parent了嘛。    
+- 每个num都有个parent, 然后不同的parent就创造一个不同的list。   
+- 最后，把Map里面所有的list拿出来就好了。    
 
 ```
 /*
+LintCode
 Find the number Weak Connected Component in the directed graph. 
 Each node in the graph contains a label and a list of its neighbors. 
 (a connected set of a directed graph is a subgraph in which 
@@ -83,43 +87,31 @@ Be careful about the in generateRst method: looking for the root
  *     DirectedGraphNode(int x) { label = x; neighbors = new ArrayList<DirectedGraphNode>(); }
  * };
  */
+
 public class Solution {
-	class UnionFind {
-		HashMap<Integer, Integer> map;
-		//Constructor:
-		UnionFind(HashSet<Integer> set) {
-			map = new HashMap<Integer, Integer>();
-			for (int num : set) {
-				map.put(num, num);
-			}
-		}
-		//Find:
-		//Root parent should have itself as child in map<child,parent>
-		int find(int x) {
-			int parent = map.get(x);
-			while (parent != map.get(parent)) {
-				parent = map.get(parent);
-			}
-			return parent;
-		}
-		void union(int x, int y) {
-			int findX = find(x);
-			int findY = find(y);
-			if (findX != findY) {
-				map.put(findX, findY);
-			}
-		}
-	}
-	public List<List<Integer>> generateRst (List<List<Integer>> rst, UnionFind uf, HashSet<Integer> set) {
-       	
-    	HashMap<Integer, List<Integer>> listMap = new HashMap<Integer, List<Integer>>();
-    	for (int num : set) {
-    		int rootParent = uf.find(num);//uf.map.get(num);
-    		if (!listMap.containsKey(rootParent)) {
-    			listMap.put(rootParent, new ArrayList<Integer>());
-    		} 
-    		//Add num into its correct set (meaning its root ancestor)
-    		listMap.get(rootParent).add(num);
+    HashMap<Integer, Integer> map;
+
+    public List<List<Integer>> connectedSet2(ArrayList<DirectedGraphNode> nodes) {
+    	List<List<Integer>> rst = new ArrayList<>();
+    	if (nodes == null || nodes.size() == 0) return rst;
+    	
+    	buildUnionFind(nodes);
+
+    	//find and union: construct the map<child,parent> structure
+    	for (DirectedGraphNode node : nodes) {
+    		for (DirectedGraphNode neighbor : node.neighbors) {
+    			union(node.label, neighbor.label);
+    		}
+    	}
+    	return generateRst(rst);
+    }
+
+    private List<List<Integer>> generateRst (List<List<Integer>> rst) {
+    	HashMap<Integer, List<Integer>> listMap = new HashMap<>();
+    	for (int num : map.keySet()) {
+    		int rootParent = find(num);
+    		listMap.putIfAbsent(rootParent, new ArrayList<>());
+    		listMap.get(rootParent).add(num); //Add num into its correct set (meaning its root ancestor)
     	}
 
     	for (List<Integer> list: listMap.values()) {
@@ -128,41 +120,36 @@ public class Solution {
     	}
     	return rst;
     }
-
-    public List<List<Integer>> connectedSet2(ArrayList<DirectedGraphNode> nodes) {
-    	List<List<Integer>> rst = new ArrayList<List<Integer>>();
-    	if (nodes == null || nodes.size() == 0) {
-    		return rst;
-    	}
-    	HashSet<Integer> set = new HashSet<Integer>();
-    	for (DirectedGraphNode node : nodes) {
-    		set.add(node.label);
-    		for (DirectedGraphNode neighbor : node.neighbors) {
-    			set.add(neighbor.label);
-    		}
-    	}
-    	UnionFind uf = new UnionFind(set);
-
-    	//find and union: construct the map<child,parent> structure
-    	for (DirectedGraphNode node : nodes) {
-    		for (DirectedGraphNode neighbor : node.neighbors) {
-    			uf.union(node.label, neighbor.label);
-    		}
-    	}
-    	return generateRst(rst, uf, set);
-    }
-
     
+	//Union Find Constructor:
+	private void buildUnionFind (ArrayList<DirectedGraphNode> nodes) {
+		map = new HashMap<>();
+		for (DirectedGraphNode node : nodes) {
+    		map.put(node.label, node.label);
+    		for (DirectedGraphNode neighbor : node.neighbors) {
+    			map.put(neighbor.label, neighbor.label);
+    		}
+    	}
+	}
+
+	//Find:
+	//Root parent should have itself as child in map<child,parent>
+	private int find(int x) {
+		int parent = map.get(x);
+		while (parent != map.get(parent)) {
+			parent = map.get(parent);
+		}
+		return parent;
+	}
+
+	private void union(int x, int y) {
+		int findX = find(x);
+		int findY = find(y);
+		if (findX != findY) {
+			map.put(findX, findY);
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
 
 
 /*

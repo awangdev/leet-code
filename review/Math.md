@@ -1,7 +1,7 @@
  
  
  
-## Math (33)
+## Math (34)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -266,7 +266,7 @@ Space O(n), time O(n)
 
 ---
 
-**17. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, PreSum, Subarray]
+**17. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -574,6 +574,21 @@ space: O(n)
 - 3. 处理 left==right时候, 就当做两个点来处理.
 - 4. 存进set里面没有sort, 但是最后做check的时候, 需要sort list
 - 时间: visit all nodes 两遍,  O(n)
+
+
+
+---
+
+**33. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
+      
+time: O(n)
+
+分析edge case, 和各种情况, 然后判别是否是valid number
+
+#### 情况总结
+- 遇到 `.`, `e`, `+/-`, `int`的几种不同情况
+- 分别遇到的顺序不同时候, 结果也不同.
+- 这道题更多是分析情况, 然后把edge case enumerate出来, 算法的意义比较少.
 
 
 

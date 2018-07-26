@@ -1,14 +1,14 @@
 M
-1531813218
-tags: DFS, Union Find, Hash Table
+1532588768
+tags: DFS, Union Find, Hash Table, Hash Table
 
 给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
 
 要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
 
-#### Union Find
-- TODO
 
+#### Union Find
+- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
@@ -103,6 +103,78 @@ class Solution {
         }
         
         return rst;
+    }
+}
+
+
+/*
+Union Find
+Approach similar to LintCode(Find the weak connected component in directed graph)
+UnionFind: Map<currEmail, parentEmail>
+1. Group account into union. ( don't forget to preserve email -> name mapping)
+2. Group parent -> children 
+3. output
+*/
+class Solution {
+    Map<String, String> accountMap = new HashMap<>();
+    Map<String, String> parentMap = new HashMap<>();
+    
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        List<List<String>> rst = new ArrayList<>();
+        if (validate(accounts)) return rst;
+        
+        buildUnionFind(accounts);
+        
+        for (List<String> account : accounts) {
+            for (int i = 1; i < account.size() - 1; i++) {
+                union(account.get(i), account.get(i + 1));
+            }
+        }
+        
+        Map<String, List<String>> result = new HashMap<>();
+        for (String email : parentMap.keySet()) {
+    		String parent = find(email);
+    		result.putIfAbsent(parent, new ArrayList<>());
+    		result.get(parent).add(email);
+    	}
+
+    	for (List<String> list: result.values()) {
+    		Collections.sort(list);
+            list.add(0, accountMap.get(list.get(0)));
+    		rst.add(list);
+    	}
+        
+        return rst;
+    }
+    
+    private boolean validate(List<List<String>> accounts) {
+        return accounts == null || accounts.size() == 0 || accounts.get(0) == null || accounts.get(0).size() == 0;
+    }
+    
+    private void buildUnionFind(List<List<String>> accounts) {
+        for (List<String> account : accounts) {
+            String name = account.get(0);
+            for (int i = 1; i < account.size(); i++) {
+                accountMap.put(account.get(i), name); // email -> name mapping
+                parentMap.put(account.get(i), account.get(i)); // union parent map
+            }
+        }
+    }
+    
+    private String find(String email) {
+        String parent = parentMap.get(email);
+        if (parent.equals(parentMap.get(parent))) {
+            return parent;
+        }
+        return find(parent);
+    }
+    
+    private void union(String a, String b) {
+        String parentA = find(a);
+        String parentB = find(b);
+        if (!parentA.equals(parentB)) {
+            parentMap.put(parentA, parentB);
+        }
     }
 }
 ```

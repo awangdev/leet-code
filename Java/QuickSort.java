@@ -1,6 +1,6 @@
 M
 1526358989
-tags: Sort
+tags: Sort, Quick Sort
 
 implement quick sort.
 
