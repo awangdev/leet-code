@@ -7,19 +7,19 @@ Table of Contents
 * [DP (82)](#dp-82)
 * [Hash Table (57)](#hash-table-57)
 * [Tree (51)](#tree-51)
-* [String (49)](#string-49)
+* [String (50)](#string-50)
 * [Binary Search (38)](#binary-search-38)
+* [Math (34)](#math-34)
 * [Divide and Conquer (34)](#divide-and-conquer-34)
-* [Math (33)](#math-33)
 * [Two Pointers (33)](#two-pointers-33)
-* [Backtracking (31)](#backtracking-31)
 * [Linked List (31)](#linked-list-31)
 * [BFS (30)](#bfs-30)
+* [Backtracking (30)](#backtracking-30)
 * [Stack (27)](#stack-27)
 * [BST (22)](#bst-22)
 * [Sort (21)](#sort-21)
-* [Sequence DP (21)](#sequence-dp-21)
 * [Design (19)](#design-19)
+* [Sequence DP (19)](#sequence-dp-19)
 * [Bit Manipulation (17)](#bit-manipulation-17)
 * [Coordinate DP (17)](#coordinate-dp-17)
 * [Greedy (16)](#greedy-16)
@@ -27,25 +27,25 @@ Table of Contents
 * [Binary Tree (13)](#binary-tree-13)
 * [Memoization (12)](#memoization-12)
 * [PriorityQueue (11)](#priorityqueue-11)
-* [PreSum (11)](#presum-11)
 * [Union Find (11)](#union-find-11)
 * [Subarray (11)](#subarray-11)
 * [Segment Tree (10)](#segment-tree-10)
+* [PreSum (10)](#presum-10)
 * [Trie (9)](#trie-9)
 * [Backpack DP (8)](#backpack-dp-8)
 * [Graph (7)](#graph-7)
 * [Status DP (7)](#status-dp-7)
-* [Double Sequence DP (6)](#double-sequence-dp-6)
+* [Quick Sort (6)](#quick-sort-6)
+* [Enumeration (6)](#enumeration-6)
 * [Partition DP (5)](#partition-dp-5)
 * [Sweep Line (5)](#sweep-line-5)
 * [Topological Sort (5)](#topological-sort-5)
-* [Enumeration (5)](#enumeration-5)
 * [Expression Tree (5)](#expression-tree-5)
-* [Merge Sort (4)](#merge-sort-4)
+* [Double Sequence DP (4)](#double-sequence-dp-4)
 * [Game Theory (4)](#game-theory-4)
 * [Combination (4)](#combination-4)
 * [Interval DP (4)](#interval-dp-4)
-* [Quick Sort (4)](#quick-sort-4)
+* [Merge Sort (3)](#merge-sort-3)
 * [Permutation (3)](#permutation-3)
 * [Minimum Binary Tree (3)](#minimum-binary-tree-3)
 * [Basic Implementation (3)](#basic-implementation-3)
@@ -344,13 +344,13 @@ Table of Contents
 |58|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, String]||
 |59|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP, String]||
 |60|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, Trie]||
-|61|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
-|62|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
-|63|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Interval DP, String]||
-|64|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
-|65|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
-|66|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
-|67|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
+|61|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Enumeration, Partition DP]||
+|62|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
+|63|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
+|64|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Interval DP, String]||
+|65|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
+|66|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
+|67|[Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)|Easy|Java|[DP, Memoization, Sequence DP]||
 |68|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
 |69|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
 |70|[Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)|Easy|Java|[DP, PreSum]||
@@ -1326,12 +1326,27 @@ Table of Contents
  
  
  
+## Enumeration (6)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)|Medium|Java|[Array, Enumeration]||
+|1|[Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)|Medium|Java|[Array, Enumeration]||
+|2|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|3|[Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)|Medium|Java|[Basic Implementation, Enumeration, String]||
+|4|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Enumeration, Partition DP]||
+|5|[Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)|Medium|Java|[Enumeration, Greedy]||
+
+
+
+ 
+ 
+ 
 ## Partition DP (5)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)|Medium|Java|[BFS, DP, Math, Partition DP]||
 |1|[Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)|Hard|Java|[Binary Search, DP, Partition DP]||
-|2|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Partition DP]||
+|2|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Enumeration, Partition DP]||
 |3|[Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)|Hard|Java|[DP, Partition DP]||
 |4|[Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)|Medium|Java|[DP, Partition DP, String]||
 
@@ -1362,20 +1377,6 @@ Table of Contents
 |2|[Course Schedule II.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule%20II.java)|Medium|Java|[BFS, DFS, Graph, Topological Sort]||
 |3|[Topological Sorting.java](https://github.com/awangdev/LintCode/blob/master/Java/Topological%20Sorting.java)|Medium|Java|[BFS, DFS, Topological Sort]||
 |4|[Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)|Hard|Java|[Coordinate DP, DFS, DP, Memoization, Topological Sort]||
-
-
-
- 
- 
- 
-## Enumeration (5)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)|Medium|Java|[Array, Enumeration]||
-|1|[Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)|Medium|Java|[Array, Enumeration]||
-|2|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
-|3|[Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)|Medium|Java|[Basic Implementation, Enumeration, String]||
-|4|[Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)|Medium|Java|[Enumeration, Greedy]||
 
 
 

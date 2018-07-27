@@ -50,11 +50,13 @@
 问, 最快什么时候可以抄完?
 
 #### Partition DP
-- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成, n本书, 让k个人来copy, 也就是分割成k段.
+- 第一步, 理解题目要求的问题: 前k个人copy完n本书, 找到最少的用时; 也可以翻译成: `n本书, 让k个人来copy, 也就是分割成k段`.
 - 最后需要求出 dp[n][k]. 开: int[n+1][k+1]. 
-- 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
-- 木桶原理, 因为K个人同时开始, 最坏的情况决定结果: `Math.max(dp[j][k - 1], sum)`, where j is the cut.
-- dp[n][k] = Math.min(Math.max(dp[j][k - 1], sum[j+1, n-1]), loop over i, k, j)
+- 原理:
+- 1. 考虑最后一步: 在[0 ~ n - 1]本书里, 最后一个人可以选择copy 1 本, 2 本....n本, 每一种切割的方法的结果都不一样
+- 2. 讨论第k个人的情况, 在 j = [0 ~ i] 循环. 而循环j时候最慢的情况决定 第k个人的结果(木桶原理): `Math.max(dp[j][k - 1], sum)`. 
+- 3. 其中: `dp[j][k-1]` 是 [k-1]个人读完j本书的结果, 也就是著名的`上一步`. 这里循环考虑的是第k个人不同的j种上一步 : )
+- 4. 循环的结果, 是要存在 dp[i][k] = Math.min(Math.max(dp[j][k - 1], sum[j, i]), loop over i, k, j = [i ~ 0])
 - Time: O(kn^2), space O(nk)
 
 ##### Init
@@ -88,24 +90,30 @@
 
 **2. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
       
+time: O(n)
+space: O(n)
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
 
 #### Partition DP
-- 加法原理
+- 加法原理: 根据题意, 有 range = 1 的 [1, 9], range = 2 的 [10~26] 来作为partition.
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
-- 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 定义`dp[i] = 前i个digits最多有多少种decode的方法`. new dp[n + 1].
 - 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
+- dp[i] += dp[i - x], where x = 1, 2
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
 - Space, Time O(n)
+
+#### 引申
+- 这里只有两种partition的情况 range=1, range =2.  如果有更多partition的种类, 就可能多一层for loop做循环
 
 
 
 
 ---
 
-**3. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
+**3. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Enumeration, Partition DP]
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -113,13 +121,15 @@
 其中字符可能是 "*", 可以代表 [1 - 9]
 
 #### DP
+- 乘法原理
 - 跟decode way I 一样, 加法原理, 切割点时: 当下是取了 1 digit 还是 2 digits 来decode
 - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
 - 不同的情况是: 每一个partition里面, 如果有"*", 就会在自身延伸出很多不同的可能
 - 那么: dp[i] = dp[i - 1] * (#variations of ss[i]) + dp[i - 2] * (#variations of ss[i,i+1])
 
 ##### 特点
-- 枚举的能力: 具体分析 '*' 出现的位置, 枚举出数字, 基本功. 注意!!题目说 * in [1, 9].   (如果 0 ~ 9 会更难一些)
+- 枚举的能力: 具体分析 '*' 出现的位置, 枚举出数字, 基本功. 
+- 注意!!题目说 * in [1, 9].   (如果 0 ~ 9 会更难一些)
 - 理解取MOD的原因: 数字太大, 取mod来给最终结果: 其实在 10^9 + 7 这么大的 mod 下, 大部分例子是能通过的.
 - 枚举好以后, 其实这个题目的写法和思考过程都不难
 

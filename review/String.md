@@ -337,17 +337,23 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 **21. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
       
+time: O(n)
+space: O(n)
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
 
 #### Partition DP
-- 加法原理
+- 加法原理: 根据题意, 有 range = 1 的 [1, 9], range = 2 的 [10~26] 来作为partition.
 - 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
-- 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 定义`dp[i] = 前i个digits最多有多少种decode的方法`. new dp[n + 1].
 - 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
+- dp[i] += dp[i - x], where x = 1, 2
 - note: calculate number from characters, need to - '0' to get the correct integer mapping.
 - 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
 - Space, Time O(n)
+
+#### 引申
+- 这里只有两种partition的情况 range=1, range =2.  如果有更多partition的种类, 就可能多一层for loop做循环
 
 
 
