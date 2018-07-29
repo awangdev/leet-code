@@ -1,7 +1,7 @@
  
  
  
-## Union Find (11)
+## Union Find (12)
 **0. [Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)**      Level: Medium      Tags: [Union Find]
       
 
@@ -242,6 +242,37 @@ count这个graph里面有多少个独立的component.
 - output -> all accounts, and sort emails
 - space O(mn): m row, n = emails
 - time O(mn)
+
+
+
+---
+
+**11. [Bricks Falling When Hit.java](https://github.com/awangdev/LintCode/blob/master/Java/Bricks%20Falling%20When%20Hit.java)**      Level: Hard      Tags: [Union Find]
+      
+
+给一个matrix of 1 and 0, `1` 代表brick. 连着ceiling的brick就不会drop. 给一串coordinate hits[][], 记录每次take down 1 brick 后, 会drop多少个.
+
+#### UnionFind
+- 1. 我们知道大部分的brick可能都是连着ceiling, 所以每次正向检查都traverse all and timeout
+- 2. 能否用union, 把connect都装在一起, 然后drop brick的时候把连着的都drop掉? 难: 因为还是要check所有brick当下的status.
+- 受其他人的解答启发, 由于是计算count,我们可以`反向考虑`: 
+- 把hit-brick全部mark=2 (就当舍弃不算), 观察整个局面的最后一步, 先把所有还连着ceiling的brick算一下总数, 统计在unionFind的 全部统计在count[0] 里面. 
+- 剩下的不连着ceiling的也就是一个个isolated island
+- 做法: 把hit-brick 一个个加回去, 然后再做一次union, 看看最终连到ceiling的有多少个. 增加的count, 就是正向思考时 dropped brick 数量!
+
+##### Union Find 变种
+- 还是用数字index做union find, 但是把每一个index都+1, 右移一位, 而[0]留下来做特殊用途:
+- 用union at 0来 统计总共的remain count of ceiling-connected bricks, where `x = 0`. 
+- 如果在其他其他题目种, 条件可能就不是`x=0`, 但也可以用这个 union index = 0 来做一个root的统计
+- 关键: 把最后一个hit brick加回去, 然后再重新union一下这个hit-brick周围: count增加的变化, 不就是缺少hit-brick时候掉下去的数量.
+
+
+#### DFS (timeout)
+- 考虑每个hit的四周, 全部traverse, 没有连着ceiling就全部: 
+- 比如是 200 x 200 的 全部是1的matrix, 任何一次traverse都要到顶; 重复计算, 所以timeout
+- 算法是没错, 但是不efficient.
+- 想要减少重复计算, 但是又不能提前计算: grid在不断变化. 所以看能不能把连着ceiling的都group起来, 可以O(1)快速check?
+
 
 
 

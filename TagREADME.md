@@ -25,9 +25,9 @@ Table of Contents
 * [Greedy (16)](#greedy-16)
 * [Heap (15)](#heap-15)
 * [Binary Tree (13)](#binary-tree-13)
+* [Union Find (12)](#union-find-12)
 * [Memoization (12)](#memoization-12)
 * [PriorityQueue (11)](#priorityqueue-11)
-* [Union Find (11)](#union-find-11)
 * [Subarray (11)](#subarray-11)
 * [Segment Tree (10)](#segment-tree-10)
 * [PreSum (10)](#presum-10)
@@ -1125,6 +1125,27 @@ Table of Contents
  
  
  
+## Union Find (12)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|Hard|Java|[Array, Hash Table, Union Find]||
+|1|[Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
+|2|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
+|3|[Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)|Medium|Java|[BFS, DFS, Matrix DFS, Union Find]||
+|4|[Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)|Medium|Java|[BFS, DFS, Matrix DFS, Union Find]||
+|5|[Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)|Medium|Java|[DFS, Hash Table, Hash Table, Union Find]||
+|6|[Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)|Medium|Java|[Union Find]||
+|7|[Connecting Graph II.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20II.java)|Medium|Java|[Union Find]||
+|8|[Connecting Graph III.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20III.java)|Medium|Java|[Union Find]||
+|9|[Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)|Hard|Java|[Union Find]||
+|10|[Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)|Medium|Java|[Union Find]||
+|11|[Bricks Falling When Hit.java](https://github.com/awangdev/LintCode/blob/master/Java/Bricks%20Falling%20When%20Hit.java)|Hard|Java|[Union Find]||
+
+
+
+ 
+ 
+ 
 ## Memoization (12)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -1160,26 +1181,6 @@ Table of Contents
 |8|[Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)|Medium|Java|[PreSum, PriorityQueue, Sort, Subarray]||
 |9|[Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)|Medium|Java|[PriorityQueue, Sort]||
 |10|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[PriorityQueue, Sort, Sweep Line]||
-
-
-
- 
- 
- 
-## Union Find (11)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)|Hard|Java|[Array, Hash Table, Union Find]||
-|1|[Number of Connected Components in an Undirected Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
-|2|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
-|3|[Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)|Medium|Java|[BFS, DFS, Matrix DFS, Union Find]||
-|4|[Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)|Medium|Java|[BFS, DFS, Matrix DFS, Union Find]||
-|5|[Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)|Medium|Java|[DFS, Hash Table, Hash Table, Union Find]||
-|6|[Connecting Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph.java)|Medium|Java|[Union Find]||
-|7|[Connecting Graph II.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20II.java)|Medium|Java|[Union Find]||
-|8|[Connecting Graph III.java](https://github.com/awangdev/LintCode/blob/master/Java/Connecting%20Graph%20III.java)|Medium|Java|[Union Find]||
-|9|[Number of Islands II.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands%20II.java)|Hard|Java|[Union Find]||
-|10|[Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)|Medium|Java|[Union Find]||
 
 
 

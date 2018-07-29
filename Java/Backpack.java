@@ -38,7 +38,7 @@ tags: DP, Backpack DP
 
 ```
 /*
-Given n items with size Ai, an integer m denotes the size of a backpack. 
+Given n items with size A[i], an integer m denotes the size of a backpack. 
 How full you can fill this backpack?
 
 Example
