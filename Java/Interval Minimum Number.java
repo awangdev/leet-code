@@ -1,6 +1,6 @@
 M
 1527994488
-tags: Segment Tree, Binary Search, Divide and Conquer
+tags: Segment Tree, Binary Search, Divide and Conquer, Lint
 
 给一串数字 int[], 然后一个query Interval[], 每个interval是 [start, end], 找query 区间里的最小值.
 

@@ -1,6 +1,6 @@
 M
 1527868675
-tags: Segment Tree, Binary Tree, Divide and Conquer, DFS
+tags: Segment Tree, Binary Tree, Divide and Conquer, DFS, Lint
 
 给了segment Tree, node里面有Max value, 找[start,end]里面的max
 

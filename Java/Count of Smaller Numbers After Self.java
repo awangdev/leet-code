@@ -1,4 +1,4 @@
-R
+H
 1527913608
 tags: BST, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree
 
@@ -11,11 +11,24 @@ tags: BST, Binary Search, Divide and Conquer, Binary Indexed Tree, Segment Tree
 - 每次记录下result[i]
 - **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
 
+
+#### Segment Tree based on actual value
+- Build segment tree based on min/max values of array: set each possible value into leaf
+- query(min, target - 1): return count # of smaller items within range [min, target - 1]
+- Very similar to `Count of Smaller Number`, where segment tree is built on actual value!!
+- IMPORTANT: goal is to find elements on right -> elements processed from left-hand-side can be removed from segment tree
+- Use `modify(root, target, -1)` to remove element count from segment tree. Reuse function
+- time: `n * log(m)`, where m = Math.abs(max-min). log(m) is used to modify() the leaf element
+
+##### Segment Tree solution - tricky part:
+- negative nubmer works oddly with mid and generates endless loop in build(): `[-2, -1]` use case
+- build entire segment tree based on [min, max], where min must be >= 0. 
+- we can do this by adding Math.abs(min) onto both min/max, as well as +diff during accessing nums[i]
+
+
+
 #### Binary Indexed Tree
 - TODO, have code
-
-#### Segment Tree
-- TODO, it seems too complicated for this problem.
 
 ```
 /*
@@ -105,5 +118,147 @@ class Solution {
         // else
         return node.left == null ? 0 : node.left.smallerCount;	
 	}
+}
+
+class Solution {
+    class SegmentTreeNode{
+		int start, end, count;
+		SegmentTreeNode left, right;
+		public SegmentTreeNode(int start, int end){
+			this.start = start;
+            this.end = end;
+		}
+	}
+    SegmentTreeNode root;
+	public List<Integer> countSmaller(int[] nums) {
+		List<Integer> result = new ArrayList<>();
+		if(nums == null || nums.length == 0)  return result;
+        int n = nums.length;
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        int diff = 0;
+        for (int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+        }
+        if (min < 0) {
+            diff = Math.abs(min);
+            max += diff;
+            min += diff;
+        }
+        // build tree
+        root = build(min, max);
+        for (int num : nums) {
+            modify(root, num + diff, 1);
+        }
+        // remove curr element, and query for all remaining elements
+        for (int num : nums) {
+            modify(root, num + diff, -1);
+            result.add(query(root, min, num + diff - 1));
+        }
+
+		return result;
+	}
+    
+    // build empty map
+    private SegmentTreeNode build(int start, int end) {
+        if (start > end) return null;
+        if (start == end) return new SegmentTreeNode(start, end);
+        int mid = (start + end) / 2;
+        SegmentTreeNode node = new SegmentTreeNode(start, end);
+        node.left = build(start, mid);
+        node.right = build(mid + 1, end);
+        
+        return node;
+    }
+    
+    // modify leaf segment node with value, and update all parents alone the way.
+    private void modify(SegmentTreeNode root, int value, int count) {
+        if (root.start == value && root.end == value) {
+            root.count += count;
+            return;
+        }
+        int mid = (root.start + root.end) / 2;
+        if (value <= mid) {
+            modify(root.left, value, count);
+        } else {
+            modify(root.right, value, count);
+        }
+        root.count = root.left.count + root.right.count;
+    }
+    
+    // start query: get count # of elements within range [start, end]
+    private int query(SegmentTreeNode root, int start, int end) {
+        if (root == null) return 0;
+        if (root.start == start && root.end == end) return root.count;
+        
+        int mid = (root.start + root.end) / 2;
+        if (end < mid) {
+            return query(root.left, start, end);
+        }
+        if (start > mid) {
+            return query(root.right, start, end);
+        }
+        // start <= mid < end
+        return query(root.left, start, mid) + query(root.right, mid + 1, end);
+    }
+}
+
+
+
+
+// Segment tree, timesout. Same reason as in `count of smaller number`
+class Solution {
+    class SegmentTreeNode{
+		int start, end, val;
+		SegmentTreeNode left, right;
+		public SegmentTreeNode(int start, int end){
+			this.start = start;
+            this.end = end;
+		}
+	}
+    SegmentTreeNode root;
+	public List<Integer> countSmaller(int[] nums) {
+		List<Integer> result = new ArrayList<>();
+		if(nums == null || nums.length == 0)  return result;
+        int n = nums.length;
+        // build tree
+        root = build(0, n - 1);
+
+        // query for each elements
+        for (int i = 0; i < n; i++) {
+            result.add(query(root, nums, i, n - 1, nums[i]));
+        }
+
+		return result;
+	}
+    
+    // build empty map
+    private SegmentTreeNode build(int start, int end) {
+        if (start > end) return null;
+        if (start == end) return new SegmentTreeNode(start, end);
+        int mid = (start + end) / 2;
+        SegmentTreeNode node = new SegmentTreeNode(start, end);
+        node.left = build(start, mid);
+        node.right = build(mid + 1, end);
+        
+        return node;
+    }
+    
+    private int query(SegmentTreeNode root, int[] nums, int start, int end, int target) {
+        // compare when start==end
+        if (root.start == start && root.end == end && start == end) {
+            if (nums[start] < target) return 1;
+            return 0;
+        }
+        int mid = (root.start + root.end) / 2;
+        if (end <= mid) {
+            return query(root.left, nums, start, end, target);
+        }
+        if (start > mid) {
+            return query(root.right, nums, start, end, target);
+        }
+        // aggregate left + right query result
+        return query(root.left, nums, start, root.left.end, target) + query(root.right, nums, root.right.start, end, target);
+    }
 }
 ```

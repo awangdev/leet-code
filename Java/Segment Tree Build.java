@@ -1,6 +1,6 @@
 M
 1527867171
-tags: Segment Tree, Binary Tree, Divide and Conquer
+tags: Segment Tree, Binary Tree, Divide and Conquer, Lint
 
 给一个区间[startIndex, endIndex], 建造segment tree structure, return root node.
 

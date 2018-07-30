@@ -1,6 +1,13 @@
 H
+1532902848
+tags: Segment Tree, Binary Search, Lint
 
-SegmentTree大集合。记得几个Methods: Build, Query, Modify. 不难。只是要都记得不犯错:)
+SegmentTree大集合. Methods: `build, query, modify`. 不难。只是要都记得不犯错.
+
+#### Segment Tree
+- build: recursively build children based on index-mid and link to curr node
+- query: recursively try to find `node.start == targetStart && node.end == targetEnd`. Compare with node.mid
+- modify: recursively try to find `node.start == targetStart && node.end == targetEnd`; modify and recursively assign upper interval with updated interval property.
 
 ```
 /*
@@ -36,7 +43,6 @@ LintCode Copyright Binary Tree Segment Tree
 	4. modify: binary search, and re-compare the max at each level.
 */
 public class Solution {
-    /* you may need to use some attributes here */
 	class SegmentSumTreeNode {
 		int start,end;
 		long sum;
@@ -45,14 +51,26 @@ public class Solution {
 			this.start = start;
 			this.end = end;
 			this.sum = sum;
-			this.left = null;
-			this.right = null;
 		}
 	}    
-	public SegmentSumTreeNode build(int start, int end, int[] A) {
-		if (start == end) {
-			return new SegmentSumTreeNode(start, end, A[start]);
-		}
+
+	SegmentSumTreeNode root = null;
+    public Solution(int[] A) {
+    	if (A == null || A.length == 0) return;
+		root = build(0, A.length - 1, A);
+    }
+    
+    public long query(int start, int end) {
+    	return queryHelper(root, start, end);
+    }
+    
+    public void modify(int index, int value) {
+    	modifyHelper(root, index, value);
+    }
+    
+    private SegmentSumTreeNode build(int start, int end, int[] A) {
+		if (start == end) return new SegmentSumTreeNode(start, end, A[start]);
+		
 		int mid = (start + end)/2;
 		SegmentSumTreeNode left = build(start, mid, A);
 		SegmentSumTreeNode right = build(mid + 1, end, A);
@@ -63,26 +81,7 @@ public class Solution {
 		return node;
 	}
 
-	SegmentSumTreeNode root = null;
-    /**
-     * @param A: An integer array
-     */
-    public Solution(int[] A) {
-    	if (A == null || A.length == 0) {
-			return;
-		}
-		root = build(0, A.length - 1, A);
-    }
-    
-    /**
-     * @param start, end: Indices
-     * @return: The sum from start to end
-     */
-    public long query(int start, int end) {
-    	return queryHelper(root, start, end);
-    }
-
-    public long queryHelper(SegmentSumTreeNode root, int start, int end){
+    private long queryHelper(SegmentSumTreeNode root, int start, int end){
     	if (start > end) {
     		return 0;
     	} else if (root.start == start && root.end == end) {
@@ -96,15 +95,8 @@ public class Solution {
     	}
     	return queryHelper(root.left, start, root.left.end) + queryHelper(root.right, root.right.start, end);
     }
-    
-    /**
-     * @param index, value: modify A[index] to value.
-     */
-    public void modify(int index, int value) {
-    	modifyHelper(root, index, value);
-    }
 
-    public void modifyHelper(SegmentSumTreeNode node, int index, int value) {
+    private void modifyHelper(SegmentSumTreeNode node, int index, int value) {
     	if (node.start == index && node.end == index) {
     		node.sum = value;
     		return;
@@ -117,9 +109,6 @@ public class Solution {
     	}
     	node.sum = node.left.sum + node.right.sum;
     }
-
-
 }
-
 
 ```

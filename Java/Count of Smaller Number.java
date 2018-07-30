@@ -1,28 +1,34 @@
-R
-tags: Segment Tree, Binary Search
+M
+1532929143
+tags: Segment Tree, Binary Search, Lint
 
-和平时的segment tree问题不同。 0 ～ n-1代表实际数字。是造一个based on real value的segment tree.
-Modify时，把array里面的value带进去，找到特定的位子（leaf）,然后count+1. 
+给一串数字, array size = n. 给一串query: 每个query是一个数, 目的找 count# items smaller than query element.
 
-最终在SegmentTree leaf上面全是array里面实际的数字。
+#### Segment Tree
+- 和平时的segment tree问题不同。 [0 ～ n] 代表实际数字: based on real value的segment tree.
+- Modify时，把array里面的value带进去，找到特定的位子, 然后count + 1. 
+- 最终在SegmentTree leaf上面全是array里面实际的数字。
+- node.count: 在node range里面的有多少个数字
 
-trick:   
-在query前，给进去的start和end是： 0 ~ value-1.   
-value-1就是说，找比自己所在range小1的range（那么自然而然地就不包括自己了），这样就找到了smaller number.   
+##### right use of modify()
+- build() 只是 empty segment tree, 没有property
+- modify() 需要: 1. 找到left, update count+=1; 2. aggregate all parent when after returning
+- 所以每一个modify 都是在整个path上所有的node上 + count
 
+##### query trick
+- 在query前，给进去的start和end是： 0 ~ value-1.   
+- `value-1`: 找比自己所在range小1的range（那么自然而然地就不包括自己了），这样就找到了smaller number.   
 
-[那么其他做过的SegmentTree是怎么样呢？]   
-那些构成好的SegmentTree(找min,max,sum)也有一个Array。但是构成Tree时候，随Array的index而构架。   
-也就是说，假如有Array[x,y,....]:在leaf,会有[0,0] with value = x. [1,1] with value = y. 
-
-[但是这题]   
-构成时，是用actual value.也就是比如Array[x,y,....]会产生leaf:[x,x]with value = ..; [y,y]with value =...    
-
-其实很容易看穿:   
-若给出一个固定的array构成 SegmentTree，那估计很简单：按照index从0~array.lengh，leaf上就是[0,0] with value = x.
-
-若题目让构造一个空心SegmentTree, based on value 0 ~ n-1 (n <= 10000), 然后把一个Array的value modify 进去。   
-这样八成是另外一种咯。
+##### About other basic segment tree setup
+- [那么其他做过的SegmentTree是怎么样呢？]   
+- 那些构成好的SegmentTree(找min,max,sum)也有一个Array。但是构成Tree时候，随Array的index而构架。   
+- 也就是说，假如有Array[x,y,....]:在leaf,会有[0,0] with value = x. [1,1] with value = y. 
+- [但是这题]   
+- 构成时，是用actual value.也就是比如Array[x,y,....]会产生leaf:[x,x]with value = ..; [y,y]with value =...    
+- 其实很容易看穿:   
+- 若给出一个固定的array构成 SegmentTree，那估计很简单：按照index从0~array.lengh，leaf上就是[0,0] with value = x.
+- 若题目让构造一个空心SegmentTree, `based on value 0 ~ n-1 (n <= 10000)`, 然后把一个Array的value modify 进去。   
+- 这样八成是另外一种咯。
 
 ```
 /*
@@ -78,19 +84,110 @@ public class Solution {
 			this.start = start;
 			this.end = end;
 			this.count = 0;
-			this.left = null;
-			this.right = null;
 		}
 	}
+	
+    public List<Integer> countOfSmallerNumber(int[] A, int[] queries) {
+    	List<Integer> rst = new ArrayList<>();
+    	
+		// build segment tree based off value with node.count = 0
+    	SegmentTreeNode root = build(0, 10000);
+		// populate count from leaf -> root
+    	for (int value : A) {
+    		modify(root, value, 1);
+    	}
+		// Find item in target range [0~ n - 1]
+    	for (int query : queries) {
+    		int count = 0;
+    		if (query > 0) {//Given value has to be in n's range: [0, 10000]
+    			count = query(root, 0, query - 1);
+    		}
+    		rst.add(count);
+    	}
+    	return rst;
+    }
+
+	/*	Build a empty segment tree based on index */
+	public SegmentTreeNode build(int start, int end) {
+		if (start > end) return null;
+		if (start == end) return new SegmentTreeNode(start, end);
+	    
+		SegmentTreeNode root = new SegmentTreeNode(start, end);
+		int mid = start + (end - start) / 2;
+		root.left = build(start, mid);
+		root.right = build(mid + 1, end);
+		return root;
+	}
+
+	/*	
+		Update the tree with 'count': from bottom to this specific tree node, how many integers do we have.
+		Reason of modify function: once children node is updated, parent node will update as well.
+	*/
+	public void modify(SegmentTreeNode root, int index, int count){
+		if (root.start == index && root.end == index) {
+			root.count += count; // basically + 1
+			return;
+		}
+		int mid = root.start + (root.end - root.start)/2;
+		if (index <= mid) {
+			modify(root.left, index, count);
+		} else { //index > mid
+			modify(root.right, index, count);
+		}
+		root.count = root.left.count + root.right.count;
+	}
+	
+	/*	Look for that number based on start&&end*/
+	public int query(SegmentTreeNode root, int start, int end) {
+		if (root.start == start && root.end == end) return root.count;
+		
+		int mid = root.start + (root.end - root.start)/2;
+		if (end <= mid) {
+			return query(root.left, start, end);
+		} else if (start > mid) {
+			return query(root.right, start, end);
+		}
+		// start <= mid && mid < end) 
+		return query(root.left, start, mid) + query(root.right, mid + 1, end);
+	}
+}
+
+// All the same, execpt, modify() does not need to take `count` input. Count is always +1 when the target element is found.
+public class Solution {
+
+	public class SegmentTreeNode {
+		public int start,end;
+		public int count;
+		public SegmentTreeNode left, right;
+		public SegmentTreeNode(int start, int end) {
+			this.start = start;
+			this.end = end;
+			this.count = 0;
+		}
+	}
+	
+    public List<Integer> countOfSmallerNumber(int[] A, int[] queries) {
+    	List<Integer> rst = new ArrayList<>();
+    	
+    	SegmentTreeNode root = build(0, 10000);
+    	for (int value : A) {
+    		modify(root, value);
+    	}
+    	for (int query : queries) {
+    		int count = 0;
+    		if (query > 0) {//Given value has to be in n's range: [0, 10000]
+    			count = query(root, 0, query - 1);
+    		}
+    		rst.add(count);
+    	}
+    	return rst;
+    }
 
 	/*	Build a empty segment tree based on index*/
 	public SegmentTreeNode build(int start, int end) {
-		if (start > end) {
-			return null;
-		}
-		if (start == end) {
-			return new SegmentTreeNode(start, end);
-		}
+		if (start > end) return null;
+		if (start == end) return new SegmentTreeNode(start, end);
+	    
 		SegmentTreeNode root = new SegmentTreeNode(start, end);
 		int mid = start + (end - start) / 2;
 		root.left = build(start, mid);
@@ -99,77 +196,48 @@ public class Solution {
 	}
 
 	/*	Update the tree with 'count': from bottom to this specific tree node, how many integers do we have.*/
-	public void modify(SegmentTreeNode root, int index, int count){
+	public void modify(SegmentTreeNode root, int index){
 		if (root.start == index && root.end == index) {
-			root.count += count;
+			root.count += 1;
 			return;
 		}
 		int mid = root.start + (root.end - root.start)/2;
 		if (index <= mid) {
-			modify(root.left, index, count);
-		}
-		if (index > mid) {
-			modify(root.right, index, count);
+			modify(root.left, index);
+		} else { //index > mid
+			modify(root.right, index);
 		}
 		root.count = root.left.count + root.right.count;
 	}
 	
 	/*	Look for that number based on start&&end*/
 	public int query(SegmentTreeNode root, int start, int end) {
-		if (root.start == start && root.end == end) {
-			return root.count;
-		}
-		int sum = 0;
+		if (root.start == start && root.end == end) return root.count;
+		
 		int mid = root.start + (root.end - root.start)/2;
 		if (end <= mid) {
-			sum += query(root.left, start, end);
+			return query(root.left, start, end);
 		} else if (start > mid) {
-			sum += query(root.right, start, end);
-		} else if (start <= mid && mid < end) {
-			sum += query(root.left, start, mid);
-			sum += query(root.right, mid + 1, end);
+			return query(root.right, start, end);
 		}
-		return sum;
+		// start <= mid && mid < end) 
+		return query(root.left, start, mid) + query(root.right, mid + 1, end);
 	}
-
-
-   /**
-     * @param A: An integer array
-     * @return: The number of element in the array that 
-     *          are smaller that the given integer
-     */
-    public ArrayList<Integer> countOfSmallerNumber(int[] A, int[] queries) {
-    	ArrayList<Integer> rst = new ArrayList<Integer>();
-    	
-    	SegmentTreeNode root = build(0, 10000);
-    	for (int value : A) {
-    		modify(root, value, 1);
-    	}
-    	for (int value : queries) {
-    		int count = 0;
-    		if (value > 0) {//Given value has to be in n's range: [0, 10000]
-    			count = query(root, 0, value - 1);
-    		}
-    		rst.add(count);
-    	}
-    	return rst;
-    }
 }
-
-
-
-
-
 
 /*
 	Time limit exceeded...
-	Because: If we build the tree based on given index 0~n, and build 'query' method based on its max values. It will work for small scale, but when it gets larger, we could be doing O(n)*m all the time. Everytime we search root.left and root.right, which is not binary search style : )
+	Because: If we build the tree based on given index 0~n, and build 'query' method based on its max values. 
+	It will work for small scale, but when it gets larger, we could be doing O(n)*m all the time. 
+	Everytime we search root.left and root.right, which is not binary search style : )
 
 	Thoughts:
 	Build SegmentTree, store max
-	1st attempt: time exceeds. Because the 'query part' is actually not segment tree search. Doing search based on max value can find answer, but it's O(n) search.
+	1st attempt: time exceeds. Because the 'query part' is actually not segment tree search. 
+	Doing search based on max value can find answer, but it's O(n) search.
 	Note:
-	This segment tree problem gives queries of actaul value, rather than a range(start,end) that we can directly use in segment tree. So we need some sort of conversion, that still provide (start,end) to search
+	This segment tree problem gives queries of actaul value, rather than a range(start,end) that we can directly use in segment tree. 
+	So we need some sort of conversion, that still provide (start,end) to search
 */
 
 public class Solution {

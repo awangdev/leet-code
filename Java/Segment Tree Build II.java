@@ -1,6 +1,6 @@
 M
 1527867789
-tags: Segment Tree, Divide and Conquer, Binary Tree
+tags: Segment Tree, Divide and Conquer, Binary Tree, Lint
 
 给一个array, 建造segment tree structure, 
 

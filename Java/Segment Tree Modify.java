@@ -1,6 +1,6 @@
 M
 1527895515
-tags: Segment Tree, Binary Tree, Divide and Conquer, DFS
+tags: Segment Tree, Binary Tree, Divide and Conquer, DFS, Lint
 
 给一个segmentTree, node里面存max. 写一个modify function: modify(node, index, value).
 

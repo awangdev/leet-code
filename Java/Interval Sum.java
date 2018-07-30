@@ -1,6 +1,6 @@
 M
 1527997211
-tags: Segment Tree, Binary Search
+tags: Segment Tree, Binary Search, Lint
 
 给一串数字 int[], 然后一个query Interval[], 每个interval是 [start, end], 找query 区间里的sum.
 
@@ -39,7 +39,9 @@ O(logN) time for each query
  *         this.start = start;
  *         this.end = end;
  *     }
+ * }
  */
+
 public class Solution {
 	public class SegmentSumTreeNode {
 		public int start, end;
@@ -53,37 +55,8 @@ public class Solution {
 			this.right = null;
 		}
 	}
-
-	public SegmentSumTreeNode buildTree(int[] A, int start, int end) {
-    	if (start == end) {
-    		return new SegmentSumTreeNode(start, end, A[start]);
-    	}
-    	int mid = (start + end) / 2;
-    	SegmentSumTreeNode leftChild = buildTree(A, start, mid);
-    	SegmentSumTreeNode rightChid = buildTree(A, mid + 1, end);
-
-    	SegmentSumTreeNode node = new SegmentSumTreeNode(start, end, leftChild.sum + rightChid.sum);
-    	node.left = leftChild;
-    	node.right = rightChid;
-
-    	return node;
-    }
-
-    public long searchTree(SegmentSumTreeNode root, int start, int end) {
-    	if (root.start == start && root.end == end) {
-    		return root.sum;
-    	}
-    	int mid = (root.start + root.end) / 2;
-    	if (end <= mid) {
-    		return searchTree(root.left, start, end);
-    	} else if (start > mid) {
-    		return searchTree(root.right, start, end);
-    	}
-    	//start <= mid < end
-    	return searchTree(root.left, start, root.left.end) + searchTree(root.right, root.right.start, end);
-    }
-
-    /**
+	
+	/**
      *@param A, queries: Given an integer array and an query list
      *@return: The result list
      */
@@ -92,15 +65,40 @@ public class Solution {
         if (A == null || A.length == 0 || queries == null || queries.size() == 0) {
         	return rst;
         }
-        SegmentSumTreeNode root = buildTree(A, 0, A.length - 1);
+        SegmentSumTreeNode root = build(A, 0, A.length - 1);
 
         for (Interval range : queries) {
-        	long sum = 0;
-        	sum = searchTree(root, range.start, range.end);
-        	rst.add(sum);
+        	rst.add(query(root, range.start, range.end));
         }
         return rst;
     }
-  
+
+	private SegmentSumTreeNode build(int[] A, int start, int end) {
+    	if (start == end) return new SegmentSumTreeNode(start, end, A[start]);
+    	
+    	int mid = (start + end) / 2;
+    	SegmentSumTreeNode leftChild = build(A, start, mid);
+    	SegmentSumTreeNode rightChid = build(A, mid + 1, end);
+
+    	SegmentSumTreeNode node = new SegmentSumTreeNode(start, end, leftChild.sum + rightChid.sum);
+    	node.left = leftChild;
+    	node.right = rightChid;
+
+    	return node;
+    }
+
+    private long query(SegmentSumTreeNode root, int start, int end) {
+    	if (root.start == start && root.end == end) return root.sum;
+    	
+    	int mid = (root.start + root.end) / 2;
+    	if (end <= mid) {
+    		return query(root.left, start, end);
+    	} else if (start > mid) {
+    		return query(root.right, start, end);
+    	}
+    	//start <= mid < end
+    	return query(root.left, start, root.left.end) + query(root.right, root.right.start, end);
+    }
 }
+
 ```

@@ -1,6 +1,6 @@
 M
 1527896821
-tags: Segment Tree, Binary Tree, Divide and Conquer, DFS
+tags: Segment Tree, Binary Tree, Divide and Conquer, DFS, Lint
 
 #### Segment Tree
 - 和 Segment Tree Query I 以及其他Segment Tree类似: 这个SegmentTreeNode return count of elements in range

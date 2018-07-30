@@ -256,7 +256,7 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 
 ---
 
-**14. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Review      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+**14. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Hard      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
       
 
 给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
@@ -268,11 +268,24 @@ Note: 虽然题目名字是Contains Duplicate, 但其实要找的两个element�
 - 每次记录下result[i]
 - **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
 
+
+#### Segment Tree based on actual value
+- Build segment tree based on min/max values of array: set each possible value into leaf
+- query(min, target - 1): return count # of smaller items within range [min, target - 1]
+- Very similar to `Count of Smaller Number`, where segment tree is built on actual value!!
+- IMPORTANT: goal is to find elements on right -> elements processed from left-hand-side can be removed from segment tree
+- Use `modify(root, target, -1)` to remove element count from segment tree. Reuse function
+- time: `n * log(m)`, where m = Math.abs(max-min). log(m) is used to modify() the leaf element
+
+##### Segment Tree solution - tricky part:
+- negative nubmer works oddly with mid and generates endless loop in build(): `[-2, -1]` use case
+- build entire segment tree based on [min, max], where min must be >= 0. 
+- we can do this by adding Math.abs(min) onto both min/max, as well as +diff during accessing nums[i]
+
+
+
 #### Binary Indexed Tree
 - TODO, have code
-
-#### Segment Tree
-- TODO, it seems too complicated for this problem.
 
 
 
