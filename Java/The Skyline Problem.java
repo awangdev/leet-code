@@ -4,10 +4,9 @@ tags: Divide and Conquer, Heap, Binary Indexed Tree, Segment Tree, Sweep Line
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
 
-#### 方法1: Sweep Line, Time O(nLogN), Space O(n)
-original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
-
-sweep line:
+#### Sweep Line, Time O(nLogN), Space O(n)
+- original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+- 画图分析: 需要找到 non-overlaping height point at current index; also height needs to be different than prev height peek to be visible.
 - 把所有点分出来， 每个点有index x, 再加上一个height.         
 - 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
 - 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
@@ -15,12 +14,15 @@ sweep line:
 - 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
 - heightQueue里面加一个0, 用来在结尾的时候做closure
 
-#### 方法2: Segment Tree
-REVIEW
+#### Segment Tree
+- 看了一些做法, segment tree写法很复杂, 估计在面试中难以用segment tree来写: https://www.cnblogs.com/tiezhibieek/p/5021202.html
+
+#### HashHeap
+- HashHeap template 可以考虑: https://www.jiuzhang.com/solution/building-outline/#tag-highlight-lang-java
 
 Binary Indexed Tree?
 
-HashHeap?
+
 
 ```
 /*
@@ -97,11 +99,12 @@ class Solution {
             queue.offer(new Point(buildings[i][1], buildings[i][2]));
         }
         
-        // Mark height and calcualte the outline point.
+        // Mark and store height in maxHeap: start and end with ground point height=0
         PriorityQueue<Integer> maxHeightQueue = new PriorityQueue<>(Collections.reverseOrder());
         maxHeightQueue.offer(0);
         int prevPeak = maxHeightQueue.peek();
 
+        // Find non-overlaping height. Positive height marks end of building outline, so remove from maxHeap.
         while (!queue.isEmpty()) {
             Point point = queue.poll();
             if (point.height < 0) {
@@ -110,6 +113,7 @@ class Solution {
                 maxHeightQueue.remove(point.height);
             }
             
+            // Goal: find non-overlapping height
             int currPeak = maxHeightQueue.peek();
             if (currPeak != prevPeak) {
                 rst.add(new int[]{point.pos, currPeak});
