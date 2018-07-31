@@ -1,7 +1,7 @@
  
  
  
-## Merge Sort (3)
+## Merge Sort (4)
 **0. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
       
 
@@ -68,6 +68,48 @@ TODO: Write the code + merge function
 
 #### BST
 - TODO?
+
+
+
+---
+
+**3. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
+      
+
+给一串数字, count total reverse pair `nums[i] > 2*nums[j]`, i < j
+
+This problem can be solved with Merge sort concept, BST, Segment Tree and Binary Indexed Tree. Good for learning/review.
+
+#### Merge Sort
+- Using merge sort concept, not exaclty merge sort implementation.
+- One very simply concept: if we want to know how many elements between [i, j] are meeting requirements of `nums[i] > 2*nums[j]`, it would be really helpful, if the entire range is sorted:
+- then we just need to keep one i index, and keep j++ for all elements meeting requirement `j<=e && nums[i]/2.0 > nums[j]`
+- Then it comes to the sorting part: we cannot just directly sort entire array, because the restriction is `all elements on right side of curr element`. BUT, it is okay to sort `right side range` and compare with left side elements : )
+- 灵感: use merge sort concept, divide and conquer:
+- divide the elements from mid, compare each subarray
+- sort once sub-array is completed (so that it can be used recursively at parent level)
+- use classic while loop `while(j<=e && nums[i]/2.0 > nums[j])` to count pairs
+
+
+#### Segment tree
+- TODO
+- split the array into index-based segment tree, where each element is at leaf
+- store min of range: use max to determine if certain range is needed for further query
+- query for each element right side range (i + 1, end), where it recursively query&aggregate sub-range if meeting requirement `nums[i] > 2*nums[j]`
+- only when target > subRange.min * 2: there are possible candidates, query further
+- worst case O(n^2) when all tailing elements are meeting requirement.
+
+#### BST
+- TODO
+- Build the BST based on node value. It will be not applicable if we search after entire tree is built (our goal is right range), so we need to build right elements, and search/count right after the elements is added
+- Worst case is still O(n^2), if all added nodes are meeting requirement 
+- search(tree, curr / 2.0)
+
+
+
+#### O(n^2)
+- check each one of them
+
 
 
 
@@ -4736,7 +4778,7 @@ space: O(n)
  
  
  
-## Segment Tree (11)
+## Segment Tree (12)
 **0. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
       
 
@@ -4950,6 +4992,48 @@ SegmentTree大集合. Methods: `build, query, modify`. 不难。只是要都记�
 - 若给出一个固定的array构成 SegmentTree，那估计很简单：按照index从0~array.lengh，leaf上就是[0,0] with value = x.
 - 若题目让构造一个空心SegmentTree, `based on value 0 ~ n-1 (n <= 10000)`, 然后把一个Array的value modify 进去。   
 - 这样八成是另外一种咯。
+
+
+
+---
+
+**11. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
+      
+
+给一串数字, count total reverse pair `nums[i] > 2*nums[j]`, i < j
+
+This problem can be solved with Merge sort concept, BST, Segment Tree and Binary Indexed Tree. Good for learning/review.
+
+#### Merge Sort
+- Using merge sort concept, not exaclty merge sort implementation.
+- One very simply concept: if we want to know how many elements between [i, j] are meeting requirements of `nums[i] > 2*nums[j]`, it would be really helpful, if the entire range is sorted:
+- then we just need to keep one i index, and keep j++ for all elements meeting requirement `j<=e && nums[i]/2.0 > nums[j]`
+- Then it comes to the sorting part: we cannot just directly sort entire array, because the restriction is `all elements on right side of curr element`. BUT, it is okay to sort `right side range` and compare with left side elements : )
+- 灵感: use merge sort concept, divide and conquer:
+- divide the elements from mid, compare each subarray
+- sort once sub-array is completed (so that it can be used recursively at parent level)
+- use classic while loop `while(j<=e && nums[i]/2.0 > nums[j])` to count pairs
+
+
+#### Segment tree
+- TODO
+- split the array into index-based segment tree, where each element is at leaf
+- store min of range: use max to determine if certain range is needed for further query
+- query for each element right side range (i + 1, end), where it recursively query&aggregate sub-range if meeting requirement `nums[i] > 2*nums[j]`
+- only when target > subRange.min * 2: there are possible candidates, query further
+- worst case O(n^2) when all tailing elements are meeting requirement.
+
+#### BST
+- TODO
+- Build the BST based on node value. It will be not applicable if we search after entire tree is built (our goal is right range), so we need to build right elements, and search/count right after the elements is added
+- Worst case is still O(n^2), if all added nodes are meeting requirement 
+- search(tree, curr / 2.0)
+
+
+
+#### O(n^2)
+- check each one of them
+
 
 
 
@@ -12087,6 +12171,55 @@ space: O(n)
  
  
  
+## Binary Search Tree (1)
+**0. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
+      
+
+给一串数字, count total reverse pair `nums[i] > 2*nums[j]`, i < j
+
+This problem can be solved with Merge sort concept, BST, Segment Tree and Binary Indexed Tree. Good for learning/review.
+
+#### Merge Sort
+- Using merge sort concept, not exaclty merge sort implementation.
+- One very simply concept: if we want to know how many elements between [i, j] are meeting requirements of `nums[i] > 2*nums[j]`, it would be really helpful, if the entire range is sorted:
+- then we just need to keep one i index, and keep j++ for all elements meeting requirement `j<=e && nums[i]/2.0 > nums[j]`
+- Then it comes to the sorting part: we cannot just directly sort entire array, because the restriction is `all elements on right side of curr element`. BUT, it is okay to sort `right side range` and compare with left side elements : )
+- 灵感: use merge sort concept, divide and conquer:
+- divide the elements from mid, compare each subarray
+- sort once sub-array is completed (so that it can be used recursively at parent level)
+- use classic while loop `while(j<=e && nums[i]/2.0 > nums[j])` to count pairs
+
+
+#### Segment tree
+- TODO
+- split the array into index-based segment tree, where each element is at leaf
+- store min of range: use max to determine if certain range is needed for further query
+- query for each element right side range (i + 1, end), where it recursively query&aggregate sub-range if meeting requirement `nums[i] > 2*nums[j]`
+- only when target > subRange.min * 2: there are possible candidates, query further
+- worst case O(n^2) when all tailing elements are meeting requirement.
+
+#### BST
+- TODO
+- Build the BST based on node value. It will be not applicable if we search after entire tree is built (our goal is right range), so we need to build right elements, and search/count right after the elements is added
+- Worst case is still O(n^2), if all added nodes are meeting requirement 
+- search(tree, curr / 2.0)
+
+
+
+#### O(n^2)
+- check each one of them
+
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## PriorityQueue (11)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
@@ -14228,7 +14361,7 @@ space: O(n)
  
  
  
-## Binary Indexed Tree (2)
+## Binary Indexed Tree (3)
 **0. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
       
 
@@ -14288,6 +14421,48 @@ Binary Indexed Tree?
 
 #### Binary Indexed Tree
 - TODO, have code
+
+
+
+---
+
+**2. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
+      
+
+给一串数字, count total reverse pair `nums[i] > 2*nums[j]`, i < j
+
+This problem can be solved with Merge sort concept, BST, Segment Tree and Binary Indexed Tree. Good for learning/review.
+
+#### Merge Sort
+- Using merge sort concept, not exaclty merge sort implementation.
+- One very simply concept: if we want to know how many elements between [i, j] are meeting requirements of `nums[i] > 2*nums[j]`, it would be really helpful, if the entire range is sorted:
+- then we just need to keep one i index, and keep j++ for all elements meeting requirement `j<=e && nums[i]/2.0 > nums[j]`
+- Then it comes to the sorting part: we cannot just directly sort entire array, because the restriction is `all elements on right side of curr element`. BUT, it is okay to sort `right side range` and compare with left side elements : )
+- 灵感: use merge sort concept, divide and conquer:
+- divide the elements from mid, compare each subarray
+- sort once sub-array is completed (so that it can be used recursively at parent level)
+- use classic while loop `while(j<=e && nums[i]/2.0 > nums[j])` to count pairs
+
+
+#### Segment tree
+- TODO
+- split the array into index-based segment tree, where each element is at leaf
+- store min of range: use max to determine if certain range is needed for further query
+- query for each element right side range (i + 1, end), where it recursively query&aggregate sub-range if meeting requirement `nums[i] > 2*nums[j]`
+- only when target > subRange.min * 2: there are possible candidates, query further
+- worst case O(n^2) when all tailing elements are meeting requirement.
+
+#### BST
+- TODO
+- Build the BST based on node value. It will be not applicable if we search after entire tree is built (our goal is right range), so we need to build right elements, and search/count right after the elements is added
+- Worst case is still O(n^2), if all added nodes are meeting requirement 
+- search(tree, curr / 2.0)
+
+
+
+#### O(n^2)
+- check each one of them
+
 
 
 
@@ -17170,7 +17345,7 @@ space: O(1)
  
  
  
-## Divide and Conquer (34)
+## Divide and Conquer (35)
 **0. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
       
 
@@ -17937,6 +18112,48 @@ space: O(n)
 
 **33. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
       
+
+
+
+---
+
+**34. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
+      
+
+给一串数字, count total reverse pair `nums[i] > 2*nums[j]`, i < j
+
+This problem can be solved with Merge sort concept, BST, Segment Tree and Binary Indexed Tree. Good for learning/review.
+
+#### Merge Sort
+- Using merge sort concept, not exaclty merge sort implementation.
+- One very simply concept: if we want to know how many elements between [i, j] are meeting requirements of `nums[i] > 2*nums[j]`, it would be really helpful, if the entire range is sorted:
+- then we just need to keep one i index, and keep j++ for all elements meeting requirement `j<=e && nums[i]/2.0 > nums[j]`
+- Then it comes to the sorting part: we cannot just directly sort entire array, because the restriction is `all elements on right side of curr element`. BUT, it is okay to sort `right side range` and compare with left side elements : )
+- 灵感: use merge sort concept, divide and conquer:
+- divide the elements from mid, compare each subarray
+- sort once sub-array is completed (so that it can be used recursively at parent level)
+- use classic while loop `while(j<=e && nums[i]/2.0 > nums[j])` to count pairs
+
+
+#### Segment tree
+- TODO
+- split the array into index-based segment tree, where each element is at leaf
+- store min of range: use max to determine if certain range is needed for further query
+- query for each element right side range (i + 1, end), where it recursively query&aggregate sub-range if meeting requirement `nums[i] > 2*nums[j]`
+- only when target > subRange.min * 2: there are possible candidates, query further
+- worst case O(n^2) when all tailing elements are meeting requirement.
+
+#### BST
+- TODO
+- Build the BST based on node value. It will be not applicable if we search after entire tree is built (our goal is right range), so we need to build right elements, and search/count right after the elements is added
+- Worst case is still O(n^2), if all added nodes are meeting requirement 
+- search(tree, curr / 2.0)
+
+
+
+#### O(n^2)
+- check each one of them
+
 
 
 
@@ -20699,6 +20916,50 @@ SegmentTree大集合. Methods: `build, query, modify`. 不难。只是要都记�
  
  
  
+## TreeMap (1)
+**0. [My Calendar I.java](https://github.com/awangdev/LintCode/blob/master/Java/My%20Calendar%20I.java)**      Level: Medium      Tags: [Array, TreeMap]
+      
+
+Given a list of interval as calendar items. Check if newly added calendar item is overlapping.
+
+Understand it is only checking time, but not requiring to insert into right spot. No need to overthink.
+
+#### Simply O(n) check on array
+- number of test cases is small, like 1000, so less concern about the time complexity
+- simply loop over the list of intervals, and check if any overlapping.
+- where to insert does not really matter: every time we are just checking for overlaopping, not merging any range
+- **IMPORTANT**: if interval over lapping, they will have this property `Math.max(s1, s2) < Math.min(e1, e2)`. This will help detect the overlapping very easily.
+- O(n^2) runtime, with simple code. But somehow this approach is faster than the TreeMap solution: maybe the test cause causes avg O(n)?
+
+#### TreeMap
+- One constraint from the simply array solution: it always cost O(n) to find the potential overlapping interval
+- We can manually sort and always manually try to find the correct element via binary search, or we could store the interval in a treeMap<startKey, endValue>, where the intervals are sorted by `start`.
+- As result, all we need to do for book(start, end) is to find the next element ceiling(start), last element floor(start), and check for overlapping
+- This approach also saves the custom data structure
+- Overall cost O(nlogn)
+
+##### About TreeMap
+- always with key sorted ascendingly 
+- more costly than regular HashMap because of the sorting. Building treemap of n items: O(nlogn)
+
+#### Sweep line
+- use `Point{int start, end; boolean start}` to mark start/end of class. Add to pq.
+- Adding new item to pq, sort, and check if overlapping occurs by counting started classes
+- If started classes > 1, that means we overlapped.
+- Every time it could consume all classes to find the overlap, O(n^2).
+- Not quite need to sort or insert at correct point, and this solution requires longer code. Not quite worthy it for a simple problem.
+
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Deque (1)
 **0. [Serilization and Deserialization Of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serilization%20and%20Deserialization%20Of%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Deque, Design, Divide and Conquer, Tree]
       
@@ -20739,7 +21000,7 @@ Serialize and Deserialize Binary Tree
  
  
  
-## Array (102)
+## Array (103)
 **0. [Missing Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Ranges.java)**      Level: Medium      Tags: [Array]
       
 
@@ -22874,6 +23135,43 @@ space: O(1)
 - Use preMinSum to cache previouly calcualted min sum, also compare with +curr.
 - Have a global min to track: because the preMinSum can be dis-continuous. 
 - 也可以写成 dp[i] 但是没什么必要
+
+
+
+---
+
+**102. [My Calendar I.java](https://github.com/awangdev/LintCode/blob/master/Java/My%20Calendar%20I.java)**      Level: Medium      Tags: [Array, TreeMap]
+      
+
+Given a list of interval as calendar items. Check if newly added calendar item is overlapping.
+
+Understand it is only checking time, but not requiring to insert into right spot. No need to overthink.
+
+#### Simply O(n) check on array
+- number of test cases is small, like 1000, so less concern about the time complexity
+- simply loop over the list of intervals, and check if any overlapping.
+- where to insert does not really matter: every time we are just checking for overlaopping, not merging any range
+- **IMPORTANT**: if interval over lapping, they will have this property `Math.max(s1, s2) < Math.min(e1, e2)`. This will help detect the overlapping very easily.
+- O(n^2) runtime, with simple code. But somehow this approach is faster than the TreeMap solution: maybe the test cause causes avg O(n)?
+
+#### TreeMap
+- One constraint from the simply array solution: it always cost O(n) to find the potential overlapping interval
+- We can manually sort and always manually try to find the correct element via binary search, or we could store the interval in a treeMap<startKey, endValue>, where the intervals are sorted by `start`.
+- As result, all we need to do for book(start, end) is to find the next element ceiling(start), last element floor(start), and check for overlapping
+- This approach also saves the custom data structure
+- Overall cost O(nlogn)
+
+##### About TreeMap
+- always with key sorted ascendingly 
+- more costly than regular HashMap because of the sorting. Building treemap of n items: O(nlogn)
+
+#### Sweep line
+- use `Point{int start, end; boolean start}` to mark start/end of class. Add to pq.
+- Adding new item to pq, sort, and check if overlapping occurs by counting started classes
+- If started classes > 1, that means we overlapped.
+- Every time it could consume all classes to find the overlap, O(n^2).
+- Not quite need to sort or insert at correct point, and this solution requires longer code. Not quite worthy it for a simple problem.
+
 
 
 

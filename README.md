@@ -483,3 +483,5 @@
 |462|[Interval Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Interval%20Sum%20II.java)|Hard|Java|[Binary Search, Lint, Segment Tree]||
 |463|[Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)|Medium|Java|[Binary Search, Lint, Segment Tree]||
 |464|[HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)|Hard|Java|[HashHeap]||
+|465|[My Calendar I.java](https://github.com/awangdev/LintCode/blob/master/Java/My%20Calendar%20I.java)|Medium|Java|[Array, TreeMap]||
+|466|[Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)|Medium|Java|[Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]||
