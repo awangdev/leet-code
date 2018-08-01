@@ -2,7 +2,7 @@
  
  
 ## Heap (15)
-**0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap]
+**0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap, MinHeap]
       
 
 Turn unsorted array into a min-heap array, where for each A[i], 
@@ -28,30 +28,7 @@ A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[
 
 ---
 
-**1. [Kth Largest Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element.java)**      Level: Review      Tags: [Divide and Conquer, Heap, Quick Sort]
-      
-
-#### Quick Sort
-- 用Quick Sort 里面partion的一部分。     
-- partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
-- 没找到继续partion recursively.
-- sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
-- Steps:
-- 每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
-- 找到一个low>pivot, high<pivot, 也就可以swap了。    
-- 得到的low就是当下的partion point了
-- Overall O(nlogN), average O(n) for this problem.
-
-#### Heap
-- Learn how to build min-heap or max-heap to solve this problem.
-- O(n + kLogN)
-
-
-
-
----
-
-**2. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Heap, Math]
+**1. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Heap, Math]
       
 
 非常brutle的。
@@ -65,7 +42,7 @@ HashSet确保没有重复。
 
 ---
 
-**3. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
+**2. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
 
 方法1:
@@ -83,40 +60,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 
 ---
 
-**4. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap]
-      
-
-用PriorityQueue把选中的height排序。为走位，create class Cell (x,y, height).
-
-#### 注意几个理论
-1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block。
-2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层。
-
-以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
-
-#### 具体步骤
-1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
-   若大于零，那么周围的cell就有积水。
-2. 每个visited的cell都要mark. 
-3. 根据4个方向的走位, 创建新cell 加进queue里面. 因为做的是缩小一圈的新围墙, height = Math.max(cell.h, neighbor.h);
-
-再多一句解释: 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
-这里要附上curr cell 和 move-to cell的最大高度。
-
-#### 为什么想到用Heap (min-heap - priorityQueue)
-- 要找到bucket的最短板
-- 每次需要最先处理最短的那条 (on top)
-
-
-#### 为什么从外向里遍历
-- 木桶理论, 包水, 是从外面包住里面
-- 洋葱剥皮, 用完丢掉
-
-
-
----
-
-**5. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap]
+**3. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap]
       
 
 #### 原理
@@ -132,7 +76,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85
 
 ---
 
-**6. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap]
+**4. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap]
       
 
 Median还是用min-heap 和 max-heap. Time(logN)
@@ -153,7 +97,7 @@ findMedian: O(1)
 
 ---
 
-**7. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, Sort, Sweep Line]
+**5. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
       
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
@@ -169,7 +113,7 @@ findMedian: O(1)
 
 ---
 
-**8. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, Segment Tree, Sweep Line]
+**6. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
       
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
@@ -198,7 +142,7 @@ Binary Indexed Tree?
 
 ---
 
-**9. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+**7. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
       
 
 #### PriorityQueue
@@ -221,8 +165,120 @@ Binary Indexed Tree?
 
 ---
 
-**10. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**8. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
       
+
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### PriorityQueue
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
+
+
+
+---
+
+**9. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+      
+
+给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
+
+跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
+
+#### PriorityQueue + HashTable
+- PriorityQueue排序+分布排列的一个经典用法.
+- Count frequency and store in pq.
+- Consume element of pq for k rounds, each time pick one element from queue.
+- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
+- space, O(n) extra space in sb, O(26) constant space with pq.
+- time: O(n) to add all items
+
+
+
+---
+
+**10. [HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)**      Level: Hard      Tags: [HashHeap, Heap]
+      
+
+非题.是从九章找来的HashHeap implementation.
+
+
+
+---
+
+**11. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+      
+
+给一个2Dmap, 每个position 有 height. 找Trapping water sum.
+
+
+#### Min Heap
+- 用PriorityQueue把选中的height排序,为走位, create class Cell (x,y, height).
+
+##### 注意几个理论
+- 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block
+- 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层
+- 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
+
+##### Steps
+- 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
+- 2. 若大于零，那么周围的cell就有积水: 因为cell已经是外围最低, 所以内部更低的, 一定有积水.
+- 3. 每个visited的cell都要mark, avoid revisit
+- 4. 根据4个方向的走位 `(mX, mY)` 创建新cell 加进queue里面: cell(mX, mY) 已经计算过积水后, 外围墙小时, `(mX, mY)`就会变成墙.
+- 5. 因为做的是缩小一圈的新围墙, height = Math.max(cell.h, neighbor.h);
+- 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
+- 这里要附上curr cell 和 move-to cell的最大高度。
+
+##### 为什么想到用Heap (min-heap - priorityQueue)
+- 要找到bucket的最短板
+- 每次需要最先处理最短的那条 (on top)
+
+##### 为什么从外向里遍历
+- 木桶理论, 包水, 是从外面包住里面
+- 洋葱剥皮, 用完丢掉
+
+
+
+---
+
+**12. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
+      
+
+kth largest in array
+
+#### PriorityQueue, MinHeap
+- Need to maintain k large elements, where the smallest will be compared and dropped if applicable: 
+- Maintain k elements with min value: consider using minHeap
+- add k base elements first
+- Maintain MinHeap: only allow larger elements (which will squzze out the min value)
+- Remove peek() of queue if over size
+- O(nlogk)
+
+
+#### Quick Sort
+- 用Quick Sort 里面partion的一部分
+- sort结束后是ascending的, 那么 n - k 就是第k大. 
+- partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
+- 没找到继续partion recursively.
+- sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
+- Steps:
+- 每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
+- 找到一个low>pivot, high<pivot, 也就可以swap了。    
+- 得到的low就是当下的partion point了
+- Overall O(nlogN), average O(n) for this problem.
+
+
+
+---
+
+**13. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+      
+
+给一个array of ListNode, 把所有node按照大小连成一条.
 
 #### Priorityqueue
 - Iterative, PQ来排列所有list的leading node.
@@ -251,56 +307,16 @@ Binary Indexed Tree?
 
 ---
 
-**11. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, PriorityQueue]
+**14. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
       
+
+Same as merge k sorted list, use priorityQueue
 
 #### Priority Queue
 - 由Merge k sorted list启发。用PriorityQueue,存那k个首发element
 - PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
 - 因为array里没有 'next' pointer，只能存x,y来推next element
-
-
-
----
-
-**12. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
-      
-
-给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
-
-#### PriorityQueue
-- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
-- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
-- 那么就先count, O(n), using HashMap
-- 再priorityQueue, (mLog(m)), m是unique 数字的总量
-- 最终find top k, O(k)
-- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
-
-
-
----
-
-**13. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
-      
-
-给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
-
-跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
-
-#### PriorityQueue + HashTable
-- PriorityQueue排序+分布排列的一个经典用法.
-- Count frequency and store in pq.
-- Consume element of pq for k rounds, each time pick one element from queue.
-- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
-- space, O(n) extra space in sb, O(26) constant space with pq.
-- time: O(n) to add all items
-
-
-
----
-
-**14. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap]
-      
+- Not sure why `new PriorityQueue<>(Comparator.comparing(a -> a.val));` is slower
 
 
 

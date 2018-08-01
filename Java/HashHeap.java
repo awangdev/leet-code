@@ -1,6 +1,6 @@
 H
 1532965421
-tags: HashHeap
+tags: HashHeap, Heap
 
 非题.是从九章找来的HashHeap implementation.
 

@@ -1,7 +1,7 @@
  
  
  
-## PriorityQueue (11)
+## PriorityQueue (15)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
@@ -37,7 +37,52 @@
 
 ---
 
-**2. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+**2. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
+      
+
+给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
+
+#### 方法1
+- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
+- 跟 Number of Airpline in the sky是同一道题
+
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
+也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+
+
+
+---
+
+**3. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
+      
+
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
+
+#### Sweep Line, Time O(nLogN), Space O(n)
+- original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+- 画图分析: 需要找到 non-overlaping height point at current index; also height needs to be different than prev height peek to be visible.
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
+
+#### Segment Tree
+- 看了一些做法, segment tree写法很复杂, 估计在面试中难以用segment tree来写: https://www.cnblogs.com/tiezhibieek/p/5021202.html
+
+#### HashHeap
+- HashHeap template 可以考虑: https://www.jiuzhang.com/solution/building-outline/#tag-highlight-lang-java
+
+Binary Indexed Tree?
+
+
+
+
+
+---
+
+**4. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
       
 
 #### PriorityQueue
@@ -55,48 +100,6 @@
 #### Trie && MinHeap屌炸天   
 - 可以做一下
 - http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
-
-
-
----
-
-**3. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
-      
-
-#### Priorityqueue
-- Iterative, PQ来排列所有list的leading node.
-- 记得k lists 需要是已经sort好的
-- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
-- Note:
-- 1. 不要忘记customized priority需要一个customized new Comparator<T>()
-- 2. Given list 里面也可能有null node, 不要忘记查.
-
-#### Divide and Conquer
-- always merge 2 list at a time
-- 3 branches: 
-- 1. start == end
-- 2. start + 1 == end
-- 3. or start + 1 < end (recursive and keep merging)
-- T(k) = 2T(k/2) + O(mk), where m = longest list length
-- time complexity: O(nklogk)
-- TODO: write the recursive code.
-
-#### Followup
-- 如果k很大，一个机器上放不下所有的k list怎么办？ 
-- 如果Merge起来的很长，一个机器上放不下怎么办？
-
-
-
-
----
-
-**4. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, PriorityQueue]
-      
-
-#### Priority Queue
-- 由Merge k sorted list启发。用PriorityQueue,存那k个首发element
-- PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
-- 因为array里没有 'next' pointer，只能存x,y来推next element
 
 
 
@@ -258,6 +261,118 @@ space: O(n)
 #### Map
 - how?
 - TODO, not sure.
+
+
+
+---
+
+**11. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+      
+
+给一个2Dmap, 每个position 有 height. 找Trapping water sum.
+
+
+#### Min Heap
+- 用PriorityQueue把选中的height排序,为走位, create class Cell (x,y, height).
+
+##### 注意几个理论
+- 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block
+- 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层
+- 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
+
+##### Steps
+- 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
+- 2. 若大于零，那么周围的cell就有积水: 因为cell已经是外围最低, 所以内部更低的, 一定有积水.
+- 3. 每个visited的cell都要mark, avoid revisit
+- 4. 根据4个方向的走位 `(mX, mY)` 创建新cell 加进queue里面: cell(mX, mY) 已经计算过积水后, 外围墙小时, `(mX, mY)`就会变成墙.
+- 5. 因为做的是缩小一圈的新围墙, height = Math.max(cell.h, neighbor.h);
+- 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
+- 这里要附上curr cell 和 move-to cell的最大高度。
+
+##### 为什么想到用Heap (min-heap - priorityQueue)
+- 要找到bucket的最短板
+- 每次需要最先处理最短的那条 (on top)
+
+##### 为什么从外向里遍历
+- 木桶理论, 包水, 是从外面包住里面
+- 洋葱剥皮, 用完丢掉
+
+
+
+---
+
+**12. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
+      
+
+kth largest in array
+
+#### PriorityQueue, MinHeap
+- Need to maintain k large elements, where the smallest will be compared and dropped if applicable: 
+- Maintain k elements with min value: consider using minHeap
+- add k base elements first
+- Maintain MinHeap: only allow larger elements (which will squzze out the min value)
+- Remove peek() of queue if over size
+- O(nlogk)
+
+
+#### Quick Sort
+- 用Quick Sort 里面partion的一部分
+- sort结束后是ascending的, 那么 n - k 就是第k大. 
+- partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
+- 没找到继续partion recursively.
+- sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
+- Steps:
+- 每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
+- 找到一个low>pivot, high<pivot, 也就可以swap了。    
+- 得到的low就是当下的partion point了
+- Overall O(nlogN), average O(n) for this problem.
+
+
+
+---
+
+**13. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+      
+
+给一个array of ListNode, 把所有node按照大小连成一条.
+
+#### Priorityqueue
+- Iterative, PQ来排列所有list的leading node.
+- 记得k lists 需要是已经sort好的
+- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
+- Note:
+- 1. 不要忘记customized priority需要一个customized new Comparator<T>()
+- 2. Given list 里面也可能有null node, 不要忘记查.
+
+#### Divide and Conquer
+- always merge 2 list at a time
+- 3 branches: 
+- 1. start == end
+- 2. start + 1 == end
+- 3. or start + 1 < end (recursive and keep merging)
+- T(k) = 2T(k/2) + O(mk), where m = longest list length
+- time complexity: O(nklogk)
+- TODO: write the recursive code.
+
+#### Followup
+- 如果k很大，一个机器上放不下所有的k list怎么办？ 
+- 如果Merge起来的很长，一个机器上放不下怎么办？
+
+
+
+
+---
+
+**14. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
+      
+
+Same as merge k sorted list, use priorityQueue
+
+#### Priority Queue
+- 由Merge k sorted list启发。用PriorityQueue,存那k个首发element
+- PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
+- 因为array里没有 'next' pointer，只能存x,y来推next element
+- Not sure why `new PriorityQueue<>(Comparator.comparing(a -> a.val));` is slower
 
 
 

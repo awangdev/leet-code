@@ -425,8 +425,112 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**24. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**24. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
       
+
+#### Linked List
+- linked list 不能像partitioin array一样从两边遍历
+- 把小于value的加在前半段, 把 >= value的加在后半段
+- 做法很普通: 建造两个list, midTail pointer, post pointer
+- 把满足条件（<x, >=x）的数字分别放到两个list里面
+- 记得用dummyNode track head.
+- 最终midTail.next = post链接起来。
+
+
+
+---
+
+**25. [Reorder List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reorder%20List.java)**      Level: Medium      Tags: [Linked List]
+      
+
+给一个Linked list, reorder: 从head/tail 两个方向 向中间进发, re-order like: one node at a time,
+
+#### Linked List 功能大集合
+- reverse list, find mid of list, merge two list
+- 先find mid, 然后把 mid.next reverse了, 最后merge 两段.
+- 注意, 用完mid.next之后, 一定要 mid.next = null, 不然merge会出问题
+
+
+
+---
+
+**26. [Nth to Last Node in List.java](https://github.com/awangdev/LintCode/blob/master/Java/Nth%20to%20Last%20Node%20in%20List.java)**      Level: Easy      Tags: [Linked List]
+      
+
+#### Linked List
+- 先找到nth node
+- 然后head开始跑
+- node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last nth
+
+
+
+---
+
+**27. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
+      
+
+#### Merge sort
+- 1. find middle. 快慢指针
+- 2. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段
+- 3. Merge:  假设given list A, B 已经是sorted, 然后按照大小，混合。
+- 要recursively call sortList() on partial list.
+
+#### Quick sort
+- 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
+- 但是quick sort不建议用在list上面。
+- 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
+
+
+
+---
+
+**28. [Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
+
+
+
+---
+
+**29. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+      
+time: O(n)
+space: O(n)
+
+给一个BST, convert成 sorted doubly DoublyListNode.
+
+#### Inorder Traversal, Linked List
+- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
+- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
+
+##### Iterative inorder traversal
+- 在check right node的事后，    
+- 不论right == null or != null, 每次都要强行move to right.    
+- 如果不node = node.right,     
+- 很可能发生窘境：       
+- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
+
+
+
+---
+
+**30. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+      
+
+给一个array of ListNode, 把所有node按照大小连成一条.
 
 #### Priorityqueue
 - Iterative, PQ来排列所有list的leading node.
@@ -450,108 +554,6 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 - 如果k很大，一个机器上放不下所有的k list怎么办？ 
 - 如果Merge起来的很长，一个机器上放不下怎么办？
 
-
-
-
----
-
-**25. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
-      
-
-#### Linked List
-- linked list 不能像partitioin array一样从两边遍历
-- 把小于value的加在前半段, 把 >= value的加在后半段
-- 做法很普通: 建造两个list, midTail pointer, post pointer
-- 把满足条件（<x, >=x）的数字分别放到两个list里面
-- 记得用dummyNode track head.
-- 最终midTail.next = post链接起来。
-
-
-
----
-
-**26. [Reorder List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reorder%20List.java)**      Level: Medium      Tags: [Linked List]
-      
-
-给一个Linked list, reorder: 从head/tail 两个方向 向中间进发, re-order like: one node at a time,
-
-#### Linked List 功能大集合
-- reverse list, find mid of list, merge two list
-- 先find mid, 然后把 mid.next reverse了, 最后merge 两段.
-- 注意, 用完mid.next之后, 一定要 mid.next = null, 不然merge会出问题
-
-
-
----
-
-**27. [Nth to Last Node in List.java](https://github.com/awangdev/LintCode/blob/master/Java/Nth%20to%20Last%20Node%20in%20List.java)**      Level: Easy      Tags: [Linked List]
-      
-
-#### Linked List
-- 先找到nth node
-- 然后head开始跑
-- node 到底，而head ~ node刚好是 n 距离。所以head就是要找的last nth
-
-
-
----
-
-**28. [Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20List.java)**      Level: Medium      Tags: [Divide and Conquer, Linked List, Merge Sort, Sort]
-      
-
-#### Merge sort
-- 1. find middle. 快慢指针
-- 2. Sort: 切开两半，先sort前半, 如果先sort了mid.next~end, sort后，中间点mid.next == null，再sort前半段
-- 3. Merge:  假设given list A, B 已经是sorted, 然后按照大小，混合。
-- 要recursively call sortList() on partial list.
-
-#### Quick sort
-- 想做可以看讲义：http://www.jiuzhang.com/solutions/sort-list/
-- 但是quick sort不建议用在list上面。
-- 排列list, merge sort可能更可行和合理。原因分析在下面， 以及： http://www.geeksforgeeks.org/why-quick-sort-preferred-for-arrays-and-merge-sort-for-linked-lists/
-
-
-
----
-
-**29. [Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
-      
-time: O(n)
-space: O(1)
-
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
-
-#### Tree, In-order traversal
-- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
-- 只不过做的时候要小心地 doubly link them
-- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
-
-##### 题目特殊特点
-- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
-- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
-- 要求in-place: 不能重新create new node
-
-
-
----
-
-**30. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
-      
-time: O(n)
-space: O(n)
-
-给一个BST, convert成 sorted doubly DoublyListNode.
-
-#### Inorder Traversal, Linked List
-- 会iterative traverse Binary Search Tree（Stack && handle left-dig-down）
-- create Doubly-ListNode, 注意用一个dNode作为tail node of the list
-
-##### Iterative inorder traversal
-- 在check right node的事后，    
-- 不论right == null or != null, 每次都要强行move to right.    
-- 如果不node = node.right,     
-- 很可能发生窘境：       
-- node always  = stack.top(), 然后stack.top()一直是一开始把left 全部遍历的内容。所以就会infinite loop, 永远在左边上下上下。      
 
 
 

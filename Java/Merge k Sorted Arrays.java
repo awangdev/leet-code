@@ -1,17 +1,19 @@
 M
-1528048508
-tags: Heap, PriorityQueue
+1533139060
+tags: Heap, PriorityQueue, MinHeap
+
+Same as merge k sorted list, use priorityQueue
 
 #### Priority Queue
 - 由Merge k sorted list启发。用PriorityQueue,存那k个首发element
 - PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
 - 因为array里没有 'next' pointer，只能存x,y来推next element
+- Not sure why `new PriorityQueue<>(Comparator.comparing(a -> a.val));` is slower
 
 ```
 /*
 Given k sorted integer arrays, merge them into one sorted array.
 
-Have you met this question in a real interview? Yes
 Example
 Given 3 sorted arrays:
 
@@ -42,11 +44,12 @@ public class Solution {
     }
     
     public int[] mergekSortedArrays(int[][] arrays) {
-        List<Integer> rst = new ArrayList<Integer>();
-        if (arrays == null || arrays.length == 0) {
-            return new int[0];
-        }
+        List<Integer> rst = new ArrayList<>();
+        if (arrays == null || arrays.length == 0) return new int[0];
         
+        
+        // Faster
+        // Somehow, slower: PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparing(a -> a.val));
         PriorityQueue<Node> queue = new PriorityQueue<>(arrays.length,
             new Comparator<Node>() {
                 public int compare(Node a, Node b){
@@ -54,7 +57,7 @@ public class Solution {
                 }
             }
         );
-        
+
         //init
         for (int i = 0; i < arrays.length; i++) {
             if (arrays[i].length != 0) {

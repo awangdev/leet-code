@@ -1,37 +1,40 @@
 H
-1520744061
-tags: Heap, BFS
+1533110743
+tags: Heap, BFS, PriorityQueue, MinHeap
 
-用PriorityQueue把选中的height排序。为走位，create class Cell (x,y, height).
+给一个2Dmap, 每个position 有 height. 找Trapping water sum.
 
-#### 注意几个理论
-1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block。
-2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层。
 
-以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
+#### Min Heap
+- 用PriorityQueue把选中的height排序,为走位, create class Cell (x,y, height).
 
-#### 具体步骤
-1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
-   若大于零，那么周围的cell就有积水。
-2. 每个visited的cell都要mark. 
-3. 根据4个方向的走位, 创建新cell 加进queue里面. 因为做的是缩小一圈的新围墙, height = Math.max(cell.h, neighbor.h);
+##### 注意几个理论
+- 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block
+- 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层
+- 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
 
-再多一句解释: 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
-这里要附上curr cell 和 move-to cell的最大高度。
+##### Steps
+- 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
+- 2. 若大于零，那么周围的cell就有积水: 因为cell已经是外围最低, 所以内部更低的, 一定有积水.
+- 3. 每个visited的cell都要mark, avoid revisit
+- 4. 根据4个方向的走位 `(mX, mY)` 创建新cell 加进queue里面: cell(mX, mY) 已经计算过积水后, 外围墙小时, `(mX, mY)`就会变成墙.
+- 5. 因为做的是缩小一圈的新围墙, height = Math.max(cell.h, neighbor.h);
+- 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
+- 这里要附上curr cell 和 move-to cell的最大高度。
 
-#### 为什么想到用Heap (min-heap - priorityQueue)
+##### 为什么想到用Heap (min-heap - priorityQueue)
 - 要找到bucket的最短板
 - 每次需要最先处理最短的那条 (on top)
 
-
-#### 为什么从外向里遍历
+##### 为什么从外向里遍历
 - 木桶理论, 包水, 是从外面包住里面
 - 洋葱剥皮, 用完丢掉
 
 ```
 /**
 LeetCode: https://leetcode.com/problems/trapping-rain-water-ii/description/
-Given an m x n matrix of positive integers representing the height of each unit cell in a 2D elevation map, compute the volume of water it is able to trap after raining.
+Given an m x n matrix of positive integers representing the height of each unit cell 
+in a 2D elevation map, compute the volume of water it is able to trap after raining.
 
 Note:
 Both m and n are less than 110. The height of each unit cell is greater than 0 and is less than 20,000.
@@ -69,23 +72,38 @@ class Solution {
             this.h = h;
         }
     }
+    // main code block
     public int trapRainWater(int[][] heightMap) {
-        if(heightMap == null || heightMap.length == 0 || heightMap[0] == null || heightMap[0].length == 0) {
-            return 0;
-        }
+        if(isInvalid(heightMap)) return 0;
         
-        int m = heightMap.length;
-        int n = heightMap[0].length;
+        int m = heightMap.length, n = heightMap[0].length;
         int[] dx = {0, 0, 1, -1};
         int[] dy = {1, -1, 0, 0};
         boolean[][] visited = new boolean[m][n];
         // Prepare queue
-        PriorityQueue<Cell> queue = new PriorityQueue<Cell>(new Comparator<Cell>() {
-           public int compare(Cell a, Cell b) {
-               return a.h - b.h;
-           }
-        });
+        PriorityQueue<Cell> queue = new PriorityQueue<>(Comparator.comparing(cell -> cell.h));
+        init(visited, queue, heightMap);
         
+        // Calculate total
+        int total = 0;
+        while (!queue.isEmpty()) {
+            Cell cell = queue.poll();
+            for (int i = 0; i < dx.length; i++) {
+                int mX = cell.x + dx[i];
+                int mY = cell.y + dy[i];
+                if (isValidCoordinate(mX, mY, visited)) {
+                    visited[mX][mY] = true;
+                    total += cell.h > heightMap[mX][mY] ? cell.h - heightMap[mX][mY] : 0; // cell is lowest, so any lower should contain water
+                    queue.offer(new Cell(mX, mY, Math.max(cell.h, heightMap[mX][mY])));
+                }
+            }
+        }
+        return total;
+    }
+
+    // helper functions:
+    private void init(boolean[][] visited, PriorityQueue<Cell> queue, int[][] heightMap) {
+        int m = heightMap.length, n = heightMap[0].length;
         // LEFT/RIGHT
         for (int i = 0; i < m; i++) {
             visited[i][0] = true;
@@ -100,22 +118,15 @@ class Solution {
             queue.offer(new Cell(0, j, heightMap[0][j]));
             queue.offer(new Cell(m - 1, j, heightMap[m - 1][j]));
         }
-        
-        // Calculate total
-        int total = 0;
-        while (!queue.isEmpty()) {
-            Cell cell = queue.poll();
-            for (int i = 0; i < dx.length; i++) {
-                int mX = cell.x + dx[i];
-                int mY = cell.y + dy[i];
-                if (mX >= 0 && mX < m && mY >= 0 && mY < n && !visited[mX][mY]) {
-                    visited[mX][mY] = true;
-                    total += cell.h > heightMap[mX][mY] ? cell.h - heightMap[mX][mY] : 0;
-                    queue.offer(new Cell(mX, mY, Math.max(cell.h, heightMap[mX][mY])));
-                }
-            }
-        }
-        return total;
+    }
+    
+    private boolean isValidCoordinate(int x, int y, boolean[][] visited) {
+        int m = visited.length, n = visited[0].length;
+        return x >= 0 && x < m && y >= 0 && y < n && !visited[x][y];
+    }
+    
+    private boolean isInvalid(int[][] heightMap) {
+        return heightMap == null || heightMap.length == 0 || heightMap[0] == null || heightMap[0].length == 0;
     }
 }
 

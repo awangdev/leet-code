@@ -1,6 +1,6 @@
 M
 1521167295
-tags: Heap, Greedy, Sort, Sweep Line
+tags: Heap, Greedy, Sort, Sweep Line, PriorityQueue
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
@@ -43,25 +43,18 @@ Mark the max of count
 */
 class Solution {
     class Point {
-        int pos;
-        int flag;
+        int pos, flag;
         public Point(int pos, int flag) {
             this.pos = pos;
             this.flag = flag;
         }
     }
     public int minMeetingRooms(Interval[] intervals) {
-        if (intervals == null || intervals.length == 0) {
-            return 0;
-        }
-        int count = 0;
-        int max = 0;
-        PriorityQueue<Point> queue = new PriorityQueue<Point>(new Comparator<Point>() {
-            public int compare(Point a, Point b) {
-                return a.pos - b.pos;
-            }
-        });
-        
+        if (intervals == null || intervals.length == 0) return 0;
+
+        int count = 0, max = 0;
+        // init
+        PriorityQueue<Point> queue = new PriorityQueue<>(Comparator.comparing(a -> a.pos));
         for (Interval interval: intervals) {
             queue.offer(new Point(interval.start, 1));
             queue.offer(new Point(interval.end, -1));
@@ -77,7 +70,6 @@ class Solution {
             
             max = Math.max(count, max);
         }
-        
         return max;
     }
 }

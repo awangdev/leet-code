@@ -1,5 +1,5 @@
 R
-tags: Heap
+tags: Heap, MinHeap
 
 Turn unsorted array into a min-heap array, where for each A[i], 
 

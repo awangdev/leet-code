@@ -1,6 +1,6 @@
 R
 1521176156
-tags: Divide and Conquer, Heap, Binary Indexed Tree, Segment Tree, Sweep Line
+tags: Divide and Conquer, Heap, PriorityQueue, Binary Indexed Tree, Segment Tree, Sweep Line
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
 
@@ -71,8 +71,7 @@ Sweep Line.
 */
 class Solution {
     class Point {
-        int pos;
-        int height;
+        int pos, height;
         public Point(int pos, int height) {
             this.pos = pos;
             this.height = height;
@@ -80,31 +79,21 @@ class Solution {
     }
     public List<int[]> getSkyline(int[][] buildings) {
         List<int[]> rst = new ArrayList<>();
-        if (buildings == null || buildings.length == 0 || buildings[0] == null || buildings[0].length == 0) {
-            return rst;
-        }
+        if (isInvalid(buildings)) return rst;
+        
         int m = buildings.length;
-        // Sort points(xPos, height, isStart:boolean) by height && xPos with queue
-        PriorityQueue<Point> queue = new PriorityQueue<Point>(new Comparator<Point>() {
-           public int compare(Point a, Point b) {
-               if (a.pos == b.pos) {
-                   return a.height - b.height;
-               } else {
-                   return a.pos - b.pos;
-               }
-           }
-        });
+        // init: sort points(xPos, height, isStart:boolean) by height && xPos with queue
+        PriorityQueue<Point> queue = new PriorityQueue<>((a, b) -> a.pos == b.pos ? a.height - b.height : a.pos - b.pos);
         for (int i = 0; i < m; i++) {
             queue.offer(new Point(buildings[i][0], -buildings[i][2]));
             queue.offer(new Point(buildings[i][1], buildings[i][2]));
         }
         
-        // Mark and store height in maxHeap: start and end with ground point height=0
+        // Mark height and calcualte the outline point.
         PriorityQueue<Integer> maxHeightQueue = new PriorityQueue<>(Collections.reverseOrder());
         maxHeightQueue.offer(0);
         int prevPeak = maxHeightQueue.peek();
 
-        // Find non-overlaping height. Positive height marks end of building outline, so remove from maxHeap.
         while (!queue.isEmpty()) {
             Point point = queue.poll();
             if (point.height < 0) {
@@ -113,7 +102,6 @@ class Solution {
                 maxHeightQueue.remove(point.height);
             }
             
-            // Goal: find non-overlapping height
             int currPeak = maxHeightQueue.peek();
             if (currPeak != prevPeak) {
                 rst.add(new int[]{point.pos, currPeak});
@@ -121,6 +109,10 @@ class Solution {
             }
         }
         return rst;
+    }
+    
+    private boolean isInvalid(int[][] buildings) {
+        return buildings == null || buildings.length == 0 || buildings[0] == null || buildings[0].length == 0;
     }
 }
 
