@@ -28,6 +28,7 @@
 - figure out how to prune the parallel dots
 
 #### Trick: prune parallel dots using greatest common divider
+- GCD: greatest common divider
 - Devide the x and y by their greatest common divider, such that x and y can be reduced to minimum value
 - All other x and y can be reduced to such condition as well
 - track the final reduced (x,y) in a map: they are the key to the count

@@ -1,6 +1,6 @@
 H
-1520749166
-tags: Heap, Design
+1533183415
+tags: Heap, Design, MinHeap, MaxHeap
 
 #### 原理
 - 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.

@@ -1,31 +1,38 @@
 H
-1520753616
-tags: Heap, Design
+1533183594
+tags: Heap, Design, MaxHeap, MinHeap
 
-Median还是用min-heap 和 max-heap. Time(logN)
-加/减: prioirtyQueue, log(n)
-findMedian: O(1)
+Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
 
-#### 思想
+#### MaxHeap, MinHeap
+- Median还是用min-heap 和 max-heap. Time(logN)
+- 加/减: prioirtyQueue, log(n)
+- findMedian: O(1)
 - 加一个数, 减一个数。
 - 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
 - 抽完balance一下
 
 #### 注意
-用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
-左边的maxHeap总有 x+1或者x个数字
-后边minHeap应该一直有x个数字
+- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
+- 左边的maxHeap总有 x+1或者x个数字
+- 后边minHeap应该一直有x个数字
 
 ```
 /**
-Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
+Median is the middle value in an ordered integer list. 
+If the size of the list is even, there is no middle value. 
+So the median is the mean of the two middle value.
 
 Examples: 
 [2,3,4] , the median is 3
 
 [2,3], the median is (2 + 3) / 2 = 2.5
 
-Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array.
+Given an array nums, there is a sliding window of size k which is moving 
+from the very left of the array to the very right. 
+You can only see the k numbers in the window. 
+Each time the sliding window moves right by one position. 
+Your job is to output the median array for each window in the original array.
 
 For example,
 Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
