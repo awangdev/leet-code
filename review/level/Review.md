@@ -1,40 +1,14 @@
  
  
  
-## Review (7)
-**0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap, MinHeap]
-      
-
-Turn unsorted array into a min-heap array, where for each A[i], 
-
-A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
-
-#### Heap
-- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
-- 所有后面的对应element都比curr element 小。
-- Heapify里面的**siftdown**的部分:
-- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
-
-#### Heapify/SiftDown做了什么?
-- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
-- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
-
-#### min-heap的判断规律:
-- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
-- siftdown时：在curr node和两个son里面小的比较。如果的确curr < son, 搞定，break while.   
-- 但若curr 并不比son小，那么就要换位子，而且继续从son的位子往下面盘查。    
-
-
-
----
-
-**1. [Maximum Subarray III.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20III.java)**      Level: Review      Tags: []
+## Review (6)
+**0. [Maximum Subarray III.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20III.java)**      Level: Review      Tags: []
       
 
 
 ---
 
-**2. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
+**1. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
       
 
 Binary找sqrt. 基本 mid+1, mid-1 template.
@@ -44,14 +18,14 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**3. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
+**2. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
       
 
 
 
 ---
 
-**4. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
+**3. [Maximum Average Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Average%20Subarray%20II.java)**      Level: Review      Tags: [Array, Binary Search, PreSum]
       
 
 给int[] nums 和 window min size k. window size可以大于K. 找最大的连续数列average value.
@@ -66,7 +40,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**5. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
+**4. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
       
 
 又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
@@ -95,7 +69,7 @@ Binary Indexed Tree?
 
 ---
 
-**6. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**5. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.

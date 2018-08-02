@@ -22,8 +22,8 @@ Table of Contents
 * [Sequence DP (19)](#sequence-dp-19)
 * [Bit Manipulation (17)](#bit-manipulation-17)
 * [Coordinate DP (17)](#coordinate-dp-17)
+* [PriorityQueue (16)](#priorityqueue-16)
 * [Greedy (16)](#greedy-16)
-* [PriorityQueue (15)](#priorityqueue-15)
 * [Heap (15)](#heap-15)
 * [Binary Tree (13)](#binary-tree-13)
 * [Segment Tree (12)](#segment-tree-12)
@@ -36,8 +36,9 @@ Table of Contents
 * [Backpack DP (8)](#backpack-dp-8)
 * [Graph (7)](#graph-7)
 * [Status DP (7)](#status-dp-7)
+* [Enumeration (7)](#enumeration-7)
+* [MinHeap (6)](#minheap-6)
 * [Quick Sort (6)](#quick-sort-6)
-* [Enumeration (6)](#enumeration-6)
 * [Partition DP (5)](#partition-dp-5)
 * [Sweep Line (5)](#sweep-line-5)
 * [Topological Sort (5)](#topological-sort-5)
@@ -46,7 +47,6 @@ Table of Contents
 * [Double Sequence DP (4)](#double-sequence-dp-4)
 * [Game Theory (4)](#game-theory-4)
 * [Combination (4)](#combination-4)
-* [MinHeap (4)](#minheap-4)
 * [Interval DP (4)](#interval-dp-4)
 * [Permutation (3)](#permutation-3)
 * [Binary Indexed Tree (3)](#binary-indexed-tree-3)
@@ -57,6 +57,7 @@ Table of Contents
 * [Double Recursive (2)](#double-recursive-2)
 * [TreeSet (2)](#treeset-2)
 * [Matrix DFS (2)](#matrix-dfs-2)
+* [MaxHeap (2)](#maxheap-2)
 * [Queue (2)](#queue-2)
 * [Geometry (2)](#geometry-2)
 * [HashHeap (1)](#hashheap-1)
@@ -351,9 +352,9 @@ Table of Contents
 |58|[Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, String]||
 |59|[Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)|Medium|Java|[DP, Double Sequence DP, Sequence DP, String]||
 |60|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, Trie]||
-|61|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Enumeration, Partition DP]||
-|62|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
-|63|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
+|61|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Enumeration, Heap, Math, PriorityQueue]||
+|62|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Enumeration, Partition DP]||
+|63|[Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)|Medium|Java|[DP, Game Theory, Greedy]||
 |64|[Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)|Hard|Java|[DP, Interval DP, String]||
 |65|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
 |66|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
@@ -418,8 +419,8 @@ Table of Contents
 |34|[Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)|Medium|Java|[Hash Table]||
 |35|[Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)|Medium|Java|[Hash Table]||
 |36|[Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)|Medium|Java|[Hash Table]||
-|37|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
-|38|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
+|37|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]||
+|38|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]||
 |39|[Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)|Medium|Java|[Hash Table, Linked List]||
 |40|[Copy List with Random Pointer.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20List%20with%20Random%20Pointer.java)|Medium|Java|[Hash Table, Linked List]||
 |41|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
@@ -627,7 +628,7 @@ Table of Contents
 |10|[Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)|Easy|Java|[Bit Manipulation, Math]||
 |11|[Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)|Medium|Java|[Coordinate DP, DP, Math, Subarray]||
 |12|[Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)|Medium|Java|[DFS, Math, Sequence DFS]||
-|13|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
+|13|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Enumeration, Heap, Math, PriorityQueue]||
 |14|[Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)|Medium|Java|[DP, Math]||
 |15|[Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)|Easy|Java|[DP, Math, Memoization]||
 |16|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
@@ -1062,6 +1063,31 @@ Table of Contents
  
  
  
+## PriorityQueue (16)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|1|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
+|2|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Hard|Java|[Array, PriorityQueue, Sort]||
+|3|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, PriorityQueue, Sort, Sweep Line]||
+|4|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap, MinHeap, PriorityQueue]||
+|5|[The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]||
+|6|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Enumeration, Heap, Math, PriorityQueue]||
+|7|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
+|8|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]||
+|9|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, PriorityQueue, Sort, Sweep Line]||
+|10|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]||
+|11|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]||
+|12|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, MinHeap, PriorityQueue]||
+|13|[Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)|Medium|Java|[PreSum, PriorityQueue, Sort, Subarray]||
+|14|[Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)|Medium|Java|[PriorityQueue, Sort]||
+|15|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[PriorityQueue, Sort, Sweep Line]||
+
+
+
+ 
+ 
+ 
 ## Greedy (16)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -1087,47 +1113,23 @@ Table of Contents
  
  
  
-## PriorityQueue (15)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
-|1|[Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)|Medium|Java|[Array, Interval, PriorityQueue, Sort, Sweep Line]||
-|2|[Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)|Hard|Java|[Array, PriorityQueue, Sort]||
-|3|[Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)|Medium|Java|[Array, PriorityQueue, Sort, Sweep Line]||
-|4|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap, MinHeap, PriorityQueue]||
-|5|[The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]||
-|6|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
-|7|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]||
-|8|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, PriorityQueue, Sort, Sweep Line]||
-|9|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
-|10|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
-|11|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, MinHeap, PriorityQueue]||
-|12|[Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)|Medium|Java|[PreSum, PriorityQueue, Sort, Subarray]||
-|13|[Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)|Medium|Java|[PriorityQueue, Sort]||
-|14|[Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)|Easy|Java|[PriorityQueue, Sort, Sweep Line]||
-
-
-
- 
- 
- 
 ## Heap (15)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap, MinHeap, PriorityQueue]||
 |1|[The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)|Review|Java|[Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]||
 |2|[Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)|Medium|Java|[Binary Search, Heap]||
-|3|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Heap, Math]||
+|3|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Enumeration, Heap, Math, PriorityQueue]||
 |4|[Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)|Hard|Java|[Design, Heap]||
 |5|[Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)|Hard|Java|[Design, Heap]||
 |6|[Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)|Medium|Java|[Divide and Conquer, Heap, Linked List, PriorityQueue]||
 |7|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]||
 |8|[Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)|Hard|Java|[Greedy, Hash Table, Heap]||
 |9|[Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)|Medium|Java|[Greedy, Heap, PriorityQueue, Sort, Sweep Line]||
-|10|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, PriorityQueue]||
-|11|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
+|10|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]||
+|11|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]||
 |12|[HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)|Hard|Java|[HashHeap, Heap]||
-|13|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Review|Java|[Heap, MinHeap]||
+|13|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Medium|Java|[Heap, MinHeap]||
 |14|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, MinHeap, PriorityQueue]||
 
 
@@ -1286,7 +1288,7 @@ Table of Contents
 |3|[Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)|Medium|Java|[Bit Manipulation, Trie]||
 |4|[K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)|Hard|Java|[DP, Double Sequence DP, Sequence DP, Trie]||
 |5|[Implement Trie.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie.java)|Medium|Java|[Design, Trie]||
-|6|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, PriorityQueue, Trie]||
+|6|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]||
 |7|[Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)|Hard|Java|[Hash Table, String, Trie]||
 |8|[Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)|Easy|Java|[Hash Table, Trie]||
 
@@ -1344,6 +1346,37 @@ Table of Contents
  
  
  
+## Enumeration (7)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)|Medium|Java|[Array, Enumeration]||
+|1|[Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)|Medium|Java|[Array, Enumeration]||
+|2|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
+|3|[Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)|Medium|Java|[Basic Implementation, Enumeration, String]||
+|4|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Enumeration, Heap, Math, PriorityQueue]||
+|5|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Enumeration, Partition DP]||
+|6|[Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)|Medium|Java|[Enumeration, Greedy]||
+
+
+
+ 
+ 
+ 
+## MinHeap (6)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap, MinHeap, PriorityQueue]||
+|1|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]||
+|2|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]||
+|3|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]||
+|4|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Medium|Java|[Heap, MinHeap]||
+|5|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, MinHeap, PriorityQueue]||
+
+
+
+ 
+ 
+ 
 ## Quick Sort (6)
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
@@ -1353,21 +1386,6 @@ Table of Contents
 |3|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]||
 |4|[Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)|Medium|Java|[Partition, Quick Sort, Sort, Two Pointers]||
 |5|[QuickSort.java](https://github.com/awangdev/LintCode/blob/master/Java/QuickSort.java)|Medium|Java|[Quick Sort, Sort]||
-
-
-
- 
- 
- 
-## Enumeration (6)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Rotate Image.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20Image.java)|Medium|Java|[Array, Enumeration]||
-|1|[Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)|Medium|Java|[Array, Enumeration]||
-|2|[Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)|Medium|Java|[Array, Enumeration, Greedy, PriorityQueue, Queue]||
-|3|[Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)|Medium|Java|[Basic Implementation, Enumeration, String]||
-|4|[Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)|Hard|Java|[DP, Enumeration, Partition DP]||
-|5|[Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)|Medium|Java|[Enumeration, Greedy]||
 
 
 
@@ -1476,19 +1494,6 @@ Table of Contents
 |1|[Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)|Medium|Java|[Array, Backtracking, Combination, DFS]||
 |2|[Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)|Medium|Java|[Array, Backtracking, Combination, DFS]||
 |3|[Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)|Medium|Java|[Backtracking, Combination, DFS]||
-
-
-
- 
- 
- 
-## MinHeap (4)
-| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
-|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
-|0|[Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)|Hard|Java|[BFS, Heap, MinHeap, PriorityQueue]||
-|1|[Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)|Medium|Java|[Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]||
-|2|[Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)|Review|Java|[Heap, MinHeap]||
-|3|[Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)|Medium|Java|[Heap, MinHeap, PriorityQueue]||
 
 
 
@@ -1606,6 +1611,17 @@ Table of Contents
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)|Medium|Java|[BFS, DFS, Matrix DFS, Union Find]||
 |1|[Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)|Medium|Java|[BFS, DFS, Matrix DFS, Union Find]||
+
+
+
+ 
+ 
+ 
+## MaxHeap (2)
+| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
+|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
+|0|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]||
+|1|[Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]||
 
 
 

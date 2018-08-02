@@ -572,24 +572,33 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**30. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+**30. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
+time: O(nlogk)
+space: O(n)
 
-#### PriorityQueue
+给一串String. 找到top k frequent words.
+
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### PriorityQueue - Max Heap
 - 用HashMap存frequency, 用ArrayList存lists of words
 - create一个Node class, 然后用PriorityQueue.   
 - PriorityQueue里面用到了 String.compareTo(another String).巧妙。
 - time: PQ uses O(nlogn), overall O(nlogn)
-
-#### Just HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
+- slower, because the maxHeap needs to add all candidates
 
 #### Trie && MinHeap屌炸天   
 - 可以做一下
 - http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
 
 
 
@@ -664,24 +673,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**35. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
-      
-
-给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
-
-#### PriorityQueue
-- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
-- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
-- 那么就先count, O(n), using HashMap
-- 再priorityQueue, (mLog(m)), m是unique 数字的总量
-- 最终find top k, O(k)
-- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
-
-
-
----
-
-**36. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+**35. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
       
 
 #### Hash Table, Greedy
@@ -699,7 +691,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**37. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+**36. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 #### HashMap<value, index>
@@ -718,7 +710,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**38. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
+**37. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
       
 
 看的list of coordinates 是否能组成perfect rectangle, 并且不允许overlap area.
@@ -733,7 +725,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**39. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**38. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line
@@ -753,7 +745,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**40. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
+**39. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -773,7 +765,7 @@ space: O(n)
 
 ---
 
-**41. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+**40. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
       
 
 给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
@@ -790,7 +782,7 @@ space: O(n)
 
 ---
 
-**42. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Bucket Sort, Hash Table, Sort]
+**41. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Bucket Sort, Hash Table, Sort]
       
 
 找到h-index, 给的citation int[] 并不是sorted. h-index 的definition 具体看题目.
@@ -822,7 +814,7 @@ space: O(n)
 
 ---
 
-**43. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+**42. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
       
 
 给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
@@ -841,7 +833,7 @@ space: O(n)
 
 ---
 
-**44. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
+**43. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
       
 
 把anagram找到并output
@@ -875,7 +867,7 @@ space: O(n)
 
 ---
 
-**45. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
+**44. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
       
 
 给一串3-digit 的数组. 每个数字的表达一个TreeNode, 3 digit分别代表: depth.position.value
@@ -899,7 +891,7 @@ space: O(n)
 
 ---
 
-**46. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
+**45. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 给一串String, 找到最长的长度, 把最长的String全都return
@@ -912,7 +904,7 @@ space: O(n)
 
 ---
 
-**47. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
+**46. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -943,7 +935,7 @@ space: O(n)
 
 ---
 
-**48. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
+**47. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
       
 time: O(mnk), where `m = A.row`, `n = B.col`, `k = A.col = B.row`
 space: O(1) extra
@@ -967,7 +959,7 @@ space: O(1) extra
 
 ---
 
-**49. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
+**48. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
       
 time: O(mn)
 space: O(X), X = max wall width
@@ -989,7 +981,7 @@ space: O(X), X = max wall width
 
 ---
 
-**50. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
+**49. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -1006,7 +998,7 @@ space: O(n)
 
 ---
 
-**51. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
+**50. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
       
 
 TODO: how aout without chaning the input nums?
@@ -1015,7 +1007,7 @@ TODO: how aout without chaning the input nums?
 
 ---
 
-**52. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+**51. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 time: O(n)
 space: O(n)
@@ -1035,7 +1027,7 @@ space: O(n)
 
 ---
 
-**53. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+**52. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
       
 time: O(1) avg
 space: O(n)
@@ -1051,7 +1043,7 @@ space: O(n)
 
 ---
 
-**54. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+**53. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
       
 time: O(n)
 space: O(n)
@@ -1073,6 +1065,32 @@ space: O(n)
 - 应该也是可以optimize map keys的, 反正都是continuous key
 
 
+
+
+
+---
+
+**54. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
+      
+
+给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
+
+要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
+
+
+#### Union Find
+- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
 
 
 
@@ -1104,27 +1122,36 @@ space: O(n)
 
 ---
 
-**56. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
+**56. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
       
+time: O(n)
+space: O(n)
 
-给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
 
-要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
+#### HashMap + bucket List[]
+- Use HashMap to store <num, freq>
+- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
+- Size of the data structure will be m <= n
+- The bucket[count] preserves order from end of the array.
+- Simply loop over the reversed map, we can find the top k items.
+- Solid O(n)
 
+#### PriorityQueue, MinHeap
+- Use regualr priorityQueue to sort by frequency ascendingly
+- the queue.peek() record has lowest frequency, which is replacable
+- Always only maintain k elements in the queue, so sorting is O(logk)
+- IMPORTANT: remember to `rst.add(0, x)` for desired ordering
+- time faster than maxHeap: O(nlogk)
 
-#### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+#### PriorityQueue, MaxHeap
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
 
-#### Hash Table solution, passed but very slow
-- Definitely need iterate over accounts: merge them by email.
-- Account object {name, list of email}
-- map<email, account>
-- 1. iterate over accounts
-- 2. find if 'account' exist;  if does, add emails
-- 3. if not, add account to list and to map. map all emails to accounts.
-- output -> all accounts, and sort emails
-- space O(mn): m row, n = emails
-- time O(mn)
 
 
 

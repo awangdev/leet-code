@@ -52,7 +52,7 @@ Double sequence DP. 与regular expression 很像.
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
 

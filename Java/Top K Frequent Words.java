@@ -1,22 +1,31 @@
 M
 1527835239
-tags: Hash Table, Heap, Trie, PriorityQueue
+tags: Hash Table, Heap, Trie, PriorityQueue, MaxHeap, MinHeap
+time: O(nlogk)
+space: O(n)
 
-#### PriorityQueue
+给一串String. 找到top k frequent words.
+
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### PriorityQueue - Max Heap
 - 用HashMap存frequency, 用ArrayList存lists of words
 - create一个Node class, 然后用PriorityQueue.   
 - PriorityQueue里面用到了 String.compareTo(another String).巧妙。
 - time: PQ uses O(nlogn), overall O(nlogn)
-
-#### Just HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
+- slower, because the maxHeap needs to add all candidates
 
 #### Trie && MinHeap屌炸天   
 - 可以做一下
 - http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
 
 ```
 /*
@@ -49,7 +58,7 @@ Extra points if you can do it in O(n) time with O(k) extra space.
 Tags Expand 
 Hash Table Heap Priority Queue
 */
-
+// MaxHeap
 class Solution {
     class Node {
         int freq;
@@ -94,6 +103,61 @@ class Solution {
         return rst;
     }
 }
+
+// MinHeap: sort by ascending frequency; by reverse alphabetical order
+class Solution {
+    class Node {
+        int freq = 0;
+        String str;
+        public Node(String str){
+            this.str = str;
+        }
+    }
+    public List<String> topKFrequent(String[] words, int k) {
+        List<String> rst = new ArrayList<>();
+        if (isInvalid(words, k)) return rst;
+        //queue
+        PriorityQueue<Node> queue = new PriorityQueue<>(k, new Comparator<Node>(){
+            public int compare(Node a, Node b) {
+                if (a.freq == b.freq) {
+                    return b.str.compareTo(a.str);
+                } else {
+                    return a.freq - b.freq;
+                }
+            } 
+        });
+        // Lambda notation, slower:
+        //PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> a.freq == b.freq ? b.str.compareTo(a.str) : a.freq - b.freq);
+        //map
+        HashMap<String, Node> map = new HashMap<>();
+        for (String word: words) {
+            map.putIfAbsent(word, new Node(word));
+            map.get(word).freq += 1;
+        }
+        
+        for (Map.Entry<String, Node> entry : map.entrySet()) {
+            Node node = entry.getValue();
+            if (queue.size() < k || node.freq >= queue.peek().freq) {
+                queue.offer(node);
+            }
+            
+            if (queue.size() > k) {
+                queue.poll();
+            }
+        }
+        //output
+        while (!queue.isEmpty()) {
+            rst.add(0, queue.poll().str);
+        }
+        
+        return rst;
+    }
+    
+    private boolean isInvalid(String[] words, int k) {
+        return words == null || words.length == 0 || k <= 0;
+    }
+}
+
 /*
 	Attempt1, Thoughts:
 	Brutle force

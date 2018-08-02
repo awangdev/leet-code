@@ -28,7 +28,6 @@ class HashHeap {
         }
 
         Node(Integer first, Integer second) {
-
             this.id = first;
             this.num = second;
         }
@@ -118,7 +117,6 @@ class HashHeap {
         if (hash.containsKey(now)) {
             Node hashnow = hash.get(now);
             hash.put(now, new Node(hashnow.id, hashnow.num + 1));
-
         } else {
             heap.add(now);
             hash.put(now, new Node(heap.size() - 1, 1));
@@ -129,7 +127,7 @@ class HashHeap {
 
     void delete(int now) {
         size_t--;
-        ;
+        
         Node hashnow = hash.get(now);
         int id = hashnow.id;
         int num = hashnow.num;

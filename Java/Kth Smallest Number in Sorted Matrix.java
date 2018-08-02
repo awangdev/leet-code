@@ -1,22 +1,31 @@
 M
 1520234108
 tags: Binary Search, Heap
+time: O(n + klogn)
+space: O(n)
 
-方法1:
-和Merge K sorted Array/ List 类似：使用PriorityQueue。
+给一个sorted matrix, 找kth smallest number (not distinct)
 
-因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+Related: `Kth Largest Element in an Array`
 
-方法2:
-Binary Search
-https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85182/my-solution-using-binary-search-in-c
+#### PriorityQueue
+- 和Merge K sorted Array/ List 类似：使用PriorityQueue。
+- 因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+- Initial O(n) time, also find k O(k), sort O(logn) => O(n + klogn)
+- 变型: Kth Largest in N Arrays
+
+#### Binary Search
+- we know where the boundary is start/end are the min/max value. 
+- locate the kth smallest item (x, y) by cutt off partition in binary fasion: 
+- find mid-value, and count # of items < mid-value based on the ascending matrix
+- O(nlogn)
 
 
-变型: Kth Largest in N Arrays
 ```
 /*
 LeetCode:
-Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+Given a n x n matrix where each of the rows and columns are sorted in ascending order, 
+find the kth smallest element in the matrix.
 
 Note that it is the kth smallest element in the sorted order, not the kth distinct element.
 
@@ -86,6 +95,42 @@ class Solution {
     }
 }
 
+// Binary Search
+class Solution {
+    public int kthSmallest(int[][] matrix, int k) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0 || k <= 0) return -1;
+        
+        int n = matrix.length;
+        int min = matrix[0][0];
+        int max = matrix[n - 1][n - 1];
+        while (min < max) {
+            int target = min + (max - min) / 2;
+            int count = countSmallerItem(matrix, target);
+            if (count < k) { // need larger target
+                min = target + 1; // target is counted, skip over
+            } else {
+                max = target;
+            }
+        }
+        return min;
+    }
+    
+    // O(n)
+    private int countSmallerItem(int[][] matrix, int target) {
+        int n = matrix.length;
+        int count = 0;
+        int i = 0, j = n - 1; // n*n
+        while (i < n && j >= 0) {
+            if (matrix[i][j] > target) { //item too large, skip
+                j--;
+            } else { // meet requirement, add (j+1) since j is 0-based, also move on to next row
+                count += j + 1;
+                i++;
+            }
+        }
+        return count;
+    }
+}
 
 /*
 Find the kth smallest number in at row and column sorted matrix.

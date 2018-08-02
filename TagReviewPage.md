@@ -1272,21 +1272,7 @@ k是permutation的一个数位。而permutation是有规律的。
 
 ---
 
-**3. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Heap, Math]
-      
-
-非常brutle的。
-每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
-最后时间是n*log(n*3)
-
-注意：
-Long
-HashSet确保没有重复。
-
-
----
-
-**4. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy      Tags: [Math]
+**3. [Power of Three.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Three.java)**      Level: Easy      Tags: [Math]
       
 
 方法1:
@@ -1303,7 +1289,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**5. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy      Tags: [Array, Math]
+**4. [Plus One.java](https://github.com/awangdev/LintCode/blob/master/Java/Plus%20One.java)**      Level: Easy      Tags: [Array, Math]
       
 
 简单的实现, 加1, 进位. 唯一取巧的地方, 最后如果要多一位, 一定是10000...这个模式, 可以走捷径, 直接来个+1size的array, 然后第一位=1.
@@ -1312,7 +1298,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**6. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy      Tags: [Bit Manipulation, Math]
+**5. [Power of Two.java](https://github.com/awangdev/LintCode/blob/master/Java/Power%20of%20Two.java)**      Level: Easy      Tags: [Bit Manipulation, Math]
       
 
 跟powerOfThree一样: 可以loop, check mod; 也可以用binary search找合适的数字.
@@ -1321,7 +1307,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**7. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
+**6. [Encode and Decode TinyURL.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20TinyURL.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
 其实想到了切入点, 是个可难可简单的题目. 这里的encode就是想办法把url存起来, 然后给个 key.
@@ -1331,7 +1317,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**8. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
+**7. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
       
 
 给一个数字n, 找到这个数字 最少能用多少个 平方数组成. 
@@ -1371,7 +1357,7 @@ Power of 3:  3 ^ x == n ?
 
 ---
 
-**9. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
+**8. [Valid Perfect Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Perfect%20Square.java)**      Level: Review      Tags: [Binary Search, Math]
       
 
 Binary找sqrt. 基本 mid+1, mid-1 template.
@@ -1381,7 +1367,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**10. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium      Tags: [Binary Search, Math]
+**9. [Pow(x,n).java](https://github.com/awangdev/LintCode/blob/master/Java/Pow(x,n).java)**      Level: Medium      Tags: [Binary Search, Math]
       
 
 傻做就O(n), 要更好就考虑O(logN).
@@ -1395,7 +1381,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**11. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy      Tags: [Math, String]
+**10. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy      Tags: [Math, String]
       
 
 方法一:土办法没技术，把binary换成数字，加起来，再换成binary。如果input很大，那么很可能int,long都hold不住。不保险。
@@ -1407,7 +1393,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**12. [Add Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Digits.java)**      Level: Easy      Tags: [Math]
+**11. [Add Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Digits.java)**      Level: Easy      Tags: [Math]
       
 
 方法1: 普通做法就是按照题意, double-while loop把数字加起来. 第一层循环是O(n), 然后第二层循环就少很多数位, overall O(n)
@@ -1418,7 +1404,7 @@ Binary找sqrt. 基本 mid+1, mid-1 template.
 
 ---
 
-**13. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium      Tags: [Linked List, Math]
+**12. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium      Tags: [Linked List, Math]
       
 
 LinkedList都已经反转好了，直接做.
@@ -1435,7 +1421,7 @@ Linked List 没有天然size.
 
 ---
 
-**14. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium      Tags: [Linked List, Math, Two Pointers]
+**13. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium      Tags: [Linked List, Math, Two Pointers]
       
 
 LinkedList 里面有 cycle, 找到cycle的起始点(第一个重复出现的element).
@@ -1465,7 +1451,7 @@ LinkedList 里面有 cycle, 找到cycle的起始点(第一个重复出现的elem
 
 ---
 
-**15. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy      Tags: [Math]
+**14. [Reverse Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Integer.java)**      Level: Easy      Tags: [Math]
       
 
 #### 方法1
@@ -1481,7 +1467,7 @@ Space O(n), time O(n)
 
 ---
 
-**16. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy      Tags: [Binary Search, Math]
+**15. [Sqrt(x).java](https://github.com/awangdev/LintCode/blob/master/Java/Sqrt(x).java)**      Level: Easy      Tags: [Binary Search, Math]
       
 
 #### s- qrt(int x)
@@ -1498,7 +1484,7 @@ Space O(n), time O(n)
 
 ---
 
-**17. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
+**16. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -1517,7 +1503,7 @@ Space O(n), time O(n)
 
 ---
 
-**18. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy      Tags: [Hash Table, Math]
+**17. [Count Primes.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20Primes.java)**      Level: Easy      Tags: [Hash Table, Math]
       
 
 计数: 所有小于n的prime number.
@@ -1537,7 +1523,7 @@ Space O(n), time O(n)
 
 ---
 
-**19. [Excel Sheet Column Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Number.java)**      Level: Easy      Tags: [Math]
+**18. [Excel Sheet Column Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Number.java)**      Level: Easy      Tags: [Math]
       
 
 #### Math
@@ -1550,7 +1536,7 @@ Space O(n), time O(n)
 
 ---
 
-**20. [Excel Sheet Column Title.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Title.java)**      Level: Easy      Tags: [Math]
+**19. [Excel Sheet Column Title.java](https://github.com/awangdev/LintCode/blob/master/Java/Excel%20Sheet%20Column%20Title.java)**      Level: Easy      Tags: [Math]
       
 
 #### 基本换算
@@ -1564,7 +1550,7 @@ Space O(n), time O(n)
 
 ---
 
-**21. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Math, String]
+**20. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Math, String]
       
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
@@ -1587,7 +1573,7 @@ Space O(n), time O(n)
 
 ---
 
-**22. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**21. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -1604,7 +1590,7 @@ Space O(n), time O(n)
 
 ---
 
-**23. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
+**22. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
       
 
 给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
@@ -1632,7 +1618,7 @@ Space O(n), time O(n)
 
 ---
 
-**24. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
+**23. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
       
 
 给一个expression String, 要evaluate这个expression的值.
@@ -1655,7 +1641,7 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 
 ---
 
-**25. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
+**24. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
       
 
 LeetCode: 判断数字是否是ugly number. (definition: factor only have 2, 3, 5)
@@ -1675,7 +1661,7 @@ LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
 
 ---
 
-**26. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+**25. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
       
 
 TODO: 
@@ -1697,7 +1683,7 @@ TODO:
 
 ---
 
-**27. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**26. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line
@@ -1717,7 +1703,7 @@ TODO:
 
 ---
 
-**28. [Number of Digit One.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Digit%20One.java)**      Level: Hard      Tags: [Math]
+**27. [Number of Digit One.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Digit%20One.java)**      Level: Hard      Tags: [Math]
       
 
 Pure math problem, not quite representative
@@ -1729,7 +1715,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**29. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
+**28. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
       
 
 具体看题目: count # of valid rectangles (four corner are 1) in a grid[][].
@@ -1749,7 +1735,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**30. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
+**29. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
       
 
 给两个integer String, 求乘积
@@ -1776,7 +1762,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**31. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+**30. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
       
 
 #### Array, Math
@@ -1791,7 +1777,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**32. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+**31. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 time: O(n)
 space: O(n)
@@ -1811,7 +1797,7 @@ space: O(n)
 
 ---
 
-**33. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
+**32. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
       
 time: O(n)
 
@@ -1821,6 +1807,27 @@ time: O(n)
 - 遇到 `.`, `e`, `+/-`, `int`的几种不同情况
 - 分别遇到的顺序不同时候, 结果也不同.
 - 这道题更多是分析情况, 然后把edge case enumerate出来, 算法的意义比较少.
+
+
+
+---
+
+**33. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+#### DP
+- curr index is based on previous calculation: the min of all 3 previous factors
+- O(n)
+
+#### PriorityQueue, DP
+- 非常brutle的。
+- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
+- 最后时间是n*log(n*3)
+- 注意：use long, use HashSet确保没有重复
+- O(nlogn)
+
 
 
 
@@ -1842,21 +1849,7 @@ NOT DONE YET
 
 ---
 
-**1. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Heap, Math]
-      
-
-非常brutle的。
-每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
-最后时间是n*log(n*3)
-
-注意：
-Long
-HashSet确保没有重复。
-
-
----
-
-**2. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [Backpack DP, DP, Memoization]
+**1. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [Backpack DP, DP, Memoization]
       
 
 给一串不同数额的coins, 和total amount to spent. 求 最少 用多少个coin可以组合到这个amount. 每种coins个数不限量.
@@ -1885,7 +1878,7 @@ HashSet确保没有重复。
 
 ---
 
-**3. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium      Tags: [Array, DP, Subarray]
+**2. [Maximum Product Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Product%20Subarray.java)**      Level: Medium      Tags: [Array, DP, Subarray]
       
 
 从一组数列(正负都有)里面找一串连续的子序列, 而达到乘积product最大值.
@@ -1906,7 +1899,7 @@ HashSet确保没有重复。
 
 ---
 
-**4. [k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)**      Level: Hard      Tags: [DP]
+**3. [k Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/k%20Sum.java)**      Level: Hard      Tags: [DP]
       
 
 DP. 公式如何想到, 还需要重新理解.
@@ -1921,7 +1914,7 @@ dp[i][j][m] = dp[i][j-1][m] + dp[i - A[j - 1]][j-1][m-1]
 
 ---
 
-**5. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
+**4. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
 Not quite clear.
@@ -1935,7 +1928,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**6. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**5. [Unique Paths II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Paths%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 跟unique path的grid一样, 目标走到右下角, 但是grid里面可能有obstacle, 不能跨越. 求unique path 的count.
@@ -1950,7 +1943,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**7. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**6. [Bomb Enemy.java](https://github.com/awangdev/LintCode/blob/master/Java/Bomb%20Enemy.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 
 2D grid, 每个格子里面可能是 'W' wall, 'E' enemy, 或者是 '0' empty.
@@ -1973,7 +1966,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**8. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
+**7. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
       
 
 给一个数字n, 找到这个数字 最少能用多少个 平方数组成. 
@@ -2013,7 +2006,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**9. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**8. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给一个数组nums, 全正数, 无重复数字; 找: # of 拼出m的方法.
@@ -2037,7 +2030,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**10. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard      Tags: [Binary Search, DP, Partition DP]
+**9. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard      Tags: [Binary Search, DP, Partition DP]
       
 
 给一串书pages[i], k个人, pages[i] 代表每本书的页数. k个人从不同的点同时开始抄书. 
@@ -2083,7 +2076,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**11. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard      Tags: [DP, Interval DP, String]
+**10. [Scramble String.java](https://github.com/awangdev/LintCode/blob/master/Java/Scramble%20String.java)**      Level: Hard      Tags: [DP, Interval DP, String]
       
 
 - 给两个string S, T. 检验他们是不是scramble string.
@@ -2110,7 +2103,7 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**12. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium      Tags: [DP]
+**11. [Best Time to Buy and Sell Stock with Cooldown.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Cooldown.java)**      Level: Medium      Tags: [DP]
       
 
 Sequence DP
@@ -2120,7 +2113,7 @@ Sequence DP
 
 ---
 
-**13. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
+**12. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
       
 
 给两个string, A, B. 找这两个string里面的LCS: 最长公共字符长度 (不需要是continuous substring)
@@ -2135,7 +2128,7 @@ Sequence DP
 
 ---
 
-**14. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard      Tags: [DP, String]
+**13. [Interleaving String.java](https://github.com/awangdev/LintCode/blob/master/Java/Interleaving%20String.java)**      Level: Hard      Tags: [DP, String]
       
 
 双序列DP, 从最后点考虑.
@@ -2148,7 +2141,7 @@ Sequence DP
 
 ---
 
-**15. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**14. [Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 time: O(MN)
 Space: O(N)
@@ -2182,7 +2175,7 @@ Space: O(N)
 
 ---
 
-**16. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard      Tags: [DP, String]
+**15. [Distinct Subsequences.java](https://github.com/awangdev/LintCode/blob/master/Java/Distinct%20Subsequences.java)**      Level: Hard      Tags: [DP, String]
       
 
 Double Sequence DP:
@@ -2194,14 +2187,14 @@ Double Sequence DP:
 
 ---
 
-**17. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
+**16. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
       
 
 
 
 ---
 
-**18. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
+**17. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
       
 
 Double sequence DP. 与regular expression 很像.
@@ -2214,7 +2207,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**19. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
+**18. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -2229,7 +2222,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**20. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
+**19. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
 #### DFS + Memoization
@@ -2258,7 +2251,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**21. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**20. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -2279,7 +2272,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**22. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
+**21. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
       
 
 #### 方法1: monotonous stack
@@ -2298,7 +2291,7 @@ Coordinate DP?
 
 ---
 
-**23. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**22. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -2321,7 +2314,7 @@ Coordinate DP?
 
 ---
 
-**24. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
+**23. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -2349,7 +2342,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**25. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
+**24. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -2370,7 +2363,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**26. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
+**25. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -2415,7 +2408,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**27. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
+**26. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
 每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
@@ -2444,7 +2437,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**28. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**27. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
 还是2个人拿n个coin, coin可以有不同的value. 
@@ -2497,7 +2490,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**29. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
+**28. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -2534,7 +2527,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**30. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy      Tags: [Brainteaser, DP, Game Theory]
+**29. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy      Tags: [Brainteaser, DP, Game Theory]
       
 
 #### Brainteaser
@@ -2551,7 +2544,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**31. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
+**30. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
       
 
 给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
@@ -2570,7 +2563,7 @@ TODO
 
 ---
 
-**32. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
+**31. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
       
 
 给出步数，看能不能jump to end.
@@ -2599,7 +2592,7 @@ TODO
 
 ---
 
-**33. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**32. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
@@ -2619,7 +2612,7 @@ TODO
 
 ---
 
-**34. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
+**33. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
       
 time: O(nm), m = # of colors
 space: O(nm)
@@ -2642,7 +2635,7 @@ space: O(nm)
 
 ---
 
-**35. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
+**34. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
       
 time: O(n)
 space: O(n)
@@ -2667,7 +2660,7 @@ space: O(n)
 
 ---
 
-**36. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**35. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 找连续的持续上升子序列的长度.
@@ -2686,7 +2679,7 @@ space: O(n)
 
 ---
 
-**37. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**36. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 #### DP
@@ -2704,7 +2697,7 @@ space: O(n)
 
 ---
 
-**38. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium      Tags: [Bit Manipulation, Bitwise DP, DP]
+**37. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium      Tags: [Bit Manipulation, Bitwise DP, DP]
       
 
 给一个数组, 算里面有多少bit 1. 
@@ -2721,7 +2714,7 @@ space: O(n)
 
 ---
 
-**39. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
+**38. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -2740,7 +2733,7 @@ space: O(n)
 
 ---
 
-**40. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**39. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n) or rolling array O(1)
@@ -2763,7 +2756,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**41. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
+**40. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
       
 
 和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
@@ -2787,7 +2780,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**42. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium      Tags: [DFS, DP, Status DP, Tree]
+**41. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium      Tags: [DFS, DP, Status DP, Tree]
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -2820,7 +2813,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**43. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
+**42. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
       
 time: O(NK^2):
 space: (NK)
@@ -2863,7 +2856,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**44. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**43. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -2896,7 +2889,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**45. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
+**44. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
       
 
 有int[] price of stock, 最多做 k transactions.  求最大profit.
@@ -2941,7 +2934,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**46. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
+**45. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
       
 
 俄罗斯套娃, 这里用envelope来表现. 给一串array, 每一个[x, y] 是envelope 长宽. [[5,4],[6,4],[6,7],[2,3]]. 
@@ -2970,7 +2963,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**47. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**46. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
@@ -3011,7 +3004,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**48. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**47. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
@@ -3034,7 +3027,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**49. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**48. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 #### Backpack DP
@@ -3059,7 +3052,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**50. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Enumeration, Partition DP]
+**49. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Enumeration, Partition DP]
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -3084,7 +3077,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**51. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
+**50. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
       
 
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
@@ -3120,7 +3113,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**52. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
+**51. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
       
 
 给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
@@ -3160,7 +3153,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**53. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**52. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 
 #### Double Sequence DP
@@ -3184,7 +3177,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**54. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**53. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
@@ -3197,7 +3190,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**55. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**54. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -3218,7 +3211,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**56. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP, Subarray]
+**55. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP, Subarray]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -3243,7 +3236,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**57. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
+**56. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -3271,7 +3264,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**58. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**57. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -3288,7 +3281,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**59. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
+**58. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
       
 
 找max path sum,  可以从任意treeNode 到任意 treeNode.
@@ -3311,7 +3304,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**60. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**59. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -3339,7 +3332,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**61. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+**60. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
       
 
 给一个数字n, 找到以(1...n)为node的所有unique BST.
@@ -3355,7 +3348,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**62. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+**61. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
@@ -3380,7 +3373,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**63. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**62. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -3417,7 +3410,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**64. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
+**63. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
       
 
 给一个string, 找到最长的palindrome substring.
@@ -3446,7 +3439,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**65. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+**64. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
       
 
 给一个string s, 找最长的sub-sequence which is also palindrome.
@@ -3477,7 +3470,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**66. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**65. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -3516,7 +3509,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**67. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+**66. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
       
 
 给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
@@ -3547,7 +3540,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**68. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
+**67. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
       
 
 给一串数字, 求sumRange.
@@ -3561,7 +3554,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**69. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**68. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
@@ -3598,7 +3591,7 @@ TODO
 
 ---
 
-**70. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
+**69. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
       
 
 具体看题目: count # of valid rectangles (four corner are 1) in a grid[][].
@@ -3618,7 +3611,7 @@ TODO
 
 ---
 
-**71. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
+**70. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
       
 
 根据题意, count # of palindromic substring. (不同index截取出来的substring算不同的情况)
@@ -3635,7 +3628,7 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 
 ---
 
-**72. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**71. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n)
@@ -3659,7 +3652,7 @@ space: O(n)
 
 ---
 
-**73. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**72. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
       
 time: O(n^2)
 space: O(n)
@@ -3691,7 +3684,7 @@ space: O(n)
 
 ---
 
-**74. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
+**73. [Best Time to Buy and Sell Stock I.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20I.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -3720,7 +3713,7 @@ space: O(n)
 
 ---
 
-**75. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**74. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(1) greedy, O(n) dp
@@ -3763,7 +3756,7 @@ space: O(1) greedy, O(n) dp
 
 ---
 
-**76. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
+**75. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
       
 time: O(n^2) dp, O(nLogN) binary search
 space: O(n)
@@ -3791,7 +3784,7 @@ space: O(n)
 
 ---
 
-**77. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**76. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -3812,7 +3805,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**78. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+**77. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
       
 
 // 如何想到从中间initialize
@@ -3821,7 +3814,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**79. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**78. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 time: O(n^2)
 time: O(n)
@@ -3849,7 +3842,7 @@ time: O(n)
 
 ---
 
-**80. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
+**79. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
       
 
 
@@ -3865,7 +3858,7 @@ time: O(n)
 
 ---
 
-**81. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
+**80. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
       
 time: O(m)
 space: O(1)
@@ -3878,6 +3871,27 @@ space: O(1)
 - Use preMinSum to cache previouly calcualted min sum, also compare with +curr.
 - Have a global min to track: because the preMinSum can be dis-continuous. 
 - 也可以写成 dp[i] 但是没什么必要
+
+
+
+---
+
+**81. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+#### DP
+- curr index is based on previous calculation: the min of all 3 previous factors
+- O(n)
+
+#### PriorityQueue, DP
+- 非常brutle的。
+- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
+- 最后时间是n*log(n*3)
+- 注意：use long, use HashSet确保没有重复
+- O(nlogn)
+
 
 
 
@@ -8160,24 +8174,33 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**30. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+**30. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
+time: O(nlogk)
+space: O(n)
 
-#### PriorityQueue
+给一串String. 找到top k frequent words.
+
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### PriorityQueue - Max Heap
 - 用HashMap存frequency, 用ArrayList存lists of words
 - create一个Node class, 然后用PriorityQueue.   
 - PriorityQueue里面用到了 String.compareTo(another String).巧妙。
 - time: PQ uses O(nlogn), overall O(nlogn)
-
-#### Just HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
+- slower, because the maxHeap needs to add all candidates
 
 #### Trie && MinHeap屌炸天   
 - 可以做一下
 - http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
 
 
 
@@ -8252,24 +8275,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**35. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
-      
-
-给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
-
-#### PriorityQueue
-- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
-- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
-- 那么就先count, O(n), using HashMap
-- 再priorityQueue, (mLog(m)), m是unique 数字的总量
-- 最终find top k, O(k)
-- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
-
-
-
----
-
-**36. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+**35. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
       
 
 #### Hash Table, Greedy
@@ -8287,7 +8293,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**37. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+**36. [2 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 #### HashMap<value, index>
@@ -8306,7 +8312,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**38. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
+**37. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
       
 
 看的list of coordinates 是否能组成perfect rectangle, 并且不允许overlap area.
@@ -8321,7 +8327,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**39. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**38. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line
@@ -8341,7 +8347,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**40. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
+**39. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -8361,7 +8367,7 @@ space: O(n)
 
 ---
 
-**41. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+**40. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
       
 
 给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
@@ -8378,7 +8384,7 @@ space: O(n)
 
 ---
 
-**42. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Bucket Sort, Hash Table, Sort]
+**41. [H-Index.java](https://github.com/awangdev/LintCode/blob/master/Java/H-Index.java)**      Level: Medium      Tags: [Bucket Sort, Hash Table, Sort]
       
 
 找到h-index, 给的citation int[] 并不是sorted. h-index 的definition 具体看题目.
@@ -8410,7 +8416,7 @@ space: O(n)
 
 ---
 
-**43. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+**42. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
       
 
 给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
@@ -8429,7 +8435,7 @@ space: O(n)
 
 ---
 
-**44. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
+**43. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
       
 
 把anagram找到并output
@@ -8463,7 +8469,7 @@ space: O(n)
 
 ---
 
-**45. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
+**44. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
       
 
 给一串3-digit 的数组. 每个数字的表达一个TreeNode, 3 digit分别代表: depth.position.value
@@ -8487,7 +8493,7 @@ space: O(n)
 
 ---
 
-**46. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
+**45. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 给一串String, 找到最长的长度, 把最长的String全都return
@@ -8500,7 +8506,7 @@ space: O(n)
 
 ---
 
-**47. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
+**46. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -8531,7 +8537,7 @@ space: O(n)
 
 ---
 
-**48. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
+**47. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
       
 time: O(mnk), where `m = A.row`, `n = B.col`, `k = A.col = B.row`
 space: O(1) extra
@@ -8555,7 +8561,7 @@ space: O(1) extra
 
 ---
 
-**49. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
+**48. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
       
 time: O(mn)
 space: O(X), X = max wall width
@@ -8577,7 +8583,7 @@ space: O(X), X = max wall width
 
 ---
 
-**50. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
+**49. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -8594,7 +8600,7 @@ space: O(n)
 
 ---
 
-**51. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
+**50. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
       
 
 TODO: how aout without chaning the input nums?
@@ -8603,7 +8609,7 @@ TODO: how aout without chaning the input nums?
 
 ---
 
-**52. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+**51. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 time: O(n)
 space: O(n)
@@ -8623,7 +8629,7 @@ space: O(n)
 
 ---
 
-**53. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+**52. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
       
 time: O(1) avg
 space: O(n)
@@ -8639,7 +8645,7 @@ space: O(n)
 
 ---
 
-**54. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+**53. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
       
 time: O(n)
 space: O(n)
@@ -8661,6 +8667,32 @@ space: O(n)
 - 应该也是可以optimize map keys的, 反正都是continuous key
 
 
+
+
+
+---
+
+**54. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
+      
+
+给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
+
+要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
+
+
+#### Union Find
+- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+
+#### Hash Table solution, passed but very slow
+- Definitely need iterate over accounts: merge them by email.
+- Account object {name, list of email}
+- map<email, account>
+- 1. iterate over accounts
+- 2. find if 'account' exist;  if does, add emails
+- 3. if not, add account to list and to map. map all emails to accounts.
+- output -> all accounts, and sort emails
+- space O(mn): m row, n = emails
+- time O(mn)
 
 
 
@@ -8692,27 +8724,36 @@ space: O(n)
 
 ---
 
-**56. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
+**56. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
       
+time: O(n)
+space: O(n)
 
-给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
 
-要求把所有account merge起来 (可能多个record记录了同一个人, by common email)
+#### HashMap + bucket List[]
+- Use HashMap to store <num, freq>
+- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
+- Size of the data structure will be m <= n
+- The bucket[count] preserves order from end of the array.
+- Simply loop over the reversed map, we can find the top k items.
+- Solid O(n)
 
+#### PriorityQueue, MinHeap
+- Use regualr priorityQueue to sort by frequency ascendingly
+- the queue.peek() record has lowest frequency, which is replacable
+- Always only maintain k elements in the queue, so sorting is O(logk)
+- IMPORTANT: remember to `rst.add(0, x)` for desired ordering
+- time faster than maxHeap: O(nlogk)
 
-#### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+#### PriorityQueue, MaxHeap
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
 
-#### Hash Table solution, passed but very slow
-- Definitely need iterate over accounts: merge them by email.
-- Account object {name, list of email}
-- map<email, account>
-- 1. iterate over accounts
-- 2. find if 'account' exist;  if does, add emails
-- 3. if not, add account to list and to map. map all emails to accounts.
-- output -> all accounts, and sort emails
-- space O(mn): m row, n = emails
-- time O(mn)
 
 
 
@@ -10883,7 +10924,7 @@ HashMap
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
 
@@ -11440,24 +11481,33 @@ TODO
 
 ---
 
-**8. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+**8. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
+time: O(nlogk)
+space: O(n)
 
-#### PriorityQueue
+给一串String. 找到top k frequent words.
+
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### PriorityQueue - Max Heap
 - 用HashMap存frequency, 用ArrayList存lists of words
 - create一个Node class, 然后用PriorityQueue.   
 - PriorityQueue里面用到了 String.compareTo(another String).巧妙。
 - time: PQ uses O(nlogn), overall O(nlogn)
-
-#### Just HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
+- slower, because the maxHeap needs to add all candidates
 
 #### Trie && MinHeap屌炸天   
 - 可以做一下
 - http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
 
 
 
@@ -11924,28 +11974,34 @@ space: O(1)
  
  
  
-## MinHeap (4)
-**0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap, MinHeap]
+## MinHeap (6)
+**0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
+time: O(nlogk)
+space: O(n)
 
-Turn unsorted array into a min-heap array, where for each A[i], 
+给一串String. 找到top k frequent words.
 
-A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
 
-#### Heap
-- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
-- 所有后面的对应element都比curr element 小。
-- Heapify里面的**siftdown**的部分:
-- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
+#### PriorityQueue - Max Heap
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+- slower, because the maxHeap needs to add all candidates
 
-#### Heapify/SiftDown做了什么?
-- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
-- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
 
-#### min-heap的判断规律:
-- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
-- siftdown时：在curr node和两个son里面小的比较。如果的确curr < son, 搞定，break while.   
-- 但若curr 并不比son小，那么就要换位子，而且继续从son的位子往下面盘查。    
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
 
 
 
@@ -12026,6 +12082,67 @@ Same as merge k sorted list, use priorityQueue
 - PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
 - 因为array里没有 'next' pointer，只能存x,y来推next element
 - Not sure why `new PriorityQueue<>(Comparator.comparing(a -> a.val));` is slower
+
+
+
+---
+
+**4. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium      Tags: [Heap, MinHeap]
+      
+
+Turn unsorted array into a min-heap array, where for each A[i], 
+
+A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
+
+#### Heap
+- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
+- 所有后面的对应element都比curr element 小。
+- Heapify里面的**siftdown**的部分:
+- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
+
+#### Heapify/SiftDown做了什么?
+- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
+- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
+
+#### min-heap的判断规律:
+- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
+- siftdown时：在curr node和两个child里面小的比较。如果的确curr < child, 搞定，break while.   
+- 但若curr 并不比child小，那么就要换位子，而且继续从child的位子往下面盘查。    
+
+
+
+---
+
+**5. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### HashMap + bucket List[]
+- Use HashMap to store <num, freq>
+- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
+- Size of the data structure will be m <= n
+- The bucket[count] preserves order from end of the array.
+- Simply loop over the reversed map, we can find the top k items.
+- Solid O(n)
+
+#### PriorityQueue, MinHeap
+- Use regualr priorityQueue to sort by frequency ascendingly
+- the queue.peek() record has lowest frequency, which is replacable
+- Always only maintain k elements in the queue, so sorting is O(logk)
+- IMPORTANT: remember to `rst.add(0, x)` for desired ordering
+- time faster than maxHeap: O(nlogk)
+
+#### PriorityQueue, MaxHeap
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
+
 
 
 
@@ -12335,7 +12452,7 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
  
  
  
-## PriorityQueue (15)
+## PriorityQueue (16)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
@@ -12376,7 +12493,7 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
 
@@ -12416,47 +12533,39 @@ Binary Indexed Tree?
 
 ---
 
-**4. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
+**4. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
+time: O(nlogk)
+space: O(n)
 
-#### PriorityQueue
+给一串String. 找到top k frequent words.
+
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### PriorityQueue - Max Heap
 - 用HashMap存frequency, 用ArrayList存lists of words
 - create一个Node class, 然后用PriorityQueue.   
 - PriorityQueue里面用到了 String.compareTo(another String).巧妙。
 - time: PQ uses O(nlogn), overall O(nlogn)
-
-#### Just HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
+- slower, because the maxHeap needs to add all candidates
 
 #### Trie && MinHeap屌炸天   
 - 可以做一下
 - http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
 
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
 
-
----
-
-**5. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
-      
-
-给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
-
-#### PriorityQueue
-- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
-- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
-- 那么就先count, O(n), using HashMap
-- 再priorityQueue, (mLog(m)), m是unique 数字的总量
-- 最终find top k, O(k)
-- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
 
 
 
 ---
 
-**6. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+**5. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
       
 
 #### Sweep Line
@@ -12482,7 +12591,7 @@ Binary Indexed Tree?
 
 ---
 
-**7. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
+**6. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
       
 
 给一串int[Interval] (unsorted), 把所以Interval merge起来.
@@ -12513,7 +12622,7 @@ Binary Indexed Tree?
 
 ---
 
-**8. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, PriorityQueue, Sort, Subarray]
+**7. [Subarray Sum Closest.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Closest.java)**      Level: Medium      Tags: [PreSum, PriorityQueue, Sort, Subarray]
       
 time: O(nlogn)
 space: O(n)
@@ -12536,7 +12645,7 @@ space: O(n)
 
 ---
 
-**9. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**8. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -12565,7 +12674,7 @@ space: O(n)
 
 ---
 
-**10. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
+**9. [Exam Room.java](https://github.com/awangdev/LintCode/blob/master/Java/Exam%20Room.java)**      Level: Medium      Tags: [PriorityQueue, Sort]
       
 
 #### PriorityQueue
@@ -12600,7 +12709,7 @@ space: O(n)
 
 ---
 
-**11. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+**10. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
       
 
 给一个2Dmap, 每个position 有 height. 找Trapping water sum.
@@ -12635,7 +12744,7 @@ space: O(n)
 
 ---
 
-**12. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
+**11. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
       
 
 kth largest in array
@@ -12665,7 +12774,7 @@ kth largest in array
 
 ---
 
-**13. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**12. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 给一个array of ListNode, 把所有node按照大小连成一条.
@@ -12697,7 +12806,7 @@ kth largest in array
 
 ---
 
-**14. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
+**13. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
       
 
 Same as merge k sorted list, use priorityQueue
@@ -12712,182 +12821,29 @@ Same as merge k sorted list, use priorityQueue
 
 ---
 
-
-
-
- 
- 
- 
-## Heap (15)
-**0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap, MinHeap]
+**14. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
       
-
-Turn unsorted array into a min-heap array, where for each A[i], 
-
-A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
-
-#### Heap
-- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
-- 所有后面的对应element都比curr element 小。
-- Heapify里面的**siftdown**的部分:
-- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
-
-#### Heapify/SiftDown做了什么?
-- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
-- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
-
-#### min-heap的判断规律:
-- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
-- siftdown时：在curr node和两个son里面小的比较。如果的确curr < son, 搞定，break while.   
-- 但若curr 并不比son小，那么就要换位子，而且继续从son的位子往下面盘查。    
-
-
-
----
-
-**1. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Heap, Math]
-      
-
-非常brutle的。
-每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
-最后时间是n*log(n*3)
-
-注意：
-Long
-HashSet确保没有重复。
-
-
----
-
-**2. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
-      
-
-方法1:
-和Merge K sorted Array/ List 类似：使用PriorityQueue。
-
-因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
-
-方法2:
-Binary Search
-https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85182/my-solution-using-binary-search-in-c
-
-
-变型: Kth Largest in N Arrays
-
-
----
-
-**3. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap]
-      
-
-#### 原理
-- 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.
-- 前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
-- 后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
-
-#### 注意
-- 这里要首先定好, 哪一个queue是多存一个element的. 这里选maxHeap: maxHeap.size() == minHeap.size() + 1 || minHeap.size()
-- 必须先维护maxHeap里面有个元素, 否则null了会在比较大小时出问题.
-
-
-
----
-
-**4. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap]
-      
-
-Median还是用min-heap 和 max-heap. Time(logN)
-加/减: prioirtyQueue, log(n)
-findMedian: O(1)
-
-#### 思想
-- 加一个数, 减一个数。
-- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
-- 抽完balance一下
-
-#### 注意
-用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
-左边的maxHeap总有 x+1或者x个数字
-后边minHeap应该一直有x个数字
-
-
-
----
-
-**5. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
-      
-
-给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
-
-#### 方法1
-- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
-- 跟 Number of Airpline in the sky是同一道题
-
-#### 方法2: 尝试了一下用一个sorted Array + HashMap
-也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
-
-
-
----
-
-**6. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
-      
-
-又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
-
-#### Sweep Line, Time O(nLogN), Space O(n)
-- original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
-- 画图分析: 需要找到 non-overlaping height point at current index; also height needs to be different than prev height peek to be visible.
-- 把所有点分出来， 每个点有index x, 再加上一个height.         
-- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
-- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
-- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
-- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
-- heightQueue里面加一个0, 用来在结尾的时候做closure
-
-#### Segment Tree
-- 看了一些做法, segment tree写法很复杂, 估计在面试中难以用segment tree来写: https://www.cnblogs.com/tiezhibieek/p/5021202.html
-
-#### HashHeap
-- HashHeap template 可以考虑: https://www.jiuzhang.com/solution/building-outline/#tag-highlight-lang-java
-
-Binary Indexed Tree?
-
-
-
-
-
----
-
-**7. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue, Trie]
-      
-
-#### PriorityQueue
-- 用HashMap存frequency, 用ArrayList存lists of words
-- create一个Node class, 然后用PriorityQueue.   
-- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
-- time: PQ uses O(nlogn), overall O(nlogn)
-
-#### Just HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
-
-#### Trie && MinHeap屌炸天   
-- 可以做一下
-- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
-
-
-
----
-
-**8. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, PriorityQueue]
-      
+time: O(n)
+space: O(n)
 
 给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
 
-#### PriorityQueue
+#### HashMap + bucket List[]
+- Use HashMap to store <num, freq>
+- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
+- Size of the data structure will be m <= n
+- The bucket[count] preserves order from end of the array.
+- Simply loop over the reversed map, we can find the top k items.
+- Solid O(n)
+
+#### PriorityQueue, MinHeap
+- Use regualr priorityQueue to sort by frequency ascendingly
+- the queue.peek() record has lowest frequency, which is replacable
+- Always only maintain k elements in the queue, so sorting is O(logk)
+- IMPORTANT: remember to `rst.add(0, x)` for desired ordering
+- time faster than maxHeap: O(nlogk)
+
+#### PriorityQueue, MaxHeap
 - 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
 - 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
 - 那么就先count, O(n), using HashMap
@@ -12897,143 +12853,25 @@ Binary Indexed Tree?
 
 
 
----
-
-**9. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
-      
-
-给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
-
-跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
-
-#### PriorityQueue + HashTable
-- PriorityQueue排序+分布排列的一个经典用法.
-- Count frequency and store in pq.
-- Consume element of pq for k rounds, each time pick one element from queue.
-- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
-- space, O(n) extra space in sb, O(26) constant space with pq.
-- time: O(n) to add all items
-
-
 
 ---
 
-**10. [HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)**      Level: Hard      Tags: [HashHeap, Heap]
+**15. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
+time: O(n)
+space: O(n)
 
-非题.是从九章找来的HashHeap implementation.
+#### DP
+- curr index is based on previous calculation: the min of all 3 previous factors
+- O(n)
 
+#### PriorityQueue, DP
+- 非常brutle的。
+- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
+- 最后时间是n*log(n*3)
+- 注意：use long, use HashSet确保没有重复
+- O(nlogn)
 
-
----
-
-**11. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
-      
-
-给一个2Dmap, 每个position 有 height. 找Trapping water sum.
-
-
-#### Min Heap
-- 用PriorityQueue把选中的height排序,为走位, create class Cell (x,y, height).
-
-##### 注意几个理论
-- 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block
-- 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层
-- 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
-
-##### Steps
-- 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
-- 2. 若大于零，那么周围的cell就有积水: 因为cell已经是外围最低, 所以内部更低的, 一定有积水.
-- 3. 每个visited的cell都要mark, avoid revisit
-- 4. 根据4个方向的走位 `(mX, mY)` 创建新cell 加进queue里面: cell(mX, mY) 已经计算过积水后, 外围墙小时, `(mX, mY)`就会变成墙.
-- 5. 因为做的是缩小一圈的新围墙, height = Math.max(cell.h, neighbor.h);
-- 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
-- 这里要附上curr cell 和 move-to cell的最大高度。
-
-##### 为什么想到用Heap (min-heap - priorityQueue)
-- 要找到bucket的最短板
-- 每次需要最先处理最短的那条 (on top)
-
-##### 为什么从外向里遍历
-- 木桶理论, 包水, 是从外面包住里面
-- 洋葱剥皮, 用完丢掉
-
-
-
----
-
-**12. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
-      
-
-kth largest in array
-
-#### PriorityQueue, MinHeap
-- Need to maintain k large elements, where the smallest will be compared and dropped if applicable: 
-- Maintain k elements with min value: consider using minHeap
-- add k base elements first
-- Maintain MinHeap: only allow larger elements (which will squzze out the min value)
-- Remove peek() of queue if over size
-- O(nlogk)
-
-
-#### Quick Sort
-- 用Quick Sort 里面partion的一部分
-- sort结束后是ascending的, 那么 n - k 就是第k大. 
-- partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
-- 没找到继续partion recursively.
-- sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
-- Steps:
-- 每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
-- 找到一个low>pivot, high<pivot, 也就可以swap了。    
-- 得到的low就是当下的partion point了
-- Overall O(nlogN), average O(n) for this problem.
-
-
-
----
-
-**13. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
-      
-
-给一个array of ListNode, 把所有node按照大小连成一条.
-
-#### Priorityqueue
-- Iterative, PQ来排列所有list的leading node.
-- 记得k lists 需要是已经sort好的
-- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
-- Note:
-- 1. 不要忘记customized priority需要一个customized new Comparator<T>()
-- 2. Given list 里面也可能有null node, 不要忘记查.
-
-#### Divide and Conquer
-- always merge 2 list at a time
-- 3 branches: 
-- 1. start == end
-- 2. start + 1 == end
-- 3. or start + 1 < end (recursive and keep merging)
-- T(k) = 2T(k/2) + O(mk), where m = longest list length
-- time complexity: O(nklogk)
-- TODO: write the recursive code.
-
-#### Followup
-- 如果k很大，一个机器上放不下所有的k list怎么办？ 
-- 如果Merge起来的很长，一个机器上放不下怎么办？
-
-
-
-
----
-
-**14. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
-      
-
-Same as merge k sorted list, use priorityQueue
-
-#### Priority Queue
-- 由Merge k sorted list启发。用PriorityQueue,存那k个首发element
-- PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
-- 因为array里没有 'next' pointer，只能存x,y来推next element
-- Not sure why `new PriorityQueue<>(Comparator.comparing(a -> a.val));` is slower
 
 
 
@@ -13188,6 +13026,375 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 - more about dfs: bottom-up, first dive deep into dfs(i+1,j-1) till the base cases.
 - time/space: O(n^2)
 - prepare dp[n][n]: O(n^2); dfs: visit all combinations of [i,j]: O(n^2)
+
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
+## Heap (15)
+**0. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
+      
+time: O(n + klogn)
+space: O(n)
+
+给一个sorted matrix, 找kth smallest number (not distinct)
+
+Related: `Kth Largest Element in an Array`
+
+#### PriorityQueue
+- 和Merge K sorted Array/ List 类似：使用PriorityQueue。
+- 因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+- Initial O(n) time, also find k O(k), sort O(logn) => O(n + klogn)
+- 变型: Kth Largest in N Arrays
+
+#### Binary Search
+- we know where the boundary is start/end are the min/max value. 
+- locate the kth smallest item (x, y) by cutt off partition in binary fasion: 
+- find mid-value, and count # of items < mid-value based on the ascending matrix
+- O(nlogn)
+
+
+
+
+---
+
+**1. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap]
+      
+
+#### 原理
+- 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.
+- 前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
+- 后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
+
+#### 注意
+- 这里要首先定好, 哪一个queue是多存一个element的. 这里选maxHeap: maxHeap.size() == minHeap.size() + 1 || minHeap.size()
+- 必须先维护maxHeap里面有个元素, 否则null了会在比较大小时出问题.
+
+
+
+---
+
+**2. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap]
+      
+
+Median还是用min-heap 和 max-heap. Time(logN)
+加/减: prioirtyQueue, log(n)
+findMedian: O(1)
+
+#### 思想
+- 加一个数, 减一个数。
+- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
+- 抽完balance一下
+
+#### 注意
+用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
+左边的maxHeap总有 x+1或者x个数字
+后边minHeap应该一直有x个数字
+
+
+
+---
+
+**3. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
+      
+
+给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
+
+#### PriorityQueue
+- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
+- 跟 Number of Airpline in the sky是同一道题
+
+#### 方法2: 尝试了一下用一个sorted Array + HashMap
+也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+
+
+
+---
+
+**4. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
+      
+
+又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
+
+#### Sweep Line, Time O(nLogN), Space O(n)
+- original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+- 画图分析: 需要找到 non-overlaping height point at current index; also height needs to be different than prev height peek to be visible.
+- 把所有点分出来， 每个点有index x, 再加上一个height.         
+- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
+- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
+- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
+- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
+- heightQueue里面加一个0, 用来在结尾的时候做closure
+
+#### Segment Tree
+- 看了一些做法, segment tree写法很复杂, 估计在面试中难以用segment tree来写: https://www.cnblogs.com/tiezhibieek/p/5021202.html
+
+#### HashHeap
+- HashHeap template 可以考虑: https://www.jiuzhang.com/solution/building-outline/#tag-highlight-lang-java
+
+Binary Indexed Tree?
+
+
+
+
+
+---
+
+**5. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
+      
+time: O(nlogk)
+space: O(n)
+
+给一串String. 找到top k frequent words.
+
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### PriorityQueue - Max Heap
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+- slower, because the maxHeap needs to add all candidates
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+
+
+---
+
+**6. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+      
+
+给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
+
+跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
+
+#### PriorityQueue + HashTable
+- PriorityQueue排序+分布排列的一个经典用法.
+- Count frequency and store in pq.
+- Consume element of pq for k rounds, each time pick one element from queue.
+- Exception: if k still has content but queue is consumed: cannot complete valid string, return "";
+- space, O(n) extra space in sb, O(26) constant space with pq.
+- time: O(n) to add all items
+
+
+
+---
+
+**7. [HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)**      Level: Hard      Tags: [HashHeap, Heap]
+      
+
+非题.是从九章找来的HashHeap implementation.
+
+
+
+---
+
+**8. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+      
+
+给一个2Dmap, 每个position 有 height. 找Trapping water sum.
+
+
+#### Min Heap
+- 用PriorityQueue把选中的height排序,为走位, create class Cell (x,y, height).
+
+##### 注意几个理论
+- 1. 从matrix四周开始考虑，发现matrix能Hold住的水，取决于height低的block
+- 2. 必须从外围开始考虑，因为水是被包裹在里面，外面至少需要现有一层
+- 以上两点就促使我们用min-heap: 也就是natural order的PriorityQueue<Cell>.
+
+##### Steps
+- 1. process的时候，画个图也可以搞清楚: 就是四个方向都走走，用curr cell的高度减去周围cell的高度.
+- 2. 若大于零，那么周围的cell就有积水: 因为cell已经是外围最低, 所以内部更低的, 一定有积水.
+- 3. 每个visited的cell都要mark, avoid revisit
+- 4. 根据4个方向的走位 `(mX, mY)` 创建新cell 加进queue里面: cell(mX, mY) 已经计算过积水后, 外围墙小时, `(mX, mY)`就会变成墙.
+- 5. 因为做的是缩小一圈的新围墙, height = Math.max(cell.h, neighbor.h);
+- 和trapping water I 想法一样。刚刚从外围，只是能加到跟外围cell高度一致的水平面。往里面，很可能cell高度变化。   
+- 这里要附上curr cell 和 move-to cell的最大高度。
+
+##### 为什么想到用Heap (min-heap - priorityQueue)
+- 要找到bucket的最短板
+- 每次需要最先处理最短的那条 (on top)
+
+##### 为什么从外向里遍历
+- 木桶理论, 包水, 是从外面包住里面
+- 洋葱剥皮, 用完丢掉
+
+
+
+---
+
+**9. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
+      
+
+kth largest in array
+
+#### PriorityQueue, MinHeap
+- Need to maintain k large elements, where the smallest will be compared and dropped if applicable: 
+- Maintain k elements with min value: consider using minHeap
+- add k base elements first
+- Maintain MinHeap: only allow larger elements (which will squzze out the min value)
+- Remove peek() of queue if over size
+- O(nlogk)
+
+
+#### Quick Sort
+- 用Quick Sort 里面partion的一部分
+- sort结束后是ascending的, 那么 n - k 就是第k大. 
+- partion的结果是那个low, 去找 low==nums.size() - k， 也就是倒数第K个。    
+- 没找到继续partion recursively.
+- sort的过程是排一个从小到大的list. (同样的代码还可以好xth smallest，mid变成x就好)
+- Steps:
+- 每个iteration, 找一个pivot,然后从low,和high都和pivot作比较。    
+- 找到一个low>pivot, high<pivot, 也就可以swap了。    
+- 得到的low就是当下的partion point了
+- Overall O(nlogN), average O(n) for this problem.
+
+
+
+---
+
+**10. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+      
+
+给一个array of ListNode, 把所有node按照大小连成一条.
+
+#### Priorityqueue
+- Iterative, PQ来排列所有list的leading node.
+- 记得k lists 需要是已经sort好的
+- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
+- Note:
+- 1. 不要忘记customized priority需要一个customized new Comparator<T>()
+- 2. Given list 里面也可能有null node, 不要忘记查.
+
+#### Divide and Conquer
+- always merge 2 list at a time
+- 3 branches: 
+- 1. start == end
+- 2. start + 1 == end
+- 3. or start + 1 < end (recursive and keep merging)
+- T(k) = 2T(k/2) + O(mk), where m = longest list length
+- time complexity: O(nklogk)
+- TODO: write the recursive code.
+
+#### Followup
+- 如果k很大，一个机器上放不下所有的k list怎么办？ 
+- 如果Merge起来的很长，一个机器上放不下怎么办？
+
+
+
+
+---
+
+**11. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
+      
+
+Same as merge k sorted list, use priorityQueue
+
+#### Priority Queue
+- 由Merge k sorted list启发。用PriorityQueue,存那k个首发element
+- PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
+- 因为array里没有 'next' pointer，只能存x,y来推next element
+- Not sure why `new PriorityQueue<>(Comparator.comparing(a -> a.val));` is slower
+
+
+
+---
+
+**12. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium      Tags: [Heap, MinHeap]
+      
+
+Turn unsorted array into a min-heap array, where for each A[i], 
+
+A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
+
+#### Heap
+- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
+- 所有后面的对应element都比curr element 小。
+- Heapify里面的**siftdown**的部分:
+- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
+
+#### Heapify/SiftDown做了什么?
+- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
+- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
+
+#### min-heap的判断规律:
+- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
+- siftdown时：在curr node和两个child里面小的比较。如果的确curr < child, 搞定，break while.   
+- 但若curr 并不比child小，那么就要换位子，而且继续从child的位子往下面盘查。    
+
+
+
+---
+
+**13. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### HashMap + bucket List[]
+- Use HashMap to store <num, freq>
+- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
+- Size of the data structure will be m <= n
+- The bucket[count] preserves order from end of the array.
+- Simply loop over the reversed map, we can find the top k items.
+- Solid O(n)
+
+#### PriorityQueue, MinHeap
+- Use regualr priorityQueue to sort by frequency ascendingly
+- the queue.peek() record has lowest frequency, which is replacable
+- Always only maintain k elements in the queue, so sorting is O(logk)
+- IMPORTANT: remember to `rst.add(0, x)` for desired ordering
+- time faster than maxHeap: O(nlogk)
+
+#### PriorityQueue, MaxHeap
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
+
+
+
+
+---
+
+**14. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+#### DP
+- curr index is based on previous calculation: the min of all 3 previous factors
+- O(n)
+
+#### PriorityQueue, DP
+- 非常brutle的。
+- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
+- 最后时间是n*log(n*3)
+- 注意：use long, use HashSet确保没有重复
+- O(nlogn)
 
 
 
@@ -15356,7 +15563,7 @@ count这个graph里面有多少个独立的component.
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
 
@@ -17262,6 +17469,80 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
  
  
  
+## MaxHeap (2)
+**0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
+      
+time: O(nlogk)
+space: O(n)
+
+给一串String. 找到top k frequent words.
+
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### PriorityQueue - Max Heap
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+- slower, because the maxHeap needs to add all candidates
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+
+
+---
+
+**1. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### HashMap + bucket List[]
+- Use HashMap to store <num, freq>
+- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
+- Size of the data structure will be m <= n
+- The bucket[count] preserves order from end of the array.
+- Simply loop over the reversed map, we can find the top k items.
+- Solid O(n)
+
+#### PriorityQueue, MinHeap
+- Use regualr priorityQueue to sort by frequency ascendingly
+- the queue.peek() record has lowest frequency, which is replacable
+- Always only maintain k elements in the queue, so sorting is O(logk)
+- IMPORTANT: remember to `rst.add(0, x)` for desired ordering
+- time faster than maxHeap: O(nlogk)
+
+#### PriorityQueue, MaxHeap
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
+
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Bit Manipulation (17)
 **0. [O(1) Check Power of 2.java](https://github.com/awangdev/LintCode/blob/master/Java/O(1)%20Check%20Power%20of%202.java)**      Level: Easy      Tags: [Bit Manipulation]
       
@@ -19031,7 +19312,7 @@ Double sequence DP. 与regular expression 很像.
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
 
-#### 方法1
+#### PriorityQueue
 - PriorityQueue + 一个Class来解决.Ｏ(nlogn)
 - 跟 Number of Airpline in the sky是同一道题
 
@@ -19943,7 +20224,7 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
  
  
  
-## Enumeration (6)
+## Enumeration (7)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -20050,6 +20331,27 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 - 如果qp 真的穷尽, break, return count
 - 不然, count + remain of k
 - extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+
+
+
+---
+
+**6. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+#### DP
+- curr index is based on previous calculation: the min of all 3 previous factors
+- O(n)
+
+#### PriorityQueue, DP
+- 非常brutle的。
+- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
+- 最后时间是n*log(n*3)
+- 注意：use long, use HashSet确保没有重复
+- O(nlogn)
+
 
 
 
@@ -20634,18 +20936,26 @@ space: O(1)
 
 **11. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
+time: O(n + klogn)
+space: O(n)
 
-方法1:
-和Merge K sorted Array/ List 类似：使用PriorityQueue。
+给一个sorted matrix, 找kth smallest number (not distinct)
 
-因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+Related: `Kth Largest Element in an Array`
 
-方法2:
-Binary Search
-https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85182/my-solution-using-binary-search-in-c
+#### PriorityQueue
+- 和Merge K sorted Array/ List 类似：使用PriorityQueue。
+- 因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+- Initial O(n) time, also find k O(k), sort O(logn) => O(n + klogn)
+- 变型: Kth Largest in N Arrays
+
+#### Binary Search
+- we know where the boundary is start/end are the min/max value. 
+- locate the kth smallest item (x, y) by cutt off partition in binary fasion: 
+- find mid-value, and count # of items < mid-value based on the ascending matrix
+- O(nlogn)
 
 
-变型: Kth Largest in N Arrays
 
 
 ---

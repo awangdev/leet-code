@@ -1,4 +1,5 @@
-R
+M
+1533162679
 tags: Heap, MinHeap
 
 Turn unsorted array into a min-heap array, where for each A[i], 
@@ -17,8 +18,8 @@ A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[
 
 #### min-heap的判断规律:
 - for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
-- siftdown时：在curr node和两个son里面小的比较。如果的确curr < son, 搞定，break while.   
-- 但若curr 并不比son小，那么就要换位子，而且继续从son的位子往下面盘查。    
+- siftdown时：在curr node和两个child里面小的比较。如果的确curr < child, 搞定，break while.   
+- 但若curr 并不比child小，那么就要换位子，而且继续从child的位子往下面盘查。    
 
 ```
 /*
@@ -65,26 +66,60 @@ siftdown:
 always swap with the smaller child
 As long as left.child.i < array length, continue while:
 	If no right child, or left.val < right.val,
-		son = left.
+		child = left.
 	else
-		son = right
-Check if curr.val < son.val
+		child = right
+Check if curr.val < child.val
 	if so, break, we are good.
-	If not, swap(curr,son)
-curr = son, and move on the next round of while
+	If not, swap(curr,child)
+curr = child, and move on the next round of while
 
 
 NOTE:
 The for loop start from i = n/2 -1, which makes the right-most index = 2*(n/2-1) + 1 = n - 2 + 1 = n-1. 
 */
 
+// 简化版
+public class Solution {
+    public void heapify(int[] nums) {
+    	if (nums == null || nums.length == 0) return;
+		
+        int n = nums.length;
+    	int curr = 0, left = 0, right = 0, child = 0;
+    	
+    	for (int i = n/2 - 1; i >= 0; i--) { // [ n/2 -1, 0 ]
+    		curr = i;
+    		while (curr * 2 + 1 < n) {
+                // pick feasible child. 
+    			left = curr * 2 + 1;
+    			right = curr * 2 + 2;
+				// Pick nums[left] < nums[right], if later curr < nums[left], then curr < nums[right] as well
+                child = (right >= n || nums[left] <= nums[right]) ? left : right;
+    			if (nums[curr] <= nums[child]) { // meets min-heap requirement
+    				break;
+    			} else {
+                    swap(nums, curr, child);
+    			}
+                // check all children if applicable
+    			curr = child;
+    		}//end while
+    	}
+    }
 
+    private void swap(int[] nums, int x, int y) {
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp;
+    }
+}
+
+// Original
 public class Solution {
     public void heapify(int[] A) {
     	if (A == null || A.length == 0) {
     		return;
     	}
-    	int son = 0;
+    	int child = 0;
     	int currId = 0;
     	int leftId = 0;
     	int rightId = 0;
@@ -95,23 +130,24 @@ public class Solution {
     			leftId = currId * 2 + 1;
     			rightId = currId * 2 + 2;
     			if (rightId >= n || A[leftId] <= A[rightId]) {
-    				son = leftId;
+    				child = leftId;
     			} else {
-    				son = rightId;
+    				child = rightId;
     			}
-    			if (A[currId] <= A[son]) {
+    			if (A[currId] <= A[child]) {
     				break;
     			} else {
     				int temp = A[currId];
-    				A[currId] = A[son];
-    				A[son] = temp;
+    				A[currId] = A[child];
+    				A[child] = temp;
     			}
-    			currId = son;
+    			currId = child;
     		}//end while
 
     	}//end for
     }
 }
+
 
 
 

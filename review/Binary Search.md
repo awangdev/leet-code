@@ -197,18 +197,26 @@ space: O(1)
 
 **11. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
+time: O(n + klogn)
+space: O(n)
 
-方法1:
-和Merge K sorted Array/ List 类似：使用PriorityQueue。
+给一个sorted matrix, 找kth smallest number (not distinct)
 
-因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+Related: `Kth Largest Element in an Array`
 
-方法2:
-Binary Search
-https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/85182/my-solution-using-binary-search-in-c
+#### PriorityQueue
+- 和Merge K sorted Array/ List 类似：使用PriorityQueue。
+- 因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+- Initial O(n) time, also find k O(k), sort O(logn) => O(n + klogn)
+- 变型: Kth Largest in N Arrays
+
+#### Binary Search
+- we know where the boundary is start/end are the min/max value. 
+- locate the kth smallest item (x, y) by cutt off partition in binary fasion: 
+- find mid-value, and count # of items < mid-value based on the ascending matrix
+- O(nlogn)
 
 
-变型: Kth Largest in N Arrays
 
 
 ---

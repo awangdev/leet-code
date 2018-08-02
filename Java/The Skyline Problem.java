@@ -94,6 +94,7 @@ class Solution {
         maxHeightQueue.offer(0);
         int prevPeak = maxHeightQueue.peek();
 
+        // process
         while (!queue.isEmpty()) {
             Point point = queue.poll();
             if (point.height < 0) {

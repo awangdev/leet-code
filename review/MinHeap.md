@@ -1,28 +1,34 @@
  
  
  
-## MinHeap (4)
-**0. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Review      Tags: [Heap, MinHeap]
+## MinHeap (6)
+**0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
+time: O(nlogk)
+space: O(n)
 
-Turn unsorted array into a min-heap array, where for each A[i], 
+给一串String. 找到top k frequent words.
 
-A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
+#### PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
 
-#### Heap
-- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
-- 所有后面的对应element都比curr element 小。
-- Heapify里面的**siftdown**的部分:
-- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
+#### PriorityQueue - Max Heap
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+- slower, because the maxHeap needs to add all candidates
 
-#### Heapify/SiftDown做了什么?
-- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
-- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
 
-#### min-heap的判断规律:
-- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
-- siftdown时：在curr node和两个son里面小的比较。如果的确curr < son, 搞定，break while.   
-- 但若curr 并不比son小，那么就要换位子，而且继续从son的位子往下面盘查。    
+#### HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
 
 
 
@@ -103,6 +109,67 @@ Same as merge k sorted list, use priorityQueue
 - PriorityQueue需要存储单位: 自己建一个Class Node 存val, x, y index.    
 - 因为array里没有 'next' pointer，只能存x,y来推next element
 - Not sure why `new PriorityQueue<>(Comparator.comparing(a -> a.val));` is slower
+
+
+
+---
+
+**4. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium      Tags: [Heap, MinHeap]
+      
+
+Turn unsorted array into a min-heap array, where for each A[i], 
+
+A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
+
+#### Heap
+- Heap用的不多. 得用一下, 才好理解. 通常default 的PriorityQueue就是给了一个现成的min-heap:
+- 所有后面的对应element都比curr element 小。
+- Heapify里面的**siftdown**的部分:
+- 只能从for(i = n/2-1 ~ 0)， 而不能从for(i = 0 ~ n/2 -1): 必须中间开花，向上跑的时候才能确保脚下是符合heap规则的
+
+#### Heapify/SiftDown做了什么?
+- 确保在heap datastructure里面curr node下面的两个孩子，以及下面所有的node都遵循一个规律
+- 比如在这里，若是min-heap,就是后面的两孩子都要比自己大。若不是，就要swap。    
+
+#### min-heap的判断规律:
+- for each element A[i], we will get A[i * 2 + 1] >= A[i] and A[i * 2 + 2] >= A[i].
+- siftdown时：在curr node和两个child里面小的比较。如果的确curr < child, 搞定，break while.   
+- 但若curr 并不比child小，那么就要换位子，而且继续从child的位子往下面盘查。    
+
+
+
+---
+
+**5. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
+
+#### HashMap + bucket List[]
+- Use HashMap to store <num, freq>
+- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
+- Size of the data structure will be m <= n
+- The bucket[count] preserves order from end of the array.
+- Simply loop over the reversed map, we can find the top k items.
+- Solid O(n)
+
+#### PriorityQueue, MinHeap
+- Use regualr priorityQueue to sort by frequency ascendingly
+- the queue.peek() record has lowest frequency, which is replacable
+- Always only maintain k elements in the queue, so sorting is O(logk)
+- IMPORTANT: remember to `rst.add(0, x)` for desired ordering
+- time faster than maxHeap: O(nlogk)
+
+#### PriorityQueue, MaxHeap
+- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
+- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
+- 那么就先count, O(n), using HashMap
+- 再priorityQueue, (mLog(m)), m是unique 数字的总量
+- 最终find top k, O(k)
+- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
+
 
 
 

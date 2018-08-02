@@ -1,7 +1,7 @@
  
  
  
-## Enumeration (6)
+## Enumeration (7)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -108,6 +108,27 @@
 - 如果qp 真的穷尽, break, return count
 - 不然, count + remain of k
 - extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+
+
+
+---
+
+**6. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+      
+time: O(n)
+space: O(n)
+
+#### DP
+- curr index is based on previous calculation: the min of all 3 previous factors
+- O(n)
+
+#### PriorityQueue, DP
+- 非常brutle的。
+- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
+- 最后时间是n*log(n*3)
+- 注意：use long, use HashSet确保没有重复
+- O(nlogn)
+
 
 
 
