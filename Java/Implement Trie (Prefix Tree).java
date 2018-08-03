@@ -28,17 +28,26 @@ Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startW
 
 
 ```
-/*
+/**
+LeetCode
 Implement a trie with insert, search, and startsWith methods.
 
-Have you met this question in a real interview? Yes
-Example
-Note
-You may assume that all inputs are consist of lowercase letters a-z.
+Example:
 
-Tags Expand 
-Trie Facebook Uber Google
+Trie trie = new Trie();
+
+trie.insert("apple");
+trie.search("apple");   // returns true
+trie.search("app");     // returns false
+trie.startsWith("app"); // returns true
+trie.insert("app");   
+trie.search("app");     // returns true
+Note:
+
+You may assume that all inputs are consist of lowercase letters a-z.
+All inputs are guaranteed to be non-empty strings.
 */
+
 /*
 Thougths:
 TrieNode: contains the single character, and a list of children.
@@ -47,11 +56,11 @@ Note: we will use hashmap<child character, child TrieNode>, because child access
 
 class Trie {
     class TrieNode {
-    public boolean isEnd;
-    public Map<Character, TrieNode> children;
-    public TrieNode() {
-        this.isEnd = false;
-        this.children = new HashMap<>();
+        public boolean isEnd;
+        public Map<Character, TrieNode> children;
+        public TrieNode() {
+            this.isEnd = false;
+            this.children = new HashMap<>();
         }
     }
 

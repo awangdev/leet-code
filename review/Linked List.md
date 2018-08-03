@@ -484,12 +484,12 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**28. [Convert Binary Search Tree to Sorted Doubly Linked List (in place).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(in%20place).java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
+**28. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
       
 time: O(n)
 space: O(1)
 
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list.
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
 
 #### Tree, In-order traversal
 - 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
