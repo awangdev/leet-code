@@ -1,5 +1,5 @@
 M
-1531812629
+1533438636
 tags: BFS, DFS
 
 给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
@@ -44,6 +44,50 @@ After running your function, the 2D grid should be:
   0  -1   3   4
 
  */
+
+// No need of the visited. Simplified code:
+class Solution {
+    int[] dx = {1, -1, 0, 0};
+    int[] dy = {0, 0, 1, -1};
+
+    public void wallsAndGates(int[][] rooms) {
+        if (validate(rooms)) return;
+        
+        int m = rooms.length, n = rooms[0].length;
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) { 
+                if (rooms[i][j] == 0) {// test all 0's with for loop
+                    dfsHelper(rooms, i, j, 1);
+                }
+            }
+        }
+    }
+    
+    // mark grid with dist (compare if existed)
+    public void dfs(int[][] rooms, int x, int y, int dist) {
+        if (validateCoordinate(rooms, x, y)) return;
+        if (rooms[x][y] <= dist) return;
+
+        rooms[x][y] = dist; // dist < room[x][y], so update rooms[x][y] with smaller dist
+        dfsHelper(rooms, x, y, dist + 1); // dfs if applicable
+    }
+    
+    private void dfsHelper(int[][] rooms, int x, int y, int dist) {
+        for (int i = 0; i < dx.length; i++) {
+            dfs(rooms, x + dx[i], y + dy[i], dist);
+        }
+    }
+    
+    private boolean validateCoordinate(int[][] rooms, int x, int y) {
+        return x < 0 || x >= rooms.length || y < 0 || y >= rooms[0].length || rooms[x][y] == -1 || rooms[x][y] == 0;
+    }
+    
+    private boolean validate(int[][] rooms) {
+        return rooms == null || rooms.length == 0 || rooms[0] == null || rooms[0].length == 0;
+    }
+    
+}
 
 /*
 Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
