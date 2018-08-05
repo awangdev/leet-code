@@ -1,5 +1,5 @@
 H
-1528866812
+1533444111
 tags: Graph, Topological Sort, DFS, BFS, Backtracking
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -94,9 +94,7 @@ Use this feature to build the edges.
 */
 class Solution {
     public String alienOrder(String[] words) {
-        if (words == null || words.length == 0) {
-            return "";
-        }
+        if (words == null || words.length == 0) return "";
         
         // Build graph && indegree map
         Map<Character, List<Character>> graph = new HashMap<>();
@@ -108,17 +106,16 @@ class Solution {
     }
     
     private void build(Map<Character, List<Character>> graph, Map<Character, Integer> inDegree, String[] words) {
-        // Init graph, inDegree
+        // Init graph, inDegree map
         for (String word : words) {
             for (char c : word.toCharArray()) {
-                if (!graph.containsKey(c)) {
-                    graph.put(c, new ArrayList<>());
-                }
-                inDegree.put(c, 0);
+                graph.putIfAbsent(c, new ArrayList<>());
+                inDegree.putIfAbsent(c, 0);
             }
         }
-        // Build graph: find char diff between two row, and store the order indication into graph
-        // always currentWord[index] -> nextWord[index]
+        // Build graph: find char diff between curr row and next row => build graph edge and increase inDegree relationship
+        // always compare same index on: words[i] -> words[i+1]
+        // if c1 != c2, build graph and inDegree map and break: later index does not have any more relationship.
         for (int i = 0; i < words.length - 1; i++) {
             int index = 0;
             while (index < words[i].length() && index < words[i + 1].length()) {
@@ -133,11 +130,10 @@ class Solution {
             }
         }
     }
-    //BFS
+
     private String topoSort(Map<Character, List<Character>> graph, Map<Character, Integer> inDegree) {
         Queue<Character> queue = new LinkedList<>();
-        // Build queue with 0 indegree
-        for (char c : inDegree.keySet()) {
+        for (char c : inDegree.keySet()) { // Build queue with item of inDegree==0: means no edge points towards it.
             if (inDegree.get(c) == 0) queue.offer(c);
         }
 
@@ -145,7 +141,7 @@ class Solution {
         while (!queue.isEmpty()) {
             char c = queue.poll();
             sb.append(c);
-            for (char edgeNode : graph.get(c)) {
+            for (char edgeNode : graph.get(c)) { // reduce edge degrees count since node:graph.get(c) has been processed
                 inDegree.put(edgeNode, inDegree.get(edgeNode) - 1);
                 if (inDegree.get(edgeNode) == 0) queue.offer(edgeNode);
             }
@@ -155,7 +151,6 @@ class Solution {
         return sb.toString();
     }
 }
-
 
 
 /*
