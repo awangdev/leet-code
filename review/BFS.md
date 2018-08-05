@@ -513,40 +513,7 @@ TODO:
 
 ---
 
-**21. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
-      
-
-给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
-
-有可能有多重排序的方法, 给出一种就可以.
-
-#### Graph
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
-- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
-- 也可以`List[26] edges` (Course Schedule problem)
-- Build edges: find char diff between two row, and store the order indication into graph
-- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
-
-#### BFS
-- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
-- 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
-- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
-- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
-- In this case, it will be treated as invalid input, and return ""
-
-#### DFS
-- 跟BFS建立 grpah 的过程一模一样
-- DFS的不同在于: 用visited map 来标记走过的地方
-- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**22. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**21. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
@@ -583,7 +550,7 @@ TODO
 
 ---
 
-**23. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**22. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 time: O(2^n)
 space: O(2^n)
@@ -619,7 +586,7 @@ space: O(2^n)
 
 ---
 
-**24. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**23. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 time: O(2^n)
 sapce: O(2^n)
@@ -659,7 +626,7 @@ sapce: O(2^n)
 
 ---
 
-**25. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
+**24. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -673,29 +640,7 @@ space: O(n)
 
 ---
 
-**26. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
-      
-
-给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
-
-对每个empty space而言, fill it with dist to nearest gate.
-
-#### DFS
-- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
-- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
-- hard to resue: we do not know the direction in cached result dist[i][j]
-- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
-- Through dfs from all zeros, update each spot with shorter dist
-- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
-
-#### BFS
-- TODO? why BFS better?
-
-
-
----
-
-**27. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+**25. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
       
 time: O(n)
 space: O(n)
@@ -722,7 +667,7 @@ space: O(n)
 
 ---
 
-**28. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**26. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -752,7 +697,7 @@ space: O(n)
 
 ---
 
-**29. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+**27. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
       
 
 给一个2Dmap, 每个position 有 height. 找Trapping water sum.
@@ -782,6 +727,61 @@ space: O(n)
 ##### 为什么从外向里遍历
 - 木桶理论, 包水, 是从外面包住里面
 - 洋葱剥皮, 用完丢掉
+
+
+
+---
+
+**28. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+      
+
+给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
+
+对每个empty space而言, fill it with dist to nearest gate.
+
+#### DFS
+- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
+- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
+- hard to resue: we do not know the direction in cached result dist[i][j]
+- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
+- Through dfs from all zeros, update each spot with shorter dist
+- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
+
+#### BFS
+- Exact same concept. Init with `Queue<int[]> queue = new LinkedList<int[]>()`
+
+
+
+---
+
+**29. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+      
+
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
 
 
 

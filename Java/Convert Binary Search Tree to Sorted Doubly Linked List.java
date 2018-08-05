@@ -1,6 +1,6 @@
 M
-1531694102
-tags: Linked List, Tree, DFS, BST
+1533494672
+tags: Linked List, Tree, DFS, BST, Divide and Conquer
 time: O(n)
 space: O(1)
 

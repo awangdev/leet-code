@@ -507,40 +507,7 @@ output 所有 expression
 
 ---
 
-**22. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
-      
-
-给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
-
-有可能有多重排序的方法, 给出一种就可以.
-
-#### Graph
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
-- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
-- 也可以`List[26] edges` (Course Schedule problem)
-- Build edges: find char diff between two row, and store the order indication into graph
-- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
-
-#### BFS
-- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
-- 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
-- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
-- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
-- In this case, it will be treated as invalid input, and return ""
-
-#### DFS
-- 跟BFS建立 grpah 的过程一模一样
-- DFS的不同在于: 用visited map 来标记走过的地方
-- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**23. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**22. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -577,7 +544,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**24. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
+**23. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
       
 
 给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
@@ -610,7 +577,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**25. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**24. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 time: O(2^n)
 space: O(2^n)
@@ -646,7 +613,7 @@ space: O(2^n)
 
 ---
 
-**26. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**25. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 time: O(2^n)
 sapce: O(2^n)
@@ -686,7 +653,7 @@ sapce: O(2^n)
 
 ---
 
-**27. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**26. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 time: O(n!)
 space: O(n!)
@@ -722,7 +689,7 @@ space: O(n!)
 
 ---
 
-**28. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**27. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -751,7 +718,7 @@ space: O(n!)
 
 ---
 
-**29. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**28. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一个integer k, 和一个target n. 
@@ -770,6 +737,39 @@ space: O(n!)
 - Which one?
 - worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 - C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
+
+
+
+---
+
+**29. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+      
+
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
 
 
 

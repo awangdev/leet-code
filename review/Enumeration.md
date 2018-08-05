@@ -1,7 +1,7 @@
  
  
  
-## Enumeration (7)
+## Enumeration (8)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -128,6 +128,29 @@ space: O(n)
 - 最后时间是n*log(n*3)
 - 注意：use long, use HashSet确保没有重复
 - O(nlogn)
+
+
+
+
+---
+
+**7. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- `分类讨论`: thounsand, million, billion.  `3个数字一格`.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率! `sb.insert(0, xxx)` append在sb前面
+- 注意加 " " 的时候, 如果多余, 要`trim()`
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
 
 

@@ -318,30 +318,7 @@ Space O(n), time O(n)
 
 ---
 
-**20. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Math, String]
-      
-
-给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
-
-#### String
-- 基本implementation
-- 分类讨论: thounsand, million, billion.  3个数字一格.
-- 用array枚举 token
-- 运用 % 和 / 来找到每个分段的英语翻译
-- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
-
-#### 注意
-- StringBuffer 更有效率
-- 注意加 " " 的时候, 如果多余, 要trim()
-- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
-- 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
-
-
-
-
----
-
-**21. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**20. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -358,7 +335,7 @@ Space O(n), time O(n)
 
 ---
 
-**22. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
+**21. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
       
 
 给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
@@ -386,7 +363,7 @@ Space O(n), time O(n)
 
 ---
 
-**23. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
+**22. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
       
 
 给一个expression String, 要evaluate这个expression的值.
@@ -409,7 +386,7 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 
 ---
 
-**24. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
+**23. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
       
 
 LeetCode: 判断数字是否是ugly number. (definition: factor only have 2, 3, 5)
@@ -429,7 +406,7 @@ LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
 
 ---
 
-**25. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+**24. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
       
 
 TODO: 
@@ -451,7 +428,7 @@ TODO:
 
 ---
 
-**26. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**25. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line
@@ -472,7 +449,7 @@ TODO:
 
 ---
 
-**27. [Number of Digit One.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Digit%20One.java)**      Level: Hard      Tags: [Math]
+**26. [Number of Digit One.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Digit%20One.java)**      Level: Hard      Tags: [Math]
       
 
 Pure math problem, not quite representative
@@ -484,7 +461,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**28. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
+**27. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
       
 
 具体看题目: count # of valid rectangles (four corner are 1) in a grid[][].
@@ -504,7 +481,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**29. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
+**28. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
       
 
 给两个integer String, 求乘积
@@ -531,7 +508,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**30. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+**29. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
       
 
 #### Array, Math
@@ -546,7 +523,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**31. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+**30. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 time: O(n)
 space: O(n)
@@ -566,7 +543,7 @@ space: O(n)
 
 ---
 
-**32. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
+**31. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
       
 time: O(n)
 
@@ -581,7 +558,7 @@ time: O(n)
 
 ---
 
-**33. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+**32. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
 time: O(n)
 space: O(n)
@@ -596,6 +573,29 @@ space: O(n)
 - 最后时间是n*log(n*3)
 - 注意：use long, use HashSet确保没有重复
 - O(nlogn)
+
+
+
+
+---
+
+**33. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- `分类讨论`: thounsand, million, billion.  `3个数字一格`.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率! `sb.insert(0, xxx)` append在sb前面
+- 注意加 " " 的时候, 如果多余, 要`trim()`
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
 
 

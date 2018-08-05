@@ -331,7 +331,7 @@ SegmentTree大集合. Methods: `build, query, modify`. 不难。只是要都记�
  
  
  
-## String (51)
+## String (52)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -742,30 +742,7 @@ space: O(n)
 
 ---
 
-**25. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Math, String]
-      
-
-给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
-
-#### String
-- 基本implementation
-- 分类讨论: thounsand, million, billion.  3个数字一格.
-- 用array枚举 token
-- 运用 % 和 / 来找到每个分段的英语翻译
-- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
-
-#### 注意
-- StringBuffer 更有效率
-- 注意加 " " 的时候, 如果多余, 要trim()
-- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
-- 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
-
-
-
-
----
-
-**26. [Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)**      Level: Easy      Tags: [String]
+**25. [Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)**      Level: Easy      Tags: [String]
       
 
 给一个String, 里面有lower case character 和 ' '. 找最后一个单个word的长度
@@ -778,7 +755,7 @@ space: O(n)
 
 ---
 
-**27. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**26. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 
 #### Double Sequence DP
@@ -802,7 +779,7 @@ space: O(n)
 
 ---
 
-**28. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
+**27. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
 验证string是不是 palindrome. 只考虑 alphanumeric, 其他字符可以忽略
@@ -819,7 +796,7 @@ space: O(n)
 
 ---
 
-**29. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: Easy      Tags: [String]
+**28. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: Easy      Tags: [String]
       
 
 给两个String, 看A rotate之后 能不能变成B
@@ -840,7 +817,7 @@ space: O(n)
 
 ---
 
-**30. [Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)**      Level: Medium      Tags: [Basic Implementation, Enumeration, String]
+**29. [Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)**      Level: Medium      Tags: [Basic Implementation, Enumeration, String]
       
 
 给一个时间string"12:09", 用里面的4个integer组合成其他时间string, 目标找最小的next time.
@@ -855,7 +832,7 @@ space: O(n)
 
 ---
 
-**31. [Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)**      Level: Medium      Tags: [String]
+**30. [Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)**      Level: Medium      Tags: [String]
       
 
 如题.
@@ -870,7 +847,7 @@ space: O(n)
 
 ---
 
-**32. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Easy      Tags: [String]
+**31. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Easy      Tags: [String]
       
 
 找一串String里面最长的公共prefix.
@@ -889,7 +866,7 @@ space: O(n)
 
 ---
 
-**33. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
+**32. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
       
 
 给一串数字, 检查是否是valid IP, 如果合理, 给出所有valid 的IP组合方式.
@@ -907,7 +884,7 @@ space: O(n)
 
 ---
 
-**34. [Reverse Words in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String.java)**      Level: Medium      Tags: [String]
+**33. [Reverse Words in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String.java)**      Level: Medium      Tags: [String]
       
 
 #### Break by space, then flip 
@@ -924,7 +901,7 @@ space: O(n)
 
 ---
 
-**35. [Reverse Words in a String II.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20II.java)**      Level: Medium      Tags: [String]
+**34. [Reverse Words in a String II.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20II.java)**      Level: Medium      Tags: [String]
       
 
 #### In-place reverse
@@ -936,7 +913,7 @@ space: O(n)
 
 ---
 
-**36. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
+**35. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
       
 
 给一个String, 里面的Word被single space split开来, 目的是reverse里面所有的Word, 但preserve Word 和 space order.
@@ -948,7 +925,7 @@ space: O(n)
 
 ---
 
-**37. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+**36. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
       
 
 给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
@@ -975,7 +952,7 @@ output 所有 expression
 
 ---
 
-**38. [Shortest Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Palindrome.java)**      Level: Hard      Tags: [KMP, String]
+**37. [Shortest Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Palindrome.java)**      Level: Hard      Tags: [KMP, String]
       
 
 #### Divide by mid point, Brutle
@@ -992,7 +969,7 @@ output 所有 expression
 
 ---
 
-**39. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
+**38. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
       
 
 #### DFS
@@ -1012,7 +989,7 @@ output 所有 expression
 
 ---
 
-**40. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: [Bit Manipulation, String]
+**39. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: [Bit Manipulation, String]
       
 
 #### String
@@ -1031,7 +1008,7 @@ output 所有 expression
 
 ---
 
-**41. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
+**40. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
       
 
 给一个string, 找到最长的palindrome substring.
@@ -1060,7 +1037,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**42. [Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)**      Level: Hard      Tags: [Coordinate DP, Stack, String]
+**41. [Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)**      Level: Hard      Tags: [Coordinate DP, Stack, String]
       
 
 给一串string, 里面只有`(`, `)`. 找最长valid parentheses 的长度.
@@ -1088,7 +1065,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**43. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Partition, Sort, String, Two Pointers]
+**42. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Partition, Sort, String, Two Pointers]
       
 
 给一串字符(ASCII 大写, 小写字母), 要求sort 小写字母, 在大写字母前面. 
@@ -1116,7 +1093,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**44. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
+**43. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 给一串String, 找到最长的长度, 把最长的String全都return
@@ -1129,7 +1106,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**45. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
+**44. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
       
 
 determine if characters are unique in string
@@ -1148,7 +1125,7 @@ determine if characters are unique in string
 
 ---
 
-**46. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
+**45. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
       
 
 根据题意, count # of palindromic substring. (不同index截取出来的substring算不同的情况)
@@ -1165,7 +1142,7 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 
 ---
 
-**47. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
+**46. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
       
 
 给两个integer String, 求乘积
@@ -1192,7 +1169,7 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 
 ---
 
-**48. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
+**47. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
       
 time: O(n)
 space: O(n)
@@ -1212,7 +1189,7 @@ space: O(n)
 
 ---
 
-**49. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
+**48. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
       
 time: O(n)
 
@@ -1227,7 +1204,7 @@ time: O(n)
 
 ---
 
-**50. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+**49. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -1235,6 +1212,40 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 #### String in char[] format
 - 理解题目: 其实就是track `可以read多少bytes by read4() response`
 - 另外一个有用的function `System.arraycopy(src, srcIndex, dest, destIndex, length)`
+
+
+
+---
+
+**50. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- `分类讨论`: thounsand, million, billion.  `3个数字一格`.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率! `sb.insert(0, xxx)` append在sb前面
+- 注意加 " " 的时候, 如果多余, 要`trim()`
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
+
+
+
+
+---
+
+**51. [Valid Palindrome II.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome%20II.java)**      Level: Easy      Tags: [String]
+      
+
+#### Palindrome String
+- delete an index = jump over the index
+- 注意 boolean chance 可以用一个helper function
 
 
 
@@ -1563,30 +1574,7 @@ Space O(n), time O(n)
 
 ---
 
-**20. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Math, String]
-      
-
-给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
-
-#### String
-- 基本implementation
-- 分类讨论: thounsand, million, billion.  3个数字一格.
-- 用array枚举 token
-- 运用 % 和 / 来找到每个分段的英语翻译
-- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
-
-#### 注意
-- StringBuffer 更有效率
-- 注意加 " " 的时候, 如果多余, 要trim()
-- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
-- 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
-
-
-
-
----
-
-**21. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**20. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -1603,7 +1591,7 @@ Space O(n), time O(n)
 
 ---
 
-**22. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
+**21. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
       
 
 给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
@@ -1631,7 +1619,7 @@ Space O(n), time O(n)
 
 ---
 
-**23. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
+**22. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
       
 
 给一个expression String, 要evaluate这个expression的值.
@@ -1654,7 +1642,7 @@ Expression string 里面包括 +, -, 整数, 开合括号, 还有space.
 
 ---
 
-**24. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
+**23. [Ugly Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number.java)**      Level: Medium      Tags: [Math]
       
 
 LeetCode: 判断数字是否是ugly number. (definition: factor only have 2, 3, 5)
@@ -1674,7 +1662,7 @@ LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
 
 ---
 
-**25. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+**24. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
       
 
 TODO: 
@@ -1696,7 +1684,7 @@ TODO:
 
 ---
 
-**26. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**25. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line
@@ -1717,7 +1705,7 @@ TODO:
 
 ---
 
-**27. [Number of Digit One.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Digit%20One.java)**      Level: Hard      Tags: [Math]
+**26. [Number of Digit One.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Digit%20One.java)**      Level: Hard      Tags: [Math]
       
 
 Pure math problem, not quite representative
@@ -1729,7 +1717,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**28. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
+**27. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
       
 
 具体看题目: count # of valid rectangles (four corner are 1) in a grid[][].
@@ -1749,7 +1737,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**29. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
+**28. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
       
 
 给两个integer String, 求乘积
@@ -1776,7 +1764,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**30. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+**29. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
       
 
 #### Array, Math
@@ -1791,7 +1779,7 @@ https://leetcode.com/problems/number-of-digit-one/discuss/64381/4+-lines-O(log-n
 
 ---
 
-**31. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+**30. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 time: O(n)
 space: O(n)
@@ -1811,7 +1799,7 @@ space: O(n)
 
 ---
 
-**32. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
+**31. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Math, String]
       
 time: O(n)
 
@@ -1826,7 +1814,7 @@ time: O(n)
 
 ---
 
-**33. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+**32. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
 time: O(n)
 space: O(n)
@@ -1841,6 +1829,29 @@ space: O(n)
 - 最后时间是n*log(n*3)
 - 注意：use long, use HashSet确保没有重复
 - O(nlogn)
+
+
+
+
+---
+
+**33. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- `分类讨论`: thounsand, million, billion.  `3个数字一格`.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率! `sb.insert(0, xxx)` append在sb前面
+- 注意加 " " 的时候, 如果多余, 要`trim()`
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
 
 
@@ -2870,7 +2881,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**43. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**43. [Best Time to Buy and Sell Stock III.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -4528,40 +4539,7 @@ TODO:
 
 ---
 
-**21. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
-      
-
-给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
-
-有可能有多重排序的方法, 给出一种就可以.
-
-#### Graph
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
-- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
-- 也可以`List[26] edges` (Course Schedule problem)
-- Build edges: find char diff between two row, and store the order indication into graph
-- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
-
-#### BFS
-- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
-- 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
-- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
-- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
-- In this case, it will be treated as invalid input, and return ""
-
-#### DFS
-- 跟BFS建立 grpah 的过程一模一样
-- DFS的不同在于: 用visited map 来标记走过的地方
-- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**22. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**21. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
@@ -4598,7 +4576,7 @@ TODO
 
 ---
 
-**23. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**22. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 time: O(2^n)
 space: O(2^n)
@@ -4634,7 +4612,7 @@ space: O(2^n)
 
 ---
 
-**24. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**23. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 time: O(2^n)
 sapce: O(2^n)
@@ -4674,7 +4652,7 @@ sapce: O(2^n)
 
 ---
 
-**25. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
+**24. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -4688,29 +4666,7 @@ space: O(n)
 
 ---
 
-**26. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
-      
-
-给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
-
-对每个empty space而言, fill it with dist to nearest gate.
-
-#### DFS
-- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
-- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
-- hard to resue: we do not know the direction in cached result dist[i][j]
-- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
-- Through dfs from all zeros, update each spot with shorter dist
-- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
-
-#### BFS
-- TODO? why BFS better?
-
-
-
----
-
-**27. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+**25. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
       
 time: O(n)
 space: O(n)
@@ -4737,7 +4693,7 @@ space: O(n)
 
 ---
 
-**28. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**26. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -4767,7 +4723,7 @@ space: O(n)
 
 ---
 
-**29. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+**27. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
       
 
 给一个2Dmap, 每个position 有 height. 找Trapping water sum.
@@ -4797,6 +4753,61 @@ space: O(n)
 ##### 为什么从外向里遍历
 - 木桶理论, 包水, 是从外面包住里面
 - 洋葱剥皮, 用完丢掉
+
+
+
+---
+
+**28. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+      
+
+给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
+
+对每个empty space而言, fill it with dist to nearest gate.
+
+#### DFS
+- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
+- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
+- hard to resue: we do not know the direction in cached result dist[i][j]
+- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
+- Through dfs from all zeros, update each spot with shorter dist
+- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
+
+#### BFS
+- Exact same concept. Init with `Queue<int[]> queue = new LinkedList<int[]>()`
+
+
+
+---
+
+**29. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+      
+
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
 
 
 
@@ -5075,7 +5086,7 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
  
  
  
-## Design (19)
+## Design (20)
 **0. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
       
 
@@ -5416,7 +5427,7 @@ space: O(n)
 
 ---
 
-**17. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**17. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
       
 
 #### 原理
@@ -5449,6 +5460,43 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
 - 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
 - 左边的maxHeap总有 x+1或者x个数字
 - 后边minHeap应该一直有x个数字
+
+
+
+---
+
+**19. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+      
+time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
+space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
+
+Description is long, but in short: 做 search auto complete. 
+
+Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+
+Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
+
+#### 思考方向
+- 做text的search, 毋庸置疑要用Prefix tree, trie.
+
+##### Find all possible word/leaf, 两种方案:
+- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
+- 在TrieNode里面存所有的possible words. [high space usage]
+- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+
+##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
+- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
+- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
+- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
+- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+
+##### Train the system
+- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
+- 这一条在最后遇到`#`再做就可以了, 非常简洁
+
+#### Trie, PriorityQueue, HashMap
+- Trie Prefix Search + maintain top k frequent items
+- 
 
 
 
@@ -5545,7 +5593,7 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
 
 ---
 
-**4. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
+**4. [Construct Binary Tree from Preorder and Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
       
 
 如题
@@ -6717,7 +6765,7 @@ TODO:
 
 ---
 
-**57. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**57. [Median of Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20Two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -6828,40 +6876,7 @@ TODO:
 
 ---
 
-**62. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
-      
-
-给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
-
-有可能有多重排序的方法, 给出一种就可以.
-
-#### Graph
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
-- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
-- 也可以`List[26] edges` (Course Schedule problem)
-- Build edges: find char diff between two row, and store the order indication into graph
-- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
-
-#### BFS
-- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
-- 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
-- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
-- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
-- In this case, it will be treated as invalid input, and return ""
-
-#### DFS
-- 跟BFS建立 grpah 的过程一模一样
-- DFS的不同在于: 用visited map 来标记走过的地方
-- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**63. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**62. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -6898,7 +6913,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**64. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
+**63. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
       
 
 #### DFS
@@ -6915,7 +6930,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**65. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
+**64. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
       
 
 给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
@@ -6948,7 +6963,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**66. [Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)**      Level: Hard      Tags: [BST, DFS, Tree]
+**65. [Recover Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Recover%20Binary%20Search%20Tree.java)**      Level: Hard      Tags: [BST, DFS, Tree]
       
 
 BST里面有2个node misplace, 要归为. 要求: O(1) extra space
@@ -6971,7 +6986,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 
 ---
 
-**67. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+**66. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
       
 
 给一个string s, 找最长的sub-sequence which is also palindrome.
@@ -7002,7 +7017,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 
 ---
 
-**68. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+**67. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
       
 
 给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
@@ -7033,7 +7048,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 
 ---
 
-**69. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**68. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
@@ -7070,7 +7085,7 @@ TODO
 
 ---
 
-**70. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
+**69. [Path Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20IV.java)**      Level: Medium      Tags: [DFS, Hash Table, Tree]
       
 
 给一串3-digit 的数组. 每个数字的表达一个TreeNode, 3 digit分别代表: depth.position.value
@@ -7094,7 +7109,7 @@ TODO
 
 ---
 
-**71. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**70. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 time: O(2^n)
 space: O(2^n)
@@ -7130,7 +7145,7 @@ space: O(2^n)
 
 ---
 
-**72. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**71. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 time: O(2^n)
 sapce: O(2^n)
@@ -7170,7 +7185,7 @@ sapce: O(2^n)
 
 ---
 
-**73. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**72. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 time: O(n!)
 space: O(n!)
@@ -7206,7 +7221,7 @@ space: O(n!)
 
 ---
 
-**74. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**73. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -7235,7 +7250,7 @@ space: O(n!)
 
 ---
 
-**75. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**74. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一个integer k, 和一个target n. 
@@ -7259,7 +7274,7 @@ space: O(n!)
 
 ---
 
-**76. [Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Tree]
+**75. [Smallest Subtree with all the Deepest Nodes.java](https://github.com/awangdev/LintCode/blob/master/Java/Smallest%20Subtree%20with%20all%20the%20Deepest%20Nodes.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Tree]
       
 time: O(n)
 space: O(n)
@@ -7289,50 +7304,7 @@ space: O(n)
 
 ---
 
-**77. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
-      
-time: O(n)
-space: O(1)
-
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
-
-#### Tree, In-order traversal
-- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
-- 只不过做的时候要小心地 doubly link them
-- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
-
-##### 题目特殊特点
-- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
-- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
-- 要求in-place: 不能重新create new node
-
-
-
----
-
-**78. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
-      
-
-给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
-
-对每个empty space而言, fill it with dist to nearest gate.
-
-#### DFS
-- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
-- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
-- hard to resue: we do not know the direction in cached result dist[i][j]
-- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
-- Through dfs from all zeros, update each spot with shorter dist
-- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
-
-#### BFS
-- TODO? why BFS better?
-
-
-
----
-
-**79. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+**76. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
       
 
 // 如何想到从中间initialize
@@ -7341,7 +7313,7 @@ space: O(1)
 
 ---
 
-**80. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+**77. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
       
 time: O(n)
 space: O(n)
@@ -7368,7 +7340,7 @@ space: O(n)
 
 ---
 
-**81. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
+**78. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
       
 time: O(n)
 space: O(1)
@@ -7390,7 +7362,7 @@ space: O(1)
 
 ---
 
-**82. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**79. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -7420,7 +7392,7 @@ space: O(1)
 
 ---
 
-**83. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
+**80. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
       
 
 给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
@@ -7446,12 +7418,88 @@ space: O(1)
 
 ---
 
-**84. [Subtree of Another Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree%20of%20Another%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
+**81. [Subtree of Another Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree%20of%20Another%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
       
 
 #### Tree 
 - Traverse tree: left, right
 - Concept of partial compare vs. whole compare
+
+
+
+---
+
+**82. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+      
+
+给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
+
+对每个empty space而言, fill it with dist to nearest gate.
+
+#### DFS
+- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
+- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
+- hard to resue: we do not know the direction in cached result dist[i][j]
+- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
+- Through dfs from all zeros, update each spot with shorter dist
+- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
+
+#### BFS
+- Exact same concept. Init with `Queue<int[]> queue = new LinkedList<int[]>()`
+
+
+
+---
+
+**83. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+      
+
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
+
+
+
+---
+
+**84. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
 
 
 
@@ -7622,7 +7670,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (57)
+## Hash Table (58)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -7734,7 +7782,7 @@ O(n)
 
 ---
 
-**8. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium      Tags: [Hash Table]
+**8. [4Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4Sum.java)**      Level: Medium      Tags: [Hash Table]
       
 
 #### Based on 2sum
@@ -7767,7 +7815,7 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 
 ---
 
-**10. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
+**10. [Construct Binary Tree from Preorder and Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
       
 
 如题
@@ -8779,6 +8827,43 @@ space: O(n)
 
 ---
 
+**57. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+      
+time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
+space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
+
+Description is long, but in short: 做 search auto complete. 
+
+Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+
+Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
+
+#### 思考方向
+- 做text的search, 毋庸置疑要用Prefix tree, trie.
+
+##### Find all possible word/leaf, 两种方案:
+- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
+- 在TrieNode里面存所有的possible words. [high space usage]
+- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+
+##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
+- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
+- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
+- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
+- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+
+##### Train the system
+- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
+- 这一条在最后遇到`#`再做就可以了, 非常简洁
+
+#### Trie, PriorityQueue, HashMap
+- Trie Prefix Search + maintain top k frequent items
+- 
+
+
+
+---
+
 
 
 
@@ -9291,40 +9376,7 @@ output 所有 expression
 
 ---
 
-**22. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
-      
-
-给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
-
-有可能有多重排序的方法, 给出一种就可以.
-
-#### Graph
-- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
-- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
-- 也可以`List[26] edges` (Course Schedule problem)
-- Build edges: find char diff between two row, and store the order indication into graph
-- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
-
-#### BFS
-- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
-- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
-- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
-- 最先inDegree == 0的node, 就排在字母表前面.
-- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
-- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
-- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
-- In this case, it will be treated as invalid input, and return ""
-
-#### DFS
-- 跟BFS建立 grpah 的过程一模一样
-- DFS的不同在于: 用visited map 来标记走过的地方
-- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**23. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**22. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -9361,7 +9413,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**24. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
+**23. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
       
 
 给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
@@ -9394,7 +9446,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**25. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**24. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 time: O(2^n)
 space: O(2^n)
@@ -9430,7 +9482,7 @@ space: O(2^n)
 
 ---
 
-**26. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**25. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 time: O(2^n)
 sapce: O(2^n)
@@ -9470,7 +9522,7 @@ sapce: O(2^n)
 
 ---
 
-**27. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**26. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 time: O(n!)
 space: O(n!)
@@ -9506,7 +9558,7 @@ space: O(n!)
 
 ---
 
-**28. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**27. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -9535,7 +9587,7 @@ space: O(n!)
 
 ---
 
-**29. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**28. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一个integer k, 和一个target n. 
@@ -9554,6 +9606,39 @@ space: O(n!)
 - Which one?
 - worst case: tried all numbers and cannot find: O(m!), m = 9, all possible integers in [1~9]
 - C(n,k), n choose k problem : `n! / (k! * (n-k)!)` => ends up being `O(min(n^k, n^(n-k)))`
+
+
+
+---
+
+**29. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+      
+
+给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
+
+有可能有多重排序的方法, 给出一种就可以.
+
+#### Graph
+- 本质: 上下两行string, 相对应的相同的index上, 如果字母不同, 就说明排在第一行的字母在字母表里更领先
+- 把 string array 变成topological sort的 graph: `map<char, list<char>>`
+- 也可以`List[26] edges` (Course Schedule problem)
+- Build edges: find char diff between two row, and store the order indication into graph
+- 注意: indegree 永远是反向的 (跟 node to neighbors 相反的方式建立)
+
+#### BFS
+- topological sort 本身很好写, 但是要在题目中先了解到字母排序的本质
+- 其实上面这个排序的本质很好想, 但是把它具体化成构建graph的代码, 会稍微有点难想到
+- 算indegree, 然后用 BFS 来找到那些 inDegree == 0的 node
+- 最先inDegree == 0的node, 就排在字母表前面.
+- 下面的解法, 用了Graph: map<Character, List<Character>>, 而不是 List[26], 其实更加试用超过26个字母的dictionary.
+- 如果 `inDegree.size() != result.length()`, there is nodes that did not make it into result. 
+- ex: cycle nodes from input, where inDegree of a one node would never reduce to 0, and will not be added to result
+- In this case, it will be treated as invalid input, and return ""
+
+#### DFS
+- 跟BFS建立 grpah 的过程一模一样
+- DFS的不同在于: 用visited map 来标记走过的地方
+- 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
 
 
 
@@ -10334,7 +10419,7 @@ Previous Notes:
 
 ---
 
-**5. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
+**5. [Construct Binary Tree from Preorder and Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
       
 
 如题
@@ -11152,28 +11237,7 @@ space: O(n)
 
 ---
 
-**44. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
-      
-time: O(n)
-space: O(1)
-
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
-
-#### Tree, In-order traversal
-- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
-- 只不过做的时候要小心地 doubly link them
-- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
-
-##### 题目特殊特点
-- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
-- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
-- 要求in-place: 不能重新create new node
-
-
-
----
-
-**45. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+**44. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -11195,7 +11259,7 @@ space: O(n)
 
 ---
 
-**46. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
+**45. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -11209,7 +11273,7 @@ space: O(n)
 
 ---
 
-**47. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+**46. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
       
 time: O(n)
 space: O(n)
@@ -11236,7 +11300,7 @@ space: O(n)
 
 ---
 
-**48. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
+**47. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
       
 time: O(n)
 space: O(1)
@@ -11258,7 +11322,7 @@ space: O(1)
 
 ---
 
-**49. [Inorder Successor in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20BST.java)**      Level: Medium      Tags: [BST, Tree]
+**48. [Inorder Successor in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20BST.java)**      Level: Medium      Tags: [BST, Tree]
       
 
 找 Inorder traversal规则里的下一个.
@@ -11290,7 +11354,7 @@ space: O(1)
 
 ---
 
-**50. [Subtree of Another Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree%20of%20Another%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
+**49. [Subtree of Another Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree%20of%20Another%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
       
 
 #### Tree 
@@ -11301,10 +11365,31 @@ space: O(1)
 
 ---
 
-**51. [Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)**      Level: Easy      Tags: [Tree]
+**50. [Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)**      Level: Easy      Tags: [Tree]
       
 
 HashSet to store visited items. Same old 2 sum trick.
+
+
+
+---
+
+**51. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
 
 
 
@@ -11316,8 +11401,15 @@ HashSet to store visited items. Same old 2 sum trick.
  
  
  
-## Trie (9)
-**0. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium      Tags: [Bit Manipulation, Trie]
+## Trie (11)
+**0. [Prefix and Suffix Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Prefix%20and%20Suffix%20Search.java)**      Level: Hard      Tags: [Trie]
+      
+
+
+
+---
+
+**1. [Maximum XOR of Two Numbers in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20XOR%20of%20Two%20Numbers%20in%20an%20Array.java)**      Level: Medium      Tags: [Bit Manipulation, Trie]
       
 
 比较难想到. 利用到XOR性质A^B=C, then A=B^C.
@@ -11338,7 +11430,7 @@ mask = mask | (1 << i); // prefix mask
 
 ---
 
-**1. [Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)**      Level: Medium      Tags: [Design, Trie]
+**2. [Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)**      Level: Medium      Tags: [Design, Trie]
       
 
 Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startWith
@@ -11370,7 +11462,7 @@ Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startW
 
 ---
 
-**2. [Add and Search Word - Data structure design.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word%20-%20Data%20structure%20design.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
+**3. [Add and Search Word - Data structure design.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word%20-%20Data%20structure%20design.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
       
 
 Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
@@ -11386,7 +11478,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**3. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, Trie]
+**4. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, Trie]
       
 
 给一串words, 还有一个2D character matrix. 找到所有可以形成的words. 条件: 2D matrix 只可以相邻走位.
@@ -11424,7 +11516,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**4. [Word Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Squares.java)**      Level: Hard      Tags: [Backtracking, Trie]
+**5. [Word Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Squares.java)**      Level: Hard      Tags: [Backtracking, Trie]
       
 
 可以开Trie class, 里面用到TrieNode. 开Trie(words) 可以直接initalize with for loop
@@ -11448,7 +11540,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**5. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard      Tags: [Hash Table, String, Trie]
+**6. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard      Tags: [Hash Table, String, Trie]
       
 
 Obvious的做法是全部试一遍, 判断, 变成 O(n^2) * O(m) = O(mn^2). O(m): isPalindrome() time.
@@ -11478,7 +11570,7 @@ O(mn)
 
 ---
 
-**6. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
+**7. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
       
 
 给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
@@ -11497,7 +11589,7 @@ TODO
 
 ---
 
-**7. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy      Tags: [Hash Table, Trie]
+**8. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy      Tags: [Hash Table, Trie]
       
 
 给串word[], 找最长的Word, 满足条件: 这个Word可以从 word[] 里面一个字母一个字母被build出来.
@@ -11529,7 +11621,7 @@ TODO
 
 ---
 
-**8. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
+**9. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
 time: O(nlogk)
 space: O(n)
@@ -11556,6 +11648,43 @@ space: O(n)
 - 注意排序时Collection.sort()的cost是O(nLogk)
 - not efficient
 
+
+
+
+---
+
+**10. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+      
+time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
+space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
+
+Description is long, but in short: 做 search auto complete. 
+
+Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+
+Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
+
+#### 思考方向
+- 做text的search, 毋庸置疑要用Prefix tree, trie.
+
+##### Find all possible word/leaf, 两种方案:
+- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
+- 在TrieNode里面存所有的possible words. [high space usage]
+- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+
+##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
+- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
+- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
+- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
+- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+
+##### Train the system
+- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
+- 这一条在最后遇到`#`再做就可以了, 非常简洁
+
+#### Trie, PriorityQueue, HashMap
+- Trie Prefix Search + maintain top k frequent items
+- 
 
 
 
@@ -11978,28 +12107,7 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 
 ---
 
-**20. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
-      
-time: O(n)
-space: O(1)
-
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
-
-#### Tree, In-order traversal
-- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
-- 只不过做的时候要小心地 doubly link them
-- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
-
-##### 题目特殊特点
-- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
-- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
-- 要求in-place: 不能重新create new node
-
-
-
----
-
-**21. [Inorder Successor in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20BST.java)**      Level: Medium      Tags: [BST, Tree]
+**20. [Inorder Successor in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20BST.java)**      Level: Medium      Tags: [BST, Tree]
       
 
 找 Inorder traversal规则里的下一个.
@@ -12031,13 +12139,34 @@ space: O(1)
 
 ---
 
+**21. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
+
+
+
+---
+
 
 
 
  
  
  
-## MinHeap (8)
+## MinHeap (9)
 **0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
 time: O(nlogk)
@@ -12211,7 +12340,7 @@ space: O(n)
 
 ---
 
-**6. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**6. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
       
 
 #### 原理
@@ -12244,6 +12373,43 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
 - 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
 - 左边的maxHeap总有 x+1或者x个数字
 - 后边minHeap应该一直有x个数字
+
+
+
+---
+
+**8. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+      
+time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
+space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
+
+Description is long, but in short: 做 search auto complete. 
+
+Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+
+Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
+
+#### 思考方向
+- 做text的search, 毋庸置疑要用Prefix tree, trie.
+
+##### Find all possible word/leaf, 两种方案:
+- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
+- 在TrieNode里面存所有的possible words. [high space usage]
+- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+
+##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
+- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
+- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
+- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
+- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+
+##### Train the system
+- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
+- 这一条在最后遇到`#`再做就可以了, 非常简洁
+
+#### Trie, PriorityQueue, HashMap
+- Trie Prefix Search + maintain top k frequent items
+- 
 
 
 
@@ -12553,7 +12719,7 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
  
  
  
-## PriorityQueue (16)
+## PriorityQueue (17)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
@@ -12978,6 +13144,43 @@ space: O(n)
 
 ---
 
+**16. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+      
+time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
+space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
+
+Description is long, but in short: 做 search auto complete. 
+
+Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+
+Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
+
+#### 思考方向
+- 做text的search, 毋庸置疑要用Prefix tree, trie.
+
+##### Find all possible word/leaf, 两种方案:
+- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
+- 在TrieNode里面存所有的possible words. [high space usage]
+- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+
+##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
+- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
+- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
+- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
+- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+
+##### Train the system
+- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
+- 这一条在最后遇到`#`再做就可以了, 非常简洁
+
+#### Trie, PriorityQueue, HashMap
+- Trie Prefix Search + maintain top k frequent items
+- 
+
+
+
+---
+
 
 
 
@@ -13140,7 +13343,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
  
  
 ## Heap (15)
-**0. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
+**0. [Kth Smallest Element in a Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
 time: O(n + klogn)
 space: O(n)
@@ -13465,7 +13668,7 @@ space: O(n)
 
 ---
 
-**13. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**13. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
       
 
 #### 原理
@@ -13992,28 +14195,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**28. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
-      
-time: O(n)
-space: O(1)
-
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
-
-#### Tree, In-order traversal
-- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
-- 只不过做的时候要小心地 doubly link them
-- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
-
-##### 题目特殊特点
-- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
-- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
-- 要求in-place: 不能重新create new node
-
-
-
----
-
-**29. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+**28. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -14035,7 +14217,7 @@ space: O(n)
 
 ---
 
-**30. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**29. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 给一个array of ListNode, 把所有node按照大小连成一条.
@@ -14062,6 +14244,27 @@ space: O(n)
 - 如果k很大，一个机器上放不下所有的k list怎么办？ 
 - 如果Merge起来的很长，一个机器上放不下怎么办？
 
+
+
+
+---
+
+**30. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
 
 
 
@@ -15186,7 +15389,37 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**5. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+**5. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+      
+
+给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
+
+检查这些edge是否能合成一个 valid tree
+
+#### Union Find
+- 复习Union-Find的另外一个种形式, track union size: tree does not have cycle, so eventually union size should == 1
+- 1. 查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
+- 2. 验证cycle: `find(x) == find(y) => cycle`: new index has been visited before
+- 存储的关键都是：元素相对的index上存着他的root parent.    
+- 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
+- 另一个union-find, 用hashmap的:
+- http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
+
+#### DFS
+- Create adjacent list graph: Map<Integer, List<Integer>>
+- 检查: 
+- 1. 是否有cycle using dfs, check boolean[] visited
+- 2. 是否所有的node全部链接起来: validate if all edge connected: # of visited node should match graph size
+
+#### BFS
+- (还没做, 可以写一写)
+- 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
+
+
+
+---
+
+**6. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
       
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -15214,36 +15447,6 @@ count这个graph里面有多少个独立的component.
 - 跟BFS建立 grpah 的过程一模一样
 - DFS的不同在于: 用visited map 来标记走过的地方
 - 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-**6. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
-      
-
-给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
-
-检查这些edge是否能合成一个 valid tree
-
-#### Union Find
-- 复习Union-Find的另外一个种形式, track union size: tree does not have cycle, so eventually union size should == 1
-- 1. 查找2个元素是不是在一个union里面。如果不在，false. 如果在，那就合并成一个set,共享parent.   
-- 2. 验证cycle: `find(x) == find(y) => cycle`: new index has been visited before
-- 存储的关键都是：元素相对的index上存着他的root parent.    
-- 注意: 结尾要检查, 是否只剩下1个union: Tree必须连接到所有给出的node.
-- 另一个union-find, 用hashmap的:
-- http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
-
-#### DFS
-- Create adjacent list graph: Map<Integer, List<Integer>>
-- 检查: 
-- 1. 是否有cycle using dfs, check boolean[] visited
-- 2. 是否所有的node全部链接起来: validate if all edge connected: # of visited node should match graph size
-
-#### BFS
-- (还没做, 可以写一写)
-- 也是检查: 1. 是否有cycle, 2. 是否所有的node全部链接起来
 
 
 
@@ -16223,7 +16426,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**8. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**8. [Best Time to Buy and Sell Stock III.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -16745,7 +16948,7 @@ vowels: 元音字母. 要求reverse所有元音字母.
 
 ---
 
-**4. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**4. [Two Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 升序array, 找2SUM.
@@ -16825,7 +17028,7 @@ Previous notes:
 
 ---
 
-**8. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**8. [3Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 一般的O(n3)肯定不行。在此基础上优化。
@@ -17059,20 +17262,7 @@ Time: O(nLogN)
 
 ---
 
-**21. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
-      
-
-给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
-
-#### Basics
-- A够长，那么可以从A的尾部开始加新元素。     
-- 注意，从尾部，是大数字优先排末尾的.  
-
-
-
----
-
-**22. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
+**21. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
 #### Reverse Linked List
@@ -17089,7 +17279,7 @@ Time: O(nLogN)
 
 ---
 
-**23. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
+**22. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
 验证string是不是 palindrome. 只考虑 alphanumeric, 其他字符可以忽略
@@ -17106,7 +17296,7 @@ Time: O(nLogN)
 
 ---
 
-**24. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+**23. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
 给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
@@ -17133,7 +17323,7 @@ return unique item 的长度.
 
 ---
 
-**25. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**24. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
@@ -17151,7 +17341,7 @@ return unique item 的长度.
 
 ---
 
-**26. [Rotate List.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
+**25. [Rotate List.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
       
 
 给一个single linked list, 右移k steps. k non-negative.
@@ -17165,7 +17355,7 @@ return unique item 的长度.
 
 ---
 
-**27. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**26. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
@@ -17185,7 +17375,7 @@ return unique item 的长度.
 
 ---
 
-**28. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**27. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 #### Two Pointers
@@ -17198,7 +17388,7 @@ return unique item 的长度.
 
 ---
 
-**29. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
+**28. [Partition List.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
       
 
 #### Linked List
@@ -17213,7 +17403,7 @@ return unique item 的长度.
 
 ---
 
-**30. [Sort Colors.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors.java)**      Level: Medium      Tags: [Array, Partition, Quick Sort, Sort, Two Pointers]
+**29. [Sort Colors.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors.java)**      Level: Medium      Tags: [Array, Partition, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
@@ -17242,7 +17432,7 @@ return unique item 的长度.
 
 ---
 
-**31. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Partition, Quick Sort, Sort, Two Pointers]
+**30. [Sort Colors II.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors%20II.java)**      Level: Medium      Tags: [Partition, Quick Sort, Sort, Two Pointers]
       
 
 Sort Color的普通版, sort all k colors in colors array.
@@ -17256,7 +17446,7 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 
 ---
 
-**32. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Partition, Sort, String, Two Pointers]
+**31. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Partition, Sort, String, Two Pointers]
       
 
 给一串字符(ASCII 大写, 小写字母), 要求sort 小写字母, 在大写字母前面. 
@@ -17279,6 +17469,19 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 - 注意: 每次处理完left swap, 任由for loop i++, 因为确定 [0 left] 都是准确的
 - 每次处理完 right swap, 我们不确定从 right index 换过来的是不是正确的, 所以 i--, 跟for loop 的 i++抵消.
 - 写 while loop 的 solution看起来更容易理解.
+
+
+
+---
+
+**32. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+      
+
+给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
+
+#### Basics
+- A够长，那么可以从A的尾部开始加新元素。     
+- 注意，从尾部，是大数字优先排末尾的.  
 
 
 
@@ -17639,7 +17842,7 @@ space: O(n)
 
 ---
 
-**2. [Data Stream Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Data%20Stream%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**2. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
       
 
 #### 原理
@@ -18014,7 +18217,7 @@ space: O(1)
  
  
  
-## Divide and Conquer (34)
+## Divide and Conquer (35)
 **0. [Majority Element.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Divide and Conquer]
       
 
@@ -18053,7 +18256,7 @@ space: O(1)
 
 ---
 
-**2. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
+**2. [Construct Binary Tree from Preorder and Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
       
 
 如题
@@ -18581,7 +18784,7 @@ Serialize and Deserialize Binary Tree
 
 ---
 
-**25. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**25. [Median of Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20Two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -18829,6 +19032,27 @@ kth largest in array
 #### Tree 
 - Traverse tree: left, right
 - Concept of partial compare vs. whole compare
+
+
+
+---
+
+**34. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
 
 
 
@@ -20368,7 +20592,7 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
  
  
  
-## Enumeration (7)
+## Enumeration (8)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -20495,6 +20719,29 @@ space: O(n)
 - 最后时间是n*log(n*3)
 - 注意：use long, use HashSet确保没有重复
 - O(nlogn)
+
+
+
+
+---
+
+**7. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+      
+
+给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
+
+#### String
+- 基本implementation
+- `分类讨论`: thounsand, million, billion.  `3个数字一格`.
+- 用array枚举 token
+- 运用 % 和 / 来找到每个分段的英语翻译
+- 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
+
+#### 注意
+- StringBuffer 更有效率! `sb.insert(0, xxx)` append在sb前面
+- 注意加 " " 的时候, 如果多余, 要`trim()`
+- 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
+- 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
 
 
@@ -20913,7 +21160,7 @@ binary search 公式
 
 ---
 
-**3. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**3. [Two Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 升序array, 找2SUM.
@@ -21078,7 +21325,7 @@ space: O(1)
 
 ---
 
-**11. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
+**11. [Kth Smallest Element in a Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
 time: O(n + klogn)
 space: O(n)
@@ -21454,7 +21701,7 @@ Complete Tree就是说, 最后一个level可能是缺node的(不是说最右下�
 
 ---
 
-**32. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**32. [Median of Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20Two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -21845,7 +22092,7 @@ O(n)
 
 ---
 
-**11. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**11. [Two Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 升序array, 找2SUM.
@@ -21974,7 +22221,7 @@ Previous notes:
 
 ---
 
-**18. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**18. [3Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 一般的O(n3)肯定不行。在此基础上优化。
@@ -22137,7 +22384,7 @@ Note:
 
 ---
 
-**29. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
+**29. [Construct Binary Tree from Preorder and Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
       
 
 如题
@@ -22596,7 +22843,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**49. [Best Time to Buy and Sell Stock III .java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III%20.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**49. [Best Time to Buy and Sell Stock III.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -22757,20 +23004,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**56. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
-      
-
-给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
-
-#### Basics
-- A够长，那么可以从A的尾部开始加新元素。     
-- 注意，从尾部，是大数字优先排末尾的.  
-
-
-
----
-
-**57. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
+**56. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
       
 
 给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
@@ -22798,7 +23032,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**58. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+**57. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
 给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
@@ -22825,7 +23059,7 @@ return unique item 的长度.
 
 ---
 
-**59. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**58. [Remove Duplicates from Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array%20II.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
@@ -22843,7 +23077,7 @@ return unique item 的长度.
 
 ---
 
-**60. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**59. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -22871,7 +23105,7 @@ return unique item 的长度.
 
 ---
 
-**61. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
+**60. [Longest Consecutive Sequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Consecutive%20Sequence.java)**      Level: Hard      Tags: [Array, Hash Table, Union Find]
       
 
 给一串数字, unsorted, 找这串数字里面的连续元素序列长度 (consecutive序列, 是数字连续, 并不是说要按照原order)
@@ -22902,7 +23136,7 @@ return unique item 的长度.
 
 ---
 
-**62. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
+**61. [Partition Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array.java)**      Level: Medium      Tags: [Array, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字, 和 int k. 根据k的值partition array, 找到第一个i, nums[i] >= k.
@@ -22922,7 +23156,7 @@ return unique item 的长度.
 
 ---
 
-**63. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**62. [Container With Most Water.java](https://github.com/awangdev/LintCode/blob/master/Java/Container%20With%20Most%20Water.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 #### Two Pointers
@@ -22935,7 +23169,7 @@ return unique item 的长度.
 
 ---
 
-**64. [Majority Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element%20II.java)**      Level: Medium      Tags: [Array]
+**63. [Majority Element II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Element%20II.java)**      Level: Medium      Tags: [Array]
       
 
 #### Sort + count
@@ -22951,7 +23185,7 @@ return unique item 的长度.
 
 ---
 
-**65. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
+**64. [Search a 2D Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20a%202D%20Matrix.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给2D matrix, 每行sorted, 每行的首位都大于上一行的末尾. goal: find target from matrix
@@ -22964,7 +23198,7 @@ return unique item 的长度.
 
 ---
 
-**66. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
+**65. [Search for a Range.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20for%20a%20Range.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 
 给sorted array, 有重复数字, 找跟target重合所在的range.
@@ -22979,7 +23213,7 @@ return unique item 的长度.
 
 ---
 
-**67. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
+**66. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
       
 
 如题, merge two sorted array into 新的 sorted array
@@ -22991,7 +23225,7 @@ return unique item 的长度.
 
 ---
 
-**68. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: Medium      Tags: [Array]
+**67. [Summary Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Summary%20Ranges.java)**      Level: Medium      Tags: [Array]
       
 
 给一串sorted list, 中间有缺数字, return 所有数字的range string (example 看题目)
@@ -23004,7 +23238,7 @@ return unique item 的长度.
 
 ---
 
-**69. [Median of two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
+**68. [Median of Two Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Median%20of%20Two%20Sorted%20Arrays.java)**      Level: Hard      Tags: [Array, Binary Search, DFS, Divide and Conquer]
       
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -23029,7 +23263,7 @@ TODO:
 
 ---
 
-**70. [Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)**      Level: Medium      Tags: [Array, Enumeration]
+**69. [Spiral Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Spiral%20Matrix.java)**      Level: Medium      Tags: [Array, Enumeration]
       
 
 从(0,0)坐标, 走完spiral matrix, 把结果存在list里.
@@ -23045,7 +23279,7 @@ TODO:
 
 ---
 
-**71. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
+**70. [Insert Interval.java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Interval.java)**      Level: Hard      Tags: [Array, PriorityQueue, Sort]
       
 
 #### Sweep Line
@@ -23071,7 +23305,7 @@ TODO:
 
 ---
 
-**72. [Two Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+**71. [Two Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 #### HashMap<value, index>
@@ -23090,7 +23324,7 @@ TODO:
 
 ---
 
-**73. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
+**72. [K Empty Slots.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Empty%20Slots.java)**      Level: Hard      Tags: [Array, BST, TreeSet]
       
 
 题目解析后: find 2 number, that: 1. k slots between the 2 number, 2. no slots taken between the two number.
@@ -23112,7 +23346,7 @@ TODO:
 
 ---
 
-**74. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+**73. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
@@ -23137,7 +23371,7 @@ TODO:
 
 ---
 
-**75. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
+**74. [Construct Binary Tree from Inorder and Postorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Tree]
       
 
 #### DFS, Divide and Conquer
@@ -23154,7 +23388,7 @@ TODO:
 
 ---
 
-**76. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
+**75. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
       
 
 #### DFS
@@ -23171,7 +23405,7 @@ TODO:
 
 ---
 
-**77. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**76. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line
@@ -23192,7 +23426,7 @@ TODO:
 
 ---
 
-**78. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
+**77. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -23212,7 +23446,7 @@ space: O(n)
 
 ---
 
-**79. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
+**78. [Submatrix Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Submatrix%20Sum.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum]
       
 
 给一个int[][] matrix, 找一个sub matrix, where the sum == 0.
@@ -23229,7 +23463,7 @@ space: O(n)
 
 ---
 
-**80. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**79. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -23268,7 +23502,7 @@ space: O(n)
 
 ---
 
-**81. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+**80. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
       
 
 给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
@@ -23299,7 +23533,7 @@ space: O(n)
 
 ---
 
-**82. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
+**81. [Merge Intervals.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Intervals.java)**      Level: Medium      Tags: [Array, PriorityQueue, Sort, Sweep Line]
       
 
 给一串int[Interval] (unsorted), 把所以Interval merge起来.
@@ -23330,7 +23564,7 @@ space: O(n)
 
 ---
 
-**83. [Sort Colors.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors.java)**      Level: Medium      Tags: [Array, Partition, Quick Sort, Sort, Two Pointers]
+**82. [Sort Colors.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Colors.java)**      Level: Medium      Tags: [Array, Partition, Quick Sort, Sort, Two Pointers]
       
 
 给一串数字 nums, 数字代表颜色[0,1,2]; 要求 sort nums, 数字最终按照大小排列. 
@@ -23359,7 +23593,7 @@ space: O(n)
 
 ---
 
-**84. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**83. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -23388,7 +23622,7 @@ space: O(n)
 
 ---
 
-**85. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
+**84. [Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Anagrams.java)**      Level: Medium      Tags: [Array, Hash Table]
       
 
 把anagram找到并output
@@ -23422,7 +23656,7 @@ space: O(n)
 
 ---
 
-**86. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
+**85. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
       
 
 determine if characters are unique in string
@@ -23441,7 +23675,7 @@ determine if characters are unique in string
 
 ---
 
-**87. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**86. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 time: O(2^n)
 space: O(2^n)
@@ -23477,7 +23711,7 @@ space: O(2^n)
 
 ---
 
-**88. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**87. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 time: O(2^n)
 sapce: O(2^n)
@@ -23517,7 +23751,7 @@ sapce: O(2^n)
 
 ---
 
-**89. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**88. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 time: O(n!)
 space: O(n!)
@@ -23553,7 +23787,7 @@ space: O(n!)
 
 ---
 
-**90. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**89. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -23582,7 +23816,7 @@ space: O(n!)
 
 ---
 
-**91. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**90. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一个integer k, 和一个target n. 
@@ -23606,7 +23840,7 @@ space: O(n!)
 
 ---
 
-**92. [Product of Array Except Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Product%20of%20Array%20Except%20Self.java)**      Level: Medium      Tags: [Array]
+**91. [Product of Array Except Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Product%20of%20Array%20Except%20Self.java)**      Level: Medium      Tags: [Array]
       
 time: O(n)
 space: O(1)
@@ -23622,7 +23856,7 @@ space: O(1)
 
 ---
 
-**93. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
+**92. [Subarray Sum Equals K.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum%20Equals%20K.java)**      Level: Medium      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -23653,7 +23887,7 @@ space: O(n)
 
 ---
 
-**94. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
+**93. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
       
 time: O(n)
 space: O(1)
@@ -23674,7 +23908,7 @@ space: O(1)
 
 ---
 
-**95. [Best Time to Buy and Sell Stock.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
+**94. [Best Time to Buy and Sell Stock.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -23703,7 +23937,7 @@ space: O(1)
 
 ---
 
-**96. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**95. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(1) greedy, O(n) dp
@@ -23746,7 +23980,7 @@ space: O(1) greedy, O(n) dp
 
 ---
 
-**97. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**96. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -23767,7 +24001,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**98. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
+**97. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
       
 time: O(n)
 space: O(1)
@@ -23793,7 +24027,7 @@ space: O(1)
 
 ---
 
-**99. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+**98. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
       
 
 #### Array, Math
@@ -23808,7 +24042,7 @@ space: O(1)
 
 ---
 
-**100. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+**99. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
       
 time: O(1) avg
 space: O(n)
@@ -23824,7 +24058,7 @@ space: O(n)
 
 ---
 
-**101. [Search in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
+**100. [Search in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 time: log(n)
 space: O(1)
@@ -23850,7 +24084,7 @@ space: O(1)
 
 ---
 
-**102. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
+**101. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
       
 time: O(m)
 space: O(1)
@@ -23868,7 +24102,7 @@ space: O(1)
 
 ---
 
-**103. [My Calendar I.java](https://github.com/awangdev/LintCode/blob/master/Java/My%20Calendar%20I.java)**      Level: Medium      Tags: [Array, TreeMap]
+**102. [My Calendar I.java](https://github.com/awangdev/LintCode/blob/master/Java/My%20Calendar%20I.java)**      Level: Medium      Tags: [Array, TreeMap]
       
 
 Given a list of interval as calendar items. Check if newly added calendar item is overlapping.
@@ -23900,6 +24134,19 @@ Understand it is only checking time, but not requiring to insert into right spot
 - Every time it could consume all classes to find the overlap, O(n^2).
 - Not quite need to sort or insert at correct point, and this solution requires longer code. Not quite worthy it for a simple problem.
 
+
+
+
+---
+
+**103. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+      
+
+给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
+
+#### Basics
+- A够长，那么可以从A的尾部开始加新元素。     
+- 注意，从尾部，是大数字优先排末尾的.  
 
 
 

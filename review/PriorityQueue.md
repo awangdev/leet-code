@@ -1,7 +1,7 @@
  
  
  
-## PriorityQueue (16)
+## PriorityQueue (17)
 **0. [Meeting Rooms.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms.java)**      Level: Easy      Tags: [PriorityQueue, Sort, Sweep Line]
       
 
@@ -421,6 +421,43 @@ space: O(n)
 - 注意：use long, use HashSet确保没有重复
 - O(nlogn)
 
+
+
+
+---
+
+**16. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+      
+time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
+space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
+
+Description is long, but in short: 做 search auto complete. 
+
+Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+
+Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
+
+#### 思考方向
+- 做text的search, 毋庸置疑要用Prefix tree, trie.
+
+##### Find all possible word/leaf, 两种方案:
+- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
+- 在TrieNode里面存所有的possible words. [high space usage]
+- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+
+##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
+- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
+- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
+- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
+- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+
+##### Train the system
+- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
+- 这一条在最后遇到`#`再做就可以了, 非常简洁
+
+#### Trie, PriorityQueue, HashMap
+- Trie Prefix Search + maintain top k frequent items
+- 
 
 
 

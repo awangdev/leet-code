@@ -30,3 +30,8 @@
 #### i++, i--, testing
 - code快, 写错++, --
 - testing时候忽略了++,--, 那么其实就没有在真的test.
+
+#### Doubly Link BST
+- 问清楚, 最后的 head 跟 tail也要link在一起
+- 在DFS中, 当dfs的结果出来以后(right or left linked list), 其实就可以利用结果的性质, 而不用再重新干做.
+- `leftTail = leftHead.left`, `rightTail = rightHead.left`

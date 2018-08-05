@@ -350,7 +350,7 @@ O(n) space, O(nLog(n)) time, because of sorting.
 
 ---
 
-**26. [2 Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/2%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
+**26. [Two Sum II - Input array is sorted.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20II%20-%20Input%20array%20is%20sorted.java)**      Level: Medium      Tags: [Array, Binary Search, Two Pointers]
       
 
 升序array, 找2SUM.
@@ -493,7 +493,7 @@ Previous notes:
 
 ---
 
-**33. [4 Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4%20Sum.java)**      Level: Medium      Tags: [Hash Table]
+**33. [4Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4Sum.java)**      Level: Medium      Tags: [Hash Table]
       
 
 #### Based on 2sum
@@ -564,7 +564,7 @@ f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-2)*f(1) + f(n-1)*f(0)
 
 ---
 
-**37. [3 Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3%20Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
+**37. [3Sum Smaller.java](https://github.com/awangdev/LintCode/blob/master/Java/3Sum%20Smaller.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
 一般的O(n3)肯定不行。在此基础上优化。
@@ -791,7 +791,7 @@ Note:
 
 ---
 
-**49. [Construct Binary Tree from Inorder and Preorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Inorder%20and%20Preorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
+**49. [Construct Binary Tree from Preorder and Inorder Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.java)**      Level: Medium      Tags: [Array, DFS, Divide and Conquer, Hash Table, Tree]
       
 
 如题
@@ -1077,7 +1077,7 @@ LinkedList 里面有 cycle, 找到cycle的起始点(第一个重复出现的elem
 
 ---
 
-**63. [Kth Smallest Number in Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Number%20in%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
+**63. [Kth Smallest Element in a Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
 time: O(n + klogn)
 space: O(n)
@@ -4178,28 +4178,7 @@ space: O(n)
 
 ---
 
-**204. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
-      
-time: O(n)
-space: O(1)
-
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
-
-#### Tree, In-order traversal
-- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
-- 只不过做的时候要小心地 doubly link them
-- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
-
-##### 题目特殊特点
-- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
-- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
-- 要求in-place: 不能重新create new node
-
-
-
----
-
-**205. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+**204. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -4221,7 +4200,7 @@ space: O(n)
 
 ---
 
-**206. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
+**205. [Binary Tree Zigzag Level Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -4235,7 +4214,7 @@ space: O(n)
 
 ---
 
-**207. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**206. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
       
 time: O(n^2)
 space: O(n)
@@ -4267,7 +4246,7 @@ space: O(n)
 
 ---
 
-**208. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
+**207. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
       
 time: O(n^2) dp, O(nLogN) binary search
 space: O(n)
@@ -4295,7 +4274,7 @@ space: O(n)
 
 ---
 
-**209. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**208. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -4316,7 +4295,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**210. [Random Pick Index.java](https://github.com/awangdev/LintCode/blob/master/Java/Random%20Pick%20Index.java)**      Level: Medium      Tags: [Reservior Sampling]
+**209. [Random Pick Index.java](https://github.com/awangdev/LintCode/blob/master/Java/Random%20Pick%20Index.java)**      Level: Medium      Tags: [Reservior Sampling]
       
 time: O(n)
 space: O(n) for input int[], O(1) extra space used
@@ -4340,7 +4319,7 @@ space: O(n) for input int[], O(1) extra space used
 
 ---
 
-**211. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
+**210. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
       
 time: O(n)
 space: O(1)
@@ -4366,7 +4345,7 @@ space: O(1)
 
 ---
 
-**212. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
+**211. [Sparse Matrix Multiplication.java](https://github.com/awangdev/LintCode/blob/master/Java/Sparse%20Matrix%20Multiplication.java)**      Level: Medium      Tags: [Hash Table]
       
 time: O(mnk), where `m = A.row`, `n = B.col`, `k = A.col = B.row`
 space: O(1) extra
@@ -4390,7 +4369,7 @@ space: O(1) extra
 
 ---
 
-**213. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
+**212. [Brick Wall.java](https://github.com/awangdev/LintCode/blob/master/Java/Brick%20Wall.java)**      Level: Medium      Tags: [Hash Table]
       
 time: O(mn)
 space: O(X), X = max wall width
@@ -4412,29 +4391,7 @@ space: O(X), X = max wall width
 
 ---
 
-**214. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
-      
-
-给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
-
-对每个empty space而言, fill it with dist to nearest gate.
-
-#### DFS
-- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
-- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
-- hard to resue: we do not know the direction in cached result dist[i][j]
-- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
-- Through dfs from all zeros, update each spot with shorter dist
-- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
-
-#### BFS
-- TODO? why BFS better?
-
-
-
----
-
-**215. [Exclusive Time of Functions.java](https://github.com/awangdev/LintCode/blob/master/Java/Exclusive%20Time%20of%20Functions.java)**      Level: Medium      Tags: [Stack]
+**213. [Exclusive Time of Functions.java](https://github.com/awangdev/LintCode/blob/master/Java/Exclusive%20Time%20of%20Functions.java)**      Level: Medium      Tags: [Stack]
       
 
 #### Stack
@@ -4448,7 +4405,7 @@ space: O(X), X = max wall width
 
 ---
 
-**216. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
+**214. [Friends Of Appropriate Ages.java](https://github.com/awangdev/LintCode/blob/master/Java/Friends%20Of%20Appropriate%20Ages.java)**      Level: Medium      Tags: [Array, Math]
       
 
 #### Array, Math
@@ -4463,7 +4420,7 @@ space: O(X), X = max wall width
 
 ---
 
-**217. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+**215. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
       
 
 // 如何想到从中间initialize
@@ -4472,7 +4429,7 @@ space: O(X), X = max wall width
 
 ---
 
-**218. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
+**216. [Maximum Size Subarray Sum Equals k.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Size%20Subarray%20Sum%20Equals%20k.java)**      Level: Medium      Tags: [Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -4489,7 +4446,7 @@ space: O(n)
 
 ---
 
-**219. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
+**217. [Contiguous Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Contiguous%20Array.java)**      Level: Medium      Tags: [Hash Table]
       
 
 TODO: how aout without chaning the input nums?
@@ -4498,7 +4455,7 @@ TODO: how aout without chaning the input nums?
 
 ---
 
-**220. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
+**218. [Line Reflection.java](https://github.com/awangdev/LintCode/blob/master/Java/Line%20Reflection.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 time: O(n)
 space: O(n)
@@ -4518,7 +4475,7 @@ space: O(n)
 
 ---
 
-**221. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+**219. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
       
 time: O(1) avg
 space: O(n)
@@ -4534,7 +4491,7 @@ space: O(n)
 
 ---
 
-**222. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**220. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 time: O(n^2)
 time: O(n)
@@ -4562,7 +4519,7 @@ time: O(n)
 
 ---
 
-**223. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
+**221. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
       
 
 
@@ -4578,7 +4535,7 @@ time: O(n)
 
 ---
 
-**224. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
+**222. [Binary Tree Vertical Order Traversal.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Vertical%20Order%20Traversal.java)**      Level: Medium      Tags: [BFS, DFS, Hash Table, Tree]
       
 time: O(n)
 space: O(n)
@@ -4605,7 +4562,7 @@ space: O(n)
 
 ---
 
-**225. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
+**223. [Populating Next Right Pointers in Each Node II.java](https://github.com/awangdev/LintCode/blob/master/Java/Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.java)**      Level: Medium      Tags: [DFS, Tree]
       
 time: O(n)
 space: O(1)
@@ -4627,7 +4584,7 @@ space: O(1)
 
 ---
 
-**226. [Search in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
+**224. [Search in Rotated Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Search%20in%20Rotated%20Sorted%20Array.java)**      Level: Medium      Tags: [Array, Binary Search]
       
 time: log(n)
 space: O(1)
@@ -4653,7 +4610,7 @@ space: O(1)
 
 ---
 
-**227. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium      Tags: [Union Find]
+**225. [Find the Weak Connected Component in the Directed Graph.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Weak%20Connected%20Component%20in%20the%20Directed%20Graph.java)**      Level: Medium      Tags: [Union Find]
       
 
 遍历 weak connected graph, 将结果存在 List<List<Node>>种.
@@ -4679,7 +4636,7 @@ space: O(1)
 
 ---
 
-**228. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**226. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -4709,7 +4666,7 @@ space: O(1)
 
 ---
 
-**229. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
+**227. [Accounts Merge.java](https://github.com/awangdev/LintCode/blob/master/Java/Accounts%20Merge.java)**      Level: Medium      Tags: [DFS, Hash Table, Hash Table, Union Find]
       
 
 给一串account in format `[[name, email1, email2, email3], [name2, email,..]]`. 
@@ -4735,7 +4692,7 @@ space: O(1)
 
 ---
 
-**230. [Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)**      Level: Medium      Tags: [Binary Search, Lint, Segment Tree]
+**228. [Count of Smaller Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number.java)**      Level: Medium      Tags: [Binary Search, Lint, Segment Tree]
       
 
 给一串数字, array size = n. 给一串query: 每个query是一个数, 目的找 count# items smaller than query element.
@@ -4770,7 +4727,7 @@ space: O(1)
 
 ---
 
-**231. [My Calendar I.java](https://github.com/awangdev/LintCode/blob/master/Java/My%20Calendar%20I.java)**      Level: Medium      Tags: [Array, TreeMap]
+**229. [My Calendar I.java](https://github.com/awangdev/LintCode/blob/master/Java/My%20Calendar%20I.java)**      Level: Medium      Tags: [Array, TreeMap]
       
 
 Given a list of interval as calendar items. Check if newly added calendar item is overlapping.
@@ -4807,7 +4764,7 @@ Understand it is only checking time, but not requiring to insert into right spot
 
 ---
 
-**232. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
+**230. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
       
 
 给一串数字, count total reverse pair `nums[i] > 2*nums[j]`, i < j
@@ -4849,7 +4806,7 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
 
 ---
 
-**233. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
+**231. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
       
 
 kth largest in array
@@ -4879,7 +4836,7 @@ kth largest in array
 
 ---
 
-**234. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**232. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 给一个array of ListNode, 把所有node按照大小连成一条.
@@ -4911,7 +4868,7 @@ kth largest in array
 
 ---
 
-**235. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
+**233. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
       
 
 Same as merge k sorted list, use priorityQueue
@@ -4926,7 +4883,7 @@ Same as merge k sorted list, use priorityQueue
 
 ---
 
-**236. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium      Tags: [Heap, MinHeap]
+**234. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium      Tags: [Heap, MinHeap]
       
 
 Turn unsorted array into a min-heap array, where for each A[i], 
@@ -4952,7 +4909,7 @@ A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[
 
 ---
 
-**237. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
+**235. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
       
 time: O(n)
 space: O(n)
@@ -4987,7 +4944,7 @@ space: O(n)
 
 ---
 
-**238. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+**236. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
 time: O(n)
 space: O(n)
@@ -5008,7 +4965,7 @@ space: O(n)
 
 ---
 
-**239. [Inorder Successor in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20BST.java)**      Level: Medium      Tags: [BST, Tree]
+**237. [Inorder Successor in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20BST.java)**      Level: Medium      Tags: [BST, Tree]
       
 
 找 Inorder traversal规则里的下一个.
@@ -5035,6 +4992,49 @@ space: O(n)
 - 2. set rightNode = node.right， 但发现rightNode has a lot left children to leaf.   
 - 3. 比如, node.right == null， 也就是node自己是leaf，要回头看山顶找Inorder traversal规则里的下一个。   
 - 发现：其实就是每层都把路过的curr node放在stack里，最上面的，就是当下改return的那个successor:) Done.
+
+
+
+---
+
+**238. [Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)**      Level: Medium      Tags: [BFS, DFS]
+      
+
+给一个room 2D grid. 里面有墙-1, 门0, 还有empty space INF(Math.MAX_VALUE). 
+
+对每个empty space而言, fill it with dist to nearest gate.
+
+#### DFS
+- Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
+- Option1(NOT applicable). DFS on INF, mark visited, summerize results of 4 directions. 
+- hard to resue: we do not know the direction in cached result dist[i][j]
+- Option2. DFS on gate, and each step taken to each direction will +1 on the spot: distance from one '0'; 
+- Through dfs from all zeros, update each spot with shorter dist
+- Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
+
+#### BFS
+- Exact same concept. Init with `Queue<int[]> queue = new LinkedList<int[]>()`
+
+
+
+---
+
+**239. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
 
 
 

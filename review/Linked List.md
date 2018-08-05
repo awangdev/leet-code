@@ -484,28 +484,7 @@ deep copy linked list. linked list 上有random pointer to other nodes.
 
 ---
 
-**28. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Linked List, Tree]
-      
-time: O(n)
-space: O(1)
-
-题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
-
-#### Tree, In-order traversal
-- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
-- 只不过做的时候要小心地 doubly link them
-- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
-
-##### 题目特殊特点
-- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
-- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
-- 要求in-place: 不能重新create new node
-
-
-
----
-
-**29. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
+**28. [Convert Binary Search Tree to Sorted Doubly Linked List (extra space).java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List%20(extra%20space).java)**      Level: Medium      Tags: [Linked List, Stack, Tree]
       
 time: O(n)
 space: O(n)
@@ -527,7 +506,7 @@ space: O(n)
 
 ---
 
-**30. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**29. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
       
 
 给一个array of ListNode, 把所有node按照大小连成一条.
@@ -554,6 +533,27 @@ space: O(n)
 - 如果k很大，一个机器上放不下所有的k list怎么办？ 
 - 如果Merge起来的很长，一个机器上放不下怎么办？
 
+
+
+
+---
+
+**30. [Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List, Tree]
+      
+time: O(n)
+space: O(1)
+
+题目描述起来有点复杂, 简而言之: 把 BST 转换成一个 sorted doubly linked list. (in-place)
+
+#### Tree, In-order traversal
+- 平时做过convert BST to sored list: 画一下就理解, 其实就是in-order traversal
+- 只不过做的时候要小心地 doubly link them
+- 理解之后就简单了, traverse all nodes,  DFS 好做: `left, curr, right`
+
+##### 题目特殊特点
+- 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
+- extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
+- 要求in-place: 不能重新create new node
 
 
 

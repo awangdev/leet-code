@@ -1,7 +1,7 @@
  
  
  
-## Easy (148)
+## Easy (149)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy      Tags: []
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -304,7 +304,7 @@ Bit XOR: 当两个bit不同时，return 1.
 
 ---
 
-**26. [String to Integer(atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer(atoi).java)**      Level: Easy      Tags: []
+**26. [String to Integer (atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer%20(atoi).java)**      Level: Easy      Tags: []
       
 方法1: 问清情况，一点一点把case都涉及到。
 
@@ -1434,20 +1434,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**100. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
-      
-
-给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
-
-#### Basics
-- A够长，那么可以从A的尾部开始加新元素。     
-- 注意，从尾部，是大数字优先排末尾的.  
-
-
-
----
-
-**101. [Middle of Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Middle%20of%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
+**100. [Middle of Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Middle%20of%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 找Linked List的中间node
@@ -1460,7 +1447,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**102. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy      Tags: [Design]
+**101. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy      Tags: [Design]
       
 
 让一个class 是 singleton
@@ -1469,7 +1456,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**103. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy      Tags: [Linked List]
+**102. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy      Tags: [Linked List]
       
 
 从linked list 里面去掉所有的 target
@@ -1482,7 +1469,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**104. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**103. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -1499,7 +1486,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**105. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
+**104. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
 #### Reverse Linked List
@@ -1516,7 +1503,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**106. [Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
+**105. [Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 #### Reverse List
@@ -1529,7 +1516,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**107. [Palindrome Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation.java)**      Level: Easy      Tags: [Hash Table]
+**106. [Palindrome Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Permutation.java)**      Level: Easy      Tags: [Hash Table]
       
 
 给String, 看permutation是否能是palindrome
@@ -1544,7 +1531,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**108. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
+**107. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
 验证string是不是 palindrome. 只考虑 alphanumeric, 其他字符可以忽略
@@ -1561,7 +1548,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**109. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy      Tags: [Design, Stack]
+**108. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy      Tags: [Design, Stack]
       
 
 如题.
@@ -1586,7 +1573,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**110. [Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)**      Level: Easy      Tags: [Stack]
+**109. [Implement Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack.java)**      Level: Easy      Tags: [Stack]
       
 
 随便用一个data structure, implement stack.
@@ -1599,7 +1586,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**111. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
+**110. [Invert Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Invert%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
       
 
 #### DFS
@@ -1615,7 +1602,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**112. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [DFS, Tree]
+**111. [Maximum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [DFS, Tree]
       
 
 给一个binary tree, 找最深depth
@@ -1633,7 +1620,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**113. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
+**112. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
       
 
 #### DFS
@@ -1651,7 +1638,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**114. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
+**113. [Symmetric Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Symmetric%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
       
 
 检查tree是否symmetric
@@ -1671,7 +1658,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**115. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy      Tags: [DFS, Tree]
+**114. [Tweaked Identical Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Tweaked%20Identical%20Binary%20Tree.java)**      Level: Easy      Tags: [DFS, Tree]
       
 
 检查binary tree是否 identical. 
@@ -1685,7 +1672,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**116. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy      Tags: [DFS, Tree]
+**115. [Merge Two Binary Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Binary%20Trees.java)**      Level: Easy      Tags: [DFS, Tree]
       
 
 #### DFS
@@ -1695,7 +1682,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**117. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy      Tags: [DFS, Tree]
+**116. [Subtree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree.java)**      Level: Easy      Tags: [DFS, Tree]
       
 
 给一个binary tree s, 和一个binary tree t, 检查t是不是s的subtree.
@@ -1711,7 +1698,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**118. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy      Tags: [Hash Table, Tree]
+**117. [Lowest Common Ancestor II.java](https://github.com/awangdev/LintCode/blob/master/Java/Lowest%20Common%20Ancestor%20II.java)**      Level: Easy      Tags: [Hash Table, Tree]
       
 
 给一个Binary Tree root, 以及两个node A, B. 特点: node里面存了parent pointer. 找 lowest common ancestor
@@ -1733,7 +1720,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**119. [Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)**      Level: Easy      Tags: [Hash Table]
+**118. [Hash Function.java](https://github.com/awangdev/LintCode/blob/master/Java/Hash%20Function.java)**      Level: Easy      Tags: [Hash Table]
       
 
 #### Hash Function
@@ -1755,7 +1742,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**120. [Merge Two Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Sorted%20Lists.java)**      Level: Easy      Tags: [Linked List]
+**119. [Merge Two Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Two%20Sorted%20Lists.java)**      Level: Easy      Tags: [Linked List]
       
 
 如题
@@ -1769,7 +1756,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**121. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
+**120. [Missing Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Number.java)**      Level: Easy      Tags: [Array, Bit Manipulation, Math]
       
 
 给一串unique数字, 数字取自 [0 ~ n], 无序, 找第一个skipped的数字.
@@ -1797,7 +1784,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**122. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+**121. [Remove Duplicates from Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
 给一个sorted array, 把重复的去掉: 也就是把不重复的按照顺序贴上来, array末尾多余的位置无所谓.
@@ -1824,7 +1811,7 @@ return unique item 的长度.
 
 ---
 
-**123. [Remove Duplicates from Sorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List.java)**      Level: Easy      Tags: [Linked List]
+**122. [Remove Duplicates from Sorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Sorted%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 从Linked list 里面摘掉重复元素, 只留下unique元素.
@@ -1844,7 +1831,7 @@ return unique item 的长度.
 
 ---
 
-**124. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy      Tags: [Hash Table, Trie]
+**123. [Longest Word in Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Word%20in%20Dictionary.java)**      Level: Easy      Tags: [Hash Table, Trie]
       
 
 给串word[], 找最长的Word, 满足条件: 这个Word可以从 word[] 里面一个字母一个字母被build出来.
@@ -1876,7 +1863,7 @@ return unique item 的长度.
 
 ---
 
-**125. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy      Tags: [DFS, Tree]
+**124. [Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum.java)**      Level: Easy      Tags: [DFS, Tree]
       
 
 给一个inputSum, 然后dfs, 找到是否有一条path, 得出的path sum 跟 inputSum 一样.
@@ -1891,7 +1878,7 @@ return unique item 的长度.
 
 ---
 
-**126. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy      Tags: [Backtracking, DFS, Tree]
+**125. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy      Tags: [Backtracking, DFS, Tree]
       
 
 给一个inputSum, 然后dfs, 找到所有path, 满足: path sum 跟 inputSum 一样.
@@ -1913,7 +1900,7 @@ return unique item 的长度.
 
 ---
 
-**127. [Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)**      Level: Easy      Tags: [DFS, Double Recursive, Tree]
+**126. [Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)**      Level: Easy      Tags: [DFS, Double Recursive, Tree]
       
 
 count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
@@ -1934,7 +1921,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**128. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: Easy      Tags: [String]
+**127. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: Easy      Tags: [String]
       
 
 给两个String, 看A rotate之后 能不能变成B
@@ -1955,7 +1942,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**129. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Easy      Tags: [String]
+**128. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Easy      Tags: [String]
       
 
 找一串String里面最长的公共prefix.
@@ -1974,7 +1961,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**130. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
+**129. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
       
 
 给一个String, 里面的Word被single space split开来, 目的是reverse里面所有的Word, 但preserve Word 和 space order.
@@ -1986,7 +1973,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**131. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
+**130. [Merge Sorted Array II.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array%20II.java)**      Level: Easy      Tags: [Array]
       
 
 如题, merge two sorted array into 新的 sorted array
@@ -1998,7 +1985,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**132. [Nth to Last Node in List.java](https://github.com/awangdev/LintCode/blob/master/Java/Nth%20to%20Last%20Node%20in%20List.java)**      Level: Easy      Tags: [Linked List]
+**131. [Nth to Last Node in List.java](https://github.com/awangdev/LintCode/blob/master/Java/Nth%20to%20Last%20Node%20in%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 #### Linked List
@@ -2010,7 +1997,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**133. [Two Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
+**132. [Two Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table]
       
 
 #### HashMap<value, index>
@@ -2029,7 +2016,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**134. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
+**133. [Max Area of Island.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Area%20of%20Island.java)**      Level: Easy      Tags: [Array, DFS]
       
 
 #### DFS
@@ -2046,7 +2033,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 
 ---
 
-**135. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
+**134. [Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Subarray%20Sum.java)**      Level: Easy      Tags: [Array, Hash Table, PreSum, Subarray]
       
 time: O(n)
 space: O(n)
@@ -2066,7 +2053,7 @@ space: O(n)
 
 ---
 
-**136. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
+**135. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
       
 
 给一串数字, 求sumRange.
@@ -2080,7 +2067,7 @@ space: O(n)
 
 ---
 
-**137. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
+**136. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 给一串String, 找到最长的长度, 把最长的String全都return
@@ -2093,7 +2080,7 @@ space: O(n)
 
 ---
 
-**138. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
+**137. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
       
 
 determine if characters are unique in string
@@ -2112,7 +2099,7 @@ determine if characters are unique in string
 
 ---
 
-**139. [Binary Gap.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Gap.java)**      Level: Easy      Tags: [Bit Manipulation]
+**138. [Binary Gap.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Gap.java)**      Level: Easy      Tags: [Bit Manipulation]
       
 time: O(n), n = # of bits
 space: O(1)
@@ -2125,7 +2112,7 @@ space: O(1)
 
 ---
 
-**140. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
+**139. [Maximize Distance to Closest Person.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximize%20Distance%20to%20Closest%20Person.java)**      Level: Easy      Tags: [Array]
       
 time: O(n)
 space: O(1)
@@ -2146,7 +2133,7 @@ space: O(1)
 
 ---
 
-**141. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**140. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n)
@@ -2170,7 +2157,7 @@ space: O(n)
 
 ---
 
-**142. [Best Time to Buy and Sell Stock.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
+**141. [Best Time to Buy and Sell Stock.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -2199,7 +2186,7 @@ space: O(n)
 
 ---
 
-**143. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**142. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(1) greedy, O(n) dp
@@ -2242,7 +2229,7 @@ space: O(1) greedy, O(n) dp
 
 ---
 
-**144. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
+**143. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
       
 time: O(m)
 space: O(1)
@@ -2260,7 +2247,7 @@ space: O(1)
 
 ---
 
-**145. [Subtree of Another Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree%20of%20Another%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
+**144. [Subtree of Another Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree%20of%20Another%20Tree.java)**      Level: Easy      Tags: [DFS, Divide and Conquer, Tree]
       
 
 #### Tree 
@@ -2271,7 +2258,7 @@ space: O(1)
 
 ---
 
-**146. [Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)**      Level: Easy      Tags: [Tree]
+**145. [Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)**      Level: Easy      Tags: [Tree]
       
 
 HashSet to store visited items. Same old 2 sum trick.
@@ -2280,7 +2267,7 @@ HashSet to store visited items. Same old 2 sum trick.
 
 ---
 
-**147. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+**146. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -2288,6 +2275,30 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 #### String in char[] format
 - 理解题目: 其实就是track `可以read多少bytes by read4() response`
 - 另外一个有用的function `System.arraycopy(src, srcIndex, dest, destIndex, length)`
+
+
+
+---
+
+**147. [Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)**      Level: Easy      Tags: [Array, Two Pointers]
+      
+
+给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
+
+#### Basics
+- A够长，那么可以从A的尾部开始加新元素。     
+- 注意，从尾部，是大数字优先排末尾的.  
+
+
+
+---
+
+**148. [Valid Palindrome II.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome%20II.java)**      Level: Easy      Tags: [String]
+      
+
+#### Palindrome String
+- delete an index = jump over the index
+- 注意 boolean chance 可以用一个helper function
 
 
 
