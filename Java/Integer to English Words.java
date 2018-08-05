@@ -1,21 +1,21 @@
 H
-1525229518
-tags: Math, String
+1533443082
+tags: Math, String, Enumeration
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
 
 #### String
 - 基本implementation
-- 分类讨论: thounsand, million, billion.  3个数字一格.
+- `分类讨论`: thounsand, million, billion.  `3个数字一格`.
 - 用array枚举 token
 - 运用 % 和 / 来找到每个分段的英语翻译
 - 3-digit 的部分, 可以用一个helper funtion来找到结果, 每段的处理方法都是一样的
 
 #### 注意
-- StringBuffer 更有效率
-- 注意加 " " 的时候, 如果多余, 要trim()
+- StringBuffer 更有效率! `sb.insert(0, xxx)` append在sb前面
+- 注意加 " " 的时候, 如果多余, 要`trim()`
 - 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
-- 这道题目就是要细致耐心, 算法并不难, 就是想要写的efficient并且正确, 需要很小心
+- 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
 
 ```
@@ -49,24 +49,16 @@ class Solution {
     public String[] v1 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
     public String[] v2 = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
     public String[] v3 = {"", "Thousand ", "Million ", "Billion "};
-
     public String numberToWords(int num) {
-        if (num < 0) {
-            return "";
-        }
-        if (num == 0) {
-            return "Zero";
-        }
+        if (num < 0)  return "";
+        if (num == 0) return "Zero";
 
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < 4; i++) {
-            // Obtain smaller number, handle Thousand, Million, Billion
-            int partial = num - (num / 1000) * 1000;
-            if (partial > 0) {
-                // Append suffix depending on i:
+            int partial = num % 1000; // Obtain smaller 3-digit section
+            if (partial > 0) { // Append suffix depending on i, where v3[0] = "";
                 sb.insert(0, calcPartialNumber(partial) + " " + v3[i]);
             }
-            // Shrink by 1000
             num /= 1000;
         }
         
@@ -75,14 +67,12 @@ class Solution {
     
     private String calcPartialNumber(int num) {
         StringBuffer sb = new StringBuffer();
-        // Handle 100's
         if (num >= 100) {
             int hund = num / 100;
             sb.append(v1[hund] + " Hundred ");
             num = num % 100;
         }
 
-        // Calculate number < 100
         if (num < 20) {
             sb.append(v1[num] + " ");
         } else {
