@@ -15,7 +15,7 @@ tags: BFS, DFS
 - Worst time: O(mn), where entre rooms[][] are gates. It takes O(mn) to complete the iteration. Other gates be skipped by `if (rooms[x][y] <= dist) return;`
 
 #### BFS
-- TODO? why BFS better?
+- Exact same concept. Init with `Queue<int[]> queue = new LinkedList<int[]>()`
 
 ```
 /*
@@ -89,6 +89,53 @@ class Solution {
     
 }
 
+
+// BFS:
+
+class Solution {
+    int[] dx = {1, -1, 0, 0};
+    int[] dy = {0, 0, 1, -1};
+
+    public void wallsAndGates(int[][] rooms) {
+        if (validate(rooms)) return;
+        int m = rooms.length, n = rooms[0].length;
+        Queue<int[]> queue = new LinkedList<>();
+
+        // Initi with 0
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) { 
+                if (rooms[i][j] == 0) {// test all 0's with for loop
+                    queue.offer(new int[] {i, j});
+                }
+            }
+        }
+
+        // Process queue
+        while (!queue.isEmpty()) {
+            int[] point = queue.poll();
+            bfsHelper(rooms, queue, point[0], point[1]);
+        }
+    }
+
+    // Process with queue, and skip of value depth > existing depth.
+    private void bfsHelper(int[][] rooms, Queue<int[]> queue, int x, int y) {
+        for (int i = 0; i < dx.length; i++) {
+            int mX = x + dx[i], mY = y + dy[i];
+            if (validateCoordinate(rooms, mX, mY) || rooms[x][y] + 1 > rooms[mX][mY]) continue;
+            rooms[mX][mY] = rooms[x][y] + 1;
+            queue.offer(new int[] {mX, mY});
+        }
+    }
+    
+    private boolean validateCoordinate(int[][] rooms, int x, int y) {
+        return x < 0 || x >= rooms.length || y < 0 || y >= rooms[0].length || rooms[x][y] == -1 || rooms[x][y] == 0;
+    }
+    
+    private boolean validate(int[][] rooms) {
+        return rooms == null || rooms.length == 0 || rooms[0] == null || rooms[0].length == 0;
+    }
+    
+}
 /*
 Form empty room: it can reach different gate, but each shortest length will be determined by the 4 directions. 
 Option1. DFS on INF, mark visited, summerize results of 4 directions. it's hard to resue: we do not know the direction in cached result dist[i][j]
