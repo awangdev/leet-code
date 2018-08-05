@@ -1,5 +1,5 @@
 E
-1525413625
+1533441519
 tags: Array, Two Pointers
 
 给两个排好序的数组, merge. 其中一个数组nums1有多余的位置
@@ -31,6 +31,25 @@ Hide Tags Array Two Pointers
 Hide Similar Problems (E) Merge Two Sorted Lists
 
 */
+// two pointer moving
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0) {
+            return;
+        }
+        m--; n--;
+        while (m >= 0 || n >= 0) {
+            if (m >= 0 && n >= 0) {
+                nums1[m + n + 1] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+            } else if (m < 0) { // n > 0
+                nums1[n] = nums2[n--];
+            } else if (n < 0) {
+                break;
+            }
+        }
+    }
+}
+
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0) {
