@@ -9231,3 +9231,25 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
 
 ---
 
+**467. [Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)**      Level: Easy      Tags: [Tree]
+      
+
+HashSet to store visited items. Same old 2 sum trick.
+
+
+
+---
+
+**468. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+      
+
+Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
+
+#### String in char[] format
+- 理解题目: 其实就是track `可以read多少bytes by read4() response`
+- 另外一个有用的function `System.arraycopy(src, srcIndex, dest, destIndex, length)`
+
+
+
+---
+

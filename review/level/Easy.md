@@ -1,7 +1,7 @@
  
  
  
-## Easy (146)
+## Easy (148)
 **0. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Easy      Tags: []
       
 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
@@ -2266,6 +2266,28 @@ space: O(1)
 #### Tree 
 - Traverse tree: left, right
 - Concept of partial compare vs. whole compare
+
+
+
+---
+
+**146. [Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)**      Level: Easy      Tags: [Tree]
+      
+
+HashSet to store visited items. Same old 2 sum trick.
+
+
+
+---
+
+**147. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+      
+
+Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
+
+#### String in char[] format
+- 理解题目: 其实就是track `可以read多少bytes by read4() response`
+- 另外一个有用的function `System.arraycopy(src, srcIndex, dest, destIndex, length)`
 
 
 

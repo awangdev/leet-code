@@ -1,7 +1,7 @@
  
  
  
-## Tree (51)
+## Tree (52)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
@@ -1066,6 +1066,15 @@ space: O(1)
 #### Tree 
 - Traverse tree: left, right
 - Concept of partial compare vs. whole compare
+
+
+
+---
+
+**51. [Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)**      Level: Easy      Tags: [Tree]
+      
+
+HashSet to store visited items. Same old 2 sum trick.
 
 
 

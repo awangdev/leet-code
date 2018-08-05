@@ -53,11 +53,10 @@ Thougths:
 TrieNode: contains the single character, and a list of children.
 Note: we will use hashmap<child character, child TrieNode>, because child access is O(1)
 */
-
 class Trie {
     class TrieNode {
         public boolean isEnd;
-        public Map<Character, TrieNode> children;
+        public Map<Character, TrieNode> children; // Map is more applicable to all chars, not limited to 256 ASCII
         public TrieNode() {
             this.isEnd = false;
             this.children = new HashMap<>();
@@ -72,33 +71,22 @@ class Trie {
     
     /** Inserts a word into the trie. */
     public void insert(String word) {
-        if (word == null || word.length() == 0) {
-            return;
-        }
-        if (search(word)) {
-            return;
-        }
+        if (word == null || word.length() == 0 || search(word)) return;
+
         TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if (!node.children.containsKey(c)) {
-                node.children.put(c, new TrieNode());
-            }
+        for (char c : word.toCharArray()) {
+            node.children.putIfAbsent(c, new TrieNode());
             node = node.children.get(c);
-            if (i == word.length() - 1) {
-                node.isEnd = true;
-            }
         }
+        node.isEnd = true; // can set word to node as well, if needed
     }
     
-    /** Returns if the word is in the trie. */
+    /** Returns if the word is in the trie: correct path + isEnd */
     public boolean search(String word) {
-        if (word == null || word.length() == 0) {
-            return false;
-        }
+        if (word == null || word.length() == 0) return false;
+        
         TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
+        for (char c : word.toCharArray()) {
             if (!node.children.containsKey(c)) {
                 return false;
             }
@@ -109,12 +97,10 @@ class Trie {
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
-        if (prefix == null || prefix.length() == 0) {
-            return false;
-        }
+        if (prefix == null || prefix.length() == 0) return false;
+        
         TrieNode node = root;
-        for (int i = 0; i < prefix.length(); i++) {
-            char c = prefix.charAt(i);
+        for (char c : prefix.toCharArray()) {
             if (!node.children.containsKey(c)) {
                 return false;
             }

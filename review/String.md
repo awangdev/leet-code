@@ -1,7 +1,7 @@
  
  
  
-## String (50)
+## String (51)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -892,6 +892,19 @@ time: O(n)
 - 遇到 `.`, `e`, `+/-`, `int`的几种不同情况
 - 分别遇到的顺序不同时候, 结果也不同.
 - 这道题更多是分析情况, 然后把edge case enumerate出来, 算法的意义比较少.
+
+
+
+---
+
+**50. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+      
+
+Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
+
+#### String in char[] format
+- 理解题目: 其实就是track `可以read多少bytes by read4() response`
+- 另外一个有用的function `System.arraycopy(src, srcIndex, dest, destIndex, length)`
 
 
 
