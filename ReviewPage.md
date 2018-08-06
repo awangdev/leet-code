@@ -729,14 +729,16 @@ O(n)
 **60. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy      Tags: [Hash Table]
       
 
-最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
-最后合计结果就好.
+#### Brutle
+- 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
+- 最后合计结果就好.
 
-不必想太多用HashMap做.但是也可以思考一下:
+#### Hash Table
+- 不必想太多用HashMap做.但是也可以思考一下:
 - 把每个block相连的block全部存在以当下block为key的list里面. 那么这里需要把2D坐标, 转化成一个index.
 - 最后得到的map, 所有的key-value应该都有value-key的反向mapping, 那么久可以消除干净, 每一次消除就是一个shared wall.
 - 一点点optimization: DFS去找所有的island, 如果island的图非常大, 而island本身不打,那么适合optimize.
-  但是整体代码过于复杂. 不建议写.
+- 但是整体代码过于复杂. 不建议写.
 
 
 
@@ -2092,10 +2094,13 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 **136. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
-O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
-那个时候其实slow.val = fast.val.
+#### Two Pointer: Slow Fast Pointer
+- O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
+- 那个时候其实slow.val = fast.val.
 
-O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+#### Hash Table
+- O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+
 
 
 ---
@@ -4089,7 +4094,7 @@ reset() 给出最初的nums
 
 ---
 
-**224. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table]
+**224. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, Sliding Window]
       
 
 跟 Permutation in String 很像. 给短string p， 长string s.
@@ -5001,16 +5006,18 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 **271. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
       
 
+#### BFS
+- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
+- depth definition: reach to a leaf node, where node.left == null && node.right == null
+- BFS using queue, track level.
+
+
 #### DFS
 - Divide and Conquery一个最小值. 
 - 注意处理Leaf的null: null leaf 出现的时候, 就忽略这个leaf, 直接return算有leaf
 - 另一种count的方法: 用Integer.MAX_VALUE代替 null leaf，这样可以避免错误counting. (不能直接recursive)
 - 这个无论如何都要走所有node, 所以dfs应该比较适合.
 
-#### BFS
-- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
-- depth definition: reach to a leaf node, where node.left == null && node.right == null
-- BFS using queue, track level.
 
 
 
@@ -5533,7 +5540,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 #### 特点
 - 与 `Binary Tree Longest Consecutive Sequence II` 在recursive的做法上很相似: 
 - 利用dfs做包括root的recursive computation
-- 利用这个function自己, 做不包括root的recursive computation
+- 利用这个function自己, 做`不包括root的recursive computation`
 
 
 

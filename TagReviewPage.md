@@ -4522,16 +4522,18 @@ is completely filled, and all nodes are as far left as possible
 **11. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
       
 
+#### BFS
+- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
+- depth definition: reach to a leaf node, where node.left == null && node.right == null
+- BFS using queue, track level.
+
+
 #### DFS
 - Divide and Conquery一个最小值. 
 - 注意处理Leaf的null: null leaf 出现的时候, 就忽略这个leaf, 直接return算有leaf
 - 另一种count的方法: 用Integer.MAX_VALUE代替 null leaf，这样可以避免错误counting. (不能直接recursive)
 - 这个无论如何都要走所有node, 所以dfs应该比较适合.
 
-#### BFS
-- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
-- depth definition: reach to a leaf node, where node.left == null && node.right == null
-- BFS using queue, track level.
 
 
 
@@ -6487,16 +6489,18 @@ space: O(n), O(1) rolling array
 **29. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
       
 
+#### BFS
+- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
+- depth definition: reach to a leaf node, where node.left == null && node.right == null
+- BFS using queue, track level.
+
+
 #### DFS
 - Divide and Conquery一个最小值. 
 - 注意处理Leaf的null: null leaf 出现的时候, 就忽略这个leaf, 直接return算有leaf
 - 另一种count的方法: 用Integer.MAX_VALUE代替 null leaf，这样可以避免错误counting. (不能直接recursive)
 - 这个无论如何都要走所有node, 所以dfs应该比较适合.
 
-#### BFS
-- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
-- depth definition: reach to a leaf node, where node.left == null && node.right == null
-- BFS using queue, track level.
 
 
 
@@ -6735,7 +6739,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 #### 特点
 - 与 `Binary Tree Longest Consecutive Sequence II` 在recursive的做法上很相似: 
 - 利用dfs做包括root的recursive computation
-- 利用这个function自己, 做不包括root的recursive computation
+- 利用这个function自己, 做`不包括root的recursive computation`
 
 
 
@@ -8051,14 +8055,16 @@ O(n)
 **5. [Island Perimeter.java](https://github.com/awangdev/LintCode/blob/master/Java/Island%20Perimeter.java)**      Level: Easy      Tags: [Hash Table]
       
 
-最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
-最后合计结果就好.
+#### Brutle
+- 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
+- 最后合计结果就好.
 
-不必想太多用HashMap做.但是也可以思考一下:
+#### Hash Table
+- 不必想太多用HashMap做.但是也可以思考一下:
 - 把每个block相连的block全部存在以当下block为key的list里面. 那么这里需要把2D坐标, 转化成一个index.
 - 最后得到的map, 所有的key-value应该都有value-key的反向mapping, 那么久可以消除干净, 每一次消除就是一个shared wall.
 - 一点点optimization: DFS去找所有的island, 如果island的图非常大, 而island本身不打,那么适合optimize.
-  但是整体代码过于复杂. 不建议写.
+- 但是整体代码过于复杂. 不建议写.
 
 
 
@@ -8318,7 +8324,7 @@ Unsorted array, 找出是否有duplicate elemenets: 必要条件是, 这两个el
 
 ---
 
-**20. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table]
+**20. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, Sliding Window]
       
 
 跟 Permutation in String 很像. 给短string p， 长string s.
@@ -10136,7 +10142,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 #### 特点
 - 与 `Binary Tree Longest Consecutive Sequence II` 在recursive的做法上很相似: 
 - 利用dfs做包括root的recursive computation
-- 利用这个function自己, 做不包括root的recursive computation
+- 利用这个function自己, 做`不包括root的recursive computation`
 
 
 
@@ -11179,16 +11185,18 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 **19. [Minimum Depth of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Depth%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [BFS, DFS, Tree]
       
 
+#### BFS
+- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
+- depth definition: reach to a leaf node, where node.left == null && node.right == null
+- BFS using queue, track level.
+
+
 #### DFS
 - Divide and Conquery一个最小值. 
 - 注意处理Leaf的null: null leaf 出现的时候, 就忽略这个leaf, 直接return算有leaf
 - 另一种count的方法: 用Integer.MAX_VALUE代替 null leaf，这样可以避免错误counting. (不能直接recursive)
 - 这个无论如何都要走所有node, 所以dfs应该比较适合.
 
-#### BFS
-- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
-- depth definition: reach to a leaf node, where node.left == null && node.right == null
-- BFS using queue, track level.
 
 
 
@@ -11466,7 +11474,7 @@ count所有存在的 path sum == target sum. 可以从任意点开始. 但是只
 #### 特点
 - 与 `Binary Tree Longest Consecutive Sequence II` 在recursive的做法上很相似: 
 - 利用dfs做包括root的recursive computation
-- 利用这个function自己, 做不包括root的recursive computation
+- 利用这个function自己, 做`不包括root的recursive computation`
 
 
 
@@ -14281,10 +14289,13 @@ Singly-linked list需要reverse, 用stack.
 **6. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
-O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
-那个时候其实slow.val = fast.val.
+#### Two Pointer: Slow Fast Pointer
+- O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
+- 那个时候其实slow.val = fast.val.
 
-O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+#### Hash Table
+- O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+
 
 
 ---
@@ -17597,10 +17608,13 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 **13. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
-O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
-那个时候其实slow.val = fast.val.
+#### Two Pointer: Slow Fast Pointer
+- O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
+- 那个时候其实slow.val = fast.val.
 
-O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+#### Hash Table
+- O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+
 
 
 ---
@@ -19795,7 +19809,7 @@ space: O(n), O(1) rolling array
  
  
  
-## Sliding Window (4)
+## Sliding Window (5)
 **0. [Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)**      Level: Hard      Tags: [Sliding Window]
       
 
@@ -19807,7 +19821,24 @@ space: O(n), O(1) rolling array
 
 ---
 
-**1. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
+**1. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, Sliding Window]
+      
+
+跟 Permutation in String 很像. 给短string p， 长string s.
+
+找所有p的 anagram (permutation) 在s 里面的起始index.
+
+#### HashTable
+- count character apperance 就想到hashtable
+- 注意countS, countP 的技巧: 作比较只需要O(26)
+- Overall timeO(n)
+- 小心不要用一个int[] count 来技术 查0, 复杂度是O(n)
+
+
+
+---
+
+**2. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
@@ -19829,7 +19860,7 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
 
 ---
 
-**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
+**3. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
       
 
 给一个interface, design一个structure, 能够计算moving window average.
@@ -19842,7 +19873,7 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
 
 ---
 
-**3. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+**4. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
       
 
 如题.

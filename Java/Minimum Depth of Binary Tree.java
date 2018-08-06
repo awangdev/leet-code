@@ -2,16 +2,18 @@ E
 1525669253
 tags: Tree, DFS, BFS
 
+#### BFS
+- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
+- depth definition: reach to a leaf node, where node.left == null && node.right == null
+- BFS using queue, track level.
+
+
 #### DFS
 - Divide and Conquery一个最小值. 
 - 注意处理Leaf的null: null leaf 出现的时候, 就忽略这个leaf, 直接return算有leaf
 - 另一种count的方法: 用Integer.MAX_VALUE代替 null leaf，这样可以避免错误counting. (不能直接recursive)
 - 这个无论如何都要走所有node, 所以dfs应该比较适合.
 
-#### BFS
-- Shortest path; minimum depth: 想到BFS, check level by level, BFS更能确保更快找到结果
-- depth definition: reach to a leaf node, where node.left == null && node.right == null
-- BFS using queue, track level.
 
 ```
 /*

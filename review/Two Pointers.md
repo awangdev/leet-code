@@ -216,10 +216,13 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 **13. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
-O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
-那个时候其实slow.val = fast.val.
+#### Two Pointer: Slow Fast Pointer
+- O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
+- 那个时候其实slow.val = fast.val.
 
-O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+#### Hash Table
+- O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然是有Cycle
+
 
 
 ---

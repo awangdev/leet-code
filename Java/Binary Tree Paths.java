@@ -45,15 +45,42 @@ Tags Expand
 Binary Tree Binary Tree Traversal Facebook Google
 */
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
+// cleaner:
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> rst = new ArrayList<>();
+        if (root == null) {
+            return rst;
+        }
+        dfs(rst, new ArrayList<>(), root);
+        return rst;
+    }
+    
+    public void dfs(List<String> rst, List<Integer> list, TreeNode node) {
+        if (node == null) return;
+        
+        list.add(node.val);
+        if (node.left == null && node.right == null) {
+            rst.add(convert(list));
+            list.remove(list.size() - 1);
+            return;
+        }
+        
+        dfs(rst, list, node.left);
+        dfs(rst, list, node.right);
+        list.remove(list.size() - 1);
+    }
+    
+    private String convert(List<Integer> list) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < list.size() - 1; i++) {
+            sb.append(list.get(i) + "->");
+        }
+        sb.append(list.get(list.size() - 1));
+        return sb.toString();
+    }
+}
+
 /*
 Basic dfs, pass along sb, List<String>.
 Save when root == null.

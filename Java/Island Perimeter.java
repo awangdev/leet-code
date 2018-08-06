@@ -2,19 +2,31 @@ E
 1516263328
 tags: Hash Table
 
-最简单的方法: 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
-最后合计结果就好.
+#### Brutle
+- 每个格子4个墙;每个shared的墙要-2 (墙是两面, -1 * 2)
+- 最后合计结果就好.
 
-不必想太多用HashMap做.但是也可以思考一下:
+#### Hash Table
+- 不必想太多用HashMap做.但是也可以思考一下:
 - 把每个block相连的block全部存在以当下block为key的list里面. 那么这里需要把2D坐标, 转化成一个index.
 - 最后得到的map, 所有的key-value应该都有value-key的反向mapping, 那么久可以消除干净, 每一次消除就是一个shared wall.
 - 一点点optimization: DFS去找所有的island, 如果island的图非常大, 而island本身不打,那么适合optimize.
-  但是整体代码过于复杂. 不建议写.
+- 但是整体代码过于复杂. 不建议写.
 
 
 ```
 /*
-You are given a map in form of a two-dimensional integer grid where 1 represents land and 0 represents water. Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells). The island doesn't have "lakes" (water inside that isn't connected to the water around the island). One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island.
+You are given a map in form of a two-dimensional integer grid 
+where 1 represents land and 0 represents water. 
+Grid cells are connected horizontally/vertically (not diagonally). 
+The grid is completely surrounded by water, and there is exactly one island 
+(i.e., one or more connected land cells). 
+
+The island doesn't have "lakes" (water inside that isn't connected to the water around the island). 
+One cell is a square with side length 1. 
+
+The grid is rectangular, width and height don't exceed 100. 
+Determine the perimeter of the island.
 
 Example:
 
@@ -38,7 +50,6 @@ class Solution {
         if (grid == null || grid.length == 0 || grid[0].length == 0) {
             return 0;
         }
-        final Map<Integer, ArrayList<Integer>> map = new HashMap<>();
         final int[] dx = {1, -1, 0, 0};
         final int[] dy = {0, 0, 1, -1};
 

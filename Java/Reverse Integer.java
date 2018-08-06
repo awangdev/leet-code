@@ -76,11 +76,11 @@ class Solution {
     public int reverse(int x) {
         long result = (long) x;
         char[] arr = (Math.abs(result) + "").toCharArray();
-        int arrLength = arr.length;
-        for (int i = 0; i < arrLength/2; i++) {
+        int n = arr.length;
+        for (int i = 0; i < n/2; i++) {
             char temp = arr[i];
-            arr[i] = arr[arrLength - i - 1];
-            arr[arrLength - i - 1] = temp;
+            arr[i] = arr[n - i - 1];
+            arr[n - i - 1] = temp;
         }
         result = Long.parseLong(String.valueOf(arr)) * (x > 0 ? 1 : -1);
         if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
