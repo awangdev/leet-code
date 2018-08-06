@@ -1,7 +1,9 @@
 E
+1533542058
+tags: Hash Table, Two Pointers, Binary Search, Sort
 
-方法1: 用到hashset找unique && duplicate: O(m+n)
-方法2: 可以用binary search 找数字. Note:binary search一定需要array sorted: nLog(m)
+- 方法1: 用到hashset找unique && duplicate: O(m+n)
+- 方法2: 可以用binary search 找数字. Note:binary search一定需要array sorted: nLog(m)
 
 ```
 /*
@@ -27,19 +29,19 @@ class Solution {
         if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) {
             return new int[0];
         }
-        final Set<Integer> unionSet = new HashSet<>();
-        final Set<Integer> resultSet = new HashSet<>();
-        for (final int num: nums1) {
+        Set<Integer> unionSet = new HashSet<>();
+        Set<Integer> resultSet = new HashSet<>();
+        for (int num: nums1) {
             unionSet.add(num);
         }
-        for (final int num: nums2) {
+        for (int num: nums2) {
             if (unionSet.contains(num)) {
                 resultSet.add(num);
             }
         }
         int i = 0;
-        final int[] result = new int[resultSet.size()];
-        for (final int num: resultSet) {
+        int[] result = new int[resultSet.size()];
+        for (int num: resultSet) {
             result[i++] = num;
         }
         return result;

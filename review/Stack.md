@@ -1,7 +1,7 @@
  
  
  
-## Stack (28)
+## Stack (29)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -582,6 +582,17 @@ space: O(n)
 
 **27. [Backspace String Compare.java](https://github.com/awangdev/LintCode/blob/master/Java/Backspace%20String%20Compare.java)**      Level: Easy      Tags: [Stack, Two Pointers]
       
+
+
+
+---
+
+**28. [Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Parentheses.java)**      Level: Easy      Tags: [Stack, String]
+      
+
+剥皮过程。解铃还须系铃人   
+左边的外皮'{['在stack底部   
+右边的外皮应该和stack顶上的左外皮一一对应 
 
 
 

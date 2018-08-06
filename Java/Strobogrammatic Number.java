@@ -1,6 +1,12 @@
 E
+1533542248
+tags: Hash Table, Math
 
 根据题意枚举, 再根据规则basic implementation
+
+#### Alter input
+
+#### HashTable + Two Pointer
 
 ```
 /*

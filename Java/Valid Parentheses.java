@@ -1,10 +1,10 @@
 E
+1533542429
+tags: String, Stack
 
 剥皮过程。解铃还须系铃人   
 左边的外皮'{['在stack底部   
 右边的外皮应该和stack顶上的左外皮一一对应 
-
-
 
 ```
 /*
@@ -19,17 +19,12 @@ Stack
 
 //lock will be unlocked by the same key
 //put in stack. when '),],}' appears, check stack.top() to make sure they are good match
-/*
-Use stack to hold the parentheses (head/tail) and remove them accordingly.
-*/
+// Use stack to hold the parentheses (head/tail) and remove them accordingly.
 class Solution {
     public boolean isValid(String s) {
-        if (s == null || s.length() == 0) {
-            return true;
-        }
-        final char[] charArray = s.toCharArray();
-        final Stack<Character> stack = new Stack<Character>();
-        for (char c : charArray) {
+        if (s == null || s.length() == 0) return true;
+        final Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
             if (c == '(' || c == '{' || c == '[') {
                 stack.add(c);
             } else if (c == ')' || c == '}' || c == ']') {
@@ -50,7 +45,6 @@ class Solution {
         return stack.isEmpty();
     }
 }
-
 
 /*
 	Thoughts:

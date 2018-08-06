@@ -1,7 +1,7 @@
  
  
  
-## String (57)
+## String (59)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -1020,6 +1020,30 @@ Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(bu
 
 #### regular expression
 - if (!str.matches("[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)")).  猛了一点
+
+
+
+---
+
+**57. [Roman to Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Roman%20to%20Integer.java)**      Level: Easy      Tags: [Math, String]
+      
+
+熟悉罗马字母规则     
+1. 'I V X L C D M' 分别代表的数字     
+2. 列举combo的情况，需要从原sum里面减掉多加的部分： 'IV, IX'减2, 'XL, XC'减20, 'CD, CM'减200. 
+
+https://en.wikipedia.org/wiki/Roman_numerals
+
+
+
+---
+
+**58. [Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Parentheses.java)**      Level: Easy      Tags: [Stack, String]
+      
+
+剥皮过程。解铃还须系铃人   
+左边的外皮'{['在stack底部   
+右边的外皮应该和stack顶上的左外皮一一对应 
 
 
 
