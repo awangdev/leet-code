@@ -331,7 +331,7 @@ SegmentTree大集合. Methods: `build, query, modify`. 不难。只是要都记�
  
  
  
-## String (52)
+## String (53)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -1246,6 +1246,40 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 #### Palindrome String
 - delete an index = jump over the index
 - 注意 boolean chance 可以用一个helper function
+
+
+
+---
+
+**52. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+      
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
 
 
 
@@ -4027,7 +4061,7 @@ TODO
  
  
  
-## BFS (30)
+## BFS (31)
 **0. [Minimum Height Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Height%20Trees.java)**      Level: Medium      Tags: [BFS, Graph]
       
 
@@ -4813,6 +4847,40 @@ space: O(n)
 
 ---
 
+**30. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+      
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
 
 
 
@@ -5086,7 +5154,7 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
  
  
  
-## Design (20)
+## Design (21)
 **0. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
       
 
@@ -5502,13 +5570,26 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 
 ---
 
+**20. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+      
+
+给一个interface, design一个structure, 能够计算moving window average.
+
+#### Queue
+- 读懂题目, 注意average 和 window 的处理.
+- 简单的queue.size() comparison
+
+
+
+---
+
 
 
 
  
  
  
-## DFS (85)
+## DFS (87)
 **0. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
       
 
@@ -7505,6 +7586,52 @@ space: O(1)
 
 ---
 
+**85. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+      
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
+**86. [Flood Fill.java](https://github.com/awangdev/LintCode/blob/master/Java/Flood%20Fill.java)**      Level: Easy      Tags: [DFS]
+      
+
+Same as MS Paint
+
+#### DFS 
+- track `boolean[][] visited`, validate before dfs
+
+
+
+---
+
 
 
 
@@ -7670,7 +7797,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (58)
+## Hash Table (59)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -8864,13 +8991,47 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 
 ---
 
+**58. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+      
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
 
 
 
  
  
  
-## Backtracking (30)
+## Backtracking (31)
 **0. [Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)**      Level: Medium      Tags: [Backtracking]
       
 
@@ -9644,6 +9805,40 @@ space: O(n!)
 
 ---
 
+**30. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+      
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
 
 
 
@@ -10316,7 +10511,7 @@ space: O(n)
  
  
  
-## Tree (52)
+## Tree (53)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
@@ -11390,6 +11585,22 @@ space: O(1)
 - 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
 - extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
 - 要求in-place: 不能重新create new node
+
+
+
+---
+
+**52. [Diameter of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Diameter%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [Tree]
+      
+
+找longest path (include or not include root)
+
+跟Binary Tree Maximum Path Sum 的想法一样: 处理single path, 或者combined path (do not include curr root)
+
+#### Singlepath, combined path
+- `int[]{combinedPath, singlePath}`;
+- pick single path + 1: `singlePath = Math.max(left[1] , right[1]) + 1`;
+- complete left/right child, or join curr root: `combinedPath = Math.max(Math.max(left[0], right[0]), left[1] + right[1] + 1)`;
 
 
 
@@ -13713,23 +13924,7 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
  
  
 ## Linked List (31)
-**0. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy      Tags: [Linked List]
-      
-1525664839
-
-给两个 linked list, 问从哪个node开始, 两个 linked list 开始有重复?
-
-#### Basics
-- 长短list，找重合点
-- 长度不同的话，切掉长的list那个的extra length
-- 那么起点一样后，重合点就会同时到达
-- Time O(n) * 2, constant space
-
-
-
----
-
-**1. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium      Tags: [Hash Table, Linked List]
+**0. [Majority Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20III.java)**      Level: Medium      Tags: [Hash Table, Linked List]
       
 
 TODO: 
@@ -13748,7 +13943,7 @@ TODO:
 
 ---
 
-**2. [Remove Duplicates from Unsorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Unsorted%20List.java)**      Level: Medium      Tags: [Linked List]
+**1. [Remove Duplicates from Unsorted List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicates%20from%20Unsorted%20List.java)**      Level: Medium      Tags: [Linked List]
       
 
 基本方法: O(n) sapce, time
@@ -13768,7 +13963,7 @@ TODO:
 
 ---
 
-**3. [Two Lists Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Lists%20Sum.java)**      Level: Medium      Tags: [Linked List]
+**2. [Two Lists Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Lists%20Sum.java)**      Level: Medium      Tags: [Linked List]
       
 
 给两个Linked list, sum up and 合成新的list
@@ -13777,7 +13972,7 @@ TODO:
 
 ---
 
-**4. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium      Tags: [Linked List, Math]
+**3. [Add Two Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers.java)**      Level: Medium      Tags: [Linked List, Math]
       
 
 LinkedList都已经反转好了，直接做.
@@ -13794,7 +13989,7 @@ Linked List 没有天然size.
 
 ---
 
-**5. [Add Two Numbers II.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers%20II.java)**      Level: Medium      Tags: [Linked List]
+**4. [Add Two Numbers II.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Two%20Numbers%20II.java)**      Level: Medium      Tags: [Linked List]
       
 
 Singly-linked list需要reverse, 用stack.
@@ -13809,7 +14004,7 @@ Singly-linked list需要reverse, 用stack.
 
 ---
 
-**6. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List]
+**5. [Convert Sorted List to Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DFS, Divide and Conquer, Linked List]
       
 
 如题, 把一个sorted singly linked list 转换成一个 height balanced BST
@@ -13834,7 +14029,7 @@ Singly-linked list需要reverse, 用stack.
 
 ---
 
-**7. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
+**6. [Linked List Cycle.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
 O(1) sapce: 用快慢指针。一个跑.next, 一个跑.next.next。 总有一次，fast会因为cycle而追上slow。
@@ -13845,7 +14040,7 @@ O(n) space: 用HashMap，一直add elements.  如果有重复，那么很显然�
 
 ---
 
-**8. [Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
+**7. [Remove Nth Node From End of List.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Nth%20Node%20From%20End%20of%20List.java)**      Level: Medium      Tags: [Linked List, Two Pointers]
       
 
 O(n), one pace, no extra space
@@ -13855,7 +14050,7 @@ O(n), one pace, no extra space
 
 ---
 
-**9. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium      Tags: [Linked List, Math, Two Pointers]
+**8. [Linked List Cycle II.java](https://github.com/awangdev/LintCode/blob/master/Java/Linked%20List%20Cycle%20II.java)**      Level: Medium      Tags: [Linked List, Math, Two Pointers]
       
 
 LinkedList 里面有 cycle, 找到cycle的起始点(第一个重复出现的element).
@@ -13885,7 +14080,7 @@ LinkedList 里面有 cycle, 找到cycle的起始点(第一个重复出现的elem
 
 ---
 
-**10. [Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)**      Level: Medium      Tags: [Linked List]
+**9. [Swap Nodes in Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Swap%20Nodes%20in%20Pairs.java)**      Level: Medium      Tags: [Linked List]
       
 
 #### enumurate 
@@ -13902,7 +14097,7 @@ pre.next.next 保证了至少有一次swap.
 
 ---
 
-**11. [Delete Node in a Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20a%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
+**10. [Delete Node in a Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Node%20in%20a%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 Given Singlely linked list, 删除一个任意node (不能是head node)
@@ -13915,7 +14110,7 @@ Given Singlely linked list, 删除一个任意node (不能是head node)
 
 ---
 
-**12. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium      Tags: [Linked List, Sort]
+**11. [Insertion Sort List.java](https://github.com/awangdev/LintCode/blob/master/Java/Insertion%20Sort%20List.java)**      Level: Medium      Tags: [Linked List, Sort]
       
 
 input一串数字, 需要出sorted output. 每次insert一个数字时, 都要放到正确的sorted的位置
@@ -13936,7 +14131,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**13. [Middle of Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Middle%20of%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
+**12. [Middle of Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Middle%20of%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 找Linked List的中间node
@@ -13949,7 +14144,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**14. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy      Tags: [Linked List]
+**13. [Remove Linked List Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Linked%20List%20Elements.java)**      Level: Easy      Tags: [Linked List]
       
 
 从linked list 里面去掉所有的 target
@@ -13962,7 +14157,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**15. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
+**14. [Palindrome Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Linked%20List.java)**      Level: Easy      Tags: [Linked List, Two Pointers]
       
 
 #### Reverse Linked List
@@ -13979,7 +14174,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**16. [Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
+**15. [Reverse Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List.java)**      Level: Easy      Tags: [Linked List]
       
 
 #### Reverse List
@@ -13992,7 +14187,7 @@ input一串数字, 需要出sorted output. 每次insert一个数字时, 都要�
 
 ---
 
-**17. [Reverse Linked List II .java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List%20II%20.java)**      Level: Medium      Tags: [Linked List]
+**16. [Reverse Linked List II .java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Linked%20List%20II%20.java)**      Level: Medium      Tags: [Linked List]
       
 
 reverse 一个 linked list 中  [m ~ n] 的一部分.
@@ -14010,6 +14205,21 @@ reverse 一个 linked list 中  [m ~ n] 的一部分.
 - 存一下那个点，
 - 从M开始， for loop， reverse [m~n]。 然后把三段链接在一起。
 
+
+
+
+---
+
+**17. [Intersection of Two Linked Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Intersection%20of%20Two%20Linked%20Lists.java)**      Level: Easy      Tags: [Linked List]
+      
+
+给两个 linked list, 问从哪个node开始, 两个 linked list 开始有重复?
+
+#### Basics
+- 长短list，找重合点
+- 长度不同的话，切掉长的list那个的extra length
+- 那么起点一样后，重合点就会同时到达
+- Time O(n) * 2, constant space
 
 
 
@@ -14276,7 +14486,7 @@ space: O(1)
  
  
  
-## Stack (27)
+## Stack (28)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -14850,6 +15060,13 @@ space: O(n)
 - 3. `Not mentione in the question`: a fn cannot start if children fn starts
 - 4. Use stack to keep id
 - TODO: what leads to the choice of stack? stacking fn id
+
+
+
+---
+
+**27. [Backspace String Compare.java](https://github.com/awangdev/LintCode/blob/master/Java/Backspace%20String%20Compare.java)**      Level: Easy      Tags: [Stack, Two Pointers]
+      
 
 
 
@@ -16905,7 +17122,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Two Pointers (33)
+## Two Pointers (35)
 **0. [Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
@@ -17482,6 +17699,26 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 #### Basics
 - A够长，那么可以从A的尾部开始加新元素。     
 - 注意，从尾部，是大数字优先排末尾的.  
+
+
+
+---
+
+**33. [Move Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Move%20Zeroes.java)**      Level: Easy      Tags: [Array, Two Pointers]
+      
+
+Move non-zero elements to front of array; preseve order.
+
+#### Two Pointers
+- Outside pointer that moves in certain condition. 
+- Save appropirate elements
+
+
+
+---
+
+**34. [Backspace String Compare.java](https://github.com/awangdev/LintCode/blob/master/Java/Backspace%20String%20Compare.java)**      Level: Easy      Tags: [Stack, Two Pointers]
+      
 
 
 
@@ -20013,7 +20250,7 @@ space: O(1)
  
  
  
-## Queue (2)
+## Queue (3)
 **0. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
@@ -20063,6 +20300,19 @@ space: O(1)
 - 如果qp 真的穷尽, break, return count
 - 不然, count + remain of k
 - extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+
+
+
+---
+
+**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+      
+
+给一个interface, design一个structure, 能够计算moving window average.
+
+#### Queue
+- 读懂题目, 注意average 和 window 的处理.
+- 简单的queue.size() comparison
 
 
 
@@ -21958,7 +22208,7 @@ Serialize and Deserialize Binary Tree
  
  
  
-## Array (104)
+## Array (106)
 **0. [Missing Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Ranges.java)**      Level: Medium      Tags: [Array]
       
 
@@ -24147,6 +24397,53 @@ Understand it is only checking time, but not requiring to insert into right spot
 #### Basics
 - A够长，那么可以从A的尾部开始加新元素。     
 - 注意，从尾部，是大数字优先排末尾的.  
+
+
+
+---
+
+**104. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+      
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
+**105. [Move Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Move%20Zeroes.java)**      Level: Easy      Tags: [Array, Two Pointers]
+      
+
+Move non-zero elements to front of array; preseve order.
+
+#### Two Pointers
+- Outside pointer that moves in certain condition. 
+- Save appropirate elements
 
 
 

@@ -1,8 +1,193 @@
 H
+1533502615
+tags: Array, String, Backtracking, BFS, DFS, Hash Table
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
 
 ```
+/**
+LeetCode: interface has List<string>, and input dict has to contain end word, but it does not contain start word.
+Given two words (beginWord and endWord), and a dictionary's word list, 
+find all shortest transformation sequence(s) from beginWord to endWord, such that:
+
+Only one letter can be changed at a time
+Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
+Note:
+
+Return an empty list if there is no such transformation sequence.
+All words have the same length.
+All words contain only lowercase alphabetic characters.
+You may assume no duplicates in the word list.
+You may assume beginWord and endWord are non-empty and are not the same.
+Example 1:
+
+Input:
+beginWord = "hit",
+endWord = "cog",
+wordList = ["hot","dot","dog","lot","log","cog"]
+
+Output:
+[
+  ["hit","hot","dot","dog","cog"],
+  ["hit","hot","lot","log","cog"]
+]
+Example 2:
+
+Input:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log"]
+
+Output: []
+
+Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
+
+*/
+// 69%
+/*
+
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+*/
+/*
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+*/
+// Bi-directional search
+class Solution {
+    Set<String> dict;
+    Map<String, List<String>> mutation = new HashMap<>();
+    Map<String, Integer> distance = new HashMap<>();
+
+    public List<List<String>> findLadders(String start, String end, List<String> wordList) {
+        List<List<String>> rst = new ArrayList<>();
+        dict = new HashSet<>(wordList);
+        if (!dict.contains(end)) return rst;
+
+        prep(start);
+        //dfs(start, end, new ArrayList<>(), rst); // option1
+        bfs(start, end, rst); // option2
+        return rst;
+    }
+
+    //BFS/Prep to populate mutation and distance map.
+    public void prep(String start) {
+        //Init
+        Queue<String> queue = new LinkedList<>();
+        dict.add(start);
+        queue.offer(start);
+        distance.put(start, 0);
+        for (String s : dict) {
+            mutation.put(s, new ArrayList<>());
+        }
+        // process queue
+        while(!queue.isEmpty()) {
+            String str = queue.poll();
+            List<String> list = transform(str);
+
+            for (String s : list) {
+                mutation.get(s).add(str);
+                if (!distance.containsKey(s)) { // only record dist->s once, as shortest
+                    distance.put(s, distance.get(str) + 1);
+                    queue.offer(s);
+                }
+            }
+        }
+    }
+    
+    // Option2: bfs, bi-directional search
+    public void bfs(String start, String end, List<List<String>> rst) {
+        Queue<List<String>> queue = new LinkedList<>();
+        List<String> list = new ArrayList<>();
+        list.add(end);
+        queue.offer(new ArrayList<>(list));
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size > 0) {
+                list = queue.poll();
+                String str = list.get(0);
+                
+                for (String s : mutation.get(str)) {//All prior-mutation sources
+                    list.add(0, s);
+                    if (s.equals(start)) {
+                        rst.add(new ArrayList<>(list));
+                    } else if (distance.containsKey(s) && distance.get(str) - 1 == distance.get(s)) {
+                        //Only pick those that's 1 step away: keep minimum steps for optimal solution
+                        queue.offer(new ArrayList<>(list));
+                    }
+                    list.remove(0);
+                }
+                size--;
+            }
+        }
+    }
+
+    // Option1: DFS to trace back from end string to start string. If reach start string, save result.
+    // Use distance<s, distance> to make sure only trace to 1-unit distance candidate
+    public void dfs(String start, String str, List<String> path, List<List<String>> rst) {
+        path.add(0, str);
+        if (str.equals(start)) {
+            rst.add(new ArrayList<String>(path));
+            path.remove(0);
+            return;
+        } 
+        //Trace 1 step towards start via dfs
+        for (String s : mutation.get(str)) {//All prior-mutation sources
+            //Only pick those that's 1 step away: keep minimum steps for optimal solution
+            if (distance.containsKey(s) && distance.get(str) - 1 == distance.get(s)) {
+                dfs(start, s, path, rst);
+            }
+        }
+        path.remove(0);
+    }
+
+    //Generate all possible mutations for word. Check against dic and skip word itself.
+    private List<String> transform(String word) {
+        List<String> candidates = new ArrayList<>();
+        StringBuffer sb = new StringBuffer(word);
+        for (int i = 0; i < sb.length(); i++) {
+            char temp = sb.charAt(i);
+            for (char c = 'a'; c <= 'z'; c++) {
+                if (temp == c) continue;
+                sb.setCharAt(i, c);
+                String newWord = sb.toString();
+                if (dict.contains(newWord)) {
+                    candidates.add(newWord);
+                }
+            }
+            sb.setCharAt(i, temp);//backtrack
+        }    
+        return candidates;
+    }
+}
 
 /*
+LintCode: interface has Set<String>, also, input dict does not contain end word.
 Given two words (start and end), and a dictionary, 
 find all shortest transformation sequence(s) from start to end, such that:
 
@@ -196,91 +381,4 @@ public class Solution {
     }
 }
 
-
-
-//Solution from NineChapter, commented:
-
-/*
-public class Solution {
-    public List<List<String>> findLadders(String start, String end,Set<String> dict) {
-        List<List<String>> ladders = new ArrayList<List<String>>();
-        Map<String, List<String>> map = new HashMap<String, List<String>>();
-        Map<String, Integer> distance = new HashMap<String, Integer>();
-
-        dict.add(start);
-        dict.add(end);
- 
-        bfs(map, distance, start, end, dict);
-        //Now at this step, we have: 
-        //a distance map of all mutated string from start, 
-        //a map of mutation and its list of 'pre-mutation' string
-        //dict: includes start and end
-        List<String> path = new ArrayList<String>();
-        
-        dfs(ladders, path, end, start, distance, map);
-
-        return ladders;
-    }
-    //crt: is not necessarily the 'end', since this is a recursive method
-    //crt at first is the 'end' string, then it's switching to other strings inorder to finally matches 'start'
-    void dfs(List<List<String>> ladders, List<String> path, String crt,
-            String start, Map<String, Integer> distance,
-            Map<String, List<String>> map) {
-        path.add(crt);
-        if (crt.equals(start)) {//Now, finally if the crt makes it to start and equals to start, we found a match.
-            Collections.reverse(path);//We had a reversed path
-            ladders.add(new ArrayList<String>(path));//add
-            Collections.reverse(path);//need to reverse it back, becase we need 'path' for more recursive calls.
-        } else {
-            for (String next : map.get(crt)) {//Find all possible tranformations/mutations that can turn itself into crt: we have a ArrayList of candidates (pre-mutated strings)
-                if (distance.containsKey(next) && distance.get(crt) == distance.get(next) + 1) { //if that mutation is just 1 step different, that's good, which means these mutation takes minimum of 1 step to happen. Note: we are comparing the distance to start point.
-                    dfs(ladders, path, next, start, distance, map);//If that's the case, pass varibles to next level: use new path (with crt added), and use the 'next' string (which is 1 step closer to start) for next level of searching.
-                }
-            }           
-        }
-        path.remove(path.size() - 1);//remove that ending crt, since 'path' is shared in recursive methods, need to keep it cleaned.
-    }
-//map: each string in the dict (including start, end) represents a key, and the value is a ArrayList of string.
-    void bfs(Map<String, List<String>> map, Map<String, Integer> distance, String start, String end, Set<String> dict) {
-        Queue<String> q = new LinkedList<String>();
-        q.offer(start);
-        distance.put(start, 0);//Distance: key: str, value: distance value from start.
-        for (String s : dict) {
-            map.put(s, new ArrayList<String>());
-        }
-        
-        while (!q.isEmpty()) {
-            String crt = q.poll();//Get head of queue, the item currently we are looking at. Called X.
-
-            List<String> nextList = expand(crt, dict);//generate all possible mutations (must exist in dict)
-            for (String next : nextList) {//For all mutations
-                map.get(next).add(crt);//append X to end of all of the mutated string (this will become a reverse order). This creates a path of mutation
-                if (!distance.containsKey(next)) {//If that mutated string never occured:
-                    distance.put(next, distance.get(crt) + 1);//add distance to this mutation. This is fixed and will never change, btw. This becomes a list of all mutations and distance from start.
-                    q.offer(next);//Add this mutation to queue.
-                }
-            }
-        }
-    }
-//all possible mutations based on 1 str polled from the queue.
-    List<String> expand(String crt, Set<String> dict) {
-        List<String> expansion = new ArrayList<String>();
-
-        for (int i = 0; i < crt.length(); i++) {
-            for (char ch = 'a'; ch <= 'z'; ch++) {
-                if (ch != crt.charAt(i)) {
-                    String expanded = crt.substring(0, i) + ch
-                            + crt.substring(i + 1);
-                    if (dict.contains(expanded)) {
-                        expansion.add(expanded);
-                    }
-                }
-            }
-        }
-        return expansion;
-    }
-}
-
-
-*/
 ```

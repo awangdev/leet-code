@@ -1,7 +1,7 @@
  
  
  
-## Tree (52)
+## Tree (53)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
@@ -1075,6 +1075,22 @@ space: O(1)
 - 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
 - extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
 - 要求in-place: 不能重新create new node
+
+
+
+---
+
+**52. [Diameter of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Diameter%20of%20Binary%20Tree.java)**      Level: Easy      Tags: [Tree]
+      
+
+找longest path (include or not include root)
+
+跟Binary Tree Maximum Path Sum 的想法一样: 处理single path, 或者combined path (do not include curr root)
+
+#### Singlepath, combined path
+- `int[]{combinedPath, singlePath}`;
+- pick single path + 1: `singlePath = Math.max(left[1] , right[1]) + 1`;
+- complete left/right child, or join curr root: `combinedPath = Math.max(Math.max(left[0], right[0]), left[1] + right[1] + 1)`;
 
 
 

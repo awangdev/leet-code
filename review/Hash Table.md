@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (58)
+## Hash Table (59)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -1190,6 +1190,40 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 #### Trie, PriorityQueue, HashMap
 - Trie Prefix Search + maintain top k frequent items
 - 
+
+
+
+---
+
+**58. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+      
+
+给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
+
+变化方式: mutate 1 letter at a time.
+
+#### BFS + Reverse Search
+- 用BFS找最短路径.
+- 问题: how to effectively store the path, if the number of paths are really large? 
+- If we store Queue<List<String candidates>>: all possibilities will very large and not maintainable
+- 用BFS做出一个反向structure, 然后再reverse search
+
+##### BFS Prep Step
+- BFS 找到所有start string 可以走到的地方 s, 放在一个overall structure里面: 注意, 存的方式 Map<s, list of sources>
+- BFS时候每次都变化1step, 所以记录一次distance, 其实就是最短路径candidate (止步于此)
+- 1. 反向mutation map: `destination/end string -> all source candidates` using queue: `Mutation Map`
+- Mutation Map<s, List<possible src>>: list possible source strings to mutate into target key string.
+- 2. 反向distance map: `destination/end string -> shortest distance to reach dest`
+- Distance Map<s, possible/shortest distance>: shortest distance from to mutate into target key string.
+- BFS prep step 并没解决问题, 甚至都没有用到end string. 我们要用BFS建成的反向mapping structure, 做search
+
+##### Search using DFS
+- 从结尾end string 开始扫, 找所有可以reach的candidate && only visit candidate that is 1 step away
+- dfs 直到找到start string.
+
+##### Bi-directional BFS: Search using BFS
+- reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
+- `Queue<List<String>>` to store candidates, searching from end-> start
 
 
 

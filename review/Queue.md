@@ -1,7 +1,7 @@
  
  
  
-## Queue (2)
+## Queue (3)
 **0. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
@@ -51,6 +51,19 @@
 - 如果qp 真的穷尽, break, return count
 - 不然, count + remain of k
 - extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+
+
+
+---
+
+**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+      
+
+给一个interface, design一个structure, 能够计算moving window average.
+
+#### Queue
+- 读懂题目, 注意average 和 window 的处理.
+- 简单的queue.size() comparison
 
 
 

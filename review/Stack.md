@@ -1,7 +1,7 @@
  
  
  
-## Stack (27)
+## Stack (28)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -575,6 +575,13 @@ space: O(n)
 - 3. `Not mentione in the question`: a fn cannot start if children fn starts
 - 4. Use stack to keep id
 - TODO: what leads to the choice of stack? stacking fn id
+
+
+
+---
+
+**27. [Backspace String Compare.java](https://github.com/awangdev/LintCode/blob/master/Java/Backspace%20String%20Compare.java)**      Level: Easy      Tags: [Stack, Two Pointers]
+      
 
 
 

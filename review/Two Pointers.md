@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (33)
+## Two Pointers (35)
 **0. [Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
@@ -578,6 +578,26 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 #### Basics
 - A够长，那么可以从A的尾部开始加新元素。     
 - 注意，从尾部，是大数字优先排末尾的.  
+
+
+
+---
+
+**33. [Move Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Move%20Zeroes.java)**      Level: Easy      Tags: [Array, Two Pointers]
+      
+
+Move non-zero elements to front of array; preseve order.
+
+#### Two Pointers
+- Outside pointer that moves in certain condition. 
+- Save appropirate elements
+
+
+
+---
+
+**34. [Backspace String Compare.java](https://github.com/awangdev/LintCode/blob/master/Java/Backspace%20String%20Compare.java)**      Level: Easy      Tags: [Stack, Two Pointers]
+      
 
 
 

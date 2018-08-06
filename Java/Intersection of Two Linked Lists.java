@@ -1,6 +1,6 @@
 E
-tags: Linked List
 1525664839
+tags: Linked List
 
 给两个 linked list, 问从哪个node开始, 两个 linked list 开始有重复?
 

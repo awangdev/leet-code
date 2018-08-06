@@ -1,7 +1,7 @@
  
  
  
-## Design (20)
+## Design (21)
 **0. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
       
 
@@ -412,6 +412,19 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 #### Trie, PriorityQueue, HashMap
 - Trie Prefix Search + maintain top k frequent items
 - 
+
+
+
+---
+
+**20. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+      
+
+给一个interface, design一个structure, 能够计算moving window average.
+
+#### Queue
+- 读懂题目, 注意average 和 window 的处理.
+- 简单的queue.size() comparison
 
 
 
