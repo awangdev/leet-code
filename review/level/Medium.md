@@ -1,7 +1,7 @@
  
  
  
-## Medium (240)
+## Medium (241)
 **0. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium      Tags: []
       
 
@@ -5035,6 +5035,20 @@ space: O(1)
 - 自始至终用了同一个 `Node {val, left, right}`, 而并不是开一个新的doubley linked list class
 - extra space 的问题, 是因为它需要create new DoublyLinkedNode class: different from `Convert Binary Search Tree to Sorted Doubly Linked List (extra space)`
 - 要求in-place: 不能重新create new node
+
+
+
+---
+
+**240. [String to Integer (atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer%20(atoi).java)**      Level: Medium      Tags: [Math, String]
+      
+
+#### String 
+- check sign, leading-0, overall size > 11, check max/min in Long format 
+- if passed all tests, parseInt()
+
+#### regular expression
+- if (!str.matches("[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)")).  猛了一点
 
 
 

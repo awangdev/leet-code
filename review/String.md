@@ -1,7 +1,7 @@
  
  
  
-## String (56)
+## String (57)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -1006,6 +1006,20 @@ Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(bu
 - 原本想用 DP, 但是其实用 sliding window 的思想
 - sliding window 的切割: 用hashmap 存 last occurrance of char index; 
 - map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
+
+
+
+---
+
+**56. [String to Integer (atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer%20(atoi).java)**      Level: Medium      Tags: [Math, String]
+      
+
+#### String 
+- check sign, leading-0, overall size > 11, check max/min in Long format 
+- if passed all tests, parseInt()
+
+#### regular expression
+- if (!str.matches("[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)")).  猛了一点
 
 
 

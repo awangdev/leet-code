@@ -1,7 +1,7 @@
  
  
  
-## Math (34)
+## Math (35)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -597,6 +597,20 @@ space: O(n)
 - 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
 - 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
+
+
+
+---
+
+**34. [String to Integer (atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer%20(atoi).java)**      Level: Medium      Tags: [Math, String]
+      
+
+#### String 
+- check sign, leading-0, overall size > 11, check max/min in Long format 
+- if passed all tests, parseInt()
+
+#### regular expression
+- if (!str.matches("[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)")).  猛了一点
 
 
 
