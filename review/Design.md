@@ -358,7 +358,7 @@ space: O(n)
 
 ---
 
-**18. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**18. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
@@ -417,7 +417,7 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 
 ---
 
-**20. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+**20. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
       
 
 给一个interface, design一个structure, 能够计算moving window average.

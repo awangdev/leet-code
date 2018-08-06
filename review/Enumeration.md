@@ -1,7 +1,7 @@
  
  
  
-## Enumeration (8)
+## Enumeration (11)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -134,7 +134,20 @@ space: O(n)
 
 ---
 
-**7. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**7. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
+      
+
+Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
+
+#### String in char[] format
+- 理解题目: 其实就是track `可以read多少bytes by read4() response`
+- 另外一个有用的function `System.arraycopy(src, srcIndex, dest, destIndex, length)`
+
+
+
+---
+
+**8. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
@@ -152,6 +165,48 @@ space: O(n)
 - 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
 - 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
+
+
+
+---
+
+**9. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+按照规则 adjust text. 就是Word里面: 有一行太长, adjust word 中间的space, 然后保证每一行的total width 顶格.
+
+还有一些细节规则, 看原题
+
+#### String
+- Summing space = `width + (size-1)`. maintain: 1. list of candidates, 2. width of actual words
+- calculate space in between: `remain/(size - 1)`
+- overall for loop; clean up list: 1. over size; 2. last item
+- 一点也不难, 但是要小心: deal with list of string的时候, 注意处理干净sum size of list<string>, 就行了.
+- `干净处理space`: 只处理 (n-1) items, 然后最后一个拿到for loop 外面, 特殊处理.
+
+#### Notes
+- Clarification, observation:
+- can start with greedy approach to stack as many words as possible
+- once exceed the length, pop the top, and justify the added words (untouched words tracked by index)
+- left justify: given list/stack of words with size t, overall remaining space length m, 
+- deal with last line with special care: just fill one space, and fill the rest of the row with space
+- Does not seem very complicated, but need additional care of calculating the amount of space needed.
+- Overall runtime: O(n) to go over all space
+- Overall space O(maxWidth) for maxWidth amount of strings
+
+
+
+---
+
+**10. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(buf, n)
+
+#### String 
+- 注意String的index handle, 慢慢写edge case
+- 理解题目意思: `read4(char[] buf)` 这样的 `populate input object` 的function稍微少一点. 
+- 遇到时候, 仔细理解function用法, 不要慌乱. 其实思考方式很简单, 仔细handle string 还有 edge case就好了.
 
 
 

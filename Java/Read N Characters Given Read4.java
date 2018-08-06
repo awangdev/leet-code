@@ -1,6 +1,6 @@
 E
 1533408053
-tags: String
+tags: String, Enumeration
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
 

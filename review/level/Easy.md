@@ -2266,7 +2266,7 @@ HashSet to store visited items. Same old 2 sum trick.
 
 ---
 
-**146. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+**146. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -2303,7 +2303,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**149. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+**149. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
       
 
 给一个interface, design一个structure, 能够计算moving window average.

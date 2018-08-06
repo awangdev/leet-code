@@ -1,7 +1,7 @@
  
  
  
-## DP (82)
+## DP (83)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -2054,6 +2054,31 @@ space: O(n)
 - 注意：use long, use HashSet确保没有重复
 - O(nlogn)
 
+
+
+
+---
+
+**82. [Frog Jump.java](https://github.com/awangdev/LintCode/blob/master/Java/Frog%20Jump.java)**      Level: Hard      Tags: [DP, Hash Table]
+      
+
+Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps, 而k取决于上一步所跳的步数. 默认 0->1 一定是跳了1步.
+
+注意: int[] stones 里面是stone所在的unit (不是可以跳的步数, 不要理解错).
+
+#### DP
+- 原本想按照corrdiante dp 来做, 但是发现很多问题, 需要track 不同的 possible previous starting spot.
+- 根据jiuzhang答案: 按照定义, 用一个 map of <stone, Set<possible # steps to reach stone>>
+- 每次在处理一个stone的时候, 都根据他自己的 set of <previous steps>, 来走下三步: k-1, k, or k+1 steps.
+- 每次走一步, 查看 stone + step 是否存在; 如果存在, 就加进 next position: `stone+step`的 hash set 里面
+
+##### 注意init
+- `dp.put(stone, new HashSet<>())` mark 每个stone的存在
+- `dp.get(0).add(0)` init condition, 用来做 dp.put(1, 1)
+
+##### 思想
+- 最终做下来思考模式, 更像是BFS的模式: starting from (0,0), add all possible ways 
+- 然后again, try next stone with all possible future ways ... etc
 
 
 

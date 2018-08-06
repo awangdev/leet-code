@@ -1,6 +1,6 @@
 E
 1533510925
-tags:Design, Queue
+tags:Design, Queue, Sliding Window
 
 给一个interface, design一个structure, 能够计算moving window average.
 

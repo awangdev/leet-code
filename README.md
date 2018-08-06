@@ -65,7 +65,7 @@
 |44|[Single Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Single%20Number%20II.java)|Medium|Java|[Bit Manipulation]||
 |45|[Single Number III.java](https://github.com/awangdev/LintCode/blob/master/Java/Single%20Number%20III.java)|Medium|Java|[Bit Manipulation]||
 |46|[Single Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Single%20Number.java)|Easy|Java|[]||
-|47|[Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)|Hard|Java|[]||
+|47|[Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)|Hard|Java|[Sliding Window]||
 |48|[Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)|Medium|Java|[String]||
 |49|[Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)|Medium|Java|[DP]||
 |50|[String Permutation.java](https://github.com/awangdev/LintCode/blob/master/Java/String%20Permutation.java)|Easy|Java|[]||
@@ -477,11 +477,11 @@
 |456|[Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)|Medium|Java|[Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]||
 |457|[Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)|Medium|Java|[DP, Enumeration, Heap, Math, PriorityQueue]||
 |458|[Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)|Hard|Java|[Design, Heap, MaxHeap, MinHeap]||
-|459|[Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)|Hard|Java|[Design, Heap, MaxHeap, MinHeap]||
+|459|[Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)|Hard|Java|[Design, Heap, MaxHeap, MinHeap, Sliding Window]||
 |460|[Inorder Successor in BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Inorder%20Successor%20in%20BST.java)|Medium|Java|[BST, Tree]||
 |461|[Subtree of Another Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Subtree%20of%20Another%20Tree.java)|Easy|Java|[DFS, Divide and Conquer, Tree]||
 |462|[Two Sum IV - Input is a BST.java](https://github.com/awangdev/LintCode/blob/master/Java/Two%20Sum%20IV%20-%20Input%20is%20a%20BST.java)|Easy|Java|[Tree]||
-|463|[Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)|Easy|Java|[String]||
+|463|[Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)|Easy|Java|[Enumeration, String]||
 |464|[Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)|Hard|Java|[Design, Hash Table, MinHeap, PriorityQueue, Trie]||
 |465|[Walls and Gates.java](https://github.com/awangdev/LintCode/blob/master/Java/Walls%20and%20Gates.java)|Medium|Java|[BFS, DFS]||
 |466|[Merge Sorted Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20Sorted%20Array.java)|Easy|Java|[Array, Two Pointers]||
@@ -490,8 +490,13 @@
 |469|[Valid Palindrome II.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome%20II.java)|Easy|Java|[String]||
 |470|[Convert Binary Search Tree to Sorted Doubly Linked List.java](https://github.com/awangdev/LintCode/blob/master/Java/Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List.java)|Medium|Java|[BST, DFS, Divide and Conquer, Linked List, Tree]||
 |471|[Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)|Hard|Java|[Array, BFS, Backtracking, DFS, Hash Table, String]||
-|472|[Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)|Easy|Java|[Design, Queue]||
+|472|[Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)|Easy|Java|[Design, Queue, Sliding Window]||
 |473|[Move Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Move%20Zeroes.java)|Easy|Java|[Array, Two Pointers]||
 |474|[Flood Fill.java](https://github.com/awangdev/LintCode/blob/master/Java/Flood%20Fill.java)|Easy|Java|[DFS]||
 |475|[Diameter of Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Diameter%20of%20Binary%20Tree.java)|Easy|Java|[Tree]||
 |476|[Backspace String Compare.java](https://github.com/awangdev/LintCode/blob/master/Java/Backspace%20String%20Compare.java)|Easy|Java|[Stack, Two Pointers]||
+|477|[Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)|Hard|Java|[Enumeration, String]||
+|478|[Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)|Hard|Java|[Enumeration, String]||
+|479|[Frog Jump.java](https://github.com/awangdev/LintCode/blob/master/Java/Frog%20Jump.java)|Hard|Java|[DP, Hash Table]||
+|480|[Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)|Hard|Java|[Hash Table, Sliding Window, String, Two Pointers]||
+|481|[Shortest Distance from All Buildings.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Distance%20from%20All%20Buildings.java)|Hard|Java|[BFS]||

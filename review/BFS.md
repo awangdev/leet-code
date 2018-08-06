@@ -1,7 +1,7 @@
  
  
  
-## BFS (31)
+## BFS (32)
 **0. [Minimum Height Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Height%20Trees.java)**      Level: Medium      Tags: [BFS, Graph]
       
 
@@ -816,6 +816,24 @@ space: O(n)
 ##### Bi-directional BFS: Search using BFS
 - reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
 - `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
+**31. [Shortest Distance from All Buildings.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Distance%20from%20All%20Buildings.java)**      Level: Hard      Tags: [BFS]
+      
+
+给Walls and Gates很像, 不同的是, 这道题要选一个 coordinate, having shortest sum distance to all buildings (marked as 1).
+
+#### BFS
+- BFS 可以 mark shortest distance from bulding -> any possible spot.
+- Try each building (marked as 1) -> BFS cover all 0. 
+- time: O(n^2) * # of building; use new visited[][] to mark visited for each building.
+- O(n^2) find smallest point/aggregation value.
+- 注意, 这道题我们update grid[][] sum up with shortest path value from building.
+- 最后找个min value 就好了, 甚至不用return coordinate.
+- 分析过, 还没有写.
 
 
 

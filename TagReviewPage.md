@@ -331,7 +331,7 @@ SegmentTree大集合. Methods: `build, query, modify`. 不难。只是要都记�
  
  
  
-## String (53)
+## String (56)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -1204,7 +1204,7 @@ time: O(n)
 
 ---
 
-**49. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+**49. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -1280,6 +1280,62 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 ##### Bi-directional BFS: Search using BFS
 - reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
 - `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
+**53. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+按照规则 adjust text. 就是Word里面: 有一行太长, adjust word 中间的space, 然后保证每一行的total width 顶格.
+
+还有一些细节规则, 看原题
+
+#### String
+- Summing space = `width + (size-1)`. maintain: 1. list of candidates, 2. width of actual words
+- calculate space in between: `remain/(size - 1)`
+- overall for loop; clean up list: 1. over size; 2. last item
+- 一点也不难, 但是要小心: deal with list of string的时候, 注意处理干净sum size of list<string>, 就行了.
+- `干净处理space`: 只处理 (n-1) items, 然后最后一个拿到for loop 外面, 特殊处理.
+
+#### Notes
+- Clarification, observation:
+- can start with greedy approach to stack as many words as possible
+- once exceed the length, pop the top, and justify the added words (untouched words tracked by index)
+- left justify: given list/stack of words with size t, overall remaining space length m, 
+- deal with last line with special care: just fill one space, and fill the rest of the row with space
+- Does not seem very complicated, but need additional care of calculating the amount of space needed.
+- Overall runtime: O(n) to go over all space
+- Overall space O(maxWidth) for maxWidth amount of strings
+
+
+
+---
+
+**54. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(buf, n)
+
+#### String 
+- 注意String的index handle, 慢慢写edge case
+- 理解题目意思: `read4(char[] buf)` 这样的 `populate input object` 的function稍微少一点. 
+- 遇到时候, 仔细理解function用法, 不要慌乱. 其实思考方式很简单, 仔细handle string 还有 edge case就好了.
+
+
+
+---
+
+**55. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
 
 
 
@@ -1898,7 +1954,7 @@ space: O(n)
  
  
  
-## DP (82)
+## DP (83)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -3956,6 +4012,31 @@ space: O(n)
 
 ---
 
+**82. [Frog Jump.java](https://github.com/awangdev/LintCode/blob/master/Java/Frog%20Jump.java)**      Level: Hard      Tags: [DP, Hash Table]
+      
+
+Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps, 而k取决于上一步所跳的步数. 默认 0->1 一定是跳了1步.
+
+注意: int[] stones 里面是stone所在的unit (不是可以跳的步数, 不要理解错).
+
+#### DP
+- 原本想按照corrdiante dp 来做, 但是发现很多问题, 需要track 不同的 possible previous starting spot.
+- 根据jiuzhang答案: 按照定义, 用一个 map of <stone, Set<possible # steps to reach stone>>
+- 每次在处理一个stone的时候, 都根据他自己的 set of <previous steps>, 来走下三步: k-1, k, or k+1 steps.
+- 每次走一步, 查看 stone + step 是否存在; 如果存在, 就加进 next position: `stone+step`的 hash set 里面
+
+##### 注意init
+- `dp.put(stone, new HashSet<>())` mark 每个stone的存在
+- `dp.get(0).add(0)` init condition, 用来做 dp.put(1, 1)
+
+##### 思想
+- 最终做下来思考模式, 更像是BFS的模式: starting from (0,0), add all possible ways 
+- 然后again, try next stone with all possible future ways ... etc
+
+
+
+---
+
 
 
 
@@ -4061,7 +4142,7 @@ TODO
  
  
  
-## BFS (31)
+## BFS (32)
 **0. [Minimum Height Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Height%20Trees.java)**      Level: Medium      Tags: [BFS, Graph]
       
 
@@ -4881,6 +4962,24 @@ space: O(n)
 
 ---
 
+**31. [Shortest Distance from All Buildings.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Distance%20from%20All%20Buildings.java)**      Level: Hard      Tags: [BFS]
+      
+
+给Walls and Gates很像, 不同的是, 这道题要选一个 coordinate, having shortest sum distance to all buildings (marked as 1).
+
+#### BFS
+- BFS 可以 mark shortest distance from bulding -> any possible spot.
+- Try each building (marked as 1) -> BFS cover all 0. 
+- time: O(n^2) * # of building; use new visited[][] to mark visited for each building.
+- O(n^2) find smallest point/aggregation value.
+- 注意, 这道题我们update grid[][] sum up with shortest path value from building.
+- 最后找个min value 就好了, 甚至不用return coordinate.
+- 分析过, 还没有写.
+
+
+
+---
+
 
 
 
@@ -5511,7 +5610,7 @@ space: O(n)
 
 ---
 
-**18. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**18. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
@@ -5570,7 +5669,7 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 
 ---
 
-**20. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+**20. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
       
 
 给一个interface, design一个structure, 能够计算moving window average.
@@ -7797,7 +7896,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Hash Table (59)
+## Hash Table (61)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -9020,6 +9119,45 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 ##### Bi-directional BFS: Search using BFS
 - reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
 - `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
+**59. [Frog Jump.java](https://github.com/awangdev/LintCode/blob/master/Java/Frog%20Jump.java)**      Level: Hard      Tags: [DP, Hash Table]
+      
+
+Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps, 而k取决于上一步所跳的步数. 默认 0->1 一定是跳了1步.
+
+注意: int[] stones 里面是stone所在的unit (不是可以跳的步数, 不要理解错).
+
+#### DP
+- 原本想按照corrdiante dp 来做, 但是发现很多问题, 需要track 不同的 possible previous starting spot.
+- 根据jiuzhang答案: 按照定义, 用一个 map of <stone, Set<possible # steps to reach stone>>
+- 每次在处理一个stone的时候, 都根据他自己的 set of <previous steps>, 来走下三步: k-1, k, or k+1 steps.
+- 每次走一步, 查看 stone + step 是否存在; 如果存在, 就加进 next position: `stone+step`的 hash set 里面
+
+##### 注意init
+- `dp.put(stone, new HashSet<>())` mark 每个stone的存在
+- `dp.get(0).add(0)` init condition, 用来做 dp.put(1, 1)
+
+##### 思想
+- 最终做下来思考模式, 更像是BFS的模式: starting from (0,0), add all possible ways 
+- 然后again, try next stone with all possible future ways ... etc
+
+
+
+---
+
+**60. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
 
 
 
@@ -12567,7 +12705,7 @@ space: O(n)
 
 ---
 
-**7. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**7. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
@@ -13895,7 +14033,7 @@ space: O(n)
 
 ---
 
-**14. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**14. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
@@ -17122,7 +17260,7 @@ Space O(n): dp[], sum[]
  
  
  
-## Two Pointers (35)
+## Two Pointers (36)
 **0. [Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
@@ -17724,6 +17862,20 @@ Move non-zero elements to front of array; preseve order.
 
 ---
 
+**35. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
+
+
+
+---
+
 
 
 
@@ -18095,7 +18247,7 @@ space: O(n)
 
 ---
 
-**3. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**3. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
@@ -19511,6 +19663,73 @@ space: O(n), O(1) rolling array
  
  
  
+## Sliding Window (4)
+**0. [Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)**      Level: Hard      Tags: [Sliding Window]
+      
+
+妙：用deque数据结构（实际上采用LinkedList的形式）来做一个递减的queue.
+每次把小于当前node的，全部剔除，剩下的，自然就是:最大的>第二大的>第三大的...ETC.
+为啥可以不管不无地剔除？
+因为我们只在乎最大值的存在；而任何小于当前（正要新就加进去的）值的，反正以后也成不了最大值，于是扔掉！
+
+
+---
+
+**1. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
+      
+
+Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
+
+#### MaxHeap, MinHeap
+- Median还是用min-heap 和 max-heap. Time(logN)
+- 加/减: prioirtyQueue, log(n)
+- findMedian: O(1)
+- 加一个数, 减一个数。
+- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
+- 抽完balance一下
+
+#### 注意
+- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
+- 左边的maxHeap总有 x+1或者x个数字
+- 后边minHeap应该一直有x个数字
+
+
+
+---
+
+**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
+      
+
+给一个interface, design一个structure, 能够计算moving window average.
+
+#### Queue
+- 读懂题目, 注意average 和 window 的处理.
+- 简单的queue.size() comparison
+
+
+
+---
+
+**3. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Topological Sort (5)
 **0. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
@@ -20305,7 +20524,7 @@ space: O(1)
 
 ---
 
-**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue]
+**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
       
 
 给一个interface, design一个structure, 能够计算moving window average.
@@ -20842,7 +21061,7 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
  
  
  
-## Enumeration (8)
+## Enumeration (11)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -20975,7 +21194,20 @@ space: O(n)
 
 ---
 
-**7. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**7. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
+      
+
+Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
+
+#### String in char[] format
+- 理解题目: 其实就是track `可以read多少bytes by read4() response`
+- 另外一个有用的function `System.arraycopy(src, srcIndex, dest, destIndex, length)`
+
+
+
+---
+
+**8. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
@@ -20993,6 +21225,48 @@ space: O(n)
 - 注意, 小于20的数字, 有自己的特殊写法, 需要额外handle
 - 这道题目就是要细致`耐心`, 几乎么有什么算法, 就是想要写的efficient并且正确, 需要很小心
 
+
+
+
+---
+
+**9. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+按照规则 adjust text. 就是Word里面: 有一行太长, adjust word 中间的space, 然后保证每一行的total width 顶格.
+
+还有一些细节规则, 看原题
+
+#### String
+- Summing space = `width + (size-1)`. maintain: 1. list of candidates, 2. width of actual words
+- calculate space in between: `remain/(size - 1)`
+- overall for loop; clean up list: 1. over size; 2. last item
+- 一点也不难, 但是要小心: deal with list of string的时候, 注意处理干净sum size of list<string>, 就行了.
+- `干净处理space`: 只处理 (n-1) items, 然后最后一个拿到for loop 外面, 特殊处理.
+
+#### Notes
+- Clarification, observation:
+- can start with greedy approach to stack as many words as possible
+- once exceed the length, pop the top, and justify the added words (untouched words tracked by index)
+- left justify: given list/stack of words with size t, overall remaining space length m, 
+- deal with last line with special care: just fill one space, and fill the rest of the row with space
+- Does not seem very complicated, but need additional care of calculating the amount of space needed.
+- Overall runtime: O(n) to go over all space
+- Overall space O(maxWidth) for maxWidth amount of strings
+
+
+
+---
+
+**10. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(buf, n)
+
+#### String 
+- 注意String的index handle, 慢慢写edge case
+- 理解题目意思: `read4(char[] buf)` 这样的 `populate input object` 的function稍微少一点. 
+- 遇到时候, 仔细理解function用法, 不要慌乱. 其实思考方式很简单, 仔细handle string 还有 edge case就好了.
 
 
 

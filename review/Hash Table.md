@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (59)
+## Hash Table (61)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -1224,6 +1224,45 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 ##### Bi-directional BFS: Search using BFS
 - reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
 - `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
+**59. [Frog Jump.java](https://github.com/awangdev/LintCode/blob/master/Java/Frog%20Jump.java)**      Level: Hard      Tags: [DP, Hash Table]
+      
+
+Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps, 而k取决于上一步所跳的步数. 默认 0->1 一定是跳了1步.
+
+注意: int[] stones 里面是stone所在的unit (不是可以跳的步数, 不要理解错).
+
+#### DP
+- 原本想按照corrdiante dp 来做, 但是发现很多问题, 需要track 不同的 possible previous starting spot.
+- 根据jiuzhang答案: 按照定义, 用一个 map of <stone, Set<possible # steps to reach stone>>
+- 每次在处理一个stone的时候, 都根据他自己的 set of <previous steps>, 来走下三步: k-1, k, or k+1 steps.
+- 每次走一步, 查看 stone + step 是否存在; 如果存在, 就加进 next position: `stone+step`的 hash set 里面
+
+##### 注意init
+- `dp.put(stone, new HashSet<>())` mark 每个stone的存在
+- `dp.get(0).add(0)` init condition, 用来做 dp.put(1, 1)
+
+##### 思想
+- 最终做下来思考模式, 更像是BFS的模式: starting from (0,0), add all possible ways 
+- 然后again, try next stone with all possible future ways ... etc
+
+
+
+---
+
+**60. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
 
 
 

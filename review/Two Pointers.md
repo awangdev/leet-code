@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (35)
+## Two Pointers (36)
 **0. [Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
@@ -598,6 +598,20 @@ Move non-zero elements to front of array; preseve order.
 
 **34. [Backspace String Compare.java](https://github.com/awangdev/LintCode/blob/master/Java/Backspace%20String%20Compare.java)**      Level: Easy      Tags: [Stack, Two Pointers]
       
+
+
+
+---
+
+**35. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
 
 
 

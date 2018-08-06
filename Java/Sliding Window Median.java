@@ -1,6 +1,6 @@
 H
 1533183594
-tags: Heap, Design, MaxHeap, MinHeap
+tags: Heap, Design, MaxHeap, MinHeap, Sliding Window
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
 

@@ -1,7 +1,7 @@
  
  
  
-## String (53)
+## String (56)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -874,7 +874,7 @@ time: O(n)
 
 ---
 
-**49. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [String]
+**49. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -950,6 +950,62 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 ##### Bi-directional BFS: Search using BFS
 - reversed structure 已经做好了, 现在做search 就可以: 也可以选用bfs.
 - `Queue<List<String>>` to store candidates, searching from end-> start
+
+
+
+---
+
+**53. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+按照规则 adjust text. 就是Word里面: 有一行太长, adjust word 中间的space, 然后保证每一行的total width 顶格.
+
+还有一些细节规则, 看原题
+
+#### String
+- Summing space = `width + (size-1)`. maintain: 1. list of candidates, 2. width of actual words
+- calculate space in between: `remain/(size - 1)`
+- overall for loop; clean up list: 1. over size; 2. last item
+- 一点也不难, 但是要小心: deal with list of string的时候, 注意处理干净sum size of list<string>, 就行了.
+- `干净处理space`: 只处理 (n-1) items, 然后最后一个拿到for loop 外面, 特殊处理.
+
+#### Notes
+- Clarification, observation:
+- can start with greedy approach to stack as many words as possible
+- once exceed the length, pop the top, and justify the added words (untouched words tracked by index)
+- left justify: given list/stack of words with size t, overall remaining space length m, 
+- deal with last line with special care: just fill one space, and fill the rest of the row with space
+- Does not seem very complicated, but need additional care of calculating the amount of space needed.
+- Overall runtime: O(n) to go over all space
+- Overall space O(maxWidth) for maxWidth amount of strings
+
+
+
+---
+
+**54. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
+      
+
+Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(buf, n)
+
+#### String 
+- 注意String的index handle, 慢慢写edge case
+- 理解题目意思: `read4(char[] buf)` 这样的 `populate input object` 的function稍微少一点. 
+- 遇到时候, 仔细理解function用法, 不要慌乱. 其实思考方式很简单, 仔细handle string 还有 edge case就好了.
+
+
+
+---
+
+**55. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
 
 
 
