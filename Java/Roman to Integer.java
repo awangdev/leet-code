@@ -2,9 +2,11 @@ E
 1533541868
 tags: Math, String
 
-熟悉罗马字母规则     
-1. 'I V X L C D M' 分别代表的数字     
-2. 列举combo的情况，需要从原sum里面减掉多加的部分： 'IV, IX'减2, 'XL, XC'减20, 'CD, CM'减200. 
+#### String 
+- 熟悉罗马字母规则     
+- 1. 'I V X L C D M' 分别代表的数字     
+- 2. 列举combo的情况，需要从原sum里面减掉多加的部分: 'IV, IX'减2, 'XL, XC'减20, 'CD, CM'减200. 
+- Leading `I(1*2)`, `X(10*2)`, `C(100*2)` causes double counting 
 
 https://en.wikipedia.org/wiki/Roman_numerals
 
