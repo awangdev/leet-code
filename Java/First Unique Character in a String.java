@@ -1,5 +1,5 @@
 E
-1516264417
+1533602948
 tags: Hash Table, String
 
 方法1: 按照题意, 找到第一个 first index == last index的字母.
@@ -19,6 +19,18 @@ s = "loveleetcode",
 return 2.
 Note: You may assume the string contain only lowercase letters.
 */
+class Solution {
+    public int firstUniqChar(String s) {
+        int[] freq = new int[256];
+        for (char c : s.toCharArray()) {
+            freq[c - 'a']++;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (freq[s.charAt(i) - 'a'] == 1) return i;
+        }
+        return -1;
+    }
+}
 
 /*
     Direclty compare first occurance of a character && last occurance, see if at same spot
