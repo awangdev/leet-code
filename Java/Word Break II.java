@@ -1,13 +1,17 @@
 H
 1519546502
-tags: DP, Backtracking, DFS, Memoization
+tags: DP, Backtracking, DFS, Memoization, Hash Table
+
+找出所有 word break variations, given dictionary
+
+利用 memoization: `Map<prefix, List<suffix variations>>`
 
 #### DFS + Memoization
 - Realize the input s expands into a tree of possible prefixes.
 - We can do top->bottom(add candidate+backtracking) OR bottom->top(find list of candidates from subproblem, and cross-match)
 - DFS on string: find a valid word, dfs on the suffix. [NO backtraking in the solution]
 - DFS returns List<String>: every for loop takes a prefix substring, and append with all suffix (result of dfs)
-- Memoization: `Map<substring, List<String>>`, which reduces repeated calculation if the substring has been tried.
+- IMPORANT: Memoization: `Map<prefix, List<suffix variations>>`, which reduces repeated calculation if the substring has been tried.
 - Time O(n!). Worst case, permutation of unique letters: `s= 'abcdef....'`, and `dict=[a,b,c,d,e,f...]`
 
 #### Regular DPs
@@ -45,29 +49,20 @@ Hide Tags Dynamic Programming Backtracking
 class Solution {
     Map<String, List<String>> memo;
     public List<String> wordBreak(String s, List<String> dict) {
-        // check s, dict, define 
         List<String> rst = new ArrayList<>();
-        if (s == null || s.length() == 0 || dict == null || dict.size() == 0) {
-            return rst;
-        }
-        memo = new HashMap<>();
+        if (s == null || s.length() == 0 || dict == null || dict.size() == 0) return rst;
         
         // dfs
+        memo = new HashMap<>();
         return dfs(new HashSet<>(dict), s);
     }
 
     private List<String> dfs(Set<String> dict, String s) {
-        if (memo.containsKey(s)) {
-            return memo.get(s);
-        }
+        if (memo.containsKey(s)) return memo.get(s); // calculated, just return
         List<String> rst = new ArrayList<>();
-        if (s.length() == 0) {
-            return rst;
-        }
-        
-        if (dict.contains(s)) {
-            rst.add(s);
-        }
+        if (s.length() == 0) return rst;
+            
+        if (dict.contains(s)) rst.add(s); // total match word
 
         // loop over form index -> n, find candidates, validate, dfs
         StringBuffer sb = new StringBuffer();
@@ -87,6 +82,38 @@ class Solution {
     }
 }
 
+// Just use memo, with void dfs.
+class Solution {
+    Map<String, List<String>> memo = new HashMap<>();
+    public List<String> wordBreak(String s, List<String> dict) {
+        List<String> rst = new ArrayList<>();
+        if (s == null || s.length() == 0 || dict == null || dict.size() == 0) return rst;
+        
+        dfs(new HashSet<>(dict), s);
+        return memo.get(s);
+    }
+
+    private void dfs(Set<String> dict, String s) {
+        List<String> rst = new ArrayList<>();
+        if (dict.contains(s)) rst.add(s); // match word, populate suffix variation list
+
+        // loop over form index -> n: set prefix and corss-match with all possible suffix variations
+        for (int i = 1; i < s.length(); i++) {
+            String prefix = s.substring(0, i);
+            if (!dict.contains(prefix)) continue; // validation with dict
+
+            String suffix = s.substring(i);
+            if (suffix.length() > 0 && !memo.containsKey(suffix)) { // if calculated, skip dfs
+                dfs(dict, suffix);    
+            }
+            List<String> segments = memo.get(suffix);
+            for (String segment : segments) {
+                rst.add(prefix + " " + segment);
+            }
+        }
+        memo.put(s, rst); // save result
+    }
+}
 
 /*
 Thoughts:

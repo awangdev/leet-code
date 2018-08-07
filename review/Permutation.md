@@ -43,6 +43,7 @@ reset() 给出最初的nums
 
 #### Recursive: Backtracking
 - Given a remaining list: 取, 或者不取
+- always iterate over full `nums[]`, use list.contains() to check if item has been added.
 - Improvement: maintain list (add/remove elements) instead of 'list.contains'
 - time O(n!): visit all possible outcome
 - T(n) = n * T(n-1) + O(1)

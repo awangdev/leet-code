@@ -62,7 +62,7 @@ public class Solution {
             }
         });
 
-        StringBuffer sb =  new StringBuffer();
+        StringBuffer sb = new StringBuffer();
         for (int i = 0; i < num.length; i++) {
             sb.append(strs[i]);
         }

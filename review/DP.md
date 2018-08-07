@@ -384,15 +384,19 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**19. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Memoization]
+**19. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Hash Table, Memoization]
       
+
+找出所有 word break variations, given dictionary
+
+利用 memoization: `Map<prefix, List<suffix variations>>`
 
 #### DFS + Memoization
 - Realize the input s expands into a tree of possible prefixes.
 - We can do top->bottom(add candidate+backtracking) OR bottom->top(find list of candidates from subproblem, and cross-match)
 - DFS on string: find a valid word, dfs on the suffix. [NO backtraking in the solution]
 - DFS returns List<String>: every for loop takes a prefix substring, and append with all suffix (result of dfs)
-- Memoization: `Map<substring, List<String>>`, which reduces repeated calculation if the substring has been tried.
+- IMPORANT: Memoization: `Map<prefix, List<suffix variations>>`, which reduces repeated calculation if the substring has been tried.
 - Time O(n!). Worst case, permutation of unique letters: `s= 'abcdef....'`, and `dict=[a,b,c,d,e,f...]`
 
 #### Regular DPs
@@ -1033,7 +1037,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 - 什么时候会积累profit呢? 
 - 1. 原本就持有股票的, 如果毫无动作, 那么状态不变, 积累profit diff. 
 - 2. 卖出了股票, 状态改变, 积累profit diff.
-- 注意: 只有在状态index: 0, 2, 4, 也就是卖掉股票的时候, 猜可以积累profit
+- 注意: 只有在状态index: 0, 2, 4, 也就是卖掉股票的时候, 才可以积累profit
 
 ##### Rolling Array
 - [i] 只有和 [i-1] 打交道, reduce space
@@ -1814,7 +1818,7 @@ space: O(n)
 
 ---
 
-**72. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Sequence DP]
+**72. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Hash Table, Sequence DP]
       
 time: O(n^2)
 space: O(n)
@@ -1824,7 +1828,7 @@ space: O(n)
 #### Sequence DP
 - true/false problem, think about dp
 - 子问题: 前i个字母, 是否可以有valid break
-- 检查dp[j] && substring(j, i), for all j = [0 ~ i]
+- 检查dp[j] && `if substring(j, i) valid`, for all j = [0 ~ i]
 - dp = new boolean[n + 1]; dp[0] = true;
 - goal: if there is a j,  `dp[j] == true && word[j, n] in dict`. Need iterate over i = [0 ~ n], also j = [0, i]
 - 注意, 用set代替list, 因为要用 contains().

@@ -1,5 +1,5 @@
 M
-1516696879
+1533626601
 tags: Hash Table
 
 #### Based on 2sum
@@ -44,26 +44,25 @@ Note: key is sum, and the value is a hashSet of ArrayList. Where the hashset has
 2nd part: try [i + 1, end], see if any combination sum that makes: target - sum exist in map. -> becomes same old 2sum problem.
 O(n)
 */
-/*
-Thoughts:
-Can't do for loop over 3sum, which is O(n^3), not doable.
-We can break the nums into 2 major parts by index i.
-1st part: from [0 ~ i], we'll try all possible ways to pair [x, i] and store the sum of nums[x]+nums[i] in map. 
-Note: key is sum, and the value is a hashSet of ArrayList. Where the hashset has itself functions to tell duplicate of pairs.
-2nd part: try [i + 1, end], see if any combination sum that makes: target - sum exist in map. -> becomes same old 2sum problem.
+/**
+  Why having below front-pair-building after previous for end-pair-checking for loop?
+  Here: we build [0 ~ i], and in next round, when we processs [i + 1, end], pairs built among [0~i] below will all be used.
+  Rather: if we have lift the for loop below to calculate [0~i] before the end-pair-checking of same [i~end], 
+          there is one index at [i] will overlap, which turns to be incorrect.
+  Therefore, we build front-pairs aftwarwards: it's building [0~i] here, which aims to help next round of end-pair-checking on [i+1, end].
 */
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        if (nums == null || nums.length <= 3) {
-            return result;
-        }
+        if (nums == null || nums.length <= 3) return result;
+        
+        int n = nums.length;
         Arrays.sort(nums);
         Map<Integer, HashSet<List>> map = new HashMap<>();
         Set<String> cache = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < n; i++) {
             // Check if [i + 1, end] can be added up to target
-            for (int k = i + 1; k < nums.length; k++) {
+            for (int k = i + 1; k < n; k++) {
                 int sum = nums[i] + nums[k];
                 if (map.containsKey(target - sum)) {// Try to match up the 4 pairs
                     for (List<Integer> frontPair : map.get(target - sum)) {
@@ -76,19 +75,11 @@ class Solution {
                     }
                 }
             }
-            /**
-              Why having below front-pair-building after previous for end-pair-checking for loop?
-              Here: we build [0 ~ i], and in next round, when we processs [i + 1, end], pairs built among [0~i] below will all be used.
-              Rather: if we have lift the for loop below to calculate [0~i] before the end-pair-checking of same [i~end], 
-                      there is one index at [i] will overlap, which turns to be incorrect.
-              Therefore, we build front-pairs aftwarwards: it's building [0~i] here, which aims to help next round of end-pair-checking on [i+1, end].
-             */
+            
             // Build up the pair from [0 ~ i]
             for (int j = 0; j < i; j++) {
                 int sum = nums[j] + nums[i];
-                if (!map.containsKey(sum)) {
-                    map.put(sum, new HashSet<>());
-                }
+                map.putIfAbsent(sum, new HashSet<>());
                 map.get(sum).add(Arrays.asList(nums[j], nums[i]));
             }
         }
@@ -101,6 +92,9 @@ class Solution {
         return sb.toString();
     }
 }
+
+  
+  
 /*
 Thoughts
 Perform another layer outside of 3SUM. O(n^3).

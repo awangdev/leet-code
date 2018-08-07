@@ -1,12 +1,12 @@
 M
-1522215963
+1533623972
 tags: String
 
 如果S, T只用一个operation就能变成相等, return true.
 
 #### Edit: 删除，增加，和替换
 - 换完之后，理论上换成的String 就应该全等
-- for loop, 一旦找到不一样的char, 就判断那三种可能性
+- for loop, 一旦找到不一样的char, 就判断那三种可能性: insert/delete/replace
 - insert/delete 对于2个string来说, 效果是类似的
 - O(n)
 
@@ -15,6 +15,25 @@ tags: String
 Given two strings S and T, determine if they are both one edit distance apart.
 
 */
+class Solution {
+    public boolean isOneEditDistance(String s, String t) {
+        if (s == null || t == null || s.equals(t) || Math.abs(s.length() - t.length()) > 1) {
+            return false;
+        }
+        int size = Math.min(s.length(), t.length());
+        for (int i = 0; i < size; i++) {
+            if (s.charAt(i) != t.charAt(i)) { // check insert/delete or replace
+                return compareStr(s, t, i + 1, i) || compareStr(s, t, i, i + 1) || compareStr(s, t, i + 1, i + 1);
+            }
+        }
+        
+        return true; // size == 0, and length diff == 1
+    }
+    
+    private boolean compareStr(String s, String t, int x, int y) {
+        return s.substring(x).equals(t.substring(y));
+    }
+}
 
 /*
 Thoughts:

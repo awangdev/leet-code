@@ -1,5 +1,5 @@
 H
-1528263371
+1533619954
 tags: Array, Binary Search, Divide and Conquer, DFS
 
 著名的找两个sorted array的中位数. 中位数定义: 如果两个array总长为偶数, 取平均值.
@@ -17,8 +17,6 @@ tags: Array, Binary Search, Divide and Conquer, DFS
 - 2. 如果 k == 1: 就是找A/B 里面的1st item, 那么做个 `Math.max(A[startA], B[startB])` 就可以
 - 总共的数字长度是 (m + n) 而且每次都有一般的内容被删除, 那么time就是 O(log(m + n))
 
-#### Binary Search
-TODO:
 
 ```
 /*
@@ -88,17 +86,11 @@ class Solution {
     // Find kth number in two sorted array. k is size
     private int findKth(int[] numsA, int startA, int[] numsB, int startB, int k) {
         // check edge case for startA/startB index
-        if (startA >= numsA.length) {
-            return numsB[startB + k - 1];
-        }
-        if (startB >= numsB.length) {
-            return numsA[startA + k - 1];
-        }
+        if (startA >= numsA.length) return numsB[startB + k - 1]; // A exhausted, take kth in B
+        if (startB >= numsB.length) return numsA[startA + k - 1]; // B exhausted, take kth in A
 
-        // handle final condition k == 1
-        if (k == 1) {
-            return Math.min(numsA[startA], numsB[startB]);
-        }
+        // handle final condition k == 1. The two elements will be sorted and the smaller one is kth.
+        if (k == 1) return Math.min(numsA[startA], numsB[startB]);
 
         // compare and partition at each [x+(k/2-1)] position
         int halfKthOfA = startA + k / 2 - 1 < numsA.length ? numsA[startA + k / 2 - 1] : Integer.MAX_VALUE;

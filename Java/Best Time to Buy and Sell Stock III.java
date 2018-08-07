@@ -14,7 +14,7 @@ tags: Array, DP, Sequence DP
 - 什么时候会积累profit呢? 
 - 1. 原本就持有股票的, 如果毫无动作, 那么状态不变, 积累profit diff. 
 - 2. 卖出了股票, 状态改变, 积累profit diff.
-- 注意: 只有在状态index: 0, 2, 4, 也就是卖掉股票的时候, 猜可以积累profit
+- 注意: 只有在状态index: 0, 2, 4, 也就是卖掉股票的时候, 才可以积累profit
 
 ##### Rolling Array
 - [i] 只有和 [i-1] 打交道, reduce space
@@ -80,13 +80,13 @@ class Solution {
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < 5; j++) {
                 // Accumulate partial profit regardless of stock status.
-                int dailyPartialProfit = prices[i] - prices[i - 1];
+                int dailyDiff = prices[i] - prices[i - 1];
                 if (j % 2 == 0) { // j status: no stock
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] + dailyPartialProfit);
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1] + dailyDiff);
                     // Find best profit when not having stock
                     profit = Math.max(profit, dp[i][j]);
                 } else { // j status: have stock
-                    dp[i][j] = Math.max(dp[i - 1][j] + dailyPartialProfit, dp[i - 1][j - 1]);
+                    dp[i][j] = Math.max(dp[i - 1][j] + dailyDiff, dp[i - 1][j - 1]);
                 }
             }
         }

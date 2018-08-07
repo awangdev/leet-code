@@ -51,14 +51,13 @@ Hide Tags Backtracking
 class Solution {
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> rst = new ArrayList<>();
-        if (n <= 0) {
-            return rst;
-        }
+        if (n <= 0) return rst;
+
         dfs(rst, new ArrayList<>(), n);
 
         return rst;
     }
-
+    // build sequence row
     private void dfs(List<List<String>> rst, List<Integer> list, int n){
         if (list.size() == n) {
             rst.add(createBoard(list));

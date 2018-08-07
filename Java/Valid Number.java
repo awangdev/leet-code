@@ -1,6 +1,6 @@
 H
 1532500367
-tags: Math, String
+tags: Math, String, Enumeration
 time: O(n)
 
 分析edge case, 和各种情况, 然后判别是否是valid number

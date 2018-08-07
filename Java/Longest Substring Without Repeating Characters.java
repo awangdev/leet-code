@@ -85,7 +85,7 @@ class Solution {
         for (int i = 0; i < arr.length; i++) {
             char c = arr[i];
             if (map.containsKey(c)) {
-                i = map.get(c);
+                i = map.get(c); // reset beginning
                 map = new HashMap<>();
             } else {
                 map.put(c, i);

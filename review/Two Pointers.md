@@ -1,7 +1,7 @@
  
  
  
-## Two Pointers (37)
+## Two Pointers (38)
 **0. [Partition Array by Odd and Even.java](https://github.com/awangdev/LintCode/blob/master/Java/Partition%20Array%20by%20Odd%20and%20Even.java)**      Level: Easy      Tags: [Array, Two Pointers]
       
 
@@ -625,6 +625,23 @@ Move non-zero elements to front of array; preseve order.
 
 - 方法1: 用到hashset找unique && duplicate: O(m+n)
 - 方法2: 可以用binary search 找数字. Note:binary search一定需要array sorted: nLog(m)
+
+
+
+---
+
+**37. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy      Tags: [Math, String, Two Pointers]
+      
+
+#### Two pointers
+- Use two pointers i, j to track the 2 strings
+- Add when i and j are applicable. While (i >= 0 || j >= 0)
+- StringBuffer.insert(0, x);
+- handle carry
+
+#### wrong: convert to int
+- 土办法没技术，把binary换成数字，加起来，再换成binary
+- 如果input很大，那么很可能int,long都hold不住。不保险。
 
 
 
