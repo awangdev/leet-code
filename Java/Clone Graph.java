@@ -1,8 +1,10 @@
 M
-1519966780
+1533605472
 tags: DFS, BFS, Graph
 
 给一个graph node, 每个node有list of neighbors. 复制整个graph, return new head node.
+       
+实现起来就好像在crawl urls.
 
 #### 思想
 - Use HashMap to mark cloned nodes.    
@@ -132,20 +134,19 @@ public class Solution {
             return null;
         }
         HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
-        map.put(node, new UndirectedGraphNode(node.label));
+        map.put(node, new UndirectedGraphNode(node.label)); // copy root
 
-        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
+        Queue<UndirectedGraphNode> queue = new LinkedList<>();
         queue.offer(node);
         
         while(!queue.isEmpty()) {
             UndirectedGraphNode curr = queue.poll();
             for (UndirectedGraphNode neighbor: curr.neighbors) {
-                // Copy neighbors
-                if (!map.containsKey(neighbor)) {
+                if (!map.containsKey(neighbor)) { // Init neighbors
                     queue.offer(neighbor);
                     map.put(neighbor, new UndirectedGraphNode(neighbor.label));
                 }
-                map.get(curr).neighbors.add(map.get(neighbor));
+                map.get(curr).neighbors.add(map.get(neighbor)); // link neighbor
             }
         }
         
