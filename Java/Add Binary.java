@@ -1,11 +1,16 @@
 E
-1519709164
-tags: Math, String
+1533603550
+tags: Math, String, Two Pointers
 
-方法一:土办法没技术，把binary换成数字，加起来，再换成binary。如果input很大，那么很可能int,long都hold不住。不保险。
+#### Two pointers
+- Use two pointers i, j to track the 2 strings
+- Add when i and j are applicable. While (i >= 0 || j >= 0)
+- StringBuffer.insert(0, x);
+- handle carry
 
-方法二:一般方法，string化为charArray,然后逐位加起，最后记得处理多余的一个carry on
-注意: 需要从末尾加起来, 所以要用一个diff来帮助  shortArray[i-diff] 指向 shortArray的相对应index.
+#### wrong: convert to int
+- 土办法没技术，把binary换成数字，加起来，再换成binary
+- 如果input很大，那么很可能int,long都hold不住。不保险。
 
 ```
 /*
@@ -23,6 +28,21 @@ Return 100
 Tags Expand 
 String Binary Facebook
 */
+public class Solution {
+    public String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        int i = a.length() - 1, j = b.length() -1, carry = 0;
+        while (i >= 0 || j >= 0) {
+            int sum = carry;
+            if (i >= 0) sum += a.charAt(i--) - '0';
+            if (j >= 0) sum += b.charAt(j--) - '0';
+            sb.insert(0, sum % 2);
+            carry = sum / 2;
+        }
+        if (carry != 0) sb.insert(0, carry);
+        return sb.toString();
+    }
+}
 
 /*
 Thoughts:
