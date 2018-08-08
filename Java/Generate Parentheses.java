@@ -48,8 +48,8 @@ Thoughts:
 */
 //Faster because StringBuffer object is reused (add/remove elements of it)
 class Solution {
-    private final static String LEFT = "(";
-    private final static String RIGHT = ")";
+    private String LEFT = "(";
+    private String RIGHT = ")";
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
         if (n == 0) {

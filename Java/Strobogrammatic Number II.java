@@ -1,6 +1,6 @@
 M
 1528732676
-tags: Math, DFS, Sequence DFS
+tags: Math, DFS, Sequence DFS, Enumeration
 
 TODO: 
 1. use list, iterative? keep candidates and populating
@@ -8,6 +8,7 @@ TODO:
 3. edge case of "0001000" is invalid, right?
 
 #### DFS
+- A bit like BFS solution: find inner list, and then combine with outter left/right sides.
 - find all solutions, DFS will be easier to write than iterative/BFS
 - when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
 - bottom->up, dfs till leaf level, and return candidates.
@@ -34,6 +35,29 @@ Similar Problems: (E) Strobogrammatic Number, (H) Strobogrammatic Number III
 
 */
 
+class Solution {
+    List<String> singleDigitList = new ArrayList<>(Arrays.asList("0", "1", "8"));
+    char[][] digitPair = {{'0', '0'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};
+    public List<String> findStrobogrammatic(int n) {
+        return dfs(n, n);
+    }
+    
+    public List<String> dfs(int n, int max) {
+        if (n <= 0) return new ArrayList<String>(Arrays.asList(""));
+        if (n == 1) return singleDigitList;
+        
+        List<String> subList = dfs(n - 2, max);
+        List<String> list = new ArrayList<>();
+        for (String str : subList) {
+            if (n != max) list.add("0" + str + "0");
+            for (int i = 1; i < digitPair.length; i++) {
+                list.add(digitPair[i][0] + str + digitPair[i][1]);
+            }
+        }
+        return list;
+    }
+}
+
 /*
 Thoughts:
 The items will be in three pattern:
@@ -44,9 +68,9 @@ Note: validate that '0' appears on front/tail won't be counted.
 Recursion untill n reaches 1
 */
 class Solution {
-    private final List<String> singleDigitList = new ArrayList<>(Arrays.asList("0", "1", "8"));
-    private final List<String> doubleDigitList = new ArrayList<>(Arrays.asList("00", "11", "88", "69", "96"));
-    private final char[][] digitPair = {{'0', '0'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};
+    List<String> singleDigitList = new ArrayList<>(Arrays.asList("0", "1", "8"));
+    List<String> doubleDigitList = new ArrayList<>(Arrays.asList("00", "11", "88", "69", "96"));
+    char[][] digitPair = {{'0', '0'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};
     public List<String> findStrobogrammatic(int n) {
         List<String> result = dfs(n);
         for (int i = 0; i < result.size(); i++) {
@@ -61,15 +85,11 @@ class Solution {
     
     public List<String> dfs(int n) {
         List<String> list = new ArrayList<>();
-        if (n <= 0) {
-            return list;
-        }
-        if (n == 1) {
-            return singleDigitList;
-        } else if (n == 2) {
-            return doubleDigitList;
-        }
-        final List<String> subList = dfs(n - 2);
+        if (n <= 0) return list;
+        if (n == 1) return singleDigitList;
+        if (n == 2) return doubleDigitList;
+        
+        List<String> subList = dfs(n - 2);
         for (String str : subList) {
             for (int i = 0; i < digitPair.length; i++) {
                 list.add(digitPair[i][0] + str + digitPair[i][1]);

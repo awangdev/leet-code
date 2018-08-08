@@ -8,7 +8,12 @@ tags: DFS, Union Find, Hash Table, Hash Table
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
@@ -127,7 +132,7 @@ class Solution {
         
         for (List<String> account : accounts) {
             for (int i = 1; i < account.size() - 1; i++) {
-                union(account.get(i), account.get(i + 1));
+                union(account.get(i), account.get(i + 1));  // email across acounts will be auto-merged/linked in unionFind
             }
         }
         

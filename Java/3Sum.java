@@ -2,11 +2,11 @@ M
 1516689562
 tags: Array, Two Pointers
 
-方法1:
-sort array, for loop + two pointer. O(n)
-处理duplicate wthin triplets: 
-如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
-如果是triplet内有重复, 用完start point, 移动到结尾.
+
+#### sort array, for loop + two pointer. O(n^2)
+- 处理duplicate wthin triplets: 
+- 如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
+- 如果是triplet内有重复, 用完start point, 移动到结尾.
 
 Previous notes:
 注意:   
@@ -52,7 +52,7 @@ O(n) * O(n) -> O(n^2)
 */
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        final List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         if (nums == null || nums.length == 0) {
             return result;
         }
@@ -65,8 +65,7 @@ class Solution {
             int end = i - 1;
             while (start < end) {
                 if (nums[start] + nums[end] + nums[i] == 0) {
-                    final Integer[] intarr = {nums[start], nums[end], nums[i]};
-                    result.add(Arrays.asList(intarr));
+                    result.add(Arrays.asList(nums[start], nums[end], nums[i]));
                     start++;
                     while (start < end && nums[start - 1] == nums[start]) { // skip duplicates
                         start++;

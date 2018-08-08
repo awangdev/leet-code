@@ -1,7 +1,7 @@
  
  
  
-## Enumeration (13)
+## Enumeration (14)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -84,7 +84,30 @@
 
 ---
 
-**5. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**5. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Enumeration, Math, Sequence DFS]
+      
+
+TODO: 
+1. use list, iterative? keep candidates and populating
+2. clean up the dfs code, a bit messy
+3. edge case of "0001000" is invalid, right?
+
+#### DFS
+- A bit like BFS solution: find inner list, and then combine with outter left/right sides.
+- find all solutions, DFS will be easier to write than iterative/BFS
+- when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
+- bottom->up, dfs till leaf level, and return candidates.
+- each level, pair with all the candidates
+- 其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
+- 难的case先不handle.到底之后来一次overall scan.
+- every level have 5 choices of digital pairs to add on sides. Need to do for n-2 times. 
+- Time complexity: O(5^n)
+
+
+
+---
+
+**6. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -113,7 +136,7 @@
 
 ---
 
-**6. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**7. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 time: O(n)
 
@@ -128,7 +151,7 @@ time: O(n)
 
 ---
 
-**7. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+**8. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
 time: O(n)
 space: O(n)
@@ -149,7 +172,7 @@ space: O(n)
 
 ---
 
-**8. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
+**9. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -162,7 +185,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**9. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**10. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
@@ -185,7 +208,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**10. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
+**11. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
       
 
 按照规则 adjust text. 就是Word里面: 有一行太长, adjust word 中间的space, 然后保证每一行的total width 顶格.
@@ -213,7 +236,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**11. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
+**12. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
       
 
 Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(buf, n)
@@ -227,7 +250,7 @@ Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(bu
 
 ---
 
-**12. [Strobogrammatic Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number.java)**      Level: Easy      Tags: [Enumeration, Hash Table, Math]
+**13. [Strobogrammatic Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number.java)**      Level: Easy      Tags: [Enumeration, Hash Table, Math]
       
 
 根据题意枚举, 再根据规则basic implementation

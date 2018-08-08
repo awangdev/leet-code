@@ -5,8 +5,11 @@ tags: Tree, DFS, BST, Divide and Conquer
 如题, 验证是否是BST.
 
 #### DFS
-- 查看每个parent-child关系: leftchild < root < rightChild
+- 查看每个parent-child关系: leftchild < root < rightChild; 
+- BST 有两个极端: left-most-leaf is the smallest element, and right-most-leaf is largest
+- imagine we know the two extreme border: Integer.MIN_VALUE, Integer.MAX_VALUE; pass node around and compare node vs. node.parent.
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- 
 
 ##### Note: 
 - min/max需要时long type. 

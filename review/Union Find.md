@@ -230,7 +230,12 @@ count这个graph里面有多少个独立的component.
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.

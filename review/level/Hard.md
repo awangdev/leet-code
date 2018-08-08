@@ -1490,7 +1490,9 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 #### Observation
 - BST inorder traversal should give small -> large sequence
 - misplaced means: a **large**->small item would occur, and later a large>**small** would occur. 
-- The first large && second small item are the 2 candidates.
+- The first large && second small item are the 2 candidates. Example
+- [1, 5,  7, 10,    12, 15, 18]
+- [1, 5, `15, 10`, `12,  7`, 18]
 
 #### dfs, O(1) extra space
 - traverse, and take note of the candidate

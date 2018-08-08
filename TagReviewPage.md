@@ -142,7 +142,7 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
 
 ---
 
-**1. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+**1. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Enumeration, Math, Sequence DFS]
       
 
 TODO: 
@@ -151,6 +151,7 @@ TODO:
 3. edge case of "0001000" is invalid, right?
 
 #### DFS
+- A bit like BFS solution: find inner list, and then combine with outter left/right sides.
 - find all solutions, DFS will be easier to write than iterative/BFS
 - when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
 - bottom->up, dfs till leaf level, and return candidates.
@@ -1785,7 +1786,7 @@ LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
 
 ---
 
-**23. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+**23. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Enumeration, Math, Sequence DFS]
       
 
 TODO: 
@@ -1794,6 +1795,7 @@ TODO:
 3. edge case of "0001000" is invalid, right?
 
 #### DFS
+- A bit like BFS solution: find inner list, and then combine with outter left/right sides.
 - find all solutions, DFS will be easier to write than iterative/BFS
 - when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
 - bottom->up, dfs till leaf level, and return candidates.
@@ -5889,7 +5891,10 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -5946,8 +5951,11 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 如题, 验证是否是BST.
 
 #### DFS
-- 查看每个parent-child关系: leftchild < root < rightChild
+- 查看每个parent-child关系: leftchild < root < rightChild; 
+- BST 有两个极端: left-most-leaf is the smallest element, and right-most-leaf is largest
+- imagine we know the two extreme border: Integer.MIN_VALUE, Integer.MAX_VALUE; pass node around and compare node vs. node.parent.
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- 
 
 ##### Note: 
 - min/max需要时long type. 
@@ -5989,10 +5997,10 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 
 #### DFS
 - 分析题意后, 按照题意: Flatten the tree, no extra space.
-1. reserve right child
-2. DFS flatten部分
-3. 移花接木
-4. flatten 剩下的.
+- 1. reserve right child: `reservedRightNode`
+- 2. Connect `root.right = root.left`, DFS flatten(root.right) 
+- 3. 移花接木, coneect end of list -> reservedRightNode
+- 4. flatten 剩下的. root.right...
 
 ##### 注意
 - 顺序一定要清楚, 不能写错, 写几个example可以看出来
@@ -7063,7 +7071,7 @@ output 所有 expression
 
 ---
 
-**58. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+**58. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Enumeration, Math, Sequence DFS]
       
 
 TODO: 
@@ -7072,6 +7080,7 @@ TODO:
 3. edge case of "0001000" is invalid, right?
 
 #### DFS
+- A bit like BFS solution: find inner list, and then combine with outter left/right sides.
 - find all solutions, DFS will be easier to write than iterative/BFS
 - when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
 - bottom->up, dfs till leaf level, and return candidates.
@@ -7180,7 +7189,9 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 #### Observation
 - BST inorder traversal should give small -> large sequence
 - misplaced means: a **large**->small item would occur, and later a large>**small** would occur. 
-- The first large && second small item are the 2 candidates.
+- The first large && second small item are the 2 candidates. Example
+- [1, 5,  7, 10,    12, 15, 18]
+- [1, 5, `15, 10`, `12,  7`, 18]
 
 #### dfs, O(1) extra space
 - traverse, and take note of the candidate
@@ -7415,11 +7426,11 @@ space: O(n!)
 - at each level dfs, we have the index as starting point: 
 - if we are at `index=0, we can have n child dfs() options via for loop`; 
 - if at `index=1, we will have (n-1) dfs options via for loop`. 
-- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Consider it as the `pick/not-pick` problem, where the difference is you can pick `x` times at each index rather than only 2 times. 
 - Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
+- 在每个index上面都要面临: `pick/not pick的选择`, 用for loop over index + backtracking 实现 picks.
 - 每次pick以后, 就生成一条新的routine, from this index
 - 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
 - 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
@@ -7611,7 +7622,12 @@ space: O(1)
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
@@ -8166,7 +8182,10 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -9122,7 +9141,12 @@ space: O(n)
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
@@ -9148,7 +9172,12 @@ space: O(n)
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
@@ -10019,11 +10048,11 @@ space: O(n!)
 - at each level dfs, we have the index as starting point: 
 - if we are at `index=0, we can have n child dfs() options via for loop`; 
 - if at `index=1, we will have (n-1) dfs options via for loop`. 
-- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Consider it as the `pick/not-pick` problem, where the difference is you can pick `x` times at each index rather than only 2 times. 
 - Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
+- 在每个index上面都要面临: `pick/not pick的选择`, 用for loop over index + backtracking 实现 picks.
 - 每次pick以后, 就生成一条新的routine, from this index
 - 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
 - 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
@@ -10289,11 +10318,11 @@ space: O(n!)
 - at each level dfs, we have the index as starting point: 
 - if we are at `index=0, we can have n child dfs() options via for loop`; 
 - if at `index=1, we will have (n-1) dfs options via for loop`. 
-- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Consider it as the `pick/not-pick` problem, where the difference is you can pick `x` times at each index rather than only 2 times. 
 - Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
+- 在每个index上面都要面临: `pick/not pick的选择`, 用for loop over index + backtracking 实现 picks.
 - 每次pick以后, 就生成一条新的routine, from this index
 - 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
 - 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.
@@ -10978,7 +11007,10 @@ Previous Notes:
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -11035,8 +11067,11 @@ Previous Notes:
 如题, 验证是否是BST.
 
 #### DFS
-- 查看每个parent-child关系: leftchild < root < rightChild
+- 查看每个parent-child关系: leftchild < root < rightChild; 
+- BST 有两个极端: left-most-leaf is the smallest element, and right-most-leaf is largest
+- imagine we know the two extreme border: Integer.MIN_VALUE, Integer.MAX_VALUE; pass node around and compare node vs. node.parent.
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- 
 
 ##### Note: 
 - min/max需要时long type. 
@@ -11718,7 +11753,9 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 #### Observation
 - BST inorder traversal should give small -> large sequence
 - misplaced means: a **large**->small item would occur, and later a large>**small** would occur. 
-- The first large && second small item are the 2 candidates.
+- The first large && second small item are the 2 candidates. Example
+- [1, 5,  7, 10,    12, 15, 18]
+- [1, 5, `15, 10`, `12,  7`, 18]
 
 #### dfs, O(1) extra space
 - traverse, and take note of the candidate
@@ -12383,8 +12420,11 @@ Previous Notes:
 如题, 验证是否是BST.
 
 #### DFS
-- 查看每个parent-child关系: leftchild < root < rightChild
+- 查看每个parent-child关系: leftchild < root < rightChild; 
+- BST 有两个极端: left-most-leaf is the smallest element, and right-most-leaf is largest
+- imagine we know the two extreme border: Integer.MIN_VALUE, Integer.MAX_VALUE; pass node around and compare node vs. node.parent.
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- 
 
 ##### Note: 
 - min/max需要时long type. 
@@ -12659,7 +12699,9 @@ BST里面有2个node misplace, 要归为. 要求: O(1) extra space
 #### Observation
 - BST inorder traversal should give small -> large sequence
 - misplaced means: a **large**->small item would occur, and later a large>**small** would occur. 
-- The first large && second small item are the 2 candidates.
+- The first large && second small item are the 2 candidates. Example
+- [1, 5,  7, 10,    12, 15, 18]
+- [1, 5, `15, 10`, `12,  7`, 18]
 
 #### dfs, O(1) extra space
 - traverse, and take note of the candidate
@@ -16316,7 +16358,12 @@ count这个graph里面有多少个独立的component.
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
@@ -17607,11 +17654,11 @@ double for loop。 2Sum只能用土办法 left/right 2 pointers。 O(n^2)
 **7. [3Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3Sum.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
-方法1:
-sort array, for loop + two pointer. O(n)
-处理duplicate wthin triplets: 
-如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
-如果是triplet内有重复, 用完start point, 移动到结尾.
+
+#### sort array, for loop + two pointer. O(n^2)
+- 处理duplicate wthin triplets: 
+- 如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
+- 如果是triplet内有重复, 用完start point, 移动到结尾.
 
 Previous notes:
 注意:   
@@ -18936,7 +18983,10 @@ space: O(1)
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -18974,8 +19024,11 @@ space: O(1)
 如题, 验证是否是BST.
 
 #### DFS
-- 查看每个parent-child关系: leftchild < root < rightChild
+- 查看每个parent-child关系: leftchild < root < rightChild; 
+- BST 有两个极端: left-most-leaf is the smallest element, and right-most-leaf is largest
+- imagine we know the two extreme border: Integer.MIN_VALUE, Integer.MAX_VALUE; pass node around and compare node vs. node.parent.
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- 
 
 ##### Note: 
 - min/max需要时long type. 
@@ -21360,7 +21413,7 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
  
  
  
-## Enumeration (13)
+## Enumeration (14)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -21443,7 +21496,30 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 
 ---
 
-**5. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**5. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Enumeration, Math, Sequence DFS]
+      
+
+TODO: 
+1. use list, iterative? keep candidates and populating
+2. clean up the dfs code, a bit messy
+3. edge case of "0001000" is invalid, right?
+
+#### DFS
+- A bit like BFS solution: find inner list, and then combine with outter left/right sides.
+- find all solutions, DFS will be easier to write than iterative/BFS
+- when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
+- bottom->up, dfs till leaf level, and return candidates.
+- each level, pair with all the candidates
+- 其实就是剥皮，一层一层，是一个central-depth-first的，钻到底时候，return n=1,或者n=2的case，然后开始backtracking。
+- 难的case先不handle.到底之后来一次overall scan.
+- every level have 5 choices of digital pairs to add on sides. Need to do for n-2 times. 
+- Time complexity: O(5^n)
+
+
+
+---
+
+**6. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -21472,7 +21548,7 @@ Details 参见: https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Col
 
 ---
 
-**6. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**7. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 time: O(n)
 
@@ -21487,7 +21563,7 @@ time: O(n)
 
 ---
 
-**7. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+**8. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
 time: O(n)
 space: O(n)
@@ -21508,7 +21584,7 @@ space: O(n)
 
 ---
 
-**8. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
+**9. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -21521,7 +21597,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**9. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**10. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
@@ -21544,7 +21620,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**10. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
+**11. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
       
 
 按照规则 adjust text. 就是Word里面: 有一行太长, adjust word 中间的space, 然后保证每一行的total width 顶格.
@@ -21572,7 +21648,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**11. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
+**12. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
       
 
 Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(buf, n)
@@ -21586,7 +21662,7 @@ Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(bu
 
 ---
 
-**12. [Strobogrammatic Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number.java)**      Level: Easy      Tags: [Enumeration, Hash Table, Math]
+**13. [Strobogrammatic Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number.java)**      Level: Easy      Tags: [Enumeration, Hash Table, Math]
       
 
 根据题意枚举, 再根据规则basic implementation
@@ -21637,10 +21713,10 @@ space: O(1)
 
 #### DFS
 - 分析题意后, 按照题意: Flatten the tree, no extra space.
-1. reserve right child
-2. DFS flatten部分
-3. 移花接木
-4. flatten 剩下的.
+- 1. reserve right child: `reservedRightNode`
+- 2. Connect `root.right = root.left`, DFS flatten(root.right) 
+- 3. 移花接木, coneect end of list -> reservedRightNode
+- 4. flatten 剩下的. root.right...
 
 ##### 注意
 - 顺序一定要清楚, 不能写错, 写几个example可以看出来
@@ -23078,11 +23154,11 @@ Note巧妙点:
 **16. [3Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3Sum.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
-方法1:
-sort array, for loop + two pointer. O(n)
-处理duplicate wthin triplets: 
-如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
-如果是triplet内有重复, 用完start point, 移动到结尾.
+
+#### sort array, for loop + two pointer. O(n^2)
+- 处理duplicate wthin triplets: 
+- 如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
+- 如果是triplet内有重复, 用完start point, 移动到结尾.
 
 Previous notes:
 注意:   
@@ -23293,7 +23369,10 @@ Note:
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -24645,11 +24724,11 @@ space: O(n!)
 - at each level dfs, we have the index as starting point: 
 - if we are at `index=0, we can have n child dfs() options via for loop`; 
 - if at `index=1, we will have (n-1) dfs options via for loop`. 
-- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Consider it as the `pick/not-pick` problem, where the difference is you can pick `x` times at each index rather than only 2 times. 
 - Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
+- 在每个index上面都要面临: `pick/not pick的选择`, 用for loop over index + backtracking 实现 picks.
 - 每次pick以后, 就生成一条新的routine, from this index
 - 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
 - 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.

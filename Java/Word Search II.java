@@ -96,42 +96,40 @@ class Solution {
             this.children = new TrieNode[26];
         }
     }
-
+    int[] dx = {0, 0, 1, -1};
+    int[] dy = {1, -1, 0, 0};
     public List<String> findWords(char[][] board, String[] words) {
         List<String> result = new ArrayList<>();
-        if (validateInput(board, words)) {
-            return result;
-        }
+        if (validateInput(board, words)) return result;
+        
         // Build trie
         TrieNode root = buildTrie(words);
+        Set<String> set = new HashSet<>();
         // DFS and populate the result
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                dfs(root, board, i, j, result);
+                dfs(root, board, i, j, set);
             }
         }
+        result.addAll(set);
         return result;
     }
     
-    private void dfs(TrieNode node, char[][] board, int x, int y, List<String> result) {
+    private void dfs(TrieNode node, char[][] board, int x, int y, Set<String> set) {
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) return;
         char c = board[x][y];
-        if (c == '#' || node.children[c - 'a'] == null) {
-            return;
-        }
+        if (c == '#' || node.children[c - 'a'] == null) return;
 
         node = node.children[c - 'a'];
+        
         // Found the match
-        if (node.word != null) {
-            result.add(node.word);
-            node.word = null; // mark it null, means the word has been found and registered in result.
-        }
+        if (node.word != null && !set.contains(node.word)) set.add(node.word);
 
-        // Not found the match, dfs and backtracking
+        // Moving forward and backtracking
         board[x][y] = '#';
-        if (x > 0) dfs(node, board, x - 1, y, result);
-        if (y > 0) dfs(node, board, x, y - 1, result);
-        if (x < board.length - 1) dfs(node, board, x + 1, y, result);
-        if (y < board[0].length - 1) dfs(node, board, x, y + 1, result);
+        for (int i = 0; i < 4; i++) {
+            dfs(node, board, x + dx[i], y + dy[i], set);
+        }
         board[x][y] = c;
     }
     
@@ -148,11 +146,11 @@ class Solution {
         }
         return root;
     }
+
     private boolean validateInput(char[][] board, String[] words) {
         return board == null || board.length == 0 || board[0] == null || board[0].length == 0
            || words == null || words.length == 0;
-    }
-    
+    }   
 }
 
 /*

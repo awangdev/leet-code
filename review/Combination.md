@@ -38,11 +38,11 @@ space: O(n!)
 - at each level dfs, we have the index as starting point: 
 - if we are at `index=0, we can have n child dfs() options via for loop`; 
 - if at `index=1, we will have (n-1) dfs options via for loop`. 
-- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Consider it as the `pick/not-pick` problem, where the difference is you can pick `x` times at each index rather than only 2 times. 
 - Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
+- 在每个index上面都要面临: `pick/not pick的选择`, 用for loop over index + backtracking 实现 picks.
 - 每次pick以后, 就生成一条新的routine, from this index
 - 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
 - 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.

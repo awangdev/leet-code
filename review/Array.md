@@ -223,11 +223,11 @@ Note巧妙点:
 **16. [3Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/3Sum.java)**      Level: Medium      Tags: [Array, Two Pointers]
       
 
-方法1:
-sort array, for loop + two pointer. O(n)
-处理duplicate wthin triplets: 
-如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
-如果是triplet内有重复, 用完start point, 移动到结尾.
+
+#### sort array, for loop + two pointer. O(n^2)
+- 处理duplicate wthin triplets: 
+- 如果最外圈的移动点i重复, 一直顺到结尾的最后一个再用.
+- 如果是triplet内有重复, 用完start point, 移动到结尾.
 
 Previous notes:
 注意:   
@@ -438,7 +438,10 @@ Note:
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -1790,11 +1793,11 @@ space: O(n!)
 - at each level dfs, we have the index as starting point: 
 - if we are at `index=0, we can have n child dfs() options via for loop`; 
 - if at `index=1, we will have (n-1) dfs options via for loop`. 
-- Consider it as the pick/not-pick proble, where the difference is you can pick `x` times at each index rather than only 2 times. 
+- Consider it as the `pick/not-pick` problem, where the difference is you can pick `x` times at each index rather than only 2 times. 
 - Overall, we will multiply the # of possibilities: n * (n - 1) * (n - 2) ... * 1 = n! => `O(n!)`
 
 ##### Combination DFS 思想
-- 在每个index上面都要面临: pick/not pick的选择
+- 在每个index上面都要面临: `pick/not pick的选择`, 用for loop over index + backtracking 实现 picks.
 - 每次pick以后, 就生成一条新的routine, from this index
 - 下一个level的dfs从这个index开始, 对后面(或者当下/if allow index reuse) 进行同样的 pick/not pick 的选择
 - 注意1: 每个level dfs 里面, for loop 里会有 end condition: 就不必要dfs下去了.

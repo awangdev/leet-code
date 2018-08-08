@@ -9,10 +9,10 @@
 
 #### DFS
 - 分析题意后, 按照题意: Flatten the tree, no extra space.
-1. reserve right child
-2. DFS flatten部分
-3. 移花接木
-4. flatten 剩下的.
+- 1. reserve right child: `reservedRightNode`
+- 2. Connect `root.right = root.left`, DFS flatten(root.right) 
+- 3. 移花接木, coneect end of list -> reservedRightNode
+- 4. flatten 剩下的. root.right...
 
 ##### 注意
 - 顺序一定要清楚, 不能写错, 写几个example可以看出来

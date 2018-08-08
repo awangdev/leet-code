@@ -8,7 +8,8 @@ tags: Two Pointers, Array
 
 ```
 /*
-Given an array of n integers nums and a target, find the number of index triplets i, j, k with 0 <= i < j < k < n that satisfy the condition nums[i] + nums[j] + nums[k] < target.
+Given an array of n integers nums and a target, find the number of index triplets i, j, k with 0 <= i < j < k < n 
+that satisfy the condition nums[i] + nums[j] + nums[k] < target.
 
 For example, given nums = [-2, 0, 1, 3], and target = 2.
 
@@ -38,13 +39,10 @@ class Solution {
         }
         Arrays.sort(nums);
         int count = 0;
-        int start, end;
-        for (int i = 0; i < nums.length - 2; i++) {
-            int firstNum = nums[i];
-            start = i + 1;
-            end = nums.length - 1;
+        for (int i = 0; i < nums.length - 2; i++) { // first num, num[i] is the fixed item
+            int start = i + 1, end = nums.length - 1;  // move start, end
             while (start < end) {
-                if (nums[i] + nums[start] + nums[end]< target) {
+                if (nums[i] + nums[start] + nums[end] < target) {
                     count += end - start;
                     start++;
                 } else {

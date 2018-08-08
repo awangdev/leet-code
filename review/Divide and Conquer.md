@@ -51,7 +51,10 @@
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -89,8 +92,11 @@
 如题, 验证是否是BST.
 
 #### DFS
-- 查看每个parent-child关系: leftchild < root < rightChild
+- 查看每个parent-child关系: leftchild < root < rightChild; 
+- BST 有两个极端: left-most-leaf is the smallest element, and right-most-leaf is largest
+- imagine we know the two extreme border: Integer.MIN_VALUE, Integer.MAX_VALUE; pass node around and compare node vs. node.parent.
 - 方法: 把root.val 传下来作为 max 或者 min, 然后检查children
+- 
 
 ##### Note: 
 - min/max需要时long type. 

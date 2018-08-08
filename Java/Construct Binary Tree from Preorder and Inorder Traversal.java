@@ -10,7 +10,10 @@ tags: Array, Tree, DFS, Divide and Conquer, Hash Table
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 ```

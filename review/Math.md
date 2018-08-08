@@ -394,7 +394,7 @@ LintCode: 找kth ugly number, 应该与 Ugly Number II是一样的
 
 ---
 
-**23. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Math, Sequence DFS]
+**23. [Strobogrammatic Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java)**      Level: Medium      Tags: [DFS, Enumeration, Math, Sequence DFS]
       
 
 TODO: 
@@ -403,6 +403,7 @@ TODO:
 3. edge case of "0001000" is invalid, right?
 
 #### DFS
+- A bit like BFS solution: find inner list, and then combine with outter left/right sides.
 - find all solutions, DFS will be easier to write than iterative/BFS
 - when n = 1, there can be list of candidates at bottom of the tree, so bottom->up is better
 - bottom->up, dfs till leaf level, and return candidates.

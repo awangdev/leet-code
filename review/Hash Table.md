@@ -162,7 +162,10 @@ Binary search? 需要array sorted. 否则时间O(nlogn)不值得.
 - 跟Convert Sorted Array to Binary Tree类似, 找到对应的index, 然后:
 - node.left = dfs(...), node.right = dfs(...)
 - Divide and Conquer
-- optimize on finding mid node: given value, find mid of inorder. Instead of searching linearly, just store map <value -> index>, O(1)
+- optimize on finding `mid node`: given value, find mid of inorder:
+- Instead of searching linearly, just store inorder sequence in `map <value -> index>`, O(1)
+- IMPORATANT: the mid from inorder sequence will become the main baseline to tell range: 
+- `range of subTree = (mid - inStart)`
 - sapce: O(n), time: O(n) access
 
 
@@ -1118,7 +1121,12 @@ space: O(n)
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
@@ -1144,7 +1152,12 @@ space: O(n)
 
 
 #### Union Find
-- 构建 Map<email, email parent>, 然后再反向整合: parent -> list of email
+- 构建 `Map<email, email parent>`, 然后再反向整合: parent -> list of email
+- init with <email, email> for all emails
+- 因为不同account可能串email, 那么把所有email union的时候, 不同account 的email也会被串起来
+- 最终: 所有的email都被union起来, 指向一个各自union的 parent email
+- UnionFind 的 parent map 可以反向输出所有  child under parent.
+- 同时要维护一个 <email -> account name> 的map, 最终用来输出.
 
 #### Hash Table solution, passed but very slow
 - Definitely need iterate over accounts: merge them by email.
