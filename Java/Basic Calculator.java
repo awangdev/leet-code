@@ -58,34 +58,29 @@ class Solution {
     }
 
     public int calculate(String s) {
-        // check edge case
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
-        // build expression tree
-        TreeNode root = buildTree(s);
-        // post-order traversal of the tree
-        
-        return (int)evaluate(root);
+        if (s == null || s.length() == 0) return 0;
+        TreeNode root = buildTree(s); // build expression tree
+        return (int)evaluate(root); // post-order traversal of the tree
     }
 
     // build tree based on input string, min-tree. return root
     private TreeNode buildTree(String s) {
+        int n = s.length();
         char[] chars = s.trim().toCharArray();
         Stack<TreeNode> stack = new Stack<>();
         int base = 0;
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < chars.length; i++) {
+        for (int i = 0; i < n; i++) {
             char c = chars[i];
             if (c == ' ') {
                 continue;
-            } else if (c == '(') {
+            } else if (c == '(') { // '()' are used to add weight, not stored in tree
                 base = getWeight(base, c);
                 continue;
             } else if (c == ')') {
                 base = getWeight(base, c);
                 continue;
-            } else if (i < chars.length - 1 && isDigit(chars[i]) && isDigit(chars[i + 1])) {
+            } else if (i < n - 1 && isDigit(chars[i]) && isDigit(chars[i + 1])) { // continue to get remaining of the int
                 sb.append(c);
                 continue;
             }
@@ -113,14 +108,12 @@ class Solution {
             root = stack.pop();
         }
 
-        return root; // it's the root of tree
+        return root; // it's the root of tree, always a operator
     }
     
     // post-order traversal to evaluate the expression
     private long evaluate(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
+        if (root == null) return 0;
         long left = evaluate(root.left);
         long right = evaluate(root.right);
         long result = 0;
@@ -146,26 +139,16 @@ class Solution {
     // get weight of the character. integer weights the most and will be leaf.
     // Remember to store the result using long
     private int getWeight(int base, char c) {
-        if (c == '(') {
-            return base + 10;
-        }
-        if (c == ')') {
-            return base - 10;
-        }
-        if (c == '+' || c == '-') {
-            return base + 1;
-        }
-        if (c == '*' || c == '/') {
-            return base + 2;
-        }
+        if (c == '(') return base + 10;
+        if (c == ')') return base - 10;
+        if (c == '+' || c == '-') return base + 1;
+        if (c == '*' || c == '/') return base + 2;
         return Integer.MAX_VALUE;
     }
     
     private boolean isDigit(char c) {
         return c >= '0' && c <= '9';
     }
-
-    
 }
 
 ```
