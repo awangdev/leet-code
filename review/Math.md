@@ -1,7 +1,7 @@
  
  
  
-## Math (37)
+## Math (38)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -645,6 +645,24 @@ https://en.wikipedia.org/wiki/Roman_numerals
 #### wrong: convert to int
 - 土办法没技术，把binary换成数字，加起来，再换成binary
 - 如果input很大，那么很可能int,long都hold不住。不保险。
+
+
+
+---
+
+**37. [Cracking the Safe.java](https://github.com/awangdev/LintCode/blob/master/Java/Cracking%20the%20Safe.java)**      Level: Hard      Tags: [DFS, Greedy, Math]
+      
+
+#### Greedy, Iterative
+- For 2 passwords, the shortest situation is both passwords overlap for n-1 chars.
+- We can use a window to cut out last (n-1) substring and append with new candidate char from [k-1 ~ 0]
+- Track the newly formed string; if new, add the new char to overall result
+- Note: this operation will run for k^n times: for all spots of [0 ~ n - 1] each spot tries all k values [k-1 ~ 0]
+- Same concept as dfs
+
+#### DFS
+- Same concept: use window to cut out tail, and append with new candidate
+- do this for k^n = Math.pow(k, n) times
 
 
 

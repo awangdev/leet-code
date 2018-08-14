@@ -1,7 +1,7 @@
  
  
  
-## Tree (53)
+## Tree (55)
 **0. [Unique Binary Search Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree.java)**      Level: Medium      Tags: [BST, DP, Tree]
       
 
@@ -1102,6 +1102,36 @@ space: O(1)
 - `int[]{combinedPath, singlePath}`;
 - pick single path + 1: `singlePath = Math.max(left[1] , right[1]) + 1`;
 - complete left/right child, or join curr root: `combinedPath = Math.max(Math.max(left[0], right[0]), left[1] + right[1] + 1)`;
+
+
+
+---
+
+**53. [Redundant Connection.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Tree, Union Find]
+      
+
+#### unionFind
+- keyword: tree has no `cycle`.
+- 一旦两个node在edge中出现, 并且parent相同, 说明这两个node不union, 也在同一个tree里面, 所以可以break them.
+
+#### Graph, DFS
+- Add graph using adjacent list, and verify cycle alone the way
+- IMPORTANT: use `pre` node in dfs to prevent backward dfs
+- similar to `Graph Valid Tree` where it validates cycle and also needs to validate if all nodes are connected
+
+#### BFS
+- same concept as DFS, find first redundant edge that alreay exists in graph map.
+
+
+
+---
+
+**54. [Redundant Connection II.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection%20II.java)**      Level: Hard      Tags: [DFS, Graph, Tree, Union Find]
+      
+
+#### Union Find
+- 讨论3种情况
+- http://www.cnblogs.com/grandyang/p/8445733.html
 
 
 

@@ -1,5 +1,5 @@
 M
-1532583365
+1534225885
 tags: DFS, BFS, Union Find, Graph 
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -16,10 +16,12 @@ tags: DFS, BFS, Union Find, Graph
 - http://www.lintcode.com/en/problem/find-the-weak-connected-component-in-the-directed-graph/
 
 #### DFS
+- Very similar to `Redundant Connection`
 - Create adjacent list graph: Map<Integer, List<Integer>>
 - 检查: 
 - 1. 是否有cycle using dfs, check boolean[] visited
 - 2. 是否所有的node全部链接起来: validate if all edge connected: # of visited node should match graph size
+- IMPORTANT: use `pre` node to avoid linking backward/infinite loop such as (1)->(2), and (2)->(1)
 
 #### BFS
 - (还没做, 可以写一写)
@@ -97,10 +99,9 @@ and that node should not be in the tree yet. If found cycle, return false.
 */
 class Solution {
     public boolean validTree(int n, int[][] edges) {
-        // No node, false
         if (n == 0) return false;
 
-        Map<Integer, List<Integer>> graph = buildGraph(n, edges);
+        Map<Integer, Set<Integer>> graph = buildGraph(n, edges);
         Set<Integer> visited = new HashSet<>();
 
         // dfs(graph, visited, i, -1) and validate cycle
@@ -111,10 +112,10 @@ class Solution {
     }
     
     // build graph in form of adjacent list
-    private Map<Integer, List<Integer>> buildGraph(int n, int[][] edges) {
-        Map<Integer, List<Integer>> graph = new HashMap<>();
+    private Map<Integer, Set<Integer>> buildGraph(int n, int[][] edges) {
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            if (!graph.containsKey(i)) graph.put(i, new ArrayList<>());
+            graph.putIfAbsent(i, new HashSet<>());
         }
         for (int[] edge: edges) {
             graph.get(edge[0]).add(edge[1]);
@@ -124,11 +125,12 @@ class Solution {
     }
 
     // dfs: mark visited nodes, and keep dfs into children nodes
-    private boolean dfs(Map<Integer, List<Integer>> graph, Set<Integer> visited, int i, int pre) {
-        if (visited.contains(i)) return false;
-        visited.add(i);
-        for (int child : graph.get(i)) {
-            if (child != pre && !dfs(graph, visited, child, i)) return false;
+    private boolean dfs(Map<Integer, Set<Integer>> graph, Set<Integer> visited, int curr, int pre) {
+        if (visited.contains(curr)) return false;
+        visited.add(curr);
+        for (int child : graph.get(curr)) {
+            if (child == pre) continue;
+            if (!dfs(graph, visited, child, curr)) return false;
         }
         return true;
     }

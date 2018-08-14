@@ -1,13 +1,16 @@
 E
+1534215677
+tags: Hash Table
 
-HashMap 来确认match。有几种情况考虑:
+#### HashMap
+- two failture cases:
+- same key, value not matching
+- two key maps to same value
 
+#### Previous note
 1. Match. 就是map.containsKey, map.containsValue, and char1 == char2. Perfect.
-
 2. Either Key not exist, or Value not exit. False;
-
 3. Both key and Value exist, but map.get(char1) != char2.  Miss-match. False.
-
 4. None of Key or Value exist in HashMap. Then add the match.
 
 ```
@@ -34,6 +37,24 @@ Hide Similar Problems (E) Word Pattern
 
 */
 
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if (s == null || t == null || s.length() != t.length()) return false;
+        Map<Character, Character> map = new HashMap<>();
+        
+        for (int i = 0; i < s.length(); i++) {
+            char charS = s.charAt(i), charT = t.charAt(i);
+            if (map.containsKey(charS)) {
+                if (map.get(charS) != charT) return false; // same key, value not matching
+            } else {
+                if (map.containsValue(charT)) return false; // two key maps to same value
+                map.put(charS, charT);
+            }
+        }
+        
+        return true;
+    }
+}
 
 //Use hashMap<Char,Char> to store matches. If conflict, return false
 public class Solution {

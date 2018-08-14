@@ -1,12 +1,17 @@
 E
+tags: Hash Table, Enumeration
 
-用HashSet存visited value.
+#### Hash Set
+- 用HashSet存visited value.
+- 在nest for loop里面validate row,col,and block.     
+- validate block要利用i 和 j 增长的规律。    
+- 说白了，i && j是按照0~n增长的index, 具体怎么用是可以flexible的。这个方法在同一个nest for loop解决所有运算。
+- `int c = 3 * (i % 3) + j % 3;` //make use of how i and j increases
+- `int r = 3 * (i / 3) + j / 3;`
 
-方法1: 在nest for loop里面validate row,col,and block.     
-validate block要利用i 和 j 增长的规律。    
-说白了，i && j是按照0~n增长的index, 具体怎么用是可以flexible的。这个方法在同一个nest for loop解决所有运算。
-
-方法2: 单独做block validation: validate block的时候虽然看到了4层for.其实也就是n^2.
+#### A bit Slower approach
+- 单独做block validation: validate block的时候虽然看到了4层for. 其实也就是n^2
+- 可能代码稍微复杂一点
 
 ```
 /*
@@ -33,6 +38,38 @@ http://baike.baidu.com/subview/961/10842669.htm
 Tags Expand 
 Matrix
 */
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        if (board == null || board.length == 0 || board[0].length == 0 || board.length != board[0].length) {
+            return false;
+        }
+        int n = board.length;
+    
+        for (int i = 0; i < n; i++) {
+            HashSet<Character> row = new HashSet<>(), col = new HashSet<>(), block = new HashSet<>();
+            for (int j = 0; j < n; j++) {
+                //Check row
+                if (!helper(board[i][j], row)) return false;
+                //Check col, revert use of i,j
+                if (!helper(board[j][i], col)) return false;
+                //check block
+                int c = 3 * (i % 3) + j % 3;//make use of how i and j increases
+                int r = 3 * (i / 3) + j / 3;
+                if (!helper(board[r][c], block)) return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean helper(char c, Set<Character> set) {
+        if (!set.contains(c)) {
+            set.add(c);
+        } else if (c != '.') {
+            return false;
+        }
+        return true;
+    }
+};
 
 /*Recap 3.7.2016 */
 class Solution {

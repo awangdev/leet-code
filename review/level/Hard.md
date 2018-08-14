@@ -1,7 +1,7 @@
  
  
  
-## Hard (82)
+## Hard (86)
 **0. [Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)**      Level: Hard      Tags: []
       
 与Count of Smaller Number非常类似。以实际的value来构成segment tree，leaf上存（count of smaller number）。
@@ -1994,6 +1994,49 @@ Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps
 - 2. 如果 k == 1: 就是找A/B 里面的1st item, 那么做个 `Math.max(A[startA], B[startB])` 就可以
 - 总共的数字长度是 (m + n) 而且每次都有一般的内容被删除, 那么time就是 O(log(m + n))
 
+
+
+
+---
+
+**82. [Bus Routes.java](https://github.com/awangdev/LintCode/blob/master/Java/Bus%20Routes.java)**      Level: Hard      Tags: [BFS]
+      
+
+
+
+---
+
+**83. [Sliding Puzzle.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Puzzle.java)**      Level: Hard      Tags: [BFS]
+      
+
+
+
+---
+
+**84. [Cracking the Safe.java](https://github.com/awangdev/LintCode/blob/master/Java/Cracking%20the%20Safe.java)**      Level: Hard      Tags: [DFS, Greedy, Math]
+      
+
+#### Greedy, Iterative
+- For 2 passwords, the shortest situation is both passwords overlap for n-1 chars.
+- We can use a window to cut out last (n-1) substring and append with new candidate char from [k-1 ~ 0]
+- Track the newly formed string; if new, add the new char to overall result
+- Note: this operation will run for k^n times: for all spots of [0 ~ n - 1] each spot tries all k values [k-1 ~ 0]
+- Same concept as dfs
+
+#### DFS
+- Same concept: use window to cut out tail, and append with new candidate
+- do this for k^n = Math.pow(k, n) times
+
+
+
+---
+
+**85. [Redundant Connection II.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection%20II.java)**      Level: Hard      Tags: [DFS, Graph, Tree, Union Find]
+      
+
+#### Union Find
+- 讨论3种情况
+- http://www.cnblogs.com/grandyang/p/8445733.html
 
 
 

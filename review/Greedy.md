@@ -1,7 +1,7 @@
  
  
  
-## Greedy (16)
+## Greedy (17)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -374,6 +374,24 @@ space: O(1)
 - Use preMinSum to cache previouly calcualted min sum, also compare with +curr.
 - Have a global min to track: because the preMinSum can be dis-continuous. 
 - 也可以写成 dp[i] 但是没什么必要
+
+
+
+---
+
+**16. [Cracking the Safe.java](https://github.com/awangdev/LintCode/blob/master/Java/Cracking%20the%20Safe.java)**      Level: Hard      Tags: [DFS, Greedy, Math]
+      
+
+#### Greedy, Iterative
+- For 2 passwords, the shortest situation is both passwords overlap for n-1 chars.
+- We can use a window to cut out last (n-1) substring and append with new candidate char from [k-1 ~ 0]
+- Track the newly formed string; if new, add the new char to overall result
+- Note: this operation will run for k^n times: for all spots of [0 ~ n - 1] each spot tries all k values [k-1 ~ 0]
+- Same concept as dfs
+
+#### DFS
+- Same concept: use window to cut out tail, and append with new candidate
+- do this for k^n = Math.pow(k, n) times
 
 
 
