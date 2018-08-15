@@ -1,7 +1,7 @@
  
  
  
-## BFS (36)
+## BFS (38)
 **0. [Minimum Height Trees.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Height%20Trees.java)**      Level: Medium      Tags: [BFS, Graph]
       
 
@@ -885,6 +885,34 @@ space: O(n)
 #### BFS
 - BFS on coordinates
 - always attempt to move to end of border
+- use boolean[][] visited to alingn with BFS solution in Maze II, III, where it uses Node[][] to store state on each item.
+
+
+
+---
+
+**36. [The Maze II.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Maze%20II.java)**      Level: Medium      Tags: [BFS, DFS, PriorityQueue]
+      
+
+#### BFS
+- if already found a good/shorter route, skip
+- `if (distMap[node.x][node.y] <= node.dist) continue;`
+- This always terminates the possibility to go return to original route, because the dist will be double/higher
+
+
+
+---
+
+**37. [The Maze III.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Maze%20III.java)**      Level: Hard      Tags: [BFS, DFS, PriorityQueue]
+      
+
+#### BFS
+- 跟 Maze I, II 类似, 用一个 Node[][] 来存每一个(x,y)的state.
+- Different from traditional BFS(shortest path): `it terminates BFS when good solution exists (distance), but will finish all possible routes`
+- 1. `Termination condition`: if we already have a good/better solution on nodeMap[x][y], no need to add a new one
+- 2. Always cache the node if passed the test in step1
+- 3. Always offer the moved position as a new node to queue (as long as it fits condition)
+- 4. Finally the item at nodeMap[target.x][target.y] will have the best solution.
 
 
 

@@ -5,6 +5,7 @@ tags:  DFS, BFS
 #### BFS
 - BFS on coordinates
 - always attempt to move to end of border
+- use boolean[][] visited to alingn with BFS solution in Maze II, III, where it uses Node[][] to store state on each item.
 
 ```
 /*
@@ -52,7 +53,82 @@ Both the ball and the destination exist on an empty space, and they will not be 
 The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.
 The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.
 
- */
+*/
+// BFS with node
+class Solution {
+    int[] dx = {1, -1, 0, 0};
+    int[] dy = {0, 0, 1, -1};
+    public boolean hasPath(int[][] maze, int[] start, int[] dest) {
+        int m = maze.length, n = maze[0].length;
+        boolean[][] visited = new boolean[m][n];
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(new Node(start[0], start[1]));
+        visited[start[0]][start[1]] = true;
+        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Node node = queue.poll();
+                for (int j = 0; j < 4; j++) {
+                    int x = node.x, y = node.y;
+                    while (x >= 0 && x < m && y >= 0 && y < n && maze[x][y] == 0) {
+                        x+=dx[j];
+                        y+=dy[j];
+                    }
+                    x-=dx[j];
+                    y-=dy[j];
+                    if (dest[0] == x && dest[1] == y) return true;
+                    if (visited[x][y]) continue;
+                    visited[x][y] = true;
+                    queue.offer(new Node(x, y));
+                }
+            }
+        }
+        return false;
+    }
+    
+    class Node {
+        int x, y;
+        public Node(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+}
+
+// BFS with object[][]
+class Solution {
+    int[] dx = {1, -1, 0, 0};
+    int[] dy = {0, 0, 1, -1};
+    public boolean hasPath(int[][] maze, int[] start, int[] dest) {
+        int m = maze.length, n = maze[0].length;
+        boolean[][] visited = new boolean[m][n];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(start);
+        visited[start[0]][start[1]] = true;
+        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] pos = queue.poll();
+                for (int j = 0; j < 4; j++) {
+                    int x = pos[0], y = pos[1];
+                    while (x >= 0 && x < m && y >= 0 && y < n && maze[x][y] == 0) {
+                        x+=dx[j];
+                        y+=dy[j];
+                    }
+                    x-=dx[j];
+                    y-=dy[j];
+                    if (dest[0] == x && dest[1] == y) return true;
+                    if (visited[x][y]) continue;
+                    visited[x][y] = true;
+                    queue.offer(new int[] {x, y});
+                }
+            }
+        }
+        return false;
+    }
+}
 
 // BFS
 class Solution {

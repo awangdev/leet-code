@@ -1,7 +1,7 @@
  
  
  
-## String (59)
+## String (60)
 **0. [Space Replacement.java](https://github.com/awangdev/LintCode/blob/master/Java/Space%20Replacement.java)**      Level: Medium      Tags: [String]
       
 
@@ -1051,6 +1051,22 @@ https://en.wikipedia.org/wiki/Roman_numerals
 - for loop, 一旦找到不一样的char, 就判断那三种可能性: insert/delete/replace
 - insert/delete 对于2个string来说, 效果是类似的
 - O(n)
+
+
+
+---
+
+**59. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Medium      Tags: [Hash Table, String]
+      
+
+
+#### Convert to orginal string
+- shit by offset. `int offset = s.charAt(0) - 'a';`
+- increase if less than 'a': `if (newChar < 'a') newChar += 26;`
+
+#### Previous notes
+- 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
+- 记得根据题目意思，一开始要String[] sort一下。
 
 
 

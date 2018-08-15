@@ -169,19 +169,21 @@ Space O(n): dp[], sum[]
 **5. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
+LeetCode: Predict the Winner
+
 还是2个人拿n个coin, coin可以有不同的value. 
 
 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
 
 #### Memoization + Search
 - 跟Coins in a Line II 一样, MaxiMin的思想: 找到我的劣势中的最大值
-- dp[i][j] 代表在[i,j]区间上 选手最多能取的value 总和
+- `dp[i][j] 代表在[i,j]区间上 选手最多能取的value 总和`
 - 同样, sum[i][j]表示[i] 到 [j]间的value总和
 - 对手的最差情况, 也就是先手的最好情况:
 - dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
 - 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
 
-#### 博弈 + 区间DP
+#### 博弈 + 区间DP, Interval DP
 - 因为是看区间[i,j]的情况, 所以可以想到是区间 DP
 - 这个方法需要复习, 跟数学表达式的推断相关联: S(x) = - S(y) + m. 参考下面的公式推导.
 - dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x).

@@ -20,10 +20,10 @@
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)|Hard|Java|[]||
 |1|[Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)|Medium|Java|[]||
-|2|[Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)|Medium|Java|[Design]||
-|3|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
-|4|[Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)|Medium|Java|[Backtracking]||
-|5|[Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)|Easy|Java|[]||
+|2|[Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)|Medium|Java|[DFS, Graph, Union Find]||
+|3|[Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)|Medium|Java|[Design]||
+|4|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
+|5|[Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)|Medium|Java|[Backtracking]||
 |6|[Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Hamming%20Distance.java)|Easy|Java|[]||
 |7|[Happy Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Happy%20Number.java)|Easy|Java|[]||
 |8|[HashWithArray.java](https://github.com/awangdev/LintCode/blob/master/Java/HashWithArray.java)|Easy|Java|[]||
@@ -506,3 +506,8 @@
 |485|[Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
 |486|[Redundant Connection II.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection%20II.java)|Hard|Java|[DFS, Graph, Tree, Union Find]||
 |487|[The Maze.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Maze.java)|Medium|Java|[BFS, DFS]||
+|488|[The Maze II.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Maze%20II.java)|Medium|Java|[BFS, DFS, PriorityQueue]||
+|489|[The Maze III.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Maze%20III.java)|Hard|Java|[BFS, DFS, PriorityQueue]||
+|490|[Predict the Winner.java](https://github.com/awangdev/LintCode/blob/master/Java/Predict%20the%20Winner.java)|Medium|Java|[DP, MiniMax]||
+|491|[Next Greater Element I.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Greater%20Element%20I.java)|Easy|Java|[Hash Table, Stack]||
+|492|[Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)|Medium|Java|[Hash Table, String]||

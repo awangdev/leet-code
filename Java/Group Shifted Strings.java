@@ -1,8 +1,15 @@
-E
+M
+1534312697
+tags: Hash Table, String
 
-相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
 
-记得根据题目意思，一开始要String[] sort一下。
+#### Convert to orginal string
+- shit by offset. `int offset = s.charAt(0) - 'a';`
+- increase if less than 'a': `if (newChar < 'a') newChar += 26;`
+
+#### Previous notes
+- 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
+- 记得根据题目意思，一开始要String[] sort一下。
 
 ```
 /*
@@ -27,6 +34,29 @@ Hide Tags Hash Table String
 Hide Similar Problems (M) Group Anagrams
 
 */
+
+class Solution {
+    public List<List<String>> groupStrings(String[] strings) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (String s : strings) {
+            String origin = convert(s);
+            map.putIfAbsent(origin, new ArrayList<>());
+            map.get(origin).add(s);
+        }
+        return new ArrayList<>(map.values());
+    }
+    
+    private String convert(String s) {
+        StringBuffer sb = new StringBuffer();
+        int offset = s.charAt(0) - 'a';
+        for (char c : s.toCharArray()) {
+            char newChar = (char)(c - offset);
+            if (newChar < 'a') newChar += 26;
+            sb.append(newChar);
+        }
+        return sb.toString();
+    }
+}
 
 //Reduce each string into initial state: with the char at index 0 equal to integer 0. Save it as key for hashmap
 public class Solution {

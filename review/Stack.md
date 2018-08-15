@@ -1,7 +1,7 @@
  
  
  
-## Stack (29)
+## Stack (30)
 **0. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
@@ -593,6 +593,15 @@ space: O(n)
 剥皮过程。解铃还须系铃人   
 左边的外皮'{['在stack底部   
 右边的外皮应该和stack顶上的左外皮一一对应 
+
+
+
+---
+
+**29. [Next Greater Element I.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Greater%20Element%20I.java)**      Level: Easy      Tags: [Hash Table, Stack]
+      
+
+#### stack?
 
 
 

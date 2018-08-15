@@ -1,7 +1,7 @@
  
  
  
-## Hash Table (67)
+## Hash Table (69)
 **0. [Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)**      Level: Medium      Tags: [Hash Table, Math]
       
 
@@ -1404,6 +1404,31 @@ Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps
 2. Either Key not exist, or Value not exit. False;
 3. Both key and Value exist, but map.get(char1) != char2.  Miss-match. False.
 4. None of Key or Value exist in HashMap. Then add the match.
+
+
+
+---
+
+**67. [Next Greater Element I.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Greater%20Element%20I.java)**      Level: Easy      Tags: [Hash Table, Stack]
+      
+
+#### stack?
+
+
+
+---
+
+**68. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Medium      Tags: [Hash Table, String]
+      
+
+
+#### Convert to orginal string
+- shit by offset. `int offset = s.charAt(0) - 'a';`
+- increase if less than 'a': `if (newChar < 'a') newChar += 26;`
+
+#### Previous notes
+- 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
+- 记得根据题目意思，一开始要String[] sort一下。
 
 
 

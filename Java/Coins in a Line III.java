@@ -2,19 +2,21 @@ H
 1521702603
 tags: Array, DP, Game Theory, Interval DP, Memoization
 
+LeetCode: Predict the Winner
+
 还是2个人拿n个coin, coin可以有不同的value. 
 
 只不过这次选手可以从任意的一头拿, 而不限制从一头拿. 算先手会不会赢?
 
 #### Memoization + Search
 - 跟Coins in a Line II 一样, MaxiMin的思想: 找到我的劣势中的最大值
-- dp[i][j] 代表在[i,j]区间上 选手最多能取的value 总和
+- `dp[i][j] 代表在[i,j]区间上 选手最多能取的value 总和`
 - 同样, sum[i][j]表示[i] 到 [j]间的value总和
 - 对手的最差情况, 也就是先手的最好情况:
 - dp[i][j] = sum[i][j] - Math.min(dp[i][j - 1], dp[i + 1][j]);
 - 这里需要search, 画出tree可以看明白是如何根据取前后而分段的.
 
-#### 博弈 + 区间DP
+#### 博弈 + 区间DP, Interval DP
 - 因为是看区间[i,j]的情况, 所以可以想到是区间 DP
 - 这个方法需要复习, 跟数学表达式的推断相关联: S(x) = - S(y) + m. 参考下面的公式推导.
 - dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x).
@@ -71,6 +73,60 @@ or lose in O(1) memory and O(n) time?
 Tags 
 Array Dynamic Programming Game Theory
 */
+
+
+/*
+
+博弈. 这题, 是区间型.
+区间型标志: 每人每次只能取第一个数,或者最后一个数
+翻译: 每次砍头, 或者砍尾
+
+trick, 记录自己的数字与对手的数字和之差:
+S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
+这里我们用S(x)表示对于x先手而言的数字差, S(y)表示对于opponent y 先手而言的数字差.
+假设x先手的时候, S(x) = X - Y. 这一步拿掉了大小为m的coin.
+当opponent变成先手时候, 剩下的coins 被分割成x’, y’, 就有subset的S’(y) = y’ - x’
+Overall S(y) = Y - X = y’ - x’ - m = S’(y) - m
+同时S(x) = X - Y = -(S’(y) - m) = m - S’(y)
+注意: 这里的S’(y)面对的是拿过coins剩下的局面.
+
+dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
+
+那么S(x) = X - Y = a[i] - dp[i + 1][j]; // 砍头
+X = a[i]. 那里第i个coin
+dp[i + 1][j]: opponent从 i 位之后能积累的最大值
+a[j] - dp[i][j - 1]//砍尾
+
+dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
+
+最后看dp[0][n] >= 0
+
+
+ */
+public class Solution {
+    public boolean firstWillWin(int[] values) {
+        if (values == null || values.length == 0) {
+            return false;
+        }
+
+        int n = values.length;
+        int[][] dp = new int[n][n];
+
+        // len = 1        
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = values[i];
+        }
+        
+        // len = 2   
+        for (int len = 2; len <= n; len++) {
+            for (int i = 0; i <= n - len; i++) {
+                int j = len + i - 1;
+                dp[i][j] = Math.max(values[i] - dp[i + 1][j], values[j] - dp[i][j - 1]);
+            }
+        }
+        return dp[0][n - 1] >= 0;
+    }
+}
 
 /*
 Thoughts:
@@ -181,56 +237,4 @@ public class Solution {
 }
 
 
-/*
-
-博弈. 这题, 是区间型.
-区间型标志: 每人每次只能取第一个数,或者最后一个数
-翻译: 每次砍头, 或者砍尾
-
-trick, 记录自己的数字与对手的数字和之差:
-S(x) = X - Y, 找最大数字差. 如果最大值都大于0, 就是赢了; 如果小于0, 就输了. 
-这里我们用S(x)表示对于x先手而言的数字差, S(y)表示对于opponent y 先手而言的数字差.
-假设x先手的时候, S(x) = X - Y. 这一步拿掉了大小为m的coin.
-当opponent变成先手时候, 剩下的coins 被分割成x’, y’, 就有subset的S’(y) = y’ - x’
-Overall S(y) = Y - X = y’ - x’ - m = S’(y) - m
-同时S(x) = X - Y = -(S’(y) - m) = m - S’(y)
-注意: 这里的S’(y)面对的是拿过coins剩下的局面.
-
-dp[i][j]表示 从index(i) 到 index(j), 先手可以拿到的最大值与对手的数字差. 也就是S(x) = X - Y.
-
-那么S(x) = X - Y = a[i] - dp[i + 1][j]; // 砍头
-X = a[i]. 那里第i个coin
-dp[i + 1][j]: opponent从 i 位之后能积累的最大值
-a[j] - dp[i][j - 1]//砍尾
-
-dp[i][j] = max{a[i] - dp[i + 1][j], a[j] - dp[i][j - 1]}
-
-最后看dp[0][n] >= 0
-
-
- */
-public class Solution {
-    public boolean firstWillWin(int[] values) {
-        if (values == null || values.length == 0) {
-            return false;
-        }
-
-        int n = values.length;
-        int[][] dp = new int[n][n];
-
-        // len = 1        
-        for (int i = 0; i < n; i++) {
-            dp[i][i] = values[i];
-        }
-        
-        // len = 2   
-        for (int len = 2; len <= n; len++) {
-            for (int i = 0; i <= n - len; i++) {
-                int j = len + i - 1;
-                dp[i][j] = Math.max(values[i] - dp[i + 1][j], values[j] - dp[i][j - 1]);
-            }
-        }
-        return dp[0][n - 1] >= 0;
-    }
-}
 ```

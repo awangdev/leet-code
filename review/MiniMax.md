@@ -1,7 +1,7 @@
  
  
  
-## MiniMax (1)
+## MiniMax (2)
 **0. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
 
@@ -42,6 +42,15 @@ MiniMax的思考方法很神奇, 最后写出来的表达式很简单
 ##### 时间/空间
 Time O(n)
 Space O(n): dp[], sum[]
+
+
+
+---
+
+**1. [Predict the Winner.java](https://github.com/awangdev/LintCode/blob/master/Java/Predict%20the%20Winner.java)**      Level: Medium      Tags: [DP, MiniMax]
+      
+
+Detailed in `Coins in a Line III`
 
 
 
