@@ -1,5 +1,6 @@
 M
-Tags: Greedy, Priority Queue
+1534317486
+tags: Greedy, Priority Queue
 
 #### Priority Queue
 - TODO: parse into node(index, digitValue)

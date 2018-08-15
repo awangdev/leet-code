@@ -1,7 +1,10 @@
 M
+1534317715
 tags: Design
 
 Implement an iterator to flatten a 2d vector.
+
+Just move pointers carefully with next(), hashNext()
 
 #### Basic Implementation using x, y corrdinate
 - 就是把2D list里面的element全部遍历一遍。

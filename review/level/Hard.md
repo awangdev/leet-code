@@ -1,7 +1,7 @@
  
  
  
-## Hard (87)
+## Hard (89)
 **0. [Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)**      Level: Hard      Tags: []
       
 与Count of Smaller Number非常类似。以实际的value来构成segment tree，leaf上存（count of smaller number）。
@@ -228,20 +228,7 @@ Double Sequence DP:
 
 ---
 
-**12. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
-      
-
-Double sequence DP. 与regular expression 很像.
-
-注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
-注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
-    同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
-
-
-
----
-
-**13. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
+**12. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -256,7 +243,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**14. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Hash Table, Memoization]
+**13. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Hash Table, Memoization]
       
 
 找出所有 word break variations, given dictionary
@@ -289,13 +276,25 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**15. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
+**14. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
       
 
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
 符合的就process as result candidate.
 
 HashMap的做法比char[]写起来要复杂一点, 但是更generic
+
+
+
+---
+
+**15. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String]
+      
+
+大清洗 O(nk)   
+map.size一旦>k，要把longest string最开头（marked by pointer:start）的那个char抹掉    
+一旦某一个char要被清除，所以在这个char 的1st and last appearance之间的char都要被清洗from map
+
 
 
 
@@ -2054,6 +2053,40 @@ Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps
 - 2. Always cache the node if passed the test in step1
 - 3. Always offer the moved position as a new node to queue (as long as it fits condition)
 - 4. Finally the item at nodeMap[target.x][target.y] will have the best solution.
+
+
+
+---
+
+**87. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+      
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
+
+
+
+---
+
+**88. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 
 

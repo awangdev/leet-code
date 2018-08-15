@@ -1,6 +1,12 @@
-R
-1519287323
-tags: String, DP, Backtracking
+H
+1534348524
+tags: String, DP, Sequence DP, Double Sequence DP, Backtracking
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
 
 ```
 /*
@@ -42,14 +48,8 @@ dp[0][j] and dp[i][0] will all be false since there can't be any match.
 */
 class Solution {
     public boolean isMatch(String s, String p) {
-        if (s == null || p == null) {
-            return false;
-        }
-        if (s.length() != p.length() && p.indexOf('.') < 0 && p.indexOf('*') < 0) {
-            return false;
-        }
-        int m = s.length();
-        int n = p.length();
+        if (s == null || p == null) return false;
+        int m = s.length(), n = p.length();
         boolean[][] dp = new boolean[m + 1][n + 1];
         char[] ss = s.toCharArray();
         char[] pp = p.toCharArray();
@@ -60,7 +60,7 @@ class Solution {
                     dp[i][j] = true;
                     continue;
                 }
-                if (i >= 1 && j == 0) {
+                if (j == 0) { // When p is empty but s is not empty, should not match
                     dp[i][j] = false;
                     continue;
                 }
@@ -72,10 +72,11 @@ class Solution {
                         dp[i][j] = dp[i - 1][j - 1];
                     }
                 } else { // tail = '*'. ex: a*
-                    if (j >= 2 ) { // ignore a*
-                        dp[i][j] = dp[i][j - 2];
+                    if (j >= 2 ) { // ignore a*, repeat 0 times
+                        dp[i][j] |= dp[i][j - 2];
                     }
-                    if (j >= 2 && i >= 1 && (pp[j - 2] == '.' || pp[j - 2] == ss[i - 1])) {
+                    // repeat the char befeore * for 1 time, so ss[i-1] should match pp[j-2] or pp[j-2] == '.'
+                    if (j >= 2 && i >= 1 && (ss[i - 1] == pp[j - 2] || pp[j - 2] == '.')) { 
                         dp[i][j] |= dp[i - 1][j];
                     }
                 }

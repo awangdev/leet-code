@@ -1,7 +1,7 @@
  
  
  
-## Array (106)
+## Array (107)
 **0. [Missing Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Ranges.java)**      Level: Medium      Tags: [Array]
       
 
@@ -2241,6 +2241,17 @@ Move non-zero elements to front of array; preseve order.
 - 2. 如果 k == 1: 就是找A/B 里面的1st item, 那么做个 `Math.max(A[startA], B[startB])` 就可以
 - 总共的数字长度是 (m + n) 而且每次都有一般的内容被删除, 那么time就是 O(log(m + n))
 
+
+
+
+---
+
+**106. [The Spiral Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Spiral%20Matrix%20II.java)**      Level: Medium      Tags: [Array]
+      
+
+#### Move forward till end
+- Similar concept as `The Maze`: keep walking until hit wall, turn back
+- fix direction `dx[direction % 4]`
 
 
 

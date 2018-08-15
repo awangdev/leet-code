@@ -1,6 +1,28 @@
  
  
  
+## Priority Queue (1)
+**0. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium      Tags: [Greedy, Priority Queue]
+      
+
+#### Priority Queue
+- TODO: parse into node(index, digitValue)
+- find the top k, and remove from char array
+- O(nlogn) time
+
+#### Greedy
+- 数位靠前的，权值更大. 所以硬来把靠前的相对更大的（跟following digit相比）去掉。
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Merge Sort (4)
 **0. [MergeSort.java](https://github.com/awangdev/LintCode/blob/master/Java/MergeSort.java)**      Level: Medium      Tags: [Merge Sort, Sort]
       
@@ -464,27 +486,7 @@ Double Sequence DP:
 
 ---
 
-**8. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
-      
-
-
-
----
-
-**9. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
-      
-
-Double sequence DP. 与regular expression 很像.
-
-注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
-注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
-    同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
-
-
-
----
-
-**10. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium      Tags: [Hash Table, String, Two Pointers]
+**8. [Longest Substring Without Repeating Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20Without%20Repeating%20Characters.java)**      Level: Medium      Tags: [Hash Table, String, Two Pointers]
       
 
 方法1:
@@ -511,7 +513,7 @@ Previous verison of two pointers:
 
 ---
 
-**11. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
+**9. [Minimum Window Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Window%20Substring.java)**      Level: Hard      Tags: [Hash Table, String, Two Pointers]
       
 
 基本思想: 用个char[]存string的frequency. 然后2pointer, end走到底, 不断validate.
@@ -523,7 +525,7 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 ---
 
-**12. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium      Tags: [Hash Table, String]
+**10. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String]
       
 
 大清洗 O(nk)   
@@ -535,7 +537,7 @@ map.size一旦>k，要把longest string最开头（marked by pointer:start）的
 
 ---
 
-**13. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard      Tags: [Hash Table, String, Trie]
+**11. [Palindrome Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Pairs.java)**      Level: Hard      Tags: [Hash Table, String, Trie]
       
 
 Obvious的做法是全部试一遍, 判断, 变成 O(n^2) * O(m) = O(mn^2). O(m): isPalindrome() time.
@@ -565,7 +567,7 @@ O(mn)
 
 ---
 
-**14. [Change to Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Change%20to%20Anagram.java)**      Level: Easy      Tags: [String]
+**12. [Change to Anagram.java](https://github.com/awangdev/LintCode/blob/master/Java/Change%20to%20Anagram.java)**      Level: Easy      Tags: [String]
       
 
 HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要变化多少个字符, 能变成anagram.
@@ -580,7 +582,7 @@ HackerRank里面的random 题目: 给一个string, 一切成两半, 看两半要
 
 ---
 
-**15. [Compare Version Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Version%20Numbers.java)**      Level: Medium      Tags: [String]
+**13. [Compare Version Numbers.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Version%20Numbers.java)**      Level: Medium      Tags: [String]
       
 
 给两串version number,  由数字和'.' 组成. 比较先后顺序. 
@@ -600,7 +602,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 ---
 
-**16. [Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)**      Level: Easy      Tags: [String]
+**14. [Compare Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Compare%20Strings.java)**      Level: Easy      Tags: [String]
       
 
 看StringA是不是包括所有 StringB的字符.
@@ -615,7 +617,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 ---
 
-**17. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy      Tags: [Basic Implementation, String]
+**15. [Count and Say.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20and%20Say.java)**      Level: Easy      Tags: [Basic Implementation, String]
       
 
 介绍一种count数字的方法, 然后每一行读出上一行的结果, 一行一行推算. 问nth行是啥样?
@@ -628,7 +630,7 @@ If version1 > version2 return 1, if version1 < version2 return -1, otherwise ret
 
 ---
 
-**18. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
+**16. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
       
 time: O(n)
 space: O(n)
@@ -653,7 +655,7 @@ space: O(n)
 
 ---
 
-**19. [Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)**      Level: Medium      Tags: [Hash Table, String]
+**17. [Group Anagrams.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Anagrams.java)**      Level: Medium      Tags: [Hash Table, String]
       
 
 给一串string, return list of list, 把anagram 放在一起.
@@ -676,7 +678,7 @@ space: O(n)
 
 ---
 
-**20. [Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)**      Level: Easy      Tags: [String]
+**18. [Flip Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game.java)**      Level: Easy      Tags: [String]
       
 
 #### String
@@ -689,7 +691,7 @@ space: O(n)
 
 ---
 
-**21. [Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)**      Level: Easy      Tags: [String, Two Pointers]
+**19. [Implement strStr().java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20strStr().java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
 给两个string A, B, 找一个 B 在 A 种的起始位置.
@@ -705,7 +707,7 @@ space: O(n)
 
 ---
 
-**22. [Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)**      Level: Easy      Tags: [String]
+**20. [Length of Last Word.java](https://github.com/awangdev/LintCode/blob/master/Java/Length%20of%20Last%20Word.java)**      Level: Easy      Tags: [String]
       
 
 给一个String, 里面有lower case character 和 ' '. 找最后一个单个word的长度
@@ -718,7 +720,7 @@ space: O(n)
 
 ---
 
-**23. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**21. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 
 #### Double Sequence DP
@@ -742,7 +744,7 @@ space: O(n)
 
 ---
 
-**24. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
+**22. [Valid Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome.java)**      Level: Easy      Tags: [String, Two Pointers]
       
 
 验证string是不是 palindrome. 只考虑 alphanumeric, 其他字符可以忽略
@@ -759,7 +761,7 @@ space: O(n)
 
 ---
 
-**25. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: Easy      Tags: [String]
+**23. [Rotate String.java](https://github.com/awangdev/LintCode/blob/master/Java/Rotate%20String.java)**      Level: Easy      Tags: [String]
       
 
 给两个String, 看A rotate之后 能不能变成B
@@ -780,7 +782,7 @@ space: O(n)
 
 ---
 
-**26. [Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)**      Level: Medium      Tags: [Basic Implementation, Enumeration, String]
+**24. [Next Closest Time.java](https://github.com/awangdev/LintCode/blob/master/Java/Next%20Closest%20Time.java)**      Level: Medium      Tags: [Basic Implementation, Enumeration, String]
       
 
 给一个时间string"12:09", 用里面的4个integer组合成其他时间string, 目标找最小的next time.
@@ -795,7 +797,7 @@ space: O(n)
 
 ---
 
-**27. [Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)**      Level: Medium      Tags: [String]
+**25. [Encode and Decode Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Encode%20and%20Decode%20Strings.java)**      Level: Medium      Tags: [String]
       
 
 如题.
@@ -810,7 +812,7 @@ space: O(n)
 
 ---
 
-**28. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Easy      Tags: [String]
+**26. [Longest Common Prefix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Prefix.java)**      Level: Easy      Tags: [String]
       
 
 找一串String里面最长的公共prefix.
@@ -829,7 +831,7 @@ space: O(n)
 
 ---
 
-**29. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
+**27. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
       
 
 给一串数字, 检查是否是valid IP, 如果合理, 给出所有valid 的IP组合方式.
@@ -847,7 +849,7 @@ space: O(n)
 
 ---
 
-**30. [Reverse Words in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String.java)**      Level: Medium      Tags: [String]
+**28. [Reverse Words in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String.java)**      Level: Medium      Tags: [String]
       
 
 #### Break by space, then flip 
@@ -864,7 +866,7 @@ space: O(n)
 
 ---
 
-**31. [Reverse Words in a String II.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20II.java)**      Level: Medium      Tags: [String]
+**29. [Reverse Words in a String II.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20II.java)**      Level: Medium      Tags: [String]
       
 
 #### In-place reverse
@@ -876,7 +878,7 @@ space: O(n)
 
 ---
 
-**32. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
+**30. [Reverse Words in a String III.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Words%20in%20a%20String%20III.java)**      Level: Easy      Tags: [String]
       
 
 给一个String, 里面的Word被single space split开来, 目的是reverse里面所有的Word, 但preserve Word 和 space order.
@@ -888,7 +890,7 @@ space: O(n)
 
 ---
 
-**33. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+**31. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
       
 
 给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
@@ -915,7 +917,7 @@ output 所有 expression
 
 ---
 
-**34. [Shortest Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Palindrome.java)**      Level: Hard      Tags: [KMP, String]
+**32. [Shortest Palindrome.java](https://github.com/awangdev/LintCode/blob/master/Java/Shortest%20Palindrome.java)**      Level: Hard      Tags: [KMP, String]
       
 
 #### Divide by mid point, Brutle
@@ -932,7 +934,7 @@ output 所有 expression
 
 ---
 
-**35. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
+**33. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
       
 
 #### DFS
@@ -952,7 +954,7 @@ output 所有 expression
 
 ---
 
-**36. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: [Bit Manipulation, String]
+**34. [Binary Representation.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Representation.java)**      Level: Hard      Tags: [Bit Manipulation, String]
       
 
 #### String
@@ -971,7 +973,7 @@ output 所有 expression
 
 ---
 
-**37. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
+**35. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
       
 
 给一个string, 找到最长的palindrome substring.
@@ -1000,7 +1002,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**38. [Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)**      Level: Hard      Tags: [Coordinate DP, Stack, String]
+**36. [Longest Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Valid%20Parentheses.java)**      Level: Hard      Tags: [Coordinate DP, Stack, String]
       
 
 给一串string, 里面只有`(`, `)`. 找最长valid parentheses 的长度.
@@ -1028,7 +1030,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**39. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Partition, Sort, String, Two Pointers]
+**37. [Sort Letters by Case.java](https://github.com/awangdev/LintCode/blob/master/Java/Sort%20Letters%20by%20Case.java)**      Level: Medium      Tags: [Partition, Sort, String, Two Pointers]
       
 
 给一串字符(ASCII 大写, 小写字母), 要求sort 小写字母, 在大写字母前面. 
@@ -1056,7 +1058,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**40. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
+**38. [Longest Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Words.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 给一串String, 找到最长的长度, 把最长的String全都return
@@ -1069,7 +1071,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**41. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
+**39. [Unique Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Characters.java)**      Level: Easy      Tags: [Array, String]
       
 
 determine if characters are unique in string
@@ -1088,7 +1090,7 @@ determine if characters are unique in string
 
 ---
 
-**42. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
+**40. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
       
 
 根据题意, count # of palindromic substring. (不同index截取出来的substring算不同的情况)
@@ -1105,7 +1107,7 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 
 ---
 
-**43. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
+**41. [Multiply Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Multiply%20Strings.java)**      Level: Medium      Tags: [Math, String]
       
 
 给两个integer String, 求乘积
@@ -1132,7 +1134,7 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 
 ---
 
-**44. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
+**42. [Simplify Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Simplify%20Path.java)**      Level: Medium      Tags: [Stack, String]
       
 time: O(n)
 space: O(n)
@@ -1152,7 +1154,7 @@ space: O(n)
 
 ---
 
-**45. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**43. [Valid Number.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Number.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 time: O(n)
 
@@ -1167,7 +1169,7 @@ time: O(n)
 
 ---
 
-**46. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
+**44. [Read N Characters Given Read4.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4.java)**      Level: Easy      Tags: [Enumeration, String]
       
 
 Read4 题目. 理解题目: 是有个input object buff, 会被populated with data.
@@ -1180,7 +1182,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**47. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
+**45. [Integer to English Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Integer%20to%20English%20Words.java)**      Level: Hard      Tags: [Enumeration, Math, String]
       
 
 给一个小于 Integer.MAX_VALUE (2^31 - 1) 的数字, 转换成英语. (不需要加 'and')
@@ -1203,7 +1205,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**48. [Valid Palindrome II.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome%20II.java)**      Level: Easy      Tags: [String]
+**46. [Valid Palindrome II.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Palindrome%20II.java)**      Level: Easy      Tags: [String]
       
 
 #### Palindrome String
@@ -1214,7 +1216,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**49. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+**47. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
       
 
 给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
@@ -1248,7 +1250,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**50. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
+**48. [Text Justification.java](https://github.com/awangdev/LintCode/blob/master/Java/Text%20Justification.java)**      Level: Hard      Tags: [Enumeration, String]
       
 
 按照规则 adjust text. 就是Word里面: 有一行太长, adjust word 中间的space, 然后保证每一行的total width 顶格.
@@ -1276,7 +1278,7 @@ Read4 题目. 理解题目: 是有个input object buff, 会被populated with dat
 
 ---
 
-**51. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
+**49. [Read N Characters Given Read4 II - Call multiple times.java](https://github.com/awangdev/LintCode/blob/master/Java/Read%20N%20Characters%20Given%20Read4%20II%20-%20Call%20multiple%20times.java)**      Level: Hard      Tags: [Enumeration, String]
       
 
 Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(buf, n)
@@ -1290,7 +1292,7 @@ Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(bu
 
 ---
 
-**52. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+**50. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
       
 
 如题.
@@ -1304,7 +1306,7 @@ Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(bu
 
 ---
 
-**53. [String to Integer (atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer%20(atoi).java)**      Level: Medium      Tags: [Math, String]
+**51. [String to Integer (atoi).java](https://github.com/awangdev/LintCode/blob/master/Java/String%20to%20Integer%20(atoi).java)**      Level: Medium      Tags: [Math, String]
       
 
 #### String 
@@ -1318,7 +1320,7 @@ Read N Character using `Read4(char[] buf)` 的加强版: 可以不断读 read(bu
 
 ---
 
-**54. [Roman to Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Roman%20to%20Integer.java)**      Level: Easy      Tags: [Math, String]
+**52. [Roman to Integer.java](https://github.com/awangdev/LintCode/blob/master/Java/Roman%20to%20Integer.java)**      Level: Easy      Tags: [Math, String]
       
 
 #### String 
@@ -1333,7 +1335,7 @@ https://en.wikipedia.org/wiki/Roman_numerals
 
 ---
 
-**55. [Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Parentheses.java)**      Level: Easy      Tags: [Stack, String]
+**53. [Valid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Valid%20Parentheses.java)**      Level: Easy      Tags: [Stack, String]
       
 
 剥皮过程。解铃还须系铃人   
@@ -1344,7 +1346,7 @@ https://en.wikipedia.org/wiki/Roman_numerals
 
 ---
 
-**56. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, String]
+**54. [First Unique Character in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/First%20Unique%20Character%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, String]
       
 
 方法1: 按照题意, 找到第一个 first index == last index的字母.
@@ -1355,7 +1357,7 @@ https://en.wikipedia.org/wiki/Roman_numerals
 
 ---
 
-**57. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy      Tags: [Math, String, Two Pointers]
+**55. [Add Binary.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20Binary.java)**      Level: Easy      Tags: [Math, String, Two Pointers]
       
 
 #### Two pointers
@@ -1372,7 +1374,7 @@ https://en.wikipedia.org/wiki/Roman_numerals
 
 ---
 
-**58. [One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)**      Level: Medium      Tags: [String]
+**56. [One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)**      Level: Medium      Tags: [String]
       
 
 如果S, T只用一个operation就能变成相等, return true.
@@ -1387,7 +1389,7 @@ https://en.wikipedia.org/wiki/Roman_numerals
 
 ---
 
-**59. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Medium      Tags: [Hash Table, String]
+**57. [Group Shifted Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Group%20Shifted%20Strings.java)**      Level: Medium      Tags: [Hash Table, String]
       
 
 
@@ -1398,6 +1400,40 @@ https://en.wikipedia.org/wiki/Roman_numerals
 #### Previous notes
 - 相同shift规则的string, 能被推算到同一个零起始点，就是共同减去一个char,最后就相等。以此作为key，用HashMap。一目了然。
 - 记得根据题目意思，一开始要String[] sort一下。
+
+
+
+---
+
+**58. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+      
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
+
+
+
+---
+
+**59. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 
 
@@ -2430,27 +2466,7 @@ Double Sequence DP:
 
 ---
 
-**16. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
-      
-
-
-
----
-
-**17. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
-      
-
-Double sequence DP. 与regular expression 很像.
-
-注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
-注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
-    同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
-
-
-
----
-
-**18. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
+**16. [Ones and Zeroes.java](https://github.com/awangdev/LintCode/blob/master/Java/Ones%20and%20Zeroes.java)**      Level: Hard      Tags: [DP]
       
 
 还是Double Sequence, 但是考虑第三种状态: 给的string array的用量.
@@ -2465,7 +2481,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**19. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Hash Table, Memoization]
+**17. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Hash Table, Memoization]
       
 
 找出所有 word break variations, given dictionary
@@ -2498,7 +2514,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**20. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**18. [Unique Path.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Path.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 2D array, 算走到最右下角，有多少种方式.
@@ -2519,7 +2535,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**21. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
+**19. [Maximal Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Rectangle.java)**      Level: Hard      Tags: [Array, DP, Hash Table, Stack]
       
 
 #### 方法1: monotonous stack
@@ -2538,7 +2554,7 @@ Coordinate DP?
 
 ---
 
-**22. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**20. [Maximal Square.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximal%20Square.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 
 只能往右边,下面走, 找面积最大的 square. 也就是找到变最长的 square.
@@ -2561,7 +2577,7 @@ Coordinate DP?
 
 ---
 
-**23. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
+**21. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
 
 m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
@@ -2589,7 +2605,7 @@ m x n 的matrix, 找最长增序的序列长度. 这里默认连续的序列.
 
 ---
 
-**24. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
+**22. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -2610,7 +2626,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**25. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
+**23. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
 
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
@@ -2655,7 +2671,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**26. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
+**24. [Climbing Stairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Climbing%20Stairs.java)**      Level: Easy      Tags: [DP, Memoization, Sequence DP]
       
 
 每一步可以走1步或者2步, 求总共多少种方法爬完梯子.
@@ -2684,7 +2700,7 @@ Space O(n): dp[], sum[]
 
 ---
 
-**27. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**25. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
 
 LeetCode: Predict the Winner
@@ -2739,7 +2755,7 @@ LeetCode: Predict the Winner
 
 ---
 
-**28. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
+**26. [Burst Balloons.java](https://github.com/awangdev/LintCode/blob/master/Java/Burst%20Balloons.java)**      Level: Hard      Tags: [DP, Divide and Conquer, Interval DP, Memoization]
       
 
 一排球, 每个球有value, 每次扎破一个, 就会积分: 左*中间*右 的值. 求, 怎么扎, 最大值?
@@ -2776,7 +2792,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**29. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy      Tags: [Brainteaser, DP, Game Theory]
+**27. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy      Tags: [Brainteaser, DP, Game Theory]
       
 
 #### Brainteaser
@@ -2793,7 +2809,7 @@ TODO: Need more thoughts on why using dp[n + 2][n + 2] for memoization, but dp[n
 
 ---
 
-**30. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
+**28. [K Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/K%20Edit%20Distance.java)**      Level: Hard      Tags: [DP, Double Sequence DP, Sequence DP, Trie]
       
 
 给一串String, target string, int k. 找string array里面所有的candidate: 变化K次, 能变成target.
@@ -2812,7 +2828,7 @@ TODO
 
 ---
 
-**31. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
+**29. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
       
 
 给出步数，看能不能jump to end.
@@ -2841,7 +2857,7 @@ TODO
 
 ---
 
-**32. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**30. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给串数字, target amount, 求总共多少种方式可以reach the amount.
@@ -2861,7 +2877,7 @@ TODO
 
 ---
 
-**33. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
+**31. [Paint House.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House.java)**      Level: Easy      Tags: [DP, Sequence DP, Status DP]
       
 time: O(nm), m = # of colors
 space: O(nm)
@@ -2884,7 +2900,7 @@ space: O(nm)
 
 ---
 
-**34. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
+**32. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
       
 time: O(n)
 space: O(n)
@@ -2909,7 +2925,7 @@ space: O(n)
 
 ---
 
-**35. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**33. [Longest Continuous Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Continuous%20Increasing%20Subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 找连续的持续上升子序列的长度.
@@ -2928,7 +2944,7 @@ space: O(n)
 
 ---
 
-**36. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
+**34. [Minimum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Path%20Sum.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP]
       
 
 #### DP
@@ -2946,7 +2962,7 @@ space: O(n)
 
 ---
 
-**37. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium      Tags: [Bit Manipulation, Bitwise DP, DP]
+**35. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium      Tags: [Bit Manipulation, Bitwise DP, DP]
       
 
 给一个数组, 算里面有多少bit 1. 
@@ -2963,7 +2979,7 @@ space: O(n)
 
 ---
 
-**38. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
+**36. [Continuous Subarray Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Continuous%20Subarray%20Sum.java)**      Level: Medium      Tags: [Coordinate DP, DP, Math, Subarray]
       
 
 给一个非负数的数列和数字k(可正负, 可为0). 找到连续子序列(长度超过2), 使得这个subarray的sum 是 k的倍数. 问: 是否可能?
@@ -2982,7 +2998,7 @@ space: O(n)
 
 ---
 
-**39. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**37. [House Robber.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n) or rolling array O(1)
@@ -3005,7 +3021,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**40. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
+**38. [House Robber II.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20II.java)**      Level: Medium      Tags: [DP, Sequence DP, Status DP]
       
 
 和House Robber I 类似, 搜刮房子, 相邻不能动. 特点是: 现在nums排成了圈, 首尾相连.
@@ -3029,7 +3045,7 @@ space: O(n) or rolling array O(1)
 
 ---
 
-**41. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium      Tags: [DFS, DP, Status DP, Tree]
+**39. [House Robber III.java](https://github.com/awangdev/LintCode/blob/master/Java/House%20Robber%20III.java)**      Level: Medium      Tags: [DFS, DP, Status DP, Tree]
       
 
 Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不能同时抄.
@@ -3062,7 +3078,7 @@ Houses被arrange成了binary tree, 规则还是一样, 连续相连的房子不�
 
 ---
 
-**42. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
+**40. [Paint House II.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20House%20II.java)**      Level: Hard      Tags: [DP, Sequence DP, Status DP]
       
 time: O(NK^2):
 space: (NK)
@@ -3105,7 +3121,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**43. [Best Time to Buy and Sell Stock III.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
+**41. [Best Time to Buy and Sell Stock III.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III.java)**      Level: Hard      Tags: [Array, DP, Sequence DP]
       
 
 比stock II 多了一个限制：只有2次卖出机会.
@@ -3138,7 +3154,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**44. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
+**42. [Best Time to Buy and Sell Stock IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20IV.java)**      Level: Hard      Tags: [DP, Sequence DP]
       
 
 有int[] price of stock, 最多做 k transactions.  求最大profit.
@@ -3183,7 +3199,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**45. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
+**43. [Russian Doll Envelopes.java](https://github.com/awangdev/LintCode/blob/master/Java/Russian%20Doll%20Envelopes.java)**      Level: Hard      Tags: [Binary Search, Coordinate DP, DP]
       
 
 俄罗斯套娃, 这里用envelope来表现. 给一串array, 每一个[x, y] 是envelope 长宽. [[5,4],[6,4],[6,7],[2,3]]. 
@@ -3212,7 +3228,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**46. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**44. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
@@ -3253,7 +3269,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**47. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**45. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
@@ -3276,7 +3292,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**48. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**46. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
 
 #### Backpack DP
@@ -3301,7 +3317,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**49. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Enumeration, Partition DP]
+**47. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Enumeration, Partition DP]
       
 
 给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
@@ -3326,7 +3342,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**50. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
+**48. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
       
 
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
@@ -3362,7 +3378,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**51. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
+**49. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
       
 
 给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
@@ -3402,7 +3418,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**52. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
+**50. [Longest Common Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Substring.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP, String]
       
 
 #### Double Sequence DP
@@ -3426,7 +3442,7 @@ costs[0][1]表示涂了index是0的房子, 用了color 1.
 
 ---
 
-**53. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
+**51. [Longest Increasing Continuous subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence.java)**      Level: Easy      Tags: [Array, Coordinate DP, DP]
       
 
 https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/
@@ -3439,7 +3455,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**54. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
+**52. [Longest Increasing Continuous subsequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Continuous%20subsequence%20II.java)**      Level: Medium      Tags: [Array, Coordinate DP, DP, Memoization]
       
 
 #### Coordinate DP
@@ -3460,7 +3476,7 @@ O(1)是用了两个int来存：每次到i点时，i点满足条件或不满足�
 
 ---
 
-**55. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP, Subarray]
+**53. [Maximum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray.java)**      Level: Easy      Tags: [Array, DFS, DP, Divide and Conquer, PreSum, Sequence DP, Subarray]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -3485,7 +3501,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**56. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
+**54. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -3513,7 +3529,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**57. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
+**55. [Fibonacci.java](https://github.com/awangdev/LintCode/blob/master/Java/Fibonacci.java)**      Level: Easy      Tags: [DP, Math, Memoization]
       
 
 #### Memoization
@@ -3530,7 +3546,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**58. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
+**56. [Binary Tree Maximum Path Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Maximum%20Path%20Sum.java)**      Level: Hard      Tags: [DFS, DP, Tree, Tree DP]
       
 
 找max path sum,  可以从任意treeNode 到任意 treeNode.
@@ -3553,7 +3569,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**59. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**57. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
 
 给一串数字candidates (no duplicates), 和一个target. 
@@ -3581,7 +3597,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**60. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
+**58. [Unique Binary Search Tree II.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Binary%20Search%20Tree%20II.java)**      Level: Medium      Tags: [BST, DP, Divide and Conquer, Tree]
       
 
 给一个数字n, 找到以(1...n)为node的所有unique BST.
@@ -3597,7 +3613,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**61. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
+**59. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
 
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
@@ -3622,7 +3638,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**62. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**60. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -3659,7 +3675,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**63. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
+**61. [Longest Palindromic Substring.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Substring.java)**      Level: Medium      Tags: [DP, String]
       
 
 给一个string, 找到最长的palindrome substring.
@@ -3688,7 +3704,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**64. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
+**62. [Longest Palindromic Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Palindromic%20Subsequence.java)**      Level: Medium      Tags: [DFS, DP, Interval DP, Memoization]
       
 
 给一个string s, 找最长的sub-sequence which is also palindrome.
@@ -3719,7 +3735,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**65. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**63. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -3758,7 +3774,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**66. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
+**64. [Triangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Triangles.java)**      Level: Medium      Tags: [Array, Coordinate DP, DFS, DP, Memoization]
       
 
 给一个list<list<Integer>> triangle, 细节原题. 找 min path sum from root.
@@ -3789,7 +3805,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**67. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
+**65. [Range Sum Query - Immutable.java](https://github.com/awangdev/LintCode/blob/master/Java/Range%20Sum%20Query%20-%20Immutable.java)**      Level: Easy      Tags: [DP, PreSum]
       
 
 给一串数字, 求sumRange.
@@ -3803,7 +3819,7 @@ O(n^2) is not too hard to think of. How about O(n)?
 
 ---
 
-**68. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
+**66. [Remove Invalid Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Invalid%20Parentheses.java)**      Level: Review      Tags: [BFS, DFS, DP]
       
 
 给一个string, 里面有括号和其他字符. 以最少刀 剪出 valid string, 求所有这样的string.
@@ -3840,7 +3856,7 @@ TODO
 
 ---
 
-**69. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
+**67. [Number Of Corner Rectangles.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20Of%20Corner%20Rectangles.java)**      Level: Medium      Tags: [DP, Math]
       
 
 具体看题目: count # of valid rectangles (four corner are 1) in a grid[][].
@@ -3860,7 +3876,7 @@ TODO
 
 ---
 
-**70. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
+**68. [Palindromic Substrings.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindromic%20Substrings.java)**      Level: Medium      Tags: [DP, String]
       
 
 根据题意, count # of palindromic substring. (不同index截取出来的substring算不同的情况)
@@ -3877,7 +3893,7 @@ https://leetcode.com/problems/palindromic-substrings/discuss/105689/Java-solutio
 
 ---
 
-**71. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
+**69. [Paint Fence.java](https://github.com/awangdev/LintCode/blob/master/Java/Paint%20Fence.java)**      Level: Easy      Tags: [DP, Sequence DP]
       
 time: O(n)
 space: O(n)
@@ -3901,7 +3917,7 @@ space: O(n)
 
 ---
 
-**72. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Hash Table, Sequence DP]
+**70. [Word Break.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break.java)**      Level: Medium      Tags: [DP, Hash Table, Sequence DP]
       
 time: O(n^2)
 space: O(n)
@@ -3933,7 +3949,7 @@ space: O(n)
 
 ---
 
-**73. [Best Time to Buy and Sell Stock.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
+**71. [Best Time to Buy and Sell Stock.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock.java)**      Level: Easy      Tags: [Array, DP, Sequence DP]
       
 
 给个array of stock prices, 限制能交易(买/买)一轮, 问如何找到最大profit.
@@ -3962,7 +3978,7 @@ space: O(n)
 
 ---
 
-**74. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**72. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(1) greedy, O(n) dp
@@ -4005,7 +4021,7 @@ space: O(1) greedy, O(n) dp
 
 ---
 
-**75. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
+**73. [Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Binary Search, Coordinate DP, DP, Memoization]
       
 time: O(n^2) dp, O(nLogN) binary search
 space: O(n)
@@ -4033,7 +4049,7 @@ space: O(n)
 
 ---
 
-**76. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**74. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -4054,7 +4070,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**77. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
+**75. [Target Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Target%20Sum.java)**      Level: Medium      Tags: [DFS, DP]
       
 
 // 如何想到从中间initialize
@@ -4063,7 +4079,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**78. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
+**76. [Number of Longest Increasing Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Longest%20Increasing%20Subsequence.java)**      Level: Medium      Tags: [Coordinate DP, DP]
       
 time: O(n^2)
 time: O(n)
@@ -4091,7 +4107,7 @@ time: O(n)
 
 ---
 
-**79. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
+**77. [Minimum Swaps To Make Sequences Increasing.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Swaps%20To%20Make%20Sequences%20Increasing.java)**      Level: Medium      Tags: [Coordinate DP, DP, Status DP]
       
 
 
@@ -4107,7 +4123,7 @@ time: O(n)
 
 ---
 
-**80. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
+**78. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
       
 time: O(m)
 space: O(1)
@@ -4125,7 +4141,7 @@ space: O(1)
 
 ---
 
-**81. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
+**79. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
 time: O(n)
 space: O(n)
@@ -4146,7 +4162,7 @@ space: O(n)
 
 ---
 
-**82. [Frog Jump.java](https://github.com/awangdev/LintCode/blob/master/Java/Frog%20Jump.java)**      Level: Hard      Tags: [DP, Hash Table]
+**80. [Frog Jump.java](https://github.com/awangdev/LintCode/blob/master/Java/Frog%20Jump.java)**      Level: Hard      Tags: [DP, Hash Table]
       
 
 Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps, 而k取决于上一步所跳的步数. 默认 0->1 一定是跳了1步.
@@ -4171,10 +4187,44 @@ Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps
 
 ---
 
-**83. [Predict the Winner.java](https://github.com/awangdev/LintCode/blob/master/Java/Predict%20the%20Winner.java)**      Level: Medium      Tags: [DP, MiniMax]
+**81. [Predict the Winner.java](https://github.com/awangdev/LintCode/blob/master/Java/Predict%20the%20Winner.java)**      Level: Medium      Tags: [DP, MiniMax]
       
 
 Detailed in `Coins in a Line III`
+
+
+
+---
+
+**82. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+      
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
+
+
+
+---
+
+**83. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 
 
@@ -4186,7 +4236,7 @@ Detailed in `Coins in a Line III`
  
  
  
-## Double Sequence DP (4)
+## Double Sequence DP (6)
 **0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
       
 
@@ -4274,6 +4324,40 @@ TODO
 - 找所有A的substring, 然后B.contains()
 - track max substring length
 - O(n^2) time
+
+
+
+---
+
+**4. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+      
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
+
+
+
+---
+
+**5. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 
 
@@ -7648,23 +7732,7 @@ Same as MS Paint
  
  
 ## Design (21)
-**0. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
-      
-
-Implement an iterator to flatten a 2d vector.
-
-#### Basic Implementation using x, y corrdinate
-- 就是把2D list里面的element全部遍历一遍。
-- 跟一个nxn的matrix遍历，是没区别的拉; 所有来个x,y，把2d list跑一变。
-
-#### Always return item at index 0, and remove from list?
-- list 方便remove, 考虑吧reduce input vector (就像给的是linked list 一样)
-
-
-
----
-
-**1. [LFU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LFU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table]
+**0. [LFU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LFU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table]
       
 
 #### Hash Table
@@ -7685,7 +7753,7 @@ Implement an iterator to flatten a 2d vector.
 
 ---
 
-**2. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
+**1. [Binary Search Tree Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Search%20Tree%20Iterator.java)**      Level: Medium      Tags: [BST, Design, Stack, Tree]
       
 
 画一下, BST in order traversal. 用stack记录最小值, 放在top. O(h) space.
@@ -7725,7 +7793,7 @@ Previous Notes:
 
 ---
 
-**3. [Flatten Nested List Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Nested%20List%20Iterator.java)**      Level: Medium      Tags: [Design, Stack]
+**2. [Flatten Nested List Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%20Nested%20List%20Iterator.java)**      Level: Medium      Tags: [Design, Stack]
       
 
 方法1: 用queue, 把需要的item全部打出来
@@ -7735,7 +7803,7 @@ Previous Notes:
 
 ---
 
-**4. [Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)**      Level: Medium      Tags: [Design, Trie]
+**3. [Implement Trie (Prefix Tree).java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Trie%20(Prefix%20Tree).java)**      Level: Medium      Tags: [Design, Trie]
       
 
 Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startWith
@@ -7767,7 +7835,7 @@ Implement Tire, 也即是 Prefix Tree. 做三个function: insert, search, startW
 
 ---
 
-**5. [Add and Search Word - Data structure design.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word%20-%20Data%20structure%20design.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
+**4. [Add and Search Word - Data structure design.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word%20-%20Data%20structure%20design.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
       
 
 Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
@@ -7783,7 +7851,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**6. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy      Tags: [Design, Stack]
+**5. [Min Stack.java](https://github.com/awangdev/LintCode/blob/master/Java/Min%20Stack.java)**      Level: Easy      Tags: [Design, Stack]
       
 
 双Stack：一个正常stack，另一个minStack存当下level最小值. 注意维护minStack的变化
@@ -7794,7 +7862,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**7. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy      Tags: [Design, Stack]
+**6. [Implement Queue using Stacks.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Queue%20using%20Stacks.java)**      Level: Easy      Tags: [Design, Stack]
       
 
 #### 双Stack
@@ -7812,7 +7880,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**8. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy      Tags: [Design]
+**7. [Singleton.java](https://github.com/awangdev/LintCode/blob/master/Java/Singleton.java)**      Level: Easy      Tags: [Design]
       
 
 让一个class 是 singleton
@@ -7821,7 +7889,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**9. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy      Tags: [Design, Stack]
+**8. [Implement Stack using Queues.java](https://github.com/awangdev/LintCode/blob/master/Java/Implement%20Stack%20using%20Queues.java)**      Level: Easy      Tags: [Design, Stack]
       
 
 如题.
@@ -7846,7 +7914,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**10. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
+**9. [LRU Cache.java](https://github.com/awangdev/LintCode/blob/master/Java/LRU%20Cache.java)**      Level: Hard      Tags: [Design, Hash Table, Linked List]
       
 
 #### Double Linked List
@@ -7873,7 +7941,7 @@ Tricky: 是在pop()和peek()的时候backfill, 并且要等到stack用完再back
 
 ---
 
-**11. [Serialize and Deserialize Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serialize%20and%20Deserialize%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Deque, Design, Divide and Conquer, Tree]
+**10. [Serialize and Deserialize Binary Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Serialize%20and%20Deserialize%20Binary%20Tree.java)**      Level: Hard      Tags: [BFS, DFS, Deque, Design, Divide and Conquer, Tree]
       
 
 Serialize and Deserialize Binary Tree
@@ -7906,7 +7974,7 @@ Serialize and Deserialize Binary Tree
 
 ---
 
-**12. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
+**11. [Unique Word Abbreviation.java](https://github.com/awangdev/LintCode/blob/master/Java/Unique%20Word%20Abbreviation.java)**      Level: Medium      Tags: [Design, Hash Table]
       
 
 
@@ -7924,7 +7992,7 @@ Serialize and Deserialize Binary Tree
 
 ---
 
-**13. [ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)**      Level: Medium      Tags: [Design, Hash Table]
+**12. [ColorGrid.java](https://github.com/awangdev/LintCode/blob/master/Java/ColorGrid.java)**      Level: Medium      Tags: [Design, Hash Table]
       
 
 #### basic implementation
@@ -7940,7 +8008,7 @@ Serialize and Deserialize Binary Tree
 
 ---
 
-**14. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: Medium      Tags: [Design]
+**13. [Peeking Iterator.java](https://github.com/awangdev/LintCode/blob/master/Java/Peeking%20Iterator.java)**      Level: Medium      Tags: [Design]
       
 
 #### Use concept pre cache
@@ -7957,7 +8025,7 @@ Serialize and Deserialize Binary Tree
 
 ---
 
-**15. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
+**14. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
       
 
 看的list of coordinates 是否能组成perfect rectangle, 并且不允许overlap area.
@@ -7972,7 +8040,7 @@ Serialize and Deserialize Binary Tree
 
 ---
 
-**16. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
+**15. [Insert Delete GetRandom O(1).java](https://github.com/awangdev/LintCode/blob/master/Java/Insert%20Delete%20GetRandom%20O(1).java)**      Level: Medium      Tags: [Array, Design, Hash Table]
       
 time: O(1) avg
 space: O(n)
@@ -7988,7 +8056,7 @@ space: O(n)
 
 ---
 
-**17. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**16. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
       
 
 #### 原理
@@ -8004,7 +8072,7 @@ space: O(n)
 
 ---
 
-**18. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
+**17. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
 
 Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
@@ -8026,7 +8094,7 @@ Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要r
 
 ---
 
-**19. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+**18. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
       
 time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
 space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
@@ -8063,7 +8131,7 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 
 ---
 
-**20. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
+**19. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
       
 
 给一个interface, design一个structure, 能够计算moving window average.
@@ -8071,6 +8139,24 @@ Easier to revisit https://leetcode.com/problems/design-search-autocomplete-syste
 #### Queue
 - 读懂题目, 注意average 和 window 的处理.
 - 简单的queue.size() comparison
+
+
+
+---
+
+**20. [Flatten 2D Vector.java](https://github.com/awangdev/LintCode/blob/master/Java/Flatten%202D%20Vector.java)**      Level: Medium      Tags: [Design]
+      
+
+Implement an iterator to flatten a 2d vector.
+
+Just move pointers carefully with next(), hashNext()
+
+#### Basic Implementation using x, y corrdinate
+- 就是把2D list里面的element全部遍历一遍。
+- 跟一个nxn的matrix遍历，是没区别的拉; 所有来个x,y，把2d list跑一变。
+
+#### Always return item at index 0, and remove from list?
+- list 方便remove, 考虑吧reduce input vector (就像给的是linked list 一样)
 
 
 
@@ -8481,7 +8567,7 @@ HashMap的做法比char[]写起来要复杂一点, 但是更generic
 
 ---
 
-**14. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Medium      Tags: [Hash Table, String]
+**14. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String]
       
 
 大清洗 O(nk)   
@@ -9747,27 +9833,7 @@ k是permutation的一个数位。而permutation是有规律的。
 
 ---
 
-**4. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Review      Tags: [Backtracking, DP, String]
-      
-
-
-
----
-
-**5. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
-      
-
-Double sequence DP. 与regular expression 很像.
-
-注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
-注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
-    同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
-
-
-
----
-
-**6. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Hash Table, Memoization]
+**4. [Word Break II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Break%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, DP, Hash Table, Memoization]
       
 
 找出所有 word break variations, given dictionary
@@ -9800,7 +9866,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**7. [Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)**      Level: Easy      Tags: [Backtracking, Binary Tree, DFS]
+**5. [Binary Tree Paths.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Paths.java)**      Level: Easy      Tags: [Backtracking, Binary Tree, DFS]
       
 
 给一个binary tree, 返回所有root-to-leaf path
@@ -9826,7 +9892,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**8. [Add and Search Word - Data structure design.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word%20-%20Data%20structure%20design.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
+**6. [Add and Search Word - Data structure design.java](https://github.com/awangdev/LintCode/blob/master/Java/Add%20and%20Search%20Word%20-%20Data%20structure%20design.java)**      Level: Medium      Tags: [Backtracking, Design, Trie]
       
 
 Trie结构, prefix tree的变形： '.'可以代替任何字符，那么就要iterate这个node所有的children.
@@ -9842,7 +9908,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**9. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, Trie]
+**7. [Word Search II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search%20II.java)**      Level: Hard      Tags: [Backtracking, DFS, Trie]
       
 
 给一串words, 还有一个2D character matrix. 找到所有可以形成的words. 条件: 2D matrix 只可以相邻走位.
@@ -9880,7 +9946,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**10. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium      Tags: [Array, Backtracking, DFS]
+**8. [Word Search.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Search.java)**      Level: Medium      Tags: [Array, Backtracking, DFS]
       
 
 #### DFS, Backtracking:
@@ -9897,7 +9963,7 @@ Search word:没有node就报错. 到结尾return true
 
 ---
 
-**11. [Word Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Squares.java)**      Level: Hard      Tags: [Backtracking, Trie]
+**9. [Word Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Squares.java)**      Level: Hard      Tags: [Backtracking, Trie]
       
 
 可以开Trie class, 里面用到TrieNode. 开Trie(words) 可以直接initalize with for loop
@@ -9921,7 +9987,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**12. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+**10. [Course Schedule.java](https://github.com/awangdev/LintCode/blob/master/Java/Course%20Schedule.java)**      Level: Medium      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
       
 
 - 一堆课用int[2] pair 来表示. [1, 0] 表示要上课1的话, 必须先把课0上了. 
@@ -9985,7 +10051,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**13. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium      Tags: [Backtracking]
+**11. [Permutations II.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations%20II.java)**      Level: Medium      Tags: [Backtracking]
       
 
 给一串数组, 找出所有permutation数组. 注意: 给出的nums里面有重复数字, 而permutation的结果需要无重复.
@@ -10025,7 +10091,7 @@ candidatePrefix = ball[prefixIndex] + area[prefixIndex] = "le";
 
 ---
 
-**14. [N-Queens.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens.java)**      Level: Hard      Tags: [Backtracking]
+**12. [N-Queens.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens.java)**      Level: Hard      Tags: [Backtracking]
       
 
 N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
@@ -10049,7 +10115,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 
 ---
 
-**15. [N-Queens II.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens%20II.java)**      Level: Hard      Tags: [Backtracking]
+**13. [N-Queens II.java](https://github.com/awangdev/LintCode/blob/master/Java/N-Queens%20II.java)**      Level: Hard      Tags: [Backtracking]
       
 
 跟 N-Queens 一样, 不是找所有结果, 而是count多少结果.
@@ -10063,7 +10129,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 
 ---
 
-**16. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy      Tags: [Backtracking, DFS, Tree]
+**14. [Path Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20II.java)**      Level: Easy      Tags: [Backtracking, DFS, Tree]
       
 
 给一个inputSum, 然后dfs, 找到所有path, 满足: path sum 跟 inputSum 一样.
@@ -10085,7 +10151,7 @@ N-Queen 问题, 给数字n, 和 nxn board, 找到所有N-queens的答案.
 
 ---
 
-**17. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium      Tags: [Backtracking, Combination, DFS]
+**15. [Combinations.java](https://github.com/awangdev/LintCode/blob/master/Java/Combinations.java)**      Level: Medium      Tags: [Backtracking, Combination, DFS]
       
 
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
@@ -10100,7 +10166,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**18. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
+**16. [Restore IP Addresses.java](https://github.com/awangdev/LintCode/blob/master/Java/Restore%20IP%20Addresses.java)**      Level: Medium      Tags: [Backtracking, DFS, String]
       
 
 给一串数字, 检查是否是valid IP, 如果合理, 给出所有valid 的IP组合方式.
@@ -10118,7 +10184,7 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 ---
 
-**19. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
+**17. [Expression Add Operators.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Add%20Operators.java)**      Level: Hard      Tags: [Backtracking, DFS, Divide and Conquer, String]
       
 
 给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
@@ -10145,7 +10211,7 @@ output 所有 expression
 
 ---
 
-**20. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
+**18. [Generate Parentheses.java](https://github.com/awangdev/LintCode/blob/master/Java/Generate%20Parentheses.java)**      Level: Medium      Tags: [Backtracking, DFS, Sequence DFS, String]
       
 
 #### DFS
@@ -10165,7 +10231,7 @@ output 所有 expression
 
 ---
 
-**21. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
+**19. [Flip Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Flip%20Game%20II.java)**      Level: Medium      Tags: [Backtracking, DFS, DP]
       
 
 String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`, 翻转成 `--`.
@@ -10202,7 +10268,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**22. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
+**20. [Palindrome Partitioning.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning.java)**      Level: Medium      Tags: [Backtracking, DFS]
       
 
 给个string s, partition(分段)后, 要确保每个partition都是palindrome. 
@@ -10235,7 +10301,7 @@ String 只包含 + , - 两个符号. 两个人轮流把consecutive连续的`++`,
 
 ---
 
-**23. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
+**21. [Subsets.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, Bit Manipulation, DFS]
       
 time: O(2^n)
 space: O(2^n)
@@ -10271,7 +10337,7 @@ space: O(2^n)
 
 ---
 
-**24. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
+**22. [Subsets II.java](https://github.com/awangdev/LintCode/blob/master/Java/Subsets%20II.java)**      Level: Medium      Tags: [Array, BFS, Backtracking, DFS]
       
 time: O(2^n)
 sapce: O(2^n)
@@ -10311,7 +10377,7 @@ sapce: O(2^n)
 
 ---
 
-**25. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**23. [Combination Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 time: O(n!)
 space: O(n!)
@@ -10347,7 +10413,7 @@ space: O(n!)
 
 ---
 
-**26. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**24. [Combination Sum II.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20II.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一串数字candidates (can have duplicates), 和一个target. 
@@ -10376,7 +10442,7 @@ space: O(n!)
 
 ---
 
-**27. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
+**25. [Combination Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20III.java)**      Level: Medium      Tags: [Array, Backtracking, Combination, DFS]
       
 
 给一个integer k, 和一个target n. 
@@ -10400,7 +10466,7 @@ space: O(n!)
 
 ---
 
-**28. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
+**26. [Alien Dictionary.java](https://github.com/awangdev/LintCode/blob/master/Java/Alien%20Dictionary.java)**      Level: Hard      Tags: [BFS, Backtracking, DFS, Graph, Topological Sort]
       
 
 给一个 array of strings: 假如这个array是按照一个新的字母排序表(alien dictionary)排出来的, 需要找到这个字母排序.
@@ -10433,7 +10499,7 @@ space: O(n!)
 
 ---
 
-**29. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
+**27. [Word Ladder II.java](https://github.com/awangdev/LintCode/blob/master/Java/Word%20Ladder%20II.java)**      Level: Hard      Tags: [Array, BFS, Backtracking, DFS, Hash Table, String]
       
 
 给一串string, start word, end word. 找到所有从 startWord -> endWord的最短路径list. 
@@ -10467,7 +10533,7 @@ space: O(n!)
 
 ---
 
-**30. [Permutations.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations.java)**      Level: Medium      Tags: [Backtracking, DFS, Permutation]
+**28. [Permutations.java](https://github.com/awangdev/LintCode/blob/master/Java/Permutations.java)**      Level: Medium      Tags: [Backtracking, DFS, Permutation]
       
 
 #### Recursive: Backtracking
@@ -10489,6 +10555,40 @@ space: O(n!)
 - 用个queue，每次poll()出来的list, 把在nums里面能加的挨个加一遍
 - Time O(n!)
 - A bit slower, possibly because of the polling and saving the entire list every time
+
+
+
+
+---
+
+**29. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+      
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
+
+
+
+---
+
+**30. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
 
 
 
@@ -17307,7 +17407,7 @@ space: O(1)
  
  
  
-## Sequence DP (19)
+## Sequence DP (21)
 **0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
       
 
@@ -17835,6 +17935,40 @@ space: O(1)
 - Use preMinSum to cache previouly calcualted min sum, also compare with +curr.
 - Have a global min to track: because the preMinSum can be dis-continuous. 
 - 也可以写成 dp[i] 但是没什么必要
+
+
+
+---
+
+**19. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+      
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
+
+
+
+---
+
+**20. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 
 
@@ -20443,6 +20577,106 @@ space: O(n), O(1) rolling array
  
  
  
+## Sliding Window (6)
+**0. [Longest Substring with At Most K Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String]
+      
+
+大清洗 O(nk)   
+map.size一旦>k，要把longest string最开头（marked by pointer:start）的那个char抹掉    
+一旦某一个char要被清除，所以在这个char 的1st and last appearance之间的char都要被清洗from map
+
+
+
+
+---
+
+**1. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, Sliding Window]
+      
+
+跟 Permutation in String 很像. 给短string p， 长string s.
+
+找所有p的 anagram (permutation) 在s 里面的起始index.
+
+#### HashTable
+- count character apperance 就想到hashtable
+- 注意countS, countP 的技巧: 作比较只需要O(26)
+- Overall timeO(n)
+- 小心不要用一个int[] count 来技术 查0, 复杂度是O(n)
+
+
+
+---
+
+**2. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
+      
+
+Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
+
+#### MaxHeap, MinHeap
+- Median还是用min-heap 和 max-heap. Time(logN)
+- 加/减: prioirtyQueue, log(n)
+- findMedian: O(1)
+- 加一个数, 减一个数。
+- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
+- 抽完balance一下
+
+#### 注意
+- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
+- 左边的maxHeap总有 x+1或者x个数字
+- 后边minHeap应该一直有x个数字
+
+
+
+---
+
+**3. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
+      
+
+给一个interface, design一个structure, 能够计算moving window average.
+
+#### Queue
+- 读懂题目, 注意average 和 window 的处理.
+- 简单的queue.size() comparison
+
+
+
+---
+
+**4. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
+      
+
+如题.
+
+#### Two Pointer + HashMap
+- 原本想用 DP, 但是其实用 sliding window 的思想
+- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
+- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
+
+
+
+---
+
+**5. [Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)**      Level: Hard      Tags: [Deque, Heap, Sliding Window]
+      
+
+#### Deque, Monotonous queue
+- 维持monotonuous queue: one end is always at max and the other end is min. Always need to return the max end of queue.
+- when adding new elements x: start from small-end of the queue, drop all smaller elements and append to first element larger than x.
+- when sliding window: queue curr window 里面 最大的已经在max-end,  remove it if needed.
+- 妙：用deque数据结构（实际上采用LinkedList的形式）来做一个`递减的queue`.
+- 每次把小于当前node的，全部剔除，剩下的，自然就是:最大的>第二大的>第三大的...ETC.
+- 我们只在乎最大值的存在；而任何小于当前（正要新就加进去的）值的，反正以后也成不了最大值，于是扔掉！
+
+
+
+---
+
+
+
+
+ 
+ 
+ 
 ## Topological Sort (5)
 **0. [Longest Increasing Path in a Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Increasing%20Path%20in%20a%20Matrix.java)**      Level: Hard      Tags: [Coordinate DP, DFS, DP, Memoization, Topological Sort]
       
@@ -20614,94 +20848,6 @@ TODO:
 - 跟BFS建立 grpah 的过程一模一样
 - DFS的不同在于: 用visited map 来标记走过的地方
 - 走到leaf的时候, add to result: 但因为走到了底才add, 最终的顺序应该颠倒 (或者, sb.insert(0, x) 直接用颠倒的顺序add)
-
-
-
----
-
-
-
-
- 
- 
- 
-## Sliding Window (5)
-**0. [Find All Anagrams in a String.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20All%20Anagrams%20in%20a%20String.java)**      Level: Easy      Tags: [Hash Table, Sliding Window]
-      
-
-跟 Permutation in String 很像. 给短string p， 长string s.
-
-找所有p的 anagram (permutation) 在s 里面的起始index.
-
-#### HashTable
-- count character apperance 就想到hashtable
-- 注意countS, countP 的技巧: 作比较只需要O(26)
-- Overall timeO(n)
-- 小心不要用一个int[] count 来技术 查0, 复杂度是O(n)
-
-
-
----
-
-**1. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
-      
-
-Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
-
-#### MaxHeap, MinHeap
-- Median还是用min-heap 和 max-heap. Time(logN)
-- 加/减: prioirtyQueue, log(n)
-- findMedian: O(1)
-- 加一个数, 减一个数。
-- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
-- 抽完balance一下
-
-#### 注意
-- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
-- 左边的maxHeap总有 x+1或者x个数字
-- 后边minHeap应该一直有x个数字
-
-
-
----
-
-**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
-      
-
-给一个interface, design一个structure, 能够计算moving window average.
-
-#### Queue
-- 读懂题目, 注意average 和 window 的处理.
-- 简单的queue.size() comparison
-
-
-
----
-
-**3. [Longest Substring with At Most Two Distinct Characters.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.java)**      Level: Hard      Tags: [Hash Table, Sliding Window, String, Two Pointers]
-      
-
-如题.
-
-#### Two Pointer + HashMap
-- 原本想用 DP, 但是其实用 sliding window 的思想
-- sliding window 的切割: 用hashmap 存 last occurrance of char index; 
-- map.remove(c) 之后, 就等于彻底切掉了那一段; 那么 map.get(c) + 1 也就是新的 left window border
-
-
-
----
-
-**4. [Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)**      Level: Hard      Tags: [Deque, Heap, Sliding Window]
-      
-
-#### Deque, Monotonous queue
-- 维持monotonuous queue: one end is always at max and the other end is min. Always need to return the max end of queue.
-- when adding new elements x: start from small-end of the queue, drop all smaller elements and append to first element larger than x.
-- when sliding window: queue curr window 里面 最大的已经在max-end,  remove it if needed.
-- 妙：用deque数据结构（实际上采用LinkedList的形式）来做一个`递减的queue`.
-- 每次把小于当前node的，全部剔除，剩下的，自然就是:最大的>第二大的>第三大的...ETC.
-- 我们只在乎最大值的存在；而任何小于当前（正要新就加进去的）值的，反正以后也成不了最大值，于是扔掉！
 
 
 
@@ -20886,7 +21032,7 @@ kth largest in array
  
  
  
-## Greedy (17)
+## Greedy (18)
 **0. [Majority Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Majority%20Number%20II.java)**      Level: Medium      Tags: [Enumeration, Greedy]
       
 
@@ -20919,20 +21065,7 @@ O(n) space, O(nLog(n)) time, because of sorting.
 
 ---
 
-**2. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Greedy, String]
-      
-
-Double sequence DP. 与regular expression 很像.
-
-注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
-注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
-    同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
-
-
-
----
-
-**3. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
+**2. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
       
 
 给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
@@ -20948,7 +21081,7 @@ Double sequence DP. 与regular expression 很像.
 
 ---
 
-**4. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
+**3. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
       
 
 拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
@@ -20969,7 +21102,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**5. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
+**4. [Jump Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game.java)**      Level: Medium      Tags: [Array, DP, Greedy]
       
 
 给出步数，看能不能jump to end.
@@ -20998,7 +21131,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**6. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
+**5. [Maximum Subarray II.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Subarray%20II.java)**      Level: Medium      Tags: [Array, DP, Greedy, PreSum, Sequence DP, Subarray]
       
 
 给一串数组, 找数组中间 两个不交互的 subarray 数字之和的最大值
@@ -21026,7 +21159,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**7. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
+**6. [Remove Duplicate Letters.java](https://github.com/awangdev/LintCode/blob/master/Java/Remove%20Duplicate%20Letters.java)**      Level: Hard      Tags: [Greedy, Hash Table, Stack]
       
 
 #### Hash Table, Greedy
@@ -21044,7 +21177,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**8. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
+**7. [Jump Game II.java](https://github.com/awangdev/LintCode/blob/master/Java/Jump%20Game%20II.java)**      Level: Hard      Tags: [Array, Coordinate DP, DP, Greedy]
       
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
@@ -21083,7 +21216,7 @@ Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
 
 ---
 
-**9. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
+**8. [Gas Station.java](https://github.com/awangdev/LintCode/blob/master/Java/Gas%20Station.java)**      Level: Medium      Tags: [Greedy]
       
 
 给一串gas station array, 每个index里面有一定数量gas.
@@ -21108,7 +21241,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**10. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**9. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
 #### Array, count frequency, enumerate
@@ -21137,7 +21270,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**11. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
+**10. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
       
 
 给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
@@ -21156,7 +21289,7 @@ array的结尾地方, 再下一个点是开头, 形成一个circle route.
 
 ---
 
-**12. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**11. [Best Time to Buy and Sell Stock II.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(1) greedy, O(n) dp
@@ -21199,7 +21332,7 @@ space: O(1) greedy, O(n) dp
 
 ---
 
-**13. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
+**12. [Best Time to Buy and Sell Stock with Transaction Fee.java](https://github.com/awangdev/LintCode/blob/master/Java/Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.java)**      Level: Medium      Tags: [Array, DP, Greedy, Sequence DP, Status DP]
       
 time: O(n)
 space: O(n), O(1) rolling array
@@ -21220,7 +21353,7 @@ space: O(n), O(1) rolling array
 
 ---
 
-**14. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
+**13. [Find the Celebrity.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20the%20Celebrity.java)**      Level: Medium      Tags: [Array, Greedy]
       
 time: O(n)
 space: O(1)
@@ -21246,7 +21379,7 @@ space: O(1)
 
 ---
 
-**15. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
+**14. [Minimum Subarray.java](https://github.com/awangdev/LintCode/blob/master/Java/Minimum%20Subarray.java)**      Level: Easy      Tags: [Array, DP, Greedy, Sequence DP, Subarray]
       
 time: O(m)
 space: O(1)
@@ -21264,7 +21397,7 @@ space: O(1)
 
 ---
 
-**16. [Cracking the Safe.java](https://github.com/awangdev/LintCode/blob/master/Java/Cracking%20the%20Safe.java)**      Level: Hard      Tags: [DFS, Greedy, Math]
+**15. [Cracking the Safe.java](https://github.com/awangdev/LintCode/blob/master/Java/Cracking%20the%20Safe.java)**      Level: Hard      Tags: [DFS, Greedy, Math]
       
 
 #### Greedy, Iterative
@@ -21277,6 +21410,42 @@ space: O(1)
 #### DFS
 - Same concept: use window to cut out tail, and append with new candidate
 - do this for k^n = Math.pow(k, n) times
+
+
+
+---
+
+**16. [Delete Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/Delete%20Digits.java)**      Level: Medium      Tags: [Greedy, Priority Queue]
+      
+
+#### Priority Queue
+- TODO: parse into node(index, digitValue)
+- find the top k, and remove from char array
+- O(nlogn) time
+
+#### Greedy
+- 数位靠前的，权值更大. 所以硬来把靠前的相对更大的（跟following digit相比）去掉。
+
+
+
+---
+
+**17. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 
 
@@ -23418,7 +23587,7 @@ Serialize and Deserialize Binary Tree
  
  
  
-## Array (106)
+## Array (107)
 **0. [Missing Ranges.java](https://github.com/awangdev/LintCode/blob/master/Java/Missing%20Ranges.java)**      Level: Medium      Tags: [Array]
       
 
@@ -25658,6 +25827,17 @@ Move non-zero elements to front of array; preseve order.
 - 2. 如果 k == 1: 就是找A/B 里面的1st item, 那么做个 `Math.max(A[startA], B[startB])` 就可以
 - 总共的数字长度是 (m + n) 而且每次都有一般的内容被删除, 那么time就是 O(log(m + n))
 
+
+
+
+---
+
+**106. [The Spiral Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Spiral%20Matrix%20II.java)**      Level: Medium      Tags: [Array]
+      
+
+#### Move forward till end
+- Similar concept as `The Maze`: keep walking until hit wall, turn back
+- fix direction `dx[direction % 4]`
 
 
 

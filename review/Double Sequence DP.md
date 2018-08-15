@@ -1,7 +1,7 @@
  
  
  
-## Double Sequence DP (4)
+## Double Sequence DP (6)
 **0. [Longest Common Subsequence.java](https://github.com/awangdev/LintCode/blob/master/Java/Longest%20Common%20Subsequence.java)**      Level: Medium      Tags: [DP, Double Sequence DP, Sequence DP]
       
 
@@ -89,6 +89,40 @@ TODO
 - 找所有A的substring, 然后B.contains()
 - track max substring length
 - O(n^2) time
+
+
+
+---
+
+**4. [Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Sequence DP, String]
+      
+
+跟WildCard Matching 一样, 分清楚情况讨论 string p last char is '*' 还有并不是 '*'
+
+这里的区别是, '*' 需要有一个preceding element, 那么:
+- repeat 0 times
+- repeat 1 times: need s[i-1] match with prior char p[i-2]
+
+
+
+---
+
+**5. [Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)**      Level: Hard      Tags: [Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]
+      
+
+Double sequence DP. 与regular expression 很像.
+
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 
 

@@ -1,6 +1,6 @@
-M
+H
 1520228394
-tags: Hash Table, String
+tags: Hash Table, String, Sliding Window
 
 大清洗 O(nk)   
 map.size一旦>k，要把longest string最开头（marked by pointer:start）的那个char抹掉    
@@ -36,27 +36,23 @@ class Solution {
             return 0;
         }
         int n = s.length();
-        int start = 0;
-        int end = 0;
-        int rst = Integer.MIN_VALUE;
+        int start = 0, end = 0, rst = Integer.MIN_VALUE;
         HashMap<Character, Integer> map = new HashMap<>();
-        while (start < n) {
+        while (start < n) { // left window
             while (end < n) {
                 char c = s.charAt(end);
                 if (map.containsKey(c)) {
                     map.put(c, map.get(c) + 1);
                 } else {
-                    if (map.size() == k) {
-                        break;
-                    }
+                    if (map.size() == k) break; // meet window size
                     map.put(c, 1);
                 }                
                 end++;
             }
-            // Calculate length when map.size() == n or end == n
+            // Calculate length when map.size() == k or end == n
             rst = Math.max(rst, end - start);
 
-            // move start forward
+            // move start forward and clean up map
             char c = s.charAt(start);
             int count = map.get(c);
             if (count == 1) {
@@ -70,7 +66,6 @@ class Solution {
         return rst;
     }
 }
-
 
 /*
 Thoughts:

@@ -1,12 +1,20 @@
 H
-1519368767
-tags: String, DP, Backtracking, Greedy
+1534348528
+tags: String, DP, Sequence DP, Double Sequence DP, Backtracking, Greedy
 
 Double sequence DP. 与regular expression 很像.
 
-注意1: 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
-注意2: 搞清楚initialization 的时候 dp[i][0] 应该always false.当p为empty string, 无论如何都match不了 (除非s="" as well)
-    同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+#### Double Sequence DP
+- 分析字符 ?, * 所代表的真正意义, 然后写出表达式.
+- 搞清楚initialization 的时候 dp[i][0] 应该always false. 当p为empty string, 无论如何都match不了 (除非s="" as well)
+- 同时 dp[0][j]不一定是false. 比如s="",p="*" 就是一个matching.
+- A. p[j] != '*'
+    1. last index match => dp[i - 1][j - 1]
+    2. last index == ?  => dp[i - 1][j - 1]
+- B. p[j] == "*"
+    1. * is empty => dp[i][j - 1]
+    2. * match 1 or more chars => dp[i - 1][j]
+
 
 ```
 /*
@@ -51,16 +59,11 @@ Time,Space O(MN)
 */
 class Solution {
     public boolean isMatch(String s, String p) {
-        if (s == null || p == null) {
-            return false;
-        }
-        int m = s.length();
-        int n = p.length();
+        if (s == null || p == null) return false;
+        int m = s.length(), n = p.length();
         boolean[][] dp = new boolean[m + 1][n + 1];
         char[] ss = s.toCharArray();
         char[] pp = p.toCharArray();
-        
-        // dp[0][j] = false; dp[i][0] = false; 
         
         for (int i = 0; i <= m; i++) {
             for (int j = 0; j <= n; j++) {
@@ -75,7 +78,7 @@ class Solution {
                 dp[i][j] = false;
                 if (pp[j - 1] != '*') {
                     if (i >= 1 && (ss[i - 1] == pp[j - 1] || pp[j - 1] == '?')) {
-                        dp[i][j] = dp[i - 1][j - 1];
+                        dp[i][j] |= dp[i - 1][j - 1];
                     }
                 } else {
                     dp[i][j] |= dp[i][j - 1];// '*' -> empty
