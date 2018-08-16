@@ -88,4 +88,35 @@ class Solution {
 }
 
 
+// Simpler, without considering iterating m^2 on the smaller side
+class Solution {
+    public int maxSumSubmatrix(int[][] matrix, int k) {
+        if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) {
+            return -1;
+        }
+        int m = matrix.length, n = matrix[0].length;
+        int max = Integer.MIN_VALUE;
+        // 3 loop layers: 
+        // 1. int[] preSum; 2. TreeSet, store all area for curr iteration, 3. newSum in new row
+        for (int row = 0; row < m; row++) {
+            int[] preSum = new int[n];
+            for (int i = row; i < m; i++) { // iteration
+                TreeSet<Integer> areaSet = new TreeSet<>();
+                int newSum = 0; // adding up with preSum[j]
+                for (int j = 0; j < n; j++) {
+                    preSum[j] += matrix[i][j];
+                    newSum += preSum[j];
+                    if (newSum <= k) max = Math.max(max, newSum);
+                    Integer extraArea = areaSet.ceiling(newSum - k);
+                    if (extraArea != null) {
+                        max = Math.max(max, newSum - extraArea);
+                    }
+                    areaSet.add(newSum);
+                }
+            }
+        }
+        return max == Integer.MIN_VALUE ? -1 : max;
+    }
+}
+
 ```

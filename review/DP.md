@@ -1,7 +1,7 @@
  
  
  
-## DP (84)
+## DP (85)
 **0. [Stone Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Stone%20Game.java)**      Level: Medium      Tags: [DP]
       
 
@@ -2108,6 +2108,13 @@ Double sequence DP. 与regular expression 很像.
     1. * is empty => dp[i][j - 1]
     2. * match 1 or more chars => dp[i - 1][j]
 
+
+
+
+---
+
+**84. [Maximum Vacation Days.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Vacation%20Days.java)**      Level: Hard      Tags: [DP]
+      
 
 
 

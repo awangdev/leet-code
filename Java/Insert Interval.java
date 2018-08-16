@@ -117,6 +117,44 @@ class Solution {
     
 }
 
+// intervals is sorted
+class Solution {
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        if (intervals == null || intervals.size() == 0 || newInterval == null) {
+            if (newInterval != null) {
+                intervals.add(newInterval);
+            }
+            return intervals;
+        }
+        //Insert
+        int start = newInterval.start;
+        int front = -1;
+        for (int i = 0; i < intervals.size(); i++) {
+            if (intervals.get(i).start <= start) {
+                front = i;
+            }
+        }
+
+        // if front==-1, add to front + 1 = 0
+        intervals.add(front + 1, newInterval);
+     
+        //Merge
+        Interval pre = intervals.get(0);
+        Interval curr = null;
+        for (int i = 1; i < intervals.size(); i++) {
+            curr = intervals.get(i);
+            if (pre.end >= curr.start) {
+                pre.end = pre.end > curr.end ? pre.end : curr.end;
+                intervals.remove(i);
+                i--;
+            } else {
+                pre = curr;
+            }
+        }
+    
+        return intervals;
+    }
+}
 
 
 

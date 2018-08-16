@@ -1,10 +1,15 @@
 M
-tags: Graph, DFS, Union Find
+tags: Graph, DFS, Union Find, BFS
 
 #### DFS
 - build map of `x#y -> val` to store values[i] and 1/values[i]
 - build map of `x -> list children`
 - dfs to traverse the graph
+
+#### BFS
+- BFS should also work: build graph and valueMap
+- for each starting item, add all next candidate to queue
+- mark visited, loop until end item is found
 
 ```
 /*

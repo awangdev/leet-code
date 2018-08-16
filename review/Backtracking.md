@@ -1,7 +1,7 @@
  
  
  
-## Backtracking (31)
+## Backtracking (32)
 **0. [Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)**      Level: Medium      Tags: [Backtracking]
       
 
@@ -823,6 +823,21 @@ Double sequence DP. 与regular expression 很像.
     1. * is empty => dp[i][j - 1]
     2. * match 1 or more chars => dp[i - 1][j]
 
+
+
+
+---
+
+**31. [Robot Room Cleaner.java](https://github.com/awangdev/LintCode/blob/master/Java/Robot%20Room%20Cleaner.java)**      Level: Hard      Tags: [Backtracking, DFS]
+      
+
+#### DFS
+- Different from regular dfs to visit all, the robot move() function need to be called, backtrack needs to move() manually and backtracking path shold not be blocked by visited positions
+- IMPORTANT: Mark on the way in using set, but `backtrack directly without re-check against set`
+- Mark coordinate 'x@y'
+- Backtrack: turn 2 times to revert, move 1 step, and turn 2 times to revert back.
+- Direction has to be up, right, down, left.
+- `int [] dx = {-1, 0, 1, 0};`, `int[] dy = {0, 1, 0, -1};`
 
 
 

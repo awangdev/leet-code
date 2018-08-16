@@ -19,7 +19,7 @@
 | Squence | Problem       | Level  | Language  | Tags | Video Tutorial|
 |:-------:|:--------------|:------:|:---------:|:----:|:-------------:|
 |0|[Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)|Hard|Java|[]||
-|1|[Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)|Medium|Java|[DFS, Graph, Union Find]||
+|1|[Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)|Medium|Java|[BFS, DFS, Graph, Union Find]||
 |2|[Fraction to Recurring Decimal.java](https://github.com/awangdev/LintCode/blob/master/Java/Fraction%20to%20Recurring%20Decimal.java)|Medium|Java|[Hash Table, Math]||
 |3|[Gray Code.java](https://github.com/awangdev/LintCode/blob/master/Java/Gray%20Code.java)|Medium|Java|[Backtracking]||
 |4|[Hamming Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/Hamming%20Distance.java)|Easy|Java|[]||
@@ -495,7 +495,7 @@
 |474|[One Edit Distance.java](https://github.com/awangdev/LintCode/blob/master/Java/One%20Edit%20Distance.java)|Medium|Java|[String]||
 |475|[4Sum.java](https://github.com/awangdev/LintCode/blob/master/Java/4Sum.java)|Medium|Java|[Hash Table]||
 |476|[Bus Routes.java](https://github.com/awangdev/LintCode/blob/master/Java/Bus%20Routes.java)|Hard|Java|[BFS]||
-|477|[Sliding Puzzle.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Puzzle.java)|Hard|Java|[BFS]||
+|477|[Sliding Puzzle.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Puzzle.java)|Hard|Java|[BFS, Graph]||
 |478|[Isomorphic Strings.java](https://github.com/awangdev/LintCode/blob/master/Java/Isomorphic%20Strings.java)|Easy|Java|[Hash Table]||
 |479|[Cracking the Safe.java](https://github.com/awangdev/LintCode/blob/master/Java/Cracking%20the%20Safe.java)|Hard|Java|[DFS, Greedy, Math]||
 |480|[Redundant Connection.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection.java)|Medium|Java|[BFS, DFS, Graph, Tree, Union Find]||
@@ -512,3 +512,5 @@
 |491|[The Spiral Matrix II.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Spiral%20Matrix%20II.java)|Medium|Java|[Array]||
 |492|[Regular Expression Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Regular%20Expression%20Matching.java)|Hard|Java|[Backtracking, DP, Double Sequence DP, Sequence DP, String]||
 |493|[Wildcard Matching.java](https://github.com/awangdev/LintCode/blob/master/Java/Wildcard%20Matching.java)|Hard|Java|[Backtracking, DP, Double Sequence DP, Greedy, Sequence DP, String]||
+|494|[Robot Room Cleaner.java](https://github.com/awangdev/LintCode/blob/master/Java/Robot%20Room%20Cleaner.java)|Hard|Java|[Backtracking, DFS]||
+|495|[Maximum Vacation Days.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Vacation%20Days.java)|Hard|Java|[DP]||

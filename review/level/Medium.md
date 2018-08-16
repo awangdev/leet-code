@@ -2,13 +2,18 @@
  
  
 ## Medium (247)
-**0. [Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)**      Level: Medium      Tags: [DFS, Graph, Union Find]
+**0. [Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 #### DFS
 - build map of `x#y -> val` to store values[i] and 1/values[i]
 - build map of `x -> list children`
 - dfs to traverse the graph
+
+#### BFS
+- BFS should also work: build graph and valueMap
+- for each starting item, add all next candidate to queue
+- mark visited, loop until end item is found
 
 
 

@@ -1,14 +1,19 @@
  
  
  
-## Graph (10)
-**0. [Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)**      Level: Medium      Tags: [DFS, Graph, Union Find]
+## Graph (11)
+**0. [Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 #### DFS
 - build map of `x#y -> val` to store values[i] and 1/values[i]
 - build map of `x -> list children`
 - dfs to traverse the graph
+
+#### BFS
+- BFS should also work: build graph and valueMap
+- for each starting item, add all next candidate to queue
+- mark visited, loop until end item is found
 
 
 
@@ -203,7 +208,14 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**7. [Redundant Connection.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Tree, Union Find]
+**7. [Sliding Puzzle.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Puzzle.java)**      Level: Hard      Tags: [BFS, Graph]
+      
+
+
+
+---
+
+**8. [Redundant Connection.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Tree, Union Find]
       
 
 #### unionFind
@@ -222,7 +234,7 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**8. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
+**9. [Graph Valid Tree.java](https://github.com/awangdev/LintCode/blob/master/Java/Graph%20Valid%20Tree.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 给一个数字n代表n nodes, marked from 1 ~ n, 和一串undirected edge int[][]. 
@@ -254,7 +266,7 @@ count这个graph里面有多少个独立的component.
 
 ---
 
-**9. [Redundant Connection II.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection%20II.java)**      Level: Hard      Tags: [DFS, Graph, Tree, Union Find]
+**10. [Redundant Connection II.java](https://github.com/awangdev/LintCode/blob/master/Java/Redundant%20Connection%20II.java)**      Level: Hard      Tags: [DFS, Graph, Tree, Union Find]
       
 
 #### Union Find

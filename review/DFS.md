@@ -1,14 +1,19 @@
  
  
  
-## DFS (94)
-**0. [Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)**      Level: Medium      Tags: [DFS, Graph, Union Find]
+## DFS (95)
+**0. [Evaluate Division.java](https://github.com/awangdev/LintCode/blob/master/Java/Evaluate%20Division.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Union Find]
       
 
 #### DFS
 - build map of `x#y -> val` to store values[i] and 1/values[i]
 - build map of `x -> list children`
 - dfs to traverse the graph
+
+#### BFS
+- BFS should also work: build graph and valueMap
+- for each starting item, add all next candidate to queue
+- mark visited, loop until end item is found
 
 
 
@@ -2162,6 +2167,21 @@ Same as MS Paint
 - 2. Always cache the node if passed the test in step1
 - 3. Always offer the moved position as a new node to queue (as long as it fits condition)
 - 4. Finally the item at nodeMap[target.x][target.y] will have the best solution.
+
+
+
+---
+
+**94. [Robot Room Cleaner.java](https://github.com/awangdev/LintCode/blob/master/Java/Robot%20Room%20Cleaner.java)**      Level: Hard      Tags: [Backtracking, DFS]
+      
+
+#### DFS
+- Different from regular dfs to visit all, the robot move() function need to be called, backtrack needs to move() manually and backtracking path shold not be blocked by visited positions
+- IMPORTANT: Mark on the way in using set, but `backtrack directly without re-check against set`
+- Mark coordinate 'x@y'
+- Backtrack: turn 2 times to revert, move 1 step, and turn 2 times to revert back.
+- Direction has to be up, right, down, left.
+- `int [] dx = {-1, 0, 1, 0};`, `int[] dy = {0, 1, 0, -1};`
 
 
 

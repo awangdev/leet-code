@@ -1,7 +1,7 @@
  
  
  
-## Hard (89)
+## Hard (91)
 **0. [Count of Smaller Number before itself.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Number%20before%20itself.java)**      Level: Hard      Tags: []
       
 与Count of Smaller Number非常类似。以实际的value来构成segment tree，leaf上存（count of smaller number）。
@@ -2007,7 +2007,7 @@ Frog jump 的题目稍微需要理解: 每个格子可以 jump k-1, k, k+1 steps
 
 ---
 
-**83. [Sliding Puzzle.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Puzzle.java)**      Level: Hard      Tags: [BFS]
+**83. [Sliding Puzzle.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Puzzle.java)**      Level: Hard      Tags: [BFS, Graph]
       
 
 
@@ -2087,6 +2087,28 @@ Double sequence DP. 与regular expression 很像.
     1. * is empty => dp[i][j - 1]
     2. * match 1 or more chars => dp[i - 1][j]
 
+
+
+
+---
+
+**89. [Robot Room Cleaner.java](https://github.com/awangdev/LintCode/blob/master/Java/Robot%20Room%20Cleaner.java)**      Level: Hard      Tags: [Backtracking, DFS]
+      
+
+#### DFS
+- Different from regular dfs to visit all, the robot move() function need to be called, backtrack needs to move() manually and backtracking path shold not be blocked by visited positions
+- IMPORTANT: Mark on the way in using set, but `backtrack directly without re-check against set`
+- Mark coordinate 'x@y'
+- Backtrack: turn 2 times to revert, move 1 step, and turn 2 times to revert back.
+- Direction has to be up, right, down, left.
+- `int [] dx = {-1, 0, 1, 0};`, `int[] dy = {0, 1, 0, -1};`
+
+
+
+---
+
+**90. [Maximum Vacation Days.java](https://github.com/awangdev/LintCode/blob/master/Java/Maximum%20Vacation%20Days.java)**      Level: Hard      Tags: [DP]
+      
 
 
 
