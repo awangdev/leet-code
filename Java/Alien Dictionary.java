@@ -182,21 +182,17 @@ class Solution {
     }
     
     private boolean dfs(Character c) {
-        if (visited.get(c) == 1) {
-            return true;
-        }
-        if (visited.get(c) == -1) {
-            return false;
-        }
+        if (visited.get(c) == 1) return true;
+        if (visited.get(c) == -1) return false;
+            
         visited.put(c, -1);
         for (char edgeNode : graph.get(c)) {
             if (!dfs(edgeNode)) {
                 return false;
             }
         }
-
-        sb.insert(0, c);
         visited.put(c, 1);
+        sb.insert(0, c); // leaf element, add to buffer
         return true;
     }
     
@@ -215,9 +211,10 @@ class Solution {
         for (int i = 0; i < words.length - 1; i++) {
             int index = 0;
             while (index < words[i].length() && index < words[i + 1].length()) {
-                char c = words[i].charAt(index);
-                if (c != words[i + 1].charAt(index)) {
-                    graph.get(c).add(words[i + 1].charAt(index));
+                char c1 = words[i].charAt(index);
+                char c2 = words[i + 1].charAt(index);
+                if (c1 != c2) {
+                    graph.get(c1).add(c2);
                     break;
                 }
                 index++;
@@ -225,6 +222,7 @@ class Solution {
         }
     }
 }
+
 
 
 ```

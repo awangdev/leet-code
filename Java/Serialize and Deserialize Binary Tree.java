@@ -98,6 +98,43 @@ Binary Tree
  *     }
  * }
  */
+ // Just use queue to parse pre-order seralized string
+ // Trick: use '#' to mark null node, so recursive function know to stop.
+ public class Codec {
+    private final String DELI = ",";
+    private final String NULL = "#";
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuffer sb = new StringBuffer();
+        buildString(root, sb);
+        return sb.toString();
+    }
+    private void buildString(TreeNode node, StringBuffer sb) {
+        if (node == null) {
+            sb.append(NULL).append(DELI);
+        } else {
+            sb.append(node.val).append(DELI);
+            buildString(node.left, sb);
+            buildString(node.right, sb);
+        }
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        Queue<String> nodes = new LinkedList<>(Arrays.asList(data.split(DELI)));
+        return buildTree(nodes);
+    }
+
+    private TreeNode buildTree(Queue<String> nodes) {
+        String val = nodes.poll();
+        if (val.equals(NULL)) return null;
+        TreeNode node = new TreeNode(Integer.parseInt(val));
+        node.left = buildTree(nodes);
+        node.right = buildTree(nodes);
+        return node;
+    }
+}
+
 // DFS, Recursive
 public class Codec {
     private final String DELI = ",";

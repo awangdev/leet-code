@@ -103,7 +103,7 @@ class Solution {
 }
 
 // Simpler version, add to begining of list.
-// V1
+// V2
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> rst = new ArrayList<>();
