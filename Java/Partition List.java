@@ -3,7 +3,7 @@ M
 tags: Linked List, Two Pointers
 
 #### Linked List
-- linked list 不能像partitioin array一样从两边遍历
+- linked list 不能像partition array一样从两边遍历
 - 把小于value的加在前半段, 把 >= value的加在后半段
 - 做法很普通: 建造两个list, midTail pointer, post pointer
 - 把满足条件（<x, >=x）的数字分别放到两个list里面
