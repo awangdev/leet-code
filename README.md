@@ -15,7 +15,7 @@
 
 ### 在这里! 安利一下自己的副业
 
-介绍一下自己! [程序猿二月工作爆肝回忆录!](https://youtu.be/KgJo8j6EeS0)
+介绍一下自己! [张土汪跟您侃: 与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
 
 最近我开始在做自己的[Youtube Channel](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw/featured?view_as=subscriber), 虽然还没有定下任何方向, 但是目前我会做几部分的内容: 
 * 工作经验的分享/目前学习经历: 当然会跟Software Engineer比较相关
@@ -24,7 +24,8 @@
 
 希望在这里参考刷题经验时, 可以去关注我的Channel! 有任何对在美国工作的疑问, 疑惑, 都可以给我留言/私信/邮件.
 
-![程序猿二月工作爆肝回忆录!](https://img1.doubanio.com/view/group_topic/l/public/p163700449.jpg)
+![张土汪跟您侃: 与PM项目经理战斗 - 如何取得胜利? (2019)](https://img3.doubanio.com/view/group_topic/l/public/p165531370.webp)
+[张土汪跟您侃: 与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
 
 大家在YouTube或者B站都可以搜到我: "张土汪"
 
