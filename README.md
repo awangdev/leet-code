@@ -15,7 +15,10 @@
 
 ### 在这里! 安利一下自己的副业
 
-介绍一下自己! [张土汪跟您侃: 与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
+介绍一下自己! 
+
+* [与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
+* [十分钟学会Python? (2019)](https://youtu.be/DRQYOdO9BAU)
 
 最近我开始在做自己的[Youtube Channel](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw/featured?view_as=subscriber), 虽然还没有定下任何方向, 但是目前我会做几部分的内容: 
 * 工作经验的分享/目前学习经历: 当然会跟Software Engineer比较相关
