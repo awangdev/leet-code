@@ -19,6 +19,7 @@
 
 * [与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
 * [十分钟学会Python? (2019)](https://youtu.be/DRQYOdO9BAU)
+* [刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
 
 最近我开始在做自己的[Youtube Channel](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw/featured?view_as=subscriber), 虽然还没有定下任何方向, 但是目前我会做几部分的内容: 
 * 工作经验的分享/目前学习经历: 当然会跟Software Engineer比较相关
@@ -27,8 +28,12 @@
 
 希望在这里参考刷题经验时, 可以去关注我的Channel! 有任何对在美国工作的疑问, 疑惑, 都可以给我留言/私信/邮件.
 
-![张土汪跟您侃: 与PM项目经理战斗 - 如何取得胜利? (2019)](https://img3.doubanio.com/view/group_topic/l/public/p165531370.webp)
-[张土汪跟您侃: 与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
+**面试的时候, 工作的时候, 怎么样才能以最快的速度听懂别人的提问/套话? 如何练英文才可以尽快接地气? 还有千万不要因为没经验而曲解面试官的寒暄'What's up'!**
+
+[刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
+
+![刚到美国到底怎样开口说英文? (2019)](https://img1.doubanio.com/view/group_topic/l/public/p167613019.webp)
+
 
 大家在YouTube或者B站都可以搜到我: "张土汪"
 
