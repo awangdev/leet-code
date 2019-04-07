@@ -17,6 +17,7 @@
 
 介绍一下自己! 
 
+* [如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
 * [与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
 * [十分钟学会Python? (2019)](https://youtu.be/DRQYOdO9BAU)
 * [刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
@@ -30,9 +31,9 @@
 
 **面试的时候, 工作的时候, 怎么样才能以最快的速度听懂别人的提问/套话? 如何练英文才可以尽快接地气? 还有千万不要因为没经验而曲解面试官的寒暄'What's up'!**
 
-[刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
+[如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
 
-![刚到美国到底怎样开口说英文? (2019)](https://img1.doubanio.com/view/group_topic/l/public/p167613019.webp)
+![如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://img3.doubanio.com/view/group_topic/l/public/p169805270.webp)
 
 
 大家在YouTube或者B站都可以搜到我: "张土汪"
