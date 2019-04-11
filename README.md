@@ -17,6 +17,7 @@
 
 介绍一下自己! 
 
+* [996.icu 今日敏感话题: 强制加班的背后 (2019)](https://youtu.be/QR7vi3G5M2Q)
 * [如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
 * [与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
 * [十分钟学会Python? (2019)](https://youtu.be/DRQYOdO9BAU)
