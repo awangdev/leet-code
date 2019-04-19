@@ -17,6 +17,7 @@
 
 介绍一下自己! 
 
+* [反驳: 赚的多就该996.icu? 盘一盘程序员的三六九等! (2019)](https://youtu.be/gPELHMkHEpE)
 * [996.icu 今日敏感话题: 强制加班的背后 (2019)](https://youtu.be/QR7vi3G5M2Q)
 * [如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
 * [与PM项目经理战斗 - 如何取得胜利? (2019)](https://youtu.be/KyFMNRKN2Rs)
@@ -30,11 +31,11 @@
 
 希望在这里参考刷题经验时, 可以去关注我的Channel! 有任何对在美国工作的疑问, 疑惑, 都可以给我留言/私信/邮件.
 
-**面试的时候, 工作的时候, 怎么样才能以最快的速度听懂别人的提问/套话? 如何练英文才可以尽快接地气? 还有千万不要因为没经验而曲解面试官的寒暄'What's up'!**
+**老油条和Tech Lead(带头大哥)区别在哪? 你身边的都是怎么样的程序员?**
 
-[如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
+[反驳: 赚的多就该996.icu? 盘一盘程序员的三六九等! (2019)](https://youtu.be/gPELHMkHEpE)
 
-![如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://img3.doubanio.com/view/group_topic/l/public/p169805270.webp)
+![反驳: 赚的多就该996.icu? 盘一盘程序员的三六九等! (2019)](https://upload-images.jianshu.io/upload_images/1088843-706f8952130c9e30.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
 
 
 大家在YouTube或者B站都可以搜到我: "张土汪"
