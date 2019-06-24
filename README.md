@@ -31,13 +31,6 @@
 
 希望在这里参考刷题经验时, 可以去关注我的Channel! 有任何对在美国工作的疑问, 疑惑, 都可以给我留言/私信/邮件.
 
-**老油条和Tech Lead(带头大哥)区别在哪? 你身边的都是怎么样的程序员?**
-
-[反驳: 赚的多就该996.icu? 盘一盘程序员的三六九等! (2019)](https://youtu.be/gPELHMkHEpE)
-
-![反驳: 赚的多就该996.icu? 盘一盘程序员的三六九等! (2019)](https://upload-images.jianshu.io/upload_images/1088843-706f8952130c9e30.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
-
-
 大家在YouTube或者B站都可以搜到我: "张土汪"
 
 * [Youtube: 张土汪](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw/featured?view_as=subscriber)
