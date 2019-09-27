@@ -23,7 +23,7 @@ public class testdonvi {
 	        }
 	        return count;
 	    }
-
+//@test1: trường hợp if đầu tiên true ,vòng lặp sau k khả thi , thì trả về count=0 ( với nums.length()=0)
 	@Test
 	public void test() {
 		int[] a= {};
@@ -34,6 +34,7 @@ public class testdonvi {
 		assertEquals(0,result);
 		
 	}
+//@test2: trường hợp if đầu tiên true, vòng lặp sau k khả thi , thì trả về count=0 (với nums=null)
 	@Test
 	public void test2() {
 		int[] a= null;
@@ -44,6 +45,7 @@ public class testdonvi {
 		assertEquals(0,result);
 		
 	}
+//@test3: trường hợp if đầu tiên false, if thứ 2 true  trả về count=1 ( vòng lặp thực hiện 1 lần)
 	@Test
 	public void test3()
 	{int[] a= {3,1};
@@ -51,6 +53,7 @@ public class testdonvi {
 	assertEquals(1,result);
 		
 	}
+//@test4: trường hợp if đầu tiên false, if thứ 2 false trả về 0  (với right+left<target) kết quả trả về 0
 	@Test
 	public void test4()
 	{int[] a= {3,1};
@@ -58,6 +61,7 @@ public class testdonvi {
 	assertEquals(0,result);
 		
 	}
+//@test5: trường hợp if đầu tiên false, if thứ 2 lần đầu đúng, nhưng lần thứ 2 false  , kết quả trả về là 0.
 	@Test
 	public void test5()
 	{int[] a= {3};
