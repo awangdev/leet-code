@@ -91,5 +91,72 @@ class Solution {
         }
         return dp[n - 2];
     }
+    
+    // HAM TEST
+    class testIsOneBitCharacter {
+	// ham test thu 1, khi bit cuoi cung la 0, co nhieu hon 2 bit
+	@Test
+	void test1() {
+		final boolean expected = false;
+		int a[] = {1, 0, 1, 1, 1, 0};
+		final boolean actual = isOneBitCharacter(a);
+		Assert.assertEquals(expected, actual);
+	}
+	
+	// ham test thu 2, khi bit cuoi cung la 0, va co 2 bits
+		@Test
+		void test2() {
+			final boolean expected = false;
+			int a[] = {1, 0};
+			final boolean actual = isOneBitCharacter(a);
+			Assert.assertEquals(expected, actual);
+		}
+		
+		// ham test thu 3, khi bit cuoi cung khac 0 va co 2 bits
+		@Test
+		void test3() {
+			final boolean expected = false;
+			int a[] = {1, 1};
+			final boolean actual = isOneBitCharacter(a);
+			Assert.assertEquals(expected, actual);
+		}
+		
+		// ham test thu 4, khi bit cuoi cung khac 0 va co nhieu hon 2 bit
+		@Test
+		void test4() {
+			final boolean expected = false;
+			int a[] = {1, 0, 1, 1, 1, 1};
+			final boolean actual = isOneBitCharacter(a);
+			Assert.assertEquals(expected, actual);
+		}
+		
+		// ham test thu 5, mang rong
+		@Test
+		void test5() {
+			final boolean expected = false;
+			int a[] = {};
+			final boolean actual = isOneBitCharacter(a);
+			Assert.assertEquals(expected, actual);
+		}
+		
+		// ham test thu 6, mang co 1 phan tu la 1
+				@Test
+				void test6() {
+					final boolean expected = false;
+					int a[] = {1};
+					final boolean actual = isOneBitCharacter(a);
+					Assert.assertEquals(expected, actual);
+				}
+				
+		// ham test thu 7, khi mang co 1 phan tu la 0
+		@Test
+		void test7() {
+				final boolean expected = true;
+				int a[] = {0};
+				final boolean actual = isOneBitCharacter(a);
+				Assert.assertEquals(expected, actual);
+				}
+}
+
 }
 ```
