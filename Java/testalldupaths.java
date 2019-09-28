@@ -37,7 +37,7 @@ public class testalldupaths extends twoSum2{
 	assertEquals(1,result);
 		
 	}
-//0->1->2->3->4->6->(3->...)->7
+//0->1->2->3->4->5->(3->...)->7
 	@Test
 	public void testnum4()
 	{int[] a= {5,4};
