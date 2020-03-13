@@ -4,7 +4,6 @@
 ## Partition DP (5)
 **0. [Perfect Squares.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Squares.java)**      Level: Medium      Tags: [BFS, DP, Math, Partition DP]
       
-
 给一个数字n, 找到这个数字 最少能用多少个 平方数组成. 
 
 平方数比如: 1, 4, 9, 16 ... etc
@@ -44,7 +43,6 @@
 
 **1. [Copy Books.java](https://github.com/awangdev/LintCode/blob/master/Java/Copy%20Books.java)**      Level: Hard      Tags: [Binary Search, DP, Partition DP]
       
-
 给一串书pages[i], k个人, pages[i] 代表每本书的页数. k个人从不同的点同时开始抄书. 
 
 问, 最快什么时候可以抄完?
@@ -88,59 +86,8 @@
 
 ---
 
-**2. [Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
+**2. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
       
-time: O(n)
-space: O(n)
-
-给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
-
-#### Partition DP
-- 加法原理: 根据题意, 有 range = 1 的 [1, 9], range = 2 的 [10~26] 来作为partition.
-- 确定末尾的2种状态: single letter or combos. 然后计算出单个letter的情况, 和双数的情况
-- 定义`dp[i] = 前i个digits最多有多少种decode的方法`. new dp[n + 1].
-- 加法原理: 把不同的情况, single-digit, double-digit 的情况加起来
-- dp[i] += dp[i - x], where x = 1, 2
-- note: calculate number from characters, need to - '0' to get the correct integer mapping.
-- 注意: check value != '0', 因为'0' 不在条件之中(A-Z)
-- Space, Time O(n)
-
-#### 引申
-- 这里只有两种partition的情况 range=1, range =2.  如果有更多partition的种类, 就可能多一层for loop做循环
-
-
-
-
----
-
-**3. [Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Enumeration, Partition DP]
-      
-
-给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
-
-其中字符可能是 "*", 可以代表 [1 - 9]
-
-#### DP
-- 乘法原理
-- 跟decode way I 一样, 加法原理, 切割点时: 当下是取了 1 digit 还是 2 digits 来decode
-- 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
-- 不同的情况是: 每一个partition里面, 如果有"*", 就会在自身延伸出很多不同的可能
-- 那么: dp[i] = dp[i - 1] * (#variations of ss[i]) + dp[i - 2] * (#variations of ss[i,i+1])
-
-##### 特点
-- 枚举的能力: 具体分析 '*' 出现的位置, 枚举出数字, 基本功. 
-- 注意!!题目说 * in [1, 9].   (如果 0 ~ 9 会更难一些)
-- 理解取MOD的原因: 数字太大, 取mod来给最终结果: 其实在 10^9 + 7 这么大的 mod 下, 大部分例子是能通过的.
-- 枚举好以后, 其实这个题目的写法和思考过程都不难
-
-
-
-
----
-
-**4. [Palindrome Partitioning II.java](https://github.com/awangdev/LintCode/blob/master/Java/Palindrome%20Partitioning%20II.java)**      Level: Hard      Tags: [DP, Partition DP]
-      
-
 给一个String s, 找出最少用多少cut, 使致 切割出的每一个substring, 都是palindrome
 
 #### Partition DP
@@ -169,6 +116,84 @@ space: O(n)
 - 当然，如果i==0, 而 i~j又是isPal,那没啥好谈的，不必切，0刀。
 - 最终，刷到cut[s.length() - 1] 也就是最后一点。 return的理所应当。
 
+
+
+
+---
+
+**3. [91. Decode Ways.java](https://github.com/awangdev/LintCode/blob/master/Java/91.%20Decode%20Ways.java)**      Level: Medium      Tags: [DP, Partition DP, String]
+      
+
+给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
+
+#### Method1: DP, Bottom-Up by calculating base case first
+- 加法原理: 根据题意, 有 range = 1 的 [1, 9], range = 2 的 [10~26] 来作为partition.
+- there can be 2 final states at dp[i]: single digit or double digit.
+    - validate if `single digit`, dp[i] += dp[i - 1]. Last 1 digit can be decoded.
+    - validate if `double digit`, dp[i] += dp[i - 2]. Last 2 digits can be decoded.
+- note: 
+    - get number from char: `c - '0'`
+    - validatae single digit != '0', 因为'0' 不在条件之中(A-Z)
+- Option1: dp[i] as # ways to decode at index i, including letter i
+    - The validation is done on: 1) single digit i, or 2) double digit [i-1, i]
+- Option2: Partition DP, dp[i] as # ways to decode for first i letters (excluding letter i)
+    - 定义`dp[i] = 前i个digits最多有多少种decode的方法`: new dp[n + 1].
+    - dp[i] += dp[i - x], where x = 1, 2
+    - The validation is done on: 1) single digit [i-1], or 2) double digit [i-2, i-1]
+    - Option2 is better in terms of clean coding. We assume `dp[0]=1` as 1 way to decode 0 digits.
+        - No need to specially handle length == 1, because it is covered later
+        - No need to manualy init the first 2-digit case as in Option1
+        - Return of `dp[n]` is clean
+- 引申: 这里只有两种partition的情况 range=1, range =2.  如果有更多partition的种类, 就可能多一层for loop做循环
+
+
+#### Method2: DFS, Top-Down
+- if single-digit is working, sum += dfs(s, i+1);
+- if double-digit is working, sum += dfs(s, i+2);
+- end case: i >= n, return 0; i == n - 1; i == n - 2
+    - especially when i = n - 2, handle 2-digt edge case carefully:
+        - 1) check if two-digit range [i, i+1] is valid
+        - 2) check if single-digit [i] is valid; if so, += dfs(s, i + 1)
+- memo[i]: # ways to decode from [i, n). init with `memo[i]=-1`
+
+
+
+---
+
+**4. [639. Decode Ways II.java](https://github.com/awangdev/LintCode/blob/master/Java/639.%20Decode%20Ways%20II.java)**      Level: Hard      Tags: [DP, Enumeration, Partition DP]
+      
+
+给出一串数字, 要翻译(decode)成英文字母. [1 ~ 26] 对应相对的英文字母. 求有多少种方法可以decode.
+
+其中字符可能是 "*", 可以代表 [1 - 9]
+
+#### DP
+- 乘法原理, 加法原理
+    - 跟decode way I 一样, 加法原理, 切割点时: 当下是取了 1 digit 还是 2 digits 来decode
+    - 定义dp[i] = 前i个digits最多有多少种decode的方法. new dp[n + 1].
+- 不同的情况是: 每一个partition里面, 如果有"*", 就会在自身延伸出很多不同的可能
+- 那么: dp[i] = dp[i - 1] * (#variations of ss[i]) + dp[i - 2] * (#variations of ss[i,i+1])
+- Enumeration: 
+    - 具体分析 '*' 出现的位置, 枚举出数字, 基本功. 
+    - 注意!!题目说 * in [1, 9].   (如果 0 ~ 9 会更难一些)
+    - 枚举好以后, 其实这个题目的写法和思考过程都不难
+- Mode:
+    数字太大, 取mod来给最终结果: 其实在 10^9 + 7 这么大的 mod 下, 大部分例子是能通过的.
+
+
+#### DFS + memoization
+- DFS top-down approach is used to analyze the problem. The logic flow:
+- 1) consider the case of 1 letter or 2 letters.
+- 2) one letter:
+    - [*]: + 9 * dfs(s, i + 1)
+    - [0~9]: + dfs(s, i + 1)
+- 3) two letters:
+    - [_, *]: depends
+    - [*, _]: depends
+    - [*, *]: + 15 * dfs(s, i + 2)
+- memo[i] records # of ways to decode from [i ~ n]
+- space: O(n), Size of recursion tree can go upto n
+- time: O(n), `memo array is filled exactly once`!!!
 
 
 

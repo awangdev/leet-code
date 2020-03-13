@@ -2,30 +2,8 @@
  
  
 ## Game Theory (4)
-**0. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
+**0. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
-
-拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
-
-Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
-
-#### DP, Game Theory
-- 要赢, 必须保证对手拿到棋盘时, 在所有他可走的情况中, '有可能败', 那就足够.
-- 设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
-- dp[i] = !dp[i - 1] || !dp[i-2]
-- 时间: O(n), 空间O(n)
-- 博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
-
-#### Rolling Array
-空间优化O(1). Rolling array, %2
-
-
-
----
-
-**1. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
-      
-
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
 每次只能 按照从左到右的顺序, 拿1个或者2个棋子, 最后看谁拿的总值最大.
 
@@ -68,9 +46,8 @@ Space O(n): dp[], sum[]
 
 ---
 
-**2. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
+**1. [Coins in a Line III.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20III.java)**      Level: Hard      Tags: [Array, DP, Game Theory, Interval DP, Memoization]
       
-
 LeetCode: Predict the Winner
 
 还是2个人拿n个coin, coin可以有不同的value. 
@@ -123,9 +100,28 @@ LeetCode: Predict the Winner
 
 ---
 
+**2. [Coins in a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line.java)**      Level: Medium      Tags: [DP, Game Theory, Greedy]
+      
+拿棋子游戏, 每个人可以拿1个或者2个, 拿走最后一个子儿的输. 问: 根据给的棋子输, 是否能确定先手的输赢?
+
+Game Theory: 如果我要赢, 后手得到的局面一定要'有输的可能'.
+
+#### DP, Game Theory
+- 要赢, 必须保证对手拿到棋盘时, 在所有他可走的情况中, '有可能败', 那就足够.
+- 设计dp[i]:表示我面对i个coins的局面时是否能赢, 取决于我拿掉1个,或者2个时, 对手是不是会可能输?
+- dp[i] = !dp[i - 1] || !dp[i-2]
+- 时间: O(n), 空间O(n)
+- 博弈问题, 常从'我的第一步'角度分析, 因为此时局面最简单.
+
+#### Rolling Array
+空间优化O(1). Rolling array, %2
+
+
+
+---
+
 **3. [Nim Game.java](https://github.com/awangdev/LintCode/blob/master/Java/Nim%20Game.java)**      Level: Easy      Tags: [Brainteaser, DP, Game Theory]
       
-
 #### Brainteaser
 - 著名Nim游戏
 - 写一些，发现n=4,5,6,7,8...etc之后的情况有规律性: 谁先手拿到4就输了.

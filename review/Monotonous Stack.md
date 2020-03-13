@@ -1,10 +1,9 @@
  
  
  
-## Monotonous Stack (1)
+## Monotonous Stack (3)
 **0. [Largest Rectangle in Histogram.java](https://github.com/awangdev/LintCode/blob/master/Java/Largest%20Rectangle%20in%20Histogram.java)**      Level: Hard      Tags: [Array, Monotonous Stack, Stack]
       
-
 给n个bar,组成柱状图histogram. 求在这一排柱状图里面可以找到的面积最大的长方形.
 
 思考: 找长方形面积, 无非是找两个index, 然后底边长度 * height.
@@ -25,6 +24,40 @@
 - 维护monotonous stack 是题目需要, 而不是stack本身性质, 是一种借助 stack.peek() O(1)的巧妙用法.
 
 
+
+
+---
+
+**1. [402. Remove K Digits.java](https://github.com/awangdev/LintCode/blob/master/Java/402.%20Remove%20K%20Digits.java)**      Level: Medium      Tags: [Greedy, Monotonous Stack, Stack]
+      
+
+#### Monotonous Stack (Increasing)
+- Greedy: Remove 1) earlier digits(数位靠前权值大), 2) large digits
+- Keep a increasing stack that:
+    - use stack.peek() to guard incoming digit
+    - if peek is larger than incoming digit, continue `stack.pop()`
+- Result: monotonous increasing stack. Print it in correct order.
+
+
+
+
+---
+
+**2. [739. Daily Temperatures.java](https://github.com/awangdev/LintCode/blob/master/Java/739.%20Daily%20Temperatures.java)**      Level: Medium      Tags: [Hash Table, Monotonous Stack, Stack]
+      
+
+#### Method1: Monotonous Stack
+- Goal: given a index i, want right-side closest & higer number
+- Draw example: right-most number at base, and builds up monotonous stack (mountain shape)
+    - add smaller item on top of stack
+    - keep popping if peek is higher than incoming
+- space: O(n), time:O(n)
+
+#### Method2: `Map <fixed value(temperature), Index>`, kinda of like bucket sort
+- Refernece: https://leetcode.com/problems/daily-temperatures/solution/
+- From right side: 
+    - 1) record tempIndex[currTemp] = i; 
+    - 2) Brutle find smallest temp index in range [currTemp + 1, 100] and record as result
 
 
 ---

@@ -4,7 +4,6 @@
 ## Interval (1)
 **0. [Number of Airplane in the sky.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Airplane%20in%20the%20sky.java)**      Level: Medium      Tags: [Array, Interval, PriorityQueue, Sort, Sweep Line]
       
-
 #### Sweep Line
 - 把Interval拆分成数轴上的Point 
 - 起飞mark 1   

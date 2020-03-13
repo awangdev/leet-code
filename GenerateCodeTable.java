@@ -1,5 +1,8 @@
 import java.io.*;
 import java.util.*;
+import java.util.stream.*; 
+import java.text.SimpleDateFormat;
+
 /*
 Used to generate table of contents.
     - No args: generate GitHub table
@@ -8,7 +11,11 @@ Used to generate table of contents.
     - args == 'all', genereate both table
 */
 public class GenerateCodeTable {
-    private static final String NOT_AVAILABLE = "N/A";
+    private static String GIT_HUB_LINK = "https://github.com/awangdev/LintCode/blob/master/Java/";
+    private static String NOT_AVAILABLE = "N/A";
+    private static String LINTCODE_TOKEN = "[lint]";
+    private static String TOOL_TOKEN = "[tool]";
+    private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     /*
         TableRow, used to hold table object and sort by date.
     */
@@ -17,22 +24,44 @@ public class GenerateCodeTable {
         private String fileName;
         private String level;
         private String tutorialLink;
+        private String timeComplexity;
+        private String spaceComplexity;
         private String note;
         private List<String> tags;
-
+        
         public TableRow(
             long date,
             String fileName,
             String level,
             String tutorialLink,
+            String timeComplexity,
+            String spaceComplexity,
             String note,
             List<String> tags) {
             this.date = date;
             this.fileName = fileName;
             this.level = level;
+            this.timeComplexity = timeComplexity;
+            this.spaceComplexity = spaceComplexity;
             this.tutorialLink = tutorialLink;
             this.note = note;
             this.tags = tags;
+        }
+
+        public String getLeetcodeNum() {
+            String[] fileNameArr = fileName.split("\\.");
+            if (LINTCODE_TOKEN.equals(fileNameArr[0].toLowerCase())) {
+                return LINTCODE_TOKEN;
+            }
+            if (TOOL_TOKEN.equals(fileNameArr[0].toLowerCase())) {
+                return TOOL_TOKEN;
+            }
+            try {
+                Integer.parseInt(fileNameArr[0]);
+                return fileNameArr[0];
+            } catch(Exception e) {
+                return NOT_AVAILABLE;
+            }
         }
 
         public long getDate() {
@@ -59,14 +88,17 @@ public class GenerateCodeTable {
             return this.tags;
         }
 
-        public String getTableComposedLine() {
-            return "|[" + this.fileName + "](https://github.com/awangdev/LintCode/blob/master/Java/" + fileName.replace(" ", "%20")
-                 + ")|" + this.level + "|Java|" + this.tags + "|"+ this.tutorialLink + "|\n";
+        public String getTableComposedLine(int i) {
+            Date date = new Date(this.date);
+            return "|" + this.getLeetcodeNum() + "|[" + this.fileName + "](" + GIT_HUB_LINK + fileName.replace(" ", "%20")
+                 + ")|" + this.level + "|" + this.tags + "|" + this.timeComplexity + "|" + this.spaceComplexity + "|Java|" + i + "|\n";
         }
     }
 
-    public final static String TUTORIAL_KEY_WORD = "tutorial:";
-    public final static String TAGS_KEY_WORD = "tags:";
+    public static String TUTORIAL_KEY_WORD = "tutorial:";
+    public static String TAGS_KEY_WORD = "tags:";
+    public static String TIME_KEY_WORD = "time:";
+    public static String SPACE_KEY_WORD = "space:";
     public static void main(String[] args) {
         GenerateCodeTable gct = new GenerateCodeTable();   
         //Read Java Solution Folder
@@ -151,11 +183,10 @@ public class GenerateCodeTable {
         int count = 0;
         for (File file : listOfFiles) {
             if (file.getName().contains(".java")) {
-                //outputContent += "|" + count + "|[" + file.getName() + "](https://github.com/awangdev/LintCode/blob/master/Java/"+ file.getName() +")| |" + "Java|\n";
                 outputContent+= 
                 "<tr>" + 
                     "<td align='center'>" + count + "</td>" +
-                    "<td align='left'><a href='https://github.com/awangdev/LintCode/blob/master/Java/" + file.getName() + "'>" + file.getName() + "</a></td>" +
+                    "<td align='left'><a href='" + GIT_HUB_LINK + file.getName() + "'>" + file.getName() + "</a></td>" +
                     "<td align='center'>Java</td>" +
                 "</tr>";
                 count++;            
@@ -168,27 +199,16 @@ public class GenerateCodeTable {
 
 
     /*
-        Generate GitHub ReadMe contents
+        Generate GitHub README contents
     */
     public String generateREADME(File[] listOfFiles) {
         //Assemble output
-        String outputContent = "# Java Algorithm Problems\n\n" + 
-            "### 程序员的一天\n" +
-            "从开始这个Github已经有将近两年时间, 很高兴这个repo可以帮到有需要的人. 我一直认为, 知识本身是无价的, 因此每逢闲暇, 我就会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 下面来简单介绍一下这个repo:\n\n" + 
-            "**README.md**: 所有所做过的题目\n\n" + 
-            "**ReviewPage.md**: 所有题目的总结和归纳（不断完善中）\n\n" + 
-            "**KnowledgeHash2.md**: 对所做过的知识点的一些笔记\n\n" + 
-            "**SystemDesign.md**: 对系统设计的一些笔记\n\n" + 
-            "**Future Milestone**: 我准备将一些有意思的题目，做成视频的形式给大家参考\n\n" + 
-            //"**借此机会, 正式介绍一下自己, 以及我背后的大老板**\n\n" + 
-            //"[![介绍一下自己！](https://img.youtube.com/vi/3keMZsV1I1U/0.jpg)](https://youtu.be/3keMZsV1I1U)\n\n" + 
-            "希望大家学习顺利, 对未来充满希望(程序员也是找到好老板的!)\n" + 
-            "有问题可以给我写邮件(wangdeve@gmail.com), 或者在GitHub上发issue给我.\n\n" +         
-            "| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|\n" + 
-            "|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|\n";
-        final List<TableRow> tableRows = getTableRows(listOfFiles);
+        String outputContent = "# Java Algorithm Problems\n\n" +
+            "| Leetcode# | Problem     | Level  | Tags | Time | Space | Language | Sequence |\n" + 
+            "|:---------:|:------------|:------:|:----:|-----:|------:|:--------:|---------:|\n";
+        List<TableRow> tableRows = getTableRows(listOfFiles);
         for (int i = 0; i < tableRows.size(); i++) {
-            outputContent += "|" + i + tableRows.get(i).getTableComposedLine();
+            outputContent += tableRows.get(i).getTableComposedLine(i);
         }
         return outputContent;
     }
@@ -196,10 +216,10 @@ public class GenerateCodeTable {
     /* Generate the tags Table*/
     public String generateTagREADME(File[] listOfFiles) {
         String outputContent = generateTableOfContent("TagREADME.md") + "\n\n";
-        String header = "| Squence | Problem       | Level  | Language  | Tags | Video Tutorial|\n" + 
-                        "|:-------:|:--------------|:------:|:---------:|:----:|:-------------:|\n";
-        final List<TableRow> tableRows = getTableRows(listOfFiles);
-        final HashMap<String, List<TableRow>> tagToRows = new HashMap<>();
+        String header = "| Leetcode# | Problem     | Level  | Tags | Time | Space | Language | Sequence |\n" + 
+                        "|:---------:|:------------|:------:|:----:|-----:|------:|:--------:|---------:|\n";
+        List<TableRow> tableRows = getTableRows(listOfFiles);
+        Map<String, List<TableRow>> tagToRows = new HashMap<>();
         tableRows.forEach(tableRow -> {
             for (String tag: tableRow.getTags()) {
                 if (tag == null || tag.length() == 0) {
@@ -221,7 +241,7 @@ public class GenerateCodeTable {
             List<TableRow> entryTableRows = entry.getValue();
             entryTableRows.sort(Comparator.comparing(row -> String.join(",", row.getTags())));
             for (int i = 0; i < entryTableRows.size(); i++) {
-                sb.append("|" + i + entryTableRows.get(i).getTableComposedLine());
+                sb.append(entryTableRows.get(i).getTableComposedLine(i));
             }
             outputContent += sb.toString() + "\n\n\n";
         }
@@ -230,8 +250,8 @@ public class GenerateCodeTable {
 
     // Generate review files by tags
     public String generateTagReviewPage(File[] listOfFiles) {
-        final List<TableRow> tableRows = getTableRows(listOfFiles);
-        final HashMap<String, List<TableRow>> tagToRows = new HashMap<>();
+        List<TableRow> tableRows = getTableRows(listOfFiles);
+        Map<String, List<TableRow>> tagToRows = new HashMap<>();
         // Group by tags:
         tableRows.forEach(tableRow -> {
             for (String tag: tableRow.getTags()) {
@@ -257,8 +277,8 @@ public class GenerateCodeTable {
 
     // Generate review files by levels
     public String generateLevelReviewPage(File[] listOfFiles) {
-        final List<TableRow> tableRows = getTableRows(listOfFiles);
-        final HashMap<String, List<TableRow>> levelToRows = new HashMap<>();
+        List<TableRow> tableRows = getTableRows(listOfFiles);
+        Map<String, List<TableRow>> levelToRows = new HashMap<>();
         // Group by levels:
         tableRows.forEach(tableRow -> {
             String level = tableRow.getLevel();
@@ -295,7 +315,7 @@ public class GenerateCodeTable {
             "This page summarize the solutions of all problems. For thoughts,ideas written in English, refer to deach individual solution. \n" + 
             "New problems will be automatically updated once added.\n\n";
             
-        final List<TableRow> tableRows = getTableRows(listOfFiles);
+        List<TableRow> tableRows = getTableRows(listOfFiles);
         int count = 0;
         int countMiss = 0;
         outputContent += buildReviewSection(tableRows);
@@ -315,7 +335,7 @@ public class GenerateCodeTable {
             }
             //System.out.println(count +  ". " + tableRow.getLevel() + " [File not yet formatted]: " + tableRow.getFileName());
             sb.append("**" + count + ". [" + tableRow.getFileName());
-            sb.append("](https://github.com/awangdev/LintCode/blob/master/Java/");
+            sb.append("](" + GIT_HUB_LINK);
             sb.append(tableRow.getFileName().replace(" ", "%20") +")**");
             
             sb.append("      Level: " + tableRow.getLevel() + "      Tags: " + tableRow.getTags() + "\n");
@@ -327,27 +347,55 @@ public class GenerateCodeTable {
         return sb.toString();
     }
 
-
-
     private List<TableRow> getTableRows(File[] listOfFiles) {
-        final ArrayList<TableRow> tableRows = new ArrayList<>();
+        List<TableRow> tableRows = new ArrayList<>();
         for (File file : listOfFiles) {
             if (file.getName().contains(".java")) {
                 tableRows.add(getTableRow(file.getName()));
             }
         }
-        Collections.sort(tableRows, Comparator.comparing(TableRow::getDate));
-        return tableRows;
+        List<TableRow> nonProcessedRows = tableRows.stream()
+            .filter(tableRow -> tableRow.getLeetcodeNum().equals(NOT_AVAILABLE))
+            .collect(Collectors.toList());
+        List<TableRow> processedLeetCodeRows = tableRows.stream()
+            .filter(tableRow -> !tableRow.getLeetcodeNum().equals(NOT_AVAILABLE)
+                && !tableRow.getLeetcodeNum().equals(LINTCODE_TOKEN) && !tableRow.getLeetcodeNum().equals(TOOL_TOKEN)
+            )
+            .collect(Collectors.toList());
+        List<TableRow> processedLintCodeRows = tableRows.stream()
+            .filter(tableRow -> tableRow.getLeetcodeNum().equals(LINTCODE_TOKEN))
+            .collect(Collectors.toList());
+        List<TableRow> processedToolCodeRows = tableRows.stream()
+            .filter(tableRow -> tableRow.getLeetcodeNum().equals(TOOL_TOKEN))
+            .collect(Collectors.toList());
+        Collections.sort(processedLeetCodeRows, Comparator.comparing(TableRow::getDate));
+        Collections.sort(processedLintCodeRows, Comparator.comparing(TableRow::getDate));
+        System.out.println("Non Reviewed Problems: " + nonProcessedRows.size()
+            + ", Reviewed LeetCode Problems: " + processedLeetCodeRows.size()
+            + ", Reviewed LintCode Problems: " + processedLintCodeRows.size());
+        List<TableRow> output = new ArrayList<>();
+        output.addAll(nonProcessedRows);
+        output.addAll(processedLintCodeRows);
+        output.addAll(processedToolCodeRows);
+        output.addAll(processedLeetCodeRows);
+        return output;
     }
 
     private TableRow getTableRow(String fileName) {
         TableRow tableRow = null;
         String tutorialLink = "";
         String calculatedLevel = NOT_AVAILABLE;
+        String timeComplexity = "";
+        String spaceComplexity = "";
         long timestamp = 0;
         List<String> tags = new ArrayList<>();
+
+        // get timestamp of file
+        File file = new File("Java/" + fileName);
+        timestamp = file.lastModified();
+
         try {
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
                                           new FileInputStream("Java/" + fileName), "UTF-8"));
             // Get level
             String line = reader.readLine().trim();
@@ -356,14 +404,13 @@ public class GenerateCodeTable {
                 line = reader.readLine().trim();
             }
 
-            // Get timestamp
+            // TODO: remove the legacy timestamp. 
+            // Below are existing logic to parse timestamp. Remove when all timestamp is cleaned up.
             if (line.length() != 0) {
                 try{
-                    timestamp = Long.parseLong(line);
+                    Long.parseLong(line);
                     line = reader.readLine().trim();
-                }catch(final Exception e){
-                    System.out.println("Timestamp Not added yet: " + fileName);
-                }
+                } catch(Exception e){ }
             }
 
             // Get tutorial
@@ -380,6 +427,18 @@ public class GenerateCodeTable {
                     tags.add(tag.trim());
                 }
                 Collections.sort(tags);
+                line = reader.readLine().trim();
+            }
+
+            // Get Time
+            if (line.contains(TIME_KEY_WORD)) {
+                timeComplexity = line.substring(6).trim(); // "time:"
+                line = reader.readLine().trim();
+            }
+
+            // Get Space
+            if (line.contains(SPACE_KEY_WORD)) {
+                spaceComplexity = line.substring(7).trim(); // "space:"
             }
 
             // Get Note
@@ -389,14 +448,14 @@ public class GenerateCodeTable {
             }
 
             // Get result
-            tableRow = new TableRow(timestamp, fileName, calculatedLevel, tutorialLink, note, tags);
-        } catch (final Exception e) {
-            System.err.format("IOException: %s%n", e);
+            tableRow = new TableRow(timestamp, fileName, calculatedLevel, tutorialLink, timeComplexity, spaceComplexity, note, tags);
+        } catch (Exception e) {
+            System.err.format("IOException: %s%n. Filename: %s", e, fileName);
         }
         return tableRow;
     }
 
-    private String calculateLevel(final String level) {
+    private String calculateLevel(String level) {
         switch(level) {
             case "N" : 
                 return "Naive";
@@ -442,7 +501,7 @@ public class GenerateCodeTable {
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
             }
-        } catch (final Exception e) {
+        } catch (Exception e) {
             System.err.format("IOException: %s%n", e);
         }
         System.out.println(sb.toString());

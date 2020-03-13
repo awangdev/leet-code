@@ -1,5 +1,4 @@
 M
-1527991732
 tags: Hash Table
 
 练习HashMap with customized class. functions: get(), put(), getRandom() 

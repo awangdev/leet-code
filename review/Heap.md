@@ -1,113 +1,30 @@
  
  
  
-## Heap (16)
-**0. [Kth Smallest Element in a Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
+## Heap (22)
+**0. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
-time: O(n + klogn)
-space: O(n)
+Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
 
-给一个sorted matrix, 找kth smallest number (not distinct)
+#### MaxHeap, MinHeap
+- Median还是用min-heap 和 max-heap. Time(logN)
+- 加/减: prioirtyQueue, log(n)
+- findMedian: O(1)
+- 加一个数, 减一个数。
+- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
+- 抽完balance一下
 
-Related: `Kth Largest Element in an Array`
-
-#### PriorityQueue
-- 和Merge K sorted Array/ List 类似：使用PriorityQueue。
-- 因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
-- Initial O(n) time, also find k O(k), sort O(logn) => O(n + klogn)
-- 变型: Kth Largest in N Arrays
-
-#### Binary Search
-- we know where the boundary is start/end are the min/max value. 
-- locate the kth smallest item (x, y) by cutt off partition in binary fasion: 
-- find mid-value, and count # of items < mid-value based on the ascending matrix
-- O(nlogn)
-
+#### 注意
+- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
+- 左边的maxHeap总有 x+1或者x个数字
+- 后边minHeap应该一直有x个数字
 
 
 
 ---
 
-**1. [Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
+**1. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
       
-
-给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
-
-#### PriorityQueue
-- PriorityQueue + 一个Class来解决.Ｏ(nlogn)
-- 跟 Number of Airpline in the sky是同一道题
-
-#### 方法2: 尝试了一下用一个sorted Array + HashMap
-也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
-
-
-
----
-
-**2. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
-      
-
-又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
-
-#### Sweep Line, Time O(nLogN), Space O(n)
-- original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
-- 画图分析: 需要找到 non-overlaping height point at current index; also height needs to be different than prev height peek to be visible.
-- 把所有点分出来， 每个点有index x, 再加上一个height.         
-- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
-- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
-- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
-- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
-- heightQueue里面加一个0, 用来在结尾的时候做closure
-
-#### Segment Tree
-- 看了一些做法, segment tree写法很复杂, 估计在面试中难以用segment tree来写: https://www.cnblogs.com/tiezhibieek/p/5021202.html
-
-#### HashHeap
-- HashHeap template 可以考虑: https://www.jiuzhang.com/solution/building-outline/#tag-highlight-lang-java
-
-Binary Indexed Tree?
-
-
-
-
-
----
-
-**3. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
-      
-time: O(nlogk)
-space: O(n)
-
-给一串String. 找到top k frequent words.
-
-#### PriorityQueue - Min Heap
-- O(n) space of map, O(nlogk) to build queue.
-- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
-
-#### PriorityQueue - Max Heap
-- 用HashMap存frequency, 用ArrayList存lists of words
-- create一个Node class, 然后用PriorityQueue.   
-- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
-- time: PQ uses O(nlogn), overall O(nlogn)
-- slower, because the maxHeap needs to add all candidates
-
-#### Trie && MinHeap屌炸天   
-- 可以做一下
-- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
-
-#### HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
-
-
-
----
-
-**4. [Rearrange String k Distance Apart.java](https://github.com/awangdev/LintCode/blob/master/Java/Rearrange%20String%20k%20Distance%20Apart.java)**      Level: Hard      Tags: [Greedy, Hash Table, Heap]
-      
-
 给一个string, 全是lowercase letter, 要求重新排列: 然后每个unique的character要有k distance apart.
 
 跟Task Scheduler有点像, 只不过Task那道题里面还可以用其他方法求count, 这道题要求出排列结果
@@ -124,18 +41,27 @@ space: O(n)
 
 ---
 
-**5. [HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/HashHeap.java)**      Level: Hard      Tags: [HashHeap, Heap]
+**2. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
       
 
-非题.是从九章找来的HashHeap implementation.
+#### DP
+- curr index is based on previous calculation: the min of all 3 previous factors
+- O(n)
+
+#### PriorityQueue, DP
+- 非常brutle的。
+- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
+- 最后时间是n*log(n*3)
+- 注意：use long, use HashSet确保没有重复
+- O(nlogn)
+
 
 
 
 ---
 
-**6. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+**3. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
       
-
 给一个2Dmap, 每个position 有 height. 找Trapping water sum.
 
 
@@ -168,9 +94,8 @@ space: O(n)
 
 ---
 
-**7. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
+**4. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
       
-
 kth largest in array
 
 #### PriorityQueue, MinHeap
@@ -198,39 +123,31 @@ kth largest in array
 
 ---
 
-**8. [Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, PriorityQueue]
+**5. [Kth Smallest Element in a Sorted Matrix.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Smallest%20Element%20in%20a%20Sorted%20Matrix.java)**      Level: Medium      Tags: [Binary Search, Heap]
       
 
-给一个array of ListNode, 把所有node按照大小连成一条.
+给一个sorted matrix, 找kth smallest number (not distinct)
 
-#### Priorityqueue
-- Iterative, PQ来排列所有list的leading node.
-- 记得k lists 需要是已经sort好的
-- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
-- Note:
-- 1. 不要忘记customized priority需要一个customized new Comparator<T>()
-- 2. Given list 里面也可能有null node, 不要忘记查.
+Related: `Kth Largest Element in an Array`
 
-#### Divide and Conquer
-- always merge 2 list at a time
-- 3 branches: 
-- 1. start == end
-- 2. start + 1 == end
-- 3. or start + 1 < end (recursive and keep merging)
-- T(k) = 2T(k/2) + O(mk), where m = longest list length
-- time complexity: O(nklogk)
-- TODO: write the recursive code.
+#### PriorityQueue
+- 和Merge K sorted Array/ List 类似：使用PriorityQueue。
+- 因为Array的element无法直接找到next,所以用一个class Node 存value, x,y positions.
+- Initial O(n) time, also find k O(k), sort O(logn) => O(n + klogn)
+- 变型: Kth Largest in N Arrays
 
-#### Followup
-- 如果k很大，一个机器上放不下所有的k list怎么办？ 
-- 如果Merge起来的很长，一个机器上放不下怎么办？
+#### Binary Search
+- we know where the boundary is start/end are the min/max value. 
+- locate the kth smallest item (x, y) by cutt off partition in binary fasion: 
+- find mid-value, and count # of items < mid-value based on the ascending matrix
+- O(nlogn)
 
 
 
 
 ---
 
-**9. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
+**6. [[lint]. Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/[lint].%20Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
       
 
 Same as merge k sorted list, use priorityQueue
@@ -245,9 +162,21 @@ Same as merge k sorted list, use priorityQueue
 
 ---
 
-**10. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium      Tags: [Heap, MinHeap]
+**7. [[lint]. HashHeap.java](https://github.com/awangdev/LintCode/blob/master/Java/[lint].%20HashHeap.java)**      Level: Hard      Tags: [HashHeap, Heap, Lint]
       
+非题.是从九章找来的HashHeap implementation.
 
+#### HashHeap
+- An efficient implementation of a priority queue. 
+- The linear hash function monotonically maps keys to buckets, and each bucket is a heap
+- https://xlinux.nist.gov/dads/HTML/hashheap.html
+
+
+
+---
+
+**8. [[lint]. Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/[lint].%20Heapify.java)**      Level: Medium      Tags: [HashHeap, Heap, Lint, MinHeap]
+      
 Turn unsorted array into a min-heap array, where for each A[i], 
 
 A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
@@ -271,66 +200,110 @@ A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[
 
 ---
 
-**11. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
+**9. [347. Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/347.%20Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
       
-time: O(n)
-space: O(n)
 
 给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
 
-#### HashMap + bucket List[]
+#### Method1: Bucket Sort. HashMap + bucket List[]
 - Use HashMap to store <num, freq>
-- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
-- Size of the data structure will be m <= n
-- The bucket[count] preserves order from end of the array.
-- Simply loop over the reversed map, we can find the top k items.
+- Bucket `List<Integer>[]`: stores <count, list unique element with that count>
+    - Size of the data structure will be uniqe item size.
+    - The bucket[i] stores item at frequency i
+- Simply loop from bucket.length -> 0, when bucket[i] not null, add to result.
 - Solid O(n)
 
-#### PriorityQueue, MinHeap
+
+#### Method2: PriorityQueue, MinHeap
 - Use regualr priorityQueue to sort by frequency ascendingly
 - the queue.peek() record has lowest frequency, which is replacable
 - Always only maintain k elements in the queue, so sorting is O(logk)
 - IMPORTANT: remember to `rst.add(0, x)` for desired ordering
 - time faster than maxHeap: O(nlogk)
+- option1: just use `map<num, freq>`; option2: use `class Record {int num; int freq}`
 
-#### PriorityQueue, MaxHeap
-- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
-- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
-- 那么就先count, O(n), using HashMap
-- 再priorityQueue, (mLog(m)), m是unique 数字的总量
-- 最终find top k, O(k)
-- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
-
-
-
-
----
-
-**12. [Ugly Number II.java](https://github.com/awangdev/LintCode/blob/master/Java/Ugly%20Number%20II.java)**      Level: Medium      Tags: [DP, Enumeration, Heap, Math, PriorityQueue]
-      
-time: O(n)
-space: O(n)
-
-#### DP
-- curr index is based on previous calculation: the min of all 3 previous factors
-- O(n)
-
-#### PriorityQueue, DP
-- 非常brutle的。
-- 每次把dp[i-1]拿出来，不管三七二十一，分别乘以2,3,5. 出来的结果放进priority queue做比较。
-- 最后时间是n*log(n*3)
-- 注意：use long, use HashSet确保没有重复
-- O(nlogn)
-
+#### MaxHeap Attempt. INCORRECT
+- 题目有提醒: 必须beetter than O(nLog(n)).
+- max heap approach stores all nodes: it is wrong
+    - even though freq count size m < n, but it can be m == n. ALL unique. 
+    - then it is O(nlogN) again.
+- therefore, storing all items into pq is INCORRECT.
 
 
 
 ---
 
-**13. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**10. [253. Meeting Rooms II.java](https://github.com/awangdev/LintCode/blob/master/Java/253.%20Meeting%20Rooms%20II.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort, Sweep Line]
       
 
-#### 原理
+给一串数字pair, 代表会议的开始/结束时间. 找同时又多少个会议发生(需要多少件房间)
+
+#### Method1: sort both start and end times
+- Sort start times, and end times in 2 different arrays
+- Loop over start time
+    - when start[i] < end[endIndex], Count++, need more room
+    - start[i] >= end[endIndex], done using some room, move to next end time, endIndex++ (like vacating a room)
+- Note: we never decrese count because:
+    - what ever count reaches, it is the max
+    - since we keep moving endIndex, when start[i] >= end[endIndex], we will just reuse meeting room w/o count++
+- time: O(nlogn)
+- space: O(n)
+- somehow, super fast, over 100%
+- inspired by: https://leetcode.com/problems/meeting-rooms-ii/discuss/67855/Explanation-of-%22Super-Easy-Java-Solution-Beats-98.8%22-from-%40pinkfloyda
+
+#### Method2: Sweep Line
+- Use sweep line to process, track max count as max # of rooms needed
+- 跟 Number of Airpline in the sky是同一道题
+- time: O(nlogn)
+- space: O(n)
+
+#### Method3: 尝试了一下用一个sorted Array + HashMap
+也还行，但是handle edge的时候,HashMap 要小心，因为相同时间start和end的map key 就会重复了。
+
+
+
+---
+
+**11. [1094. Car Pooling.java](https://github.com/awangdev/LintCode/blob/master/Java/1094.%20Car%20Pooling.java)**      Level: Medium      Tags: [Greedy, Heap, PriorityQueue, Sort]
+      
+
+#### Method1: bucket sort
+- define the bucket by index: the total distance is fixed [0, 1000]
+- +/- capacities for each pos and save into the bucket
+- go over the bucket and see if the total cap goes over input capacity
+- O(n), trips size
+- space: O(1), bucket size 1000 is constant
+- `IMPORTANT`: before using PQ to sort, consider bucket sort:
+    - if the boundary set and seems resonable? i.e., max size = `1000`
+    - is the sorted items index based?
+
+#### Method2: Priority Queue, sort distnace
+- Like meeting room, merge interval
+- process items on same index
+
+
+
+---
+
+**12. [973. K Closest Points to Origin.java](https://github.com/awangdev/LintCode/blob/master/Java/973.%20K%20Closest%20Points%20to%20Origin.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Sort]
+      
+
+#### PriorityQueue
+- Create customized Point{} class
+- Sort by distance
+- Maintain queue size <= K
+
+#### Divide and Conquer
+- ?, select sort?
+
+
+
+---
+
+**13. [295. Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/295.%20Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+      
+
+#### MaxHeap/MinHeap
 - 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.
 - 前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
 - 后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
@@ -343,38 +316,242 @@ space: O(n)
 
 ---
 
-**14. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
+**14. [239. Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/239.%20Sliding%20Window%20Maximum.java)**      Level: Hard      Tags: [Deque, Heap, Sliding Window]
       
 
-Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
+#### Method1: Deque, Monotonous queue
+- 维持monotonuous queue: `front is always at max` and the `tail end is min`. Always need to return the max end of queue.
+- when adding new elements x: 
+    - 1) start from small-end of the queue
+    - 2) drop all smaller elements 
+    - 3) append to the ending element that is larger than x.
+    - This is to maintain a front->tail decreasing queue
+- when sliding window: queue curr window 里面 最大的已经在max-end,  remove it if needed.
+- 妙：用deque数据结构（实际上采用LinkedList的形式）来做一个`递减的queue`: better than using arraylist, since DeQueue(linked list) removes at O(1) cost
+- 每次把小于当前node的，全部剔除，剩下的，自然就是:最大的>第二大的>第三大的...ETC.
+- 我们只在乎最大值的存在；而任何小于当前（正要新就加进去的）值的，反正以后也成不了最大值，于是扔掉！
+- Option1: sliding window template using right/left + while loop
+    - 1) tailing the new number to max queue, if applicable
+    - 2) process: record max
+    - 3) contract/shrink left: remove top max if the topMax is the left-most val: rst[i - k + 1]
+- Option2: same concept, but use index `i` to mark right, and `i - k + 1` to mark left.
+- time: O(n), one pass
+- space: O(k), store the deque
 
-#### MaxHeap, MinHeap
-- Median还是用min-heap 和 max-heap. Time(logN)
-- 加/减: prioirtyQueue, log(n)
-- findMedian: O(1)
-- 加一个数, 减一个数。
-- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
-- 抽完balance一下
 
-#### 注意
-- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
-- 左边的maxHeap总有 x+1或者x个数字
-- 后边minHeap应该一直有x个数字
+#### Method2: Heap
+- can always build a `class Node{index, val}`; and sort them with PQ of size k
+- time: O(nlogK)
+- space: O(k)
+- this is not linear time, not as good as method1
 
 
 
 ---
 
-**15. [Sliding Window Maximum.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Maximum.java)**      Level: Hard      Tags: [Deque, Heap, Sliding Window]
+**15. [23. Merge k Sorted Lists.java](https://github.com/awangdev/LintCode/blob/master/Java/23.%20Merge%20k%20Sorted%20Lists.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, Linked List, Merge Sort, PriorityQueue]
       
 
-#### Deque, Monotonous queue
-- 维持monotonuous queue: one end is always at max and the other end is min. Always need to return the max end of queue.
-- when adding new elements x: start from small-end of the queue, drop all smaller elements and append to first element larger than x.
-- when sliding window: queue curr window 里面 最大的已经在max-end,  remove it if needed.
-- 妙：用deque数据结构（实际上采用LinkedList的形式）来做一个`递减的queue`.
-- 每次把小于当前node的，全部剔除，剩下的，自然就是:最大的>第二大的>第三大的...ETC.
-- 我们只在乎最大值的存在；而任何小于当前（正要新就加进去的）值的，反正以后也成不了最大值，于是扔掉！
+给一个array of ListNode, 把所有node按照大小连成一条.
+
+#### Method1: Divide and Conquer, Merge sort
+- By Definition, merge sort: divide the list into 2 parts
+- recursively merge them together.
+- time complexity: O(nlogk) divide by log(k) times, each recursive call can work on n nodes.
+- space: O(logk) stacks 
+
+#### Method2: Priorityqueue
+- Iterative, PQ来排列所有list的leading node.
+- Note: k lists need to be sorted (luckily, already given)
+- 时间：n*O(logk), where n = total node number, and PriorityQueue: logk, 
+- Note:
+    - 1. 不要忘记customized priority需要一个customized new Comparator<T>()
+    - 2. Given list 里面也可能有null node, 不要忘记查.
+
+#### Followup
+- 如果k很大，一个机器上放不下所有的k list怎么办？ 
+- 如果Merge起来的很长，一个机器上放不下怎么办？
+
+
+
+
+---
+
+**16. [218. The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/218.%20The%20Skyline%20Problem.java)**      Level: Hard      Tags: [BIT, Divide and Conquer, HashHeap, Heap, PriorityQueue, Segment Tree, Sweep Line]
+      
+
+#### Sweep Line, Time O(nLogN), Space O(n)
+- Analysis (inspired by, but not same solution: https://leetcode.com/problems/the-skyline-problem/solution/)
+    - If there are just 2 overlapping building (totally 4 points on x-axis), here is the outline process:
+    - Process x coordinate from left->right, one at a time.
+        - 1) compare all `on-going heights` and find max, add as new outline point
+        - 2) Handling building end: if the position ends a building, need to remove this height from the list of `on-going heights`
+    - Requires 2 heap:
+        1) sort by x coordinates
+        2) `on-going heights`: maintain a pq of ongoing heights
+- Steps: 
+    - original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
+    - 画图分析: 需要找到 non-overlaping height point at current index; also height needs to be different than prev height peek to be visible.
+    - `on-going heights`: 用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height
+    - NOTE: heightQueue里面加一个0, 用来在结尾的时候做closure
+- time: initial sort O(nlogn) + calculate n * O(nlogn) [maxQueue sort]
+- space: O(n)
+
+#### Segment Tree
+- 看了一些做法, segment tree写法很复杂, 估计在面试中难以用segment tree来写: https://www.cnblogs.com/tiezhibieek/p/5021202.html
+
+#### HashHeap
+- HashHeap template 可以考虑: https://www.jiuzhang.com/solution/building-outline/#tag-highlight-lang-java
+
+Binary Indexed Tree?
+
+
+
+
+
+---
+
+**17. [743. Network Delay Time.java](https://github.com/awangdev/LintCode/blob/master/Java/743.%20Network%20Delay%20Time.java)**      Level: Medium      Tags: [BFS, DFS, Graph, Heap, PQ]
+      
+
+quesiton: sorting by travel delay/time will find better answer earlier?
+
+#### Method1: BFS with PQ on graph
+- `Dijkstras algorithm` is based on repeatedly making the candidate move that has the least distance travelled.
+- PQ: pick close node to vist, and add siblings back to PQ
+- avoid visited
+- time: O(nLogn), visit n nodes, each time insert to heap takes O(logn) time
+- space: O(n)
+
+#### Method2: DFS with Sort
+- 1) build graph map, 2) traverse map, 3) prioritize short delay nodes first
+- use a map`<node, timeElapsed>` globally track dealy to nodes; compare all at the end
+
+
+
+---
+
+**18. [692. Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/692.%20Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
+      
+
+给一串String. 找到top k frequent words.
+
+#### Method1: Bucket Sort
+- 1) Build frequency map, 2) use frequency map to build freq bucket
+- Loop from largest bucket freq -> 0, and output.
+- Time: Solid O(n)
+- Space: O(n)
+
+#### Method2: PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### Method3: PriorityQueue - Max Heap
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+- slower, because the maxHeap needs to add all candidates
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+
+#### Deleted Attempt: HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
+
+
+
+---
+
+**19. [767. Reorganize String.java](https://github.com/awangdev/LintCode/blob/master/Java/767.%20Reorganize%20String.java)**      Level: Medium      Tags: [Greedy, Hash Table, Heap, Sort, String]
+      
+
+
+We want to exhaust largest population and merge like merging k list.
+Problem: largest population may result in them being adjacent. How to resolve?
+
+1) process and check at the end, or, 2) sanitize first and process assume correct input
+
+#### Method1: K(k=2) seats apart problem (w/o sanitization)
+- Aggregate map<char, count>, and sort the entry with priority queue.(Optionally, can use object `Letter {char c, int count}`)
+- Naturally: we want to prioritize the largest population and exhaust it first, so we want to keep it in the a buffer queue
+    - it is a queue, first in first out
+    - monitor queue size k = 2, so that it holds off the just last-processed letter for 1 unit of time
+    - the buffer then sends the last-process item to the main priority queue (pq will sort it again)
+- Error handling: largest population may have extra letter
+    - the main PQ has already exhausted
+    - but the largest-population-letter will end up stuck in the buffer queue
+    - it will never be picked up again so the final result sb will be shorter than orignal string: that is the error case
+- Option0. Similar to `621. Task Scheduler`:
+    - use a buffer to hold potential letter to add back, but NOT ADD BACK YET, until k slots have been filled.
+- time: O(m), m = # of unique letters
+- space: O(nmLogm), n = length, pq sorting requires mlogm, we will visit all n nodes.
+
+#### Method2: HashMap<Num, # occurance>, Sort (Sanitize input)
+- put all in map<char, count>
+    - Sanitize the input: if certain popular char count is over (n + 1)/2, then it should fail right away, just return empty map.
+    - Once the input is sanitized, when building results, we can be greedy and consume most popular char and then the rest 
+- Int[2] can be used store char and count 
+    - PriorityQueue can sort int[]. Okay to not specific length of int[] when defining pq.
+    - Alternatively, can use a Letter {char c, int count} to represent
+
+
+
+
+
+---
+
+**20. [373. Find K Pairs with Smallest Sums.java](https://github.com/awangdev/LintCode/blob/master/Java/373.%20Find%20K%20Pairs%20with%20Smallest%20Sums.java)**      Level: Medium      Tags: [Heap, MaxHeap, MinHeap]
+      
+
+#### Method1: MinHeap wiht k size
+- This approach follows the pattern of finding min pair: 
+  - 1) only need to store k pairs
+  - 2) always start from min of A list and min of B list
+  - 3) pre-build k pairs honoring A list, and then pick the min pair, and start swapping with min of list B 
+- First attemp all first k pairs from nums1[i] against nums2[0] <=k : O(k)
+- Use queue to pull min node and save results
+- Use the nums1 val from the min node, pair up with nums2[j], add back to queue to sort
+- overall runtime: O(klogk)
+- space: O(k)
+
+#### Method2: MaxHeap with k size
+- Brutle: build all pairs time O(mn), sort with maxHeap pq with k size, and find top k
+- overall time: O(mnLogK)
+- space: O(k)
+
+
+
+---
+
+**21. [215. Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/215.%20Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Select, Quick Sort]
+      
+
+kth largest in array
+
+#### PriorityQueue, MinHeap
+- Use minHeap to maintain PQ of k size and return PQ.peek()
+    - Maintain MinHeap: only allow larger elements (which will squzze out the min value)
+    - Remove peek() of queue if over size
+- O(nlogk)
+
+#### Quick Select, Quick Sort
+- 用Quick Sort 里面partion的一部分: sort结束后是ascending的.
+  - kth largest = (n - k)th smallest
+  - in partioned array (quick sort), the portion before pivot are less than pivot
+  - that is, the `pivot value` is the divider: anything after pivot is larger than it.
+  - after `swap(nums, low, pivot)`: index low has the (n-k)th smallest, if `low = n-k`
+- Steps:
+  - each iteration: pick pivot,然后从low,和high都和pivot作比较
+  - Find `low>pivot, high<pivot` to swap
+  - The new low is the next partion point
+- Time: average O(n), worst case O(n^2)
+- space: O(1) extra spaces besides recursive stack
 
 
 

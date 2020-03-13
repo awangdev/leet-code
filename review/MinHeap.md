@@ -1,42 +1,65 @@
  
  
  
-## MinHeap (9)
-**0. [Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
+## MinHeap (11)
+**0. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
       
-time: O(nlogk)
-space: O(n)
+Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
 
-给一串String. 找到top k frequent words.
+#### MaxHeap, MinHeap
+- Median还是用min-heap 和 max-heap. Time(logN)
+- 加/减: prioirtyQueue, log(n)
+- findMedian: O(1)
+- 加一个数, 减一个数。
+- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
+- 抽完balance一下
 
-#### PriorityQueue - Min Heap
-- O(n) space of map, O(nlogk) to build queue.
-- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
-
-#### PriorityQueue - Max Heap
-- 用HashMap存frequency, 用ArrayList存lists of words
-- create一个Node class, 然后用PriorityQueue.   
-- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
-- time: PQ uses O(nlogn), overall O(nlogn)
-- slower, because the maxHeap needs to add all candidates
-
-#### Trie && MinHeap屌炸天   
-- 可以做一下
-- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
-
-#### HashMap + collections.sort()
-- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
-- 注意排序时Collection.sort()的cost是O(nLogk)
-- not efficient
-
+#### 注意
+- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
+- 左边的maxHeap总有 x+1或者x个数字
+- 后边minHeap应该一直有x个数字
 
 
 
 ---
 
-**1. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+**1. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
       
 
+Description is long, but in short: 做 search auto complete. 
+
+Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+
+Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
+
+#### 思考方向
+- 做text的search, 毋庸置疑要用Prefix tree, trie.
+
+##### Find all possible word/leaf, 两种方案:
+- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
+- 在TrieNode里面存所有的possible words. [high space usage]
+- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+
+##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
+- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
+- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
+- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
+- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+
+##### Train the system
+- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
+- 这一条在最后遇到`#`再做就可以了, 非常简洁
+
+#### Trie, PriorityQueue, HashMap
+- Trie Prefix Search + maintain top k frequent items
+- 
+
+
+
+---
+
+**2. [Trapping Rain Water II.java](https://github.com/awangdev/LintCode/blob/master/Java/Trapping%20Rain%20Water%20II.java)**      Level: Hard      Tags: [BFS, Heap, MinHeap, PriorityQueue]
+      
 给一个2Dmap, 每个position 有 height. 找Trapping water sum.
 
 
@@ -69,9 +92,8 @@ space: O(n)
 
 ---
 
-**2. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
+**3. [Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Sort]
       
-
 kth largest in array
 
 #### PriorityQueue, MinHeap
@@ -99,7 +121,7 @@ kth largest in array
 
 ---
 
-**3. [Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
+**4. [[lint]. Merge k Sorted Arrays.java](https://github.com/awangdev/LintCode/blob/master/Java/[lint].%20Merge%20k%20Sorted%20Arrays.java)**      Level: Medium      Tags: [Heap, MinHeap, PriorityQueue]
       
 
 Same as merge k sorted list, use priorityQueue
@@ -114,9 +136,8 @@ Same as merge k sorted list, use priorityQueue
 
 ---
 
-**4. [Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/Heapify.java)**      Level: Medium      Tags: [Heap, MinHeap]
+**5. [[lint]. Heapify.java](https://github.com/awangdev/LintCode/blob/master/Java/[lint].%20Heapify.java)**      Level: Medium      Tags: [HashHeap, Heap, Lint, MinHeap]
       
-
 Turn unsorted array into a min-heap array, where for each A[i], 
 
 A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[i].
@@ -140,45 +161,43 @@ A[i * 2 + 1] is the left child of A[i] and A[i * 2 + 2] is the right child of A[
 
 ---
 
-**5. [Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
+**6. [347. Top K Frequent Elements.java](https://github.com/awangdev/LintCode/blob/master/Java/347.%20Top%20K%20Frequent%20Elements.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue]
       
-time: O(n)
-space: O(n)
 
 给一串数字, 找到top k frequent element, 并且time complexity 要比nLogN要好
 
-#### HashMap + bucket List[]
+#### Method1: Bucket Sort. HashMap + bucket List[]
 - Use HashMap to store <num, freq>
-- Reverse mapping <count, list unique element with that count> in a `bucket = new List[n]`. 
-- Size of the data structure will be m <= n
-- The bucket[count] preserves order from end of the array.
-- Simply loop over the reversed map, we can find the top k items.
+- Bucket `List<Integer>[]`: stores <count, list unique element with that count>
+    - Size of the data structure will be uniqe item size.
+    - The bucket[i] stores item at frequency i
+- Simply loop from bucket.length -> 0, when bucket[i] not null, add to result.
 - Solid O(n)
 
-#### PriorityQueue, MinHeap
+
+#### Method2: PriorityQueue, MinHeap
 - Use regualr priorityQueue to sort by frequency ascendingly
 - the queue.peek() record has lowest frequency, which is replacable
 - Always only maintain k elements in the queue, so sorting is O(logk)
 - IMPORTANT: remember to `rst.add(0, x)` for desired ordering
 - time faster than maxHeap: O(nlogk)
+- option1: just use `map<num, freq>`; option2: use `class Record {int num; int freq}`
 
-#### PriorityQueue, MaxHeap
-- 题目有提醒: 必须beetter than O(nLog(n)), 也就是说明要O(n)
-- 首先想到就是PriorityQueue, 并且不能queue.offer on the fly
-- 那么就先count, O(n), using HashMap
-- 再priorityQueue, (mLog(m)), m是unique 数字的总量
-- 最终find top k, O(k)
-- Overall time: O(n) + O(mLogm) + O(k) => O(n), if m is small enough
-
+#### MaxHeap Attempt. INCORRECT
+- 题目有提醒: 必须beetter than O(nLog(n)).
+- max heap approach stores all nodes: it is wrong
+    - even though freq count size m < n, but it can be m == n. ALL unique. 
+    - then it is O(nlogN) again.
+- therefore, storing all items into pq is INCORRECT.
 
 
 
 ---
 
-**6. [Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
+**7. [295. Find Median from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/295.%20Find%20Median%20from%20Data%20Stream.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap]
       
 
-#### 原理
+#### MaxHeap/MinHeap
 - 把Input stream想成向上的山坡. 山坡中间那点，自然就是median.
 - 前半段，作为maxHeap,关注点是PriorityQueue的峰点，也就是实际上的median.   
 - 后半段，作为minHeap,正常的PriorityQueue。 开头是最小的。
@@ -191,60 +210,89 @@ space: O(n)
 
 ---
 
-**7. [Sliding Window Median.java](https://github.com/awangdev/LintCode/blob/master/Java/Sliding%20Window%20Median.java)**      Level: Hard      Tags: [Design, Heap, MaxHeap, MinHeap, Sliding Window]
+**8. [692. Top K Frequent Words.java](https://github.com/awangdev/LintCode/blob/master/Java/692.%20Top%20K%20Frequent%20Words.java)**      Level: Medium      Tags: [Hash Table, Heap, MaxHeap, MinHeap, PriorityQueue, Trie]
       
 
-Data Stream Median 的同理题目: 不只是不断增加的Sequence, 而且要remove item (保持一个window size)
+给一串String. 找到top k frequent words.
 
-#### MaxHeap, MinHeap
-- Median还是用min-heap 和 max-heap. Time(logN)
-- 加/减: prioirtyQueue, log(n)
-- findMedian: O(1)
-- 加一个数, 减一个数。
-- 加减时看好，是从前面的maxheap里面抽，还是从后面的minHeap里面抽。
-- 抽完balance一下
+#### Method1: Bucket Sort
+- 1) Build frequency map, 2) use frequency map to build freq bucket
+- Loop from largest bucket freq -> 0, and output.
+- Time: Solid O(n)
+- Space: O(n)
 
-#### 注意
-- 用maxHeap, minHeap时候, 习惯选择让maxHeap多一个数字:
-- 左边的maxHeap总有 x+1或者x个数字
-- 后边minHeap应该一直有x个数字
+#### Method2: PriorityQueue - Min Heap
+- O(n) space of map, O(nlogk) to build queue.
+- limit minHeap queue size to k: add to queue if found suitable item; always reduce queue if size > k
+
+#### Method3: PriorityQueue - Max Heap
+- 用HashMap存frequency, 用ArrayList存lists of words
+- create一个Node class, 然后用PriorityQueue.   
+- PriorityQueue里面用到了 String.compareTo(another String).巧妙。
+- time: PQ uses O(nlogn), overall O(nlogn)
+- slower, because the maxHeap needs to add all candidates
+
+#### Trie && MinHeap屌炸天   
+- 可以做一下
+- http://www.geeksforgeeks.org/find-the-k-most-frequent-words-from-a-file/
+
+
+#### Deleted Attempt: HashMap + collections.sort()
+- 用HashMap存frequency, 用ArrayList存lists of words。最后返回从尾部向前数的k个。   
+- 注意排序时Collection.sort()的cost是O(nLogk)
+- not efficient
+
 
 
 
 ---
 
-**8. [Design Search Autocomplete System.java](https://github.com/awangdev/LintCode/blob/master/Java/Design%20Search%20Autocomplete%20System.java)**      Level: Hard      Tags: [Design, Hash Table, MinHeap, PriorityQueue, Trie]
+**9. [373. Find K Pairs with Smallest Sums.java](https://github.com/awangdev/LintCode/blob/master/Java/373.%20Find%20K%20Pairs%20with%20Smallest%20Sums.java)**      Level: Medium      Tags: [Heap, MaxHeap, MinHeap]
       
-time: input: O(x), where x = possible words, constructor: O(mn) m = max length, n = # of words
-space: O(n^2), n = # of possible words, n = # of trie levels; mainlay saving the `Map<S, freq>`
 
-Description is long, but in short: 做 search auto complete. 
+#### Method1: MinHeap wiht k size
+- This approach follows the pattern of finding min pair: 
+  - 1) only need to store k pairs
+  - 2) always start from min of A list and min of B list
+  - 3) pre-build k pairs honoring A list, and then pick the min pair, and start swapping with min of list B 
+- First attemp all first k pairs from nums1[i] against nums2[0] <=k : O(k)
+- Use queue to pull min node and save results
+- Use the nums1 val from the min node, pair up with nums2[j], add back to queue to sort
+- overall runtime: O(klogk)
+- space: O(k)
 
-Best problem to review Trie (prefix search), Top K frequent elements (Hash Map), and MinHeap (PriorityQueue)
+#### Method2: MaxHeap with k size
+- Brutle: build all pairs time O(mn), sort with maxHeap pq with k size, and find top k
+- overall time: O(mnLogK)
+- space: O(k)
 
-Easier to revisit https://leetcode.com/problems/design-search-autocomplete-system/description/
 
-#### 思考方向
-- 做text的search, 毋庸置疑要用Prefix tree, trie.
 
-##### Find all possible word/leaf, 两种方案:
-- Trie造好之后, 做prefix search, 然后DFS/BFS return all leaf items. [high runtime complexity]
-- 在TrieNode里面存所有的possible words. [high space usage]
-- in memory space 应该不是大问题, 所以我们可以选择 store all possible words
+---
 
-##### Given k words, find top k frequent items. 肯定用MinHeap, 但也有两种方案:
-- Store MinHeap with TrieNode: 因为会不断搜索新此条, 同样的prefix (尤其是在higher level), 会被多次搜索.
-- [complexity: need to update heaps across all visited TrieNodes once new sentence is completed]
-- Compute MinHeap on the fly: 当然我们不能每次都来一个DFS不然会很慢, 所以就必须要store list of possible candidates in TrieNode.
-- 这里就用到了`Top K Frequent Words` 里面的 `Map<String, freq>`, 这样O(m) 构建 min-heap其实很方便.
+**10. [215. Kth Largest Element in an Array.java](https://github.com/awangdev/LintCode/blob/master/Java/215.%20Kth%20Largest%20Element%20in%20an%20Array.java)**      Level: Medium      Tags: [Divide and Conquer, Heap, MinHeap, PriorityQueue, Quick Select, Quick Sort]
+      
 
-##### Train the system
-- 每次 `#` 后 标记一个词条被add进search history. 那么就要 `insert it into trie`.
-- 这一条在最后遇到`#`再做就可以了, 非常简洁
+kth largest in array
 
-#### Trie, PriorityQueue, HashMap
-- Trie Prefix Search + maintain top k frequent items
-- 
+#### PriorityQueue, MinHeap
+- Use minHeap to maintain PQ of k size and return PQ.peek()
+    - Maintain MinHeap: only allow larger elements (which will squzze out the min value)
+    - Remove peek() of queue if over size
+- O(nlogk)
+
+#### Quick Select, Quick Sort
+- 用Quick Sort 里面partion的一部分: sort结束后是ascending的.
+  - kth largest = (n - k)th smallest
+  - in partioned array (quick sort), the portion before pivot are less than pivot
+  - that is, the `pivot value` is the divider: anything after pivot is larger than it.
+  - after `swap(nums, low, pivot)`: index low has the (n-k)th smallest, if `low = n-k`
+- Steps:
+  - each iteration: pick pivot,然后从low,和high都和pivot作比较
+  - Find `low>pivot, high<pivot` to swap
+  - The new low is the next partion point
+- Time: average O(n), worst case O(n^2)
+- space: O(1) extra spaces besides recursive stack
 
 
 

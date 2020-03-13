@@ -4,7 +4,6 @@
 ## Queue (3)
 **0. [Max Sum of Rectangle No Larger Than K.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K.java)**      Level: Hard      Tags: [Array, BST, Binary Search, DP, Queue, TreeSet]
       
-
 给定一个非空的二维矩阵matrix与一个整数k，在矩阵内部寻找和不大于k的最大矩形和。
 
 #### BST, Array, preSum
@@ -27,36 +26,42 @@
 
 ---
 
-**1. [Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
+**1. [621. Task Scheduler.java](https://github.com/awangdev/LintCode/blob/master/Java/621.%20Task%20Scheduler.java)**      Level: Medium      Tags: [Array, Enumeration, Greedy, PriorityQueue, Queue]
       
 
+#### PriorityQueue; Greedy
+- 正面去做: 
+    - count task出现的次数
+    - 然后PQ sort Task object in descending order
+- 每个section: k slots = n + 1. Same task being n slots apart, meaning one section has n + 1 slots.
+    - 目标是穷尽 k, or 穷尽 pq (poll k times, but will save it back to queue if Task # > 0)
+    - 如果qp 真的穷尽, break, return count
+    - 不然, count += k, where k are just # of idle intervals
+- time O(n) + constant time O(xlogx), where x = 26
+- extra space O(x) ~ O(1)
+
+
 #### Array, count frequency, enumerate
-- Enumerate to understand: 1. we can module the tasks in module/section; 2. Only need sum the intervals/slots, not return actual layout
-- Perfect condition, all letters appear identical # times: just line them up separate in order.
-- Real case: task appears different times
+- Enumerate to understand: 
+    - 1.module tasks in module/section; 
+    - 2.Only need sum the intervals/slots, not return actual layout
+    - Perfect case: all letters appear identical # times: just line them up separate in order.
+    - Real case: task appears different times
 - 1. Place maxCount task as header followed with n slots: define (maxCount-1) sections
 - 2. For tasks with less # than maxCount# can fill the (maxCount-1) sections; what about the tail section?
 - 3. Any task with same maxTask#, of if prior sections all filled, will fill the tail section
 - To count overall slots/intervals, come up with this equation:
-- 1. Fixed sections: `(maxCount - 1) * (n + 1)`
-- 2. Plus all repeating maxCount tasks: calculate by couting identical maxCount of them
-- 3. Exception: if the first (max - 1) sections are all filled completely, and we still have extra task (ex: when n is not large enough), then just return tasks.length
-- time O(1), space O(1)
-
-#### PriorityQueue
-- 正面去做: 
-- summerize 每个task出现的次数, 然后qp sort Task object, count 大的靠前
-- 起始每个section: k slots = n + 1
-- 目标是穷尽 k, 或者 穷尽 pq (poll k times, but will save it back to queue if Task # > 0)
-- 如果qp 真的穷尽, break, return count
-- 不然, count + remain of k
-- extra space O(x), time O(n) + constant time O(xlogx), where x = 26
+    - 1. Fixed sections: `(maxCount - 1) * (n + 1)`
+    - 2. Plus all repeating maxCount tasks: calculate by couting identical maxCount of them
+    - 3. Exception: if the first (max - 1) sections are all filled completely, and we still have extra task (ex: when n is not large enough), then just return tasks.length
+- time O(n), space O(1)
+- ??? Need to study
 
 
 
 ---
 
-**2. [Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
+**2. [346. Moving Average from Data Stream.java](https://github.com/awangdev/LintCode/blob/master/Java/346.%20Moving%20Average%20from%20Data%20Stream.java)**      Level: Easy      Tags: [Design, Queue, Sliding Window]
       
 
 给一个interface, design一个structure, 能够计算moving window average.
@@ -64,6 +69,10 @@
 #### Queue
 - 读懂题目, 注意average 和 window 的处理.
 - 简单的queue.size() comparison
+- Note: if we it is calculate moving-window-product, better to use deque :)
+- Sliding window?
+    - It has the spirit of slinding window: 1) maintain a range; 2) check range size `if (queue.size() > size)`
+    - Though, the solution must use a data structure to store data; it is not the traditional sliding window type of `left/right` pointer problem
 
 
 

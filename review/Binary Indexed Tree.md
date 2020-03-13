@@ -1,93 +1,57 @@
  
  
  
-## Binary Indexed Tree (3)
-**0. [The Skyline Problem.java](https://github.com/awangdev/LintCode/blob/master/Java/The%20Skyline%20Problem.java)**      Level: Review      Tags: [Binary Indexed Tree, Divide and Conquer, Heap, PriorityQueue, Segment Tree, Sweep Line]
+## Binary Indexed Tree (4)
+**0. [308. Range Sum Query 2D - Mutable.java](https://github.com/awangdev/LintCode/blob/master/Java/308.%20Range%20Sum%20Query%202D%20-%20Mutable.java)**      Level: Hard      Tags: [Binary Indexed Tree, Segment Tree]
       
-
-又叫做skyline. 用Sweep Line做的O(nLogN), 但是貌似还有很多做法: segement tree, hashheap, treeSet?
-
-#### Sweep Line, Time O(nLogN), Space O(n)
-- original reference http://codechen.blogspot.com/2015/06/leetcode-skyline-problem.html?_sm_au_=isVmHvFmFs40TWRt
-- 画图分析: 需要找到 non-overlaping height point at current index; also height needs to be different than prev height peek to be visible.
-- 把所有点分出来， 每个点有index x, 再加上一个height.         
-- 在这个list上排序，根据index和height. 注意用负数标记building start point height, 这样保证start在end 之前
-- 用负数的height标记start: 在priority queue里面同一个x-pos比较 startPoint.height, endPoint.height 的时候, 因为end height是整数, 所以compare时会自动把start point放在end point前面
-- 当然了, 如果两个 start point比较, 第二个point的负数超大的话(也就是height很高), 就会顺理compare return正数, 成章形成倒位
-- 在processs时候用max-heap (reversed priorityqueue)，再iterate heightPoints 来存最大的height . 遇到peek,就是一个合理的解    
-- heightQueue里面加一个0, 用来在结尾的时候做closure
 
 #### Segment Tree
-- 看了一些做法, segment tree写法很复杂, 估计在面试中难以用segment tree来写: https://www.cnblogs.com/tiezhibieek/p/5021202.html
-
-#### HashHeap
-- HashHeap template 可以考虑: https://www.jiuzhang.com/solution/building-outline/#tag-highlight-lang-java
-
-Binary Indexed Tree?
-
-
-
-
-
----
-
-**1. [Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Hard      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
-      
-
-给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
-
-#### Binary Search
-- sort and insert 进一个新list, 新的list是sorted
-- 从末尾 i = n-1 遍历nums[]
-- 每一次insert nums[i] 进list的位置, 就是# of smaller items on right side of nums[i]
-- 每次记录下result[i]
-- **问题**: 这里的binary search 是用 `end = list.size(); while(start<end){...}`做的, 可否换成用`end=list.size() - 1`?
-
-
-#### Segment Tree based on actual value
-- Build segment tree based on min/max values of array: set each possible value into leaf
-- query(min, target - 1): return count # of smaller items within range [min, target - 1]
-- Very similar to `Count of Smaller Number`, where segment tree is built on actual value!!
-- IMPORTANT: goal is to find elements on right -> elements processed from left-hand-side can be removed from segment tree
-- Use `modify(root, target, -1)` to remove element count from segment tree. Reuse function
-- time: `n * log(m)`, where m = Math.abs(max-min). log(m) is used to modify() the leaf element
-
-##### Segment Tree solution - tricky part:
-- negative nubmer works oddly with mid and generates endless loop in build(): `[-2, -1]` use case
-- build entire segment tree based on [min, max], where min must be >= 0. 
-- we can do this by adding Math.abs(min) onto both min/max, as well as +diff during accessing nums[i]
-
-
-
-#### Binary Indexed Tree
-- TODO, have code
+- Same concept as turning an array into a binary segment tree,
+    - HOWEVER, this is a 4-nary segmenet tree
+- Reference. 307 Range Sum Query
+- Range Query concept:
+    - Using the input range, sum up everything in the range
+    - sometimes the input range cover multiple segments, then dive into the segments (still use original range)
+    - once we found a bounded segment (completely surrounded by input range), return segment value.
+- Handling end stage, there are two approaches:
+    - ApproachA: check at beginning of recursive call (i.e in `build()`, `updateNode()`, `rangeQuery()`).
+        - pro: calling recursive function blindly; code is easy.
+        - con: be really clear about termination state, and catch it.
+    - ApproachB: check & come up with correct query condition before recursive call
+        - pro: input to recursive function is assumed to be correct
+        - con: sometimes really hard to write the conditions before recursive call; code is hard.
 
 
 
 ---
 
-**2. [Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/Reverse%20Pairs.java)**      Level: Medium      Tags: [Binary Indexed Tree, Binary Search Tree, Divide and Conquer, Merge Sort, Segment Tree]
+**1. [493. Reverse Pairs.java](https://github.com/awangdev/LintCode/blob/master/Java/493.%20Reverse%20Pairs.java)**      Level: Medium      Tags: [BST, Binary Indexed Tree, Divide and Conquer, Merge Sort, Segment Tree]
       
-
 给一串数字, count total reverse pair `nums[i] > 2*nums[j]`, i < j
 
 This problem can be solved with Merge sort concept, BST, Segment Tree and Binary Indexed Tree. Good for learning/review.
 
-#### Merge Sort
-- Using merge sort concept, not exaclty merge sort implementation.
-- One very simply concept: if we want to know how many elements between [i, j] are meeting requirements of `nums[i] > 2*nums[j]`, it would be really helpful, if the entire range is sorted:
-- then we just need to keep one i index, and keep j++ for all elements meeting requirement `j<=e && nums[i]/2.0 > nums[j]`
-- Then it comes to the sorting part: we cannot just directly sort entire array, because the restriction is `all elements on right side of curr element`. BUT, it is okay to sort `right side range` and compare with left side elements : )
-- 灵感: use merge sort concept, divide and conquer:
-- divide the elements from mid, compare each subarray
-- sort once sub-array is completed (so that it can be used recursively at parent level)
+#### Merge Sort, Divide and Conquer
+- Using merge sort concept (NOT merge sort impl).
+- One very simply desire: if we want to know # elements between [i, j] such that `nums[i] > 2*nums[j]`, it would be so great if array is **sorted**! 
+    - If sorted,  fix index i, keep j++ for all `nums[i]/2.0 > nums[j]`
+    - We CANNOT just sort entire array. WHY? Because it distrupts the value of curr index i, and the restriction is: `find matching elements on right side of curr index i`
+    - BUT, what about just sort `right side of i`, and make sure the subproblem (i+1, end) is solved first?
+- 灵感: use merge sort concept.divide and conquer [i ~ n] into 2 sections:
+    - 1) solve subProblem(start,mid) & subProblem(mid+1, end). sort the sub array so that it can be used recursively at parent level.
+    - 2) solve the curr pblem: for all [i, mid], check against [mid+1, end].
+- Question1: does it cover all use cases?
+    - First, subProblem(start,mid) & subProblem(mid+1, end) recursively solves its own range
+    - Last, the only range is the current level problem check `[i, mid]` against its entire right side range: `[mid+1, end]`. DONE. all covered.
+- Question2: what it is okay for `subProblem(start,mid) & subProblem(mid+1, end)` partially sort the array?
+    - that is the goal: 1) we want the right side range to be sorted; 2) left range is sorted but it does not matter since we treat [start, mid] as 1 group
 - use classic while loop `while(j<=e && nums[i]/2.0 > nums[j])` to count pairs
 
 
 #### Segment tree
 - TODO
 - split the array into index-based segment tree, where each element is at leaf
-- store min of range: use max to determine if certain range is needed for further query
+- store min of range: use min to determine if certain range is needed for further query
 - query for each element right side range (i + 1, end), where it recursively query&aggregate sub-range if meeting requirement `nums[i] > 2*nums[j]`
 - only when target > subRange.min * 2: there are possible candidates, query further
 - worst case O(n^2) when all tailing elements are meeting requirement.
@@ -103,6 +67,76 @@ This problem can be solved with Merge sort concept, BST, Segment Tree and Binary
 #### O(n^2)
 - check each one of them
 
+
+
+
+---
+
+**2. [315. Count of Smaller Numbers After Self.java](https://github.com/awangdev/LintCode/blob/master/Java/315.%20Count%20of%20Smaller%20Numbers%20After%20Self.java)**      Level: Hard      Tags: [BST, Binary Indexed Tree, Binary Search, Divide and Conquer, Segment Tree]
+      
+
+给一串数字nums[], 求一个新数组result, where result[i] = # of smaller items on right of nums[i]
+
+#### Method1: Binary Search on processed list
+- What if `the processed list is sorted`, so that I can BinarySeach for curr target?
+    - process from end
+    - binary search for `index to insert new element` in sorted ascending list
+    - that index = # of smaller numbers; record it for final result
+- time: O(nlogn)
+- space: O(n)
+
+
+#### Method2: Segment Tree based on actual value
+- Segment Tree functions:
+    - `Build`: construct segment tree based on min/max range: at leaf node, update count of numbers in range
+    - `modify(SegmentTreeNode root, int value, int count)`: find leaft at with value, and update count for leaf & all parent nodes
+    - `query(SegmentTreeNode root, int start, int end)`: return count # of numbers in range [start, end]
+- Very similar to `Count of Smaller Number`, where segment tree is built on actual value!!
+- IMPORTANT to drop processed number from left-hand-side: 
+    - only find on remaining numbers. 
+    - Utilize `modify(root, target, -1)` to erase element count & update the tree.
+- time: `n * log(m)`, where m = Math.abs(max-min). log(m) is used to modify() the leaf element
+- space: O(m)
+- `Define the positive range`
+    - negative nubmer division `rounds up towards 0` (this is a problem). (i.e. `(-2 - 1) / 2 = -1.5 = -1`), which causes range error.
+    - We want the entire segment tree range to be ascending, and we want the mid = (start+end)/2 to round down.
+    - Solution: 
+        - build entire segment tree based on [min, max], where min must be >= 0. 
+        - we can do this by adding Math.abs(min) onto both min/max, as well as +offset during accessing nums[i]
+
+
+
+#### Method3: Binary Search Tree
+- https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76580/9ms-short-Java-BST-solution-get-answer-when-building-BST
+- Assume we have a BST, where each node has smallerCount and a val, for any new target, how to find smaller items?
+    - 1) add the # of smaller count to current node
+    - 2) compare:
+        - if target < node.val, keep searching `countVisit(node.left, target)`
+        - if target > node.val: 1) add currNode.smallerCount, 2) minus node.right.smallertCount (reduce double-counting), 3) plus `countVisit(node.right, target)`
+    - remember to create left/right node before dfs countVisit into the sides.
+
+
+#### Method4: Binary Indexed Tree
+
+
+
+---
+
+**3. [307. Range Sum Query - Mutable.java](https://github.com/awangdev/LintCode/blob/master/Java/307.%20Range%20Sum%20Query%20-%20Mutable.java)**      Level: Medium      Tags: [Binary Indexed Tree, Segment Tree]
+      
+
+#### Segment Tree, devide and conquer
+- sample problem for segment tree
+- build(), update(), rangeQuery()
+    - build and update are standard
+    - rangeQuery: handle the range split check
+- Null leaf node handling: NO, ideally it will not encounter null leaf.
+    - in update/rangeQuery: when final state (`start==end`) is reached, the recursive call ends
+    - there is no way for any node to dive futher into null child.
+- Range Query concept:
+    - Using the input range, sum up everything in the range
+    - sometimes the input range cover multiple segments, then dive into the segments (still use original range)
+    - once we found a bounded segment (completely surrounded by input range), return segment value.
 
 
 

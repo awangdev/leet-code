@@ -2,9 +2,28 @@
  
  
 ## Minimum Binary Tree (3)
-**0. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Minimum Binary Tree, Stack]
+**0. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard      Tags: [Binary Tree, DFS, Expression Tree, Minimum Binary Tree, Stack]
       
+给一个公式 expression, array of strings, 然后evaluate expression 结果.
 
+#### DFS on Expression Tree
+- 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
+- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
+- build好Min Tree以后，做PostTraversal. 
+- Divde and Conquer: 先recursively找到 left和right的大小， 然后evaluate中间的符号
+- Time, Space O(n), n = # expression nodes
+
+#### Note
+- 1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
+- 2. 若有个child是null,那就return另外一个node。    
+- 3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.
+
+
+
+---
+
+**1. [Expression Tree Build.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Tree%20Build.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Minimum Binary Tree, Stack]
+      
 给一串字符, 表示的是 公式 expression. 把公式变成expression tree
 
 #### Monotonous Stack
@@ -26,30 +45,8 @@
 
 ---
 
-**1. [Expression Evaluation.java](https://github.com/awangdev/LintCode/blob/master/Java/Expression%20Evaluation.java)**      Level: Hard      Tags: [Binary Tree, DFS, Expression Tree, Minimum Binary Tree, Stack]
-      
-
-给一个公式 expression, array of strings, 然后evaluate expression 结果.
-
-#### DFS on Expression Tree
-- 计算 expression 的值: 1. 建造 expression tree. 2. DFS计算结果
-- Expression Tree: Minimum Binary Tree (https://lintcode.com/en/problem/expression-tree-build/)
-- build好Min Tree以后，做PostTraversal. 
-- Divde and Conquer: 先recursively找到 left和right的大小， 然后evaluate中间的符号
-- Time, Space O(n), n = # expression nodes
-
-#### Note
-- 1. Handle数字时，若left&&right Child全Null,那必定是我们weight最大的数字node了。   
-- 2. 若有个child是null,那就return另外一个node。    
-- 3. prevent Integer overflow　during operation:过程中用个Long，最后结局在cast back to int.
-
-
-
----
-
 **2. [Basic Calculator.java](https://github.com/awangdev/LintCode/blob/master/Java/Basic%20Calculator.java)**      Level: Hard      Tags: [Binary Tree, Expression Tree, Math, Minimum Binary Tree, Stack]
       
-
 给一个expression String, 要evaluate这个expression的值.
 
 Expression string 里面包括 +, -, 整数, 开合括号, 还有space.

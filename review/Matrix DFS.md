@@ -2,31 +2,8 @@
  
  
 ## Matrix DFS (2)
-**0. [Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
+**0. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
       
-
-给一个2Dmatrix, 里面是1和0, 找#of island.
-
-#### DFS
-- More or less like a graph problem: visit all nodes connected with the starting node.
-- top level 有一个 double for loop, 查看每一个点.
-- 每当遇到1, count+1, 然后DFS helper function 把每个跟这个当下island 相关的都Mark成 '0'
-- 这样确保每个visited 过得island都被清扫干净
-- O(mn) time, visit all nodes
-
-#### Union Find
-- 可以用union-find， 就像Number of island II 一样.
-- 只不过这个不Return list, 而只是# of islands
-- Union Find is independent from the problem: it models the union status of integers.
-- 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单.
-
-
-
----
-
-**1. [Surrounded Regions.java](https://github.com/awangdev/LintCode/blob/master/Java/Surrounded%20Regions.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
-      
-
 给一个2D board, 里面是 'X' 和 'O'. 把所有被X包围的area都涂成'X'. 
 
 从四个边的edge出发, 像感染僵尸病毒一样扩散, 把靠边的node全部mark, 然后将还是'O'的改成X, 最后回复marks -> 'O'
@@ -52,6 +29,37 @@
 
 ### BFS
 - TODO
+
+
+
+---
+
+**1. [200. Number of Islands.java](https://github.com/awangdev/LintCode/blob/master/Java/200.%20Number%20of%20Islands.java)**      Level: Medium      Tags: [BFS, DFS, Matrix DFS, Union Find]
+      
+
+给一个2Dmatrix, 里面是1和0, 找#of island.
+
+#### Method1, DFS
+- visit all nodes connected with the starting node
+    - double for loop, test all starting nodes
+    - val == 1: 1) count++; 2)DFS from this (i,j);
+    - Mark visited (x,y) = '0'
+- time: O(n), visit all nodes
+- space: O(n), stack
+
+#### Method2, Union Find
+- 可以用union-find， 就像Number of island II 一样.
+    - 只不过这个不Return list, 而只是# of islands
+    - Union Find is independent from the problem: it models the union status of integers.
+    - Return the total # of unions (which is # of islands)
+- in reality: it is a bit slow.
+- time: visit all nodes just once, O(n). Union Find will visit all nodes once and union them
+- space: O(n), union find takes O(n) space
+- 记住UnionFind的模板和几个变化(Connecting Graph I, II, III), 最后归总的代码写起来就比较简单. 
+
+#### Method3: BFS
+- use queue to hold 1 island, keep adding 4-direction islands; mark visited with '0' 
+- check entire board for any remaining one.
 
 
 

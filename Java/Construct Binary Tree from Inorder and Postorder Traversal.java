@@ -1,5 +1,4 @@
 M
-1528731390
 tags: Array, Tree, DFS, Divide and Conquer
 
 #### DFS, Divide and Conquer
@@ -64,7 +63,7 @@ Trick part:
  
 public class Solution {
 
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
+    public TreeNode constructFromPrePost(int[] inorder, int[] postorder) {
         if (inorder.length != postorder.length) {
             return null;
         }

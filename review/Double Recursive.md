@@ -4,7 +4,6 @@
 ## Double Recursive (2)
 **0. [Binary Tree Longest Consecutive Sequence II.java](https://github.com/awangdev/LintCode/blob/master/Java/Binary%20Tree%20Longest%20Consecutive%20Sequence%20II.java)**      Level: Medium      Tags: [DFS, Divide and Conquer, Double Recursive, Tree]
       
-
 找到binary tree 里的最长 consecutive sequence. Sequence可以递增递减, Sequence顺序可以回溯parent.
 
 #### DFS, Divide and Conquer
@@ -40,7 +39,6 @@
 
 **1. [Path Sum III.java](https://github.com/awangdev/LintCode/blob/master/Java/Path%20Sum%20III.java)**      Level: Easy      Tags: [DFS, Double Recursive, Tree]
       
-
 count所有存在的 path sum == target sum. 可以从任意点开始. 但是只能parent -> child .
 
 #### DFS

@@ -4,7 +4,6 @@
 ## Geometry (2)
 **0. [Perfect Rectangle.java](https://github.com/awangdev/LintCode/blob/master/Java/Perfect%20Rectangle.java)**      Level: Hard      Tags: [Design, Geometry, Hash Table]
       
-
 看的list of coordinates 是否能组成perfect rectangle, 并且不允许overlap area.
 
 #### 画图发现特点
@@ -17,7 +16,7 @@
 
 ---
 
-**1. [Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
+**1. [149. Max Points on a Line.java](https://github.com/awangdev/LintCode/blob/master/Java/149.%20Max%20Points%20on%20a%20Line.java)**      Level: Hard      Tags: [Array, Geometry, Hash Table, Math]
       
 
 给list of (x,y) coordinates. Determine  # of points on the same line

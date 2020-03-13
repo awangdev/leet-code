@@ -1,6 +1,7 @@
 M
-1524553446
 tags: Stack
+time: O(n)
+space: O(n)
 
 给一个 RPN string list, 根据这个list, 计算结果.
 
@@ -20,10 +21,7 @@ Valid operators are +, -, *, /. Each operand may be an integer or another expres
 Note:
 
 Division between two integers should truncate toward zero.
-The given RPN expression is always valid. 
-That means the expression would always evaluate to a result 
-and there won't be any divide by zero operation.
-
+The given RPN expression is always valid. That means the expression would always evaluate to a result and there won't be any divide by zero operation.
 Example 1:
 
 Input: ["2", "1", "+", "3", "*"]
@@ -48,50 +46,43 @@ Explanation:
 = 22
  */
 
-
- class Solution {
+/*
+- Each operator needs 2 nums to calc a result: 
+    - put tokens (only number) into stack, such that the stack top is closer to the next potential operator
+    - when facign an operator, pick top 2 items from the Stack<Long/Int> to use
+    - put calculate val back to stak
+*/
+class Solution {
     public int evalRPN(String[] tokens) {
-        if (tokens == null || tokens.length == 0) {
-            return 0;
-        }
+        if (tokens == null || tokens.length == 0) return 0;
+
         Stack<Long> stack = new Stack<>();
         for (String s : tokens) {
-            if (isOperator(s)) {
-                long numB = stack.pop();
-                long numA = stack.pop();
-                stack.push(eval(numA, numB, s));
-            } else {
-                stack.push(Long.parseLong(s));
+            if (!isOperator(s)) stack.push(Long.parseLong(s));
+            else {
+                long numB = stack.pop(), numA = stack.pop();
+                stack.push(eval(numA, numB, s));                
             }
         }
         return stack.pop().intValue();
     }
     
-    public boolean isOperator(String s) {
-        if (s.length() != 1) {
-            return false;
-        }
+    private boolean isOperator(String s) {
+        if (s.length() != 1) return false;
         char c = s.charAt(0);
         return c == '+' || c == '-' || c == '/' || c == '*';
     }
     
-    public long eval(long a, long b, String s) {
+    private long eval(long a, long b, String s) {
         long rst = 0;
-    	switch (s) {
-    		case "*":
-    			rst = a * b;
-    			break;
-    		case "/":
-    			rst = a / b;
-    			break;
-    		case "+":
-    			rst = a + b;
-    			break;
-    		case "-":
-    			rst = a - b;
-    			break;
-    	}
+        char operator = s.charAt(0);
+        if (operator == '+') rst = a + b;
+        if (operator == '-') rst = a - b;
+        if (operator == '*') rst = a * b;
+        if (operator == '/') rst = a / b;
     	return rst;
     }
 }
+
+
 ```

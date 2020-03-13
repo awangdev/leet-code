@@ -1,33 +1,27 @@
 H
-1530083174
 tags: Array, Greedy, DP, Coordinate DP
+time: O(n)
+space: O(1)
 
 给一串数字 是可以跳的距离. goal: 跳到最后的index 所可能用的最少次数.
 
-#### Greedy
-- always aiming for the `farest can go`
-- if the `farest can go` breaches the end, return steps
-- otherwise, send `start=end+1`, `end=farest` and keep stepping from here
-- though trying with 2 loops, worst case [1,1,1,...1,1] could have O(n^2)
-- But on average should be jumpping through the array without looking back
+#### Method1: Greedy
+- maintain the `farest can go`, and use it the target for i increse towards. Why?
+    - 1) when I know the `farest can go`, in fact it is just currently 1 step away.
+    - 2) why to iterate from curr `i to farset`? In range [i, farest], we will calc the new `maxRange`
+    - 3) once `i` reaches `farset`, update `farest = maxRange`
+- greedy concept: once we know the farest we can reach at the moment, it is just 1 step away :)
+- On average should be jumpping through the array without looking back
 - time: average O(n)
-
-#### Previous Notes, Greedy
-- 维护一个range, 是最远我们能走的. 
-- index/i 是一步一步往前, 每次当 i <= range, 做一个while loop， 在其中找最远能到的地方 maxRange
-- 然后更新 range = maxRange
-- 其中step也是跟index是一样, 一步一步走.
-- 最后check的condition是，我们最远你能走的range >= nums.length - 1, 说明以最少的Step就到达了重点。Good.
-
-#### Even simpler Greedy
-- 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
-- track the farest point
-- whenver curr index reachest the farest point, that means we are making a nother move, so count++
-- there seems to have one assumption: must have a solution. Otherwise, count will be wrong number. 
-- 其实跟第一个greedy的思维模式是一模一样的.
+- Impl:
+    - 图解 http://www.cnblogs.com/lichen782/p/leetcode_Jump_Game_II.html
+    - track the farest point
+    - whenver curr index reachest the farest point, that means we are making a nother move, so count++
+    - there seems to have one assumption: must have a solution. Otherwise, count will be wrong number. 
+    - 其实跟第一个greedy的思维模式是一模一样的.
 
 
-#### DP 
+#### Method2: DP
 - DP[i]: 在i点记录，走到i点上的最少jump次数
 - dp[i] = Math.min(dp[i], dp[j] + 1);
 - condition (j + nums[j] >= i)
@@ -54,8 +48,43 @@ Greedy Array
 
 */
 
+// Method1: Greedy: tracking farest we can go . O(n)
+public class Solution {
+    public int jump(int[] nums) {
+        if (nums == null || nums.length <= 1) return 0;
+        int count = 0, farest = 0, maxRange = 0, n = nums.length;
+        for (int i = 0; i < n - 1; i++) {
+            maxRange = Math.max(maxRange, i + nums[i]);
+            if (i == farest) {
+                count++;
+                farest = maxRange;
+            }
+        }
+        return count;
+    }
+}
+
+// Method2: DP, timeout, O(n^2)
+class Solution {
+    public int jump(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[0] = 0;
+        for (int i = 1; i < n; i++) {
+            dp[i] = Integer.MAX_VALUE;
+            for (int j = 0; j < i; j++) {
+                if (j + nums[j] >= i) dp[i] = Math.min(dp[i], dp[j] + 1);
+            }
+        }
+        return dp[n - 1];
+    }
+}
 
 
+
+
+//// Other Greedy impls, similar concepts
 /*
 
 Thanks to Yu’s Garden blog
@@ -124,46 +153,4 @@ public class Solution {
         return step;
     }
 }
-
-// even simpler, 95%, O(n)
-public class Solution {
-    public int jump(int[] nums) {
-        if (nums == null || nums.length <= 1) {
-            return 0;
-        }
-        int count = 0, farest = 0, maxRange = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            max = Math.max(max, i + nums[i]);
-            if (i == farest) {
-                count++;
-                farest = max;
-            }
-        }
-        return count;
-    }
-}
-
-
-// DP, coordinate DP, timeout, O(n^2)
-class Solution {
-    public int jump(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
-        int n = nums.length;
-        int[] dp = new int[n];
-        for (int i = 1; i < n; i++) {
-            dp[i] = Integer.MAX_VALUE;
-        }
-        for (int i = 1; i < n; i++) {
-            for (int j = 0; j < i; j++) {
-                if (dp[j] != Integer.MAX_VALUE && j + nums[j] >= i) {
-                    dp[i] = Math.min(dp[i], dp[j] + 1);
-                }
-            }
-        }
-        return dp[n - 1];
-    }
-}
-
 ```

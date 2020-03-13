@@ -1,6 +1,6 @@
 M
-1520573473
 tags: Array, Backtracking, DFS
+
 
 #### DFS, Backtracking:
 - 找到开头的字母, 然后recursively DFS 去把word串到底:
@@ -16,25 +16,20 @@ tags: Array, Backtracking, DFS
 /*
 Given a 2D board and a word, find if the word exists in the grid.
 
-The word can be constructed from letters of sequentially adjacent cell, 
-where "adjacent" cells are those horizontally or vertically neighboring. 
-The same letter cell may not be used more than once.
+The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
 
+Example:
 
-Example
-Given board =
-
+board =
 [
-  "ABCE",
-  "SFCS",
-  "ADEE"
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
 ]
-word = "ABCCED", -> returns true,
-word = "SEE", -> returns true,
-word = "ABCB", -> returns false.
 
-Tags Expand 
-Backtracking
+Given word = "ABCCED", return true.
+Given word = "SEE", return true.
+Given word = "ABCB", return false.
 
 */
 
@@ -49,36 +44,31 @@ class Solution {
     int[] dx = {0, 0, 1, -1};
     int[] dy = {1, -1, 0, 0};
     public boolean exist(char[][] board, String word) {
-        if (board == null || board.length == 0 || board[0] == null || board[0].length == 0
-            || word == null || word.length() == 0) {
-            return false;
-        }
+        if (board == null || word == null || word.length() == 0) return false;
+
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (word.charAt(0) == board[i][j] && dfs(board, word, i, j, 0)) {
-                    return true;
-                }
+                if (dfs(board, word, i, j, 0)) return true;
             }
         }
         return false;
     }
     
-    private boolean dfs(char[][] board, String word, int x, int y, int index) {
-        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length
-            || board[x][y] != word.charAt(index) || board[x][y] == '#') {
-            return false;
-        }
-        if (index == word.length() - 1) {
-            return true;
-        }
+    private boolean dfs(char[][] board, String s, int x, int y, int index) {
+        if (validate(board, x, y, s.charAt(index))) return false;
+        if (index == s.length() - 1) return true;
+
         board[x][y] = '#';
         for (int i = 0; i < dx.length; i++) {
-            if (dfs(board, word, x + dx[i], y + dy[i], index + 1)) {
-                return true;
-            }
+            if (dfs(board, s, x + dx[i], y + dy[i], index + 1)) return true;
         }
-        board[x][y] = word.charAt(index);
+        board[x][y] = s.charAt(index);
         return false;
+    }
+    
+    private boolean validate(char[][] board, int x, int y, char c) {
+        return x < 0 || x >= board.length || y < 0 || y >= board[0].length
+            || board[x][y] != c || board[x][y] == '#';
     }
     
 }
@@ -133,61 +123,6 @@ public class Solution {
         return rst;
     }
 }
-
-
-
-//dfs: search through the board, going to different directions, while also increasing index. when index == word.length, that's end.
-//use visited[][] to mark visited places.
-
-public class Solution {
-    public boolean exist(char[][] board, String word) {
-        if (board == null || board.length == 0 || board[0] == null 
-            || board[0].length == 0 || word == null || word.length() == 0) {
-            return false;        
-        }
-        int height = board.length;
-        int width = board[0].length;
-        boolean[][] visited = new boolean[height][width];
-        
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (word.charAt(0) != board[i][j]) {
-                    continue;
-                }
-                if (dfs(0, i, j, visited, board, word)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
-    public boolean dfs (int index, int x, int y, boolean[][] visited, char[][] board, String word) {
-        if (index == word.length()) {
-            return true;
-        }
-        
-        int height = board.length;
-        int width = board[0].length;
-        if (x < 0 || x >= height || y < 0 || y >= width || board[x][y] != word.charAt(index) || visited[x][y]) {
-            return false;
-        }
-        
-        int[] dx = {1, -1, 0, 0};
-        int[] dy = {0,  0, 1, -1};
-        visited[x][y] = true;
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            if (dfs(index + 1, nx, ny, visited, board, word)) {
-                return true;
-            }
-        }
-        visited[x][y] = false;
-        return false;
-    }
-}
-
 
 
 

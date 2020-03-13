@@ -1,5 +1,4 @@
 M
-1526358989
 tags: Sort, Quick Sort
 
 implement quick sort.

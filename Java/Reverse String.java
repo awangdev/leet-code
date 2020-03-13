@@ -1,14 +1,16 @@
 E
+tags: Two Pointers, String
 
 Similar to Reverse Integer.
 可以用StringBuffer, 也可以two pointer reverse head/tail
 
 ```
 /*
-Write a function that takes a string as input and returns the string reversed.
+Write a function that reverses a string. The input string is given as an array of characters char[].
 
-Example:
-Given s = "hello", return "olleh".
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+You may assume all the characters consist of printable ascii characters.
 */
 
 /*
@@ -17,20 +19,17 @@ Obvious: new StringBuilder().reverse().
 Or, turn into charArray and reverse
 */
 class Solution {
-    public String reverseString(String s) {
-        if (s == null || s.length() <= 1) {
-            return s;
+    public void reverseString(char[] s) {
+        if (s == null || s.length <= 1) {
+            return;
         }
-        char[] arr = s.toCharArray();
-        int length = arr.length;
-        for (int i = 0; i < length / 2; i++) {
-            char temp = arr[i];
-            arr[i] = arr[length - i - 1];
-            arr[length - i - 1] = temp;
-        }
-        return String.valueOf(arr);
         
-        //return new StringBuilder(s).reverse().toString();
+        int n = s.length;
+        for (int i = 0; i < n / 2; i++) {
+            char temp = s[i];
+            s[i] = s[n - i - 1];
+            s[n - i - 1] = temp;
+        }
     }
 }
 ```

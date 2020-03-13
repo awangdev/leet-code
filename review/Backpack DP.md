@@ -2,38 +2,8 @@
  
  
 ## Backpack DP (8)
-**0. [Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change.java)**      Level: Medium      Tags: [Backpack DP, DP, Memoization]
+**0. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
-
-给一串不同数额的coins, 和total amount to spent. 求 最少 用多少个coin可以组合到这个amount. 每种coins个数不限量.
-
-#### DP
-- 找对方程dp[x], 积累到amount x最少用多少个coin: #coin是value, index是 [0~x].
-- 子问题的关系是: 如果用了一个coin, 那么就应该是f[x - coinValue]那个位置的#coins + 1
-
-##### initialization
-- 处理边界, 一开始0index的时候, 用value0. 
-- 中间利用Integer.MAX_VALUE来作比较, initialize dp[x]
-- 注意, 一旦 Integer.MAX_VALUE + 1 就会变成负数. 这种情况会在coin=0的时候发生.
-
-##### Optimization
-- 方法1: 直接用Integer.MAX_VALUE
-- 方法2: 用-1, 稍微简洁一点, 每次比较dp[i]和 dp[i - coin] + 1, 然后save. 不必要做多次min比较.
-
-#### Memoization
-- dp[i] 依然表示: min # of coints to make amount i
-- initialize dp[i] = Integer.MAX_VALUE
-- 先选最后一步(遍历coins),  然后dfs做同样的操作
-- 记录dp[amount] 如果已经给过value, 不要重复计算, 直接return.
-- 但是这道题没必要强行做memoization, 普通DP的状态和方程相对来说很好找到
-
-
-
----
-
-**1. [Backpack VI.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20VI.java)**      Level: Medium      Tags: [Backpack DP, DP]
-      
-
 给一个数组nums, 全正数, 无重复数字; 找: # of 拼出m的方法.
 
 nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法.
@@ -55,21 +25,47 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**2. [Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**1. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
+#### Backpack DP
+- 与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
+- dp[i][w]: 用前i本书, 正好fill到 w weight的可能性.
+- 对于末尾, 还是两种情况:
+- 1. i-1位置没有加bag
+- 2. i-1位置加了bag
+- 两种情况可以fill满w的情况加起来, 就是我们要的结果.
+- 如常: dp[n + 1][w + 1]
+- 重点: dp[0][0] 表示0本书装满weight=0的包, 这里我们必须 dp[0][0] = 1, 给后面的 dp function 做base
+- Space, time: O(MN)
+- Rolling array, 空间优化, 滚动数组. Space: O(M)
 
-给串数字, target amount, 求总共多少种方式可以reach the amount.
+#### 降维打击, 终极优化
+- 分析row(i-1)的规律, 发现所有row(i)的值, 都跟row(i-1)的左边element相关, 而右边element是没用的.
+- 所以可以被override.
+- Space: O(M), 真*一维啊!
+- Time: O(MN)
 
-#### DP
-- O(MN): M, total target amount; N: size of coins
-- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
-- 状态: dp[i]: sum of ways that coins can add up to i.
-- Function: dp[j] += dp[j - coins[i]];
-- Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
-- note: 避免重复count, 所以 j = coins[i] as start
-- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
 
-#### knapsack problem: backpack problem
+
+---
+
+**2. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
+      
+给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
+
+背包有自己的大小M, 看最多能放多少value的书?
+
+#### Backpack DP
+- 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是max weight, 而是 value的最大值.
+- 想法还是，选了A[i - 1] 或者没选A[i - 1]时候不同的value值.
+- 时间空间O(mn)
+- Rolling Array, 空间O(m)
+
+#### Previous DP Solution
+- 如果无法达到的w, 应该mark as impossible. 一种简单做法是mark as -1 in dp. 
+- 如果有负数value, 就不能这样, 而是要开一个can[i][w]数组, 也就是backpack I 的原型.
+- 这样做似乎要多一些代码, 好像并不是非常需要
+
 
 
 
@@ -77,7 +73,6 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 **3. [Backpack.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack.java)**      Level: Medium      Tags: [Backpack DP, DP]
       
-
 给i本书, 每本书有自己的重量 int[] A, 背包有自己的大小M, 看最多能放多少重量的书?
 
 #### Backpack DP 1
@@ -116,57 +111,8 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**4. [Backpack II.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20II.java)**      Level: Medium      Tags: [Backpack DP, DP]
+**4. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
       
-
-给i本书, 每本书有自己的重量 int[] A, 每本书有value int[] V
-
-背包有自己的大小M, 看最多能放多少value的书?
-
-#### Backpack DP
-- 做了Backpack I, 这个就如出一辙, 只不过: dp存的不是max weight, 而是 value的最大值.
-- 想法还是，选了A[i - 1] 或者没选A[i - 1]时候不同的value值.
-- 时间空间O(mn)
-- Rolling Array, 空间O(m)
-
-#### Previous DP Solution
-- 如果无法达到的w, 应该mark as impossible. 一种简单做法是mark as -1 in dp. 
-- 如果有负数value, 就不能这样, 而是要开一个can[i][w]数组, 也就是backpack I 的原型.
-- 这样做似乎要多一些代码, 好像并不是非常需要
-
-
-
-
----
-
-**5. [Backpack V.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20V.java)**      Level: Medium      Tags: [Backpack DP, DP]
-      
-
-#### Backpack DP
-- 与背包1不同: 这里不是check可能性(OR)或者最多能装的size是多少; 而是计算有多少种正好fill的可能性.
-- dp[i][w]: 用前i本书, 正好fill到 w weight的可能性.
-- 对于末尾, 还是两种情况:
-- 1. i-1位置没有加bag
-- 2. i-1位置加了bag
-- 两种情况可以fill满w的情况加起来, 就是我们要的结果.
-- 如常: dp[n + 1][w + 1]
-- 重点: dp[0][0] 表示0本书装满weight=0的包, 这里我们必须 dp[0][0] = 1, 给后面的 dp function 做base
-- Space, time: O(MN)
-- Rolling array, 空间优化, 滚动数组. Space: O(M)
-
-#### 降维打击, 终极优化
-- 分析row(i-1)的规律, 发现所有row(i)的值, 都跟row(i-1)的左边element相关, 而右边element是没用的.
-- 所以可以被override.
-- Space: O(M), 真*一维啊!
-- Time: O(MN)
-
-
-
----
-
-**6. [Backpack III.java](https://github.com/awangdev/LintCode/blob/master/Java/Backpack%20III.java)**      Level: Hard      Tags: [Backpack DP, DP]
-      
-
 给n种不同的物品, int[] A weight, int[] V value, 每种物品可以用无限次
 
 问最大多少value可以装进size是 m 的包?
@@ -204,9 +150,8 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 
 ---
 
-**7. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
+**5. [Combination Sum IV.java](https://github.com/awangdev/LintCode/blob/master/Java/Combination%20Sum%20IV.java)**      Level: Medium      Tags: [Array, Backpack DP, DP]
       
-
 给一串数字candidates (no duplicates), 和一个target. 
 
 找到所有unique的 组合(combination) int[], 要求每个combination的和 = target.
@@ -227,6 +172,52 @@ nums 里的数字, 可以重复使用. 不同的order可以算作不同的拼法
 #### DFS, backtracking
 - 尽管思考方式是对的, 但是 times out
 - 可以重复使用数字的时候, 比如用1 来拼出 999, 这里用1就可以走999 dfs level, 不efficient
+
+
+
+---
+
+**6. [518. Coin Change 2.java](https://github.com/awangdev/LintCode/blob/master/Java/518.%20Coin%20Change%202.java)**      Level: Medium      Tags: [Backpack DP, DP]
+      
+
+给串数字, target amount, 求总共多少种方式可以reach the amount.
+
+#### DP
+- O(MN): M, total target amount; N: size of coins
+- 类似于: 网格dp, unique path 里面的2种走法: 从上到下, 从左到右
+- 状态: dp[i]: sum of ways that coins can add up to i.
+- Function: dp[j] += dp[j - coins[i]];
+- Init: dp[0] = 1 for ease of calculation; other dp[i] = 0 by default
+- note: 避免重复count, 所以 j = coins[i] as start
+- 注意 coins 需要放在for loop 外面, 主导换coin的流程, 每个coin可以用无数次, 所以在每一个sum value上都尝试用一次每个coin
+
+#### knapsack problem: backpack problem
+
+
+
+---
+
+**7. [322. Coin Change.java](https://github.com/awangdev/LintCode/blob/master/Java/322.%20Coin%20Change.java)**      Level: Medium      Tags: [Backpack DP, DFS, DP, Memoization]
+      
+
+给一串不同数额的coins, 和total amount to spent. 求 最少 用多少个coin可以组合到这个amount. 每种coins个数不限量.
+
+
+#### DP, Bottom -> UP 从小到大的顺序!
+- define dp[x], 积累到amount x, 最少用多少个coin
+- function: `dp[x] = Math.min(dp[x], dp[x - coinValue] + 1)`. two branches based on choosing coinValue or not
+- initialization
+    - dp[0], zero amount uses 0 coin. so dp[0] = 0
+    - Utilize `Integer.MAX_VALUE` as default val for initialize dp[x]: 1) alert error stage; 2) easy comparison
+
+#### Method2: Memoization, DFS, Top->Down
+- create subproblem: (coins, amount - pickedCoin)
+- memo[i] 依然表示: min # of coints to make amount i
+- initialize memo[i] = Integer.MAX_VALUE
+- 先选最后一步(遍历coins),  然后dfs做同样的操作
+- 记录memo[amount] 如果已经给过value, 不要重复计算, 直接return.
+- time: O(n * S), worst case it runs n coins for S(amount) iterations
+- space: O(S)
 
 
 

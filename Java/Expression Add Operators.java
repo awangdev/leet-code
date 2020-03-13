@@ -1,6 +1,7 @@
 H
-1528348171
 tags: String, Divide and Conquer, DFS, Backtracking
+time: O(4^n)
+space: O(4^n)
 
 给一个数字String, 数字来自`0-9`, 给3个操作符 `+`,`-`,`*`, 看如何拼凑, 可以做出结果target.
 
@@ -8,8 +9,8 @@ output 所有 expression
 
 #### string dfs, use list to track steps (backtracking)
 - 跟string相关, 写起来可能稍微繁琐一点
-- 数字有 dfs([1,2,3...]) 组合方法
-- operator有[`+`,`-`,`*`] 3种组合方法
+    - 数字有 dfs([1,2,3...]) 组合方法
+    - operator有[`+`,`-`,`*`] 3种组合方法
 - 注意1: 乘号要特殊处理, pass along 连乘的数字, 计算下一步乘积的时候, 要 sum - preProduct + product
 - 注意2: '01' 这种数字要skip
 - 注意3: 第一个选中数字不需要加操作符, 直接加进去
@@ -60,6 +61,53 @@ Thoughts::
 - handle * : dfs must pass in currNum and nextNumber for * to work.
 - edge case: '0 + 00'
 */
+
+
+// Append string
+class Solution {
+    String s;
+    int target;
+    public List<String> addOperators(String num, int target) {
+        List<String> rst = new ArrayList<>();
+        if (num == null || num.length() == 0) return rst;
+        this.s = num;
+        this.target = target;
+        // dfs from index = 0, sum = 0, productFactor = 0,
+        dfs(rst, "", 0, 0, 0);
+        return rst;
+    }
+
+    private void dfs(List<String> rst,
+                     String buffer,
+                     int index,
+                     long sum,
+                     long productFactor) {
+        if (index >= s.length() && sum == target) {
+            rst.add(buffer);
+            return;
+        }
+
+        // for loop from index -> end
+        for (int i = index; i < s.length(); i++) {
+            String curr = s.substring(index, i + 1);
+            long currValue = Long.parseLong(curr);
+            if (s.charAt(index) == '0' && i > index) { // filter case: '01'
+                continue;
+            }
+
+            if (index == 0) {
+                dfs(rst, curr, i + 1, currValue, currValue);
+                continue;
+            }
+
+            dfs(rst, buffer + "+" + curr, i + 1, sum + currValue, currValue);
+            dfs(rst, buffer + "-" + curr, i + 1, sum - currValue, - currValue);
+            long product = productFactor * currValue;
+            dfs(rst, buffer + "*" + curr, i + 1, sum - productFactor + product, product);
+        }
+    }
+}
+
 /*
 Thoughts::
 - parse string, dfs on string index
@@ -134,48 +182,5 @@ class Solution {
 }
 
 
-// Append string
-class Solution {
-    public List<String> addOperators(String num, int target) {
-        List<String> rst = new ArrayList<>();
-        // edge case
-        if (num == null || num.length() == 0) {
-            return rst;
-        }
-
-        // dfs from index = 0, sum = 0, productFactor = 0,
-        dfs(rst, num, "", 0, 0, 0, target);
-        return rst;
-    }
-
-    private void dfs(List<String> rst, String s, String buffer,
-                     int index, long sum, long productFactor, int target) {
-        if (index >= s.length()) {
-            if (sum == target) {
-                rst.add(buffer);
-            }
-            return;
-        }
-
-        // for loop from index -> end
-        for (int i = index; i < s.length(); i++) {
-            String curr = s.substring(index, i + 1);
-            long currValue = Long.parseLong(curr);
-            if (s.charAt(index) == '0' && i > index) { // filter case: '01'
-                continue;
-            }
-
-            if (index == 0) {
-                dfs(rst, s, curr, i + 1, currValue, currValue, target);
-                continue;
-            }
-
-            dfs(rst, s, buffer + "+" + curr, i + 1, sum + currValue, currValue, target);
-            dfs(rst, s, buffer + "-" + curr, i + 1, sum - currValue, - currValue, target);
-            long product = productFactor * currValue;
-            dfs(rst, s, buffer + "*" + curr, i + 1, sum - productFactor + product, product, target);
-        }
-    }
-}
 
 ```

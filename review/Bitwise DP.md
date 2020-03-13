@@ -4,7 +4,6 @@
 ## Bitwise DP (1)
 **0. [Counting Bits.java](https://github.com/awangdev/LintCode/blob/master/Java/Counting%20Bits.java)**      Level: Medium      Tags: [Bit Manipulation, Bitwise DP, DP]
       
-
 给一个数组, 算里面有多少bit 1. 
 
 #### Bitwise DP

@@ -1,10 +1,9 @@
  
  
  
-## MiniMax (2)
+## MiniMax (3)
 **0. [Coins in a Line II.java](https://github.com/awangdev/LintCode/blob/master/Java/Coins%20in%20a%20Line%20II.java)**      Level: Medium      Tags: [Array, DP, Game Theory, Memoization, MiniMax]
       
-
 给一串coins, 用values[]表示; 每个coin有自己的value. 先手/后手博弈,
 每次只能 按照从左到右的顺序, 拿1个或者2个棋子, 最后看谁拿的总值最大.
 
@@ -49,8 +48,26 @@ Space O(n): dp[], sum[]
 
 **1. [Predict the Winner.java](https://github.com/awangdev/LintCode/blob/master/Java/Predict%20the%20Winner.java)**      Level: Medium      Tags: [DP, MiniMax]
       
-
 Detailed in `Coins in a Line III`
+
+
+
+---
+
+**2. [843. Guess the Word.java](https://github.com/awangdev/LintCode/blob/master/Java/843.%20Guess%20the%20Word.java)**      Level: Hard      Tags: [MiniMax]
+      
+
+TODO: revist time/space complexity
+
+#### Minimax, find target, and use it to eliminate
+- `擒贼先擒王`: find the candidate that has largest set of correlations with the rest candidates, and eliminate based on this candidate.
+    - `approach A`: count the candidate that has 0 overlaps, find min of this poll
+    - `approach B`: count the candidate that has largest # of connections
+- cross-compare, count `match==0` <word, count>: find candidates that has 0 overlap with others
+    - pick `min-count candidate A`: it is a candidate that has overlaps with most strings (since 0-match-count is lowest)
+    - the above candidate will help to **eliminate** a largerset of overlapped candidates
+    - guess A, return matchCount.
+- filter set with matchCount: eliminateCandidate
 
 
 
