@@ -1,3 +1,44 @@
+
+# 程序员的一天
+从开始这个Github已经有将近五年时间, 很高兴这个repo可以帮到有需要的人. 知识是无价的, 因此每逢闲暇, 我就会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 下面来简单介绍一下这个repo:
+
+**README.md**: 所有所做过的题目
+
+**ReviewPage.md**: 所有题目的总结和归纳（不断完善中）
+
+**KnowledgeHash2.md**: 对所做过的知识点的一些笔记
+
+**SystemDesign.md**: 对系统设计的一些笔记
+
+**Future Milestone**: 我准备将一些有意思的题目，做成视频的形式给大家参考
+
+## 在这里! 安利一下副业
+
+介绍一下自己! 
+
+* [为什么我选择放弃亚马逊的工作 | Why I left Amazon as a Software Engineer (2021)](https://youtu.be/BBpivK4I_8U)
+* [看了这些, 还想去美国留学吗? 我的留学经历 (2020)](https://youtu.be/XqOA5q5Rtpw)
+* [如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
+* [十分钟学会Python? (2019)](https://youtu.be/DRQYOdO9BAU)
+* [刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
+
+
+最近在做自己的[Youtube Channel](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw), 有一些简单的方向: 
+* 工作经验的分享/目前学习经历: 当然会跟Software Engineer比较相关
+* 在美国的生活/学生时代的经历/vlog
+* 个人的兴趣爱好: 唱歌!!!
+
+希望在这里参考刷题经验时, 可以去关注我的Channel! 有任何对在美国工作的疑问, 疑惑, 都可以给我留言/私信/邮件.
+
+大家在YouTube或者B站都可以搜到我: "土汪/TuwangZ"
+
+* [Youtube: 土汪](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw)
+* [Bilibili: 土汪](https://space.bilibili.com/249496206)
+
+希望大家学习顺利, 对未来充满希望!
+有问题可以给我留言(wechat: TuWangZ, Instagram: TuWang.Z)
+
+
 # Java Algorithm Problems
 
 | Leetcode# | Problem     | Level  | Tags | Time | Space | Language | Sequence |
