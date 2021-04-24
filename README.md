@@ -1,4 +1,4 @@
-
+![home](https://user-images.githubusercontent.com/10102793/115952522-45a10a00-a49b-11eb-825e-08f913d9bbbf.png)
 # 程序员的一天
 从开始这个Github已经有将近五年时间, 很高兴这个repo可以帮到有需要的人. 知识是无价的, 因此每逢闲暇, 我就会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 下面来简单介绍一下这个repo:
 
@@ -12,9 +12,7 @@
 
 **Future Milestone**: 我准备将一些有意思的题目，做成视频的形式给大家参考
 
-## 在这里! 安利一下副业
-
-介绍一下自己! 
+## 介绍一下自己(的副业)
 
 * [为什么我选择放弃亚马逊的工作 | Why I left Amazon as a Software Engineer (2021)](https://youtu.be/BBpivK4I_8U)
 * [看了这些, 还想去美国留学吗? 我的留学经历 (2020)](https://youtu.be/XqOA5q5Rtpw)
