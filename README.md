@@ -15,6 +15,7 @@
 ## 介绍一下自己(的副业)
 
 * [为什么我选择放弃亚马逊的工作 | Why I left Amazon as a Software Engineer (2021)](https://youtu.be/BBpivK4I_8U)
+* [曾经的留级生, 今天一线大厂软件工程师! | The making of a software engineer(2021)](https://youtu.be/cACqlpXKRpY)
 * [看了这些, 还想去美国留学吗? 我的留学经历 (2020)](https://youtu.be/XqOA5q5Rtpw)
 * [如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
 * [十分钟学会Python? (2019)](https://youtu.be/DRQYOdO9BAU)
