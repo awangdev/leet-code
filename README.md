@@ -1,18 +1,19 @@
 ![home](https://user-images.githubusercontent.com/10102793/115952522-45a10a00-a49b-11eb-825e-08f913d9bbbf.png)
-# 程序员的一天
-从开始这个Github已经有将近五年时间, 很高兴这个repo可以帮到有需要的人. 知识是无价的, 因此每逢闲暇, 我就会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 下面来简单介绍一下这个repo:
+# 简介
+这个Github已经开启超过五年, 很高兴它可以帮到有需要的人. 信息有价, 知识无价, 每逢闲暇, 我会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 下面来简单介绍一下:
 
-**README.md**: 所有所做过的题目
+- **README.md**: 所有所做过的题目
+- **ReviewPage.md**: 所有题目的总结和归纳（不断完善中）
+- **KnowledgeHash2.md**: 对所做过的知识点的一些笔记
+- **SystemDesign.md**: 对系统设计的一些笔记
 
-**ReviewPage.md**: 所有题目的总结和归纳（不断完善中）
+## 1/ 土汪搬磚記 tuwangbrick.substack.com
+这是一份文字刊物. 那些关于工作的思考与八卦, 总要理性地与人聊一聊. 
 
-**KnowledgeHash2.md**: 对所做过的知识点的一些笔记
+[土汪搬磚記](https://tuwangbrick.substack.com/p/home) 是一个邮件形式的News Letter, 订阅它, **你将收到我造轮子时选中的零件与感想**. 未来, 我会邀请其他公司的大咖我们的News Letter, 给大家带来更多公司的资讯.
 
-**SystemDesign.md**: 对系统设计的一些笔记
 
-**Future Milestone**: 我准备将一些有意思的题目，做成视频的形式给大家参考
-
-## 介绍一下自己的副业
+## 2/ 程序員土汪 YouTube 学习工作视频
 <img src="https://i.ytimg.com/vi/nmgyT_m1j3s/maxresdefault.jpg" data-canonical-src="https://i.ytimg.com/vi/nmgyT_m1j3s/maxresdefault.jpg" width="600"/>
 
 * [薪资大公开 - 2021年, 北美软件工程师, 一年赚多少? (Google vs Amazon) | How much do I make as a Software Engineer (2021)](https://youtu.be/nmgyT_m1j3s)
@@ -24,23 +25,18 @@
 * [刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
 
 
-最近在做自己的[Youtube Channel](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw), 有一些简单的方向: 
-* 工作经验的分享/目前学习经历: 当然会跟Software Engineer比较相关
-* 在美国的生活/学生时代的经历/vlog
-* 个人的兴趣爱好: 唱歌!!!
+我的[Youtube Channel](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw)未来会更新这些方面的内容: 
+* 工作经验的分享: 当然会跟Software Engineer比较相关
+* 在美国的学生时代的经历
 
-希望在这里参考刷题经验时, 可以去关注我的Channel! 有任何对在美国工作的疑问, 疑惑, 都可以给我留言/私信/邮件.
+希望在这里参考刷题经验时, 可以去关注我的频道! 搜"土汪/TuwangZ"可以找到我. [Youtube: 土汪](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw), [Bilibili: 土汪](https://space.bilibili.com/249496206).
 
-大家在YouTube或者B站都可以搜到我: "土汪/TuwangZ"
-
-* [Youtube: 土汪](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw)
-* [Bilibili: 土汪](https://space.bilibili.com/249496206)
+有任何程序员工作的疑问, 都可以给我留言/私信/邮件. wechat: TuWangZ, Instagram: TuWang.Z
 
 希望大家学习顺利, 对未来充满希望!
-有问题可以给我留言(wechat: TuWangZ, Instagram: TuWang.Z)
 
 
-# Java Algorithm Problems
+# 3/ 目录 Java Algorithm Problems
 
 | Leetcode# | Problem     | Level  | Tags | Time | Space | Language | Sequence |
 |:---------:|:------------|:------:|:----:|-----:|------:|:--------:|---------:|
