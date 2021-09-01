@@ -14,8 +14,9 @@
 
 
 ## 2/ 程序員土汪 YouTube 学习工作视频
-<img src="https://i.ytimg.com/vi/nmgyT_m1j3s/maxresdefault.jpg" data-canonical-src="https://i.ytimg.com/vi/nmgyT_m1j3s/maxresdefault.jpg" width="600"/>
+<img src="https://i.ytimg.com/vi/RtQFzb77dGY/maxresdefault.jpg" data-canonical-src="https://i.ytimg.com/vi/RtQFzb77dGY/maxresdefault.jpg" width="600"/>
 
+* [我拒绝了Uber $200万刀的Offer | I declined the $2M offer from Uber and went to ...](https://youtu.be/RtQFzb77dGY)
 * [薪资大公开 - 2021年, 北美软件工程师, 一年赚多少? (Google vs Amazon) | How much do I make as a Software Engineer (2021)](https://youtu.be/nmgyT_m1j3s)
 * [为什么我选择放弃亚马逊的工作 | Why I left Amazon as a Software Engineer (2021)](https://youtu.be/BBpivK4I_8U)
 * [曾经的留级生, 今天一线大厂软件工程师! | The making of a software engineer(2021)](https://youtu.be/cACqlpXKRpY)
