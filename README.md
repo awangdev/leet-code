@@ -7,16 +7,10 @@
 - **KnowledgeHash2.md**: 对所做过的知识点的一些笔记
 - **SystemDesign.md**: 对系统设计的一些笔记
 
-## 1/ 土汪搬磚記 tuwangbrick.substack.com
-这是一份文字刊物. 那些关于工作的思考与八卦, 总要理性地与人聊一聊. 
 
-[土汪搬磚記](https://tuwangbrick.substack.com/p/home) 是一个邮件形式的News Letter, 订阅它, **你将收到我造轮子时选中的零件与感想**. 未来, 我会邀请其他公司的大咖我们的News Letter, 给大家带来更多公司的资讯.
+## 1/ 程序員土汪 YouTube 学习工作视频
 
-
-## 2/ 程序員土汪 YouTube 学习工作视频
-<img src="https://i.ytimg.com/vi/RtQFzb77dGY/maxresdefault.jpg" data-canonical-src="https://i.ytimg.com/vi/RtQFzb77dGY/maxresdefault.jpg" width="600"/>
-
-* [我拒绝了Uber $200万刀的Offer | I declined the $2M offer from Uber and went to ...](https://youtu.be/RtQFzb77dGY)
+* [我拒绝了Uber $200万刀/4y的Offer | I declined the $2M offer from Uber and went to ...](https://youtu.be/RtQFzb77dGY)
 * [薪资大公开 - 2021年, 北美软件工程师, 一年赚多少? (Google vs Amazon) | How much do I make as a Software Engineer (2021)](https://youtu.be/nmgyT_m1j3s)
 * [为什么我选择放弃亚马逊的工作 | Why I left Amazon as a Software Engineer (2021)](https://youtu.be/BBpivK4I_8U)
 * [曾经的留级生, 今天一线大厂软件工程师! | The making of a software engineer(2021)](https://youtu.be/cACqlpXKRpY)
@@ -37,7 +31,7 @@
 希望大家学习顺利, 对未来充满希望!
 
 
-# 3/ 目录 Java Algorithm Problems
+# 2/ 目录 Java Algorithm Problems
 
 | Leetcode# | Problem     | Level  | Tags | Time | Space | Language | Sequence |
 |:---------:|:------------|:------:|:----:|-----:|------:|:--------:|---------:|
