@@ -1,6 +1,11 @@
 ![home](https://user-images.githubusercontent.com/10102793/115952522-45a10a00-a49b-11eb-825e-08f913d9bbbf.png)
+
+> Disclaimer: 这里的题目跟具体的面试毫无关系, 也没有任何指向性; 这些题目是我当年在努力刷题的过程中积累下来的经验和总结!
+
 # 简介
-这个Github已经开启超过五年, 很高兴它可以帮到有需要的人. 信息有价, 知识无价, 每逢闲暇, 我会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 下面来简单介绍一下:
+这个Github已经开启超过五年, 很高兴它可以帮到有需要的人. 信息有价, 知识无价, 每逢闲暇, 我会来维护这个repo, 给刷题的朋友们一些我的想法和见解. 
+
+下面来简单介绍一下:
 
 - **README.md**: 所有所做过的题目
 - **ReviewPage.md**: 所有题目的总结和归纳（不断完善中）
@@ -8,8 +13,20 @@
 - **SystemDesign.md**: 对系统设计的一些笔记
 
 
-## 1/ 程序員土汪 YouTube 学习工作视频
+# 1/ 土汪 YouTube Channel
 
+我的[Youtube 频道: TuWang Tech](https://www.youtube.com/channel/UCwOSFWYEIZfsk5X9PYOE7hA)未来会持续更新在北美科技行业工作的故事和经验.
+
+* [I Failed To Quit FAANG Jobs (Facebook/Meta | Amazon | Apple | Netflix | Google)](https://www.youtube.com/watch?v=2xVOhl6-RmE&t=4s&ab_channel=TuwangTech)
+* [They Made Half Million($500k+), I Made Peanuts](https://www.youtube.com/watch?v=BchKKoxdeNI&t=2s&ab_channel=TuwangTech)
+
+希望在这里参考刷题经验时, 可以去关注我的频道! 搜"TuWang Tech"可以找到我. [Youtube](https://www.youtube.com/channel/UCwOSFWYEIZfsk5X9PYOE7hA), [Bilibili](https://space.bilibili.com/249496206).
+
+有任何程序员工作的疑问, 都可以给我留言/私信/邮件. wechat: TuWangZ, Instagram: TuWang.Z
+
+希望大家学习顺利, 对未来充满希望!
+
+一些老频道的视频:
 * [我拒绝了Uber $200万刀/4y的Offer | I declined the $2M offer from Uber and went to ...](https://youtu.be/RtQFzb77dGY)
 * [薪资大公开 - 2021年, 北美软件工程师, 一年赚多少? (Google vs Amazon) | How much do I make as a Software Engineer (2021)](https://youtu.be/nmgyT_m1j3s)
 * [为什么我选择放弃亚马逊的工作 | Why I left Amazon as a Software Engineer (2021)](https://youtu.be/BBpivK4I_8U)
@@ -20,15 +37,6 @@
 * [刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
 
 
-我的[Youtube Channel](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw)未来会更新这些方面的内容: 
-* 工作经验的分享: 当然会跟Software Engineer比较相关
-* 在美国的学生时代的经历
-
-希望在这里参考刷题经验时, 可以去关注我的频道! 搜"土汪/TuwangZ"可以找到我. [Youtube: 土汪](https://www.youtube.com/channel/UCQNPegv0VqempHNYPWKkVNw), [Bilibili: 土汪](https://space.bilibili.com/249496206).
-
-有任何程序员工作的疑问, 都可以给我留言/私信/邮件. wechat: TuWangZ, Instagram: TuWang.Z
-
-希望大家学习顺利, 对未来充满希望!
 
 
 # 2/ 目录 Java Algorithm Problems
