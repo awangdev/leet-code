@@ -1,5 +1,3 @@
-![home](https://user-images.githubusercontent.com/10102793/115952522-45a10a00-a49b-11eb-825e-08f913d9bbbf.png)
-
 > Disclaimer: 这里的题目跟具体的面试毫无关系, 也没有任何指向性; 这些题目是我当年在努力刷题的过程中积累下来的经验和总结!
 
 # 简介
@@ -9,33 +7,7 @@
 - **KnowledgeHash2.md**: 对所做过的知识点的一些笔记
 - **SystemDesign.md**: 对系统设计的一些笔记
 
-
-# 001 | about 土汪
-[tuwangbrick.substack.com](https://tuwangbrick.substack.com/) 是2022年开启的一个news letter周刊, 每周一更新, 内容是一些工作上遇到的思考, 介绍些遇到的新工具, 偶尔吐槽. 欢迎大家订阅我的周刊. 或者订阅RSS Feed: https://tuwangbrick.substack.com/feed.
-
-○ 📅 欢迎大家在[Calendly](http://calendly.com/tuwang/catchup)上跟我约时间1:1, 聊工作生活
-
-○ 👨‍💻 Social Media: [YouTube](https://www.youtube.com/c/Tuwang), [小红书](https://www.xiaohongshu.com/user/profile/5ab4157c4eacab63a8d11187?xhsshare=CopyLink&appuid=5ab4157c4eacab63a8d11187), [B站](https://b23.tv/9fuyMh6), [Twitter](https://twitter.com/TuWangZ)
-
-○ 🎙 Podcast: 土汪遛弯儿 ([小宇宙](https://www.xiaoyuzhoufm.com/podcast/626ef6323e8abf901a68d8bd), [Spotify](https://open.spotify.com/show/6YbZ3aEUx4vpyz5soHsIEC), [Apple Podcast](https://podcasts.apple.com/us/podcast/%E5%9C%9F%E6%B1%AA%E9%81%9B%E5%BC%AF%E5%84%BF/id1571623057))
-
-○ 💬 Chat: 微信 TuwangZ, [Discord - tuwang](https://discord.gg/Qep9TrJUm9)
-
-[Youtube 频道: 土汪遛弯儿](https://www.youtube.com/c/Tuwang)未来会持续更新在北美科技行业工作的故事和经验. 有任何程序员工作的疑问, 可以加入上面的discord留言.
-
-* [我拒绝了Uber $200万刀/4y的Offer | I declined the $2M offer from Uber and went to ...](https://youtu.be/RtQFzb77dGY)
-* [薪资大公开 - 2021年, 北美软件工程师, 一年赚多少? (Google vs Amazon) | How much do I make as a Software Engineer (2021)](https://youtu.be/nmgyT_m1j3s)
-* [为什么我选择放弃亚马逊的工作 | Why I left Amazon as a Software Engineer (2021)](https://youtu.be/BBpivK4I_8U)
-* [曾经的留级生, 今天一线大厂软件工程师! | The making of a software engineer(2021)](https://youtu.be/cACqlpXKRpY)
-* [看了这些, 还想去美国留学吗? 我的留学经历 (2020)](https://youtu.be/XqOA5q5Rtpw)
-* [如何拿到亚马逊的工作! How succeed in Amazon Interview! (2019)](https://youtu.be/NIuOjjKaK9M)
-* [十分钟学会Python? (2019)](https://youtu.be/DRQYOdO9BAU)
-* [刚到美国到底怎样开口说英文? (2019)](https://youtu.be/pd3WR5K-bLs)
-
-希望大家学习顺利, 对未来充满希望!
-
-
-# 002 | 目录 Java Algorithm Problems
+# Java Algorithm Problems
 
 | Leetcode# | Problem     | Level  | Tags | Time | Space | Language | Sequence |
 |:---------:|:------------|:------:|:----:|-----:|------:|:--------:|---------:|
